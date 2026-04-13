@@ -1,0 +1,236 @@
+"use client";
+
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+
+/* ================= TYPES ================= */
+type SectionType = {
+  number: string;
+  title: string;
+  points: (string | { title: string; items: string[] })[];
+};
+
+/* ================= DATA ================= */
+
+const title = "HEARTVIEW HEALTH USER CONSENT & MEDICAL DISCLAIMER";
+const subtitle =
+  "IMPORTANT: Read carefully before use. By using HeartView Health, you acknowledge and agree to the following.";
+
+const sections: SectionType[] = [
+  {
+    number: "1",
+    title: "Not a Medical Device",
+    points: [
+      {
+        title: "The Services, including the mobile application and wearable ECG device:",
+        items: [
+          "Are intended for general wellness purposes only",
+          "Are NOT a certified medical device (unless explicitly stated)",
+          "Do NOT provide diagnosis, treatment, or medical advice",
+        ],
+      },
+    ],
+  },
+  {
+    number: "2",
+    title: "No Medical Advice",
+    points: [
+      {
+        title: "The Services:",
+        items: [
+          "Do not replace doctors",
+          "Do not provide clinical guidance",
+          "Do not create a doctor-patient relationship",
+        ],
+      },
+      "Always consult a qualified healthcare professional.",
+    ],
+  },
+  {
+    number: "3",
+    title: "Accuracy Limitations (Very Important)",
+    points: [
+      {
+        title: "You understand and accept:",
+        items: [
+          "ECG data may be inaccurate or incomplete",
+        ],
+      },
+      {
+        title: "Readings may be affected by:",
+        items: [
+          "Movement",
+          "Device placement",
+          "Skin conditions",
+          "Environmental interference",
+        ],
+      },
+      {
+        title: "AI insights may:",
+        items: [
+          "Be incorrect",
+          "Miss conditions",
+          "Generate false alerts",
+        ],
+      },
+    ],
+  },
+  {
+    number: "4",
+    title: "No Reliance Clause",
+    points: [
+      {
+        title: "You agree NOT to rely on the Services for:",
+        items: [
+          "Medical diagnosis",
+          "Treatment decisions",
+          "Emergency situations",
+        ],
+      },
+    ],
+  },
+  {
+    number: "5",
+    title: "Emergency Disclaimer (Critical)",
+    points: [
+      {
+        title: "If you experience symptoms such as:",
+        items: [
+          "Chest pain",
+          "Dizziness",
+          "Shortness of breath",
+        ],
+      },
+      "Seek immediate medical attention. Do NOT rely on the app.",
+    ],
+  },
+  {
+    number: "6",
+    title: "Risk Acknowledgment",
+    points: [
+      {
+        title: "You explicitly acknowledge:",
+        items: [
+          "Use of the Services involves inherent risks",
+          "Digital health data may be inaccurate",
+          "System failures, delays, or outages may occur",
+        ],
+      },
+      "You use the Services entirely at your own risk.",
+    ],
+  },
+  {
+    number: "7",
+    title: "Data Risks",
+    points: [
+      {
+        title: "You understand:",
+        items: [
+          "Data may be stored digitally",
+          "Breaches or unauthorized access may occur",
+        ],
+      },
+      "You accept these risks.",
+    ],
+  },
+  {
+    number: "8",
+    title: "User Responsibility",
+    points: [
+      {
+        title: "You are solely responsible for:",
+        items: [
+          "Your health decisions",
+          "Interpreting data",
+          "Seeking medical care",
+        ],
+      },
+    ],
+  },
+  {
+    number: "9",
+    title: "Consent to Terms & Privacy Policy",
+    points: [
+      {
+        title: "By proceeding, you confirm that you:",
+        items: [
+          "Have read and understood this document",
+          "Agree to the Terms & Conditions",
+          "Agree to the Privacy Policy",
+        ],
+      },
+    ],
+  },
+  {
+    number: "10",
+    title: "Binding Agreement",
+    points: [
+      "This Consent forms a legally binding agreement between you and HeartView Health Technologies Private Limited.",
+    ],
+  },
+];
+
+/* ================= SECTION COMPONENT ================= */
+
+function Section({ data }: { data: SectionType }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      className="mb-10 border-b border-white/10 pb-8"
+    >
+      {/* HEADER */}
+      <div className="flex gap-4 mb-4">
+        <span className="text-[#3D7773] font-semibold">{data.number}</span>
+        <h2 className="text-2xl lg:text-4xl text-white tracking-tight leading-snug">{data.title}</h2>
+      </div>
+
+      {/* CONTENT */}
+      <ul className="pl-6 space-y-2 list-disc marker:text-[#3D7773] text-white/60 text-lg md:text-base lg:text-2xl max-w-7xl font-light leading-relaxed ">
+        {data.points.map((point, i) => (
+          <li key={i}>
+            {typeof point === "string" ? (
+              point
+            ) : (
+              <div>
+                <p className="text-white/80 text-lg md:text-base lg:text-2xl max-w-7xl font-light leading-relaxed">{point.title}</p>
+                <ul className="pl-6 mt-2 list-disc text-white/50 text-lg md:text-base lg:text-2xl max-w-7xl font-light leading-relaxed">
+                  {point.items.map((item, idx) => (
+                    <li key={idx}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
+    </motion.div>
+  );
+}
+
+/* ================= MAIN ================= */
+
+export default function UserConsent() {
+  return (
+    <div className="max-w-8xl px-20 py-20 text-white">
+      <div className="mx-auto">
+        <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full ">
+          <span className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1">
+            Legal Document
+          </span>
+        </div>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-white mb-4">{title}</h1>
+        <p className="text-lg md:text-base lg:text-2xl font-light leading-relaxed mb-10">{subtitle}</p>
+
+        {sections.map((sec, i) => (
+          <Section key={i} data={sec} />
+        ))}
+
+      </div>
+    </div>
+  );
+}

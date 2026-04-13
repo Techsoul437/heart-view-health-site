@@ -1,0 +1,56 @@
+"use client";
+import FillButton from "@/Ui/buttons/FillButton";
+import Link from "next/link";
+import Image from "next/image";
+import React from "react";
+
+function Hero() {
+  return (
+    <section className="w-full  box-border">
+      <div className="relative w-full  h-188 overflow-hidden rounded-2xl">
+
+        {/* Background Image */}
+        <Image
+          src="/Feture-Hero.png"
+          alt="Hero Background"
+          fill
+          priority
+          
+          className="object-cover"
+        />
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/70 to-transparent"></div>
+
+        {/* Content */}
+        <div className="absolute bottom-0 left-0 z-10 pb-12 pl-6 sm:pl-10 lg:pl-16 max-w-3xl">
+
+          <h1 className="heading-font text-4xl sm:text-5xl lg:text-6xl font-medium text-white leading-tight tracking-tight mb-3">
+       Explore Powerful Features 
+            <br />
+           for Better Heart Health
+          </h1>
+
+          <p className="text-base sm:text-lg text-white leading-relaxed max-w-md">
+Discover intelligent tools designed to help you monitor, analyze, and improve your cardiovascular health — all in one seamless experience.
+          </p>
+
+          {/* Buttons */}
+          <div className="flex flex-wrap gap-4 py-5 items-center">
+            <FillButton text="Download App" href="#download" />
+
+            <Link
+              href="/contact"
+              className="flex items-center gap-2 bg-white/15 hover:bg-white/25 text-white text-sm sm:text-base font-semibold px-6 py-3 rounded-full border border-white/40 backdrop-blur-sm transition-all duration-200"
+            >
+              Join Early Access
+            </Link>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Hero;

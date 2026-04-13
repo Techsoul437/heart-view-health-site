@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+:root {
+  --foreground: #171717;
+}
+
+/* ✅ Custom Fonts Add */
+@font-face {
+  font-family: 'InterCustom';
+  src: url('/font/Inter_18pt-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'InterCustom';
+  src: url('/font/Inter_18pt-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'InterCustom';
+  src: url('/font/Inter_18pt-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* BODY pe background image */
+.page-bg {
+  background-image: url('/page-bg.png'); /* public folder */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* ✅ Apply Custom Font */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'InterCustom';
+  overflow-x: hidden;
+}
