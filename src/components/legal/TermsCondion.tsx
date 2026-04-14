@@ -22,11 +22,11 @@ const sections: SectionType[] = [
     title: "Definitions",
     points: [
       '"Company" refers to HeartView Health Technologies Private Limited, incorporated under the Companies Act, 2013.',
-      '"Services" include the HeartView Health mobile application, wearable ECG devices, analytics systems, and all related features.',
-      '"Device" refers to any HeartView Health wearable ECG hardware or supported third-party device.',
+      '"Services" include the HeartView Health mobile application, analytics systems, and all related features.',
+      '"Device" refers to any HeartView Health supported third-party device.',
       '"User" means any individual accessing or using the Services.',
       '"Content" includes all reports, notes, data, or files uploaded by Users.',
-      '"Wellness Data" includes ECG signals, heart rate, analytics, and user-entered health information.',
+      '"Wellness Data" includes heart rate, analytics, and user-entered health information.',
     ],
   },
   {
@@ -55,8 +55,7 @@ const sections: SectionType[] = [
         title: "Use of the Services does not establish:",
         items: [
           "Doctor-patient relationship",
-          "Clinical supervision",
-          "Emergency monitoring",
+          "Clinical supervision"
         ],
       },
       "The Company does not provide healthcare services.",
@@ -67,10 +66,6 @@ const sections: SectionType[] = [
     title: "Medical Disclaimer (Critical – Expanded)",
     points: [
       "All data is informational only.",
-      {
-        title: "ECG readings and insights:",
-        items: ["May be inaccurate", "May be incomplete", "May be delayed"],
-      },
       {
         title: "Factors affecting accuracy include:",
         items: [
@@ -90,7 +85,7 @@ const sections: SectionType[] = [
       },
       {
         title: "You must NOT rely on the Services for:",
-        items: ["Medical diagnosis", "Treatment decisions", "Emergency care"],
+        items: ["Medical diagnosis", "Treatment decisions"],
       },
       "In case of symptoms (e.g., chest pain, dizziness), seek immediate medical attention.",
     ],
@@ -334,7 +329,6 @@ const privacySections: PrivacySectionType[] = [
         title: "This Policy applies to:",
         items: [
           "Mobile application usage",
-          "Wearable ECG devices",
           "Website (if applicable)",
           "Third-party integrations (Apple Health, Google Fit, etc.)",
         ],
@@ -352,7 +346,6 @@ const privacySections: PrivacySectionType[] = [
       {
         title: "Wellness & Health Data:",
         items: [
-          "ECG signals",
           "Heart rate and related metrics",
           "Activity data",
           "User-uploaded reports, notes, and medical documents",

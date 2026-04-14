@@ -19,7 +19,7 @@ const features = [
         icon: HeartPulse,
         points: [
             "Continuously evaluates cardiovascular risk using dynamic scoring",
-            "Calculates 0–100 Heart Risk Score (Good, Watch, High)",
+            "Calculates 0–100 Heart View Score (Good, Watch, High)",
             "Identifies key factors like BP, lipids, activity",
             "Provides next-best-action recommendations",
             "Works even with partial data",
@@ -68,28 +68,6 @@ const features = [
             "Maintains source-based data integrity",
             "Continuous background sync",
             "Unified health profile",
-        ],
-    },
-    {
-        title: "Real-Time ECG Monitoring (Beta)",
-        icon: Heart,
-        points: [
-            "Live ECG waveform monitoring",
-            "Detects irregular rhythms",
-            "Identifies tachycardia & bradycardia",
-            "Signal quality checks",
-            "User confirmation workflows",
-        ],
-    },
-    {
-        title: "Emergency Awareness System",
-        icon: AlertTriangle,
-        points: [
-            "Triggers alerts on abnormal patterns",
-            "User confirmation: Are you okay?",
-            "Quick emergency calling (108)",
-            "Notifies emergency contacts",
-            "Optional location sharing",
         ],
     },
     {

@@ -22,7 +22,7 @@ const sections: SectionType[] = [
     title: "Not a Medical Device",
     points: [
       {
-        title: "The Services, including the mobile application and wearable ECG device:",
+        title: "The Services, including the mobile application and wearable device:",
         items: [
           "Are intended for general wellness purposes only",
           "Are NOT a certified medical device (unless explicitly stated)",
@@ -53,7 +53,7 @@ const sections: SectionType[] = [
       {
         title: "You understand and accept:",
         items: [
-          "ECG data may be inaccurate or incomplete",
+          "data may be inaccurate or incomplete",
         ],
       },
       {
@@ -83,29 +83,13 @@ const sections: SectionType[] = [
         title: "You agree NOT to rely on the Services for:",
         items: [
           "Medical diagnosis",
-          "Treatment decisions",
-          "Emergency situations",
+          "Treatment decisions"
         ],
       },
     ],
   },
   {
     number: "5",
-    title: "Emergency Disclaimer (Critical)",
-    points: [
-      {
-        title: "If you experience symptoms such as:",
-        items: [
-          "Chest pain",
-          "Dizziness",
-          "Shortness of breath",
-        ],
-      },
-      "Seek immediate medical attention. Do NOT rely on the app.",
-    ],
-  },
-  {
-    number: "6",
     title: "Risk Acknowledgment",
     points: [
       {
@@ -120,7 +104,7 @@ const sections: SectionType[] = [
     ],
   },
   {
-    number: "7",
+    number: "6",
     title: "Data Risks",
     points: [
       {
@@ -134,7 +118,7 @@ const sections: SectionType[] = [
     ],
   },
   {
-    number: "8",
+    number: "7",
     title: "User Responsibility",
     points: [
       {
@@ -148,7 +132,7 @@ const sections: SectionType[] = [
     ],
   },
   {
-    number: "9",
+    number: "8",
     title: "Consent to Terms & Privacy Policy",
     points: [
       {
@@ -162,7 +146,7 @@ const sections: SectionType[] = [
     ],
   },
   {
-    number: "10",
+    number: "9",
     title: "Binding Agreement",
     points: [
       "This Consent forms a legally binding agreement between you and HeartView Health Technologies Private Limited.",

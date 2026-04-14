@@ -13,12 +13,12 @@ import {
 
 export default function WhatWeDo() {
     const cards = [
-        {
-            title: "Heart Monitoring",
-            desc: "Continuous ECG tracking to monitor heart activity and detect irregularities.",
-            icon: FaHeartbeat,
-            color: "from-red-500 to-pink-500",
-        },
+        // {
+        //     title: "Heart Monitoring",
+        //     desc: "Continuous ECG tracking to monitor heart activity and detect irregularities.",
+        //     icon: FaHeartbeat,
+        //     color: "from-red-500 to-pink-500",
+        // },
         {
             title: "Smart Insights",
             desc: "Analyze trends and patterns to understand your heart health over time.",

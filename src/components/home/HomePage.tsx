@@ -18,7 +18,7 @@ function HomePage() {
       <div className='page-bg'>
         <Navbar></Navbar>
         <Hero></Hero>
-        <QuickValueSection></QuickValueSection>
+        {/* <QuickValueSection></QuickValueSection> */}
         {/* <div style={{height:'600px'}}></div> */}
         <HowItWorks></HowItWorks>
         {/* <TeamSection></TeamSection> */}

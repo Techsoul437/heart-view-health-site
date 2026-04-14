@@ -19,7 +19,7 @@ const STEPS = [
     label: "HEART RISK ANALYSIS",
     title: "Understand your heart health clearly",
     description:
-      "Get a personalized heart risk score based on your vitals, lifestyle, and medical data. Identify key contributing factors and make informed decisions to improve your cardiovascular health.",
+      "Get a personalized Heart View Score based on your vitals, lifestyle, and medical data. Identify key contributing factors and make informed decisions to improve your cardiovascular health.",
     image: "/step-2.jpeg",
   },
   {

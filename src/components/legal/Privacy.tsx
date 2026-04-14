@@ -16,7 +16,6 @@ const sections = [
     content: "This Policy applies to:",
     list: [
       "Mobile application usage",
-      "Wearable ECG devices",
       "Website (if applicable)",
       "Third-party integrations (Apple Health, Google Fit, etc.)",
     ],
@@ -33,7 +32,6 @@ const sections = [
       {
         subtitle: "Wellness & Health Data",
         list: [
-          "ECG signals",
           "Heart rate and related metrics",
           "Activity data",
           "User-uploaded reports, notes, and medical documents",

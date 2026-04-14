@@ -136,7 +136,7 @@ export const blogs: Blog[] = [
       { title: "Early Signs of Heart Problems You Should Not Ignore", slug: "early-signs-heart-problems" },
       { title: "How to Prevent Heart Disease Naturally", slug: "how-to-prevent-heart-disease-naturally" },
       { title: "Top 10 Heart Health Tips for Daily Life", slug: "top-10-heart-health-tips" },
-      { title: "What is a Good Heart Risk Score?", slug: "what-is-a-good-heart-risk-score" },
+      { title: "What is a Good Heart View Score?", slug: "what-is-a-good-heart-risk-score" },
       { title: "How Stress Affects Heart Health", slug: "how-stress-affects-heart-health" },
     ],
     schemaMarkup: {
@@ -176,7 +176,7 @@ export const blogs: Blog[] = [
       },
       {
         question: "What is a dangerous heart rate?",
-        answer: "A resting heart rate below 40 bpm (without being an athlete) or above 120 bpm can be dangerous. Seek emergency care if heart rate is irregular, very fast, or accompanied by chest pain.",
+        answer: "A resting heart rate below 40 bpm (without being an athlete) or above 120 bpm can be dangerous. Seek care if heart rate is irregular, very fast, or accompanied by chest pain.",
       },
       {
         question: "Can dehydration affect heart rate?",
@@ -313,11 +313,11 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "What is the fastest way to bring blood pressure down?",
-        answer: "Deep breathing exercises, reducing sodium immediately, drinking hibiscus tea, and light exercise can help lower BP quickly. For emergency high BP, consult a doctor immediately.",
+        answer: "Deep breathing exercises, reducing sodium immediately, drinking hibiscus tea, and light exercise can help lower BP quickly. For  high BP, consult a doctor immediately.",
       },
       {
         question: "What is a dangerous level of high blood pressure?",
-        answer: "A reading of 180/120 mmHg or higher is a hypertensive crisis — seek emergency medical care immediately. Stage 2 hypertension (140/90+) also requires prompt medical attention.",
+        answer: "A reading of 180/120 mmHg or higher is a hypertensive crisis — seek medical care immediately. Stage 2 hypertension (140/90+) also requires prompt medical attention.",
       },
       {
         question: "Does lemon water lower blood pressure?",
@@ -535,19 +535,6 @@ export const blogs: Blog[] = [
           "HeartView risk score feature",
         ],
       },
-      {
-        heading: "What to Do If You Notice These Signs",
-        paragraphs: [
-          "Do not ignore persistent or recurring symptoms — consult a doctor even if the symptoms seem mild.",
-          "If you experience sudden chest pain, severe breathlessness, or fainting, call emergency services immediately.",
-          "Using a heart health monitoring app can help you track trends in your heart rate, BP, and activity over time.",
-          "Regular check-ups, blood tests, and ECGs are essential tools to assess your cardiovascular health proactively.",
-        ],
-        images: ["/blogs/heart-action.png"],
-        references: [
-          "Emergency cardiac care protocols",
-        ],
-      },
     ],
     faq: [
       {
@@ -572,7 +559,7 @@ export const blogs: Blog[] = [
       },
     ],
     internalLinks: [
-      { title: "What is a Good Heart Risk Score?", slug: "what-is-a-good-heart-risk-score" },
+      { title: "What is a Good Heart View Score?", slug: "what-is-a-good-heart-risk-score" },
       { title: "How to Prevent Heart Disease Naturally", slug: "how-to-prevent-heart-disease-naturally" },
       { title: "What is a Normal Heart Rate by Age?", slug: "normal-heart-rate-by-age" },
       { title: "How Stress Affects Heart Health", slug: "how-stress-affects-heart-health" },
@@ -610,10 +597,6 @@ export const blogs: Blog[] = [
       {
         question: "Can young people get heart disease?",
         answer: "Yes. With rising rates of obesity, stress, and sedentary lifestyles, heart disease is increasingly affecting people in their 20s and 30s. Genetic factors can also cause early-onset heart problems.",
-      },
-      {
-        question: "What tests detect early heart problems?",
-        answer: "An ECG, echocardiogram, stress test, lipid profile, and coronary calcium scan are all valuable tools for detecting early heart disease before symptoms become severe.",
       },
     ],
   },
@@ -719,7 +702,7 @@ export const blogs: Blog[] = [
       { title: "What is Normal Cholesterol Level?", slug: "what-is-normal-cholesterol-level" },
       { title: "How to Understand Your Lipid Profile", slug: "how-to-understand-lipid-profile" },
       { title: "What is Triglycerides and Why It Matters", slug: "what-is-triglycerides-and-why-it-matters" },
-      { title: "What is a Good Heart Risk Score?", slug: "what-is-a-good-heart-risk-score" },
+      { title: "What is a Good Heart View Score?", slug: "what-is-a-good-heart-risk-score" },
       { title: "How to Prevent Heart Disease Naturally", slug: "how-to-prevent-heart-disease-naturally" },
     ],
     schemaMarkup: {
@@ -764,18 +747,18 @@ export const blogs: Blog[] = [
 
   {
     slug: "what-is-a-good-heart-risk-score",
-    title: "What is a Good Heart Risk Score?",
+    title: "What is a Good Heart View Score?",
     category: "heart-risk",
     description:
-      "Learn what a heart risk score means, how it is calculated, and what your score says about your health.",
+      "Learn what a Heart View Score means, how it is calculated, and what your score says about your health.",
     content: [
       {
-        heading: "What is a Heart Risk Score?",
+        heading: "What is a Heart View Score?",
         paragraphs: [
-          "A heart risk score is a numerical estimate of your likelihood of developing cardiovascular disease within a specific timeframe, typically 10 years.",
+          "A Heart View Score is a numerical estimate of your likelihood of developing cardiovascular disease within a specific timeframe, typically 10 years.",
           "It is calculated using a combination of factors such as age, gender, blood pressure, cholesterol levels, smoking status, and diabetes.",
           "Common tools include the Framingham Risk Score and the ASCVD (Atherosclerotic Cardiovascular Disease) Risk Calculator.",
-          "Understanding your heart risk score empowers you to take preventive action before serious problems develop.",
+          "Understanding your Heart View Score empowers you to take preventive action before serious problems develop.",
         ],
         images: ["/physical2.jpg"],
         references: [
@@ -811,7 +794,7 @@ export const blogs: Blog[] = [
         ],
       },
       {
-        heading: "How to Lower Your Heart Risk Score",
+        heading: "How to Lower Your Heart View Score",
         paragraphs: [
           "Quitting smoking can reduce your cardiovascular risk by up to 50% within one year.",
           "Keeping blood pressure below 120/80 mmHg through diet, exercise, and if needed, medication reduces risk significantly.",
@@ -840,23 +823,23 @@ export const blogs: Blog[] = [
     ],
     faq: [
       {
-        question: "What is considered a good heart risk score?",
+        question: "What is considered a good Heart View Score?",
         answer: "A 10-year cardiovascular risk score below 7.5% is considered low risk. Scores between 7.5–20% are intermediate, and above 20% is high risk requiring active medical management.",
       },
       {
-        question: "How is a heart risk score calculated?",
+        question: "How is a Heart View Score calculated?",
         answer: "It uses your age, sex, total and HDL cholesterol, systolic blood pressure, smoking status, and diabetes status to estimate the probability of a cardiovascular event in the next 10 years.",
       },
       {
-        question: "Can a heart risk score be reduced?",
-        answer: "Yes. Quitting smoking, controlling blood pressure and cholesterol, losing weight, and exercising regularly can meaningfully reduce your heart risk score over months to years.",
+        question: "Can a Heart View Score be reduced?",
+        answer: "Yes. Quitting smoking, controlling blood pressure and cholesterol, losing weight, and exercising regularly can meaningfully reduce your Heart View Score over months to years.",
       },
       {
         question: "What tools are used to calculate heart risk?",
         answer: "Common tools include the Framingham Risk Score, the ACC/AHA ASCVD Risk Calculator, and the SCORE2 (used in Europe). HeartView also provides a built-in risk calculation feature.",
       },
       {
-        question: "At what age should I get my heart risk score checked?",
+        question: "At what age should I get my Heart View Score checked?",
         answer: "A baseline cardiovascular risk assessment is recommended starting at age 40 (or earlier if you have risk factors like family history, diabetes, or hypertension).",
       },
     ],
@@ -870,8 +853,8 @@ export const blogs: Blog[] = [
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "What is a Good Heart Risk Score?",
-      "description": "Learn what a heart risk score means, how it is calculated, and what your score says about your health.",
+      "headline": "What is a Good Heart View Score?",
+      "description": "Learn what a Heart View Score means, how it is calculated, and what your score says about your health.",
       "image": "/physical2.jpg",
       "author": { "@type": "Organization", "name": "HeartView" },
       "publisher": { "@type": "Organization", "name": "HeartView" },
@@ -881,7 +864,7 @@ export const blogs: Blog[] = [
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "What is considered a good heart risk score?",
+            "name": "What is considered a good Heart View Score?",
             "acceptedAnswer": { "@type": "Answer", "text": "A 10-year cardiovascular risk score below 7.5% is considered low risk." },
           },
         ],
@@ -889,15 +872,15 @@ export const blogs: Blog[] = [
     },
     peopleAlsoAsk: [
       {
-        question: "Is a 10% heart risk score high?",
+        question: "Is a 10% Heart View Score high?",
         answer: "A 10% score falls in the intermediate risk category (7.5–20%). Your doctor will likely recommend lifestyle changes and possibly medication depending on your overall health profile.",
       },
       {
-        question: "Can heart risk score be wrong?",
+        question: "Can Heart View Score be wrong?",
         answer: "Risk scores are estimates, not certainties. They are validated for populations but may under- or over-estimate risk for individuals. They should be used alongside clinical judgment.",
       },
       {
-        question: "Does family history affect heart risk score?",
+        question: "Does family history affect Heart View Score?",
         answer: "Standard calculators like Framingham do not always include family history, but premature family history of heart disease (father before 55, mother before 65) is considered a risk-enhancing factor.",
       },
       {
@@ -1089,13 +1072,12 @@ export const blogs: Blog[] = [
         ],
       },
       {
-        heading: "Tips 6–10: Sleep, Stress, and Monitoring",
+        heading: "Tips 6–9: Sleep, Stress, and Monitoring",
         paragraphs: [
           "Tip 6: Sleep 7–9 hours every night — poor sleep raises blood pressure and inflammation.",
           "Tip 7: Practice 10 minutes of deep breathing or meditation daily to lower cortisol.",
           "Tip 8: Quit smoking — the heart begins to heal within 20 minutes of the last cigarette.",
           "Tip 9: Monitor your blood pressure and heart rate at least once a week using a reliable tracker.",
-          "Tip 10: Visit your doctor annually for a lipid profile, blood sugar test, and ECG after age 35.",
         ],
         images: ["/blogs/heart-tips-3.png"],
         references: [
@@ -1121,7 +1103,6 @@ export const blogs: Blog[] = [
         paragraphs: [
           "Even with healthy habits, regular medical check-ups are essential for early detection of silent conditions.",
           "If you experience any chest discomfort, shortness of breath, or palpitations, seek immediate medical advice.",
-          "A baseline ECG, blood pressure reading, and lipid profile are recommended for all adults above 35.",
           "Your doctor can help you personalize these tips based on your specific health history and risk factors.",
         ],
         images: ["/blogs/heart-tips-doctor.png"],
@@ -1146,10 +1127,6 @@ export const blogs: Blog[] = [
       {
         question: "How often should I check my blood pressure at home?",
         answer: "If you are healthy, weekly monitoring is sufficient. If you have hypertension or are adjusting medication, daily readings (morning and evening) provide the most useful data for your doctor.",
-      },
-      {
-        question: "When should I get my first ECG?",
-        answer: "An ECG (electrocardiogram) is recommended for all adults above 35, or earlier if you have symptoms like palpitations, chest pain, or shortness of breath. It establishes a baseline for future comparison.",
       },
     ],
     internalLinks: [
@@ -1478,11 +1455,7 @@ export const blogs: Blog[] = [
       {
         question: "Can lack of sleep cause high blood pressure?",
         answer: "Yes. People who consistently sleep less than 6 hours per night have a 20–32% higher risk of developing hypertension. Sleep deprivation activates the sympathetic nervous system, elevating heart rate and blood pressure.",
-      },
-      {
-        question: "Does high blood pressure cause headaches?",
-        answer: "Mild to moderate hypertension typically does not cause headaches. However, a hypertensive crisis (180/120+) can cause severe headaches, vision changes, and other symptoms requiring emergency care.",
-      },
+      }
     ],
   },
 
@@ -1588,7 +1561,7 @@ export const blogs: Blog[] = [
       { title: "What is Normal Cholesterol Level?", slug: "what-is-normal-cholesterol-level" },
       { title: "What is Triglycerides and Why It Matters", slug: "what-is-triglycerides-and-why-it-matters" },
       { title: "How to Read Your Blood Test Report", slug: "how-to-read-blood-test-report" },
-      { title: "What is a Good Heart Risk Score?", slug: "what-is-a-good-heart-risk-score" },
+      { title: "What is a Good Heart View Score?", slug: "what-is-a-good-heart-risk-score" },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
@@ -1657,7 +1630,6 @@ export const blogs: Blog[] = [
           "Dizziness or lightheadedness — especially when standing up suddenly — is the most common symptom.",
           "Fainting (syncope), blurred vision, fatigue, and nausea are also frequently reported.",
           "Cold, clammy, or pale skin may accompany episodes of significant blood pressure drop.",
-          "In severe cases, confusion, rapid shallow breathing, and weak pulse indicate a medical emergency.",
         ],
         images: ["/blogs/low-bp-symptoms.png"],
         references: [
@@ -1695,7 +1667,6 @@ export const blogs: Blog[] = [
         paragraphs: [
           "Seek medical attention if you experience frequent fainting, persistent dizziness, or confusion.",
           "A sudden drop in BP without an obvious cause warrants evaluation for cardiac or endocrine conditions.",
-          "Your doctor may recommend blood tests, an ECG, or a tilt-table test to identify the underlying cause.",
           "Tracking your BP readings over time with HeartView can provide valuable data for your doctor's assessment.",
         ],
         images: ["/blogs/low-bp-doctor.png"],
@@ -1717,10 +1688,6 @@ export const blogs: Blog[] = [
       {
         question: "How can I raise low blood pressure quickly?",
         answer: "Drinking water, eating a small salty snack, lying down with legs elevated, and drinking a caffeinated beverage (occasionally) can help raise BP quickly. Medical treatment may be needed for chronic hypotension.",
-      },
-      {
-        question: "Is low blood pressure dangerous?",
-        answer: "Mild hypotension without symptoms is generally not dangerous. However, a sudden severe drop in BP can cause fainting, organ damage, or shock — requiring emergency medical attention.",
       },
       {
         question: "Can low blood pressure be caused by medication?",
@@ -2595,7 +2562,7 @@ export const blogs: Blog[] = [
       { title: "Causes of High Blood Pressure", slug: "causes-of-high-blood-pressure" },
       { title: "Low BP Symptoms and Treatment", slug: "low-bp-symptoms-and-treatment" },
       { title: "Best Diet for BP Control", slug: "best-diet-for-bp-control" },
-      { title: "What is a Good Heart Risk Score?", slug: "what-is-a-good-heart-risk-score" },
+      { title: "What is a Good Heart View Score?", slug: "what-is-a-good-heart-risk-score" },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
@@ -3456,7 +3423,7 @@ export const blogs: Blog[] = [
       { title: "LDL vs HDL – Good vs Bad Cholesterol Explained", slug: "ldl-vs-hdl" },
       { title: "How to Understand Your Lipid Profile", slug: "how-to-understand-lipid-profile" },
       { title: "What is Triglycerides and Why It Matters", slug: "what-is-triglycerides-and-why-it-matters" },
-      { title: "What is a Good Heart Risk Score?", slug: "what-is-a-good-heart-risk-score" },
+      { title: "What is a Good Heart View Score?", slug: "what-is-a-good-heart-risk-score" },
       { title: "How to Read Your Blood Test Report", slug: "how-to-read-blood-test-report" },
     ],
     schemaMarkup: {

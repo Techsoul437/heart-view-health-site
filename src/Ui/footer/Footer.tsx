@@ -28,7 +28,7 @@ const companyLinks = [
 ]
 
 const offeringLinks = [
-    { label: 'Heart Risk Score', href: '/heart-risk-score' },
+    { label: 'Heart View Score', href: '/heart-risk-score' },
     { label: 'Health Tracking (BP, Glucose, Weight)', href: '/health-tracking' },
     { label: 'Lab Report Scan (OCR)', href: '/lab-report-scan' },
     { label: 'Medication Reminders', href: '/medication-reminders' },

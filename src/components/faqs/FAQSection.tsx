@@ -11,8 +11,7 @@ const faqs = [
   {
     question: "What is HeartView Health?",
     answer: `HeartView Health is a digital platform that combines a mobile app and wearable technology to help you monitor and understand your heart-related wellness data.
-
-It provides insights based on ECG signals, heart rate, and lifestyle patterns to support better awareness of your heart health.`,
+     It provides insights based on  heart rate, and lifestyle patterns to support better awareness of your heart health.`,
   },
   {
     question: "Is HeartView Health a medical device?",
@@ -29,31 +28,10 @@ You should not rely on the app or device for medical decisions. Always consult a
   {
     question: "What kind of data does the app track?",
     answer: `The app may track and analyze:
-• ECG signals  
 • Heart rate  
 • Activity levels  
 • User-uploaded reports and notes  
 • Data from connected apps like Apple Health or Google Fit`,
-  },
-  {
-    question: "How accurate is the ECG and heart data?",
-    answer: `The data is informational and may not always be accurate.
-
-Accuracy can be affected by:
-• Device placement  
-• Movement  
-• Skin contact  
-• Environmental conditions`,
-  },
-  {
-    question: "What should I do if I feel unwell or have symptoms?",
-    answer: `If you experience symptoms such as:
-• Chest pain  
-• Dizziness  
-• Shortness of breath  
-
-👉 Seek immediate medical attention.  
-Do not rely on the app in emergencies.`,
   },
   {
     question: "Does HeartView Health replace a doctor?",
