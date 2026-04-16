@@ -244,51 +244,43 @@ export default function Contact() {
             <ToastContainer toasts={toasts} onClose={removeToast} />
 
             {/* ── Page ─────────────────────────────────────────────── */}
-            <section className="w-full py-20 px-4">
-                <div className="max-w-8xl mx-auto px-20">
+            <section className="w-full pt-15 md:pt-15 lg:pt-20 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
+                <div className="max-w-8xl mx-auto">
 
                     {/* Header */}
-                    <div className="w-full py-20 text-center">
-                        <motion.span
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, amount: 0.6 }}
-                            transition={{ duration: 0.6, ease: "easeOut" }}
-                            className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1"
-                        >
-                            Contact Us
-                        </motion.span>
+                    <div className="w-full py-4 text-center">
 
-                        <motion.h1
-                            initial={{ opacity: 0, y: 80, scale: 0.95 }}
-                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                            viewport={{ once: true, amount: 0.6 }}
-                            transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                            className="mt-4 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-white"
-                        >
-                            Let s Connect
-                        </motion.h1>
+                        <div className="text-center mb-12">
+                            <span className="inline-block text-xs tracking-widest text-[#3D7773] uppercase border border-white/20 rounded-full px-4 py-1">
+                                Contact Us
+                            </span>
+
+                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-white  mt-4">
+                                Let s Connect
+
+                            </h1>
+                        </div>
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 overflow-visible rounded-2xl">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8  overflow-visible rounded-2xl">
 
                         {/* LEFT — Info */}
-                        <div className="flex flex-col gap-8 p-12">
+                        <div className="flex flex-col gap-6 sm:gap-8 ">
                             <div>
                                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-zinc-100">Get In Touch</h2>
-                                <p className="text-zinc-500 mt-3 text-xl leading-relaxed">
+                                <p className="text-zinc-500 mt-3 text-base sm:text-lg  leading-relaxed  font-light">
                                     We re here to answer your questions and guide you toward <br
-                                    ></br>better health. Reach out anytime — we love to hear from you.
+                                    ></br>better health. Reach out anytime  we love to hear from you.
                                 </p>
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
+                            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 items-stretch">
 
                                 {/* LEFT SIDE (3 small cards) */}
                                 <div className="flex flex-col gap-3 ">
 
                                     {/* Phone */}
-                                    <div className="flex items-center gap-2 p-3 rounded-xl border border-[#3D7773] ">
+                                    <div className="flex items-center gap-2 p-3 lg:h-25 rounded-xl border border-[#3D7773] ">
                                         <div className="w-8 h-8 rounded-lg bg-[#3D7773] flex items-center justify-center">
                                             <FiPhone className="text-white text-sm" />
                                         </div>
@@ -299,7 +291,7 @@ export default function Contact() {
                                     </div>
 
                                     {/* Email */}
-                                    <div className="flex items-center gap-2 p-3 rounded-xl border border-[#3D7773]">
+                                    <div className="flex items-center gap-2 p-3 lg:h-25 rounded-xl border border-[#3D7773]">
                                         <div className="w-8 h-8 rounded-lg bg-[#3D7773] flex items-center justify-center">
                                             <FiMail className="text-white text-sm" />
                                         </div>
@@ -323,7 +315,7 @@ export default function Contact() {
                                 </div>
 
                                 {/* RIGHT SIDE (BIG ADDRESS CARD) */}
-                                <div className="p-5 rounded-xl border border-[#3D7773] flex items-start gap-3 h-full max-h-55">
+                                <div className="p-5 rounded-xl border border-[#3D7773] flex items-start gap-3 h-full ">
 
                                     <div className="w-10 h-10 rounded-lg bg-[#3D7773] flex items-center justify-center">
                                         <FiMapPin className="text-white" />
@@ -353,7 +345,7 @@ export default function Contact() {
                             <form onSubmit={formik.handleSubmit} noValidate className="flex flex-col gap-5 h-full">
 
                                 {/* Email + Name */}
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
                                     <div>
                                         <label className="block text-zinc-300 text-xs mb-1.5">Name</label>

@@ -47,7 +47,7 @@ HeartView Health is not a replacement for medical professionals and does not pro
     question: "Are subscriptions refundable?",
     answer: `No.
 
-All subscription payments are non-refundable, unless required by applicable law.`,
+All subscription payments are non refundable, unless required by applicable law.`,
   },
   {
     question: "Can I cancel my subscription anytime?",
@@ -127,17 +127,17 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="w-full py-20 px-1 sm:px-6 lg:px-8">
+    <section className="w-full py-20 px-4 sm:px-6 lg:px-20">
       <div className="max-w-[1800px] mx-auto mt-5">
        
         {/* Heading */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-10">
            <div className="inline-flex text-center items-center gap-2 mb-2 px-3 py-1.5 rounded-full ">
           <span className="inline-block text-xs justify-content-center font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1">
             FAQs
           </span>
         </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium  text-white leading-tight">
+          <h2 className=" text-3xl md:text-4xl lg:text-5xl font-medium  text-white leading-tight">
             Have Questions?
           </h2>
           <p className="mt-4 text-gray-400 text-base sm:text-lg font-[InterCustom]" >

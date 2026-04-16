@@ -11,7 +11,7 @@ export default function WhatsAppButton() {
       className="
         fixed bottom-6 right-3 z-50
         flex items-center justify-center
-        w-14 h-14 rounded-full
+        w-14 h-14  rounded-full
         bg-green-500 hover:bg-green-600
         shadow-lg hover:shadow-xl
         transition-all duration-300

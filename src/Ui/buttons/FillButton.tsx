@@ -8,9 +8,9 @@ function FillButton({ text = "Click Me", href = "#" }) {
     <Link href={href}>
       <button
         className="
-        group relative px-6 py-3 rounded-full 
+        group relative px-6 py-3 sm:px-7 sm:py-2.5 lg:px-8 lg:py-3 rounded-full 
         text-white overflow-hidden 
-
+text-xs sm:text-sm lg:text-base
         bg-gradient-to-r from-[#181E2B] to-[#3D7773]
 
         before:absolute before:inset-0 before:rounded-full

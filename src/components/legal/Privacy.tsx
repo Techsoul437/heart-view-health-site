@@ -17,7 +17,7 @@ const sections = [
     list: [
       "Mobile application usage",
       "Website (if applicable)",
-      "Third-party integrations (Apple Health, Google Fit, etc.)",
+      "Third party integrations (Apple Health, Google Fit, etc.)",
     ],
   },
   {
@@ -34,7 +34,7 @@ const sections = [
         list: [
           "Heart rate and related metrics",
           "Activity data",
-          "User-uploaded reports, notes, and medical documents",
+          "User uploaded reports, notes, and medical documents",
         ],
       },
       {
@@ -49,8 +49,8 @@ const sections = [
       {
         subtitle: "Third-Party Data",
         list: [
-          "Apple Health — health and activity data",
-          "Google Fit — health and activity data",
+          "Apple Health  health and activity data",
+          "Google Fit  health and activity data",
         ],
       },
     ],
@@ -165,14 +165,14 @@ function AnimatedSection({
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative border-b border-white/[0.06] pb-12 mb-12 last:border-0"
+      className="group relative border-b border-white/[0.06] pb-12 mb-10 last:border-0"
     >
       {/* Section number + title row */}
       <div className="flex items-start  gap-6 mb-6">
         <span className="font-mono text-lg text-[#3D7773]/60 mt-1 shrink-0 tracking-widest">
           {section.number}
         </span>
-        <h2 className="text-2xl lg:text-4xl text-white/90 tracking-tight leading-snug">
+        <h2 className="text-2xl lg:text-3xl text-white/90 tracking-tight leading-snug">
           {section.title}
         </h2>
       </div>
@@ -238,11 +238,11 @@ function AnimatedSection({
 
 export default function Privacy() {
   return (
-    <div className="min-h-screen max-w-8xl px-20 text-white">
+    <div className="min-h-screen max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 text-white">
  
 
       {/* ── Hero ── */}
-      <div className="pt-32 pb-20  mx-auto">
+      <div className="pt-16 pb-20  mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -255,12 +255,12 @@ export default function Privacy() {
             </span>
           </div>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-white mb-4 ">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-white mb-4 ">
         HEARTVIEW HEALTH PRIVACY POLICY
           </h1>
 
           <p className="text-lg md:text-base lg:text-2xl font-light leading-relaxed">
-            HeartView Health Technologies Private Limited — Last updated April
+            HeartView Health Technologies Private Limited  Last updated April
             2026
           </p>
         </motion.div>
@@ -289,7 +289,7 @@ export default function Privacy() {
           className="mt-4 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8"
         >
           <p className="text-xs font-mono text-[#3D7773]/60 tracking-widest uppercase mb-4">
-            14 — Contact
+            14  Contact
           </p>
           <h3 className="text-lg md:text-base lg:text-2xl font-light text-white/90 mb-2">
             HeartView Health Technologies Private Limited

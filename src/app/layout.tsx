@@ -41,7 +41,7 @@ export default function RootLayout({
 
 
         <CookieConsent />
-        <PageLoader></PageLoader>
+        {/* <PageLoader></PageLoader> */}
 
         {children}
 

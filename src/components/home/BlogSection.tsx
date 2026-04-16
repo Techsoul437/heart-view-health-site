@@ -11,7 +11,7 @@ function BlogSection() {
   const selectedBlogs = blogs.slice(0, 3);
 
   return (
-    <section className="max-w-8xl mx-auto px-20 py-16">
+    <section className="max-w-screen-8xl pt-16 mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 ">
 
       {/* HEADING */}
       <div className="text-center mb-12">
@@ -25,54 +25,54 @@ function BlogSection() {
           Blog
         </motion.span>
 
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mt-4">
           Latest from Our Blog
         </h1>
       </div>
 
       {/* GRID */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
 
         {selectedBlogs.map((blog) => (
           <Link key={blog.slug} href={`/blog/${blog.slug}`}>
 
             {/* CARD */}
-            <div className="group h-full flex flex-col border border-[#181E2B] rounded-xl p-3
+            <div className="group h-full flex flex-col border border-[#181E2B] rounded-lg p-3
               shadow-[0_4px_20px_rgba(0,0,0,0.25)]
               hover:shadow-[0_8px_30px_rgba(61,119,115,0.35)]
               transition-all duration-300">
 
               {/* IMAGE */}
-              <div className="relative w-full h-80 rounded-lg overflow-hidden">
+              <div className="relative w-full aspect-video rounded-lg overflow-hidden">
 
-                <Image
-                  src={blog.content[0].images[0]}
-                  alt={blog.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition duration-300"
-                />
+                 <Image
+                                      src={blog.content[0].images[0]}
+                                      alt={blog.title}
+                                      fill
+                                      className="object-cover group-hover:scale-105 transition duration-300"
+                                    />
 
                 {/* 🔥 CATEGORY BADGE */}
-                <div className="absolute top-3 left-3 bg-gradient-to-r from-[#181E2B] to-[#3D7773] backdrop-blur-md text-white text-sm px-3 py-1 rounded-full shadow-md">
-                  {blog.category.replace("-", " ").toUpperCase()}
-                </div>
+                <div className="absolute top-3 left-3 bg-gradient-to-r from-[#181E2B] to-[#3D7773] backdrop-blur-md text-white text-xs md:text-sm px-2 py-1 lg:px-3 rounded-full shadow-md">
+                    {blog.category.replace("-", " ").toUpperCase()}
+                  </div>
 
               </div>
 
               {/* CONTENT */}
               <div className="flex flex-col flex-grow">
 
-                <h3 className="text-2xl font-medium mt-4 text-white group-hover:text-[#3D7773] transition line-clamp-2">
+                <h2 className="text-xl sm:text-xl lg:text-2xl mt-4 text-white group-hover:text-[#3D7773] transition line-clamp-2">
                   {blog.title}
-                </h3>
+                </h2>
 
-                <p className="text-xl font-light text-gray-400 mt-2 line-clamp-3">
+                <p className="text-base sm:text-lg  leading-relaxed lg:max-w-md font-light text-gray-400 mt-2 line-clamp-2 ">
                   {blog.description}
                 </p>
 
                 {/* OPTIONAL: PUSH CONTENT DOWN */}
                 <div className="mt-auto pt-4">
-                  <span className="text-[#3D7773] text-md font-medium">
+                  <span className="text-[#3D7773] text-sm md:text-md font-medium">
                     Read More →
                   </span>
                 </div>

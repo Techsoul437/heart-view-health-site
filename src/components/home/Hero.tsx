@@ -7,12 +7,12 @@ import FillButton from "@/Ui/buttons/FillButton";
 
 function Hero() {
     return (
-        <section className="w-full px-2 box-border">
-            <div className="relative w-full h-190 overflow-hidden rounded-xl">
+        <section className="w-full  box-border">
+            <div className="relative w-full h-190 overflow-hidden ">
 
                 {/* Background Image */}
                 <Image
-                    src="/Media.png"
+                    src="/"
                     alt="Hero Background"
                     fill
                     priority
@@ -23,41 +23,33 @@ function Hero() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-transparent"></div>
 
                 {/* Content */}
-                <div className="absolute bottom-0 left-0 z-10 w-full px-4 sm:px-6 md:px-10 lg:px-16 pb-8 sm:pb-10 md:pb-14 max-w-4xl">
+                <div className="absolute bottom-0 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 left-0 z-10 pb-12 pl-6 sm:pl-10 lg:pl-16 sm:max-w-5xl max-w-3xl">
 
                     {/* Heading */}
-                    <h1 className="heading-font text-white font-medium leading-[1.2] tracking-tight 
-                        text-[32px] sm:text-[40px] md:text-[52px] lg:text-[64px] mb-3">
+                    <h1 className="heading-font  text-3xl md:text-4xl lg:text-5xl font-medium  text-white leading-tight tracking-tight mb-3">
                         Start Your Heart <br />
                         Health Journey Today
                     </h1>
 
                     {/* Description */}
-                    <p className="text-white/90 font-normal leading-relaxed 
-                        text-[14px] sm:text-[16px] md:text-[18px] lg:text-[20px] 
-                        max-w-md mb-5">
-                        Track your health, understand your trends, and stay in control — all in one simple app.
+                    <p className="text-base sm:text-lg text-white leading-relaxed lg:max-w-md">
+                        Track your health, understand your trends, and stay in control  all in one simple app.
                     </p>
 
                     {/* Buttons */}
-                    <div className="flex flex-wrap gap-3 sm:gap-4 items-center">
+                   <div className="flex flex-wrap gap-4 py-5 items-center">
+            <FillButton text="Download App" href="#download" />
 
-                        <FillButton text="Download App" href="#download" />
-
-                        <Link
-                            href="/contact"
-                            className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white 
-                            text-[13px] sm:text-[14px] md:text-[15px] 
-                            font-semibold px-5 sm:px-6 md:px-7 py-2.5 sm:py-3 rounded-full 
-                            border border-white/30 backdrop-blur-md transition"
-                        >
-                            Join Early Access
-                        </Link>
-
-                    </div>
+            <Link
+              href="/contact"
+              className="flex items-center gap-2 bg-white/15 hover:bg-white/25 text-white     text-xs sm:text-xs md:text-xs xl:text-sm font-semibold px-6 py-3 rounded-full border border-white/40 backdrop-blur-sm transition-all duration-200"
+            >
+              Join Early Access
+            </Link>
+          </div>
 
                     {/* Trust Line */}
-                    <p className="flex items-center gap-2 text-white/60 mt-3 text-[11px] sm:text-[12px] md:text-[13px]">
+                    <p className="flex items-center gap-2 text-white/60 mt-3 text-[11px] sm:text-md text-md lg:text-lg font-light">
 
                         <svg
                             xmlns="http://www.w3.org/2000/svg"

@@ -170,7 +170,7 @@ function Section({ data }: { data: SectionType }) {
       {/* HEADER */}
       <div className="flex gap-4 mb-4">
         <span className="text-[#3D7773] font-semibold">{data.number}</span>
-        <h2 className="text-2xl lg:text-4xl text-white tracking-tight leading-snug">{data.title}</h2>
+        <h2 className="text-2xl lg:text-3xl text-white tracking-tight leading-snug">{data.title}</h2>
       </div>
 
       {/* CONTENT */}
@@ -200,14 +200,14 @@ function Section({ data }: { data: SectionType }) {
 
 export default function UserConsent() {
   return (
-    <div className="max-w-8xl px-20 py-20 text-white">
+    <div className="max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 py-16 text-white">
       <div className="mx-auto">
         <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full ">
           <span className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1">
             Legal Document
           </span>
         </div>
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-white mb-4">{title}</h1>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-white mb-4">{title}</h1>
         <p className="text-lg md:text-base lg:text-2xl font-light leading-relaxed mb-10">{subtitle}</p>
 
         {sections.map((sec, i) => (
