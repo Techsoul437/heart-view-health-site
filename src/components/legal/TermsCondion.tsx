@@ -510,19 +510,19 @@ function Section({ data }: { data: SectionType | PrivacySectionType }) {
       {/* HEADER */}
       <div className="flex gap-4 mb-4">
         <span className="text-[#3D7773] font-semibold">{data.number}</span>
-        <h2 className="text-2xl lg:text-3xl text-white tracking-tight leading-snug">{data.title}</h2>
+        <h2 className="text-lg md:text-base lg:text-2xl font-light text-white tracking-tight leading-snug">{data.title}</h2>
       </div>
 
       {/* CONTENT */}
-      <ul className="pl-6 space-y-2 list-disc marker:text-[#3D7773] text-white/50 text-lg md:text-base lg:text-2xl max-w-7xl font-light leading-relaxed">
+      <ul className="pl-6 space-y-2 list-disc marker:text-[#3D7773] text-white/50 text-base sm:text-lg   max-w-7xl font-light leading-relaxed">
         {data.points.map((point, i) => (
           <li key={i}>
             {typeof point === "string" ? (
               point
             ) : (
               <div>
-                <p className="text-white/50 text-lg md:text-base lg:text-2xl max-w-7xl font-light leading-relaxed">{point.title}</p>
-                <ul className="pl-6 mt-2 list-disc text-white/50 text-lg md:text-base lg:text-2xl max-w-7xl font-light leading-relaxed">
+                <p className="text-white/50 text-base sm:text-lg   max-w-7xl font-light leading-relaxed">{point.title}</p>
+                <ul className="pl-6 mt-2 list-disc text-white/50 text-base sm:text-lg   max-w-7xl font-light leading-relaxed">
                   {point.items.map((item, idx) => (
                     <li key={idx}>{item}</li>
                   ))}
@@ -548,8 +548,8 @@ export default function TermsCondition() {
             </span>
           </div>
         {/* Terms & Conditions */}
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-white mb-4">{title}</h1>
-        <p className="text-lg md:text-base lg:text-2xl font-light leading-relaxed mb-10">{subtitle}</p>
+        <h1 className=" text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white mb-4">{title}</h1>
+        <p className="text-base sm:text-lg  font-light leading-relaxed mb-10">{subtitle}</p>
 
         {sections.map((sec, i) => (
           <Section key={i} data={sec} />

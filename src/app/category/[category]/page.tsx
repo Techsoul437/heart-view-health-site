@@ -6,6 +6,8 @@ import Image from "next/image";
 import { blogs } from "@/data/blogData";
 import Navbar from "@/Ui/navbar/Navbar";
 import FinalCTA from "@/Ui/cta/FinalCTA";
+import { motion, AnimatePresence } from "framer-motion";
+
 
 export default function CategoryPage({
   params,
@@ -24,26 +26,30 @@ export default function CategoryPage({
     <div className="page-bg">
       <Navbar />
 
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 mt-15 lg:px-20 lg:pt-10 ">
+      <div className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-10  lg:pt-14">
 
         {/* HEADING */}
-        <div className="text-center mb-12">
-          <span className="inline-block text-xs tracking-widest text-[#3D7773] uppercase border border-white/20 rounded-full px-4 py-1">
+
+        <div className="w-full py-4 text-center">
+          <motion.span className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1">
             {category.replace("-", " ")}
-          </span>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mt-4 capitalize">
+
+          </motion.span>
+
+          <motion.h1 className="mt-4  text-2xl md:text-3xl lg:text-4xl font-medium text-white">
             {category.replace("-", " ")} Blogs
-          </h1>
-        </div>
 
+
+          </motion.h1>
+        </div>
         {/* GRID */}
         {filteredBlogs.length === 0 ? (
           <p className="text-center text-red-400">
             No blogs found ❌
           </p>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-5 gap-4 md:gap-5 lg:gap-6 xl:gap-7">
 
             {filteredBlogs.map((blog) => (
               <Link key={blog.slug} href={`/blog/${blog.slug}`} className="h-full">
@@ -72,7 +78,7 @@ export default function CategoryPage({
                   </div>
 
                   {/* CONTENT */}
-                  <div className="flex flex-col flex-grow mt-4 space-y-2">
+                  <div className="flex flex-col flex-grow">
 
                     <h3 className="lg:text-xl sm:text-lg text-lg font-medium mt-4 text-white group-hover:text-[#3D7773] transition line-clamp-2">
                       {blog.title}

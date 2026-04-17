@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function CompanySection() {
   return (
-    <section className="relative w-full overflow-hidden pt-16">
+    <section className="relative w-full overflow-hidden pt-10">
       {/* Background Glow */}
       <div className="absolute " />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[40rem] h-[40rem] bg-[#3D7773]/10 blur-[120px] rounded-full" />
@@ -35,7 +35,7 @@ export default function CompanySection() {
               delay: 0.1,
               ease: [0.22, 1, 0.36, 1], // premium smooth easing
             }}
-            className="mt-4 text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-white "
+            className="mt-4  text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white "
           >
             Built with Trust & Transparency
           </motion.h1>
@@ -52,18 +52,18 @@ export default function CompanySection() {
           {/* Glow Border Effect */}
           <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-[#3D7773]/20 via-transparent to-[#45657D]/20 opacity-40 blur-xl" />
 
-          <div className="relative z-10 flex flex-col gap-8 text-center">
+          <div className="relative z-10 flex flex-col gap-4 text-center">
 
             {/* Company Name */}
-            <h2 className="text-white text-xl sm:text-xl lg:text-2xl md:text-2xl font-medium">
+            <h2 className="text-white  text-2xl md:text-3xl lg:text-4xl font-medium leading-tight ">
               HeartView Health Technologies Private Limited
             </h2>
 
             {/* Divider */}
-            <div className="w-16 h-[0.15rem] mx-auto bg-gradient-to-r from-[#3D7773] to-[#45657D] rounded-full" />
+            <div className="w-16 h-[0.15rem]  mx-auto bg-gradient-to-r from-[#3D7773] to-[#45657D] rounded-full" />
 
             {/* Description */}
-            <p className="text-white/70 text-base sm:text-lg  leading-relaxed  font-light max-w-2xl lg:max-w-3xl mx-auto">
+            <p className="text-white/70 mt-3 text-base sm:text-lg  leading-relaxed  font-light max-w-2xl lg:max-w-3xl mx-auto">
               Incorporated in India under the Companies Act, 2013, HeartView Health is built with a vision to create a reliable and transparent platform for everyday health management.
             </p>
 
@@ -79,7 +79,7 @@ export default function CompanySection() {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="w-56 text-center px-5 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-sm backdrop-blur-md"
+                  className="w-65 text-center px-5 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-base sm:text-lg  leading-relaxed font-light backdrop-blur-md"
                 >
                   {item}
                 </motion.span>

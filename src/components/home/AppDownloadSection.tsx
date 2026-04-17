@@ -83,7 +83,7 @@ export default function AppDownloadSection() {
                         </span>
 
                         {/* Heading */}
-                        <h1 className="text-white text-3xl md:text-4xl lg:text-5xl font-medium leading-tight mb-4 mt-4 sm:mb-6">
+                        <h1 className="text-white  text-2xl md:text-3xl lg:text-4xl font-medium leading-tight mb-4 mt-4 sm:mb-6">
                             Prefer Mobile? Get the App
                         </h1>
 

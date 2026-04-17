@@ -28,22 +28,26 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="absolute lg:fixed top-0 left-0 w-full h-20 sticky flex items-center bg-black/70 lg:bg-transparent z-[999] ">
+      <header className="absolute lg:fixed top-0 left-0 w-full h-20 md:h-25 lg:h-20 sticky flex items-center bg-black/70 lg:bg-transparent z-[999] ">
 
         {/* Main content row */}
-        <div className="w-full  flex items-center justify-between px-6 lg:px-12 lg:ml-40 xl:ml-130  2xl:ml-130 z-[90]">
+        <div className="w-full  flex items-center justify-between px-6 lg:px-12 lg:ml-40 xl:ml-70  2xl:ml-130 z-[90]">
 
           {/* Logo + Nav links */}
           <div className="flex items-center gap-8 lg:gap-10 relative z-[400]">
-            <Link href="/">
-              <Image
-                src="/logo3.png"
-                alt="Logo"
-                width={80}
-                height={80}
-                className="z-[100] h-auto cursor-pointer"
-              />
-            </Link>
+     <Link href="/">
+  <Image
+    src="/logo3.png"
+    alt="Logo"
+    width={80}
+    height={80}
+    className="
+      z-[100] cursor-pointer 
+      h-16 sm:h-20 md:h-20 lg:h-16
+      w-auto
+    "
+  />
+</Link>
 
             {/* Desktop nav links */}
             <ul className="hidden lg:flex justify-center items-center gap-6  lg:ml-16 xl:ml-10 2xl:ml-40 ml-70">

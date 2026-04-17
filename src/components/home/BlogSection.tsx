@@ -25,7 +25,7 @@ function BlogSection() {
           Blog
         </motion.span>
 
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white mt-4">
+        <h1 className=" text-2xl md:text-3xl lg:text-4xl font-medium text-white mt-4">
           Latest from Our Blog
         </h1>
       </div>
@@ -45,24 +45,24 @@ function BlogSection() {
               {/* IMAGE */}
               <div className="relative w-full aspect-video rounded-lg overflow-hidden">
 
-                 <Image
-                                      src={blog.content[0].images[0]}
-                                      alt={blog.title}
-                                      fill
-                                      className="object-cover group-hover:scale-105 transition duration-300"
-                                    />
+                <Image
+                  src={blog.content[0].images[0]}
+                  alt={blog.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition duration-300"
+                />
 
                 {/* 🔥 CATEGORY BADGE */}
                 <div className="absolute top-3 left-3 bg-gradient-to-r from-[#181E2B] to-[#3D7773] backdrop-blur-md text-white text-xs md:text-sm px-2 py-1 lg:px-3 rounded-full shadow-md">
-                    {blog.category.replace("-", " ").toUpperCase()}
-                  </div>
+                  {blog.category.replace("-", " ").toUpperCase()}
+                </div>
 
               </div>
 
               {/* CONTENT */}
               <div className="flex flex-col flex-grow">
 
-                <h2 className="text-xl sm:text-xl lg:text-2xl mt-4 text-white group-hover:text-[#3D7773] transition line-clamp-2">
+                <h2 className="lg:text-xl sm:text-lg text-lg font-medium mt-4 text-white group-hover:text-[#3D7773] transition line-clamp-2">
                   {blog.title}
                 </h2>
 

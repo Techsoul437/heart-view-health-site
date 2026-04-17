@@ -172,22 +172,22 @@ function AnimatedSection({
         <span className="font-mono text-lg text-[#3D7773]/60 mt-1 shrink-0 tracking-widest">
           {section.number}
         </span>
-        <h2 className="text-2xl lg:text-3xl text-white/90 tracking-tight leading-snug">
+        <h3 className="text-lg md:text-base lg:text-2xl font-light text-white/90 tracking-tight leading-snug">
           {section.title}
-        </h2>
+        </h3>
       </div>
 
       <div className="pl-10 space-y-4">
         {section.highlight && (
           <div className="border border-red-500/20 bg-red-500/5 rounded-xl px-5 py-4">
-            <p className="text-red-300/80 text-sm leading-relaxed">
+            <p className="text-red-300/80 text-base sm:text-lg  leading-relaxed ">
               {section.content}
             </p>
           </div>
         )}
 
         {section.content && !section.highlight && (
-          <p className="text-white/50 text-lg md:text-base lg:text-2xl max-w-7xl font-light leading-relaxed">
+          <p className="text-white/50 text-base sm:text-lg    max-w-7xl font-light leading-relaxed">
             {section.content}
           </p>
         )}
@@ -204,7 +204,7 @@ function AnimatedSection({
                   delay: 0.1 + i * 0.05,
                   ease: "easeOut",
                 }}
-                className="flex items-center  gap-3 text-white/50 text-lg md:text-base lg:text-2xl font-light"
+                className="flex items-center  gap-3 text-white/50 text-base sm:text-lg  leading-relaxed  font-light"
               >
                 <span className="w-1 h-1 rounded-full bg-teal-400/50 shrink-0" />
                 {item}
@@ -222,7 +222,7 @@ function AnimatedSection({
               {sub.list.map((item, i) => (
                 <li
                   key={i}
-                  className="flex items-center gap-3 text-white/40 text-lg md:text-base lg:text-xl font-light"
+                  className="flex items-center gap-3 text-white/40 text-base sm:text-lg  leading-relaxed  font-light"
                 >
                   <span className="w-1 h-1 rounded-full bg-teal-400/40 shrink-0" />
                   {item}
@@ -255,11 +255,11 @@ export default function Privacy() {
             </span>
           </div>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-white mb-4 ">
+          <h1 className=" text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white mb-4 ">
         HEARTVIEW HEALTH PRIVACY POLICY
           </h1>
 
-          <p className="text-lg md:text-base lg:text-2xl font-light leading-relaxed">
+          <p className="text-base sm:text-lg font-light leading-relaxed">
             HeartView Health Technologies Private Limited  Last updated April
             2026
           </p>
@@ -294,10 +294,10 @@ export default function Privacy() {
           <h3 className="text-lg md:text-base lg:text-2xl font-light text-white/90 mb-2">
             HeartView Health Technologies Private Limited
           </h3>
-          <p className="text-white/40 text-lg md:text-base lg:text-2xl font-light mb-1">[Registered Address]</p>
+          <p className="text-white/40 text-base sm:text-lg  leading-relaxed  font-light mb-1">[Registered Address]</p>
           <a
             href="mailto:info@heartviewhealth.com"
-            className="text-[#3D7773]/70 hover:text-teal-300 text-lg md:text-base lg:text-2xl font-lighttransition-colors"
+            className="text-[#3D7773]/70 hover:text-teal-300 text-base sm:text-lg  leading-relaxed  font-light transition-colors"
           >
             info@heartviewhealth.com
           </a>

@@ -137,10 +137,10 @@ export default function FAQSection() {
             FAQs
           </span>
         </div>
-          <h2 className=" text-3xl md:text-4xl lg:text-5xl font-medium  text-white leading-tight">
+          <h2 className="  text-2xl md:text-3xl lg:text-4xl font-medium  text-white leading-tight">
             Have Questions?
           </h2>
-          <p className="mt-4 text-gray-400 text-base sm:text-lg font-[InterCustom]" >
+          <p className="mt-4 text-gray-400 text-base text-lg sm:text-lg font-light" >
             HeartView Health – Frequently Asked Questions
           </p>
         </div>
@@ -164,7 +164,7 @@ export default function FAQSection() {
                   className="w-full flex items-center font-[InterCustom] justify-between px-6 py-5 text-left gap-4"
                 >
                   <span
-                    className={`text-sm sm:text-base font-[InterCustom] font-medium ${isOpen ? "text-white" : "text-gray-200"
+                    className={`text-base sm:text-lg font-medium ${isOpen ? "text-white" : "text-gray-200"
                       }`}
                   >
                     {faq.question}
@@ -201,7 +201,7 @@ export default function FAQSection() {
                     : "max-h-0 opacity-0"
                     } overflow-hidden`}
                 >
-                  <p className="px-6 pb-6 text-sm sm:text-base text-gray-400 font-[InterCustom] leading-relaxed whitespace-pre-line">
+                  <p className="px-6 pb-6 text-base sm:text-lg font-light text-gray-400 font-[InterCustom] leading-relaxed whitespace-pre-line">
                     {faq.answer}
                   </p>
                 </div>

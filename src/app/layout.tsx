@@ -23,6 +23,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
+  icons:{icon:"/favicon.png"},
   title: "HeartviewHealth",
   description: "Monitor heart rate, blood pressure, and sugar levels with HeartView Health. Get smart insights, reminders, and health reports in one app.",
 };

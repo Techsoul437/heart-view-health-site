@@ -84,10 +84,6 @@ export default function HowItWorks() {
   const [activeStep, setActiveStep] = useState(0);
   const [imageStep, setImageStep] = useState(0);
 
-  // ── KEY FIX ──
-  // mobileTranslateMax = sum of heights of steps 0..N-2
-  // i.e. scroll the list up until ONLY the last step is at the top
-  // Section height = 100vh + mobileTranslateMax so sticky releases exactly then
   const [mobileTranslateMax, setMobileTranslateMax] = useState(0);
   const [sectionHeightPx, setSectionHeightPx] = useState(0);
 
@@ -98,20 +94,13 @@ export default function HowItWorks() {
     const children = Array.from(container.children) as HTMLElement[];
     if (children.length < 2) return;
 
-    // Sum of all step heights EXCEPT the last one
-    // This is how far we need to translate up to show only the last step
     let translateNeeded = 0;
     for (let i = 0; i < children.length - 1; i++) {
       translateNeeded += children[i].offsetHeight;
     }
 
     setMobileTranslateMax(translateNeeded);
-
-    // Section total height:
-    // - window.innerHeight = the sticky viewport
-    // - translateNeeded = scroll distance until last step is at top
-    // - 40px = small buffer so last step isn't cut at the very bottom edge
-    setSectionHeightPx(window.innerHeight + translateNeeded +80 );
+    setSectionHeightPx(window.innerHeight + translateNeeded + 80);
   }, [isMobile]);
 
   useEffect(() => {
@@ -124,14 +113,12 @@ export default function HowItWorks() {
     };
   }, [isMobile, measureMobile]);
 
-  // Mobile translate: 0 → -mobileTranslateMax over full scroll progress
   const mobileTextYPx = useTransform(
     smoothProgress,
     [0, 1],
     [0, -mobileTranslateMax]
   );
 
-  // Desktop: vh-based (unchanged)
   const desktopTextY = useTransform(smoothProgress, [0, 1], ["0vh", "-500vh"]);
 
   useEffect(() => {
@@ -160,12 +147,10 @@ export default function HowItWorks() {
       ref={sectionRef}
       className="relative w-full pt-16"
       style={{
-        // Mobile: precise px height so sticky releases only after last step is fully shown
-        // Desktop: unchanged 600vh
         height: isMobile
           ? sectionHeightPx > 0
             ? `${sectionHeightPx}px`
-            : `${STEP_COUNT * 80 + 20}vh` // fallback before measurement
+            : `${STEP_COUNT * 80 + 20}vh`
           : "600vh",
       }}
     >
@@ -180,17 +165,14 @@ export default function HowItWorks() {
       </div>
 
       {/* Sticky wrapper */}
-      <div className="sticky  top-[13vh] h-[90vh] max-w-8xl mx-auto  z-30">
+      <div className="sticky mt-10 lg:mt-15 top-0 h-screen max-w-8xl mx-auto z-30">
 
         {/* ── MOBILE LAYOUT ── */}
-        <div className="flex flex-col lg:hidden h-full">
+        <div className="flex flex-col lg:hidden h-full pt-1 md:pt-[14vh] [@media(min-width:480px)_and_(max-width:580px)]:pt-[6vh]">
 
-          {/* Phone mockup — top portion */}
-          <div
-            className="flex-shrink-0 flex justify-center items-center pt-4"
-            style={{ height: "50%" }}
-          >
-            <div className="relative w-[50vw] max-w-275 aspect-[9/19]">
+          {/* Phone mockup */}
+          <div className="flex-shrink-0 flex justify-center items-center h-[60%] md:h-[70%] [@media(min-width:480px)_and_(max-width:580px)]:h-[60%] [@media(min-width:480px)_and_(max-width:580px)]:mt-6 relative z-10">
+            <div className="relative w-[50vw] md:w-[40vw] [@media(min-width:480px)_and_(max-width:580px)]:w-[36vw] max-w-[205px] md:max-w-[280px] [@media(min-width:480px)_and_(max-width:580px)]:max-w-[195px] aspect-[9/19]">
               <div className="relative w-full h-full rounded-3xl bg-black p-3 shadow-2xl">
                 <div className="relative w-full h-full rounded-[1.8rem] overflow-hidden bg-black">
                   {STEPS.map((step, index) => (
@@ -213,9 +195,9 @@ export default function HowItWorks() {
             </div>
           </div>
 
-          {/* Scrolling content — overflow hidden clips steps above/below */}
+          {/* Scrolling content */}
           <div
-            className="flex-1 overflow-hidden px-5 sm:px-8 z-0"
+            className="flex-1 overflow-hidden px-5 sm:px-8 [@media(min-width:480px)_and_(max-width:580px)]:px-6 z-0"
             style={{ minHeight: 0 }}
           >
             <motion.div
@@ -231,17 +213,16 @@ export default function HowItWorks() {
                     className="flex flex-col justify-start"
                     style={{
                       paddingTop: "1.25rem",
-                      // Last step: enough bottom padding so button isn't cut
                       paddingBottom: isLast ? "1rem" : "1.25rem",
                     }}
                   >
-                    <span className="mb-1 text-[10px] xs:text-xs text-[#3D7773] uppercase tracking-widest font-semibold">
+                    <span className="mb-1 text-[10px] xs:text-xs [@media(min-width:480px)_and_(max-width:580px)]:text-[10px] text-[#3D7773] uppercase tracking-widest font-semibold">
                       {step.label}
                     </span>
-                    <h2 className="text-base xs:text-lg sm:text-xl font-medium text-white mb-2 leading-snug">
+                    <h2 className="text-base xs:text-lg sm:text-xl [@media(min-width:480px)_and_(max-width:580px)]:text-sm font-medium text-white mb-2 leading-snug">
                       {step.title}
                     </h2>
-                    <p className="text-sm sm:text-base leading-relaxed font-light text-white/60 mb-4">
+                    <p className="text-sm sm:text-base [@media(min-width:480px)_and_(max-width:580px)]:text-xs leading-relaxed font-light text-white/60 mb-4">
                       {step.description}
                     </p>
                     <BorderButton text="Download Now" href="#download" />
@@ -292,8 +273,8 @@ export default function HowItWorks() {
           </div>
 
           {/* Right Phone */}
-          <div className="w-1/2 flex items-center  justify-center">
-            <div className="relative w-[22vw] max-w-sm   aspect-[9/19]">
+          <div className="w-1/2 flex items-center justify-center">
+            <div className="relative w-[22vw] max-w-sm lg:mt-15 aspect-[9/19]">
               <div className="relative w-full h-full rounded-[3rem] bg-black p-1.5 shadow-2xl">
                 <div className="relative w-full h-full rounded-[2.7rem] overflow-hidden bg-black">
                   {STEPS.map((step, index) => (

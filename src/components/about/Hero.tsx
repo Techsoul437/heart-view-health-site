@@ -22,21 +22,22 @@ function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/70 to-transparent"></div>
 
         {/* Content */}
-        <div className="absolute bottom-0 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 left-0 z-10 pb-12 pl-6 sm:pl-10 lg:pl-16 sm:max-w-5xl max-w-3xl">
+        <div className="absolute bottom-0 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 left-0 z-10 pb-12  lg:pl-16 sm:max-w-5xl max-w-4xl">
 
-          <h1 className="heading-font  text-3xl md:text-4xl lg:text-5xl font-medium  text-white leading-tight tracking-tight mb-3">
+          <h1 className="heading-font   text-2xl md:text-3xl lg:text-4xl font-medium  text-white leading-tight tracking-tight mb-3">
             A Smarter Way to
             <br />
             Understand Your Heart
           </h1>
 
-          <p className="text-base sm:text-lg text-white leading-relaxed lg:max-w-md">
-            We are a digital health platform designed to help people move beyond just tracking their health to actually understanding it.
+          <p className="text-base sm:text-lg text-white leading-relaxed font-light lg:max-w-md">
+           Understand Your Heart Health  Before Problems Start
+Track, analyze, and improve your health with simple insights.
           </p>
 
           {/* Buttons */}
           <div className="flex flex-wrap gap-4 py-5 items-center">
-            <FillButton text="Download App" href="#download" />
+            {/* <FillButton text="Download App" href="#download" /> */}
 
             <Link
               href="/contact"

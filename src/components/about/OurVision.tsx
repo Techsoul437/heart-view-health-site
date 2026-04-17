@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 
 export default function OurVision() {
   return (
-    <section className="relative w-full pt-16  overflow-hidden">
+    <section className="relative w-full pt-10">
 
       {/* Glow Background */}
-      <div className="absolute inset-0 opacity-20 blur-3xl"></div>
+      <div className="absolute inset-0 opacity-20 blur-3xl "></div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 flex flex-col ">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20  flex flex-col ">
 
         {/* 🚀 OUR VISION */}
         <motion.div
@@ -34,18 +34,17 @@ export default function OurVision() {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9 }}
-            className="mt-4   text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-white"
+            className="mt-4   text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white"
           >
-            A unified platform where heart awareness meets everyday health
+     Make health awareness simple and part of daily life.
           </motion.h1>
 
-          <p className="mt-6 text-gray-400 max-w-2xl sm:max-w-3xl text-base sm:text-lg  leading-relaxed   lg:max-w-xl font-light ">
-            Empowering people with clarity, consistency, and control over their
-            health  so they don’t just track data, they truly understand it.
+          <p className="mt-6 text-gray-400 max-w-2xl sm:max-w-3xl text-base sm:text-lg  leading-relaxed   lg:max-w-3xl font-light ">
+          To create a unified platform where heart awareness meets everyday health management  empowering people with clarity, consistency, and control over their health.
           </p>
 
           {/* Glow line */}
-          <div className="mt-8 h-1 w-20 bg-gradient-to-r from-transparent via-[#3D7773] to-transparent"></div>
+          <div className="mt-6 h-1 w-20 bg-gradient-to-r from-transparent via-[#3D7773] to-transparent"></div>
         </motion.div>
 
         {/* ⚠️ RESPONSIBILITY CARD */}
@@ -54,7 +53,7 @@ export default function OurVision() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
           viewport={{ once: true }}
-          className="relative rounded-lg border border-white/10 bg-white/5 backdrop-blur-xl  mt-16 p-6 sm:p-8 md:p-10 lg:p-14"
+          className="relative rounded-lg border border-white/10 bg-white/5 backdrop-blur-xl  mt-10 p-6 sm:p-8 md:p-10 lg:p-14"
         >
           {/* subtle glow */}
           <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 opacity-30 blur-xl"></div>
@@ -71,14 +70,13 @@ export default function OurVision() {
               Our Responsibility
 
             </motion.span>
-            <h1 className="mt-4 text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-white">
+            <h1 className="mt-4  text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white">
               Built for awareness, not medical decisions
             </h1>
 
             <p className="mt-3 text-gray-400 max-w-2xl sm:max-w-3xl text-base sm:text-lg  leading-relaxed lg:max-w-xl font-light">
               HeartView Health is designed for general wellness and informational
-              purposes. It helps you stay aware and organized  but it is not a
-              replacement for professional medical advice.
+              purposes. We do not provide medical diagnosis or treatment, and we encourage users to consult qualified healthcare professionals when needed.
             </p>
 
             {/* Points */}
@@ -89,7 +87,7 @@ export default function OurVision() {
               ].map((item, index) => (
                 <div key={index} className="flex items-start gap-3">
                   <div className="mt-2 h-2 w-2 rounded-full bg-[#3D7773]"></div>
-                  <p className="text-gray-300">{item}</p>
+                  <p className="text-gray-400 text-base sm:text-lg  leading-relaxed">{item}</p>
                 </div>
               ))}
             </div>

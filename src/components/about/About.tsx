@@ -9,6 +9,7 @@ import OurApproach from './OurApproach';
 import WhyBuilt from './WhyBuilt';
 import OurVision from './OurVision';
 import CompanySection from './CompanySection';
+import Footer from '@/Ui/footer/Footer';
 
 function About() {
   return (
@@ -21,7 +22,8 @@ function About() {
       <WhyBuilt></WhyBuilt>
 <OurVision></OurVision>
 <CompanySection></CompanySection>
-      <FinalCTA></FinalCTA>
+      {/* <FinalCTA></FinalCTA> */}
+      <Footer></Footer>
     </div>
   )
 }

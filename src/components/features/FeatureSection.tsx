@@ -115,7 +115,7 @@ export default function FeatureSection() {
                     viewport={{ once: true }}
                     className="text-center mt-4 max-w-8xl mx-auto"
                 >
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-white">
+                    <h2 className=" text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white">
                         Advanced Cardiac Monitoring & Health Intelligence
                     </h2>
                     <p className="mt-4 text-white/70 text-lg  font-light   leading-relaxed">
@@ -173,7 +173,7 @@ export default function FeatureSection() {
 
                         {/* LEFT CONTENT */}
                         <div>
-                            <h3 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-start text-white">
+                            <h3 className=" text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-start text-white">
                                 Data Privacy & Security
                             </h3>
 

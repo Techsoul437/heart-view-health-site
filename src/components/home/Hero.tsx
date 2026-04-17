@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import FillButton from "@/Ui/buttons/FillButton";
+import BorderButton from "@/Ui/buttons/BorderButton";
 
 function Hero() {
     return (
@@ -26,26 +27,26 @@ function Hero() {
                 <div className="absolute bottom-0 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 left-0 z-10 pb-12 pl-6 sm:pl-10 lg:pl-16 sm:max-w-5xl max-w-3xl">
 
                     {/* Heading */}
-                    <h1 className="heading-font  text-3xl md:text-4xl lg:text-5xl font-medium  text-white leading-tight tracking-tight mb-3">
-                        Start Your Heart <br />
-                        Health Journey Today
+                    <h1 className="heading-font   text-2xl md:text-3xl lg:text-4xl font-medium md:max-w-md text-white leading-tight tracking-tight mb-3">
+                        Smarter Heart Awareness, Built for Everyday Life
                     </h1>
 
                     {/* Description */}
-                    <p className="text-base sm:text-lg text-white leading-relaxed lg:max-w-md">
-                        Track your health, understand your trends, and stay in control  all in one simple app.
+                    <p className="text-base sm:text-lg text-white leading-relaxed md:max-w-md lg:max-w-md">
+                 A simple way to understand your health and stay consistent
                     </p>
 
                     {/* Buttons */}
                    <div className="flex flex-wrap gap-4 py-5 items-center">
-            <FillButton text="Download App" href="#download" />
+            <FillButton text="Join Early Access" href="/contact" />
 
-            <Link
-              href="/contact"
+            {/* <Link
+              href="#learnmore"
               className="flex items-center gap-2 bg-white/15 hover:bg-white/25 text-white     text-xs sm:text-xs md:text-xs xl:text-sm font-semibold px-6 py-3 rounded-full border border-white/40 backdrop-blur-sm transition-all duration-200"
             >
-              Join Early Access
-            </Link>
+             Learn More
+            </Link> */}
+            <BorderButton text="Learn More" href="#learnmore"></BorderButton>
           </div>
 
                     {/* Trust Line */}

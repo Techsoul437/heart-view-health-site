@@ -17,7 +17,7 @@ const data = [
     {
         id: "02",
         title: "Consistency",
-        desc: "Daily habits  like medication and follow ups  matter just as much as monitoring",
+        desc: "Daily habits like medication and follow ups matter just as much as monitoring",
         points: [
             "Stay on track with daily health routines",
             "Smart reminders for medication & checkups",
@@ -36,169 +36,209 @@ const data = [
     },
 ];
 
-// data ke end mein first card ka clone add kiya — infinite cycle ke liye
-const extendedData = [...data, data[0]];
+const extendedData = [...data, data[0], data[1]];
 const total = data.length;
 
 export default function ProcessCards() {
-    const trackRef = useRef<HTMLDivElement>(null);
-    const [current, setCurrent] = useState(0);
-    const isResetting = useRef(false);
+    const mobileRef = useRef<HTMLDivElement>(null);
+    const tabletRef = useRef<HTMLDivElement>(null);
 
+    const [mobileIndex, setMobileIndex] = useState(0);
+    const [tabletIndex, setTabletIndex] = useState(0);
+
+    const [screen, setScreen] = useState<"mobile" | "tablet" | "desktop">("mobile");
+
+    // ✅ detect screen safely
     useEffect(() => {
+        const updateScreen = () => {
+            const w = window.innerWidth;
+            if (w < 768) setScreen("mobile");
+            else if (w < 1024) setScreen("tablet");
+            else setScreen("desktop");
+        };
+
+        updateScreen();
+        window.addEventListener("resize", updateScreen);
+
+        return () => window.removeEventListener("resize", updateScreen);
+    }, []);
+
+    // MOBILE scroll
+    useEffect(() => {
+        if (screen !== "mobile") return;
+
         const interval = setInterval(() => {
-            if (window.innerWidth >= 1024) return;
-            if (isResetting.current) return;
-            setCurrent((prev) => prev + 1);
+            setMobileIndex((prev) => prev + 1);
         }, 2500);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [screen]);
 
     useEffect(() => {
-        const track = trackRef.current;
-        if (!track) return;
+        if (!mobileRef.current) return;
+        mobileRef.current.style.transform = `translateX(-${mobileIndex * 100}%)`;
+        mobileRef.current.style.transition = "transform 0.6s ease";
+    }, [mobileIndex]);
 
-        track.style.transition = "transform 0.6s cubic-bezier(0.4,0,0.2,1)";
-        track.style.transform = `translateX(-${current * 100}%)`;
-    }, [current]);
+    const handleMobileEnd = () => {
+        if (mobileIndex === total) {
+            const el = mobileRef.current;
+            if (!el) return;
+            el.style.transition = "none";
+            el.style.transform = "translateX(0)";
+            setMobileIndex(0);
+        }
+    };
 
-    const handleTransitionEnd = () => {
-        // Jab clone (4th card) pe pohonche, silently wapas 0 pe jump karo
-        if (current === total) {
-            isResetting.current = true;
-            const track = trackRef.current;
-            if (!track) return;
-            track.style.transition = "none";
-            track.style.transform = "translateX(0%)";
-            setCurrent(0);
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    isResetting.current = false;
-                });
-            });
+    // TABLET scroll
+    useEffect(() => {
+        if (screen !== "tablet") return;
+
+        const interval = setInterval(() => {
+            setTabletIndex((prev) => prev + 1);
+        }, 2500);
+
+        return () => clearInterval(interval);
+    }, [screen]);
+
+    useEffect(() => {
+        if (!tabletRef.current) return;
+        tabletRef.current.style.transform = `translateX(-${tabletIndex * 50}%)`;
+        tabletRef.current.style.transition = "transform 0.6s ease";
+    }, [tabletIndex]);
+
+    const handleTabletEnd = () => {
+        if (tabletIndex === total) {
+            const el = tabletRef.current;
+            if (!el) return;
+            el.style.transition = "none";
+            el.style.transform = "translateX(0)";
+            setTabletIndex(0);
         }
     };
 
     return (
-        <section className="pt-16 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 flex justify-center">
-            <div className="w-full max-w-8xl mx-auto">
+        <section className="pt-10  flex justify-center">
+            <div className="w-full max-w-8xl mx-auto px-3 sm:px-6 md:px-6 lg:px-16 2xl:px-20">
 
-                {/* Heading */}
+                {/* Heading SAME */}
                 <div className="w-full py-4 text-center">
-                    <motion.span
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1"
-                    >
+                    <motion.span className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1">
                         Our Approach
                     </motion.span>
 
-                    <motion.h1
-                        initial={{ opacity: 0, y: 80, scale: 0.95 }}
-                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.9 }}
-                        className="mt-4 text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-white"
-                    >
+                    <motion.h1 className="mt-4  text-2xl md:text-3xl lg:text-4xl font-medium text-white">
                         Your Heart Health, Simplified & Connected
                     </motion.h1>
                 </div>
 
-                {/* Cards */}
-                <div className="mt-10 flex justify-center">
+                <div className="mt-5 flex justify-center">
 
-                    {/* MOBILE / TABLET — transform-based infinite scroll */}
-                    <div className="w-full lg:hidden h-full pb-10 overflow-hidden ">
-                        <div
-                            ref={trackRef}
-                            onTransitionEnd={handleTransitionEnd}
-                            style={{
-                                display: "flex",
-                                willChange: "transform",
-                            }}
-                        >
-                            {extendedData.map((item, index) => (
-                                <div
-                                    key={index}
-                                    style={{ minWidth: "100%" }}
-                                    className="flex flex-col items-center px-4 h-full"
-                                >
-                                    {/* Number Circle */}
-                                    <div className="w-14 h-14  rounded-full border-2 border-[#B4B0B0] bg-gradient-to-r from-[#45657D] to-[#3D7773] hover:scale-[1.03] transition duration-300 text-white flex items-center justify-center font-medium text-xl z-10">
+                    {/* MOBILE */}
+                    <div className="w-full md:hidden overflow-hidden">
+                        <div ref={mobileRef} onTransitionEnd={handleMobileEnd} className="flex">
+                            {extendedData.map((item, i) => (
+                                <div key={i} className="min-w-full px-1 flex flex-col items-center">
+
+                                    <div className="w-14 h-14 rounded-full border-2 border-[#B4B0B0] bg-gradient-to-r from-[#45657D] to-[#3D7773] text-white flex items-center justify-center">
                                         {item.id}
                                     </div>
 
-                                    {/* Arrow */}
-                                    <div className="w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-gray-400 mt-1" />
+                                    <div className="w-0 h-0 border-l-8 border-transparent border-r-8 border-transparent border-t-8 border-t-gray-400 mt-1" />
 
-                                    {/* Card */}
-                                    <div className="mt-4 w-full max-w-sm border-[#3D7773] text-white shadow-sm shadow-[#45657D] h-full min-h-100 flex flex-col h-full">
-                                        <h2 className="text-white text-center py-2  text-xl sm:text-xl lg:text-2xl bg-[#3D7773]">
+                                    {/* ✅ SAME HEIGHT CARD */}
+                                    <div className="mt-4 w-full max-w-md border-[#3D7773] text-white shadow-sm shadow-[#45657D] h-90  mb-1 flex flex-col">
+
+                                        <h2 className="text-center py-2 text-xl sm:text-xl lg:text-2xl text-white bg-[#3D7773]">
                                             {item.title}
                                         </h2>
-                                        <div className="flex flex-col flex-1 px-5 py-4">
-                                            <p className="text-base sm:text-lg  leading-relaxed lg:max-w-md font-light text-gray-300 mb-4">
-                                                {item.desc}
-                                            </p>
-                                          <ul className="space-y-2 text-base sm:text-lg leading-relaxed lg:max-w-md font-light text-gray-300 flex-1">
+
+                                        <div className="flex flex-col flex-1 px-5 py-4 overflow-hidden">
+                                            <p className="text-gray-400 mb-4 text-base sm:text-lg  leading-relaxed  font-light line-clamp-3">{item.desc}</p>
+
+                                            <ul className="space-y-2 text-gray-400 flex-1 overflow-hidden">
                                                 {item.points.map((p, i) => (
-                                                    <li key={i} className="flex gap-2">
-                                                        <span className="mt-3 w-1 h-1 bg-gray-600 rounded-full flex-shrink-0" />
-                                                        <span>{p}</span>
+                                                    <li key={i} className="flex gap-2 text-base sm:text-lg  leading-relaxed  font-light">
+                                                        <span className="mt-3 w-1 h-1 bg-gray-600 rounded-full" />
+                                                        <span className="line-clamp-2">{p}</span>
                                                     </li>
                                                 ))}
                                             </ul>
                                         </div>
-                                        <div className="h-1 w-12 rounded-full mx-auto mb-3 bg-[#3D7773]" />
+
+                                        <div className="h-1 w-12 mx-auto mb-3 bg-[#3D7773]" />
                                     </div>
+
                                 </div>
                             ))}
                         </div>
                     </div>
 
-                    {/* DESKTOP — bilkul same pehle jaisa grid */}
-                    <div className="hidden lg:grid lg:grid-cols-3 gap-2 w-full">
-                        {data.map((item, index) => (
-                            <motion.div
-                                key={item.id}
-                                initial={{ opacity: 0, y: 50 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.9, delay: index * 0.2 }}
-                                viewport={{ once: true }}
-                                className="flex flex-col items-center"
-                            >
-                                {/* Number Circle */}
-                                <div className="w-14 h-16 rounded-full border-2 border-[#B4B0B0] bg-gradient-to-r from-[#45657D] to-[#3D7773] hover:scale-[1.03] transition duration-300 text-white flex items-center justify-center font-medium text-xl z-10">
+                    {/* TABLET */}
+                    <div className="hidden md:block lg:hidden overflow-hidden">
+                        <div ref={tabletRef} onTransitionEnd={handleTabletEnd} className="flex">
+                            {extendedData.map((item, i) => (
+                                <div key={i} className="min-w-1/2 px-4 flex flex-col items-center">
+
+                                    <div className="w-14 h-14 rounded-full border-2 border-[#B4B0B0] bg-gradient-to-r from-[#45657D] to-[#3D7773] text-white flex items-center justify-center">
+                                        {item.id}
+                                    </div>
+                                    <div className="w-0 h-0 border-l-8  border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-gray-400 mt-1" />
+
+                                    <div className="w-0 h-0 border-t-8 border-t-gray-400 mt-1" />
+
+                                    <div className="mt-4 w-full max-w-sm border-[#3D7773] text-white shadow-sm shadow-[#45657D] h-90  mb-1 flex flex-col">
+                                        <h2 className="text-center py-2 text-xl sm:text-xl lg:text-2xl text-white bg-[#3D7773]">{item.title}</h2>
+
+                                        <div className="flex flex-col flex-1 px-5 py-4 overflow-hidden">
+                                            <p className="text-gray-400 mb-4 text-base sm:text-lg  leading-relaxed  font-light line-clamp-3">{item.desc}</p>
+
+                                            <ul className="space-y-2 text-gray-400 flex-1 overflow-hidden">
+                                                {item.points.map((p, i) => (
+                                                    <li key={i} className="flex gap-2 text-base sm:text-lg  leading-relaxed  font-light">
+                                                        <span className="mt-3 w-1 h-1 bg-gray-600 rounded-full" />
+                                                        <span className="line-clamp-2">{p}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+
+                                        <div className="h-1 w-12 mx-auto mb-3 bg-[#3D7773]" />
+                                    </div>
+
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* DESKTOP SAME */}
+                    <div className="hidden lg:grid grid-cols-3 gap-2 w-full">
+                        {data.map((item) => (
+                            <div key={item.id} className="flex flex-col items-center">
+                                <div className="w-14 h-14 rounded-full border bg-gradient-to-r from-[#45657D] to-[#3D7773] text-white flex items-center justify-center">
                                     {item.id}
                                 </div>
-
-                                {/* Arrow */}
                                 <div className="w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-gray-400 mt-1" />
 
-                                {/* Card */}
-                                <div className="mt-4 w-full max-w-sm border-[#3D7773] text-white shadow-sm shadow-[#45657D] h-full flex flex-col ">
-                                    <h2 className="text-white text-center py-2  text-xl sm:text-xl lg:text-2xl bg-[#3D7773]">
-                                        {item.title}
-                                    </h2>
-                                    <div className="flex flex-col flex-1 px-5 py-4">
-                                        <p className="text-base sm:text-lg  leading-relaxed lg:max-w-md font-light text-gray-300 mb-4">
-                                            {item.desc}
-                                        </p>
-                                        <ul className="space-y-3 text-base sm:text-lg  leading-relaxed lg:max-w-md font-light text-gray-300 flex-1">
+                                <div className="mt-4 w-full max-w-md h-80  mb-1 flex flex-col border-[#3D7773] shadow-sm shadow-[#45657D]">
+                                    <h2 className="text-center py-2 text-xl sm:text-xl lg:text-2xl text-white bg-[#3D7773]">{item.title}</h2>
+
+                                    <div className="flex flex-col flex-1 px-5 py-4 overflow-hidden">
+                                        <p className="text-gray-400  mb-4 text-base sm:text-lg  leading-relaxed  font-light line-clamp-3">{item.desc}</p>
+
+                                        <ul className="space-y-2 text-gray-400  flex-1 overflow-hidden">
                                             {item.points.map((p, i) => (
-                                                <li key={i} className="flex gap-2">
-                                                    <span className="mt-3 w-1 h-1 bg-gray-600 rounded-full flex-shrink-0" />
-                                                    <span>{p}</span>
+                                                <li key={i} className="flex gap-2 text-base sm:text-lg  leading-relaxed  font-light">
+                                                    <span className="w-1 h-1 bg-gray-600 mt-2 rounded-full" />
+                                                    {p}
                                                 </li>
                                             ))}
                                         </ul>
                                     </div>
-                                    <div className="h-1 w-12 rounded-full mx-auto mb-3 bg-[#3D7773]" />
+
+                                    <div className="h-1 w-12 mx-auto mb-3 bg-[#3D7773]" />
                                 </div>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
 

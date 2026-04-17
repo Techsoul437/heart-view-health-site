@@ -125,7 +125,7 @@ export default function TeamSection() {
         >
           Team
         </motion.span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium mt-4  text-white leading-tight mb-6">
+          <h2 className=" text-2xl md:text-3xl lg:text-4xl font-medium mt-4  text-white leading-tight mb-6">
            Meet the Experts Behind <br /> Our Vision
           </h2>
 

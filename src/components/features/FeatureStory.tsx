@@ -20,7 +20,7 @@ export default function FeatureStorySection() {
                     Experience
                 </motion.span>
 
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium mt-3 text-white leading-tight">
+                <h2 className=" text-2xl md:text-3xl lg:text-4xl font-medium mt-3 text-white leading-tight">
                     Smart Health Tracking Made Simple
                 </h2>
 

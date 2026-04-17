@@ -55,9 +55,9 @@ export default function FinalCTA() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-white"
+              className=" text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white"
             >
-              Take the First Step Toward Better Health
+              Start your Health Journey Today
             </motion.h2>
 
             {/* TEXT */}
@@ -68,7 +68,7 @@ export default function FinalCTA() {
               viewport={{ once: true }}
               className="mt-4 max-w-xl sm:max-w-2xl mx-auto text-base sm:text-lg  leading-relaxed  font-light text-white/50"
             >
-              Start tracking your health, get insights, and build better habits — all in one smart platform.
+              Start tracking your health, get insights, and build better habits all in one smart platform.
             </motion.p>
 
             {/* BUTTONS */}
@@ -79,7 +79,7 @@ export default function FinalCTA() {
               viewport={{ once: true }}
               className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
             >
-              <FillButton text="Download App" href="#download" />
+              {/* <FillButton text="Download App" href="#download" /> */}
               <BorderButton text="Join Early Access" href="/contact" />
             </motion.div>
 

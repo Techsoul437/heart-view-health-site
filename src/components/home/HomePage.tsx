@@ -10,6 +10,7 @@ import FinalCTA from '@/Ui/cta/FinalCTA';
 import AppDownloadSection from './AppDownloadSection';
 import BlogSection from './BlogSection';
 import TeamSection from './TeamSection';
+import Problem from './Problem';
 
 
 function HomePage() {
@@ -18,15 +19,16 @@ function HomePage() {
       <div className='page-bg'>
         <Navbar></Navbar>
         <Hero></Hero>
+        <Problem></Problem>
         {/* <QuickValueSection></QuickValueSection> */}
         {/* <div style={{height:'600px'}}></div> */}
-        <HowItWorks></HowItWorks>
+        {/* <HowItWorks></HowItWorks> */}
         {/* <TeamSection></TeamSection> */}
         <BlogSection></BlogSection>
         <AppDownloadSection></AppDownloadSection>
         {/* <FAQSection></FAQSection> */}
-        <FinalCTA></FinalCTA>
-      {/* <Footer></Footer> */}
+        {/* <FinalCTA></FinalCTA> */}
+      <Footer></Footer>
 
       </div>
 

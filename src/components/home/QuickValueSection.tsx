@@ -228,7 +228,7 @@ export default function QuickValueSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
             style={{ color: headlineColor }}
-            className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight font-[InterCustom]"
+            className=" text-2xl md:text-3xl lg:text-4xl font-medium leading-tight font-[InterCustom]"
           >
             Everything You Need,&nbsp;In One Place
           </motion.h2>

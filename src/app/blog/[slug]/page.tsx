@@ -43,13 +43,13 @@ export default function BlogDetails({
 
       <Navbar />
 
-      <div className="max-w-8xl mx-auto lg:px-20 sm:px-10 md:px-10 mt-15 px-3 lg:pt-10 grid grid-cols-1 lg:grid-cols-[1fr_400px] gap-8 items-start">
+      <div className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20  mt-10  lg:pt-10 grid grid-cols-1 xl:grid-cols-[1fr_400px] lg:gap-8 items-start">
 
         {/* LEFT CONTENT */}
         <div>
 
           {/* TITLE */}
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight mb-3">
+          <h1 className=" text-2xl md:text-3xl lg:text-4xl font-medium leading-tight mb-3">
             {blog.title}
           </h1>
 
@@ -59,7 +59,7 @@ export default function BlogDetails({
           </span>
 
           {/* HERO IMAGE */}
-          <div className="relative w-full lg:h-80 h-40 sm:h-50 xl:h-170 my-3   rounded-2xl overflow-hidden">
+          <div className="relative w-full lg:h-120 h-60 mt-10 xl:h-170 sm:h-130 md:h-100 my-3   rounded-2xl overflow-hidden">
             <Image
               src={blog.content?.[0]?.images?.[0]}
               fill
@@ -76,7 +76,7 @@ export default function BlogDetails({
 
           {/* CONTENT */}
           {blog.content.map((section, index) => (
-            <div key={index} className="mb-12">
+            <div key={index} className="mb-10">
 
               <h2 className="text-xl sm:text-xl lg:text-2xl text-[#3D7773] mb-4">
                 {section.heading}
@@ -92,8 +92,8 @@ export default function BlogDetails({
 
           {/* FAQ ACCORDION */}
           {blog.faq?.length > 0 && (
-            <div className="mt-20">
-              <h2 className="text-xl sm:text-xl lg:text-2xl text-[#3D7773] mb-6">
+            <div className="mt-10">
+              <h2 className="text-xl sm:text-xl lg:text-2xl text-[#3D7773] mb-5">
                 Frequently Asked Questions
               </h2>
 
@@ -111,7 +111,7 @@ export default function BlogDetails({
                         onClick={() => toggleFAQ(index)}
                         className="w-full flex justify-between items-center"
                       >
-                        <h3 className="lg:text-lg text-md font-light text-left">
+                        <h3 className="text-base sm:text-lg  leading-relaxed  font-light text-left">
                           {item.question}
                         </h3>
 
@@ -145,8 +145,8 @@ export default function BlogDetails({
 
           {/* PEOPLE ALSO ASK */}
           {blog.peopleAlsoAsk?.length > 0 && (
-            <div className="mt-20">
-              <h2 className="text-xl sm:text-xl lg:text-2xl text-[#3D7773] mb-6">
+            <div className="mt-10">
+              <h2 className="text-xl sm:text-xl lg:text-2xl text-[#3D7773] mb-5">
                 People Also Ask
               </h2>
 
@@ -156,7 +156,7 @@ export default function BlogDetails({
                     key={index}
                     className="p-5 rounded-xl border border-white/10 bg-white/5"
                   >
-                    <h3 className="text-lg mb-2  font-light">{item.question}</h3>
+                    <h3 className="text-base sm:text-lg  leading-relaxed  mb-2  font-light">{item.question}</h3>
                     <p className="text-white/70 text-base sm:text-lg   font-light">{item.answer}</p>
                   </div>
                 ))}
@@ -166,43 +166,43 @@ export default function BlogDetails({
 
           {/* INTERNAL LINKS */}
           {/* RELATED ARTICLES (SAME CATEGORY) */}
-{(() => {
-  const relatedBlogs = blogs
-    .filter(
-      (b) =>
-        b.category === blog.category && b.slug !== blog.slug
-    )
-    .slice(0, 4);
+          {(() => {
+            const relatedBlogs = blogs
+              .filter(
+                (b) =>
+                  b.category === blog.category && b.slug !== blog.slug
+              )
+              .slice(0, 4);
 
-  return (
-    relatedBlogs.length > 0 && (
-      <div className="mt-20">
-        <h2 className="text-xl sm:text-xl lg:text-2xl text-[#3D7773] mb-6">
-          Related Articles
-        </h2>
+            return (
+              relatedBlogs.length > 0 && (
+                <div className="mt-10">
+                  <h2 className="text-xl sm:text-xl lg:text-2xl text-[#3D7773] mb-5">
+                    Related Articles
+                  </h2>
 
-        <div className="grid md:grid-cols-2 gap-4">
-          {relatedBlogs.map((item, index) => (
-            <Link
-              key={index}
-              href={`/blog/${item.slug}`}
-              className="p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-[#3D7773]/10 transition"
-            >
-              <p className="text-white/80 text-base sm:text-lg  leading-relaxed  font-light hover:text-[#3D7773]">
-                {item.title}
-              </p>
-            </Link>
-          ))}
-        </div>
-      </div>
-    )
-  );
-})()}
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {relatedBlogs.map((item, index) => (
+                      <Link
+                        key={index}
+                        href={`/blog/${item.slug}`}
+                        className="p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-[#3D7773]/10 transition"
+                      >
+                        <p className="text-white/80 text-base sm:text-lg  leading-relaxed  font-light hover:text-[#3D7773]">
+                          {item.title}
+                        </p>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )
+            );
+          })()}
 
         </div>
 
         {/* SIDEBAR */}
-        <div className="lg:sticky lg:top-40 flex flex-col gap-6">
+        <div className="lg:sticky lg:top-40 flex flex-col mt-10 ">
 
           {/* RECENT POSTS */}
           <motion.div
@@ -214,7 +214,7 @@ export default function BlogDetails({
 
             {blogs.slice(0, 3).map((item) => (
               <Link key={item.slug} href={`/blog/${item.slug}`}>
-                <p className="text-white/70 hover:text-[#3D7773] mb-2 text-base sm:text-lg  leading-relaxed  font-medium">
+                <p className="text-white/70 hover:text-[#3D7773] mb-2 text-base sm:text-lg  leading-relaxed  font-light">
                   • {item.title}
                 </p>
               </Link>
@@ -225,7 +225,7 @@ export default function BlogDetails({
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
-            className="p-6 rounded-2xl bg-gradient-to-br from-teal-500/10 to-blue-500/10 border border-white/10"
+            className="p-6 rounded-2xl bg-gradient-to-br from-teal-500/10 to-blue-500/10 border mt-10 border-white/10"
           >
             <h2 className="text-xl sm:text-xl lg:text-2xl mb-2">Stay Healthy </h2>
             <p className="text-white/60 text-base sm:text-lg   font-light">

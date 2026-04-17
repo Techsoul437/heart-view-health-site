@@ -58,7 +58,7 @@ export default function WhatWeDo() {
     };
 
     return (
-        <section className="w-full pt-16  text-white">
+        <section className="w-full pt-10  text-white">
             <div className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 text-center">
 
                 {/* Heading */}
@@ -78,14 +78,14 @@ export default function WhatWeDo() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="mt-4  text-3xl md:text-4xl lg:text-5xl font-medium leading-tight"
+                        className="mt-4   text-2xl md:text-3xl lg:text-4xl font-medium leading-tight"
                     >
                         Smarter Heart Care, All in One Place
                     </motion.h1>
                 </div>
 
                 {/* GRID → 3 + 3 */}
-                <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 items-stretch">
+                <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 items-stretch">
                     {cards.map((card, i) => {
                         const Icon = card.icon;
                         return (
@@ -116,7 +116,7 @@ export default function WhatWeDo() {
                                         </h2>
 
                                         {/* DESCRIPTION (aligned same for all) */}
-                                        <p className="text-base sm:text-lg   lg:max-w-md text-gray-400 leading-relaxed font-light line-clamp-2">
+                                        <p className="text-base sm:text-lg   xl:max-w-xl text-gray-400 leading-relaxed font-light text-center line-clamp-2">
                                             {card.desc}
                                         </p>
 

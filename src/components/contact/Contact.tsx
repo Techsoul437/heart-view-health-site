@@ -244,33 +244,32 @@ export default function Contact() {
             <ToastContainer toasts={toasts} onClose={removeToast} />
 
             {/* ── Page ─────────────────────────────────────────────── */}
-            <section className="w-full pt-15 md:pt-15 lg:pt-20 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
+            <section className="w-full pt-5 md:pt-8 lg:pt-20 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
                 <div className="max-w-8xl mx-auto">
 
                     {/* Header */}
+
                     <div className="w-full py-4 text-center">
+                        <motion.span className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1">
+                            Contact Us
 
-                        <div className="text-center mb-12">
-                            <span className="inline-block text-xs tracking-widest text-[#3D7773] uppercase border border-white/20 rounded-full px-4 py-1">
-                                Contact Us
-                            </span>
+                        </motion.span>
 
-                            <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium leading-tight text-white  mt-4">
-                                Let s Connect
+                        <motion.h1 className="mt-4  text-2xl md:text-3xl lg:text-4xl font-medium text-white">
+                            Let s Connect
 
-                            </h1>
-                        </div>
+                        </motion.h1>
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8  overflow-visible rounded-2xl">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:pt-10  overflow-visible rounded-2xl">
 
                         {/* LEFT — Info */}
-                        <div className="flex flex-col gap-6 sm:gap-8 ">
+                        <div className="flex flex-col gap-6 sm:gap-8 mt-5 lg:mt-0">
                             <div>
-                                <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-zinc-100">Get In Touch</h2>
-                                <p className="text-zinc-500 mt-3 text-base sm:text-lg  leading-relaxed  font-light">
-                                    We re here to answer your questions and guide you toward <br
-                                    ></br>better health. Reach out anytime  we love to hear from you.
+                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-zinc-100">Get In Touch</h2>
+                                <p className="text-zinc-500 mt-3 text-base sm:text-lg xl:max-w-lg leading-relaxed  font-light">
+                                    We re here to answer your questions and guide you toward 
+                                   better health. Reach out anytime  we love to hear from you.
                                 </p>
                             </div>
 
@@ -280,24 +279,24 @@ export default function Contact() {
                                 <div className="flex flex-col gap-3 ">
 
                                     {/* Phone */}
-                                    <div className="flex items-center gap-2 p-3 lg:h-25 rounded-xl border border-[#3D7773] ">
+                                    <div className="flex items-start gap-3 p-5 lg:h-25 rounded-xl border border-[#3D7773] ">
                                         <div className="w-8 h-8 rounded-lg bg-[#3D7773] flex items-center justify-center">
                                             <FiPhone className="text-white text-sm" />
                                         </div>
                                         <div>
-                                            <p className="text-white font-medium text-sm">Phone</p>
-                                            <p className="text-zinc-400 text-xs mt-0.5">+91 8238524984</p>
+                                            <p className="text-white font-medium text-lg">Phone</p>
+                                            <p className="text-zinc-400 text-base sm:text-lg  leading-relaxed  font-light mt-0.5">+91  8238524984</p>
                                         </div>
                                     </div>
 
                                     {/* Email */}
-                                    <div className="flex items-center gap-2 p-3 lg:h-25 rounded-xl border border-[#3D7773]">
+                                    <div className="flex items-start gap-3 p-5 lg:h-25 rounded-xl border border-[#3D7773]">
                                         <div className="w-8 h-8 rounded-lg bg-[#3D7773] flex items-center justify-center">
                                             <FiMail className="text-white text-sm" />
                                         </div>
                                         <div>
-                                            <p className="text-white font-medium text-sm">Email</p>
-                                            <p className="text-zinc-400 text-xs mt-0.5">info@heartviewhealth.com</p>
+                                            <p className="text-white font-medium text-lg">Email</p>
+                                            <p className="text-zinc-400 text-base sm:text-lg  leading-relaxed  font-light mt-0.5">info@heartviewhealth.com</p>
                                         </div>
                                     </div>
 
@@ -315,15 +314,15 @@ export default function Contact() {
                                 </div>
 
                                 {/* RIGHT SIDE (BIG ADDRESS CARD) */}
-                                <div className="p-5 rounded-xl border border-[#3D7773] flex items-start gap-3 h-full ">
+                                <div className="flex items-start gap-3 p-5 lg:h-52 rounded-xl border border-[#3D7773]">
 
-                                    <div className="w-10 h-10 rounded-lg bg-[#3D7773] flex items-center justify-center">
-                                        <FiMapPin className="text-white" />
+                                    <div className="w-8 h-8  rounded-lg bg-[#3D7773] flex items-center justify-center">
+                                        <FiMapPin className="text-white test-sm" />
                                     </div>
 
                                     <div>
-                                        <p className="text-white font-semibold">Address</p>
-                                        <p className="text-zinc-400 text-md mt-1 leading-relaxed">
+                                        <p className="text-white font-medium text-lg">Address</p>
+                                        <p className="text-zinc-400 text-base sm:text-lg font-light mt-0.5 leading-relaxed">
                                             19, Arth Residency, Near V.I.P. Circle,<br />
                                             Beside Indian Oil Petrol Pump, Utran,<br />
                                             Surat – 394105, Gujarat, India
@@ -340,15 +339,15 @@ export default function Contact() {
                             initial={{ opacity: 0, x: 32 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.55, ease: "easeOut" }}
-                            className="p-12 flex flex-col gap-5 rounded-xl border border-[#3D7773]"
+                            className="p-5 md:p-5 lg:p-4 xl:p-12 flex flex-col gap-5 mt-5 lg:mt-0 rounded-lg border border-[#3D7773]"
                         >
                             <form onSubmit={formik.handleSubmit} noValidate className="flex flex-col gap-5 h-full">
 
                                 {/* Email + Name */}
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
                                     <div>
-                                        <label className="block text-zinc-300 text-xs mb-1.5">Name</label>
+                                        <label className="block text-zinc-300 font-medium text-lg mb-1.5">Name</label>
                                         <input
                                             id="name" name="name" type="text" placeholder="Name"
                                             value={formik.values.name}
@@ -359,7 +358,7 @@ export default function Contact() {
                                         <ErrorMsg msg={formik.touched.name ? formik.errors.name : undefined} />
                                     </div>
                                     <div>
-                                        <label className="block text-zinc-300 text-xs mb-1.5">Email</label>
+                                        <label className="block text-zinc-300 font-medium text-lg mb-1.5">Email</label>
                                         <input
                                             id="email" name="email" type="email" placeholder="Email"
                                             value={formik.values.email}
@@ -373,7 +372,7 @@ export default function Contact() {
 
                                 {/* Phone */}
                                 <div>
-                                    <label className="block text-zinc-300 text-xs mb-1.5">Phone</label>
+                                    <label className="block text-zinc-300 font-medium text-lg mb-1.5">Phone</label>
                                     <input
                                         id="phone" name="phone" type="text" placeholder="Phone"
                                         value={formik.values.phone}
@@ -386,7 +385,7 @@ export default function Contact() {
 
                                 {/* Message */}
                                 <div className="flex-1">
-                                    <label className="block text-zinc-300 text-xs mb-1.5">Message</label>
+                                    <label className="block text-zinc-300 font-medium text-lg mb-1.5">Message</label>
                                     <textarea
                                         id="message" name="message" rows={7} placeholder="Message..."
                                         value={formik.values.message}
