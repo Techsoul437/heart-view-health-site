@@ -11,10 +11,10 @@ function BlogSection() {
   const selectedBlogs = blogs.slice(0, 3);
 
   return (
-    <section className="max-w-screen-8xl pt-16 mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 ">
+    <section className="max-w-screen-8xl pt-10 mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 ">
 
       {/* HEADING */}
-      <div className="text-center mb-12">
+      <div className="text-center ">
         <motion.span
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -31,7 +31,7 @@ function BlogSection() {
       </div>
 
       {/* GRID */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-5 ">
 
         {selectedBlogs.map((blog) => (
           <Link key={blog.slug} href={`/blog/${blog.slug}`}>

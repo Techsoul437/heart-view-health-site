@@ -5,6 +5,7 @@ import React from 'react'
 import Hero from './Hero'
 import FeaturesSection from './FeatureSection'
 import FeatureStorySection from './FeatureStory'
+import Footer from '@/Ui/footer/Footer'
 
 function Features() {
   return (
@@ -14,7 +15,8 @@ function Features() {
       <FeatureStorySection></FeatureStorySection>
       <FeaturesSection></FeaturesSection>
 
-      <FinalCTA></FinalCTA>
+      {/* <FinalCTA></FinalCTA> */}
+      <Footer></Footer>
     </div>
   )
 }

@@ -11,6 +11,8 @@ import AppDownloadSection from './AppDownloadSection';
 import BlogSection from './BlogSection';
 import TeamSection from './TeamSection';
 import Problem from './Problem';
+import LifestyleSection from './LifestyleSection';
+import TrustSection from './TrustSection';
 
 
 function HomePage() {
@@ -20,6 +22,8 @@ function HomePage() {
         <Navbar></Navbar>
         <Hero></Hero>
         <Problem></Problem>
+        <LifestyleSection></LifestyleSection>
+        <TrustSection></TrustSection>
         {/* <QuickValueSection></QuickValueSection> */}
         {/* <div style={{height:'600px'}}></div> */}
         {/* <HowItWorks></HowItWorks> */}

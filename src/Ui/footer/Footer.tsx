@@ -31,7 +31,7 @@ export default function Footer() {
         {/* GRID */}
      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_2fr] gap-8 sm:gap-10 lg:gap-14">
 
-          <div className="flex flex-col lg:items-center text-left lg:text-center">
+          <div className="flex flex-col lg:items-start 2xl:mt-5 text-left lg:text-start">
             <Image
               src="/logo3.png"
               alt="logo"
@@ -40,7 +40,7 @@ export default function Footer() {
             />
 
 
-            <p className="mt-1 text-base sm:text-lg  leading-relaxed  font-light text-white max-w-md">
+            <p className="mt-3 text-base sm:text-lg  leading-relaxed  font-light text-white max-w-xs">
               Stay aware, track health easily, and take control of your well-being.
             </p>
           </div>
@@ -54,6 +54,8 @@ export default function Footer() {
                 { label: "About Us", href: "/about" },
                 // { label: "Help & Support", href: "#help" },
                 { label: "Contact Us", href: "/contact" },
+                { label: "Features", href: "/features" },
+
                 { label: "FAQs", href: "/faq" },
               ].map((link) => (
                 <li key={link.href}>

@@ -7,6 +7,10 @@ import BorderButton from "../buttons/BorderButton";
 import Image from "next/image";
 
 const NAV_LINKS = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Features", href: "/features" },
+  { label: "How It Work", href: "/howwork" },
   {
     label: "Blog",
     href: "/blog",
@@ -18,7 +22,6 @@ const NAV_LINKS = [
       { label: "Lab Reports", href: "/category/lab-reports" },
     ],
   },
-  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -28,87 +31,80 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="absolute lg:fixed top-0 left-0 w-full h-20 md:h-25 lg:h-20 sticky flex items-center bg-black/70 lg:bg-transparent z-[999] ">
+      <header className="lg:fixed top-0 left-0 w-full h-20 md:h-25 lg:h-22 sticky flex items-center bg-black/70 lg:bg-transparent z-[999]">
 
         {/* Main content row */}
-        <div className="w-full  flex items-center justify-between px-6 lg:px-12 lg:ml-40 xl:ml-70  2xl:ml-130 z-[90]">
+  {/* Main content row */}
+<div className="w-full max-w-screen-8xl  flex items-center justify-between lg:justify-center px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20 z-[90]">
 
-          {/* Logo + Nav links */}
-          <div className="flex items-center gap-8 lg:gap-10 relative z-[400]">
-     <Link href="/">
-  <Image
-    src="/logo3.png"
-    alt="Logo"
-    width={80}
-    height={80}
-    className="
-      z-[100] cursor-pointer 
-      h-16 sm:h-20 md:h-20 lg:h-16
-      w-auto
-    "
-  />
-</Link>
+  {/* Logo — left on mobile/tablet, center with nav on desktop */}
+  <Link href="/" className="flex-shrink-0 relative z-[400] lg:mr-6 xl:mr-8">
+    <Image
+      src="/logo3.png"
+      alt="Logo"
+      width={80}
+      height={80}
+      className="cursor-pointer h-12 sm:h-14 md:h-16 lg:h-16 w-auto"
+    />
+  </Link>
 
-            {/* Desktop nav links */}
-            <ul className="hidden lg:flex justify-center items-center gap-6  lg:ml-16 xl:ml-10 2xl:ml-40 ml-70">
-              {NAV_LINKS.map((link) => (
-                <li key={link.label} className="group relative">
-                  <Link
-                    href={link.href}
-                    className="text-lg cursor-pointer text-[#B0B0B0] transition duration-300 group-hover:text-[#3D7773]"
-                  >
-                    {link.label}
-                  </Link>
-
-                  {/* Underline animation */}
-                  <span className="absolute left-0 -bottom-1 w-0 h-1 bg-gradient-to-r from-[#45657D] to-[#B4B0B0] transition-all duration-300 group-hover:w-full" />
-
-                  {/* Dropdown */}
-                  {link.children && (
-                    <div className="absolute left-0 top-[120%] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 bg-black/70 backdrop-blur-xl border border-white/10 rounded-xl shadow-xl p-3 min-w-44 z-50">
-                      {link.children.map((child) => (
-                        <Link
-                          key={child.label}
-                          href={child.href}
-                          className="block px-4 py-2 text-md  lg:text-xl 2xl:text-lg text-[#B0B0B0] rounded-md hover:bg-[#3D7773]/20 hover:text-[#3D7773] transition"
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </li>
-              ))}
-            </ul>
+  {/* Desktop nav links — inline with logo */}
+  <ul className="hidden lg:flex justify-center items-center gap-4 xl:gap-6 relative z-[400]">
+    {NAV_LINKS.map((link) => (
+      <li key={link.label} className="group relative">
+        <Link
+          href={link.href}
+          className="text-lg cursor-pointer text-[#B0B0B0] transition duration-300 whitespace-nowrap group-hover:text-[#3D7773]"
+        >
+          {link.label}
+        </Link>
+        <span className="absolute left-0 -bottom-1 w-0 h-1 bg-gradient-to-r from-[#45657D] to-[#B4B0B0] transition-all duration-300 group-hover:w-full" />
+        {link.children && (
+          <div className="absolute left-0 top-[120%] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 bg-black/70 backdrop-blur-xl border border-white/10 rounded-xl shadow-xl p-3 min-w-44 z-50">
+            {link.children.map((child) => (
+              <Link
+                key={child.label}
+                href={child.href}
+                className="block px-4 py-2 text-md lg:text-xl 2xl:text-lg text-[#B0B0B0] rounded-md hover:bg-[#3D7773]/20 hover:text-[#3D7773] transition"
+              >
+                {child.label}
+              </Link>
+            ))}
           </div>
+        )}
+      </li>
+    ))}
+  </ul>
 
-          {/* CTA Buttons — desktop */}
-          <div className="hidden lg:flex items-center gap-4">
-            <FillButton text="Get Started" href="/contact" />
-            <BorderButton text="Download App" href="#download" />
-          </div>
+  {/* RIGHT — CTA button (desktop) / Hamburger (mobile+tablet) */}
+  <div className="flex items-center relative z-[400]">
+    {/* Desktop CTA */}
+    <div className="hidden lg:flex items-center ml-10 md:ml-20  2xl:ml-68">
+      <FillButton text="Join Early Access" href="/contact" />
+    </div>
+    {/* Mobile/tablet hamburger — right side */}
+    <button
+      className="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer border-none"
+      onClick={() => setSidebarOpen(true)}
+      aria-label="Open menu"
+    >
+      <span className="w-6 h-0.5 bg-[#B0B0B0] rounded block" />
+      <span className="w-6 h-0.5 bg-[#B0B0B0] rounded block" />
+      <span className="w-6 h-0.5 bg-[#B0B0B0] rounded block" />
+    </button>
+  </div>
 
-          {/* Hamburger — mobile & tablet only */}
-          <button
-            className="lg:hidden flex flex-col gap-1.5 p-2 cursor-pointer  border-none"
-            onClick={() => setSidebarOpen(true)}
-            aria-label="Open menu"
-          >
-            <span className="w-6 h-0.5 bg-[#B0B0B0] rounded block" />
-            <span className="w-6 h-0.5 bg-[#B0B0B0] rounded block" />
-            <span className="w-6 h-0.5 bg-[#B0B0B0] rounded block" />
-          </button>
-        </div>
+</div>
 
         {/* Background blur shape — desktop only */}
-        <div className="w-screen hidden h-32 lg:flex justify-center items-start overflow-hidden transition-all duration-500 ease-in-out absolute -top-2 inset-0 mx-auto z-[1] opacity-100 pointer-events-none">
+        <div className="w-full hidden h-80 lg:flex justify-center items-start overflow-hidden transition-all duration-500 ease-in-out absolute -top-2 inset-0 mx-auto z-[1] opacity-100 pointer-events-none">
           <svg
-            width="2750"
-            height="157"
-            viewBox="0 0 2750 157"
+            width="100%"
+            height="180"
+            viewBox="0 0 2850 157"
+            preserveAspectRatio="xMidYMid slice"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="relative left-[2%] min-w-2750 "
           >
             <g clipPath="url(#bgblur_0_272_516_clip_path)">
               <rect width="100%" height="100%" fill="rgba(0,0,0,0.8)" filter="url(#blurFilter)" />
@@ -164,11 +160,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Logo in sidebar */}
-        {/* <div className="flex items-center gap-3 px-1 mb-6">
-          <Image src="/logo3.png" alt="Logo" width={80} height={50} className="h-auto" />
-        </div> */}
-
         {/* Sidebar Nav Links */}
         <nav className="flex flex-col gap-1">
           {NAV_LINKS.map((link) => (
@@ -178,7 +169,7 @@ export default function Navbar() {
                   <Link href={link.href}>
                     <button
                       onClick={() => setBlogOpen(!blogOpen)}
-                      className="w-full flex items-center  justify-between px-4 py-3 text-[#B0B0B0] hover:text-[#3D7773] hover:bg-[#3D7773]/10 rounded-lg text-base transition text-left cursor-pointer bg-transparent border-none"
+                      className="w-full flex items-center justify-between px-4 py-3 text-[#B0B0B0] hover:text-[#3D7773] hover:bg-[#3D7773]/10 rounded-lg text-base transition text-left cursor-pointer bg-transparent border-none"
                     >
                       {link.label}
                       <svg
@@ -215,24 +206,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* CTA buttons at bottom — same FillButton/BorderButton use nahi kar sakte sidebar mein kyunki woh href-based hain, isliye direct links */}
         <div className="mt-auto pt-6 border-t border-white/10 flex flex-col gap-3">
-          {/* <Link
-            href="/contact"
-            onClick={() => setSidebarOpen(false)}
-            className="block text-center px-5 py-3 bg-gradient-to-br from-[#3D7773] to-[#45657D] text-white rounded-lg text-sm font-medium hover:opacity-85 transition"
-          >
-            Get Started
-          </Link>
-          <Link
-            href="#download"
-            onClick={() => setSidebarOpen(false)}
-            className="block text-center px-5 py-3 border border-[#3D7773] text-[#3D7773] rounded-lg text-sm font-medium hover:bg-[#3D7773]/10 transition"
-          >
-            Download App
-          </Link> */}
-          <FillButton text="Get Started" href="/contact" />
-          <BorderButton text="Download App" href="#download" />
         </div>
       </aside>
     </>

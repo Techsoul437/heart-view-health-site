@@ -18,7 +18,7 @@ export default function AppDownloadSection() {
         "https://play.google.com/store/apps/details?id=com";
 
     return (
-        <section ref={ref} className="relative overflow-hidden  px-4 sm:px-6 md:px-10 pt-16 lg:px-16 2xl:px-20">
+        <section ref={ref} className="relative overflow-hidden pt-10  px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
             <div className="mx-auto max-w-8xl  ">
                 <div className="flex flex-col lg:flex-row items-center ">
 
@@ -134,7 +134,7 @@ export default function AppDownloadSection() {
                             </div>
 
                             {/* QR */}
-                            <motion.div
+                            {/* <motion.div
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                                 className="flex flex-col items-center"
@@ -154,7 +154,7 @@ export default function AppDownloadSection() {
                                 <span className="text-white/40 text-xs sm:text-sm mt-2">
                                     Scan to install instantly
                                 </span>
-                            </motion.div>
+                            </motion.div> */}
 
                         </div>
                     </motion.div>
