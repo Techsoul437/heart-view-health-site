@@ -86,8 +86,8 @@ function BlogSection() {
 
       </div>
 
-      {/* BUTTON */}
-      <div className="text-center mt-12">
+      {/* BUTTONS */}
+      <div className="text-center mt-12 space-y-4">
         <FillButton text="View More Blogs →" href="/blog" />
       </div>
 

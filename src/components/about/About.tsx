@@ -15,13 +15,13 @@ function About() {
   return (
     <div className='page-bg'>
       <Navbar></Navbar>
-      <Hero></Hero>
+      {/* <Hero></Hero> */}
       <WhatDo></WhatDo>
       <ReportUnderstand></ReportUnderstand>
       <OurApproach></OurApproach>
       <WhyBuilt></WhyBuilt>
-<OurVision></OurVision>
-<CompanySection></CompanySection>
+      <OurVision></OurVision>
+      <CompanySection></CompanySection>
       {/* <FinalCTA></FinalCTA> */}
       <Footer></Footer>
     </div>

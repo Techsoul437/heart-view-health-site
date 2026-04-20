@@ -16,21 +16,38 @@ function Hero() {
           <div className="text-white">
 
             <h1 className="heading-font text-2xl md:text-3xl lg:text-4xl font-medium text-white leading-tight tracking-tight mb-3 max-w-md">
-              Smarter Heart Awareness, Built for Everyday Life
+              Track, Understand & Improve Your Heart Health Daily
             </h1>
 
             <p className="text-base sm:text-lg text-white leading-relaxed font-light lg:max-w-md">
-              A simple way to understand your health and stay consistent with habits that actually matter in daily life.
+              All your health data, insights, and habits — in one simple dashboard.
             </p>
 
             {/* Buttons */}
             <div className="flex flex-wrap gap-4 py-6 items-center">
-              <FillButton text="Join Early Access" href="/contact" />
-              <BorderButton text="Learn More" href="#learnmore" />
+              <FillButton text="Start Tracking Free" href="/contact" />
+              <BorderButton text="Get Your Health Score" href="#learnmore" />
             </div>
 
+            {/* Social Proof */}
+            <p className="flex items-center gap-2 text-white/80 text-sm font-medium mt-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-4 h-4 text-yellow-400"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              Trusted by 5,000+ users
+            </p>
+
             {/* Trust Line */}
-            <p className="flex items-center gap-2 text-white/60 text-sm font-light">
+            <p className="flex items-center gap-2 text-white/60 text-sm font-light mt-6">
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -50,19 +67,12 @@ function Hero() {
           </div>
 
           {/* RIGHT SIDE - IMAGE */}
-          {/* <div className="relative w-full h-80 sm:h-96 lg:h-120 ">
+          <div className="relative w-full h-80 sm:h-96 lg:h-120 ">
 
-            <Image
-              src="/hero-image.jpg" 
-              alt="Heart Health"
-              fill
-              className="object-cover rounded-2xl"
-              priority
-            />
 
             <div className="absolute inset-0 bg-black/20 rounded-2xl"></div>
 
-          </div> */}
+          </div>
 
         </div>
 

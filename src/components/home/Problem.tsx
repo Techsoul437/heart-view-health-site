@@ -17,18 +17,18 @@ type CardProps = {
 const problems: ItemType[] = [
   {
     num: "01",
-    title: "Health Tracking is Irregular",
-    desc: "Tracking starts strong but fades without structure.",
+    title: "You start tracking… but stop after a week",
+    desc: "Motivation fades without reminders and easy habits.",
   },
   {
     num: "02",
-    title: "Data Scattered Everywhere",
-    desc: "Health records are spread across apps and reports.",
+    title: "Your reports are scattered across apps",
+    desc: "Finding your health history feels impossible.",
   },
   {
     num: "03",
-    title: "Hard to Understand",
-    desc: "Medical data feels complex and confusing.",
+    title: "You don't understand what your data means",
+    desc: "Complex medical terms leave you confused and worried.",
   },
   {
     num: "04",

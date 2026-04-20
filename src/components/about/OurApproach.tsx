@@ -5,8 +5,8 @@ import { useEffect, useRef, useState } from "react";
 
 const data = [
     {
-        id: "01",
-        title: "Clarity",
+        num: "01",
+        title: "Understand your health easily",
         desc: "Health data should be simple, not overwhelming.",
         points: [
             "Understand your heart data without confusion",
@@ -15,8 +15,8 @@ const data = [
         ],
     },
     {
-        id: "02",
-        title: "Consistency",
+        num: "02",
+        title: "Stay on track daily",
         desc: "Daily habits like medication and follow ups matter just as much as monitoring",
         points: [
             "Stay on track with daily health routines",
@@ -25,8 +25,8 @@ const data = [
         ],
     },
     {
-        id: "03",
-        title: "Continuity",
+        num: "03",
+        title: "See long-term progress",
         desc: "Your health is a journey, not a single moment.",
         points: [
             "Track your health journey over time",
@@ -118,7 +118,7 @@ export default function ProcessCards() {
     };
 
     return (
-        <section className="pt-10  flex justify-center">
+        <section className=" flex justify-center">
             <div className="w-full max-w-8xl mx-auto px-3 sm:px-6 md:px-6 lg:px-16 2xl:px-20">
 
                 {/* Heading SAME */}
@@ -141,7 +141,7 @@ export default function ProcessCards() {
                                 <div key={i} className="min-w-full px-1 flex flex-col items-center">
 
                                     <div className="w-14 h-14 rounded-full border-2 border-[#B4B0B0] bg-gradient-to-r from-[#45657D] to-[#3D7773] text-white flex items-center justify-center">
-                                        {item.id}
+                                        <span className="text-lg">{item.num}</span>
                                     </div>
 
                                     <div className="w-0 h-0 border-l-8 border-transparent border-r-8 border-transparent border-t-8 border-t-gray-400 mt-1" />
@@ -181,7 +181,7 @@ export default function ProcessCards() {
                                 <div key={i} className="min-w-1/2 px-4 flex flex-col items-center">
 
                                     <div className="w-14 h-14 rounded-full border-2 border-[#B4B0B0] bg-gradient-to-r from-[#45657D] to-[#3D7773] text-white flex items-center justify-center">
-                                        {item.id}
+                                        <span className="text-lg">{item.num}</span>
                                     </div>
                                     <div className="w-0 h-0 border-l-8  border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-gray-400 mt-1" />
 
@@ -214,9 +214,9 @@ export default function ProcessCards() {
                     {/* DESKTOP SAME */}
                     <div className="hidden lg:grid grid-cols-3 gap-2 w-full">
                         {data.map((item) => (
-                            <div key={item.id} className="flex flex-col items-center">
+                            <div key={item.num} className="flex flex-col items-center">
                                 <div className="w-14 h-14 rounded-full border bg-gradient-to-r from-[#45657D] to-[#3D7773] text-white flex items-center justify-center">
-                                    {item.id}
+                                    <span className="text-lg">{item.num}</span>
                                 </div>
                                 <div className="w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-gray-400 mt-1" />
 

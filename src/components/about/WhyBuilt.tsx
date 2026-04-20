@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 function WhyBuilt() {
   return (
-    <section className="w-full pt-6 lg:pt-10 overflow-hidden">
+    <section className="w-full overflow-hidden">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20  gap-0 lg:gap-10 grid xl:grid-cols-2 xl:pt-4  items-center">
 
         {/* LEFT CONTENT */}
@@ -45,9 +45,8 @@ function WhyBuilt() {
 
           <p className="text-gray-400 text-base sm:text-lg leading-relaxed 
                         font-light mb-6 max-w-xl lg:max-w-3xl xl:max-w-xl">
-            Most tools focus on just one thing  tracking, reminders, or reports.
-            We wanted something more connected and meaningful.
-            So we built a platform that brings everything together:
+            We saw people struggling with scattered health data, confusing reports, and no clear direction.
+            So we built HeartView Health — to make health simple, clear, and actionable.
           </p>
 
           <p className="text-white mb-6 text-base sm:text-lg leading-relaxed lg:max-w-lg font-light">

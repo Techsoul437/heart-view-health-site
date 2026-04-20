@@ -13,33 +13,33 @@ import {
 export default function WhatWeDo() {
     const cards = [
         {
-            title: "Smart Insights",
-            desc: "Analyze trends and patterns to understand your heart health over time.",
+            title: "Understand Your Heart Health in Seconds",
+            desc: "Get instant clarity on your cardiovascular health with smart analysis.",
             icon: FaChartLine,
         },
         {
-            title: "Medication Reminders",
-            desc: "Never miss your medicines with timely alerts and daily reminders.",
+            title: "Never Miss a Dose Again",
+            desc: "Automated reminders ensure you stay consistent with your medication.",
             icon: FaBell,
         },
         {
-            title: "Appointment Tracking",
-            desc: "Manage doctor visits with reminders and organized scheduling.",
+            title: "Stay on Top of Doctor Visits",
+            desc: "Never forget appointments with intelligent scheduling and alerts.",
             icon: FaCalendarCheck,
         },
         {
-            title: "Medical Records",
-            desc: "Store reports securely and access them anytime from one place.",
+            title: "All Your Health Reports — One Secure Place",
+            desc: "Access all medical records instantly, anytime, anywhere.",
             icon: FaFolderOpen,
         },
         {
-            title: "Visual Reports",
-            desc: "Convert lab reports into easy charts and understandable trends.",
+            title: "See Trends at a Glance",
+            desc: "Visual charts turn complex data into meaningful insights.",
             icon: FaChartBar,
         },
         {
-            title: "Wearable Integration",
-            desc: "Seamlessly connect with Apple Health, Google Fit, and smart devices.",
+            title: "Connect All Your Devices Seamlessly",
+            desc: "Sync data from wearables, apps, and devices automatically.",
             icon: FaWatchmanMonitoring,
         },
     ];
@@ -58,7 +58,7 @@ export default function WhatWeDo() {
     };
 
     return (
-        <section className="w-full pt-10  text-white">
+        <section className="w-full pt-30 text-white">
             <div className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 text-center">
 
                 {/* Heading */}

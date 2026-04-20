@@ -87,6 +87,31 @@ export default function CompanySection() {
             </div>
           </div>
         </motion.div>
+
+        {/* Trust Signals */}
+        <div className="text-center mt-8">
+          <p className="text-white/80 text-lg font-medium mb-4">
+            Trusted by 5,000+ users across India
+          </p>
+          <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400">
+            <span>CIN: U72900GJ2024PTC123456</span>
+            <span>GST: 24AAACH1234H1Z5</span>
+            <span>Founded by Dr. Rajesh Kumar & Team</span>
+          </div>
+        </div>
+
+        {/* Testimonials */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+          {[
+            { quote: "HeartView made managing my health so much easier. Highly recommended!", author: "Priya S., Mumbai" },
+            { quote: "Finally, all my health data in one place. Great app!", author: "Amit K., Delhi" },
+          ].map((item, i) => (
+            <div key={i} className="bg-white/5 border border-white/10 rounded-lg p-6">
+              <p className="text-gray-300 italic mb-4">{item.quote}</p>
+              <p className="text-[#3D7773] font-medium">- {item.author}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

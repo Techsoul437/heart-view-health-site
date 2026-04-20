@@ -5,11 +5,6 @@ import { FaUserCheck, FaLightbulb, FaChartLine, FaMobileAlt, FaHeartbeat } from 
 
 const features = [
   {
-    icon: FaUserCheck,
-    title: "Designed for Everyone",
-    desc: "Built for everyday users, not just professionals.",
-  },
-  {
     icon: FaLightbulb,
     title: "Clarity First",
     desc: "Focused on clarity, not complexity.",
@@ -18,11 +13,6 @@ const features = [
     icon: FaChartLine,
     title: "Personalized Insights",
     desc: "Insights tailored based on your data.",
-  },
-  {
-    icon: FaMobileAlt,
-    title: "Works Anywhere",
-    desc: "Works even without advanced devices.",
   },
   {
     icon: FaHeartbeat,
@@ -59,7 +49,7 @@ export default function WhyHeartView() {
                 </div>
 
       {/* Layout */}
-      <div className="flex flex-wrap justify-center xl:grid xl:grid-cols-5 mt-5">
+      <div className="flex flex-wrap justify-center xl:grid xl:grid-cols-3 mt-5">
   {features.map((item, index) => {
     const Icon = item.icon;
 

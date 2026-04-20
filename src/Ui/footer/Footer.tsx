@@ -146,7 +146,7 @@ export default function Footer() {
                 © 2026 HeartViewHealth. All rights reserved.
               </p>
 
-              <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+              {/* <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
                 {[
                   { label: "HIPAA" },
                   { label: "GDPR" },
@@ -162,7 +162,7 @@ export default function Footer() {
                     {badge.label}
                   </span>
                 ))}
-              </div>
+              </div> */}
 
               <div className="flex items-center justify-center md:justify-end gap-3">
                 {socialLinks.map((item) => (

@@ -28,7 +28,7 @@ function HomePage() {
         <Problem></Problem>
         <WhatIsHeartView></WhatIsHeartView>
         <LifestyleSection></LifestyleSection>
-        <CoreFeatures></CoreFeatures>
+        {/* <CoreFeatures></CoreFeatures> */}
         <TrustSection></TrustSection>
         <WhyHeartView></WhyHeartView>
         <BlogSection></BlogSection>
