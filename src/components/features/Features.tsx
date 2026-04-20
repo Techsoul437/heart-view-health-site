@@ -11,8 +11,8 @@ function Features() {
   return (
     <div className='page-bg'>
       <Navbar></Navbar>
-      <Hero></Hero>
-      <FeatureStorySection></FeatureStorySection>
+      {/* <Hero></Hero> */}
+      {/* <FeatureStorySection></FeatureStorySection> */}
       <FeaturesSection></FeaturesSection>
 
       {/* <FinalCTA></FinalCTA> */}

@@ -234,7 +234,7 @@ export default function HowItWorks() {
 
         </div>
 
-        {/* ── DESKTOP LAYOUT — unchanged ── */}
+        {/* ── DESKTOP LAYOUT  unchanged ── */}
         <div className="hidden lg:flex h-screen px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 relative">
 
           {/* Left Text */}

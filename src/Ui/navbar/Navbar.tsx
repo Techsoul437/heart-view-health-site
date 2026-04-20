@@ -4,35 +4,50 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import FillButton from "@/Ui/buttons/FillButton";
-
+import { usePathname } from "next/navigation";
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Features", href: "/features" },
-  { label: "How It Works", href: "/howwork" },
+  { label: "How It Works", href: "/how-it-works" },
   { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+    const pathname = usePathname();
 
   return (
     <>
       <header className="lg:fixed top-0 left-0 w-full h-24 md:h-28 sticky flex items-center bg-slate-950/95 border-b border-white/10 backdrop-blur-xl z-[999]">
         <div className="w-full max-w-screen-8xl mx-auto flex items-center justify-between px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20">
-         <Image src="/logo3.png" alt="HeartView Health" height={140} width={120} />
+          <Link href="/">
+            <Image src="/logo3.png" alt="HeartView Health" height={140} width={120} />
 
-          <nav className="hidden lg:flex flex-wrap items-center gap-4 xl:gap-6">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="text-sm font-medium text-slate-300 transition duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/40 whitespace-nowrap"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+          </Link>
+
+       <nav className="hidden lg:flex flex-wrap items-center gap-4 xl:gap-6">
+  {NAV_LINKS.map((link) => {
+    const isActive = pathname === link.href;
+
+    return (
+      <Link
+        key={link.label}
+        href={link.href}
+        className={`relative group text-md font-medium whitespace-nowrap transition duration-200
+          ${isActive ? "text-[#3D7773]" : "text-slate-300 hover:text-[#3D7773]"}`}
+      >
+        {link.label}
+
+        {/* underline */}
+        <span
+          className={`absolute left-0 -bottom-1 h-0.5 bg-gradient-to-r from-[#45657D] to-[#B4B0B0] transition-all duration-300
+          ${isActive ? "w-full" : "w-0 group-hover:w-full"}`}
+        ></span>
+      </Link>
+    );
+  })}
+</nav>
 
           <div className="flex items-center gap-4">
             <div className="hidden lg:block">
@@ -75,17 +90,27 @@ export default function Navbar() {
           </button>
         </div>
 
-        <nav className="flex flex-col gap-2">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              onClick={() => setSidebarOpen(false)}
-              className="block rounded-2xl px-4 py-3 text-sm font-medium text-slate-200 transition hover:bg-cyan-500/10 hover:text-white"
-            >
-              {link.label}
-            </Link>
-          ))}
+        <nav className="flex flex-col gap-2 group relative">
+     {NAV_LINKS.map((link) => {
+    const isActive = pathname === link.href;
+
+    return (
+      <Link
+        key={link.label}
+        href={link.href}
+        className={`relative group text-md py-3 font-medium whitespace-nowrap transition duration-200
+          ${isActive ? "text-[#3D7773]" : "text-slate-300 hover:text-[#3D7773]"}`}
+      >
+        {link.label}
+
+        {/* underline */}
+        <span
+          className={`absolute left-0 -bottom-1 h-0.5 bg-gradient-to-r from-[#45657D] to-[#B4B0B0] transition-all duration-300
+       `}
+        ></span>
+      </Link>
+    );
+  })}
         </nav>
 
         <div className="mt-auto pt-6 border-t border-white/10">

@@ -165,7 +165,7 @@ function Section({ data }: { data: SectionType }) {
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      className="mb-10 border-b border-white/10 pb-8"
+      className="mb-10 border-b mt-10 border-white/10 pb-8"
     >
       {/* HEADER */}
       <div className="flex gap-4 mb-4">

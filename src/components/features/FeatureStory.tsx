@@ -25,7 +25,7 @@ export default function FeatureStorySection() {
                 </h2>
 
                 <p className="text-white/60 mt-4 text-lg font-light">
-                    Monitor your heart rate, blood pressure, and sugar levels in one place — 
+                    Monitor your heart rate, blood pressure, and sugar levels in one place  
                     get guidance, reminders, and insights that help you take better control of your health every day.
                 </p>
             </div>
@@ -140,7 +140,7 @@ export default function FeatureStorySection() {
                             All Your Reports in One Place
                         </h3>
                         <p className="text-white/80 mt-2 text-lg font-light">
-                            Store and access lab reports, prescriptions, and medical history anytime — secure, organized, and always available.
+                            Store and access lab reports, prescriptions, and medical history anytime  secure, organized, and always available.
                         </p>
                     </div>
                 </motion.div>

@@ -28,13 +28,20 @@
 
 /* BODY pe background image */
 .page-bg {
-  background-image: url('/page-bg.png'); /* public folder */
+  background-image: url('/page-bg.png'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   height: 100%;
 }
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

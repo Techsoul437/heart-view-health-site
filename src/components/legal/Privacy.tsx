@@ -238,7 +238,7 @@ function AnimatedSection({
 
 export default function Privacy() {
   return (
-    <div className="min-h-screen max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 text-white">
+    <div className="min-h-screen max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-10 text-white">
  
 
       {/* ── Hero ── */}

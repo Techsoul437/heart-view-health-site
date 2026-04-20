@@ -81,22 +81,12 @@ const features = [
             "Continuously evolving insights",
         ],
     },
-    {
-        title: "Insights & Preventive Guidance",
-        icon: BarChart,
-        points: [
-            "Visual dashboards for trends",
-            "Highlights risk drivers",
-            "Personalized recommendations",
-            "Encourages preventive lifestyle",
-            "Continuously evolving insights",
-        ],
-    },
+   
 ];
 
 export default function FeatureSection() {
     return (
-        <section className="w-full py-24 ">
+        <section className="w-full py-24 mt-10 ">
             <div className="max-w-8xl mx-auto px-20 text-center">
                 <motion.span
                     initial={{ opacity: 0, y: 40 }}

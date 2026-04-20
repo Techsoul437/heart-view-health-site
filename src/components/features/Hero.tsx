@@ -32,7 +32,7 @@ function Hero() {
           </h1>
 
           <p className="text-base sm:text-lg text-white leading-relaxed max-w-md">
-Discover intelligent tools designed to help you monitor, analyze, and improve your cardiovascular health — all in one seamless experience.
+Discover intelligent tools designed to help you monitor, analyze, and improve your cardiovascular health  all in one seamless experience.
           </p>
 
           {/* Buttons */}

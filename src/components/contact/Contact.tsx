@@ -244,7 +244,7 @@ export default function Contact() {
             <ToastContainer toasts={toasts} onClose={removeToast} />
 
             {/* ── Page ─────────────────────────────────────────────── */}
-            <section className="w-full pt-5 md:pt-8 lg:pt-20 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
+            <section className="w-full pt-5 md:pt-8 lg:pt-20 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-10">
                 <div className="max-w-8xl mx-auto">
 
                     {/* Header */}
@@ -263,7 +263,7 @@ export default function Contact() {
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:pt-10  overflow-visible rounded-2xl">
 
-                        {/* LEFT — Info */}
+                        {/* LEFT  Info */}
                         <div className="flex flex-col gap-6 sm:gap-8 mt-5 lg:mt-0">
                             <div>
                                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-zinc-100">Get In Touch</h2>
@@ -334,7 +334,7 @@ export default function Contact() {
                             </div>
                         </div>
 
-                        {/* RIGHT — Form */}
+                        {/* RIGHT  Form */}
                         <motion.div
                             initial={{ opacity: 0, x: 32 }}
                             animate={{ opacity: 1, x: 0 }}

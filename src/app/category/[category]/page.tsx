@@ -23,7 +23,7 @@ export default function CategoryPage({
   );
 
   return (
-    <div className="page-bg">
+    <div className="page-bg mt-20">
       <Navbar />
 
       <div className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-10  lg:pt-14">

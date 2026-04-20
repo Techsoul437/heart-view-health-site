@@ -39,7 +39,7 @@ export default function BlogDetails({
   }
 
   return (
-    <div className="page-bg text-white min-h-screen">
+    <div className="page-bg text-white min-h-screen mt-20">
 
       <Navbar />
 

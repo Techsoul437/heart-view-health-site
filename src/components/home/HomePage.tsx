@@ -13,6 +13,10 @@ import TeamSection from './TeamSection';
 import Problem from './Problem';
 import LifestyleSection from './LifestyleSection';
 import TrustSection from './TrustSection';
+import CoreFeatures from './CoreFeatures';
+import WhatIsHeartView from './WhatIsHeartView';
+import WhyHeartView from './WhyHeartView';
+import WhoItsFor from './WhoItsFor';
 
 
 function HomePage() {
@@ -22,17 +26,21 @@ function HomePage() {
         <Navbar></Navbar>
         <Hero></Hero>
         <Problem></Problem>
+        <WhatIsHeartView></WhatIsHeartView>
         <LifestyleSection></LifestyleSection>
+        <CoreFeatures></CoreFeatures>
         <TrustSection></TrustSection>
+        <WhyHeartView></WhyHeartView>
+        <BlogSection></BlogSection>
+        <WhoItsFor></WhoItsFor>
+        <AppDownloadSection></AppDownloadSection>
+        <Footer></Footer>
+
         {/* <QuickValueSection></QuickValueSection> */}
-        {/* <div style={{height:'600px'}}></div> */}
         {/* <HowItWorks></HowItWorks> */}
         {/* <TeamSection></TeamSection> */}
-        <BlogSection></BlogSection>
-        <AppDownloadSection></AppDownloadSection>
         {/* <FAQSection></FAQSection> */}
         {/* <FinalCTA></FinalCTA> */}
-      <Footer></Footer>
 
       </div>
 

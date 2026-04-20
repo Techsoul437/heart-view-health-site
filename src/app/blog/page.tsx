@@ -13,7 +13,7 @@ export default function BlogList() {
     <div className="page-bg">
       <Navbar />
 
-      <div className="max-w-8xl  mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-10 lg:pt-14">
+      <div className="max-w-8xl  mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20  lg:pt-14 mt-20">
 
         {/* HEADING */}
 
