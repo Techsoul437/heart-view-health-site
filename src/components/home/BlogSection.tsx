@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { blogs } from "@/data/blogData";
@@ -8,8 +8,26 @@ import { motion } from "framer-motion";
 import FillButton from "@/Ui/buttons/FillButton";
 
 function BlogSection() {
-  const selectedBlogs = blogs.slice(0, 3);
+const [blogCount, setBlogCount] = useState(3);
+useEffect(() => {
+  const updateCount = () => {
+    const width = window.innerWidth;
 
+    if (width >= 600 && width < 1024) {
+      // Tablet (Tailwind md)
+      setBlogCount(4);
+    } else {
+      setBlogCount(3);
+    }
+  };
+
+  updateCount(); // initial call
+  window.addEventListener("resize", updateCount);
+
+  return () => window.removeEventListener("resize", updateCount);
+}, []);
+
+const selectedBlogs = blogs.slice(0, blogCount);
   return (
     <section className="max-w-screen-8xl pt-10 mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 ">
 

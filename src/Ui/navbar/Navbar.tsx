@@ -15,7 +15,7 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-    const pathname = usePathname();
+  const pathname = usePathname();
 
   return (
     <>
@@ -26,28 +26,28 @@ export default function Navbar() {
 
           </Link>
 
-       <nav className="hidden lg:flex flex-wrap items-center gap-4 xl:gap-6">
-  {NAV_LINKS.map((link) => {
-    const isActive = pathname === link.href;
+          <nav className="hidden lg:flex flex-wrap items-center gap-4 xl:gap-6">
+            {NAV_LINKS.map((link) => {
+              const isActive = pathname === link.href;
 
-    return (
-      <Link
-        key={link.label}
-        href={link.href}
-        className={`relative group text-md font-medium whitespace-nowrap transition duration-200
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className={`relative group text-md font-medium whitespace-nowrap transition duration-200
           ${isActive ? "text-[#3D7773]" : "text-slate-300 hover:text-[#3D7773]"}`}
-      >
-        {link.label}
+                >
+                  {link.label}
 
-        {/* underline */}
-        <span
-          className={`absolute left-0 -bottom-1 h-0.5 bg-gradient-to-r from-[#45657D] to-[#B4B0B0] transition-all duration-300
+                  {/* underline */}
+                  <span
+                    className={`absolute left-0 -bottom-1 h-0.5 bg-gradient-to-r from-[#45657D] to-[#B4B0B0] transition-all duration-300
           ${isActive ? "w-full" : "w-0 group-hover:w-full"}`}
-        ></span>
-      </Link>
-    );
-  })}
-</nav>
+                  ></span>
+                </Link>
+              );
+            })}
+          </nav>
 
           <div className="flex items-center gap-4">
             <div className="hidden lg:block">
@@ -91,26 +91,28 @@ export default function Navbar() {
         </div>
 
         <nav className="flex flex-col gap-2 group relative">
-     {NAV_LINKS.map((link) => {
-    const isActive = pathname === link.href;
+          {NAV_LINKS.map((link) => {
+            const isActive = pathname === link.href;
 
-    return (
-      <Link
-        key={link.label}
-        href={link.href}
-        className={`relative group text-md py-3 font-medium whitespace-nowrap transition duration-200
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                 scroll={true}
+                className={`relative group text-md py-3 font-medium whitespace-nowrap transition duration-200
           ${isActive ? "text-[#3D7773]" : "text-slate-300 hover:text-[#3D7773]"}`}
-      >
-        {link.label}
+          
+              >
+                {link.label}
 
-        {/* underline */}
-        <span
-          className={`absolute left-0 -bottom-1 h-0.5 bg-gradient-to-r from-[#45657D] to-[#B4B0B0] transition-all duration-300
+                {/* underline */}
+                <span
+                  className={`absolute left-0 -bottom-1 h-0.5 bg-gradient-to-r from-[#45657D] to-[#B4B0B0] transition-all duration-300
        `}
-        ></span>
-      </Link>
-    );
-  })}
+                ></span>
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="mt-auto pt-6 border-t border-white/10">

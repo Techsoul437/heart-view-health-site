@@ -5,13 +5,13 @@ import { useRef } from "react";
 
 const sections = [
   {
-    number: "01",
+    number: "1",
     title: "Introduction",
     content:
       "This Privacy Policy describes how HeartView Health Technologies Private Limited collects, uses, processes, stores, and protects your information when you use our mobile application, wearable devices, and related services . By using the Services, you consent to the practices described in this Privacy Policy.",
   },
   {
-    number: "02",
+    number: "2",
     title: "Scope of Policy",
     content: "This Policy applies to:",
     list: [
@@ -21,7 +21,7 @@ const sections = [
     ],
   },
   {
-    number: "03",
+    number: "3",
     title: "Information We Collect",
     content: "",
     subsections: [
@@ -56,7 +56,7 @@ const sections = [
     ],
   },
   {
-    number: "04",
+    number: "4",
     title: "How We Use Your Data",
     content:
       "We may also use aggregated and anonymized data for research and product development.",
@@ -69,7 +69,7 @@ const sections = [
     ],
   },
   {
-    number: "05",
+    number: "5",
     title: "Data Processing & Legal Basis",
     content: "Your data is processed based on:",
     list: [
@@ -80,7 +80,7 @@ const sections = [
     ],
   },
   {
-    number: "06",
+    number: "6",
     title: "Data Sharing",
     content:
       "We do NOT sell your personal or health data. All third parties are bound by confidentiality obligations.",
@@ -90,7 +90,7 @@ const sections = [
     ],
   },
   {
-    number: "07",
+    number: "7",
     title: "Data Storage & Retention",
     content: null,
     list: [
@@ -100,14 +100,14 @@ const sections = [
     ],
   },
   {
-    number: "08",
+    number: "8",
     title: "Data Security",
     content:
       "We implement reasonable security measures. However, no system is completely secure, and unauthorized access or breaches may occur. By using the Services, you acknowledge and accept these risks.",
     list: ["Encryption", "Access control", "Secure infrastructure"],
   },
   {
-    number: "09",
+    number: "9",
     title: "Data Breach Disclaimer",
   highlight: false,
     content:
@@ -147,6 +147,17 @@ const sections = [
     content:
       "We may update this Privacy Policy periodically. Continued use of our Services constitutes acceptance of the updated policy.",
   },
+  {
+  number: "14",
+  title: "Contact Information",
+  content:
+    "For any questions, concerns, or requests regarding this Privacy Policy or your data, you may contact us at:",
+  list: [
+    "HeartView Health Technologies Private Limited",
+    "Address: 19, Arth Residency, Near V.I.P. Circle, Utran, Surat – 394105, Gujarat.",
+    "Email: info@heartviewhealth.com"
+  ],
+}
 ];
 
 function AnimatedSection({
@@ -172,9 +183,9 @@ function AnimatedSection({
         <span className="font-mono text-lg text-[#3D7773]/60 mt-1 shrink-0 tracking-widest">
           {section.number}
         </span>
-        <h3 className="text-lg md:text-base lg:text-2xl font-light text-white/90 tracking-tight leading-snug">
+        <h2 className="text-xl sm:text-xl lg:text-2xl  text-white/90 tracking-tight leading-snug">
           {section.title}
-        </h3>
+        </h2>
       </div>
 
       <div className="pl-10 space-y-4">
@@ -238,11 +249,11 @@ function AnimatedSection({
 
 export default function Privacy() {
   return (
-    <div className="min-h-screen max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-20 text-white">
+    <div className="min-h-screen max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-0 lg:mt-15  text-white">
  
 
       {/* ── Hero ── */}
-      <div className="pt-16 pb-20  mx-auto">
+      <div className="pt-5 md:pt-8 lg:pt-20  mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -280,29 +291,7 @@ export default function Privacy() {
           ))}
         </div>
 
-        {/* ── Contact Card ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-4 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8"
-        >
-          
-          <p className="text-xs font-mono text-[#3D7773]/60 tracking-widest uppercase mb-4">
-            14  Contact
-          </p>
-          <h3 className="text-lg md:text-base lg:text-2xl font-light text-white/90 mb-2">
-            HeartView Health Technologies Private Limited
-          </h3>
-          <p className="text-white/40 text-base sm:text-lg  leading-relaxed  font-light mb-1">[Registered Address]</p>
-          <a
-            href="mailto:info@heartviewhealth.com"
-            className="text-[#3D7773]/70 hover:text-teal-300 text-base sm:text-lg  leading-relaxed  font-light transition-colors"
-          >
-            info@heartviewhealth.com
-          </a>
-        </motion.div>
+    
 
      
       </div>

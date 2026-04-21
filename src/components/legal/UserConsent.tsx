@@ -170,19 +170,19 @@ function Section({ data }: { data: SectionType }) {
       {/* HEADER */}
       <div className="flex gap-4 mb-4">
         <span className="text-[#3D7773] font-semibold">{data.number}</span>
-        <h2 className="text-lg md:text-base lg:text-2xl font-light text-white tracking-tight leading-snug">{data.title}</h2>
+        <h2 className="text-xl sm:text-xl lg:text-2xl  text-white tracking-tight leading-snug">{data.title}</h2>
       </div>
 
       {/* CONTENT */}
-      <ul className="pl-6 space-y-2 list-disc marker:text-[#3D7773] text-white/60 text-base sm:text-lg max-w-7xl font-light leading-relaxed ">
+      <ul className="pl-6 space-y-2 list-disc marker:text-[#3D7773] text-white/60 text-base sm:text-lg  leading-relaxed  font-light">
         {data.points.map((point, i) => (
           <li key={i}>
             {typeof point === "string" ? (
               point
             ) : (
               <div>
-                <p className="text-white/80 text-base sm:text-lg max-w-7xl font-light leading-relaxed">{point.title}</p>
-                <ul className="pl-6 mt-2 list-disc text-white/50 text-base sm:text-lg max-w-7xl font-light leading-relaxed">
+                <p className="text-white/80 max-w-7xl text-base sm:text-lg  leading-relaxed  font-light">{point.title}</p>
+                <ul className="pl-6 mt-2 list-disc text-white/50  max-w-7xl text-base sm:text-lg  leading-relaxed  font-light">
                   {point.items.map((item, idx) => (
                     <li key={idx}>{item}</li>
                   ))}
@@ -200,8 +200,8 @@ function Section({ data }: { data: SectionType }) {
 
 export default function UserConsent() {
   return (
-    <div className="max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 py-16 mt-20 text-white">
-      <div className="mx-auto">
+    <div className="max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-0 lg:mt-15  text-white">
+      <div className="pt-5 md:pt-8 lg:pt-20   mx-auto">
         <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full ">
           <span className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1">
             Legal Document

@@ -105,7 +105,7 @@ However, you grant us permission to process and analyze it to provide the Servic
     question: "What if there is a data breach?",
     answer: `While we take security seriously, no system is fully secure.
 
-👉 HeartView Health is not liable for data breaches to the extent permitted by law.`,
+ HeartView Health is not liable for data breaches to the extent permitted by law.`,
   },
   {
     question: "Where is HeartView Health available?",
@@ -115,7 +115,7 @@ However, you grant us permission to process and analyze it to provide the Servic
     question: "How can I contact support?",
     answer: `You can contact us at:
 
-📧 info@heartviewhealth.com`,
+ Email: info@heartviewhealth.com`,
   },
 ];
 
@@ -127,8 +127,8 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="w-full py-20 mt-10 px-4 sm:px-6 lg:px-20">
-      <div className="max-w-8xl mx-auto mt-5">
+    <section className="w-full max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-0 lg:mt-15 ">
+      <div className="max-w-8xl mx-auto pt-5 md:pt-8 lg:pt-20 ">
        
         {/* Heading */}
         <div className="text-center mb-10">
@@ -137,9 +137,9 @@ export default function FAQSection() {
             FAQs
           </span>
         </div>
-          <h2 className="  text-2xl md:text-3xl lg:text-4xl font-medium  text-white leading-tight">
+          <h1 className="  text-2xl md:text-3xl lg:text-4xl font-medium  text-white leading-tight">
             Have Questions?
-          </h2>
+          </h1>
           <p className="mt-4 text-gray-400 text-base text-lg sm:text-lg font-light" >
             HeartView Health – Frequently Asked Questions
           </p>
@@ -215,7 +215,7 @@ export default function FAQSection() {
           <p className="text-gray-400 text-md">
             Still have questions?{" "}
             <a
-              href="mailto:info@heartviewhealth.com"
+              href="/contact"
               className="text-[#5a9e9a] hover:text-[#769bb8] font-medium underline underline-offset-4"
             >
               Contact our team

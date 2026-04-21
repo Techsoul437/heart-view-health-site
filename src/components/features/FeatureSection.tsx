@@ -131,16 +131,16 @@ export default function FeatureSection() {
                                     <div className="p-3 rounded-xl bg-[#3D7773] font-bold text-white">
                                         <Icon className="w-6 h-6" />
                                     </div>
-                                    <h3 className="text-xl font-medium text-white">
+                                    <h2 className="text-xl sm:text-xl lg:text-2xl font-medium text-white">
                                         {feature.title}
-                                    </h3>
+                                    </h2>
                                 </div>
 
                                 <ul className="mt-4 space-y-2">
                                     {feature.points.map((point, i) => (
                                         <li
                                             key={i}
-                                            className="text-sm md:text-base font-light text-gray-400 leading-relaxed flex gap-2"
+                                            className="text-base sm:text-lg   font-light text-gray-400 leading-relaxed flex gap-2"
                                         >
                                             <span className="text-[#3D7773]">•</span>
                                             <span>{point}</span>
@@ -195,7 +195,7 @@ export default function FeatureSection() {
         p-5 sm:p-6 md:p-8
       ">
 
-                                <ul className="space-y-4 sm:space-y-5 text-gray-300 text-sm sm:text-base">
+                                <ul className="space-y-4 sm:space-y-5 text-gray-300 text-base sm:text-lg  leading-relaxed  font-light">
 
                                     <li className="flex items-start gap-3">
                                         <span className="text-green-400 mt-1 shrink-0">✔</span>

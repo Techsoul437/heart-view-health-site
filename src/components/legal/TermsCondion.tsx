@@ -300,203 +300,9 @@ const sections: SectionType[] = [
   },
 ];
 
-/* ================= PRIVACY POLICY DATA ================= */
-
-const privacyTitle = "Privacy Policy";
-const privacySubtitle =
-  "HeartView Health Technologies Private Limited  How we collect, use, and protect your information.";
-
-type PrivacySectionType = {
-  number: string;
-  title: string;
-  points: (string | { title: string; items: string[] })[];
-};
-
-const privacySections: PrivacySectionType[] = [
-  {
-    number: "1",
-    title: "Introduction",
-    points: [
-      'This Privacy Policy describes how HeartView Health Technologies Private Limited ("Company," "we," "us," or "our") collects, uses, processes, stores, and protects your information when you use our mobile application, wearable devices, and related services ("Services").',
-      "By using the Services, you consent to the practices described in this Privacy Policy.",
-    ],
-  },
-  {
-    number: "2",
-    title: "Scope of Policy",
-    points: [
-      {
-        title: "This Policy applies to:",
-        items: [
-          "Mobile application usage",
-          "Website (if applicable)",
-          "Third-party integrations (Apple Health, Google Fit, etc.)",
-        ],
-      },
-    ],
-  },
-  {
-    number: "3",
-    title: "Information We Collect",
-    points: [
-      {
-        title: "Personal Information:",
-        items: ["Name", "Email address", "Phone number", "Account credentials"],
-      },
-      {
-        title: "Wellness & Health Data:",
-        items: [
-          "Heart rate and related metrics",
-          "Activity data",
-          "User uploaded reports, notes, and medical documents",
-        ],
-      },
-      {
-        title: "Device & Technical Data:",
-        items: [
-          "Device type and operating system",
-          "App usage logs",
-          "IP address",
-          "Connectivity data",
-        ],
-      },
-      {
-        title: "Third-Party Data  when connected:",
-        items: ["Apple Health", "Google Fit  health and activity data"],
-      },
-    ],
-  },
-  {
-    number: "4",
-    title: "How We Use Your Data",
-    points: [
-      {
-        title: "We use your data to:",
-        items: [
-          "Provide and operate the Services",
-          "Generate analytics and insights",
-          "Improve performance and features",
-          "Personalize user experience",
-          "Maintain platform security",
-        ],
-      },
-      "We may also use aggregated and anonymized data for research and product development.",
-    ],
-  },
-  {
-    number: "5",
-    title: "Data Processing & Legal Basis",
-    points: [
-      {
-        title: "Your data is processed based on:",
-        items: [
-          "Your consent",
-          "Legitimate business interests",
-          "Legal obligations (if applicable)",
-        ],
-      },
-      "You may withdraw consent at any time.",
-    ],
-  },
-  {
-    number: "6",
-    title: "Data Sharing",
-    points: [
-      "We do NOT sell your personal or health data.",
-      {
-        title: "We may share data with:",
-        items: [
-          "Service providers (hosting, analytics, infrastructure)",
-          "Legal authorities (if required by law)",
-        ],
-      },
-      "All third parties are bound by confidentiality obligations.",
-    ],
-  },
-  {
-    number: "7",
-    title: "Data Storage & Retention",
-    points: [
-      "Data is stored securely on servers controlled by us or trusted providers.",
-      "Retention period depends on service usage and legal requirements.",
-      "Data may be deleted upon user request (subject to legal obligations).",
-    ],
-  },
-  {
-    number: "8",
-    title: "Data Security",
-    points: [
-      {
-        title: "We implement reasonable security measures including:",
-        items: ["Encryption", "Access control", "Secure infrastructure"],
-      },
-      "No system is completely secure. Unauthorized access or breaches may occur. By using the Services, you acknowledge and accept these risks.",
-    ],
-  },
-  {
-    number: "9",
-    title: "Data Breach Disclaimer",
-    points: [
-      {
-        title:
-          "To the maximum extent permitted by law, the Company shall NOT be liable for:",
-        items: ["Unauthorized access", "Data breaches", "Data loss"],
-      },
-    ],
-  },
-  {
-    number: "10",
-    title: "User Rights",
-    points: [
-      {
-        title: "You may:",
-        items: [
-          "Access your data",
-          "Request correction",
-          "Request deletion",
-          "Withdraw consent",
-        ],
-      },
-      "Requests can be made through official support channels.",
-    ],
-  },
-  {
-    number: "11",
-    title: "International Data Transfers",
-    points: [
-      "Data may be processed outside India depending on infrastructure providers.",
-      "We ensure reasonable safeguards for such transfers.",
-    ],
-  },
-  {
-    number: "12",
-    title: "Children's Privacy",
-    points: [
-      "The Services are not intended for individuals under 18 without parental consent.",
-    ],
-  },
-  {
-    number: "13",
-    title: "Changes to Policy",
-    points: [
-      "We may update this Privacy Policy periodically.",
-      "Continued use constitutes acceptance.",
-    ],
-  },
-  {
-    number: "14",
-    title: "Contact Information",
-    points: [
-      "HeartView Health Technologies Private Limited",
-      "Email: info@heartviewhealth.com",
-      "[Add registered address]",
-    ],
-  },
-];
-
 /* ================= SECTION COMPONENT ================= */
 
-function Section({ data }: { data: SectionType | PrivacySectionType }) {
+function Section({ data }: { data: SectionType  }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
 
@@ -510,19 +316,19 @@ function Section({ data }: { data: SectionType | PrivacySectionType }) {
       {/* HEADER */}
       <div className="flex gap-4 mb-4">
         <span className="text-[#3D7773] font-semibold">{data.number}</span>
-        <h2 className="text-lg md:text-base lg:text-2xl font-light text-white tracking-tight leading-snug">{data.title}</h2>
+        <h2 className="text-xl sm:text-xl lg:text-2xl  text-white tracking-tight leading-snug">{data.title}</h2>
       </div>
 
       {/* CONTENT */}
-      <ul className="pl-6 space-y-2 list-disc marker:text-[#3D7773] text-white/50 text-base sm:text-lg   max-w-7xl font-light leading-relaxed">
+      <ul className="pl-6 space-y-2 list-disc marker:text-[#3D7773] text-white/50 text-base sm:text-lg  max-w-7xl font-light leading-relaxed">
         {data.points.map((point, i) => (
           <li key={i}>
             {typeof point === "string" ? (
               point
             ) : (
               <div>
-                <p className="text-white/50 text-base sm:text-lg   max-w-7xl font-light leading-relaxed">{point.title}</p>
-                <ul className="pl-6 mt-2 list-disc text-white/50 text-base sm:text-lg   max-w-7xl font-light leading-relaxed">
+                <p className="text-white/50 text-base sm:text-lg font-light  max-w-7xl leading-relaxed">{point.title}</p>
+                <ul className="pl-6 mt-2 list-disc text-white/50 text-base sm:text-lg font-light  max-w-7xl leading-relaxed">
                   {point.items.map((item, idx) => (
                     <li key={idx}>{item}</li>
                   ))}
@@ -540,8 +346,8 @@ function Section({ data }: { data: SectionType | PrivacySectionType }) {
 
 export default function TermsCondition() {
   return (
-    <div className=" max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 py-16 mt-20 text-white">
-      <div className=" mx-auto">
+    <div className="  max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-0 lg:mt-15  text-white">
+      <div className="pt-5 md:pt-8 lg:pt-20  mx-auto">
         <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full ">
           <span className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1">
             Legal Document
@@ -549,16 +355,14 @@ export default function TermsCondition() {
         </div>
         {/* Terms & Conditions */}
         <h1 className=" text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white mb-4">{title}</h1>
-        <p className="text-base sm:text-lg  font-light leading-relaxed mb-10">{subtitle}</p>
+        <p className="text-base sm:text-lg font-light font-light leading-relaxed mb-10">{subtitle}</p>
 
         {sections.map((sec, i) => (
           <Section key={i} data={sec} />
         ))}
 
 
-        {privacySections.map((sec, i) => (
-          <Section key={`privacy-${i}`} data={sec} />
-        ))}
+      
 
       </div>
     </div>

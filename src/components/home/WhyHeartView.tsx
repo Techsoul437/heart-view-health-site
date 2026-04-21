@@ -60,7 +60,7 @@ export default function WhyHeartView() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
         viewport={{ once: true }}
-        className="relative flex flex-col items-center text-center w-full md:w-1/3  mt-6 xl:w-auto"
+        className="relative flex flex-col items-center text-center w-full md:w-1/3  sm:w-1/2 mt-6 xl:w-auto"
       >
         {/* Vertical Divider */}
         {index !== features.length - 1 && (

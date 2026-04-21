@@ -41,12 +41,10 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
 
 
-        <CookieConsent />
         {/* <PageLoader></PageLoader> */}
 
         {children}
 
-        <WhatsAppButton />
 
       </body>
     </html>
