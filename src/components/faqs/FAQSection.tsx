@@ -127,8 +127,8 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="w-full py-20 px-4 sm:px-6 lg:px-20">
-      <div className="max-w-[1800px] mx-auto mt-5">
+    <section className="w-full py-20 mt-10 px-4 sm:px-6 lg:px-20">
+      <div className="max-w-8xl mx-auto mt-5">
        
         {/* Heading */}
         <div className="text-center mb-10">

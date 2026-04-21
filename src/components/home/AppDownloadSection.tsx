@@ -19,7 +19,7 @@ export default function AppDownloadSection() {
                     initial={{ opacity: 0, y: 60 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.8 }}
-                    className="w-full"
+                    className="w-full py-4"
                 >
                     {/* Badge */}
                     <span className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border border-white/30 rounded-full px-3 py-1">

@@ -11,7 +11,7 @@ export default function WhatIsHeartView() {
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="relative border border-white/10 rounded-3xl p-10 lg:p-14 overflow-hidden"
+                className="relative border border-white/10 rounded-3xl p-4 sm:p-6 md:p-10 lg:p-14 overflow-hidden"
             >
 
                 {/* 🔥 GLOW (NOW INSIDE BOX) */}

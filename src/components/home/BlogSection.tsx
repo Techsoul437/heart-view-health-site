@@ -14,7 +14,7 @@ function BlogSection() {
     <section className="max-w-screen-8xl pt-10 mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 ">
 
       {/* HEADING */}
-      <div className="text-center ">
+      <div className="text-center py-4">
         <motion.span
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}

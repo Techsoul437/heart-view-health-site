@@ -72,7 +72,7 @@ export default function LifestyleSection() {
                       initial={{ opacity: 0, x: -30 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5 }}
-                      className="max-w-sm text-right flex flex-col justify-center min-h-40"
+                      className="max-w-sm text-right flex flex-col justify-center min-h-20 lg:min-h-40"
                     >
                       <h2 className="text-xl lg:text-2xl font-medium text-[#3D7773]">
                         {step.title}
@@ -86,7 +86,7 @@ export default function LifestyleSection() {
                 </div>
 
                 {/* CENTER */}
-                <div className="flex justify-center items-center relative min-h-40">
+                <div className="flex justify-center items-center relative min-h-20 lg:min-h-40">
                   <div className="w-10 h-10 rounded-full bg-[#3D7773]/10 border border-[#3D7773]/40 flex items-center justify-center">
                     <div className="w-2.5 h-2.5 rounded-full bg-[#3D7773]" />
                   </div>
@@ -103,7 +103,7 @@ export default function LifestyleSection() {
                       initial={{ opacity: 0, x: 30 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5 }}
-                      className="max-w-sm text-left flex flex-col justify-center min-h-40"
+                      className="max-w-sm text-left flex flex-col justify-center min-h-20 lg:min-h-40"
                     >
                       <h2 className="text-xl lg:text-2xl font-medium text-[#3D7773]">
                         {step.title}
@@ -118,11 +118,14 @@ export default function LifestyleSection() {
 
                 {/* MOBILE */}
                 <div className="md:hidden text-center py-6">
+                   <div className="bg-[#181E2B]/10   w-sm  mx-auto rounded-xl px-5 py-6 backdrop-blur-sm">
                   <h3 className="text-lg font-semibold text-[#3D7773]">
                     {step.title}
                   </h3>
-                  <p className="text-gray-400 mt-2">{step.desc}</p>
+                  <p className="text-gray-400 mt-2 mx-auto max-w-xs ">{step.desc}</p>
                 </div>
+                </div>
+
               </div>
             ))}
           </div>

@@ -60,41 +60,41 @@ export default function TrustSection() {
           </motion.h1>
         </div>
         {/* Features (FIXED GRID ALIGNMENT) */}
-<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 mb-15 mt-5">
-  {items.map((item, i) => {
-    const Icon = item.icon;
-    const isLastOdd = items.length % 2 !== 0 && i === items.length - 1;
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 mb-15 mt-5">
+          {items.map((item, i) => {
+            const Icon = item.icon;
+            const isLastOdd = items.length % 2 !== 0 && i === items.length - 1;
 
-    return (
-      <motion.div
-        key={i}
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: i * 0.2 }}
-        className={`flex flex-col items-center text-center group
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.2 }}
+                className={`flex flex-col items-center text-center group
           
           ${isLastOdd ? "sm:col-span-2 lg:col-span-1" : ""}
         `}
-      >
-        {/* ICON */}
-        <div className="w-15 h-15 flex items-center justify-center rounded-full bg-[#3D7773]/15 border border-[#3D7773]/20 text-[#3D7773] mb-4 group-hover:scale-110 transition">
-          <Icon size={28} />
-        </div>
+              >
+                {/* ICON */}
+                <div className="w-15 h-15 flex items-center justify-center rounded-full bg-[#3D7773]/15 border border-[#3D7773]/20 text-[#3D7773] mb-4 group-hover:scale-110 transition">
+                  <Icon size={28} />
+                </div>
 
-        {/* TEXT */}
-        <div className="flex flex-col items-center">
-          <h2 className="text-xl sm:text-xl lg:text-2xl mb-2 group-hover:text-[#3D7773] transition">
-            {item.title}
-          </h2>
+                {/* TEXT */}
+                <div className="flex flex-col items-center">
+                  <h2 className="text-xl sm:text-xl lg:text-2xl mb-2 min-h-[1rem] lg:min-h-[4rem] xl:min-h-0 group-hover:text-[#3D7773] transition">
+                    {item.title}
+                  </h2>
 
-          <p className="text-base sm:text-lg lg:max-w-sm font-light text-gray-400 leading-relaxed">
-            {item.desc}
-          </p>
+                  <p className="text-base sm:text-lg lg:max-w-sm font-light max-w-sm text-gray-400 leading-relaxed line-clamp-2">
+                    {item.desc}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
-      </motion.div>
-    );
-  })}
-</div>
         {/* CENTER STATEMENT */}
         <motion.p
           initial={{ opacity: 0 }}

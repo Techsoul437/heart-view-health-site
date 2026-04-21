@@ -1,6 +1,8 @@
 "use client";
 
 import { useRef } from "react";
+import { motion } from "framer-motion";
+
 import { ChevronLeft, ChevronRight, Heart, Activity, Pill, FileText, Smartphone } from "lucide-react";
 
 const features = [
@@ -8,7 +10,7 @@ const features = [
     icon: Heart,
     title: "Heart Health Monitoring",
     points: ["Blood pressure", "Heart rate", "Blood sugar", "Weight & BMI", "Daily activity"],
-    value: "See your health clearly — not scattered across apps.",
+    value: "See your health clearly not scattered across apps.",
   },
   {
     icon: Activity,
@@ -55,87 +57,108 @@ export default function CoreFeatures() {
   };
 
   return (
-<section className="w-full max-w-8xl mx-auto py-16 px-6 lg:px-16 relative">
+    <section className="w-full max-w-8xl mx-auto pt-10  px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 relative">
+      <div className="w-full py-4 text-center">
+        <motion.span
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border border-white/30 rounded-full px-4 py-1"
+        >
+          Features
+        </motion.span>
 
-  <div className="relative">
+        <motion.h1
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mt-4 text-2xl md:text-3xl lg:text-4xl font-medium text-white leading-tight"
+        >
+          Core Features
 
-    {/* LEFT ARROW */}
-    <button
-      onClick={() => scroll("left")}
-      className="
+        </motion.h1>
+      </div>
+      <div className="relative mt-5">
+
+        {/* LEFT ARROW */}
+        <button
+          onClick={() => scroll("left")}
+          className="
         absolute top-1/2 -translate-y-1/2
         left-0 lg:-left-8
         bg-white/10 hover:bg-white/20
         rounded-full p-3 z-10
       "
-    >
-      <ChevronLeft className="text-white" />
-    </button>
+        >
+          <ChevronLeft className="text-white" />
+        </button>
 
-    {/* RIGHT ARROW */}
-    <button
-      onClick={() => scroll("right")}
-      className="
+        {/* RIGHT ARROW */}
+        <button
+          onClick={() => scroll("right")}
+          className="
         absolute top-1/2 -translate-y-1/2
         right-0 lg:-right-8
         bg-white/10 hover:bg-white/20
         rounded-full p-3 z-10
       "
-    >
-      <ChevronRight className="text-white" />
-    </button>
+        >
+          <ChevronRight className="text-white" />
+        </button>
 
-    {/* SAFE SPACE WRAPPER */}
-    <div className="px-10 lg:px-0">
-      
-      <div
-        ref={scrollRef}
-        className="
+        {/* SAFE SPACE WRAPPER */}
+        <div className="px-10 lg:px-0">
+
+          <div
+            ref={scrollRef}
+            className="
           flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory
           no-scrollbar
         "
-      >
-        {features.map((item, i) => {
-          const Icon = item.icon;
+          >
+            {features.map((item, i) => {
+              const Icon = item.icon;
 
-          return (
-            <div
-              key={i}
-              className="
+              return (
+                <div
+                  key={i}
+                  className="
                 snap-start flex-shrink-0
                 w-full sm:w-1/2 lg:w-1/3
               "
-            >
-              <div className="bg-white/5 backdrop-blur-lg rounded-lg p-6 h-full flex flex-col">
+                >
+                  <div className="bg-white/5 backdrop-blur-lg rounded-lg p-6 h-full flex flex-col">
 
-                <div className="min-h-44 flex flex-col">
-                  <Icon className="text-white mb-4" />
+                    <div className="min-h-44 flex flex-col">
+                      {/* <Icon className="text-white mb-4" /> */}
 
-                  <h3 className="text-white text-lg font-semibold mb-3">
-                    {item.title}
-                  </h3>
+                      <h2 className="text-white text-xl sm:text-xl lg:text-2xl font-medium mb-3">
+                        {item.title}
+                      </h2>
 
-                  <ul className="text-gray-400 text-sm space-y-1 min-h-28">
-                    {item.points.map((point, idx) => (
-                      <li key={idx}>• {point}</li>
-                    ))}
-                  </ul>
+                      <ul className="text-gray-400 text-base sm:text-lg  leading-relaxed  font-light space-y-1 min-h-28">
+                        {item.points.map((point, idx) => (
+                          <li key={idx}>• {point}</li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="mt-auto">
+                      <p className="text-gray-300 text-base sm:text-lg  leading-relaxed  font-light">
+                        {item.value}
+                      </p>
+                    </div>
+
+                  </div>
                 </div>
+              );
+            })}
+          </div>
 
-                <div className="mt-auto">
-                  <p className="text-gray-300 text-sm">
-                    {item.value}
-                  </p>
-                </div>
-
-              </div>
-            </div>
-          );
-        })}
+        </div>
       </div>
-
-    </div>
-  </div>
-</section>
+    </section>
   );
 }

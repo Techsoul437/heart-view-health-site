@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 
 export default function CompanySection() {
   return (
-    <section className="relative w-full overflow-hidden pt-10">
+    <section className="relative w-full overflow-hidden pt-10 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 ">
       {/* Background Glow */}
       <div className="absolute " />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[40rem] h-[40rem] bg-[#3D7773]/10 blur-[120px] rounded-full" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
+      <div className="relative max-w-8xl mx-auto">
 
         {/* Heading */}
         <div className="w-full py-4 text-center">
@@ -89,11 +89,11 @@ export default function CompanySection() {
         </motion.div>
 
         {/* Trust Signals */}
-        <div className="text-center mt-8">
-          <p className="text-white/80 text-lg font-medium mb-4">
+        <div className="text-center mt-10">
+          <p className="text-white/80 text-base sm:text-lg  leading-relaxed   font-medium mb-4">
             Trusted by 5,000+ users across India
           </p>
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400">
+          <div className="flex flex-wrap justify-center gap-6 text-base sm:text-lg  leading-relaxed  font-light text-gray-400">
             <span>CIN: U72900GJ2024PTC123456</span>
             <span>GST: 24AAACH1234H1Z5</span>
             <span>Founded by Dr. Rajesh Kumar & Team</span>
@@ -107,8 +107,8 @@ export default function CompanySection() {
             { quote: "Finally, all my health data in one place. Great app!", author: "Amit K., Delhi" },
           ].map((item, i) => (
             <div key={i} className="bg-white/5 border border-white/10 rounded-lg p-6">
-              <p className="text-gray-300 italic mb-4">{item.quote}</p>
-              <p className="text-[#3D7773] font-medium">- {item.author}</p>
+              <p className="text-gray-300 italic text-base sm:text-lg  leading-relaxed   mb-4">{item.quote}</p>
+              <p className="text-[#3D7773]  text-base sm:text-lg  leading-relaxed  font-light font-medium">- {item.author}</p>
             </div>
           ))}
         </div>

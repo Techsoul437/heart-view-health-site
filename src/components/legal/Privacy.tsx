@@ -238,7 +238,7 @@ function AnimatedSection({
 
 export default function Privacy() {
   return (
-    <div className="min-h-screen max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-10 text-white">
+    <div className="min-h-screen max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-20 text-white">
  
 
       {/* ── Hero ── */}
@@ -288,6 +288,7 @@ export default function Privacy() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="mt-4 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8"
         >
+          
           <p className="text-xs font-mono text-[#3D7773]/60 tracking-widest uppercase mb-4">
             14  Contact
           </p>

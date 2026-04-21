@@ -20,7 +20,7 @@ function Hero() {
             </h1>
 
             <p className="text-base sm:text-lg text-white leading-relaxed font-light lg:max-w-md">
-              All your health data, insights, and habits — in one simple dashboard.
+              All your health data, insights, and habits in one simple dashboard.
             </p>
 
             {/* Buttons */}

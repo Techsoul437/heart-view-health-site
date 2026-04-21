@@ -5,7 +5,7 @@ import Hero from './Hero'
 import Navbar from '@/Ui/navbar/Navbar';
 import Footer from '@/Ui/footer/Footer';
 import QuickValueSection from './QuickValueSection';
-import HowItWorks from './HowItWorks';
+import HowItWorks from '../how_work/HowItWorks';
 import FinalCTA from '@/Ui/cta/FinalCTA';
 import AppDownloadSection from './AppDownloadSection';
 import BlogSection from './BlogSection';

@@ -28,7 +28,7 @@ export default function WhatWeDo() {
             icon: FaCalendarCheck,
         },
         {
-            title: "All Your Health Reports — One Secure Place",
+            title: "All Your Health Reports One Secure Place",
             desc: "Access all medical records instantly, anytime, anywhere.",
             icon: FaFolderOpen,
         },
@@ -58,7 +58,7 @@ export default function WhatWeDo() {
     };
 
     return (
-        <section className="w-full pt-30 text-white">
+        <section className="w-full pt-5 md:pt-8 lg:pt-20  mt-0 lg:mt-15  text-white">
             <div className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 text-center">
 
                 {/* Heading */}
@@ -96,9 +96,9 @@ export default function WhatWeDo() {
                                 initial="hidden"
                                 whileInView="visible"
                                 viewport={{ once: true }}
-                                className="group relative rounded-xl p-1 bg-gradient-to-r from-[#45657D] to-[#3D7773] hover:scale-[1.03] transition duration-300"
+                                className="group relative rounded-xl p-1 shadow-sm shadow-[#3D7773] hover:scale-[1.03] transition duration-300 hover:shadow-sm   hover:border border-teal-500/40"
                             >
-                                <div className="bg-[#0B1220] rounded-xl p-5 sm:p-3 h-full border border-white/5 flex flex-col text-center">
+                                <div className=" rounded-xl p-5 sm:p-3 h-full flex flex-col text-center">
 
                                     {/* Icon */}
                                     <div className="mb-4 flex justify-center">

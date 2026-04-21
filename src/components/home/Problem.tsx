@@ -75,7 +75,7 @@ function Card({ item, index, type }: CardProps) {
         <span className="text-white/20 text-2xl">{item.num}</span>
       </div>
 
-      <h2 className="text-xl sm:text-xl lg:text-2xl text-white/80 group-hover:text-white transition">
+      <h2 className="text-xl sm:text-xl lg:text-2xl  min-h-0 sm:min-h-[4rem] xl:min-h-[4rem] text-white/80 group-hover:text-white transition">
         {item.title}
       </h2>
 
@@ -119,7 +119,7 @@ export default function Problem() {
           </motion.h1>
         </div>
         {/* Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mt-5">
+        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4 mt-5">
           {problems.map((item, i) => (
             <Card key={i} item={item} index={i} type="Problem" />
           ))}
@@ -155,7 +155,7 @@ export default function Problem() {
           </motion.h1>
         </div>
         {/* Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 mt-5">
+        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4 mt-5">
           {solutions.map((item, i) => (
             <Card key={i} item={item} index={i} type="Solution" />
           ))}

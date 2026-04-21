@@ -118,8 +118,8 @@ export default function ProcessCards() {
     };
 
     return (
-        <section className=" flex justify-center">
-            <div className="w-full max-w-8xl mx-auto px-3 sm:px-6 md:px-6 lg:px-16 2xl:px-20">
+        <section className=" flex justify-center ">
+            <div className="w-full max-w-8xl mx-auto  mt-10 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 ">
 
                 {/* Heading SAME */}
                 <div className="w-full py-4 text-center">
@@ -147,7 +147,7 @@ export default function ProcessCards() {
                                     <div className="w-0 h-0 border-l-8 border-transparent border-r-8 border-transparent border-t-8 border-t-gray-400 mt-1" />
 
                                     {/* ✅ SAME HEIGHT CARD */}
-                                    <div className="mt-4 w-full max-w-md border-[#3D7773] text-white shadow-sm shadow-[#45657D] h-90  mb-1 flex flex-col">
+                                    <div className="mt-4 w-full max-w-md border-[#3D7773] text-white shadow-sm shadow-[#45657D] h-70  mb-1 flex flex-col">
 
                                         <h2 className="text-center py-2 text-xl sm:text-xl lg:text-2xl text-white bg-[#3D7773]">
                                             {item.title}
@@ -220,11 +220,11 @@ export default function ProcessCards() {
                                 </div>
                                 <div className="w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-gray-400 mt-1" />
 
-                                <div className="mt-4 w-full max-w-md h-80  mb-1 flex flex-col border-[#3D7773] shadow-sm shadow-[#45657D]">
-                                    <h2 className="text-center py-2 text-xl sm:text-xl lg:text-2xl text-white bg-[#3D7773]">{item.title}</h2>
+                                <div className="mt-4 w-full max-w-md h-88  mb-1 flex flex-col border-[#3D7773] shadow-sm shadow-[#45657D]">
+                                    <h2 className="text-center py-2 text-xl sm:text-lg xl:text-2xl text-white bg-[#3D7773]">{item.title}</h2>
 
                                     <div className="flex flex-col flex-1 px-5 py-4 overflow-hidden">
-                                        <p className="text-gray-400  mb-4 text-base sm:text-lg  leading-relaxed  font-light line-clamp-3">{item.desc}</p>
+                                        <p className="text-gray-400  mb-4 text-base sm:text-lg  leading-relaxed  font-light line-clamp-2">{item.desc}</p>
 
                                         <ul className="space-y-2 text-gray-400  flex-1 overflow-hidden">
                                             {item.points.map((p, i) => (

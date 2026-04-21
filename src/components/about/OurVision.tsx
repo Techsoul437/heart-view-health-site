@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 
 export default function OurVision() {
   return (
-    <section className="relative w-full pt-10">
+    <section className="relative w-full ">
 
       {/* Glow Background */}
       <div className="absolute inset-0 opacity-20 blur-3xl "></div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20  flex flex-col ">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 pt-10  flex flex-col ">
 
         {/* 🚀 OUR VISION */}
         <motion.div

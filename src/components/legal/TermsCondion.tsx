@@ -540,13 +540,13 @@ function Section({ data }: { data: SectionType | PrivacySectionType }) {
 
 export default function TermsCondition() {
   return (
-    <div className=" max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 py-16 text-white">
+    <div className=" max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 py-16 mt-20 text-white">
       <div className=" mx-auto">
-  <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full ">
-            <span className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1">
-              Legal Document
-            </span>
-          </div>
+        <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full ">
+          <span className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1">
+            Legal Document
+          </span>
+        </div>
         {/* Terms & Conditions */}
         <h1 className=" text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white mb-4">{title}</h1>
         <p className="text-base sm:text-lg  font-light leading-relaxed mb-10">{subtitle}</p>
@@ -555,7 +555,7 @@ export default function TermsCondition() {
           <Section key={i} data={sec} />
         ))}
 
-        
+
         {privacySections.map((sec, i) => (
           <Section key={`privacy-${i}`} data={sec} />
         ))}

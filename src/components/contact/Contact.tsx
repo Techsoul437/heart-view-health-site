@@ -244,7 +244,7 @@ export default function Contact() {
             <ToastContainer toasts={toasts} onClose={removeToast} />
 
             {/* ── Page ─────────────────────────────────────────────── */}
-            <section className="w-full pt-5 md:pt-8 lg:pt-20 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-10">
+            <section className="w-full pt-5 md:pt-8 lg:pt-20 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-0 lg:mt-15 ">
                 <div className="max-w-8xl mx-auto">
 
                     {/* Header */}

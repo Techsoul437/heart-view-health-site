@@ -81,40 +81,41 @@ const features = [
             "Continuously evolving insights",
         ],
     },
-   
+
 ];
 
 export default function FeatureSection() {
     return (
-        <section className="w-full py-24 mt-10 ">
-            <div className="max-w-8xl mx-auto px-20 text-center">
-                <motion.span
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.6 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1"
-                >
-                    Features
-                </motion.span>
-                {/* Heading */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className="text-center mt-4 max-w-8xl mx-auto"
-                >
-                    <h2 className=" text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white">
-                        Advanced Cardiac Monitoring & Health Intelligence
-                    </h2>
-                    <p className="mt-4 text-white/70 text-lg  font-light   leading-relaxed">
-                        A complete system to monitor, analyze, and improve cardiovascular health with real-time insights.
-                    </p>
-                </motion.div>
-
+        <section className="w-full  xl:pt-20 pt-5 md:pt-8 lg:pt-20  mt-0 lg:mt-15 ">
+            <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
+                <div className="py-4 text-center">
+                    <motion.span
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.6 }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
+                        className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1"
+                    >
+                        Features
+                    </motion.span>
+                    {/* Heading */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        viewport={{ once: true }}
+                        className="text-center mt-4 max-w-8xl mx-auto"
+                    >
+                        <h2 className=" text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white">
+                            Advanced Cardiac Monitoring & Health Intelligence
+                        </h2>
+                        <p className="mt-4 text-white/70 text-lg  font-light   leading-relaxed">
+                            A complete system to monitor, analyze, and improve cardiovascular health with real-time insights.
+                        </p>
+                    </motion.div>
+                </div>
                 {/* Grid */}
-                <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-16 grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
                     {features.map((feature, index) => {
                         const Icon = feature.icon;
                         return (
@@ -124,7 +125,7 @@ export default function FeatureSection() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: index * 0.05 }}
                                 viewport={{ once: true }}
-                                className="group rounded-2xl bg-white/1 backdrop-blur border border-white/10 p-6 hover:border-[#3D7773] hover:bg-white/2   transition-all"
+                                className="group rounded-2xl  p-6 shadow-sm shadow-[#3D7773]  hover:border border-teal-500/40 hover:bg-white/2   transition-all"
                             >
                                 <div className="flex items-center gap-4">
                                     <div className="p-3 rounded-xl bg-[#3D7773] font-bold text-white">
@@ -157,70 +158,86 @@ export default function FeatureSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
-                    className="mt-24"
+                    className="mt-10 relative w-full"
                 >
-                    <div className="grid lg:grid-cols-2 gap-10  px-5 items-center">
+                    <div className="relative z-10 w-full max-w-8xl  mx-auto">
 
-                        {/* LEFT CONTENT */}
-                        <div>
-                            <h3 className=" text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-start text-white">
+                        {/* HEADING */}
+                        <div className="text-center px-4 py-4">
+                            <motion.span
+                                initial={{ opacity: 0, y: 40 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.6 }}
+                                transition={{ duration: 0.6, ease: "easeOut" }}
+                                className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1"
+                            >
+                                Security
+                            </motion.span>
+                            <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-medium leading-tight text-white">
                                 Data Privacy & Security
                             </h3>
 
-                            <p className="mt-4 text-gray-400 max-w-xl text-start">
+                            <p className="mt-3 sm:mt-4 text-gray-400 max-w-xl mx-auto text-base sm:text-lg  leading-relaxed  font-light">
                                 Your health data is handled with strict privacy and security standards.
                             </p>
-
-                            <ul className="mt-8 space-y-5 text-gray-300">
-                                <li className="flex items-start gap-3">
-                                    <span className="text-green-400 mt-1">✔</span>
-                                    Secure storage with data encryption and access control
-                                </li>
-
-                                <li className="flex items-start gap-3">
-                                    <span className="text-green-400 mt-1">✔</span>
-                                    User-controlled permissions for data sharing and integrations
-                                </li>
-
-                                <li className="flex items-start gap-3">
-                                    <span className="text-green-400 mt-1">✔</span>
-                                    Designed with a privacy-first architecture
-                                </li>
-
-                                <li className="flex items-start gap-3">
-                                    <span className="text-green-400 mt-1">✔</span>
-                                    No unauthorized third-party data access
-                                </li>
-                            </ul>
                         </div>
 
-                        {/* RIGHT IMAGE */}
-                        <div className="relative w-full h-100 ">
-                            <Image
-                                src="/safe-4.png"
-                                alt="Health Data Security"
-                               fill
-                                className="object-cover   rounded-2xl"
-                                priority
-                            />
+                        {/* CARD */}
+                        <div className="mt-8 sm:mt-10 ">
+                            <div className="
+        w-full 
+        max-w-2xl 
+        mx-auto 
+        rounded-2xl 
+        border border-white/10 
+        bg-white/5 
+        backdrop-blur-md
+        p-5 sm:p-6 md:p-8
+      ">
+
+                                <ul className="space-y-4 sm:space-y-5 text-gray-300 text-sm sm:text-base">
+
+                                    <li className="flex items-start gap-3">
+                                        <span className="text-green-400 mt-1 shrink-0">✔</span>
+                                        <span>Secure storage with data encryption and access control</span>
+                                    </li>
+
+                                    <li className="flex items-start gap-3">
+                                        <span className="text-green-400 mt-1 shrink-0">✔</span>
+                                        <span>User-controlled permissions for data sharing and integrations</span>
+                                    </li>
+
+                                    <li className="flex items-start gap-3">
+                                        <span className="text-green-400 mt-1 shrink-0">✔</span>
+                                        <span>Designed with a privacy-first architecture</span>
+                                    </li>
+
+                                    <li className="flex items-start gap-3">
+                                        <span className="text-green-400 mt-1 shrink-0">✔</span>
+                                        <span>No unauthorized third-party data access</span>
+                                    </li>
+
+                                </ul>
+                            </div>
                         </div>
 
                     </div>
+
+                    {/* BACKGROUND GLOW (Responsive Safe) */}
+                    <div className="absolute inset-0 -z-0">
+                        <div className="
+      absolute 
+      top-1/2 left-1/2 
+      w-72 sm:w-96 md:w-100
+      h-72 sm:h-96 md:h-100
+      bg-[#3D7773]/20 
+      blur-[100px] sm:blur-[120px] 
+      -translate-x-1/2 -translate-y-1/2
+    " />
+                    </div>
+
                 </motion.section>
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className="mt-16 rounded-2xl border border-amber-400/30 bg-amber-500/5 backdrop-blur p-8"
-                >
-                    <h4 className="text-xl font-semibold text-amber-300">
-                        Important Notice
-                    </h4>
-                    <p className="mt-3 text-md text-gray-400 leading-relaxed">
-                        HeartView Health is intended for monitoring and awareness purposes only. It does not provide medical diagnosis, treatment, or clinical decision support. Always consult a qualified healthcare professional for medical advice.
-                    </p>
-                </motion.div>
+
             </div>
         </section>
     );

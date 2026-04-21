@@ -1,103 +1,68 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import { motion } from "framer-motion";
 
 function WhyBuilt() {
   return (
-    <section className="w-full overflow-hidden">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20  gap-0 lg:gap-10 grid xl:grid-cols-2 xl:pt-4  items-center">
+    <section className="w-full overflow-hidden ">
+      <div className="max-w-8xl mx-auto w-full pt-10  px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20  flex justify-center">
 
-        {/* LEFT CONTENT */}
         <motion.div
-          initial={{ opacity: 0, x: -60 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="flex flex-col items-center text-center xl:items-start xl:text-left"
+          className="w-full max-w-6xl flex flex-col items-center text-center"
         >
-          <div className="w-full py-4">
 
-            {/* Badge */}
-            <motion.span
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 mt-4 border-white/30 rounded-full px-4 py-1"
-            >
+          {/* Badge */}
+          <div className="py-4">
+            <span className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border border-white/30 rounded-full px-4 py-1">
               Why We Built
-            </motion.span>
+            </span>
 
             {/* Heading */}
-            <motion.h1
-              initial={{ opacity: 0, y: 80, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.9 }}
-              className="mt-4  text-2xl md:text-3xl lg:text-4xl xl:max-w-lg font-medium leading-tight text-white"
-            >
-              Why We Built 
-              HeartView Health
-            </motion.h1>
+            <h1 className="mt-4 text-2xl md:text-3xl lg:text-4xl font-medium text-white">
+              Why We Built HeartView Health
+            </h1>
           </div>
-
-          <p className="text-gray-400 text-base sm:text-lg leading-relaxed 
-                        font-light mb-6 max-w-xl lg:max-w-3xl xl:max-w-xl">
+          {/* Description */}
+          <p className=" text-gray-400 text-base sm:text-lg leading-relaxed lg:max-w-3xl font-light mt-5">
             We saw people struggling with scattered health data, confusing reports, and no clear direction.
-            So we built HeartView Health — to make health simple, clear, and actionable.
+            So we built HeartView Health to make health simple, clear, and actionable.
           </p>
 
-          <p className="text-white mb-6 text-base sm:text-lg leading-relaxed lg:max-w-lg font-light">
+          {/* Subtext */}
+          <p className="mt-8 text-white text-base sm:text-lg font-light">
             A platform that connects everything:
           </p>
 
-          {/* POINTS */}
-         <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-2 gap-3 mb-6 w-full max-w-md md:max-w-xl">
-  {["Monitoring", "Insights", "Organization", "Action"].map(
-    (item, i) => (
-      <div
-        key={i}
-        className="px-4 py-3 rounded-lg border border-[#1F2A33] bg-[#0E1621] text-base sm:text-lg leading-relaxed font-medium text-gray-300 hover:border-[#3D7773] hover:text-white transition duration-300 text-center"
-      >
-        {item}
-      </div>
-    )
-  )}
-</div>
-
-          <p className="text-gray-400 text-base sm:text-lg leading-relaxed lg:max-w-md font-light">
+          {/* Points */}
+          <div className="flex flex-wrap justify-center gap-4 mt-4">
+            {[
+              "Monitoring", "Insights", "Organization", "Action"
+            ].map((item, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="w-45 text-center px-5 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-base sm:text-lg  leading-relaxed font-light backdrop-blur-md"
+              >
+                {item}
+              </motion.span>
+            ))}
+          </div>
+          {/* Bottom */}
+          <p className="mt-8 text-gray-400 text-base sm:text-lg leading-relaxed font-light">
             So users don’t just collect data{" "}
             <span className="text-white font-medium">
               they understand and use it.
             </span>
           </p>
+
         </motion.div>
-
-        {/* RIGHT IMAGE */}
-        <motion.div
-          initial={{ opacity: 0, x: 60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7 }}
-          viewport={{ once: true }}
-          className="relative w-full flex justify-center xl:justify-end"
-        >
-          {/* Glow */}
-          <div className="absolute inset-0 bg-[#3D7773] blur-3xl opacity-20 rounded-full" />
-
-          {/* Image */}
-          <motion.div className="relative pt-10 lg:pt-0 w-full ">
-            <Image
-              src="/why-4.png"
-              alt="Why HeartView"
-              width={980}
-              height={200}
-              className="w-full h-auto rounded-lg border border-[#1F2A33] shadow-xl object-contain"
-            />
-          </motion.div>
-        </motion.div>
-
       </div>
     </section>
   );

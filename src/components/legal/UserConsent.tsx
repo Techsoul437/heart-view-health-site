@@ -165,7 +165,7 @@ function Section({ data }: { data: SectionType }) {
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      className="mb-10 border-b mt-10 border-white/10 pb-8"
+      className="mb-10 border-b mt-10 border-white/10 pb-8 "
     >
       {/* HEADER */}
       <div className="flex gap-4 mb-4">
@@ -200,7 +200,7 @@ function Section({ data }: { data: SectionType }) {
 
 export default function UserConsent() {
   return (
-    <div className="max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 py-16 text-white">
+    <div className="max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 py-16 mt-20 text-white">
       <div className="mx-auto">
         <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full ">
           <span className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1">

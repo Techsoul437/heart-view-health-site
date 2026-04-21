@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function FeatureStorySection() {
     return (
-        <section className="w-full py-24 px-6 md:px-16">
+        <section className="w-full py-24  px-6 md:px-16">
 
             {/* 🔥 MAIN HEADING */}
             <div className="max-w-6xl mx-auto text-center mb-16">

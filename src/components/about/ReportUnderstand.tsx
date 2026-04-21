@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 
 function ReportUnderstand() {
     return (
-        <section className="w-full py-16 md:py-20 relative">
+        <section className="w-full max-w-8xl mx-auto mt-10  px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20  relative">
 
             {/* Background Glow */}
             <div className="absolute inset-0 -z-10 flex justify-center">
-                <div className="w-80 h-80 md:w-[28rem] md:h-[28rem] bg-[#3D7773]/20 blur-3xl rounded-full"></div>
+                <div className="w-80 h-80  bg-[#3D7773]/20 blur-3xl rounded-full"></div>
             </div>
 
             <div className="
@@ -19,31 +19,32 @@ function ReportUnderstand() {
             ">
 
                 {/* Badge */}
-                <motion.span
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border border-white/20 rounded-full px-4 py-1"
-                >
-                    Data to Understanding
-                </motion.span>
+                <div className="py-4">
+                    <motion.span
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border border-white/20 rounded-full px-4 py-1"
+                    >
+                        Data to Understanding
+                    </motion.span>
 
-                {/* Heading */}
-                <motion.h1
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="mt-6 text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white max-w-3xl"
-                >
-                    Turn Your Health Data
-                    Into Clear Insights
-                </motion.h1>
-
+                    {/* Heading */}
+                    <motion.h1
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
+                        className="mt-6 text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white max-w-3xl"
+                    >
+                        Turn Your Health Data
+                        Into Clear Insights
+                    </motion.h1>
+                </div>
                 {/* Paragraph */}
                 <p className="
-                    mt-6 text-gray-400 text-base sm:text-lg leading-relaxed 
+                    mt-5 text-gray-400 text-base sm:text-lg leading-relaxed 
                     font-light max-w-2xl
                 ">
                     Most platforms simply store your medical data. HeartView Health goes
@@ -52,8 +53,8 @@ function ReportUnderstand() {
                 </p>
 
                 {/* POINTS */}
-                <div className="
-                    mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 
+                {/* <div className="
+                    mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 
                     w-full max-w-4xl
                 ">
                     {[
@@ -77,8 +78,24 @@ function ReportUnderstand() {
                             </p>
                         </div>
                     ))}
-                </div>
-
+                </div> */}
+ <div className="flex flex-wrap justify-center gap-4 mt-4">
+            {[
+            "Trends over time",
+                        "Changes in key markers",
+                        "Patterns that matter",
+            ].map((item, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="w-65 text-center px-5 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-base sm:text-lg  leading-relaxed font-light backdrop-blur-md"
+              >
+                {item}
+              </motion.span>
+            ))}
+          </div>
             </div>
 
             {/* RIGHT IMAGE (COMMENTED) */}
