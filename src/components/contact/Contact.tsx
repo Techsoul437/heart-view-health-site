@@ -145,6 +145,7 @@ function ToastContainer({ toasts, onClose }: { toasts: Toast[]; onClose: (id: nu
 
 // ─── Framer Variants ──────────────────────────────────────────────────────────
 import type { Variants } from "framer-motion";
+import process from "process";
 
 const fadeUp: Variants = {
     hidden: { opacity: 0, y: 24 },
@@ -224,6 +225,7 @@ export default function Contact() {
                 const res = await fetch(
                     process.env.NEXT_PUBLIC_API_URL + "/contact",
                     {
+                        
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -231,6 +233,7 @@ export default function Contact() {
                         body: JSON.stringify(values),
                     }
                 );
+                    console.log(process.env.NEXT_PUBLIC_API_URL);
 
                 const data = await res.json();
 
