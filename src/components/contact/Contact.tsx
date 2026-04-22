@@ -210,26 +210,50 @@ export default function Contact() {
     const formik = useFormik({
         initialValues: { name: "", email: "", phone: "", message: "" },
         validationSchema,
-        onSubmit: async (values, { resetForm }) => {
+        onSubmit: async (values, { resetForm, setSubmitting }) => {
             try {
-                // ── Replace this block with your actual API call ──────────────────────
-                // Example:
-                // const res = await fetch("/api/contact", {
-                //   method: "POST",
-                //   headers: { "Content-Type": "application/json" },
-                //   body: JSON.stringify(values),
-                // });
-                // if (!res.ok) throw new Error("Server error");
-                // ─────────────────────────────────────────────────────────────────────
+                const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
-                console.log("Form submitted:", values);
+                const res = await fetch(`${API_URL}/contact`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(values),
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    throw new Error(data.message || "Something went wrong");
+                }
+
+                // ✅ Success
                 resetForm();
-                addToast("success", "Message Sent!", "We'll get back to you within 24 hours.");
-            } catch (error) {
+                addToast(
+                    "success",
+                    "Message Sent!",
+                    "We will contact you within 24 hours."
+                );
+
+            } catch (error: unknown) {
                 console.error(error);
-                addToast("error", "Submission Failed", "Something went wrong. Please try again.");
+
+                let errorMessage = "Something went wrong. Please try again.";
+
+                if (error instanceof Error) {
+                    errorMessage = error.message;
+                }
+
+                addToast(
+                    "error",
+                    "Submission Failed",
+                    errorMessage
+                );
+            } finally {
+                setSubmitting(false);
             }
-        },
+        }
     });
 
     const inputClass = (field: keyof typeof formik.values) =>
@@ -256,7 +280,7 @@ export default function Contact() {
                         </motion.span>
 
                         <motion.h1 className="mt-4  text-2xl md:text-3xl lg:text-4xl font-medium text-white">
-                            Let s Connect
+                            Let&apos;s Connect
 
                         </motion.h1>
                     </div>
@@ -268,8 +292,8 @@ export default function Contact() {
                             <div>
                                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-zinc-100">Get In Touch</h2>
                                 <p className="text-zinc-500 mt-3 text-base sm:text-lg xl:max-w-lg leading-relaxed  font-light">
-                                    We re here to answer your questions and guide you toward 
-                                   better health. Reach out anytime  we love to hear from you.
+                                    We&apos;re here to answer your questions and guide you toward
+                                    better health. Reach out anytime  we&apos;d love to hear from you.
                                 </p>
                             </div>
 
