@@ -89,7 +89,7 @@ export default function CompanySection() {
         </motion.div>
 
         {/* Trust Signals */}
-        <div className="text-center mt-10">
+        {/* <div className="text-center mt-10">
           <p className="text-white/80 text-base sm:text-lg  leading-relaxed   font-medium mb-4">
             Trusted by 5,000+ users across India
           </p>
@@ -98,10 +98,9 @@ export default function CompanySection() {
             <span>GST: 24AAACH1234H1Z5</span>
             <span>Founded by Dr. Rajesh Kumar & Team</span>
           </div>
-        </div>
+        </div> */}
 
-        {/* Testimonials */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
           {[
             { quote: "HeartView made managing my health so much easier. Highly recommended!", author: "Priya S., Mumbai" },
             { quote: "Finally, all my health data in one place. Great app!", author: "Amit K., Delhi" },
@@ -111,7 +110,7 @@ export default function CompanySection() {
               <p className="text-[#3D7773]  text-base sm:text-lg  leading-relaxed  font-light font-medium">- {item.author}</p>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );

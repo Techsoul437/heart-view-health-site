@@ -25,8 +25,8 @@ function Hero() {
 
             {/* Buttons */}
             <div className="flex flex-wrap gap-4 py-6 items-center">
-              <FillButton text="Start Tracking Free" href="/contact" />
-              <BorderButton text="Get Your Health Score" href="#learnmore" />
+              <FillButton text="Explore Features" href="/features" />
+              <BorderButton text="Join Early Access" href="/contact" />
             </div>
 
             {/* Social Proof */}
