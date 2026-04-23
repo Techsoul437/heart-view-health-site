@@ -10,7 +10,7 @@ function Hero() {
     const [open, setOpen] = useState(false);
   return (
     <section className="w-full">
-      <div className="max-w-8xl bg-[#0B0B0B] mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 py-14 ">
+      <div className="max-w-8xl bg-[#0B0B0B] mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 p-10 ">
 
         <div className="grid lg:grid-cols-2 gap-12 items-center mt-20">
 

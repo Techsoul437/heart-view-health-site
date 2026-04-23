@@ -6,6 +6,7 @@ import { blogs } from "@/data/blogData";
 import Navbar from "@/Ui/navbar/Navbar";
 import FinalCTA from "@/Ui/cta/FinalCTA";
 import { motion, AnimatePresence } from "framer-motion";
+import Footer from "@/Ui/footer/Footer";
 
 
 export default function BlogList() {
@@ -100,7 +101,7 @@ export default function BlogList() {
         </div>
       </div>
 
-      <FinalCTA />
+     <Footer></Footer>
     </div>
   );
 }

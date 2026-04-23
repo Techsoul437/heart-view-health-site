@@ -125,7 +125,9 @@ export default function ProcessCards() {
                 {/* Heading SAME */}
                
       <Headerbadge tag=" Our Approach" text="Your Heart Health, Simplified & Connected" />
-
+<p className="text-base sm:text-lg font-light leading-relaxed text-gray-400 text-center max-w-3xl mx-auto mt-4">
+  HeartView Health brings everything together—track your health data in one place, monitor trends over time, and gain clear insights into your cardiovascular risk, all designed to simplify complex health information into something you can easily understand and act on.
+</p>
                 <div className="mt-5 flex justify-center">
 
                     {/* MOBILE */}
@@ -214,7 +216,7 @@ export default function ProcessCards() {
                                 </div>
                                 <div className="w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-gray-400 mt-1" />
 
-                                <div className="mt-4 w-full max-w-md h-88  mb-1 flex flex-col border-[#3D7773] shadow-sm shadow-[#45657D]">
+                                <div className="mt-4 w-full max-w-md  h-88 xl:h-75 2xl:h-75 mb-1 flex flex-col border-[#3D7773] shadow-sm shadow-[#45657D]">
                                     <h2 className="text-center py-2 text-xl sm:text-lg xl:text-2xl text-white bg-[#3D7773]">{item.title}</h2>
 
                                     <div className="flex flex-col flex-1 px-5 py-4 overflow-hidden">

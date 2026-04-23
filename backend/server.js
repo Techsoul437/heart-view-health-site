@@ -28,15 +28,15 @@ const corsOptions = {
       callback(new Error("CORS not allowed"));
     }
   },
-  methods: ["GET", "POST", "OPTIONS"],
+  methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type"],
-  optionsSuccessStatus: 200, // Some browsers (IE11) choke on 204
+  optionsSuccessStatus: 200, 
 };
 
 // ✅ FIX 1: Handle OPTIONS preflight FIRST, before any other middleware,
 //    and use the SAME corsOptions so origin validation is consistent.
-app.use(cors(corsOptions));
-app.options("/*", cors(corsOptions));
+// app.use(cors(corsOptions));
+// app.options("/*", cors(corsOptions));
 
 // ✅ Body parser
 app.use(express.json());

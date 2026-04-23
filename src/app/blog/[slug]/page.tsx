@@ -8,6 +8,7 @@ import Navbar from "@/Ui/navbar/Navbar";
 import Image from "next/image";
 import FinalCTA from "@/Ui/cta/FinalCTA";
 import { Plus, X } from "lucide-react";
+import Footer from "@/Ui/footer/Footer";
 
 export default function BlogDetails({
   params,
@@ -43,7 +44,7 @@ export default function BlogDetails({
 
       <Navbar />
 
-      <div className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20  mt-10  lg:pt-10 grid grid-cols-1 xl:grid-cols-[1fr_400px] lg:gap-8 items-start">
+      <div className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20  mt-10  lg:pt-10 grid grid-cols-1 xl:grid-cols-[1fr_300px] lg:gap-8 items-start">
 
         {/* LEFT CONTENT */}
         <div>
@@ -172,27 +173,80 @@ export default function BlogDetails({
                 (b) =>
                   b.category === blog.category && b.slug !== blog.slug
               )
-              .slice(0, 4);
+              .slice(0, 3); // jitne card dikhane ho
 
             return (
               relatedBlogs.length > 0 && (
-                <div className="mt-10">
-                  <h2 className="text-xl sm:text-xl lg:text-2xl text-[#3D7773] mb-5">
+                <div className="mt-14">
+                  <h2 className="text-xl sm:text-xl lg:text-2xl text-[#3D7773] mb-6">
                     Related Articles
                   </h2>
 
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {relatedBlogs.map((item, index) => (
-                      <Link
-                        key={index}
-                        href={`/blog/${item.slug}`}
-                        className="p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-[#3D7773]/10 transition"
-                      >
-                        <p className="text-white/80 text-base sm:text-lg  leading-relaxed  font-light hover:text-[#3D7773]">
-                          {item.title}
-                        </p>
+                  {/* GRID SAME AS BLOG LIST */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+
+                    {relatedBlogs.map((item) => (
+                      <Link key={item.slug} href={`/blog/${item.slug}`} className="h-full">
+
+                        <div className="group flex flex-col h-full border border-[#181E2B] rounded-lg p-3 
+              shadow-[0_4px_20px_rgba(0,0,0,0.25)]
+              hover:shadow-[0_8px_30px_rgba(61,119,115,0.35)] transition-all duration-300">
+
+                          {/* IMAGE */}
+                          <div className="relative w-full aspect-video rounded-lg overflow-hidden">
+
+                            {item.content?.[0]?.images?.[0] && (
+                              <Image
+                                src={item.content[0].images[0]}
+                                alt={item.title}
+                                fill
+                                className="object-cover group-hover:scale-105 transition duration-300"
+                              />
+                            )}
+
+                            {/* CATEGORY */}
+                            <div className="absolute top-3 left-3 bg-gradient-to-r from-[#181E2B] to-[#3D7773] text-white text-xs px-2 py-1 rounded-full">
+                              {item.category.replace("-", " ").toUpperCase()}
+                            </div>
+
+                          </div>
+
+                          {/* CONTENT */}
+                          <div className="flex flex-col flex-grow">
+
+                            <h3 className="lg:text-xl sm:text-lg text-lg font-medium mt-4 text-white group-hover:text-[#3D7773] transition line-clamp-2">
+                              {item.title}
+                            </h3>
+
+                            {/* DESCRIPTION */}
+                            <p className="text-base sm:text-lg  leading-relaxed lg:max-w-md font-light text-white/60 line-clamp-2">
+                              {item.description}
+                            </p>
+
+                            <div className="mt-auto pt-3 flex justify-end">
+                              <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-[#45657D] to-[#3D7773] text-white">
+
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="w-5 h-5"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                  strokeWidth={2}
+                                >
+                                  <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7V17" />
+                                </svg>
+
+                              </div>
+                            </div>
+
+                          </div>
+
+                        </div>
+
                       </Link>
                     ))}
+
                   </div>
                 </div>
               )
@@ -201,40 +255,6 @@ export default function BlogDetails({
 
         </div>
 
-        {/* SIDEBAR */}
-        <div className="lg:sticky lg:top-40 flex flex-col mt-10 ">
-
-          {/* RECENT POSTS */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="p-6 rounded-2xl bg-white/5 border border-white/10"
-          >
-            <h2 className="text-xl sm:text-xl lg:text-2xl mb-4">Recent Posts</h2>
-
-            {blogs.slice(0, 3).map((item) => (
-              <Link key={item.slug} href={`/blog/${item.slug}`}>
-                <p className="text-white/70 hover:text-[#3D7773] mb-2 text-base sm:text-lg  leading-relaxed  font-light">
-                  • {item.title}
-                </p>
-              </Link>
-            ))}
-          </motion.div>
-
-          {/* STAY HEALTHY */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="p-6 rounded-2xl bg-gradient-to-br from-teal-500/10 to-blue-500/10 border mt-10 border-white/10"
-          >
-            <h2 className="text-xl sm:text-xl lg:text-2xl mb-2">Stay Healthy </h2>
-            <p className="text-white/60 text-base sm:text-lg   font-light">
-              Daily tracking helps prevent serious health risks.
-              Stay consistent with your health journey.
-            </p>
-          </motion.div>
-
-        </div>
       </div>
 
       {/* SCHEMA */}
@@ -244,8 +264,7 @@ export default function BlogDetails({
           __html: JSON.stringify(blog.schemaMarkup),
         }}
       />
-
-      <FinalCTA />
+      <Footer></Footer>
     </div>
   );
 }
