@@ -329,7 +329,7 @@ export default function Contact() {
                     {/* Header */}
                     <Headerbadge tag="Contact Us" text="Let&apos;s Connect" />
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:pt-10 overflow-visible rounded-2xl">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:pt-5 overflow-visible rounded-2xl">
 
                         {/* LEFT — Info */}
                         <div className="flex flex-col gap-6 sm:gap-8 mt-5 lg:mt-0">

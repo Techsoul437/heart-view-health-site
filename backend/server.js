@@ -2,7 +2,7 @@ import express from "express";
 import nodemailer from "nodemailer";
 import cors from "cors";
 import dotenv from "dotenv";
-import axios from "axios"; // ✅ ADD
+import axios from "axios";
 
 dotenv.config();
 
@@ -11,30 +11,37 @@ const app = express();
 // ✅ Middleware
 app.use(express.json());
 
-// ✅ CORS (local + live)
+// ✅ CORS (FIXED)
 const allowedOrigins = [
   "http://localhost:3000",
-   "heartviewhealth.com",
-  "www.heartviewhealth.com",
-  "heart-view-health-site.vercel.app"
+  "https://heartviewhealth.com",
+  "https://www.heartviewhealth.com",
+  "https://heart-view-health-site.vercel.app"
 ];
 
 app.use(
   cors({
     origin: function (origin, callback) {
+      console.log("Incoming origin:", origin); // ✅ debug
+
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
+        console.log("Blocked by CORS:", origin);
         callback(new Error("CORS not allowed"));
       }
     },
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type"],
   })
 );
+
+// ✅ IMPORTANT: Handle preflight requests
+app.options("*", cors());
 
 // ✅ API Route
 app.post("/contact", async (req, res) => {
   try {
-    // ✅ captcha add
     const { name, email, phone, message, captcha } = req.body;
 
     // ❌ validation
@@ -45,7 +52,7 @@ app.post("/contact", async (req, res) => {
       });
     }
 
-    // ✅ Email format validation (extra safety)
+    // ✅ Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({
@@ -54,20 +61,16 @@ app.post("/contact", async (req, res) => {
       });
     }
 
+    // ✅ CAPTCHA VERIFY
     const verifyURL = "https://www.google.com/recaptcha/api/siteverify";
 
-    const captchaRes = await axios.post(
-      verifyURL,
-      null,
-      {
-        params: {
-          secret: process.env.RECAPTCHA_SECRET_KEY,
-          response: captcha,
-        },
-      }
-    );
+    const captchaRes = await axios.post(verifyURL, null, {
+      params: {
+        secret: process.env.RECAPTCHA_SECRET_KEY,
+        response: captcha,
+      },
+    });
 
-    // 🔥 EXTRA SECURITY ADD (NEW - IMPORTANT)
     if (!captchaRes.data.success) {
       return res.status(400).json({
         success: false,
@@ -75,7 +78,7 @@ app.post("/contact", async (req, res) => {
       });
     }
 
-    // 🔥 SCORE CHECK (future safe - v3 ke liye bhi ready)
+    // ✅ Score check (v3 safe)
     if (captchaRes.data.score !== undefined && captchaRes.data.score < 0.5) {
       return res.status(400).json({
         success: false,
@@ -83,12 +86,15 @@ app.post("/contact", async (req, res) => {
       });
     }
 
-    // 🔥 HOSTNAME CHECK (extra protection)
+    // ✅ HOSTNAME CHECK (FIXED)
+    const allowedDomains = [
+      "heartviewhealth.com",
+      "www.heartviewhealth.com"
+    ];
+
     if (
       captchaRes.data.hostname &&
-      !allowedOrigins.some((origin) =>
-        captchaRes.data.hostname.includes(origin.replace(/^https?:\/\//, ""))
-      )
+      !allowedDomains.includes(captchaRes.data.hostname)
     ) {
       return res.status(400).json({
         success: false,
@@ -96,19 +102,19 @@ app.post("/contact", async (req, res) => {
       });
     }
 
-    // ✅ Mail config
+    // ✅ MAIL CONFIG
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        pass: process.env.EMAIL_PASS, // ✅ use app password
       },
       tls: {
         rejectUnauthorized: false,
       },
     });
 
-    // ✅ Email content
+    // ✅ MAIL CONTENT
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
@@ -125,14 +131,15 @@ app.post("/contact", async (req, res) => {
 
     await transporter.sendMail(mailOptions);
 
-    // ✅ Success Response
+    // ✅ SUCCESS
     res.status(200).json({
       success: true,
       message: "We will contact you within 24 hours.",
     });
 
   } catch (error) {
-    console.log(error);
+    console.error("Server Error:", error);
+
     res.status(500).json({
       success: false,
       message: "Error sending email",
@@ -140,6 +147,6 @@ app.post("/contact", async (req, res) => {
   }
 });
 
-// ✅ Server Start
+// ✅ SERVER START
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on ${PORT}`));
