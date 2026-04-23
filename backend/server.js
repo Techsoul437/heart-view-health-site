@@ -8,7 +8,6 @@ dotenv.config();
 
 const app = express();
 
-// ✅ CORS config object — defined once, reused everywhere
 const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = [
@@ -20,7 +19,6 @@ const corsOptions = {
 
     console.log("Incoming origin:", origin);
 
-    // Allow requests with no origin (e.g. curl, Postman, server-to-server)
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -28,25 +26,28 @@ const corsOptions = {
       callback(new Error("CORS not allowed"));
     }
   },
-  methods: ["GET", "POST"],
+  methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: ["Content-Type"],
-  optionsSuccessStatus: 200, 
+  optionsSuccessStatus: 200,
 };
 
-// ✅ FIX 1: Handle OPTIONS preflight FIRST, before any other middleware,
-//    and use the SAME corsOptions so origin validation is consistent.
-// app.use(cors(corsOptions));
-// app.options("/*", cors(corsOptions));
+// ✅ CORS - Express 5 compatible syntax
+app.options("/{*path}", cors(corsOptions));
+app.use(cors(corsOptions));
 
 // ✅ Body parser
 app.use(express.json());
 
-// ✅ API Route
+// ✅ Health check - Render ke liye
+app.get("/", (req, res) => {
+  res.status(200).json({ status: "Server is running" });
+});
+
+// ✅ Contact Route
 app.post("/contact", async (req, res) => {
   try {
     const { name, email, phone, message, captcha } = req.body;
 
-    // Validation
     if (!name || !email || !phone || !message || !captcha) {
       return res.status(400).json({
         success: false,
@@ -54,7 +55,6 @@ app.post("/contact", async (req, res) => {
       });
     }
 
-    // Email format check
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({
@@ -63,7 +63,6 @@ app.post("/contact", async (req, res) => {
       });
     }
 
-    // ✅ FIX 2: Guard against missing env var before making the request
     if (!process.env.RECAPTCHA_SECRET_KEY) {
       console.error("RECAPTCHA_SECRET_KEY is not set");
       return res.status(500).json({
@@ -72,9 +71,7 @@ app.post("/contact", async (req, res) => {
       });
     }
 
-    // CAPTCHA verify
     const verifyURL = "https://www.google.com/recaptcha/api/siteverify";
-
     const captchaRes = await axios.post(verifyURL, null, {
       params: {
         secret: process.env.RECAPTCHA_SECRET_KEY,
@@ -89,7 +86,6 @@ app.post("/contact", async (req, res) => {
       });
     }
 
-    // Score check (reCAPTCHA v3 only)
     if (captchaRes.data.score !== undefined && captchaRes.data.score < 0.5) {
       return res.status(400).json({
         success: false,
@@ -97,11 +93,10 @@ app.post("/contact", async (req, res) => {
       });
     }
 
-    // Hostname check
     const allowedDomains = [
       "heartviewhealth.com",
       "www.heartviewhealth.com",
-      "localhost",               // allow during local dev
+      "localhost",
     ];
 
     if (
@@ -114,7 +109,6 @@ app.post("/contact", async (req, res) => {
       });
     }
 
-    // ✅ FIX 3: Guard against missing email env vars before creating transporter
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
       console.error("EMAIL_USER or EMAIL_PASS is not set");
       return res.status(500).json({
@@ -123,7 +117,6 @@ app.post("/contact", async (req, res) => {
       });
     }
 
-    // Mail config
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -135,7 +128,6 @@ app.post("/contact", async (req, res) => {
       },
     });
 
-    // Mail content
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
@@ -159,7 +151,6 @@ app.post("/contact", async (req, res) => {
 
   } catch (error) {
     console.error("Server Error:", error);
-
     res.status(500).json({
       success: false,
       message: "Error sending email",
@@ -167,6 +158,5 @@ app.post("/contact", async (req, res) => {
   }
 });
 
-// ✅ SERVER START
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
