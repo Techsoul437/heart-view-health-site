@@ -1,5 +1,6 @@
 "use client";
 
+import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 import { useState } from "react";
 
 interface FAQItem {
@@ -129,24 +130,15 @@ export default function FAQSection() {
   return (
     <section className="w-full max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-0 lg:mt-15 ">
       <div className="max-w-8xl mx-auto pt-5 md:pt-8 lg:pt-20 ">
-       
-        {/* Heading */}
-        <div className="text-center mb-10">
-           <div className="inline-flex text-center items-center gap-2 mb-2 px-3 py-1.5 rounded-full ">
-          <span className="inline-block text-xs justify-content-center font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1">
-            FAQs
-          </span>
-        </div>
-          <h1 className="  text-2xl md:text-3xl lg:text-4xl font-medium  text-white leading-tight">
-            Have Questions?
-          </h1>
-          <p className="mt-4 text-gray-400 text-base text-lg sm:text-lg font-light" >
-            HeartView Health – Frequently Asked Questions
-          </p>
-        </div>
 
+        {/* Heading */}
+
+        <Headerbadge tag="FAQs" text="Have Questions?" />
+        <p className="text-gray-400 text-base text-lg text-center sm:text-lg font-light" >
+          HeartView Health – Frequently Asked Questions
+        </p>
         {/* FAQ Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 mt-5 md:grid-cols-2 gap-5">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
 

@@ -173,127 +173,129 @@ function AnimatedSection({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative border-b border-white/[0.06] pb-12 mb-10 last:border-0"
+      transition={{ duration: 0.5 }}
+      className="mb-6"
     >
-      {/* Section number + title row */}
-      <div className="flex items-start  gap-6 mb-6">
-        <span className="font-mono text-lg text-[#3D7773]/60 mt-1 shrink-0 tracking-widest">
-          {section.number}
-        </span>
-        <h2 className="text-xl sm:text-xl lg:text-2xl  text-white/90 tracking-tight leading-snug">
-          {section.title}
-        </h2>
-      </div>
+      {/* CARD */}
+      <div className="rounded-2xl   shadow-md shadow-white/10 border-t border-white/10 backdrop-blur-md p-5 sm:p-6">
 
-      <div className="pl-10 space-y-4">
-        {section.highlight && (
-          <div className="border border-red-500/20 bg-red-500/5 rounded-xl px-5 py-4">
-            <p className="text-red-300/80 text-base sm:text-lg  leading-relaxed ">
+        {/* HEADER */}
+        <div className="flex items-start gap-4 mb-4">
+          {/* <div className="flex items-center justify-center rounded-full bg-teal-500/10 text-white font-mono w-10 h-10 text-sm px-3 py-1">
+            {section.number}
+          </div> */}
+
+          <h2 className="text-xl sm:text-xl lg:text-2xl text-white/90 leading-snug">
+            {section.title}
+          </h2>
+        </div>
+
+        {/* CONTENT */}
+        <div className="space-y-3">
+
+          {section.highlight && (
+            <div className="border border-red-500/20 bg-red-500/5 rounded-xl px-4 py-3">
+              <p className="text-red-300/80 text-base sm:text-lg font-light leading-relaxed  ">
+                {section.content}
+              </p>
+            </div>
+          )}
+
+          {section.content && !section.highlight && (
+            <p className="text-white/60 text-base sm:text-lg font-light leading-relaxed">
               {section.content}
             </p>
-          </div>
-        )}
+          )}
 
-        {section.content && !section.highlight && (
-          <p className="text-white/50 text-base sm:text-lg    max-w-7xl font-light leading-relaxed">
-            {section.content}
-          </p>
-        )}
-
-        {section.list && (
-          <ul className="space-y-2">
-            {section.list.map((item, i) => (
-              <motion.li
-                key={i}
-                initial={{ opacity: 0, x: -10 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{
-                  duration: 0.4,
-                  delay: 0.1 + i * 0.05,
-                  ease: "easeOut",
-                }}
-                className="flex items-center  gap-3 text-white/50 text-base sm:text-lg  leading-relaxed  font-light"
-              >
-                <span className="w-1 h-1 rounded-full bg-teal-400/50 shrink-0" />
-                {item}
-              </motion.li>
-            ))}
-          </ul>
-        )}
-
-        {section.subsections?.map((sub, si) => (
-          <div key={si} className="pt-2">
-            <p className="text-white/70 text-lg md:text-base lg:text-2xl font-light mb-2 tracking-wide">
-              {sub.subtitle}
-            </p>
+          {/* LIST */}
+          {section.list && (
             <ul className="space-y-2">
-              {sub.list.map((item, i) => (
-                <li
+              {section.list.map((item, i) => (
+                <motion.li
                   key={i}
-                  className="flex items-center gap-3 text-white/40 text-base sm:text-lg  leading-relaxed  font-light"
+                  initial={{ opacity: 0, x: -6 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.3, delay: i * 0.04 }}
+                  className="flex items-start gap-3 text-white/60 text-base sm:text-lg font-light leading-relaxed  "
                 >
-                  <span className="w-1 h-1 rounded-full bg-teal-400/40 shrink-0" />
+                  {/* ✅ DOT REPLACED WITH MODERN ICON STYLE */}
+                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3D7773]/60 shrink-0" />
                   {item}
-                </li>
+                </motion.li>
               ))}
             </ul>
-          </div>
-        ))}
+          )}
+
+          {/* SUBSECTIONS */}
+          {section.subsections?.map((sub, si) => (
+            <div key={si} className="pt-2">
+              <p className="text-white/80 text-sm sm:text-base mb-2">
+                {sub.subtitle}
+              </p>
+
+              <ul className="space-y-2">
+                {sub.list.map((item, i) => (
+                  <li
+                    key={i}
+                    className="flex items-start gap-3 text-white/50 text-base sm:text-lg font-light leading-relaxed  "
+                  >
+                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3D7773]/40 shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+        </div>
       </div>
     </motion.div>
   );
-}   
+}
 
 export default function Privacy() {
   return (
     <div className="min-h-screen max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-0 lg:mt-15  text-white">
- 
 
-      {/* ── Hero ── */}
-      <div className="pt-5 md:pt-8 lg:pt-20  mx-auto">
+      {/* HERO */}
+      <div className="pt-6 sm:pt-10 lg:pt-16 mx-auto">
+
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.6 }}
         >
-          {/* Tag */}
-          <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full ">
-            <span className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1">
+
+          {/* TAG */}
+          <div className="mb-5">
+            <span className="text-xs tracking-widest uppercase text-[#3D7773] border border-white/20 rounded-full px-4 py-1">
               Legal Document
             </span>
           </div>
 
-          <h1 className=" text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white mb-4 ">
-        HEARTVIEW HEALTH PRIVACY POLICY
+          {/* TITLE */}
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-medium leading-tight mb-3">
+            HEARTVIEW HEALTH PRIVACY POLICY
           </h1>
 
-          <p className="text-base sm:text-lg font-light leading-relaxed">
-            HeartView Health Technologies Private Limited  Last updated April
-            2026
+          {/* SUBTITLE */}
+          <p className="text-white/60 text-sm sm:text-base">
+            HeartView Health Technologies Private Limited Last updated April 2026
           </p>
         </motion.div>
 
-        {/* Divider line */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="origin-left h-px bg-gradient-to-r from-teal-500/40 via-white/10 to-transparent mt-12 mb-16"
-        />
+        {/* DIVIDER */}
+        <div className="h-px bg-gradient-to-r from-teal-500/40 via-white/10 to-transparent my-8" />
 
-        {/* ── Sections ── */}
-        <div>
+        {/* SECTIONS */}
+        <div className="space-y-4">
           {sections.map((section, index) => (
             <AnimatedSection key={index} section={section} index={index} />
           ))}
         </div>
 
-    
-
-     
       </div>
     </div>
   );

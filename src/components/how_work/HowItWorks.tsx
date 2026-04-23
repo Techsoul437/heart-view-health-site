@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
+import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 
 // ✅ Step Type
 type Step = {
@@ -173,27 +174,8 @@ export default function AppStepsSection() {
     <section className="w-full max-w-7xl  mx-auto pt-5 md:pt-8 lg:pt-20 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-0 mt-0 lg:mt-15 ">
 
       {/* ── Header ── */}
-      <div className="w-full py-4 text-center">
-        <motion.span
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6 }}
-          className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border border-white/30 rounded-full px-4 py-1"
-        >
-          How It Works
-        </motion.span>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-          className="mt-4 text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white"
-        >
-          Everything you need,{" "}beautifully simple
-        </motion.h1>
-      </div>
+      
+      <Headerbadge tag="How It Works" text="Everything you need,beautifully simple" />
 
       {/* ── Steps ── */}
       <div className="flex flex-col gap-25 mt-10">

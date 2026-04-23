@@ -1,46 +1,20 @@
 "use client";
 
+import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 import { motion } from "framer-motion";
 
 export default function CompanySection() {
   return (
-    <section className="relative w-full overflow-hidden pt-10 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 ">
+    <section className="relative w-full overflow-hidden  px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 ">
       {/* Background Glow */}
       <div className="absolute " />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[40rem] h-[40rem] bg-[#3D7773]/10 blur-[120px] rounded-full" />
 
-      <div className="relative max-w-8xl mx-auto">
+      <div className="relative max-w-8xl mx-auto mt-8">
 
         {/* Heading */}
-        <div className="w-full py-4 text-center">
-
-          {/* Badge */}
-          <motion.span
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.6 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1"
-          >
-            Our Company
-          </motion.span>
-
-          {/* Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 80, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.6 }}
-            transition={{
-              duration: 0.9,
-              delay: 0.1,
-              ease: [0.22, 1, 0.36, 1], // premium smooth easing
-            }}
-            className="mt-4  text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white "
-          >
-            Built with Trust & Transparency
-          </motion.h1>
-
-        </div>
+       
+      <Headerbadge tag="Our Company" text="Built with Trust & Transparency" />
 
         {/* Card */}
         <motion.div

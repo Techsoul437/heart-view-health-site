@@ -6,48 +6,59 @@ import Image from "next/image";
 import { blogs } from "@/data/blogData";
 import { motion } from "framer-motion";
 import FillButton from "@/Ui/buttons/FillButton";
+import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 
 function BlogSection() {
-const [blogCount, setBlogCount] = useState(3);
-useEffect(() => {
-  const updateCount = () => {
-    const width = window.innerWidth;
+  const [blogCount, setBlogCount] = useState(3);
+  useEffect(() => {
+    const updateCount = () => {
+      const width = window.innerWidth;
 
-    if (width >= 600 && width < 1024) {
-      // Tablet (Tailwind md)
-      setBlogCount(4);
-    } else {
-      setBlogCount(3);
-    }
-  };
+      if (width >= 600 && width < 1024) {
+        // Tablet (Tailwind md)
+        setBlogCount(4);
+      } else {
+        setBlogCount(3);
+      }
+    };
 
-  updateCount(); // initial call
-  window.addEventListener("resize", updateCount);
+    updateCount(); // initial call
+    window.addEventListener("resize", updateCount);
 
-  return () => window.removeEventListener("resize", updateCount);
-}, []);
-
-const selectedBlogs = blogs.slice(0, blogCount);
+    return () => window.removeEventListener("resize", updateCount);
+  }, []);
+  const categories = [
+    "all",
+    ...new Set(blogs.map((b) => b.category)),
+  ];
+  const selectedBlogs = blogs.slice(0, blogCount);
   return (
     <section className="max-w-screen-8xl pt-10 mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 ">
 
       {/* HEADING */}
-      <div className="text-center py-4">
+    <Headerbadge tag="Blog" text="Latest from Our Blog" />
+      {/* CATEGORY TAGS */}
+
+ <div className="flex flex-wrap gap-4 mt-4">
+  {categories
+    .filter((item) => item.toLowerCase() !== "all")
+    .map((item, index) => (
+      <Link
+        key={index}
+        href={`/category/${item.toLowerCase()}`}
+        className="basis-32" // 👈 same width (Tailwind scale)
+      >
         <motion.span
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.6 }}
-          className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1"
+          transition={{ delay: index * 0.1 }}
+          className="flex items-center justify-center w-full py-2 rounded-full border capitalize border-white/10 bg-white/5 text-white/70 text-sm sm:text-base font-light backdrop-blur-md hover:bg-white/10 transition"
         >
-          Blog
+          {item}
         </motion.span>
-
-        <h1 className=" text-2xl md:text-3xl lg:text-4xl font-medium text-white mt-4">
-          Latest from Our Blog
-        </h1>
-      </div>
-
+      </Link>
+    ))}
+</div>
       {/* GRID */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-5 ">
 
@@ -89,10 +100,22 @@ const selectedBlogs = blogs.slice(0, blogCount);
                 </p>
 
                 {/* OPTIONAL: PUSH CONTENT DOWN */}
-                <div className="mt-auto pt-4">
-                  <span className="text-[#3D7773] text-sm md:text-md font-medium">
-                    Read More →
-                  </span>
+                <div className="mt-auto pt-1 flex justify-end">
+                  <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-[#45657D] to-[#3D7773] text-white 
+    group-hover:bg-[#3D7773] group-hover:text-white transition-all duration-300">
+
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7V17" />
+                    </svg>
+
+                  </div>
                 </div>
 
               </div>

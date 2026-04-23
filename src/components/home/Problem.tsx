@@ -1,5 +1,6 @@
 "use client";
 
+import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 import { motion } from "framer-motion";
 
 type ItemType = {
@@ -95,29 +96,8 @@ export default function Problem() {
 
         {/* Heading */}
 
-        <div className="w-full py-4 text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border border-white/30 rounded-full px-4 py-1"
-          >
-            Problems
-          </motion.span>
+        <Headerbadge tag="Problems" text="Challenges People Face While Managing Health" />
 
-          <motion.h1
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mt-4   text-2xl md:text-3xl text-white lg:text-4xl font-medium leading-tight"
-          >
-            Challenges People Face While Managing Health
-
-
-          </motion.h1>
-        </div>
         {/* Grid */}
         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4 mt-5">
           {problems.map((item, i) => (
@@ -131,29 +111,8 @@ export default function Problem() {
       <div className="pt-10">
 
         {/* Heading */}
+      <Headerbadge tag="Solutions" text="A Smarter & Simpler Way to Take Control of Health" />
 
-        <div className="w-full py-4 text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border border-white/30 rounded-full px-4 py-1"
-          >
-            Solutions
-          </motion.span>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mt-4   text-2xl md:text-3xl lg:text-4xl font-medium text-white leading-tight"
-          >
-            A Smarter & Simpler Way to Take Control of Health
-
-          </motion.h1>
-        </div>
         {/* Grid */}
         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4 mt-5">
           {solutions.map((item, i) => (

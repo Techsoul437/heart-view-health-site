@@ -7,23 +7,24 @@ import { motion } from "framer-motion";
 function BorderButton({ text = "Click Me", href = "#" }) {
   return (
     <Link href={href}>
-      <motion.button
-        className="
-        group relative
+     <motion.button
+  className="
+  w-full   // ✅ grid ka full width le
+  flex items-center justify-center
 
-        px-4 py-3 sm:px-5 sm:py-2.5 lg:px-6 lg:py-3
-        rounded-full
+  px-4 py-3 sm:px-5 sm:py-2.5 lg:px-6 lg:py-3
+  rounded-full
 
-        border-2 border-[#B4B0B0]
+  border-2 border-[#B4B0B0]
 
-        text-xs sm:text-sm lg:text-base text-white
-        overflow-hidden
+  text-xs sm:text-sm lg:text-base text-white
+  overflow-hidden
 
-        transition-all duration-300
-        bg-transparent
-        cursor-pointer
-        "
-      >
+  transition-all duration-300
+  bg-transparent
+  cursor-pointer
+  "
+>
         {/* Hover Background */}
         <span
           className="

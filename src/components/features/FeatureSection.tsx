@@ -1,5 +1,6 @@
 "use client";
 
+import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 import { motion } from "framer-motion";
 import {
     Activity,
@@ -88,32 +89,11 @@ export default function FeatureSection() {
     return (
         <section className="w-full  xl:pt-20 pt-5 md:pt-8 lg:pt-20  mt-0 lg:mt-15 ">
             <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
-                <div className="py-4 text-center">
-                    <motion.span
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, amount: 0.6 }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1"
-                    >
-                        Features
-                    </motion.span>
-                    {/* Heading */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        viewport={{ once: true }}
-                        className="text-center mt-4 max-w-8xl mx-auto"
-                    >
-                        <h2 className=" text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white">
-                            Advanced Cardiac Monitoring & Health Intelligence
-                        </h2>
-                        <p className="mt-4 text-white/70 text-lg  font-light   leading-relaxed">
-                            A complete system to monitor, analyze, and improve cardiovascular health with real-time insights.
-                        </p>
-                    </motion.div>
-                </div>
+
+                <Headerbadge tag="Features" text="Advanced Cardiac Monitoring & Health Intelligence" />
+                <p className="text-white/70 text-lg  font-light   leading-relaxed text-center">
+                    A complete system to monitor, analyze, and improve cardiovascular health with real-time insights.
+                </p>
                 {/* Grid */}
                 <div className="mt-16 grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
                     {features.map((feature, index) => {
@@ -153,7 +133,7 @@ export default function FeatureSection() {
                 </div>
 
                 {/* Security Section */}
-                <motion.section
+                {/* <motion.section
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
@@ -162,7 +142,6 @@ export default function FeatureSection() {
                 >
                     <div className="relative z-10 w-full max-w-8xl  mx-auto">
 
-                        {/* HEADING */}
                         <div className="text-center px-4 py-4">
                             <motion.span
                                 initial={{ opacity: 0, y: 40 }}
@@ -182,7 +161,6 @@ export default function FeatureSection() {
                             </p>
                         </div>
 
-                        {/* CARD */}
                         <div className="mt-8 sm:mt-10 ">
                             <div className="
         w-full 
@@ -208,7 +186,6 @@ export default function FeatureSection() {
       className="group flex items-start gap-4 rounded-xl p-3 transition-all duration-300 hover:bg-white/5"
     >
       
-      {/* ICON */}
       <div className="
         flex items-center justify-center 
         w-8 h-8 
@@ -228,7 +205,6 @@ export default function FeatureSection() {
         </svg>
       </div>
 
-      {/* TEXT */}
       <span className="group-hover:text-white transition-colors duration-300">
         {item}
       </span>
@@ -242,7 +218,6 @@ export default function FeatureSection() {
 
                     </div>
 
-                    {/* BACKGROUND GLOW (Responsive Safe) */}
                     <div className="absolute inset-0 -z-0">
                         <div className="
       absolute 
@@ -255,7 +230,7 @@ export default function FeatureSection() {
     " />
                     </div>
 
-                </motion.section>
+                </motion.section> */}
 
             </div>
         </section>

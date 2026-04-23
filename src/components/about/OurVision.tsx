@@ -1,5 +1,6 @@
 "use client";
 
+import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 import { motion } from "framer-motion";
 
 export default function OurVision() {
@@ -17,29 +18,12 @@ export default function OurVision() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="flex flex-col items-center text-center py-4"
+          className="flex flex-col items-center text-center"
         >
-          <motion.span
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1"
-          >
-            Our vision
-          </motion.span>
+        
+      <Headerbadge tag=" Our vision" text="Make health awareness simple and part of daily life." />
 
-          <motion.h1
-            initial={{ opacity: 0, y: 80, scale: 0.95 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9 }}
-            className="mt-4   text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white"
-          >
-     Make health awareness simple and part of daily life.
-          </motion.h1>
-
-          <p className="mt-6 text-gray-400 max-w-2xl sm:max-w-3xl text-base sm:text-lg  leading-relaxed   lg:max-w-3xl font-light ">
+          <p className=" text-gray-400 max-w-2xl sm:max-w-3xl text-base sm:text-lg  leading-relaxed   lg:max-w-3xl font-light ">
           To create a unified platform where heart awareness meets everyday health management  empowering people with clarity, consistency, and control over their health.
           </p>
 
@@ -59,22 +43,9 @@ export default function OurVision() {
           <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 opacity-30 blur-xl"></div>
 
           <div className="relative flex flex-col ">
+      <Headerbadge tag="Our Responsibility" text="Built for awareness, not medical decisions" />
 
-            <motion.span
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="inline-block text-xs font-semibold tracking-widest w-47 text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1"
-            >
-              Our Responsibility
-
-            </motion.span>
-            <h1 className="mt-4  text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white">
-              Built for awareness, not medical decisions
-            </h1>
-
-            <p className="mt-3 text-gray-400 max-w-2xl sm:max-w-3xl text-base sm:text-lg  leading-relaxed lg:max-w-xl font-light">
+            <p className=" text-gray-400 max-w-2xl sm:max-w-3xl text-base sm:text-lg  leading-relaxed lg:max-w-xl font-light">
               HeartView Health is designed for general wellness and informational
               purposes. We do not provide medical diagnosis or treatment, and we encourage users to consult qualified healthcare professionals when needed.
             </p>

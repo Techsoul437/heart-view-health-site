@@ -1,5 +1,6 @@
 "use client";
 
+import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
@@ -19,17 +20,10 @@ export default function AppDownloadSection() {
                     initial={{ opacity: 0, y: 60 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.8 }}
-                    className="w-full py-4"
+                    className="w-full "
                 >
-                    {/* Badge */}
-                    <span className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border border-white/30 rounded-full px-3 py-1">
-                        Mobile Experience
-                    </span>
-
-                    {/* Heading */}
-                    <h1 className="text-white text-2xl md:text-3xl lg:text-4xl font-medium leading-tight mt-4 mb-4">
-                        Prefer Mobile? Get the App
-                    </h1>
+                
+    <Headerbadge tag="Mobile Experience" text=" Prefer Mobile? Get the App" />
 
                     {/* Paragraph */}
                     <p className="text-white/60 max-w-2xl mx-auto text-base sm:text-lg mt-5 leading-relaxed font-light mb-8">

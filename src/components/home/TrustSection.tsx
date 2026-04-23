@@ -1,5 +1,6 @@
 "use client";
 
+import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 import { motion, useInView } from "framer-motion";
 import { ShieldCheck, Sparkles, LineChart } from "lucide-react";
 import { useRef } from "react";
@@ -38,27 +39,9 @@ export default function TrustSection() {
 
         {/* Heading */}
 
-        <div ref={headerRef} className="w-full py-4 text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 14 }}
-            animate={headerInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-block rounded-full border-2 border-white/30 py-1 pl-4 pr-4 text-xs font-semibold uppercase tracking-widest text-[#3D7773]"
-          >
-            Trust
-          </motion.span>
+      
+        <Headerbadge tag="Trust" text="Built on Trust, Designed for Everyday Reality" />
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={headerInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-4 text-2xl font-medium text-white md:text-3xl lg:text-4xl"
-          >
-            {/* Problems That Sparked Better Experiences */}
-            Built on Trust, Designed for Everyday Reality
-
-          </motion.h1>
-        </div>
         {/* Features (FIXED GRID ALIGNMENT) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 mb-15 mt-5">
           {items.map((item, i) => {

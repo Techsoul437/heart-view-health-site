@@ -28,6 +28,7 @@ export default function BlogList() {
 
           </motion.h1>
         </div>
+
         {/* GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-5 gap-4 md:gap-8 lg:gap-6 xl:gap-7">
 
@@ -71,10 +72,22 @@ export default function BlogList() {
                   </p>
 
                   {/* PUSH DOWN */}
-                  <div className="mt-auto pt-2">
-                    <span className="text-[#3D7773] text-sm md:text-md font-medium">
-                      Read More →
-                    </span>
+                  <div className="mt-auto pt-1 flex justify-end">
+                    <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-[#45657D] to-[#3D7773] text-white 
+    group-hover:bg-[#3D7773] group-hover:text-white transition-all duration-300">
+
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 h-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M7 17L17 7M17 7H7M17 7V17" />
+                      </svg>
+
+                    </div>
                   </div>
 
                 </div>

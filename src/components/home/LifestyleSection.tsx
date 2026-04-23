@@ -1,5 +1,6 @@
 "use client";
 
+import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 import { motion } from "framer-motion";
 
 const steps = [
@@ -27,27 +28,8 @@ export default function LifestyleSection() {
       <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
 
         {/* Heading */}
-        <div className="w-full py-4 text-center">
-          <motion.span
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border border-white/30 rounded-full px-4 py-1"
-          >
-            Lifestyle
-          </motion.span>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mt-4 text-2xl md:text-3xl lg:text-4xl font-medium leading-tight"
-          >
-            Designed for Your Everyday Lifestyle
-          </motion.h1>
-        </div>
+        <Headerbadge tag="Lifestyle" text=" Designed for Your Everyday Lifestyle" />
 
         {/* Timeline */}
         <div className="relative mt-5">
@@ -63,9 +45,8 @@ export default function LifestyleSection() {
               >
                 {/* LEFT */}
                 <div
-                  className={`hidden md:flex ${
-                    index % 2 === 0 ? "justify-end pr-4 lg:pr-6" : ""
-                  }`}
+                  className={`hidden md:flex ${index % 2 === 0 ? "justify-end pr-4 lg:pr-6" : ""
+                    }`}
                 >
                   {index % 2 === 0 && (
                     <motion.div
@@ -94,9 +75,8 @@ export default function LifestyleSection() {
 
                 {/* RIGHT */}
                 <div
-                  className={`hidden md:flex ${
-                    index % 2 !== 0 ? "justify-start pl-4 lg:pl-6" : ""
-                  }`}
+                  className={`hidden md:flex ${index % 2 !== 0 ? "justify-start pl-4 lg:pl-6" : ""
+                    }`}
                 >
                   {index % 2 !== 0 && (
                     <motion.div
@@ -118,12 +98,12 @@ export default function LifestyleSection() {
 
                 {/* MOBILE */}
                 <div className="md:hidden text-center py-6">
-                   <div className="bg-[#181E2B]/10   w-sm  mx-auto rounded-xl px-5 py-6 backdrop-blur-sm">
-                  <h3 className="text-lg font-semibold text-[#3D7773]">
-                    {step.title}
-                  </h3>
-                  <p className="text-gray-400 mt-2 mx-auto max-w-xs ">{step.desc}</p>
-                </div>
+                  <div className="bg-[#181E2B]/10   w-auto  mx-auto rounded-xl px-5 py-6 backdrop-blur-sm">
+                    <h3 className="text-lg font-semibold text-[#3D7773]">
+                      {step.title}
+                    </h3>
+                    <p className="text-gray-400 mt-2 mx-auto max-w-xs ">{step.desc}</p>
+                  </div>
                 </div>
 
               </div>

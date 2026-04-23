@@ -1,5 +1,6 @@
 "use client";
 
+import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
@@ -122,15 +123,8 @@ export default function ProcessCards() {
             <div className="w-full max-w-8xl mx-auto  mt-10 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 ">
 
                 {/* Heading SAME */}
-                <div className="w-full py-4 text-center">
-                    <motion.span className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1">
-                        Our Approach
-                    </motion.span>
-
-                    <motion.h1 className="mt-4  text-2xl md:text-3xl lg:text-4xl font-medium text-white">
-                        Your Heart Health, Simplified & Connected
-                    </motion.h1>
-                </div>
+               
+      <Headerbadge tag=" Our Approach" text="Your Heart Health, Simplified & Connected" />
 
                 <div className="mt-5 flex justify-center">
 

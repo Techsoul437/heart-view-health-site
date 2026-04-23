@@ -1,5 +1,6 @@
 "use client";
 
+import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 import { motion } from "framer-motion";
 import { Users, HeartPulse, Activity, ShieldCheck } from "lucide-react";
 
@@ -32,28 +33,9 @@ export default function WhoItsFor() {
 
             {/* Heading */}
 
-            <div className="w-full py-4 text-center">
-                <motion.span
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border border-white/30 rounded-full px-4 py-1"
-                >
-                    Who It’s For
-                </motion.span>
+           
+                    <Headerbadge tag="Who It’s For" text="Designed for Real People, Real Health Needs" />
 
-                <motion.h1
-                    initial={{ opacity: 0, y: 80 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="mt-4 text-2xl md:text-3xl lg:text-4xl font-medium text-white leading-tight"
-                >
-                    Designed for Real People, Real Health Needs
-
-                </motion.h1>
-            </div>
             {/* Layout */}
             <div className="mt-5 grid lg:grid-cols-2 gap-12 items-center">
 

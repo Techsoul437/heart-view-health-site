@@ -163,35 +163,62 @@ function Section({ data }: { data: SectionType }) {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      className="mb-10 border-b mt-10 border-white/10 pb-8 "
+      className="mb-8 mt-8"
     >
-      {/* HEADER */}
-      <div className="flex gap-4 mb-4">
-        <span className="text-[#3D7773] font-semibold">{data.number}</span>
-        <h2 className="text-xl sm:text-xl lg:text-2xl  text-white tracking-tight leading-snug">{data.title}</h2>
-      </div>
+      {/* 🔥 CARD */}
+      <div className="rounded-2xl shadow-md shadow-white/10 border-t border-white/10 backdrop-blur-md p-5 sm:p-6">
 
-      {/* CONTENT */}
-      <ul className="pl-6 space-y-2 list-disc marker:text-[#3D7773] text-white/60 text-base sm:text-lg  leading-relaxed  font-light">
-        {data.points.map((point, i) => (
-          <li key={i}>
-            {typeof point === "string" ? (
-              point
-            ) : (
+        {/* HEADER */}
+        <div className="flex gap-4 mb-4 items-start">
+          {/* <span className="text-[#3D7773] font-semibold bg-[#3D7773]/10 px-3 py-1 rounded-lg">
+            {data.number}
+          </span> */}
+
+          <h2 className="text-xl sm:text-xl lg:text-2xl text-white tracking-tight leading-snug">
+            {data.title}
+          </h2>
+        </div>
+
+        {/* CONTENT */}
+        <div className="space-y-3">
+          {data.points.map((point, i) => (
+            <div
+              key={i}
+              className="flex items-start gap-3 text-white/60 text-base sm:text-lg leading-relaxed font-light"
+            >
+              {/* ✅ MODERN DOT */}
+              {/* <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3D7773]/70 shrink-0" /> */}
+
               <div>
-                <p className="text-white/80 max-w-7xl text-base sm:text-lg  leading-relaxed  font-light">{point.title}</p>
-                <ul className="pl-6 mt-2 list-disc text-white/50  max-w-7xl text-base sm:text-lg  leading-relaxed  font-light">
-                  {point.items.map((item, idx) => (
-                    <li key={idx}>{item}</li>
-                  ))}
-                </ul>
+                {typeof point === "string" ? (
+                  point
+                ) : (
+                  <div>
+                    <p className="text-white/80 text-base sm:text-lg leading-relaxed font-light">
+                      {point.title}
+                    </p>
+
+                    <div className="mt-2 space-y-2">
+                      {point.items.map((item, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-start gap-3 text-white/50 text-base sm:text-lg leading-relaxed font-light"
+                        >
+                          <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3D7773]/50 shrink-0" />
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
-          </li>
-        ))}
-      </ul>
+            </div>
+          ))}
+        </div>
+
+      </div>
     </motion.div>
   );
 }

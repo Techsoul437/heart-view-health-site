@@ -21,16 +21,16 @@ const socialLinks = [
     ),
     hoverClass: "hover:text-[#E1306C]",
   },
-  {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-      </svg>
-    ),
-    hoverClass: "hover:text-[#0A66C2]",
-  },
+  // {
+  //   label: "LinkedIn",
+  //   href: "https://www.linkedin.com/",
+  //   icon: (
+  //     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+  //       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+  //     </svg>
+  //   ),
+  //   hoverClass: "hover:text-[#0A66C2]",
+  // },
   {
     label: "X",
     href: "https://x.com/heartviewhealth?s=11",
@@ -58,8 +58,8 @@ const legalLinks = [
 
 export default function Footer() {
   return (
-    <footer className="w-full max-w-screen-8xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 py-12 sm:py-14 md:py-16">
-      <div className="relative overflow-hidden rounded-[34px] border border-white/10 bg-slate-950/95 shadow-2xl shadow-slate-950/30 backdrop-blur-3xl">
+    <footer className="w-full max-w-screen-8xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 py-12 sm:py-14 md:py-10">
+      <div className="relative overflow-hidden rounded-[34px] border border-white/10 bg-[#0e1118] shadow-2xl shadow-slate-950/30 backdrop-blur-3xl">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(56,189,248,0.18),_transparent_24%),radial-gradient(circle_at_bottom_right,_rgba(16,185,129,0.12),_transparent_22%)] opacity-90" />
         <div className="relative px-6 py-10 sm:px-8 md:px-10 lg:px-12 xl:px-14">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-[0.95fr_1fr_1fr_1fr] lg:gap-12">

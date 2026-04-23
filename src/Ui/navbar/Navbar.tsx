@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import FillButton from "@/Ui/buttons/FillButton";
 import { usePathname } from "next/navigation";
+import ContactModal from "../contactModel/ContactModal";
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
@@ -14,12 +15,14 @@ const NAV_LINKS = [
 ];
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
 
   return (
     <>
-      <header className="lg:fixed top-0 left-0 w-full h-24 md:h-28 sticky flex items-center bg-slate-950/95 border-b border-white/10 backdrop-blur-xl z-[999]">
+      <header className="lg:fixed top-0 left-0 w-full h-24 md:h-28 sticky flex items-center bg-[#0e1118] border-b border-white/10 backdrop-blur-xl z-[999]">
         <div className="w-full max-w-screen-8xl mx-auto flex items-center justify-between px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20">
           <Link href="/">
             <Image src="/logo3.png" alt="HeartView Health" height={140} width={120} />
@@ -51,8 +54,12 @@ export default function Navbar() {
 
           <div className="flex items-center gap-4">
             <div className="hidden lg:block">
-              <FillButton text="Join Early Access" href="/contact" />
+          <div onClick={() => setOpen(true)}>
+
+              <FillButton text="Join Early Access" href="" />
             </div>
+            </div>
+
             <button
               className="lg:hidden inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-100 transition hover:bg-white/10"
               onClick={() => setSidebarOpen(true)}
@@ -98,10 +105,10 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                 scroll={true}
+                scroll={true}
                 className={`relative group text-md py-3 font-medium whitespace-nowrap transition duration-200
           ${isActive ? "text-[#3D7773]" : "text-slate-300 hover:text-[#3D7773]"}`}
-          
+
               >
                 {link.label}
 
@@ -116,9 +123,14 @@ export default function Navbar() {
         </nav>
 
         <div className="mt-auto pt-6 border-t border-white/10">
-          <FillButton text="Join Early Access" href="/contact" />
+          <div onClick={() => setOpen(true)}>
+            <FillButton text="Join Early Access" />
+          </div>
         </div>
+
       </aside>
+        <ContactModal isOpen={open} onClose={() => setOpen(false)} />
+
     </>
   );
 }

@@ -1,11 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import FillButton from "@/Ui/buttons/FillButton";
 import BorderButton from "@/Ui/buttons/BorderButton";
+import ContactModal from "@/Ui/contactModel/ContactModal";
 
 function Hero() {
+    const [open, setOpen] = useState(false);
   return (
     <section className="w-full">
       <div className="max-w-8xl bg-[#0B0B0B] mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 py-14 ">
@@ -26,11 +28,13 @@ function Hero() {
             {/* Buttons */}
             <div className="flex flex-wrap gap-4 py-6 items-center">
               <FillButton text="Explore Features" href="/features" />
-              <BorderButton text="Join Early Access" href="/contact" />
+             <div onClick={() => setOpen(true)}>
+                <BorderButton text="Join Early Access"  />
+              </div>
             </div>
-
+  <ContactModal isOpen={open} onClose={() => setOpen(false)} />
             {/* Social Proof */}
-            <p className="flex items-center gap-2 text-white/80 text-sm font-medium mt-4">
+            {/* <p className="flex items-center gap-2 text-white/80 text-sm font-medium mt-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -46,7 +50,6 @@ function Hero() {
               Trusted by 5,000+ users
             </p>
 
-            {/* Trust Line */}
             <p className="flex items-center gap-2 text-white/60 text-sm font-light mt-6">
 
               <svg
@@ -63,14 +66,16 @@ function Hero() {
               </svg>
 
               Private. Secure. Built for everyday use.
-            </p>
+            </p> */}
           </div>
 
           {/* RIGHT SIDE - IMAGE */}
           <div className="relative w-full h-80 sm:h-96 lg:h-120 ">
 
 
-            <div className="absolute inset-0 bg-black/20 rounded-2xl"></div>
+            <div className="absolute inset-0 bg-black/20 rounded-2xl">
+            <Image alt="hero-image" src="/Media2.png" fill className="object-cover rounded-2xl" />
+            </div>
 
           </div>
 
