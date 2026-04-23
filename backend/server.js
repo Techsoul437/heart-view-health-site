@@ -8,43 +8,47 @@ dotenv.config();
 
 const app = express();
 
-// ✅ Middleware
+// ✅ CORS config object — defined once, reused everywhere
+const corsOptions = {
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      "http://localhost:3000",
+      "https://heartviewhealth.com",
+      "https://www.heartviewhealth.com",
+      "https://heart-view-health-site.vercel.app",
+    ];
+
+    console.log("Incoming origin:", origin);
+
+    // Allow requests with no origin (e.g. curl, Postman, server-to-server)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.log("Blocked by CORS:", origin);
+      callback(new Error("CORS not allowed"));
+    }
+  },
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type"],
+  optionsSuccessStatus: 200, // Some browsers (IE11) choke on 204
+};
+
+// ✅ FIX 1: Handle OPTIONS preflight FIRST, before any other middleware,
+//    and use the SAME corsOptions so origin validation is consistent.
+app.options("*", cors(corsOptions));
+
+// ✅ Apply CORS to all routes
+app.use(cors(corsOptions));
+
+// ✅ Body parser
 app.use(express.json());
-
-// ✅ CORS (FIXED)
-const allowedOrigins = [
-  "http://localhost:3000",
-  "https://heartviewhealth.com",
-  "https://www.heartviewhealth.com",
-  "https://heart-view-health-site.vercel.app"
-];
-
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      console.log("Incoming origin:", origin); // ✅ debug
-
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        console.log("Blocked by CORS:", origin);
-        callback(new Error("CORS not allowed"));
-      }
-    },
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type"],
-  })
-);
-
-// ✅ IMPORTANT: Handle preflight requests
-app.options("*", cors());
 
 // ✅ API Route
 app.post("/contact", async (req, res) => {
   try {
     const { name, email, phone, message, captcha } = req.body;
 
-    // ❌ validation
+    // Validation
     if (!name || !email || !phone || !message || !captcha) {
       return res.status(400).json({
         success: false,
@@ -52,7 +56,7 @@ app.post("/contact", async (req, res) => {
       });
     }
 
-    // ✅ Email validation
+    // Email format check
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({
@@ -61,7 +65,16 @@ app.post("/contact", async (req, res) => {
       });
     }
 
-    // ✅ CAPTCHA VERIFY
+    // ✅ FIX 2: Guard against missing env var before making the request
+    if (!process.env.RECAPTCHA_SECRET_KEY) {
+      console.error("RECAPTCHA_SECRET_KEY is not set");
+      return res.status(500).json({
+        success: false,
+        message: "Server configuration error",
+      });
+    }
+
+    // CAPTCHA verify
     const verifyURL = "https://www.google.com/recaptcha/api/siteverify";
 
     const captchaRes = await axios.post(verifyURL, null, {
@@ -78,7 +91,7 @@ app.post("/contact", async (req, res) => {
       });
     }
 
-    // ✅ Score check (v3 safe)
+    // Score check (reCAPTCHA v3 only)
     if (captchaRes.data.score !== undefined && captchaRes.data.score < 0.5) {
       return res.status(400).json({
         success: false,
@@ -86,10 +99,11 @@ app.post("/contact", async (req, res) => {
       });
     }
 
-    // ✅ HOSTNAME CHECK (FIXED)
+    // Hostname check
     const allowedDomains = [
       "heartviewhealth.com",
-      "www.heartviewhealth.com"
+      "www.heartviewhealth.com",
+      "localhost",               // allow during local dev
     ];
 
     if (
@@ -102,19 +116,28 @@ app.post("/contact", async (req, res) => {
       });
     }
 
-    // ✅ MAIL CONFIG
+    // ✅ FIX 3: Guard against missing email env vars before creating transporter
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      console.error("EMAIL_USER or EMAIL_PASS is not set");
+      return res.status(500).json({
+        success: false,
+        message: "Server configuration error",
+      });
+    }
+
+    // Mail config
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS, // ✅ use app password
+        pass: process.env.EMAIL_PASS,
       },
       tls: {
         rejectUnauthorized: false,
       },
     });
 
-    // ✅ MAIL CONTENT
+    // Mail content
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
@@ -131,7 +154,6 @@ app.post("/contact", async (req, res) => {
 
     await transporter.sendMail(mailOptions);
 
-    // ✅ SUCCESS
     res.status(200).json({
       success: true,
       message: "We will contact you within 24 hours.",
