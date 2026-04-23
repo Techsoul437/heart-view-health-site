@@ -35,10 +35,8 @@ const corsOptions = {
 
 // ✅ FIX 1: Handle OPTIONS preflight FIRST, before any other middleware,
 //    and use the SAME corsOptions so origin validation is consistent.
-app.options("*", cors(corsOptions));
-
-// ✅ Apply CORS to all routes
 app.use(cors(corsOptions));
+app.options("/*", cors(corsOptions));
 
 // ✅ Body parser
 app.use(express.json());
