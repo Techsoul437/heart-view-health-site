@@ -8,6 +8,7 @@ dotenv.config();
 
 const app = express();
 
+// ✅ CORS config
 const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = [
@@ -23,7 +24,7 @@ const corsOptions = {
       callback(null, true);
     } else {
       console.log("Blocked by CORS:", origin);
-      callback(new Error("CORS not allowed"));
+      callback(null, false); // ❗ FIX: error throw mat karo
     }
   },
   methods: ["GET", "POST", "OPTIONS"],
@@ -31,19 +32,27 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-// ✅ CORS - Express 5 compatible syntax
-app.options("/{*path}", cors(corsOptions));
+// ✅ 1. CORS FIRST
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // ✅ safer than path pattern
 
-// ✅ Body parser
-app.use(express.json());
-
-// ✅ Health check - Render ke liye
-app.get("/", (req, res) => {
-  res.status(200).json({ status: "Server is running" });
+// ✅ 2. 🔥 HANDLE OPTIONS CLEANLY (NO LOGIC EXECUTION)
+app.use((req, res, next) => {
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
 });
 
-// ✅ Contact Route
+// ✅ 3. Body parser
+app.use(express.json());
+
+// ✅ Health check
+app.get("/", (req, res) => {
+  res.json({ status: "Server is running" });
+});
+
+// ✅ Contact route
 app.post("/contact", async (req, res) => {
   try {
     const { name, email, phone, message, captcha } = req.body;
@@ -55,108 +64,81 @@ app.post("/contact", async (req, res) => {
       });
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return res.status(400).json({
-        success: false,
-        message: "Invalid email format",
-      });
-    }
-
+    // ✅ ENV check
     if (!process.env.RECAPTCHA_SECRET_KEY) {
-      console.error("RECAPTCHA_SECRET_KEY is not set");
+      console.error("Missing RECAPTCHA key");
       return res.status(500).json({
         success: false,
-        message: "Server configuration error",
-      });
-    }
-
-    const verifyURL = "https://www.google.com/recaptcha/api/siteverify";
-    const captchaRes = await axios.post(verifyURL, null, {
-      params: {
-        secret: process.env.RECAPTCHA_SECRET_KEY,
-        response: captcha,
-      },
-    });
-
-    if (!captchaRes.data.success) {
-      return res.status(400).json({
-        success: false,
-        message: "Captcha verification failed",
-      });
-    }
-
-    if (captchaRes.data.score !== undefined && captchaRes.data.score < 0.5) {
-      return res.status(400).json({
-        success: false,
-        message: "Low captcha score - suspected bot",
-      });
-    }
-
-    const allowedDomains = [
-      "heartviewhealth.com",
-      "www.heartviewhealth.com",
-      "localhost",
-    ];
-
-    if (
-      captchaRes.data.hostname &&
-      !allowedDomains.includes(captchaRes.data.hostname)
-    ) {
-      return res.status(400).json({
-        success: false,
-        message: "Invalid domain",
+        message: "Server config error",
       });
     }
 
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-      console.error("EMAIL_USER or EMAIL_PASS is not set");
+      console.error("Missing email config");
       return res.status(500).json({
         success: false,
-        message: "Server configuration error",
+        message: "Server config error",
       });
     }
 
+    // ✅ CAPTCHA verify
+    const captchaRes = await axios.post(
+      "https://www.google.com/recaptcha/api/siteverify",
+      null,
+      {
+        params: {
+          secret: process.env.RECAPTCHA_SECRET_KEY,
+          response: captcha,
+        },
+      }
+    );
+
+    if (!captchaRes.data.success) {
+      return res.status(400).json({
+        success: false,
+        message: "Captcha failed",
+      });
+    }
+
+    // ✅ Mail config
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
-      tls: {
-        rejectUnauthorized: false,
-      },
     });
 
-    const mailOptions = {
+    // ✅ Send mail
+    await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
       replyTo: email,
       subject: "New Contact Form Submission",
       html: `
-        <h3>New Contact Details</h3>
+        <h3>New Contact</h3>
         <p><b>Name:</b> ${name}</p>
         <p><b>Email:</b> ${email}</p>
         <p><b>Phone:</b> ${phone}</p>
         <p><b>Message:</b> ${message}</p>
       `,
-    };
-
-    await transporter.sendMail(mailOptions);
-
-    res.status(200).json({
-      success: true,
-      message: "We will contact you within 24 hours.",
     });
 
-  } catch (error) {
-    console.error("Server Error:", error);
-    res.status(500).json({
+    return res.json({
+      success: true,
+      message: "Email sent successfully",
+    });
+
+  } catch (err) {
+    console.error("Server Error:", err);
+
+    return res.status(500).json({
       success: false,
-      message: "Error sending email",
+      message: "Internal server error",
     });
   }
 });
 
+// ✅ Server start (Render ke liye)
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Running on ${PORT}`));
