@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { FiPhone, FiMail, FiMapPin, FiX, FiCheckCircle, FiAlertCircle, FiInfo, FiAlertTriangle } from "react-icons/fi";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const validationSchema = Yup.object({
     name: Yup.string().min(2, "Min 2 characters").required("Name required"),
@@ -33,8 +34,8 @@ interface Toast {
 
 const toastStyles: Record<ToastType, { bg: string; border: string; icon: React.ElementType; iconColor: string }> = {
     success: { bg: "#1a3d2e", border: "#2ecc71", icon: FiCheckCircle, iconColor: "#2ecc71" },
-    error:   { bg: "#3d1a1a", border: "#e74c3c", icon: FiAlertCircle,  iconColor: "#e74c3c" },
-    info:    { bg: "#1a2a3d", border: "#3498db", icon: FiInfo,          iconColor: "#3498db" },
+    error: { bg: "#3d1a1a", border: "#e74c3c", icon: FiAlertCircle, iconColor: "#e74c3c" },
+    info: { bg: "#1a2a3d", border: "#3498db", icon: FiInfo, iconColor: "#3498db" },
     warning: { bg: "#3d2e1a", border: "#f39c12", icon: FiAlertTriangle, iconColor: "#f39c12" },
 };
 
@@ -128,7 +129,10 @@ function ToastContainer({ toasts, onClose }: { toasts: Toast[]; onClose: (id: st
 export default function ContactModal({ isOpen, onClose }: Props) {
     const [loading, setLoading] = useState(false);
     const [toasts, setToasts] = useState<Toast[]>([]);
-
+    const [countryCode, setCountryCode] = useState("+91");
+    const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string;
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+    const recaptchaRef = useRef<ReCAPTCHA>(null);
     const addToast = (type: ToastType, title: string, message: string) => {
         const id = crypto.randomUUID();
         setToasts((prev) => [...prev, { id, type, title, message }]);
@@ -144,35 +148,51 @@ export default function ContactModal({ isOpen, onClose }: Props) {
         validationSchema,
         onSubmit: async (values, { resetForm }) => {
             try {
-                setLoading(true);
-                const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
-                const res = await fetch(API_URL + "/contact", {
+                const token = recaptchaRef.current?.getValue() || "";
+
+                if (!token) {
+                    addToast("error", "Captcha Required", "Please verify captcha");
+                    return;
+                }
+
+                const res = await fetch(`${API_URL}/contact`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(values),
+                    body: JSON.stringify({
+                        ...values,
+                        phone: `${countryCode} ${values.phone}`, // 🔥 yaha combine kiya
+                        captcha: token,
+                    }),
                 });
+
                 const data = await res.json();
+
                 if (!res.ok) throw new Error(data.message);
+
                 addToast("success", "Message Sent!", data.message);
                 resetForm();
-                onClose();
-            } catch {
-                addToast("error", "Submission Failed", "Something went wrong. Please try again.");
-            } finally {
-                setLoading(false);
+
+                // FIX 3: reset captcha after successful submission
+                recaptchaRef.current?.reset();
+            } catch (error) {
+                console.error(error);
+                addToast(
+                    "error",
+                    "Submission Failed",
+                    "Something went wrong. Please try again."
+                );
             }
         },
     });
 
     const inputClass = (field: keyof typeof formik.values) =>
-        `w-full border rounded-lg px-4 py-2 text-sm text-white bg-transparent outline-none ${
-            formik.touched[field] && formik.errors[field] ? "border-red-400" : "border-[#3D7773]"
+        `w-full border rounded-lg px-4 py-2 text-sm text-white bg-transparent outline-none ${formik.touched[field] && formik.errors[field] ? "border-red-400" : "border-[#3D7773]"
         }`;
 
     const errorVariants = {
-        hidden:  { opacity: 0, height: 0, marginTop: 0 },
+        hidden: { opacity: 0, height: 0, marginTop: 0 },
         visible: { opacity: 1, height: "auto", marginTop: 4 },
-        exit:    { opacity: 0, height: 0, marginTop: 0 },
+        exit: { opacity: 0, height: 0, marginTop: 0 },
     };
 
     function ErrorMsg({ msg }: { msg?: string }) {
@@ -213,15 +233,15 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 32 }}
                             transition={{ duration: 0.3, ease: "easeOut" }}
-                            className="fixed inset-0 z-50 flex items-center justify-center px-2 mt-30 lg:mt-28 sm:px-4"
+                            className="fixed inset-0 z-50 flex items-center justify-center px-2 mt-26 lg:mt-28 sm:px-4"
                         >
                             <div className="
                                 w-full
                                 max-w-md sm:max-w-lg md:max-w-xl 2xl:max-w-2xl
-                                max-h-[92vh] lg:max-h-[80vh] xl:max-h-[80vh]
+                                h-auto
                                 bg-[#0e1118] rounded-lg border border-[#3D7773]
-                                p-4 sm:p-5 md:p-6 lg:p-2 xl:p-8
-                                flex flex-col gap-3 sm:gap-4 relative
+                                p-2 sm:p-5 md:p-6 lg:p-2 xl:p-8
+                                flex flex-col gap-1 sm:gap-4 relative
                             ">
                                 <button
                                     onClick={onClose}
@@ -239,7 +259,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                                     better health. Reach out anytime we love to hear from you.
                                 </p>
 
-                                <form onSubmit={formik.handleSubmit} noValidate className="flex flex-col gap-3 sm:gap-4">
+                                <form onSubmit={formik.handleSubmit} noValidate className="flex flex-col gap-1  xl:gap-3">
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                         <div>
                                             <label className="block text-zinc-300 text-sm mb-1">Name</label>
@@ -266,28 +286,81 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                                     </div>
 
                                     <div>
-                                        <label className="block text-zinc-300 text-sm mb-1">Phone</label>
-                                        <input
-                                            name="phone"
-                                            value={formik.values.phone}
-                                            onChange={formik.handleChange}
-                                            onBlur={formik.handleBlur}
-                                            className={inputClass("phone")}
+                                        <label className="block text-zinc-300 text-sm mb-1">
+                                            Phone
+                                        </label>
+
+                                        <div className="flex border border-[#3D7773] rounded-lg overflow-hidden focus-within:ring-1 focus-within:ring-[#3D7773]/20">
+
+                                            {/* Country Code */}
+                                            <div className="relative">
+                                                <select
+                                                    value={countryCode}
+                                                    onChange={(e) => setCountryCode(e.target.value)}
+                                                    className="appearance-none bg-transparent text-white pl-3 pr-8 py-2.5 outline-none border-r border-[#3D7773]"
+                                                >
+                                                    <option className="bg-[#0B1F1E] text-white" value="+91">+91</option>
+                                                </select>
+
+                                                {/* Custom Dropdown Icon */}
+                                                <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white text-xs">
+                                                    ▼
+                                                </div>
+                                            </div>
+
+                                            {/* Phone Input */}
+                                            <input
+                                                id="phone"
+                                                name="phone"
+                                                type="tel"
+                                                placeholder="Your phone number"
+                                                value={formik.values.phone}
+                                                onChange={(e) => {
+                                                    const val = e.target.value.replace(/\D/g, "");
+                                                    formik.setFieldValue("phone", val);
+                                                }}
+                                                onBlur={formik.handleBlur}
+                                                className="w-full bg-transparent px-4 py-2.5 text-sm text-white placeholder:text-zinc-400 outline-none"
+                                                maxLength={10}
+                                            />
+                                        </div>
+
+                                        <ErrorMsg
+                                            msg={
+                                                formik.touched.phone
+                                                    ? formik.errors.phone
+                                                    : undefined
+                                            }
                                         />
-                                        <ErrorMsg msg={formik.touched.phone ? formik.errors.phone : undefined} />
                                     </div>
 
-                                    <div>
-                                        <label className="block text-zinc-300 text-sm mb-1">Message</label>
-                                        <textarea
-                                            name="message"
-                                            rows={4}
-                                            value={formik.values.message}
-                                            onChange={formik.handleChange}
-                                            onBlur={formik.handleBlur}
-                                            className={`${inputClass("message")} resize-none`}
-                                        />
-                                        <ErrorMsg msg={formik.touched.message ? formik.errors.message : undefined} />
+                                    {/* Message + reCAPTCHA */}
+                                    <div className="flex flex-col lg:flex-row xl:flex-col gap-4 lg:items-baseline-last xl:items-stretch">
+
+                                        {/* Message */}
+                                        <div className="flex-1">
+                                            <label className="block text-zinc-300 text-sm mb-1">Message</label>
+                                            <textarea
+                                                name="message"
+                                                rows={4}
+                                                value={formik.values.message}
+                                                onChange={formik.handleChange}
+                                                onBlur={formik.handleBlur}
+                                                className={`${inputClass("message")} resize-none w-full`}
+                                            />
+                                            <ErrorMsg msg={formik.touched.message ? formik.errors.message : undefined} />
+                                        </div>
+
+                                        {/* reCAPTCHA */}
+                                        <div className="flex-shrink-0 mt-2 lg:mt-6 xl:mt-2">
+                                            <div className="scale-[0.78] origin-top-left lg:scale-100">
+                                                <ReCAPTCHA
+                                                    sitekey={RECAPTCHA_SITE_KEY}
+                                                    ref={recaptchaRef}
+                                                />
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                     <motion.button

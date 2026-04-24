@@ -309,6 +309,7 @@ export default function Contact() {
             }
         },
     });
+    const [countryCode, setCountryCode] = useState("+91");
 
     const inputClass = (field: keyof typeof formik.values) =>
         `w-full border rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-zinc-400 outline-none transition-colors duration-200 focus:ring-1 bg-transparent ${
@@ -457,28 +458,54 @@ export default function Contact() {
                                 </div>
 
                                 {/* Phone */}
-                                <div>
-                                    <label className="block text-zinc-300 font-medium text-lg mb-1.5">
-                                        Phone
-                                    </label>
-                                    <input
-                                        id="phone"
-                                        name="phone"
-                                        type="text"
-                                        placeholder="Phone"
-                                        value={formik.values.phone}
-                                        onChange={formik.handleChange}
-                                        onBlur={formik.handleBlur}
-                                        className={inputClass("phone")}
-                                    />
-                                    <ErrorMsg
-                                        msg={
-                                            formik.touched.phone
-                                                ? formik.errors.phone
-                                                : undefined
-                                        }
-                                    />
-                                </div>
+                              <div>
+                                        <label className="block text-zinc-300 font-medium text-lg mb-1.5">
+                                            Phone
+                                        </label>
+
+                                        <div className="flex border border-gray-100 rounded-lg overflow-hidden focus-within:ring-1 focus-within:ring-[#3D7773]/20">
+
+                                            {/* Country Code */}
+                                            <div className="relative">
+                                                <select
+                                                    value={countryCode}
+                                                    onChange={(e) => setCountryCode(e.target.value)}
+                                                    className="appearance-none bg-transparent text-white pl-3 pr-8 py-2.5 outline-none border-r border-[#3D7773]"
+                                                >
+                                                    <option className="bg-[#0B1F1E] text-white" value="+91">+91</option>
+                                                </select>
+
+                                                {/* Custom Dropdown Icon */}
+                                                <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white text-xs">
+                                                    ▼
+                                                </div>
+                                            </div>
+
+                                            {/* Phone Input */}
+                                            <input
+                                                id="phone"
+                                                name="phone"
+                                                type="tel"
+                                                placeholder="Your phone number"
+                                                value={formik.values.phone}
+                                                onChange={(e) => {
+                                                    const val = e.target.value.replace(/\D/g, "");
+                                                    formik.setFieldValue("phone", val);
+                                                }}
+                                                onBlur={formik.handleBlur}
+                                                className="w-full bg-transparent px-4 py-2.5 text-sm text-white placeholder:text-zinc-400 outline-none"
+                                                maxLength={10}
+                                            />
+                                        </div>
+
+                                        <ErrorMsg
+                                            msg={
+                                                formik.touched.phone
+                                                    ? formik.errors.phone
+                                                    : undefined
+                                            }
+                                        />
+                                    </div>
 
                                 {/* Message */}
                                 <div className="flex-1">

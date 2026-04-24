@@ -93,12 +93,12 @@ app.post("/contact", async (req, res) => {
       }
     );
 console.log("reCAPTCHA response:", JSON.stringify(captchaRes.data));
-    // if (!captchaRes.data.success) {
-    //   return res.status(400).json({
-    //     success: false,
-    //     message: "Captcha failed",
-    //   });
-    // }
+    if (!captchaRes.data.success) {
+      return res.status(400).json({
+        success: false,
+        message: "Captcha failed",
+      });
+    }
 
     // ✅ Mail config
     const transporter = nodemailer.createTransport({
