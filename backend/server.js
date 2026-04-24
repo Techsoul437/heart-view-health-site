@@ -34,7 +34,7 @@ const corsOptions = {
 
 // ✅ 1. CORS FIRST
 app.use(cors(corsOptions));
-app.options("*", cors(corsOptions)); // ✅ safer than path pattern
+app.options("/{*path}", cors(corsOptions)); // ✅ safer than path pattern
 
 // ✅ 2. 🔥 HANDLE OPTIONS CLEANLY (NO LOGIC EXECUTION)
 app.use((req, res, next) => {
