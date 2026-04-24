@@ -24,7 +24,7 @@ const corsOptions = {
       callback(null, true);
     } else {
       console.log("Blocked by CORS:", origin);
-      callback(null, false); // ❗ FIX: error throw mat karo
+      callback(null, false); 
     }
   },
   methods: ["GET", "POST", "OPTIONS"],
@@ -34,7 +34,7 @@ const corsOptions = {
 
 // ✅ 1. CORS FIRST
 app.use(cors(corsOptions));
-app.options("/{*path}", cors(corsOptions)); // ✅ safer than path pattern
+app.options("/{*path}", cors(corsOptions)); 
 
 // ✅ 2. 🔥 HANDLE OPTIONS CLEANLY (NO LOGIC EXECUTION)
 app.use((req, res, next) => {
@@ -134,11 +134,11 @@ console.log("reCAPTCHA response:", JSON.stringify(captchaRes.data));
   console.error("Server Error:", err);
   return res.status(500).json({
     success: false,
-    message: err.message,   // 👈 change this line
+    message: err.message,   
   });
 }
 });
 
-// ✅ Server start (Render ke liye)
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Running on ${PORT}`));

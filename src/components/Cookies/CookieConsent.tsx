@@ -63,7 +63,7 @@ export default function CookieConsent() {
       
       <button
         onClick={acceptCookies}
-        className="px-9 py-3 rounded-full group relative text-white overflow-hidden bg-gradient-to-r from-[#181E2B] to-[#3D7773] before:absolute before:inset-0 before:rounded-full before:p-[1px] before:bg-gradient-to-r before:from-[#45657D] before:to-[#B4B0B0] before:content-[''] cursor-pointer"
+        className="px-5 py-2 rounded-full group relative text-white overflow-hidden bg-gradient-to-r from-[#181E2B] to-[#3D7773] before:absolute before:inset-0 before:rounded-full before:p-[1px] before:bg-gradient-to-r before:from-[#45657D] before:to-[#B4B0B0] before:content-[''] cursor-pointer"
       >
         <span className="absolute inset-[2px] rounded-full bg-gradient-to-r from-[#181E2B] to-[#3D7773]"></span>
         <span className="relative z-10">Accept</span>
@@ -72,7 +72,7 @@ export default function CookieConsent() {
 
       <button
         onClick={rejectCookies}
-        className="px-9 py-3 rounded-full border border-white/30 hover:bg-white/10"
+        className="px-6 py-2 rounded-full border border-white/30 hover:bg-white/10"
       >
         Reject
       </button>
