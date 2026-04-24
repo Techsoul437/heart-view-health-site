@@ -92,34 +92,23 @@ app.post("/contact", async (req, res) => {
         },
       }
     );
-
-    if (!captchaRes.data.success) {
-      return res.status(400).json({
-        success: false,
-        message: "Captcha failed",
-      });
-    }
+console.log("reCAPTCHA response:", JSON.stringify(captchaRes.data));
+    // if (!captchaRes.data.success) {
+    //   return res.status(400).json({
+    //     success: false,
+    //     message: "Captcha failed",
+    //   });
+    // }
 
     // ✅ Mail config
-    // const transporter = nodemailer.createTransport({
-    //   service: "gmail",
-    //   auth: {
-    //     user: process.env.EMAIL_USER,
-    //     pass: process.env.EMAIL_PASS,
-    //   },
-    // });
     const transporter = nodemailer.createTransport({
-  host: "smtp.office365.com",
-  port: 587,
-  secure: false, // TLS
-  auth: {
-    user: process.env.EMAIL_USER,  // info@heartviewhealth.com
-    pass: process.env.EMAIL_PASS,  // Microsoft account password
-  },
-  tls: {
-    ciphers: "SSLv3",
-  },
-});
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+  
     
     // ✅ Send mail
     await transporter.sendMail({
@@ -141,14 +130,13 @@ app.post("/contact", async (req, res) => {
       message: "Email sent successfully",
     });
 
-  } catch (err) {
-    console.error("Server Error:", err);
-
-    return res.status(500).json({
-      success: false,
-      message: "Internal server error",
-    });
-  }
+ } catch (err) {
+  console.error("Server Error:", err);
+  return res.status(500).json({
+    success: false,
+    message: err.message,   // 👈 change this line
+  });
+}
 });
 
 // ✅ Server start (Render ke liye)
