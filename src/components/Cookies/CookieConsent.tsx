@@ -39,19 +39,19 @@ export default function CookieConsent() {
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-black/70 flex items-end justify-start">
+    <div className="fixed inset-0 z-[9999] bg-black/70 flex items-center justify-center px-4">
       
-      {/* Bottom Bar */}
-      <div className="w-full bg-black text-white px-6 py-4 h-60 flex flex-col items-start justify-between gap-4 pointer-events-auto">
+      {/* Center Modal */}
+      <div className="w-full max-w-3xl bg-black text-white px-6 py-6 rounded-2xl shadow-xl flex flex-col gap-6 pointer-events-auto">
         
-        <p className="text-md text-center font-light  md:text-left">
+        <p className="text-md text-center font-light md:text-left leading-relaxed">
           We use cookies to enhance your experience, analyze site usage, and assist in our marketing efforts.
           By clicking Accept, you agree to our use of cookies.
           <br />
           You can manage your preferences or reject non-essential cookies at any time.
         </p>
 
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row justify-center md:justify-end gap-3">
           
           <button
             onClick={acceptCookies}

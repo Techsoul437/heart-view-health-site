@@ -101,14 +101,26 @@ app.post("/contact", async (req, res) => {
     }
 
     // ✅ Mail config
+    // const transporter = nodemailer.createTransport({
+    //   service: "gmail",
+    //   auth: {
+    //     user: process.env.EMAIL_USER,
+    //     pass: process.env.EMAIL_PASS,
+    //   },
+    // });
     const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-    });
-
+  host: "smtp.office365.com",
+  port: 587,
+  secure: false, // TLS
+  auth: {
+    user: process.env.EMAIL_USER,  // info@heartviewhealth.com
+    pass: process.env.EMAIL_PASS,  // Microsoft account password
+  },
+  tls: {
+    ciphers: "SSLv3",
+  },
+});
+    
     // ✅ Send mail
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
