@@ -22,10 +22,10 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="lg:fixed top-0 left-0 w-full h-24 md:h-28 sticky flex items-center bg-[#0e1118] border-b border-white/10 backdrop-blur-xl z-[999]">
+      <header className="lg:fixed top-0 left-0 w-full h-24 md:h-28 sticky flex items-center bg-[#0e1118] border-b border-white/10 backdrop-blur-xl z-999">
         <div className="w-full max-w-screen-8xl mx-auto flex items-center justify-between px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20">
           <Link href="/">
-            <Image src="/logo3.png" alt="HeartView Health" height={140} width={120} />
+            <Image src="/APP ICONSM.png" alt="HeartView Health" height={220} width={220} />
 
           </Link>
 

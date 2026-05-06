@@ -64,9 +64,9 @@ export default function Footer() {
         <div className="relative px-6 py-10 sm:px-8 md:px-10 lg:px-12 xl:px-14">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-[0.95fr_1fr_1fr_1fr] lg:gap-12">
             <div className="flex flex-col justify-between text-left">
-              <div className="max-w-[320px] sm:max-w-[360px]">
-                <Image src="/logo3.png" alt="HeartView Health" height={140} width={120} className="h-auto w-full max-w-[120px]" />
-                <p className="mt-4 text-sm sm:text-base leading-7 text-slate-200/90 font-light max-w-[340px] sm:max-w-[400px]">
+              <div className="max-w-100 sm:max-w-90">
+                <Image src="/APP ICONSM.png" alt="HeartView Health" height={240} width={220} className="h-auto w-full max-w-60" />
+                <p className=" leading-7 text-slate-200/90 font-light mt-5 max-w-85 sm:max-w-100">
                   Stay aware, track health easily, and take control of your well-being with smarter insights and effortless habits.
                 </p>
               </div>
