@@ -63,7 +63,31 @@ src: url('/font/Poppins/Poppins-Regular.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
 } */
+/* AutoFill Background Remove */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: white !important;
+  caret-color: white;
+  transition: background-color 9999s ease-in-out 0s;
+}
+input,
+textarea,
+select {
+  color: white !important;
+}
+input::placeholder,
+textarea::placeholder {
+  color: #7F8CA3 !important;
+}
+.custom-input {
+  color: white !important;
+}
 
+.custom-input::placeholder {
+  color: #7F8CA3 !important;
+}
 h1, h2, h3, h4, h5, h6 {
   font-family: 'PoppinsCustom';
 }

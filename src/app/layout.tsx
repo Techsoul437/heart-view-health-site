@@ -2,9 +2,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Manrope } from "next/font/google";
 import "./globals.css";
-import WhatsAppButton from "@/Ui/whatsAppButton/WhatsAppButton";
-import CookieConsent from "@/components/Cookies/CookieConsent";
-import PageLoader from "@/Ui/loader/PageLoader";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
