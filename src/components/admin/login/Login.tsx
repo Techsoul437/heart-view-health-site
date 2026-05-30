@@ -163,13 +163,13 @@ const accountSchema = Yup.object({
 // ════════════════════════════════════════════════════════════════════════════
 
 const inputClass =
-  "h-13 w-full rounded-2xl border border-[#45657D]/60 bg-[#131D2B]/90 px-5 text-white placeholder:text-[#7F8CA3] outline-none transition-all duration-300 focus:border-[#4E9B95]  focus:ring-4 focus:ring-[#3D7773]/10";
+  "h-13 w-full rounded-2xl border border-[#45657D]/60 bg-[#131D2B]/90 px-5 text-black placeholder:text-[#7F8CA3] outline-none transition-all duration-300 focus:border-[#4E9B95]  focus:ring-4 focus:ring-[#3D7773]/10";
 
 const buttonClass =
-  "flex h-13 w-full items-center justify-center rounded-2xl bg-[#4A8B86] text-white shadow-lg shadow-[#3D7773]/20 transition-all duration-300 hover:scale-[1.01] hover:bg-[#56A29B] active:scale-[0.99]";
+  "flex h-13 w-full items-center justify-center rounded-2xl bg-[#4A8B86] text-black shadow-[#2f5ba5]/70/20 transition-all duration-300 hover:scale-[1.01] hover:bg-[#56A29B] active:scale-[0.99]";
 
 const outlineButtonClass =
-  "flex h-13 w-full items-center justify-center gap-3 rounded-2xl border border-[#45657D]/40 bg-[#182235]/60 text-white transition-all duration-300 hover:bg-[#1D2A40]";
+  "flex h-13 w-full items-center justify-center gap-3 rounded-2xl border border-[#45657D]/40 bg-[#182235]/60 text-black transition-all duration-300 hover:bg-[#1D2A40]";
 
 // ════════════════════════════════════════════════════════════════════════════
 //  REUSABLE ATOMS
@@ -179,7 +179,7 @@ const BackButton = ({ onClick }: BackButtonProps) => (
   <button
     type="button"
     onClick={onClick}
-    className="mb-6 flex items-center gap-2 text-[#9BA8BC] transition-all hover:text-white"
+    className="mb-6 flex items-center gap-2 text-[#9BA8BC] transition-all hover:text-black"
   >
     <ArrowLeft className="h-4 w-4" />
     Back
@@ -188,7 +188,7 @@ const BackButton = ({ onClick }: BackButtonProps) => (
 
 const MobileField = () => (
   <div className="flex gap-3">
-    <div className="flex h-13 items-center gap-2 whitespace-nowrap rounded-2xl border border-[#45657D]/60 bg-[#131D2B]/90 px-4 text-white">
+    <div className="flex h-13 items-center gap-2 whitespace-nowrap rounded-2xl border border-[#45657D]/60 bg-[#131D2B]/90 px-4 text-black">
       +91
     </div>
 
@@ -216,7 +216,7 @@ const OtpInputs = () => (
         key={item}
         type="text"
         maxLength={1}
-        className="h-14 w-14 rounded-2xl border border-[#45657D]/50 bg-[#182235]/90 text-center text-lg text-white shadow-inner outline-none transition-all duration-300 focus:border-[#4E9B95] focus:ring-4 focus:ring-[#3D7773]/10"
+        className="h-14 w-14 rounded-2xl border border-[#45657D]/50 bg-[#182235]/90 text-center text-lg text-black shadow-inner outline-none transition-all duration-300 focus:border-[#4E9B95] focus:ring-4 focus:ring-[#3D7773]/10"
       />
     ))}
   </div>
@@ -232,7 +232,7 @@ const StepIndicator = ({
         <div key={item} className="flex items-center">
           <div
             className={`flex h-9 w-9 items-center justify-center rounded-full transition-all duration-300 ${current >= item
-              ? "bg-[#4A8B86] text-white"
+              ? "bg-[#4A8B86] text-black"
               : "bg-[#1E293B] text-[#8391A7]"
               }`}
           >
@@ -281,11 +281,11 @@ const LeftSide = () => (
 
       <div className="flex flex-1 flex-col justify-center">
         <div className="max-w-md">
-          <h2 className="text-xl font-medium leading-tight text-white sm:text-2xl lg:text-3xl xl:text-5xl xl:leading-13">
+          <h2 className="text-xl font-medium leading-tight text-black sm:text-2xl lg:text-3xl xl:text-5xl xl:leading-13">
             Create your Lab Portal account
           </h2>
 
-          <p className="mt-5 leading-7 text-white/70">
+          <p className="mt-5 leading-7 text-[#64748B]">
             Securely manage reports, patients, and lab operations
             with a modern healthcare dashboard experience.
           </p>
@@ -299,7 +299,7 @@ const LeftSide = () => (
             >
 
 
-              <h3 className="font-medium text-white">
+              <h3 className="font-medium text-black">
                 {item.title}
               </h3>
             </div>
@@ -516,7 +516,7 @@ const LoginOtpVerify = ({
     <>
       <BackButton onClick={onBack} />
 
-      <h2 className="text-3xl text-white">
+      <h2 className="text-3xl text-black">
         Verify OTP
       </h2>
 
@@ -575,7 +575,7 @@ const LoginPanel = ({
   return (
     <>
       <div className="mb-8">
-        <h2 className="text-lg font-normal text-white sm:text-xl lg:text-2xl xl:text-3xl">
+        <h2 className="text-lg font-normal text-black sm:text-xl lg:text-2xl xl:text-3xl">
           Welcome Back!
         </h2>
 
@@ -590,7 +590,7 @@ const LoginPanel = ({
             type="button"
             onClick={() => setLoginStep("mobile")}
             className={`flex-1 rounded-xl py-3 font-medium transition-all duration-300 ${loginStep === "mobile"
-              ? "bg-[#4A8B86] text-white"
+              ? "bg-[#4A8B86] text-black"
               : "text-[#94A3B8]"
               }`}
           >
@@ -601,7 +601,7 @@ const LoginPanel = ({
             type="button"
             onClick={() => setLoginStep("email")}
             className={`flex-1 rounded-xl py-3 font-medium transition-all duration-300 ${loginStep === "email"
-              ? "bg-[#4A8B86] text-white"
+              ? "bg-[#4A8B86] text-black"
               : "text-[#94A3B8]"
               }`}
           >
@@ -638,7 +638,7 @@ const SignupStep1 = ({
   onLoginClick,
 }: SignupStep1Props) => (
   <>
-    <h2 className="text-lg font-normal text-white sm:text-xl lg:text-2xl xl:text-3xl">
+    <h2 className="text-lg font-normal text-black sm:text-xl lg:text-2xl xl:text-3xl">
       Let&apos;s get started
     </h2>
 
@@ -750,13 +750,13 @@ const SignupStep2 = ({
 
   return (
     <>
-      <h2 className="text-lg font-normal text-white sm:text-xl lg:text-2xl xl:text-3xl">
+      <h2 className="text-lg font-normal text-black sm:text-xl lg:text-2xl xl:text-3xl">
         Verify your number
       </h2>
 
       <p className="mt-2 text-[#94A3B8]">
         Enter the 6-digit code sent to{" "}
-        <span className="font-medium text-white">
+        <span className="font-medium text-black">
           +91 {mobile}
         </span>{" "}
         <button
@@ -801,7 +801,7 @@ const SignupStep2 = ({
 
 const SignupStep3 = ({ onNext }: SignupStep3Props) => (
   <>
-    <h2 className="text-lg font-normal text-white sm:text-xl lg:text-2xl xl:text-3xl">
+    <h2 className="text-lg font-normal text-black sm:text-xl lg:text-2xl xl:text-3xl">
       Tell us about your lab
     </h2>
 
@@ -864,7 +864,7 @@ const SignupStep3 = ({ onNext }: SignupStep3Props) => (
               <select
                 {...field}
                 className={`${inputClass} ${form.values.labType
-                  ? "text-white!"
+                  ? "text-black!"
                   : "text-[#7F8CA3]!"
                   }`}
               >
@@ -929,7 +929,7 @@ const SignupStep4 = ({
 
   return (
     <>
-      <h2 className="text-lg font-normal text-white sm:text-xl lg:text-2xl xl:text-3xl">
+      <h2 className="text-lg font-normal text-black sm:text-xl lg:text-2xl xl:text-3xl">
         Create your account
       </h2>
 

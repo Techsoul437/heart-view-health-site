@@ -6,6 +6,7 @@ import Image from "next/image";
 import FillButton from "@/Ui/buttons/FillButton";
 import { usePathname } from "next/navigation";
 import ContactModal from "../contactModel/ContactModal";
+import BorderButton from "../buttons/BorderButton";
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
@@ -22,7 +23,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="lg:fixed top-0 left-0 w-full h-24 md:h-28 sticky flex items-center bg-[#0e1118] border-b border-white/10 backdrop-blur-xl z-999">
+      <header className="lg:fixed top-0 left-0 w-full h-24 md:h-25 sticky flex items-center bg-black border-b border-black/10 backdrop-blur-xl z-999">
         <div className="w-full max-w-screen-8xl mx-auto flex items-center justify-between px-4 sm:px-6 md:px-10 lg:px-16 xl:px-20">
           <Link href="/">
             <Image src="/APP ICONSM.png" alt="HeartView Health" height={220} width={220} />
@@ -38,13 +39,13 @@ export default function Navbar() {
                   key={link.label}
                   href={link.href}
                   className={`relative group text-md font-medium whitespace-nowrap transition duration-200
-          ${isActive ? "text-[#3D7773]" : "text-slate-300 hover:text-[#3D7773]"}`}
+          ${isActive ? "text-[#2f5ba5]" : "text-gray-300 hover:text-[#2f5ba5]"}`}
                 >
                   {link.label}
 
                   {/* underline */}
                   <span
-                    className={`absolute left-0 -bottom-1 h-0.5 bg-gradient-to-r from-[#45657D] to-[#B4B0B0] transition-all duration-300
+                    className={`absolute left-0 -bottom-1 h-0.5 bg-linear-to-r from-[#2f5ba5]/70 to-[#4a7bc9]/30 transition-all duration-300
           ${isActive ? "w-full" : "w-0 group-hover:w-full"}`}
                   ></span>
                 </Link>
@@ -56,12 +57,13 @@ export default function Navbar() {
             <div className="hidden lg:block">
           <div onClick={() => setOpen(true)}>
 
-              <FillButton text="Join Early Access" href="" />
+                                     <BorderButton text="Join Early Access" href="" bgColor="bg-black"></BorderButton>
+
             </div>
             </div>
 
             <button
-              className="lg:hidden inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-100 transition hover:bg-white/10"
+              className="lg:hidden inline-flex h-12 w-12 items-center text-white justify-center rounded-full border border-white/10 bg-black/5 text-gray-300-100 transition hover:bg-black/10"
               onClick={() => setSidebarOpen(true)}
               aria-label="Open menu"
             >
@@ -74,9 +76,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="w-full hidden lg:flex justify-center items-start overflow-hidden absolute inset-x-0 top-0 z-0 pointer-events-none">
-          <div className="h-28 w-full max-w-screen-8xl rounded-b-[30px] bg-gradient-to-b from-cyan-500/10 to-transparent blur-3xl" />
-        </div>
+  
       </header>
 
       <div
@@ -85,12 +85,12 @@ export default function Navbar() {
       />
 
       <aside
-        className={`fixed top-0 right-0 h-full w-full max-w-sm sm:max-w-md bg-slate-950/95 backdrop-blur-xl border-l border-white/10 z-[1001] flex flex-col gap-4 p-6 transition-transform duration-300 lg:hidden ${sidebarOpen ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed top-0 right-0 h-full w-full max-w-sm sm:max-w-md bg-black backdrop-blur-xl border-l border-black/10 z-[1001] flex flex-col gap-4 p-6 transition-transform duration-300 lg:hidden ${sidebarOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         <div className="flex justify-end">
           <button
             onClick={() => setSidebarOpen(false)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-200 transition hover:bg-white/10"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/5 text-white transition hover:bg-black/10"
             aria-label="Close menu"
           >
             ✕
@@ -107,7 +107,7 @@ export default function Navbar() {
                 href={link.href}
                 scroll={true}
                 className={`relative group text-md py-3 font-medium whitespace-nowrap transition duration-200
-          ${isActive ? "text-[#3D7773]" : "text-slate-300 hover:text-[#3D7773]"}`}
+          ${isActive ? "text-[#2f5ba5]" : "text-gray-300 hover:text-[#2f5ba5]"}`}
 
               >
                 {link.label}
@@ -124,7 +124,8 @@ export default function Navbar() {
 
         <div className="mt-auto pt-6 border-t border-white/10">
           <div onClick={() => setOpen(true)}>
-            <FillButton text="Join Early Access" />
+                          <BorderButton text="Join Early Access" href="" bgColor="bg-black"></BorderButton>
+
           </div>
         </div>
 

@@ -15,13 +15,13 @@ function Hero() {
 
           <div className="sm:max-w-5xl max-w-4xl">
 
-            <h1 className="heading-font text-2xl md:text-3xl lg:text-4xl font-medium text-white leading-tight tracking-tight mb-3">
+            <h1 className="heading-font text-2xl md:text-3xl lg:text-4xl font-medium text-black leading-tight tracking-tight mb-3">
               A Smarter Way to
               <br />
               Understand Your Heart
             </h1>
 
-            <p className="text-base sm:text-lg text-white leading-relaxed font-light lg:max-w-md">
+            <p className="text-base sm:text-lg text-black leading-relaxed font-light lg:max-w-md">
               Understand Your Heart Health Before Problems Start
               Track, analyze, and improve your health with simple insights.
             </p>
@@ -29,7 +29,7 @@ function Hero() {
             <div className="flex flex-wrap gap-4 py-5 items-center">
               <Link
                 href="/contact"
-                className="flex items-center gap-2 bg-white/15 hover:bg-white/25 text-white text-xs sm:text-xs md:text-xs xl:text-sm font-semibold px-6 py-3 rounded-full border border-white/40 backdrop-blur-sm transition-all duration-200"
+                className="flex items-center gap-2 bg-white/15 hover:bg-white/25 text-black text-xs sm:text-xs md:text-xs xl:text-sm font-semibold px-6 py-3 rounded-full border border-white/40 backdrop-blur-sm transition-all duration-200"
               >
                 Join Early Access
               </Link>

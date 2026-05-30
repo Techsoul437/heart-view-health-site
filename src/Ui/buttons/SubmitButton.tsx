@@ -19,7 +19,7 @@ function SubmitButton({
       onClick={onClick}
       className="
         group relative px-6 py-3 sm:px-7 sm:py-2.5 lg:px-8 lg:py-3 rounded-full 
-        text-white overflow-hidden 
+        text-black overflow-hidden 
         text-xs sm:text-sm lg:text-base
         bg-linear-to-r from-[#181E2B] to-[#3D7773]
 

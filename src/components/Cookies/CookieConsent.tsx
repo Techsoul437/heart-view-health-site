@@ -42,12 +42,12 @@ export default function CookieConsent() {
    <div className="fixed inset-0 z-9999 bg-black/70 flex items-end mb-3 justify-center px-4">
   
   {/* Banner */}
-  <div className="w-full max-w-7xl bg-black text-white px-6 py-6 rounded-2xl shadow-xl flex flex-col md:flex-row md:items-center md:justify-between gap-6 pointer-events-auto">
+  <div className="w-full max-w-7xl bg-black text-black px-6 py-6 rounded-2xl shadow-xl flex flex-col md:flex-row md:items-center md:justify-between gap-6 pointer-events-auto">
     <div className="flex flex-col sm:flex-row sm:items-center gap-3">
   
   {/* ICON */}
   <div className="flex justify-center sm:justify-start">
-    <PiCookieLight className="text-white text-3xl shrink-0" />
+    <PiCookieLight className="text-black text-3xl shrink-0" />
   </div>
 
   {/* TEXT */}
@@ -63,7 +63,7 @@ export default function CookieConsent() {
       
       <button
         onClick={acceptCookies}
-        className="px-5 py-2 rounded-full group relative text-white overflow-hidden bg-linear-to-r from-[#181E2B] to-[#3D7773] before:absolute before:inset-0 before:rounded-full before:p-px before:bg-linear-to-r before:from-[#45657D] before:to-[#B4B0B0] before:content-[''] cursor-pointer"
+        className="px-5 py-2 rounded-full group relative text-black overflow-hidden bg-linear-to-r from-[#181E2B] to-[#3D7773] before:absolute before:inset-0 before:rounded-full before:p-px before:bg-linear-to-r before:from-[#45657D] before:to-[#B4B0B0] before:content-[''] cursor-pointer"
       >
         <span className="absolute inset-0.5 rounded-full bg-linear-to-r from-[#181E2B] to-[#3D7773]"></span>
         <span className="relative z-10">Accept</span>
@@ -72,7 +72,7 @@ export default function CookieConsent() {
 
       <button
         onClick={rejectCookies}
-        className="px-6 py-2 rounded-full border border-white/30 hover:bg-white/10"
+        className="px-6 py-2 rounded-full border border-white/30 hover:bg-black/10"
       >
         Reject
       </button>

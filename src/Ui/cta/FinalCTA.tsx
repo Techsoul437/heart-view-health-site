@@ -10,7 +10,7 @@ export default function FinalCTA() {
     <section className="relative w-full max-w-screen-8xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 py-12 sm:py-16 overflow-hidden">
 
       {/* MAIN BOX */}
-      <div className="relative rounded-2xl border border-white/10 overflow-hidden">
+      <div className="relative rounded-2xl border border-black/10 overflow-hidden">
 
         <div className="relative">
 
@@ -44,7 +44,7 @@ export default function FinalCTA() {
               viewport={{ once: true }}
               className="inline-block mb-4 sm:mb-6"
             >
-              <span className="text-[10px] sm:text-xs font-semibold tracking-widest text-[#3D7773] uppercase border border-white/30 rounded-full px-3 py-1 sm:px-4">
+              <span className="text-[10px] sm:text-xs font-semibold tracking-widest text-[#2f5ba5] uppercase border border-white/30 rounded-full px-3 py-1 sm:px-4">
                 Final CTA
               </span>
             </motion.div>
@@ -55,7 +55,7 @@ export default function FinalCTA() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className=" text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white"
+              className=" text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-black"
             >
               Start your Health Journey Today
             </motion.h2>
@@ -66,7 +66,7 @@ export default function FinalCTA() {
               whileInView={{ opacity: 0.7, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="mt-4 max-w-xl sm:max-w-2xl mx-auto text-base sm:text-lg  leading-relaxed  font-light text-white/50"
+              className="mt-4 max-w-xl sm:max-w-2xl mx-auto text-base sm:text-lg  leading-relaxed  font-light text-black/50"
             >
               Start tracking your health, get insights, and build better habits all in one smart platform.
             </motion.p>

@@ -130,7 +130,7 @@ export default function ReportsOverviewChart({
     <div
       className="
         rounded-2xl
-        border border-white/10
+        border border-black/10
         bg-[#111827]/80
         p-5
         shadow-xl
@@ -140,11 +140,11 @@ export default function ReportsOverviewChart({
       {/* Header */}
       <div className="mb-5">
         <div>
-          <h4 className="text-lg md:text-xl xl:text-2xl text-white">
+          <h4 className="text-lg md:text-xl xl:text-2xl text-black">
             Reports Overview
           </h4>
 
-          <p className="mt-1 text-slate-400">
+          <p className="mt-1 text-[#64748B]">
             Monthly upload and activity analytics
           </p>
         </div>

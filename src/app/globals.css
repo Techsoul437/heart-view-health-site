@@ -28,7 +28,8 @@
 
 /* BODY pe background image */
 .page-bg {
-  background-image: url('/page-bg.png'); 
+  /* background-image: url('/page-bg.png');  */
+  background-color: white;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -74,9 +75,7 @@ input:-webkit-autofill:active {
 }
 input,
 textarea,
-select {
-  color: white !important;
-}
+
 input::placeholder,
 textarea::placeholder {
   color: #7F8CA3 !important;

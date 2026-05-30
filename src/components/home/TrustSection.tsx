@@ -34,7 +34,7 @@ export default function TrustSection() {
   ];
 
   return (
-    <section className="w-full text-white pt-10">
+    <section className="w-full text-black pt-10">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
 
         {/* Heading */}
@@ -60,17 +60,17 @@ export default function TrustSection() {
         `}
               >
                 {/* ICON */}
-                <div className="w-15 h-15 flex items-center justify-center rounded-full bg-[#3D7773]/15 border border-[#3D7773]/20 text-[#3D7773] mb-4 group-hover:scale-110 transition">
+                <div className="w-15 h-15 flex items-center justify-center rounded-full bg-[#2f5ba5]/70/15 border border-[#3D7773]/20 text-[#2f5ba5] mb-4 group-hover:scale-110 transition">
                   <Icon size={28} />
                 </div>
 
                 {/* TEXT */}
                 <div className="flex flex-col items-center">
-                  <h2 className="text-xl sm:text-xl lg:text-2xl mb-2 min-h-[1rem] lg:min-h-[4rem] xl:min-h-0 group-hover:text-[#3D7773] transition">
+                  <h2 className="text-xl sm:text-xl lg:text-2xl mb-2 min-h-[1rem] lg:min-h-[4rem] xl:min-h-0 group-hover:text-[#2f5ba5] transition">
                     {item.title}
                   </h2>
 
-                  <p className="text-base sm:text-lg lg:max-w-sm font-light max-w-sm text-gray-400 leading-relaxed line-clamp-2">
+                  <p className="text-base sm:text-lg lg:max-w-sm font-light max-w-sm text-[#64748B]   leading-relaxed line-clamp-2">
                     {item.desc}
                   </p>
                 </div>
@@ -83,7 +83,7 @@ export default function TrustSection() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="text-center text-base sm:text-lg font-medium text-gray-300 max-w-2xl mx-auto mb-12 leading-relaxed"
+          className="text-center text-base sm:text-lg font-normal text-[#64748B]  max-w-2xl mx-auto mb-12 leading-relaxed"
         >
           A calm, reliable system that works quietly in the background  helping you stay aware without turning health into effort.
         </motion.p>
@@ -97,7 +97,7 @@ export default function TrustSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="w-75 sm:w-85 md:w-95 text-center px-5 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-base sm:text-lg  leading-relaxed font-light backdrop-blur-md"
+              className="w-75 sm:w-85 md:w-95 text-center px-5 py-2 rounded-full border border-black/10 bg-black/5 text-[#64748B] text-base sm:text-lg  leading-relaxed font-light backdrop-blur-md"
             >
               {item}
             </motion.span>

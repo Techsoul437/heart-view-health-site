@@ -67,20 +67,20 @@ function Card({ item, index, type }: CardProps) {
       initial={{ opacity: 0, y: 6 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.08 }}
-      className="group rounded-xl p-6 shadow-sm shadow-[#3D7773] transition-all duration-300 hover:shadow-sm  hover:border hover:border-teal-500/40"
+      className="group rounded-xl p-6 border border-black/10 transition-all duration-300  hover:border-[#2f5ba5]/70"
     >
       <div className="mb-3 flex items-center justify-between">
-        {/* <span className="text-xs tracking-widest text-[#3D7773] uppercase">
+        {/* <span className="text-xs tracking-widest text-[#2f5ba5] uppercase">
           {type}
         </span> */}
-        <span className="text-white/20 text-2xl">{item.num}</span>
+        <span className="text-[#2f5ba5] text-2xl">{item.num}</span>
       </div>
 
-      <h2 className="text-xl sm:text-xl lg:text-2xl  min-h-0 sm:min-h-[4rem] xl:min-h-[4rem] text-white/80 group-hover:text-white transition">
+      <h2 className="text-xl sm:text-xl lg:text-2xl  min-h-0 sm:min-h-16 xl:min-h-16 text-gray-950  transition">
         {item.title}
       </h2>
 
-      <p className="mt-2 text-base sm:text-lg   font-light text-white/40 leading-relaxed">
+      <p className="mt-2 text-base sm:text-lg   font-light text-[#64748B]  leading-relaxed">
         {item.desc}
       </p>
     </motion.div>

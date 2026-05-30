@@ -17,7 +17,7 @@ export default function ResetButton({
     <button
       type="button"
       onClick={onReset}
-      className={`inline-flex items-center justify-center rounded-full border border-white/50 px-8 py-3 text-base font-semibold text-white transition-all duration-200 hover:bg-white/10 ${className}`}
+      className={`inline-flex items-center justify-center rounded-full border border-white/50 px-8 py-3 text-base font-semibold text-black transition-all duration-200 hover:bg-black/10 ${className}`}
     >
       {text}
     </button>

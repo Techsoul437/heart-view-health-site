@@ -10,18 +10,18 @@ function Hero() {
     const [open, setOpen] = useState(false);
   return (
     <section className="w-full">
-      <div className="max-w-8xl bg-[#0B0B0B] mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 p-10 ">
+      <div className="max-w-8xl bg-[#f7f7f7] mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 p-10 ">
 
         <div className="grid lg:grid-cols-2 gap-12 items-center mt-20">
 
           {/* LEFT SIDE - CONTENT */}
-          <div className="text-white">
+          <div className="text-black">
 
-            <h1 className="heading-font text-2xl md:text-3xl lg:text-4xl font-medium text-white leading-tight tracking-tight mb-3 max-w-md">
+            <h1 className="heading-font text-2xl md:text-3xl lg:text-4xl font-medium text-black leading-tight tracking-tight mb-3 max-w-md">
               Track, Understand & Improve Your Heart Health Daily
             </h1>
 
-            <p className="text-base sm:text-lg text-white leading-relaxed font-light lg:max-w-md">
+            <p className="text-base sm:text-lg text-[#64748B]  leading-relaxed font-light lg:max-w-md">
               All your health data, insights, and habits in one simple dashboard.
             </p>
 
@@ -29,12 +29,13 @@ function Hero() {
             <div className="flex flex-wrap gap-4 py-6 items-center">
               <FillButton text="Explore Features" href="/features" />
              <div onClick={() => setOpen(true)}>
-                <BorderButton text="Join Early Access"  />
+                                     <BorderButton text="Join Early Access" href="" bgColor="bg-[#F7F7F7]"></BorderButton>
+
               </div>
             </div>
   <ContactModal isOpen={open} onClose={() => setOpen(false)} />
             {/* Social Proof */}
-            {/* <p className="flex items-center gap-2 text-white/80 text-sm font-medium mt-4">
+            {/* <p className="flex items-center gap-2 text-black/80 text-sm font-medium mt-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -50,13 +51,13 @@ function Hero() {
               Trusted by 5,000+ users
             </p>
 
-            <p className="flex items-center gap-2 text-white/60 text-sm font-light mt-6">
+            <p className="flex items-center gap-2 text-[#475569] text-sm font-light mt-6">
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 fill="currentColor"
-                className="w-4 h-4 text-white/50"
+                className="w-4 h-4 text-black/50"
               >
                 <path
                   fillRule="evenodd"

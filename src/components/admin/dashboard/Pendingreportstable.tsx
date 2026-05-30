@@ -56,7 +56,7 @@ export default function PendingReportsTable({
     <div
       className="
         rounded-2xl
-        border border-white/10
+        border border-black/10
         bg-[#111827]/80
         p-5
         shadow-xl
@@ -66,11 +66,11 @@ export default function PendingReportsTable({
       {/* Header */}
       <div className="mb-5 flex items-center justify-between">
         <div>
-          <h4 className="text-lg md:text-xl xl:text-2xl text-white">
+          <h4 className="text-lg md:text-xl xl:text-2xl text-black">
             Pending Reports
           </h4>
 
-          <p className="mt-1 text-slate-400">
+          <p className="mt-1 text-[#64748B]">
             Reports waiting for review
           </p>
         </div>
@@ -96,7 +96,7 @@ export default function PendingReportsTable({
           <thead>
             <tr
               className="
-                border-b border-white/10
+                border-b border-black/10
                 text-left
                 uppercase
                 text-slate-200
@@ -116,7 +116,7 @@ export default function PendingReportsTable({
                 className="
                   border-b border-white/5
                   transition-all
-                  hover:bg-white/5
+                  hover:bg-black/5
                   last:border-0
                 "
               >
@@ -144,19 +144,19 @@ export default function PendingReportsTable({
                       </svg>
                     </span>
 
-                    <span className="font-medium text-slate-400">
+                    <span className="font-medium text-[#64748B]">
                       {row.report}
                     </span>
                   </div>
                 </td>
 
                 {/* Patient */}
-                <td className="py-4 pr-4 text-slate-400">
+                <td className="py-4 pr-4 text-[#64748B]">
                   {row.patient}
                 </td>
 
                 {/* Uploaded by */}
-                <td className="py-4 pr-4 text-slate-400">
+                <td className="py-4 pr-4 text-[#64748B]">
                   {row.by}
                 </td>
 

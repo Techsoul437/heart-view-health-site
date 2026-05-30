@@ -133,7 +133,7 @@ export default function ReportsByStatusChart({
     <div
       className="
         rounded-2xl
-        border border-white/10
+        border border-black/10
         bg-[#111827]/80
         p-5
         shadow-xl
@@ -146,11 +146,11 @@ export default function ReportsByStatusChart({
     >
       {/* Header */}
       <div className="mb-5">
-        <h4 className="text-lg md:text-xl xl:text-2xl text-white">
+        <h4 className="text-lg md:text-xl xl:text-2xl text-black">
           Reports by Status
         </h4>
 
-        <p className="mt-1 text-slate-400">
+        <p className="mt-1 text-[#64748B]">
           Current report processing overview
         </p>
       </div>
@@ -242,7 +242,7 @@ export default function ReportsByStatusChart({
                   gap-3
                   rounded-xl
                   border border-white/5
-                  bg-white/5
+                  bg-black/5
                   px-4
                   py-3
                   w-full
@@ -257,7 +257,7 @@ export default function ReportsByStatusChart({
 
                 <span
                   className="
-                    text-slate-400
+                    text-[#64748B]
                     md:text-base
                     truncate
                   "
@@ -269,7 +269,7 @@ export default function ReportsByStatusChart({
                   className="
                     ml-auto
                     whitespace-nowrap
-                    text-white
+                    text-black
                     font-semibold
                     md:text-base
                   "

@@ -67,7 +67,7 @@ export default function Sidebar({
         h-screen
         w-80
         border-r
-        border-white/10
+        border-black/10
         bg-[#0e151d]
         backdrop-blur-2xl
         lg:flex
@@ -75,7 +75,7 @@ export default function Sidebar({
       "
     >
       {/* ── Logo ── */}
-      <div className="relative z-10 flex h-24 items-center justify-start border-b border-white/10 px-6">
+      <div className="relative z-10 flex h-24 items-center justify-start border-b border-black/10 px-6">
         <div className="flex min-w-max items-center gap-4">
           <div className="relative h-40 w-40 overflow-hidden">
             <Image
@@ -112,8 +112,8 @@ export default function Sidebar({
                   duration-300
                   ${
                     isActive
-                      ? "border-[#5AA39A]/40 bg-linear-to-r from-[#5AA39A]/30 to-[#132738]/80 text-white"
-                      : "border-transparent text-[#8A97AD] hover:border-white/10 hover:bg-[#101B2D]/90 hover:text-white"
+                      ? "border-[#5AA39A]/40 bg-linear-to-r from-[#5AA39A]/30 to-[#132738]/80 text-black"
+                      : "border-transparent text-[#8A97AD] hover:border-black/10 hover:bg-[#101B2D]/90 hover:text-black"
                   }
                 `}
               >
@@ -125,7 +125,7 @@ export default function Sidebar({
                     rounded-xl
                     ${
                       isActive
-                        ? "bg-[#5AA39A]/20 text-white"
+                        ? "bg-[#5AA39A]/20 text-black"
                         : "bg-[#162133] text-[#7C8CA5]"
                     }
                   `}
@@ -138,7 +138,7 @@ export default function Sidebar({
                     {item.title}
                   </span>
 
-                  <ChevronRight className="h-4 w-4 text-slate-400" />
+                  <ChevronRight className="h-4 w-4 text-[#64748B]" />
                 </div>
               </Link>
             );
@@ -147,10 +147,10 @@ export default function Sidebar({
       </div>
 
       {/* ── Bottom User Card ── */}
-      <div className="relative z-10 border-t border-white/10 px-4 py-4">
+      <div className="relative z-10 border-t border-black/10 px-4 py-4">
         <div className="flex items-center justify-start gap-3">
           {/* Avatar with initials */}
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-[#4A8B86] to-[#2D5F5C]   text-white shadow-lg shadow-[#3D7773]/30">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-[#4A8B86] to-[#2D5F5C]   text-black shadow-[#2f5ba5]/70/30">
             {initials}
           </div>
 
@@ -158,26 +158,26 @@ export default function Sidebar({
           <div>
             {/* Lab name */}
             <div className="mb-1 inline-flex items-center gap-1 rounded-md  py-0.5">
-              <ShieldCheck className="h-4 w-4 text-slate-400" />
+              <ShieldCheck className="h-4 w-4 text-[#64748B]" />
 
-              <span className="whitespace-nowrap  font-medium text-slate-400">
+              <span className="whitespace-nowrap  font-medium text-[#64748B]">
                 {labName}
               </span>
             </div>
 
             {/* User name */}
-            <p className="whitespace-nowrap  font-semibold leading-tight text-white">
+            <p className="whitespace-nowrap  font-semibold leading-tight text-black">
               {userName}
             </p>
 
             {/* Email */}
-            <p className="mt-0.5 max-w-42.5 truncate whitespace-nowrap  text-slate-400">
+            <p className="mt-0.5 max-w-42.5 truncate whitespace-nowrap  text-[#64748B]">
               {userEmail}
             </p>
           </div>
 
           {/* Logout */}
-          <button className="ml-auto flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-slate-400 transition-all duration-200 hover:bg-red-500/10 hover:text-red-400">
+          <button className="ml-auto flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-[#64748B] transition-all duration-200 hover:bg-red-500/10 hover:text-red-400">
             <LogOut className="h-4 w-4" />
           </button>
         </div>

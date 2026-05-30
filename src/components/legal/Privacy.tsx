@@ -179,15 +179,15 @@ function AnimatedSection({
       className="mb-6"
     >
       {/* CARD */}
-      <div className="rounded-2xl   shadow-md shadow-white/10 border-t border-white/10 backdrop-blur-md p-5 sm:p-6">
+      <div className="rounded-2xl   shadow-md shadow-white/10 border-t border-black/10 backdrop-blur-md p-5 sm:p-6">
 
         {/* HEADER */}
         <div className="flex items-start gap-4 mb-4">
-          {/* <div className="flex items-center justify-center rounded-full bg-teal-500/10 text-white font-mono w-10 h-10 text-sm px-3 py-1">
+          {/* <div className="flex items-center justify-center rounded-full bg-teal-500/10 text-black font-mono w-10 h-10 text-sm px-3 py-1">
             {section.number}
           </div> */}
 
-          <h2 className="text-xl sm:text-xl lg:text-2xl text-white/90 leading-snug">
+          <h2 className="text-xl sm:text-xl lg:text-2xl text-black/90 leading-snug">
             {section.title}
           </h2>
         </div>
@@ -204,7 +204,7 @@ function AnimatedSection({
           )}
 
           {section.content && !section.highlight && (
-            <p className="text-white/60 text-base sm:text-lg font-light leading-relaxed">
+            <p className="text-[#475569] text-base sm:text-lg font-light leading-relaxed">
               {section.content}
             </p>
           )}
@@ -218,10 +218,10 @@ function AnimatedSection({
                   initial={{ opacity: 0, x: -6 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.3, delay: i * 0.04 }}
-                  className="flex items-start gap-3 text-white/60 text-base sm:text-lg font-light leading-relaxed  "
+                  className="flex items-start gap-3 text-[#475569] text-base sm:text-lg font-light leading-relaxed  "
                 >
                   {/* ✅ DOT REPLACED WITH MODERN ICON STYLE */}
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3D7773]/60 shrink-0" />
+                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#2f5ba5]/70/60 shrink-0" />
                   {item}
                 </motion.li>
               ))}
@@ -231,7 +231,7 @@ function AnimatedSection({
           {/* SUBSECTIONS */}
           {section.subsections?.map((sub, si) => (
             <div key={si} className="pt-2">
-              <p className="text-white/80 text-sm sm:text-base mb-2">
+              <p className="text-black/80 text-sm sm:text-base mb-2">
                 {sub.subtitle}
               </p>
 
@@ -239,9 +239,9 @@ function AnimatedSection({
                 {sub.list.map((item, i) => (
                   <li
                     key={i}
-                    className="flex items-start gap-3 text-white/50 text-base sm:text-lg font-light leading-relaxed  "
+                    className="flex items-start gap-3 text-black/50 text-base sm:text-lg font-light leading-relaxed  "
                   >
-                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3D7773]/40 shrink-0" />
+                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#2f5ba5]/70/40 shrink-0" />
                     {item}
                   </li>
                 ))}
@@ -257,7 +257,7 @@ function AnimatedSection({
 
 export default function Privacy() {
   return (
-    <div className="min-h-screen max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-0 lg:mt-15  text-white">
+    <div className="min-h-screen max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-0 lg:mt-15  text-black">
 
       {/* HERO */}
       <div className="pt-6 sm:pt-10 lg:pt-16 mx-auto">
@@ -270,24 +270,24 @@ export default function Privacy() {
 
           {/* TAG */}
           <div className="mb-5">
-            <span className="text-xs tracking-widest uppercase text-[#3D7773] border border-white/20 rounded-full px-4 py-1">
+            <span className="text-xs tracking-widest uppercase font-semibold text-[#2f5ba5] border border-[#2f5ba5]/70 rounded-full px-4 py-1">
               Legal Document
             </span>
           </div>
 
           {/* TITLE */}
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-medium leading-tight mb-3">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl text-black font-medium leading-tight mb-3">
             HEARTVIEW HEALTH PRIVACY POLICY
           </h1>
 
           {/* SUBTITLE */}
-          <p className="text-white/60 text-sm sm:text-base">
+          <p className="text-[#475569] text-sm sm:text-base">
             HeartView Health Technologies Private Limited Last updated April 2026
           </p>
         </motion.div>
 
         {/* DIVIDER */}
-        <div className="h-px bg-gradient-to-r from-teal-500/40 via-white/10 to-transparent my-8" />
+        <div className="h-px bg-gradient-to-r from-teal-500/40 via-black/10 to-transparent my-8" />
 
         {/* SECTIONS */}
         <div className="space-y-4">

@@ -314,15 +314,15 @@ function Section({ data }: { data: SectionType }) {
       className="mb-8 mt-8"
     >
       {/* 🔥 CARD WRAPPER (NEW DESIGN) */}
-      <div className="rounded-2xl shadow-md shadow-white/10 border-t border-white/10 backdrop-blur-md p-5 sm:p-6">
+      <div className="rounded-2xl shadow-md shadow-white/10 border-t border-black/10 backdrop-blur-md p-5 sm:p-6">
 
         {/* HEADER */}
         <div className="flex gap-4 mb-4 items-start">
-          {/* <span className="text-[#3D7773] font-semibold bg-[#3D7773]/10 px-3 py-1 rounded-lg">
+          {/* <span className="text-[#2f5ba5] font-semibold bg-[#2f5ba5]/70 px-3 py-1 rounded-lg">
             {data.number}
           </span> */}
 
-          <h2 className="text-xl sm:text-xl lg:text-2xl text-white tracking-tight leading-snug">
+          <h2 className="text-xl sm:text-xl lg:text-2xl text-black tracking-tight leading-snug">
             {data.title}
           </h2>
         </div>
@@ -330,17 +330,17 @@ function Section({ data }: { data: SectionType }) {
         {/* CONTENT */}
         <div className="space-y-3">
           {data.points.map((point, i) => (
-            <div key={i} className="flex items-start gap-3 text-white/60 text-base sm:text-lg leading-relaxed font-light">
+            <div key={i} className="flex items-start gap-3 text-[#475569] text-base sm:text-lg leading-relaxed font-light">
 
               {/* ✅ DOT REPLACED (MODERN LOOK) */}
-              {/* <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3D7773]/70 shrink-0" /> */}
+              {/* <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#2f5ba5]/70/70 shrink-0" /> */}
 
               <div>
                 {typeof point === "string" ? (
                   point
                 ) : (
                   <div>
-                    <p className="text-white/60 text-base sm:text-lg leading-relaxed font-light">
+                    <p className="text-[#475569] text-base sm:text-lg leading-relaxed font-light">
                       {point.title}
                     </p>
 
@@ -348,9 +348,9 @@ function Section({ data }: { data: SectionType }) {
                       {point.items.map((item, idx) => (
                         <div
                           key={idx}
-                          className="flex items-start gap-3 text-white/50 text-base sm:text-lg leading-relaxed font-light"
+                          className="flex items-start gap-3 text-black/50 text-base sm:text-lg leading-relaxed font-light"
                         >
-                          <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#3D7773]/50 shrink-0" />
+                          <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#2f5ba5]/70/50 shrink-0" />
                           {item}
                         </div>
                       ))}
@@ -371,15 +371,16 @@ function Section({ data }: { data: SectionType }) {
 
 export default function TermsCondition() {
   return (
-    <div className="  max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-0 lg:mt-15  text-white">
+    <div className="  max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-0 lg:mt-15  text-black">
       <div className="pt-5 md:pt-8 lg:pt-20  mx-auto">
-        <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full ">
-          <span className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1">
+        <div className="inline-flex items-center gap-2 mb-4 px-3 py-1.5 rounded-full ">
+          <span className="text-xs tracking-widest uppercase font-semibold text-[#2f5ba5] border border-[#2f5ba5]/70 rounded-full px-4 py-1">
+
             Legal Document
           </span>
         </div>
         {/* Terms & Conditions */}
-        <h1 className=" text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white mb-4">{title}</h1>
+        <h1 className=" text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-black mb-4">{title}</h1>
         <p className="text-base sm:text-lg font-light font-light leading-relaxed mb-10">{subtitle}</p>
 
         {sections.map((sec, i) => (
@@ -387,7 +388,7 @@ export default function TermsCondition() {
         ))}
 
 
-      
+
 
       </div>
     </div>

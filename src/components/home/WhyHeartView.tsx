@@ -24,7 +24,7 @@ const features = [
 
 export default function WhyHeartView() {
   return (
-    <section className="w-full max-w-8xl  mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 pt-10 text-white">
+    <section className="w-full max-w-8xl  mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 pt-10 text-black">
 
       {/* Header */}
 
@@ -46,12 +46,12 @@ export default function WhyHeartView() {
             >
               {/* Vertical Divider */}
               {index !== features.length - 1 && (
-                <div className="hidden lg:block absolute right-0 top-0 h-full w-px bg-white/10"></div>
+                <div className="hidden lg:block absolute right-0 top-0 h-full w-px bg-black/10"></div>
               )}
 
               {/* Icon */}
-              <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#3D7773]/10 mb-6">
-                <Icon className="text-[#3D7773] text-lg" />
+              <div className="w-15 h-15 flex items-center justify-center rounded-full bg-[#2f5ba5]/10 mb-6">
+                <Icon className="text-[#2f5ba5] text-2xl" />
               </div>
 
               {/* Content */}
@@ -59,7 +59,7 @@ export default function WhyHeartView() {
                 {item.title}
               </h2>
 
-              <p className="text-base sm:text-lg font-light text-slate-400 leading-relaxed max-w-xs md:max-w-70 lg:max-w-70 xl:max-w-70 2xl:max-w-80">
+              <p className="text-base sm:text-lg font-light text-[#64748B] leading-relaxed max-w-xs md:max-w-70 lg:max-w-70 xl:max-w-70 2xl:max-w-80">
                 {item.desc}
               </p>
             </motion.div>

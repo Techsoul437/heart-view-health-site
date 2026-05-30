@@ -24,7 +24,7 @@ const steps = [
 
 export default function LifestyleSection() {
   return (
-    <section className="text-white pt-10">
+    <section className="text-black pt-10">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
 
         {/* Heading */}
@@ -35,7 +35,7 @@ export default function LifestyleSection() {
         <div className="relative mt-5">
 
           {/* Center Line */}
-          <div className="absolute left-1/2 top-0 h-full w-px bg-[#3D7773]/30 -translate-x-1/2" />
+          <div className="absolute left-1/2 top-0 h-full w-px bg-[#2f5ba5]/30 -translate-x-1/2" />
 
           <div className="space-y-0">
             {steps.map((step, index) => (
@@ -55,11 +55,11 @@ export default function LifestyleSection() {
                       transition={{ duration: 0.5 }}
                       className="max-w-sm text-right flex flex-col justify-center min-h-20 lg:min-h-40"
                     >
-                      <h2 className="text-xl lg:text-2xl font-medium text-[#3D7773]">
+                      <h2 className="text-xl lg:text-2xl font-medium text-[#2f5ba5]">
                         {step.title}
                       </h2>
 
-                      <p className="text-gray-400 mt-2 text-base sm:text-lg leading-relaxed font-light">
+                      <p className="text-[#64748B]   mt-2 text-base sm:text-lg leading-relaxed font-light">
                         {step.desc}
                       </p>
                     </motion.div>
@@ -68,8 +68,8 @@ export default function LifestyleSection() {
 
                 {/* CENTER */}
                 <div className="flex justify-center items-center relative min-h-20 lg:min-h-40">
-                  <div className="w-10 h-10 rounded-full bg-[#3D7773]/10 border border-[#3D7773]/40 flex items-center justify-center">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#3D7773]" />
+                  <div className="w-10 h-10 rounded-full bg-[#4a7bc9]/10 border border-[#2f5ba5]/40 flex items-center justify-center">
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#2f5ba5]/70" />
                   </div>
                 </div>
 
@@ -85,11 +85,11 @@ export default function LifestyleSection() {
                       transition={{ duration: 0.5 }}
                       className="max-w-sm text-left flex flex-col justify-center min-h-20 lg:min-h-40"
                     >
-                      <h2 className="text-xl lg:text-2xl font-medium text-[#3D7773]">
+                      <h2 className="text-xl lg:text-2xl font-medium text-[#2f5ba5]">
                         {step.title}
                       </h2>
 
-                      <p className="text-gray-400 mt-2 text-base sm:text-lg leading-relaxed font-light">
+                      <p className="text-[#64748B]   mt-2 text-base sm:text-lg leading-relaxed font-light">
                         {step.desc}
                       </p>
                     </motion.div>
@@ -99,10 +99,10 @@ export default function LifestyleSection() {
                 {/* MOBILE */}
                 <div className="md:hidden text-center py-6">
                   <div className="bg-[#181E2B]/10   w-auto  mx-auto rounded-xl px-5 py-6 backdrop-blur-sm">
-                    <h3 className="text-lg font-semibold text-[#3D7773]">
+                    <h3 className="text-lg font-semibold text-[#2f5ba5]">
                       {step.title}
                     </h3>
-                    <p className="text-gray-400 mt-2 mx-auto max-w-xs ">{step.desc}</p>
+                    <p className="text-[#64748B]   mt-2 mx-auto max-w-xs ">{step.desc}</p>
                   </div>
                 </div>
 

@@ -91,7 +91,7 @@ export default function FeatureSection() {
             <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
 
                 <Headerbadge tag="Features" text="Advanced Cardiac Monitoring & Health Intelligence" />
-                <p className="text-white/70 text-lg  font-light   leading-relaxed text-center">
+                <p className="text-[#64748B] text-lg  font-light   leading-relaxed text-center">
                     A complete system to monitor, analyze, and improve cardiovascular health with real-time insights.
                 </p>
                 {/* Grid */}
@@ -105,13 +105,24 @@ export default function FeatureSection() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: index * 0.05 }}
                                 viewport={{ once: true }}
-                                className="group rounded-2xl  p-6 shadow-sm shadow-[#3D7773]  hover:border border-teal-500/40 hover:bg-white/2   transition-all"
+                                className="group rounded-2xl  p-6 border border-black/10 hover:border hover:border-[#4a7bc9]/30 hover:bg-white/2   transition-all"
                             >
                                 <div className="flex items-center gap-4">
-                                    <div className="p-3 rounded-xl bg-[#3D7773] font-bold text-white">
+                                    <div     className="
+    group relative rounded-xl
+    bg-linear-to-r from-[#7CC4FF] to-[#85bdf8]
+    text-white overflow-hidden
+    before:absolute before:inset-0 before:rounded-xl
+    before:p-px
+    before:bg-linear-to-r before:from-[#0f61b3] before:to-[#6AA2E5]/10
+    before:content-['']
+    shadow-[0_10px_30px_rgba(47,91,165,0.18)]">
+                                            <div className="relative z-10 flex items-center justify-center rounded-xl bg-linear-to-r from-[#2f5ba5]/80 to-[#4a7bc9]/50 p-3 backdrop-blur-xl transition duration-300 group-hover:scale-105">
+
                                         <Icon className="w-6 h-6" />
+                                        </div>
                                     </div>
-                                    <h2 className="text-xl sm:text-xl lg:text-2xl font-medium text-white">
+                                    <h2 className="text-xl sm:text-xl lg:text-2xl font-medium text-black">
                                         {feature.title}
                                     </h2>
                                 </div>
@@ -120,9 +131,9 @@ export default function FeatureSection() {
                                     {feature.points.map((point, i) => (
                                         <li
                                             key={i}
-                                            className="text-base sm:text-lg   font-light text-gray-400 leading-relaxed flex gap-2"
+                                            className="text-base sm:text-lg   font-light text-[#64748B]   leading-relaxed flex gap-2"
                                         >
-                                            <span className="text-[#3D7773]">•</span>
+                                            <span className="text-[#2f5ba5]">•</span>
                                             <span>{point}</span>
                                         </li>
                                     ))}
@@ -148,15 +159,15 @@ export default function FeatureSection() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.6 }}
                                 transition={{ duration: 0.6, ease: "easeOut" }}
-                                className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1"
+                                className="inline-block text-xs font-semibold tracking-widest text-[#2f5ba5] uppercase border border-white/30 rounded-full px-4 py-1"
                             >
                                 Security
                             </motion.span>
-                            <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-medium leading-tight text-white">
+                            <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-medium leading-tight text-black">
                                 Data Privacy & Security
                             </h3>
 
-                            <p className="mt-3 sm:mt-4 text-gray-400 max-w-xl mx-auto text-base sm:text-lg  leading-relaxed  font-light">
+                            <p className="mt-3 sm:mt-4 text-[#64748B]   max-w-xl mx-auto text-base sm:text-lg  leading-relaxed  font-light">
                                 Your health data is handled with strict privacy and security standards.
                             </p>
                         </div>
@@ -167,13 +178,13 @@ export default function FeatureSection() {
         max-w-4xl 
         mx-auto 
         rounded-2xl 
-        border border-white/10 
-        bg-white/5 
+        border border-black/10 
+        bg-black/5 
         backdrop-blur-md
         p-5 sm:p-6 md:p-8
       ">
 
-                               <ul className="space-y-4 sm:space-y-5 text-gray-300 text-base sm:text-lg font-light">
+                               <ul className="space-y-4 sm:space-y-5 text-[#64748B]  text-base sm:text-lg font-light">
 
   {[
     "Secure storage with data encryption and access control",
@@ -183,7 +194,7 @@ export default function FeatureSection() {
   ].map((item, i) => (
     <li 
       key={i} 
-      className="group flex items-start gap-4 rounded-xl p-3 transition-all duration-300 hover:bg-white/5"
+      className="group flex items-start gap-4 rounded-xl p-3 transition-all duration-300 hover:bg-black/5"
     >
       
       <div className="
@@ -191,11 +202,11 @@ export default function FeatureSection() {
         w-8 h-8 
         rounded-full 
         bg-gradient-to-br from-[#3D7773] to-[#2b5f5b]
-        shadow-md shadow-[#3D7773]/30
+        shadow-md shadow-[#2f5ba5]/70/30
         shrink-0
       ">
         <svg
-          className="w-4 h-4 text-white"
+          className="w-4 h-4 text-black"
           fill="none"
           stroke="currentColor"
           strokeWidth="3"
@@ -205,7 +216,7 @@ export default function FeatureSection() {
         </svg>
       </div>
 
-      <span className="group-hover:text-white transition-colors duration-300">
+      <span className="group-hover:text-black transition-colors duration-300">
         {item}
       </span>
 
@@ -224,7 +235,7 @@ export default function FeatureSection() {
       top-1/2 left-1/2 
       w-72 sm:w-96 md:w-100
       h-72 sm:h-96 md:h-100
-      bg-[#3D7773]/20 
+      bg-[#2f5ba5]/70/20 
       blur-[100px] sm:blur-[120px] 
       -translate-x-1/2 -translate-y-1/2
     " />

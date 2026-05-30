@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 
 function WhyBuilt() {
   return (
@@ -17,24 +18,17 @@ function WhyBuilt() {
         >
 
           {/* Badge */}
-          <div className="py-4">
-            <span className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border border-white/30 rounded-full px-4 py-1">
-              Why We Built
-            </span>
 
-            {/* Heading */}
-            <h1 className="mt-4 text-2xl md:text-3xl lg:text-4xl font-medium text-white">
-              Why We Built HeartView Health
-            </h1>
-          </div>
+          <Headerbadge tag=" Why We Built" text="Why We Built HeartView Health" />
+
           {/* Description */}
-          <p className=" text-gray-400 text-base sm:text-lg leading-relaxed lg:max-w-3xl font-light mt-5">
+          <p className=" text-[#64748B]   text-base sm:text-lg leading-relaxed lg:max-w-3xl font-light mt-5">
             We saw people struggling with scattered health data, confusing reports, and no clear direction.
             So we built HeartView Health to make health simple, clear, and actionable.
           </p>
 
           {/* Subtext */}
-          <p className="mt-8 text-white text-base sm:text-lg font-light">
+          <p className="mt-8 text-black text-base sm:text-lg font-light">
             A platform that connects everything:
           </p>
 
@@ -48,16 +42,16 @@ function WhyBuilt() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="w-45 text-center px-5 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-base sm:text-lg  leading-relaxed font-light backdrop-blur-md"
+                className="w-45 text-center px-5 py-2 rounded-full border border-black/10 bg-black/5 text-[#64748B] text-base sm:text-lg  leading-relaxed font-light backdrop-blur-md"
               >
                 {item}
               </motion.span>
             ))}
           </div>
           {/* Bottom */}
-          <p className="mt-8 text-gray-400 text-base sm:text-lg leading-relaxed font-light">
+          <p className="mt-8 text-[#64748B]   text-base sm:text-lg leading-relaxed font-light">
             So users don’t just collect data{" "}
-            <span className="text-white font-medium">
+            <span className="text-black font-medium">
               they understand and use it.
             </span>
           </p>

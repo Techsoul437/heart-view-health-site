@@ -79,16 +79,16 @@ export default function PatientsPage() {
   );
 
   return (
-    <div className="min-h-screen p-5 text-white md:p-7">
+    <div className="min-h-screen p-5 text-black md:p-7">
       <div>
         {/* HEADER */}
         <div className="flex flex-col gap-5 border-b border-white/5 p-5 md:flex-row md:items-start md:justify-between md:p-6">
           <div>
-            <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-white">
+            <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
               Patients
             </h1>
 
-            <p className="mt-2 text-slate-400">
+            <p className="mt-2 text-[#64748B]">
               View and manage patients
             </p>
           </div>
@@ -116,11 +116,11 @@ export default function PatientsPage() {
                 w-full
                 rounded-lg
                 border
-                border-white/10
+                border-black/10
                 bg-[#0e151d]
                 pl-11
                 pr-4
-                text-white
+                text-black
                 outline-none
                 placeholder:text-slate-500
                 focus:border-cyan-400/40
@@ -187,19 +187,19 @@ export default function PatientsPage() {
                       hover:bg-cyan-500/2
                     "
                   >
-                    <td className="px-6 py-5 text-slate-400">
+                    <td className="px-6 py-5 text-[#64748B]">
                       {patient.name}
                     </td>
 
-                    <td className="px-6 py-5 text-slate-400">
+                    <td className="px-6 py-5 text-[#64748B]">
                       {patient.mobile}
                     </td>
 
-                    <td className="px-6 py-5 text-slate-400">
+                    <td className="px-6 py-5 text-[#64748B]">
                       {patient.age} 
                     </td>
 
-                    <td className="px-6 py-5 text-slate-400">
+                    <td className="px-6 py-5 text-[#64748B]">
                       {patient.gender}
                     </td>
 
@@ -219,7 +219,7 @@ export default function PatientsPage() {
     px-3
     text-lg
     font-medium
-    text-[#3D7773]
+    text-[#2f5ba5]
     transition
   "
                         >
@@ -288,9 +288,9 @@ export default function PatientsPage() {
                   justify-center
                   rounded-md
                   border
-                  border-white/10
+                  border-black/10
                   bg-white/3
-                  text-slate-400
+                  text-[#64748B]
                   disabled:cursor-not-allowed
                   disabled:opacity-40
                 "
@@ -319,8 +319,8 @@ export default function PatientsPage() {
                       font-semibold
                       transition
                       ${currentPage === i + 1
-                        ? "bg-[#3D7773] text-white"
-                        : "border border-white/10 bg-white/3 text-slate-400"
+                        ? "bg-[#2f5ba5]/70 text-black"
+                        : "border border-black/10 bg-white/3 text-[#64748B]"
                       }
                     `}
                   >
@@ -346,9 +346,9 @@ export default function PatientsPage() {
                   justify-center
                   rounded-md
                   border
-                  border-white/10
+                  border-black/10
                   bg-white/3
-                  text-slate-400
+                  text-[#64748B]
                   disabled:cursor-not-allowed
                   disabled:opacity-40
                 "

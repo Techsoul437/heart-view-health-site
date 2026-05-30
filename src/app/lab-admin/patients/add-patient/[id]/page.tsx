@@ -6,7 +6,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 import BorderButton from "@/Ui/buttons/BorderButton";
-import FillButton from "@/Ui/buttons/FillButton";
 import SubmitButton from "@/Ui/buttons/SubmitButton";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -119,31 +118,31 @@ export default function EditPatientPage() {
 
   if (loading) {
     return (
-      <div className="p-10 text-white">
+      <div className="p-10 text-black">
         Loading...
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen text-white">
+    <div className="min-h-screen text-black">
       <div className="min-h-screen p-5 sm:p-7 lg:p-10">
         {/* HEADER */}
         <div className="flex flex-col gap-5">
           <div className="flex items-center gap-3">
             <Link
               href="/lab-admin/patients"
-              className="flex h-10 w-10 items-center justify-center rounded-xl text-white transition hover:bg-white/10"
+              className="flex h-10 w-10 items-center justify-center rounded-xl text-black transition hover:bg-black/10"
             >
               <ArrowLeft size={20} />
             </Link>
             <div>
 
-              <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-white">
+              <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
                 Edit Patient
               </h1>
 
-              <p className=" text-slate-400">
+              <p className=" text-[#64748B]">
                 Update patient details
               </p>
             </div>
@@ -153,7 +152,7 @@ export default function EditPatientPage() {
         </div>
 
         {/* FORM */}
-        <div className="mt-8 rounded-3xl border border-white/10 bg-white/[0.03] p-5 shadow-2xl backdrop-blur-xl sm:p-8 lg:p-10">
+        <div className="mt-8 rounded-3xl border border-black/10 bg-white/3 p-5 shadow-2xl backdrop-blur-xl sm:p-8 lg:p-10">
           <Formik
             enableReinitialize
             initialValues={initialValues}
@@ -174,7 +173,7 @@ export default function EditPatientPage() {
                   type="text"
                   name="name"
                   placeholder="Enter patient name"
-                  className="rounded-2xl border border-white/10 bg-[#0e151d]/70 px-5 py-4 outline-none transition placeholder:text-slate-500"
+                  className="rounded-2xl border border-black/10 bg-[#0e151d]/70 px-5 py-4 outline-none transition placeholder:text-slate-500"
                 />
 
                 <ErrorMessage
@@ -197,7 +196,7 @@ export default function EditPatientPage() {
                   type="text"
                   name="mobile"
                   placeholder="Enter mobile number"
-                  className="rounded-2xl border border-white/10 bg-[#0e151d]/70 px-5 py-4 outline-none transition placeholder:text-slate-500"
+                  className="rounded-2xl border border-black/10 bg-[#0e151d]/70 px-5 py-4 outline-none transition placeholder:text-slate-500"
                 />
 
                 <ErrorMessage
@@ -222,7 +221,7 @@ export default function EditPatientPage() {
                     type="text"
                     name="age"
                     placeholder="Enter age"
-                    className="rounded-2xl border border-white/10 bg-[#0e151d]/70 px-5 py-4 outline-none transition placeholder:text-slate-500"
+                    className="rounded-2xl border border-black/10 bg-[#0e151d]/70 px-5 py-4 outline-none transition placeholder:text-slate-500"
                   />
 
                   <ErrorMessage
@@ -244,7 +243,7 @@ export default function EditPatientPage() {
                   <Field
                     as="select"
                     name="gender"
-                    className="rounded-2xl border border-white/10 bg-[#0e151d]/70 px-5 py-4 text-slate-300 outline-none transition"
+                    className="rounded-2xl border border-black/10 bg-[#0e151d]/70 px-5 py-4 text-slate-300 outline-none transition"
                   >
                     <option
                       value=""

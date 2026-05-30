@@ -58,15 +58,21 @@ const legalLinks = [
 
 export default function Footer() {
   return (
-    <footer className="w-full max-w-screen-8xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 py-12 sm:py-14 md:py-10">
-      <div className="relative overflow-hidden rounded-[34px] border border-white/10 bg-[#0e1118] shadow-2xl shadow-slate-950/30 backdrop-blur-3xl">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(56,189,248,0.18),_transparent_24%),radial-gradient(circle_at_bottom_right,_rgba(16,185,129,0.12),_transparent_22%)] opacity-90" />
-        <div className="relative px-6 py-10 sm:px-8 md:px-10 lg:px-12 xl:px-14">
+    <footer className="w-full max-w-screen-8xl mx-auto pt-4 sm:pt-10 lg:pt-20 ">
+      <div className="relative overflow-hidden max-w-8xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 border border-black/10 bg-black shadow-2xl shadow-slate-950/30 backdrop-blur-3xl">
+        <div
+          className="
+    pointer-events-none absolute inset-0
+    
+    bg-[radial-gradient(circle_at_top_left,rgba(47,91,165,0.28),transparent_24%),radial-gradient(circle_at_bottom_right,rgba(74,123,201,0.18),transparent_24%)]
+    opacity-80
+  "
+        /> <div className="relative py-10 ">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-[0.95fr_1fr_1fr_1fr] lg:gap-12">
             <div className="flex flex-col justify-between text-left">
               <div className="max-w-100 sm:max-w-90">
                 <Image src="/APP ICONSM.png" alt="HeartView Health" height={240} width={220} className="h-auto w-full max-w-60" />
-                <p className=" leading-7 text-slate-200/90 font-light mt-5 max-w-85 sm:max-w-100">
+                <p className=" leading-7 text-gray-300  font-light mt-5 max-w-85 sm:max-w-100">
                   Stay aware, track health easily, and take control of your well-being with smarter insights and effortless habits.
                 </p>
               </div>
@@ -82,7 +88,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm lg:text-base text-slate-300 transition duration-200 ease-in-out hover:text-white hover:underline underline-offset-4 active:text-slate-100"
+                      className="text-sm lg:text-base text-gray-300 transition duration-200 ease-in-out hover:text-[#2f5ba5] hover:underline underline-offset-4 active:text-slate-100"
                     >
                       {link.label}
                     </Link>
@@ -100,7 +106,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm lg:text-base text-slate-300 transition duration-200 ease-in-out hover:text-white hover:underline underline-offset-4 active:text-slate-100"
+                      className="text-sm lg:text-base text-gray-300  transition duration-200 ease-in-out hover:text-[#2f5ba5] hover:underline underline-offset-4 active:text-slate-100"
                     >
                       {link.label}
                     </Link>
@@ -109,29 +115,29 @@ export default function Footer() {
               </ul>
             </div>
 
-            <div className="space-y-4 text-slate-200/90">
+            <div className="space-y-4 ">
               <h4 className="text-xl font-semibold tracking-[0.02em] text-white">
                 Contact Details
               </h4>
-              <div className="space-y-2 text-sm leading-7 text-slate-300">
+              <div className="space-y-2 text-md leading-7 text-gray-300">
                 <a
                   href="https://maps.google.com/?q=19,+Arth+Residency,+Near+V.I.P.+Circle,+Utran,+Surat+394105"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block transition hover:text-white hover:underline"
+                  className="block transition hover:text-[#2f5ba5] hover:underline"
                 >
                   19, Arth Residency, Near V.I.P. Circle,
                   <br /> Utran, Surat – 394105, Gujarat
                 </a>
                 <a
                   href="tel:+918238524984"
-                  className="block transition hover:text-white hover:underline"
+                  className="block transition hover:text-[#2f5ba5] hover:underline"
                 >
                   +91 82385 24984
                 </a>
                 <a
                   href="mailto:info@heartviewhealth.com"
-                  className="block transition hover:text-white hover:underline"
+                  className="block transition hover:text-[#2f5ba5] hover:underline"
                 >
                   info@heartviewhealth.com
                 </a>
@@ -140,9 +146,9 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="mt-10 border-t border-white/10 pt-6">
+          <div className="mt-10 border-t border-black/10 pt-6">
             <div className="grid gap-4 text-center md:grid-cols-[auto_1fr_auto] md:text-left md:items-center">
-              <p className="text-sm text-slate-400 md:text-left">
+              <p className="text-sm text-gray-300 md:text-left">
                 © 2026 HeartViewHealth. All rights reserved.
               </p>
 
@@ -172,7 +178,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={item.label}
-                    className={`group inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-slate-300 transition duration-300 hover:bg-white/20 ${item.hoverClass} transform hover:-translate-y-1`}
+                    className={`group inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white  transition duration-300 hover:bg-white/20 ${item.hoverClass} transform hover:-translate-y-1`}
                   >
                     {item.icon}
                   </a>

@@ -30,10 +30,10 @@ const loginSchema = Yup.object({
 // ─────────────────────────────────────────────────────────────
 
 const inputClass =
-  "h-14 w-full rounded-2xl border border-[#45657D]/60 bg-[#07111F] px-5 text-white placeholder:text-[#7F8CA3] outline-none transition-all duration-300 focus:border-[#4E9B95] focus:ring-4 focus:ring-[#3D7773]/10";
+  "h-14 w-full rounded-2xl border border-[#45657D]/60 bg-[#07111F] px-5 text-black placeholder:text-[#7F8CA3] outline-none transition-all duration-300 focus:border-[#4E9B95] focus:ring-4 focus:ring-[#3D7773]/10";
 
 const buttonClass =
-  "flex h-14 w-full items-center justify-center rounded-2xl bg-[#5C9E98] text-lg font-medium text-white shadow-lg shadow-[#3D7773]/20 transition-all duration-300 hover:bg-[#67ABA5] active:scale-[0.99]";
+  "flex h-14 w-full items-center justify-center rounded-2xl bg-[#5C9E98] text-lg font-medium text-black shadow-[#2f5ba5]/70/20 transition-all duration-300 hover:bg-[#67ABA5] active:scale-[0.99]";
 
 // ─────────────────────────────────────────────────────────────
 // LEFT SIDE
@@ -65,11 +65,11 @@ const LeftSide = () => (
       {/* CONTENT */}
       <div className="flex flex-1 flex-col justify-center">
         <div className="max-w-md">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-5xl font-medium leading-tight text-white  xl:leading-13">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-5xl font-medium leading-tight text-black  xl:leading-13">
             Staff Portal Access
           </h2>
 
-          <p className="mt-6  leading-8 text-white/75">
+          <p className="mt-6  leading-8 text-black/75">
             Securely access patient reports, lab operations, and healthcare
             management tools with HeartView Staff Portal.
           </p>
@@ -84,7 +84,7 @@ const LeftSide = () => (
             >
          
 
-              <h3 className=" font-medium text-white">{item.title}</h3>
+              <h3 className=" font-medium text-black">{item.title}</h3>
             </div>
           ))}
         </div>
@@ -106,7 +106,7 @@ const StaffLoginPanel = () => {
     <>
       {/* HEADER */}
       <div className="mb-10">
-        <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal   text-white">
+        <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal   text-black">
           Welcome Back!
         </h2>
 

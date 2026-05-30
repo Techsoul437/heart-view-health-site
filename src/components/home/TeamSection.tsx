@@ -121,15 +121,15 @@ export default function TeamSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.6 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 mt-3 border-white/30 rounded-full px-4 py-1"
+          className="inline-block text-xs font-semibold tracking-widest text-[#2f5ba5] uppercase border mt-3 border-white/30 rounded-full px-4 py-1"
         >
           Team
         </motion.span>
-          <h2 className=" text-2xl md:text-3xl lg:text-4xl font-medium mt-4  text-white leading-tight mb-6">
+          <h2 className=" text-2xl md:text-3xl lg:text-4xl font-medium mt-4  text-black leading-tight mb-6">
            Meet the Experts Behind <br /> Our Vision
           </h2>
 
-          <p className="text-white/60 text-lg md:text-base lg:text-2xl font-light w-2xl mb-8">
+          <p className="text-[#475569] text-lg md:text-base lg:text-2xl font-light w-2xl mb-8">
     Dedicated professionals combining knowledge, experience, and innovation to make healthcare better for everyone.
           </p>
 
@@ -179,15 +179,15 @@ export default function TeamSection() {
                 {/* INFO */}
                 <div className="mt-3 flex ml-3 justify-between items-start">
                   <div>
-                    <p className="text-white text-lg font-semibold">
+                    <p className="text-black text-lg font-semibold">
                       {member.name}
                     </p>
-                    <p className="text-white/50 text-md mt-1">  
+                    <p className="text-black/50 text-md mt-1">  
                       {member.role}
                     </p>
                   </div>
 
-                  {/* <div className="w-7 h-7 bg-white/10 rounded-md flex items-center justify-center">
+                  {/* <div className="w-7 h-7 bg-black/10 rounded-md flex items-center justify-center">
                     <div className="w-2 h-2 bg-white rounded-full" />
                   </div> */}
                 </div>
@@ -200,13 +200,13 @@ export default function TeamSection() {
   <div className="flex justify-end gap-3 mt-8">
     <button
       onClick={() => scrollBy(-1)}
-      className="w-15 h-15 rounded-full border font-bold border-white/20 bg-white/10 text-white"
+      className="w-15 h-15 rounded-full border font-bold border-white/20 bg-black/10 text-black"
     >
       ←
     </button>
     <button
       onClick={() => scrollBy(1)}
-      className="w-15 h-15 rounded-full border font-bold border-white/20 bg-white/10 text-white"
+      className="w-15 h-15 rounded-full border font-bold border-white/20 bg-black/10 text-black"
     >
       →
     </button>

@@ -100,11 +100,23 @@ const phoneVariant = (fromRight: boolean): Variants => ({
 function PhoneFrame({ image, alt }: { image: string; alt: string }) {
   return (
     <div className="relative mx-auto w-64 sm:w-72 mt-5">
-      <div className="relative rounded-[3rem] border-[6px] border-white/10 bg-white/5 backdrop-blur-md shadow-[0_20px_80px_rgba(0,0,0,0.6)]">
-        <div className="absolute -left-2 top-24 w-1 h-8 bg-[#2c3b47] rounded-l-full" />
-        <div className="absolute -left-2 top-32 w-1 h-8 bg-[#2c3b47] rounded-l-full" />
-        <div className="absolute -left-2 top-16 w-1 h-5 bg-[#2c3b47] rounded-l-full" />
-        <div className="absolute -right-2 top-28 w-1 h-12 bg-[#2c3b47] rounded-r-full" />
+     <div
+  className="
+    relative rounded-[3rem]
+    border-[6px]
+    border-[#2C4363]
+    bg-linear-to-b
+    from-[#3E5F87]
+    via-[#2C4363]
+    to-[#18293D]
+    backdrop-blur-md
+    shadow-[0_25px_90px_rgba(44,67,99,0.45)]
+  "
+>
+        <div className="absolute -left-2 top-24 w-1 h-8 bg-[#000000] rounded-l-full" />
+        <div className="absolute -left-2 top-32 w-1 h-8 bg-[#000000] rounded-l-full" />
+        <div className="absolute -left-2 top-16 w-1 h-5 bg-[#000000] rounded-l-full" />
+        <div className="absolute -right-2 top-28 w-1 h-12 bg-[#000000] rounded-r-full" />
         <div className="rounded-[2.4rem] overflow-hidden">
           <div className="relative aspect-[9/19.5]">
             <Image src={image} alt={alt} fill className="object-cover" />
@@ -121,7 +133,7 @@ function ContentBlock({ step }: { step: Step }) {
   return (
     <motion.div
       variants={contentContainer}
-      className="flex flex-col justify-center  h-full shadow"
+      className="flex flex-col justify-center  h-full "
     >
       {/* <motion.div
   variants={contentContainer}
@@ -129,15 +141,15 @@ function ContentBlock({ step }: { step: Step }) {
     flex flex-col justify-center h-full
     rounded-2xl
     backdrop-blur-md
-    shadow-lg shadow-[#3D7773]/30
+    shadow-[#2f5ba5]/70/30
     transition-all duration-300
     p-6 sm:p-8
   "
 > */}
       {/* Number + Label */}
       <motion.div variants={contentChild} className="flex items-center justify-center lg:justify-start gap-3 mb-4">
-        <span className="text-5xl font-bold text-[#e8dff0]">{step.number}</span>
-        <span className="text-sm md:text-md font-medium tracking-widest uppercase text-[#3D7773]">
+        <span className="text-5xl font-bold text-[#2f5ba5]/70">{step.number}</span>
+        <span className="text-sm md:text-md font-medium tracking-widest uppercase text-[#2f5ba5]">
           {step.label}
         </span>
       </motion.div>
@@ -145,7 +157,7 @@ function ContentBlock({ step }: { step: Step }) {
       {/* Title */}
       <motion.h2
         variants={contentChild}
-        className="text-xl sm:text-xl lg:text-2xl mb-4 text-center lg:text-left leading-snug text-white"
+        className="text-xl sm:text-xl lg:text-2xl mb-4 text-center lg:text-left leading-snug text-black"
       >
         {step.title}
       </motion.h2>
@@ -153,7 +165,7 @@ function ContentBlock({ step }: { step: Step }) {
       {/* Description */}
       <motion.p
         variants={contentChild}
-        className="text-gray-400  text-base sm:text-lg text-center lg:text-left max-w-md mx-auto lg:mx-0 leading-relaxed font-light"
+        className="text-[#64748B]    text-base sm:text-lg text-center lg:text-left max-w-md mx-auto lg:mx-0 leading-relaxed font-light"
       >
         {step.description}
       </motion.p>
@@ -161,7 +173,7 @@ function ContentBlock({ step }: { step: Step }) {
       {/* Divider */}
       <motion.div
         variants={contentChild}
-        className="mt-8 h-px w-16 bg-[#B4B0B0] hidden lg:block"
+        className="mt-6 h-px w-16 bg-[#2f5ba5]/70 hidden lg:block"
       />
     </motion.div>
   );

@@ -41,16 +41,16 @@ export default function ReportsPage() {
     MONTHS.find((m) => m.value === month)?.label ?? "";
 
   return (
-    <div className="min-h-screen p-6 text-white overflow-x-hidden">
+    <div className="min-h-screen p-6 text-black overflow-x-hidden">
       {/* ───────────────── HEADER ───────────────── */}
       <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
         {/* Left */}
         <div>
-          <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-white">
+          <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
             Dashboard
           </h1>
 
-          <p className="mt-1 text-slate-400">
+          <p className="mt-1 text-[#64748B]">
             Overview of reports and activity
           </p>
         </div>
@@ -67,7 +67,7 @@ export default function ReportsPage() {
               className="
                 appearance-none
                 rounded-xl
-                border border-white/10
+                border border-black/10
                 bg-[#111827]/80
                 pl-4 pr-9 py-2.5
                 font-medium
@@ -86,14 +86,14 @@ export default function ReportsPage() {
                 <option
                   key={m.value}
                   value={m.value}
-                  className="bg-[#111827] text-white"
+                  className="bg-[#111827] text-black"
                 >
                   {m.label}
                 </option>
               ))}
             </select>
 
-            <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">
+            <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B]">
               ▾
             </span>
           </div>
@@ -108,7 +108,7 @@ export default function ReportsPage() {
               className="
                 appearance-none
                 rounded-xl
-                border border-white/10
+                border border-black/10
                 bg-[#111827]/80
                 pl-4 pr-9 py-2.5
                 font-medium
@@ -127,14 +127,14 @@ export default function ReportsPage() {
                 <option
                   key={y}
                   value={y}
-                  className="bg-[#111827] text-white"
+                  className="bg-[#111827] text-black"
                 >
                   {y}
                 </option>
               ))}
             </select>
 
-            <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">
+            <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B]">
               ▾
             </span>
           </div>
@@ -144,16 +144,16 @@ export default function ReportsPage() {
             className="
               flex items-center gap-2
               rounded-xl
-              border border-white/10
+              border border-black/10
               bg-[#111827]/80
               px-4 py-2.5
               font-medium
-              text-slate-400
+              text-[#64748B]
               backdrop-blur-md
               shadow-lg
             "
           >
-            <FiCalendar className="text-slate-400" />
+            <FiCalendar className="text-[#64748B]" />
             {monthLabel} {year}
           </div>
         </div>
