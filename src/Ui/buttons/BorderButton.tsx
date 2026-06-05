@@ -55,11 +55,11 @@ function BorderButton({ text = "Click Me", href = "#",bgColor = "" }) {
   {/* Inner Transparent Layer */}
 <span
   className={`
-    absolute inset-[1px] rounded-full
+    absolute inset-px rounded-full
     ${bgColor}
     group-hover:bg-transparent
     transition-all duration-300
-    z-[1]
+    z-1
   `}
 />
 

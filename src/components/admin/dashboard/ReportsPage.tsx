@@ -3,11 +3,12 @@
 import { useState } from "react";
 import { FiCalendar } from "react-icons/fi";
 
-import PendingReportsTable from "./Pendingreportstable";
+import PendingReportsTable from "./RecentPatientsCard";
 import StatsCards from "./Statscards";
 import ReportsOverviewChart from "./Reportsoverviewchart";
 import ReportsByStatusChart from "./Reportsbystatuschart";
 import RecentUploadsTable from "./Recentuploadstable";
+import RecentPatientsCard from "./RecentPatientsCard";
 
 const MONTHS = [
   { value: 1, label: "January" },
@@ -41,7 +42,7 @@ export default function ReportsPage() {
     MONTHS.find((m) => m.value === month)?.label ?? "";
 
   return (
-    <div className="min-h-screen p-6 text-black overflow-x-hidden">
+    <div className=" p-6 text-black overflow-x-hidden">
       {/* ───────────────── HEADER ───────────────── */}
       <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
         {/* Left */}
@@ -68,10 +69,10 @@ export default function ReportsPage() {
                 appearance-none
                 rounded-xl
                 border border-black/10
-                bg-[#111827]/80
+                bg-[#f7f7f7]
                 pl-4 pr-9 py-2.5
                 font-medium
-                text-slate-200
+                text-[#64748B]
                 backdrop-blur-md
                 shadow-lg
                 outline-none
@@ -86,7 +87,7 @@ export default function ReportsPage() {
                 <option
                   key={m.value}
                   value={m.value}
-                  className="bg-[#111827] text-black"
+                  className="bg-white text-black"
                 >
                   {m.label}
                 </option>
@@ -109,10 +110,11 @@ export default function ReportsPage() {
                 appearance-none
                 rounded-xl
                 border border-black/10
-                bg-[#111827]/80
+                                bg-[#f7f7f7]
+
                 pl-4 pr-9 py-2.5
                 font-medium
-                text-slate-200
+                text-[#64748B]
                 backdrop-blur-md
                 shadow-lg
                 outline-none
@@ -127,7 +129,7 @@ export default function ReportsPage() {
                 <option
                   key={y}
                   value={y}
-                  className="bg-[#111827] text-black"
+                  className="bg-white text-black"
                 >
                   {y}
                 </option>
@@ -145,7 +147,7 @@ export default function ReportsPage() {
               flex items-center gap-2
               rounded-xl
               border border-black/10
-              bg-[#111827]/80
+                    bg-[#f7f7f7]
               px-4 py-2.5
               font-medium
               text-[#64748B]
@@ -163,8 +165,7 @@ export default function ReportsPage() {
       <StatsCards year={year} month={month} />
 
       {/* ───────────────── CHARTS ───────────────── */}
-      <div className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-3">
-        {/* Left */}
+      <div className="mt-5 grid grid-cols-1 gap-5 2xl:grid-cols-3">
         <div className="lg:col-span-2 min-w-0">
           <ReportsOverviewChart
             year={year}
@@ -172,7 +173,6 @@ export default function ReportsPage() {
           />
         </div>
 
-        {/* Right */}
         <div className="min-w-0">
           <ReportsByStatusChart
             year={year}
@@ -182,19 +182,13 @@ export default function ReportsPage() {
       </div>
 
       {/* ───────────────── TABLES ───────────────── */}
-      <div className="mt-5 grid grid-cols-1 gap-5 lg:grid-cols-2">
+      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-2">
         <div className="min-w-0">
-          <RecentUploadsTable
-            year={year}
-            month={month}
-          />
+          <RecentUploadsTable  />
         </div>
 
         <div className="min-w-0">
-          <PendingReportsTable
-            year={year}
-            month={month}
-          />
+         <RecentPatientsCard></RecentPatientsCard>
         </div>
       </div>
     </div>

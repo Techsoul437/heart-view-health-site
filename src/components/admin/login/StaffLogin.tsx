@@ -30,10 +30,10 @@ const loginSchema = Yup.object({
 // ─────────────────────────────────────────────────────────────
 
 const inputClass =
-  "h-14 w-full rounded-2xl border border-[#45657D]/60 bg-[#07111F] px-5 text-black placeholder:text-[#7F8CA3] outline-none transition-all duration-300 focus:border-[#4E9B95] focus:ring-4 focus:ring-[#3D7773]/10";
+  "h-13 w-full rounded-2xl border border-[#2f5ba5]/60 bg-white px-5 text-black placeholder:text-[#7F8CA3] outline-none transition-all duration-300 focus:border-[#2f5ba5]  focus:ring-4 focus:ring-[#2f5ba5]/10";
 
 const buttonClass =
-  "flex h-14 w-full items-center justify-center rounded-2xl bg-[#5C9E98] text-lg font-medium text-black shadow-[#2f5ba5]/70/20 transition-all duration-300 hover:bg-[#67ABA5] active:scale-[0.99]";
+  "flex h-13 w-full items-center justify-center rounded-2xl bg-linear-to-r from-[#2f5ba5]/70 to-[#4a7bc9]/60 text-white  transition-all duration-300 hover:scale-[1.01] hover:bg-[#56A29B] active:scale-[0.99]";
 
 // ─────────────────────────────────────────────────────────────
 // LEFT SIDE
@@ -47,7 +47,7 @@ const features = [
 ];
 
 const LeftSide = () => (
-  <div className="relative hidden overflow-hidden border-r border-[#45657D]/20 bg-linear-to-b from-[#181E2B] via-[#243B4A] to-[#3D7773] lg:flex lg:flex-col">
+  <div className="relative hidden overflow-hidden border-r border-[#45657D]/20 bg-black lg:flex lg:flex-col">
     <div className="relative z-10 flex h-full flex-col justify-between p-10">
       {/* LOGO */}
       <div className="flex justify-start">
@@ -65,11 +65,11 @@ const LeftSide = () => (
       {/* CONTENT */}
       <div className="flex flex-1 flex-col justify-center">
         <div className="max-w-md">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-5xl font-medium leading-tight text-black  xl:leading-13">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-5xl font-medium leading-tight text-white  xl:leading-13">
             Staff Portal Access
           </h2>
 
-          <p className="mt-6  leading-8 text-black/75">
+          <p className="mt-6  leading-8 text-[#64748B] ">
             Securely access patient reports, lab operations, and healthcare
             management tools with HeartView Staff Portal.
           </p>
@@ -80,11 +80,11 @@ const LeftSide = () => (
           {features.map((item) => (
             <div
               key={item.title}
-              className="flex items-center gap-4 rounded-2xl border border-white/5 bg-white/4 px-5 py-4"
+              className="flex items-center gap-4 rounded-2xl border border-black/5 bg-white/4 px-5 py-4"
             >
          
 
-              <h3 className=" font-medium text-black">{item.title}</h3>
+              <h3 className=" font-medium text-white">{item.title}</h3>
             </div>
           ))}
         </div>
@@ -122,12 +122,28 @@ const StaffLoginPanel = () => {
           password: "",
         }}
         validationSchema={loginSchema}
-        onSubmit={(values) => {
-          console.log(values);
+        
+onSubmit={(values) => {
+  const staffUser = {
+    id: 1,
+    fullName: "Lab Staff User",
+    email: values.email,
+    phone: "+91 9876543210",
+    department: "Laboratory",
+    dob: "01 Jan 1995",
+    address: "Ahmedabad, Gujarat",
+    role: "Lab Staff",
+    joinedOn: "10 Mar 2024",
+    status: "Active",
+  };
 
-          // staff dashboard redirect
-          router.push("/staff-dashboard");
-        }}
+  localStorage.setItem(
+    "staffUser",
+    JSON.stringify(staffUser)
+  );
+
+  router.push("/lab-staff/dashboard");
+}}
       >
         <Form className="space-y-6">
           {/* EMAIL */}
@@ -194,17 +210,17 @@ const StaffLoginPanel = () => {
 
 export default function StaffLoginPage() {
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#060B14] px-4 py-5">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-white px-4 py-5">
       {/* BG GLOW */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1E3A5F22,transparent_55%)]" />
 
       {/* CARD */}
-      <div className="relative grid w-full max-w-6xl overflow-hidden rounded-[34px] border border-[#45657D]/40 bg-[#0B1320]/95 shadow-[0_25px_90px_rgba(0,0,0,0.7)] backdrop-blur-xl lg:min-h-190 lg:grid-cols-[0.72fr_1.18fr]">
+      <div className="relative grid w-full max-w-6xl overflow-hidden rounded-[34px]  bg-white shadow-[0_25px_90px_rgba(0,0,0,0.7)] backdrop-blur-xl lg:min-h-190 lg:grid-cols-[0.72fr_1.18fr]">
         {/* LEFT */}
         <LeftSide />
 
         {/* RIGHT */}
-        <div className="flex items-center justify-center bg-[#07111B] px-6 py-10 sm:px-10 lg:px-14">
+        <div className="flex items-center justify-center bg-white px-6 py-10 sm:px-10 lg:px-14">
           <div className="w-full max-w-xl">
             <StaffLoginPanel />
           </div>

@@ -131,7 +131,7 @@ export default function ReportsOverviewChart({
       className="
         rounded-2xl
         border border-black/10
-        bg-[#111827]/80
+       bg-[#f7f7f7]
         p-5
         shadow-xl
         backdrop-blur-md
@@ -163,14 +163,14 @@ export default function ReportsOverviewChart({
         >
           <CartesianGrid
             strokeDasharray="3 3"
-            stroke="rgba(255,255,255,0.06)"
+            stroke="#E2E8F0"
           />
 
           <XAxis
             dataKey="day"
             tick={{
               fontSize: 11,
-              fill: "#94a3b8",
+              fill: "#475569",
             }}
             axisLine={false}
             tickLine={false}
@@ -179,7 +179,7 @@ export default function ReportsOverviewChart({
           <YAxis
             tick={{
               fontSize: 11,
-              fill: "#94a3b8",
+              fill: "#475569",
             }}
             axisLine={false}
             tickLine={false}
@@ -187,18 +187,18 @@ export default function ReportsOverviewChart({
 
           <Tooltip
             contentStyle={{
-              background: "#0f172a",
-              border:
-                "1px solid rgba(255,255,255,0.08)",
+              background: "#FFFFFF",
+              border: "1px solid #CBD5E1",
               borderRadius: "14px",
               fontSize: "12px",
-              color: "#fff",
+              color: "#0F172A",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
             }}
             labelStyle={{
-              color: "#94a3b8",
+              color: "#334155",
             }}
             itemStyle={{
-              color: "#e2e8f0",
+              color: "#0F172A",
             }}
           />
 
@@ -206,9 +206,9 @@ export default function ReportsOverviewChart({
             iconType="circle"
             iconSize={8}
             wrapperStyle={{
-              fontSize: "12px",
+              fontSize: "16px",
               paddingTop: "16px",
-              color: "#cbd5e1",
+              color: "#334155",
             }}
           />
 
@@ -216,12 +216,10 @@ export default function ReportsOverviewChart({
           <Line
             type="monotone"
             dataKey="uploaded"
-            stroke="#22c55e"
+            stroke="#16A34A"
             strokeWidth={3}
             dot={false}
-            activeDot={{
-              r: 6,
-            }}
+            activeDot={{ r: 6 }}
             name="Uploaded"
           />
 
@@ -229,12 +227,10 @@ export default function ReportsOverviewChart({
           <Line
             type="monotone"
             dataKey="viewed"
-            stroke="#8b5cf6"
+            stroke="#7C3AED"
             strokeWidth={3}
             dot={false}
-            activeDot={{
-              r: 6,
-            }}
+            activeDot={{ r: 6 }}
             name="Viewed"
           />
 
@@ -242,12 +238,10 @@ export default function ReportsOverviewChart({
           <Line
             type="monotone"
             dataKey="downloaded"
-            stroke="#3b82f6"
+            stroke="#2563EB"
             strokeWidth={3}
             dot={false}
-            activeDot={{
-              r: 6,
-            }}
+            activeDot={{ r: 6 }}
             name="Downloaded"
           />
         </LineChart>

@@ -15,6 +15,7 @@ import { ArrowLeft } from "lucide-react";
 import SubmitButton from "@/Ui/buttons/SubmitButton";
 import { useEffect, useRef, useState } from "react";
 import ResetButton from "@/Ui/buttons/ResetButton";
+import toast from "react-hot-toast";
 
 interface PatientFormValues {
   name: string;
@@ -26,6 +27,7 @@ interface PatientFormValues {
 
 interface PatientItem extends PatientFormValues {
   id: number;
+    createdAt: string;
 }
 
 export default function AddPatientPage() {
@@ -78,6 +80,7 @@ export default function AddPatientPage() {
       patientId:
         values.patientId ||
         `P00${oldPatients.length + 1}`,
+        createdAt: new Date().toISOString(),
     };
 
     const updatedPatients = [
@@ -90,16 +93,18 @@ export default function AddPatientPage() {
       JSON.stringify(updatedPatients)
     );
 
-    alert("Patient added successfully");
+  toast.success("Patient added successfully");
 
     resetForm();
 
+ setTimeout(() => {
     router.push("/lab-admin/patients");
+  }, 1000);
   };
 
   return (
     <div className="min-h-screen text-black">
-      <div className="min-h-screen p-5 sm:p-7 lg:p-10">
+      <div className="min-h-screen  p-6 md:p-12">
         {/* HEADER */}
         <div className="flex flex-col gap-5">
           <div className="flex items-center gap-3">
@@ -135,11 +140,11 @@ export default function AddPatientPage() {
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
-            {({ resetForm  }) => (
+            {({ resetForm }) => (
               <Form className="flex flex-col gap-8">
                 {/* NAME */}
                 <div className="flex flex-col gap-3">
-                  <label className=" font-medium text-slate-200">
+                  <label className=" font-medium text-black">
                     Name{" "}
                     <span className="text-red-400">
                       *
@@ -150,7 +155,7 @@ export default function AddPatientPage() {
                     type="text"
                     name="name"
                     placeholder="Enter patient name"
-                    className="rounded-2xl border border-black/10 bg-[#0e151d]/70 px-5 py-4  outline-none transition placeholder:text-slate-500"
+                    className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4  outline-none transition placeholder:text-slate-500"
                   />
 
                   <ErrorMessage
@@ -162,7 +167,7 @@ export default function AddPatientPage() {
 
                 {/* MOBILE */}
                 <div className="flex flex-col gap-3">
-                  <label className=" font-medium text-slate-200">
+                  <label className=" font-medium text-black">
                     Mobile{" "}
                     <span className="text-red-400">
                       *
@@ -173,7 +178,7 @@ export default function AddPatientPage() {
                     type="text"
                     name="mobile"
                     placeholder="Enter mobile number"
-                    className="rounded-2xl border border-black/10 bg-[#0e151d]/70 px-5 py-4  outline-none transition placeholder:text-slate-500"
+                    className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4  outline-none transition placeholder:text-slate-500"
                   />
 
                   <ErrorMessage
@@ -187,18 +192,18 @@ export default function AddPatientPage() {
                 <div className="grid gap-8 lg:grid-cols-2">
                   {/* AGE */}
                   <div className="flex flex-col gap-3">
-                    <label className=" font-medium text-slate-200">
+                    <label className=" font-medium text-black">
                       Age{" "}
-                       <span className="text-red-400">
-                      *
-                    </span>
+                      <span className="text-red-400">
+                        *
+                      </span>
                     </label>
 
                     <Field
                       type="text"
                       name="age"
                       placeholder="Enter age"
-                      className="rounded-2xl border border-black/10 bg-[#0e151d]/70 px-5 py-4  outline-none transition placeholder:text-slate-500"
+                      className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4  outline-none transition placeholder:text-slate-500"
                     />
 
                     <ErrorMessage
@@ -210,7 +215,7 @@ export default function AddPatientPage() {
 
                   {/* GENDER */}
                   <div className="flex flex-col gap-3">
-                    <label className=" font-medium text-slate-200">
+                    <label className=" font-medium text-black">
                       Gender{" "}
                       <span className="text-red-400">
                         *
@@ -248,7 +253,7 @@ export default function AddPatientPage() {
             rounded-2xl
             border
             border-black/10
-            bg-[#0e151d]/70
+            bg-[#f7f7f7]/70
             px-5
             py-4
             outline-none
@@ -289,7 +294,7 @@ export default function AddPatientPage() {
             rounded-2xl
             border
             border-black/10
-            bg-[#0e151d]
+            bg-[#f7f7f7]
             py-2
             shadow-xl
           ">
@@ -336,7 +341,7 @@ export default function AddPatientPage() {
                 {/* BUTTONS */}
                 <div className="flex flex-col-reverse gap-4 pt-4 sm:flex-row sm:justify-end">
 
-    <ResetButton onReset={resetForm} />
+                  <ResetButton onReset={resetForm} />
 
                   {/* SUBMIT */}
 

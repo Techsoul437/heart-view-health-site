@@ -225,7 +225,7 @@ export default function StatsCards({
               overflow-hidden
               rounded-2xl
               border border-black/10
-              bg-[#111827]/80
+              bg-[#f7f7f7]
               p-5
               shadow-xl
               backdrop-blur-md
@@ -267,7 +267,7 @@ export default function StatsCards({
               <div
                 className={`
                   flex h-14 w-14 items-center justify-center
-                  rounded-2xl border border-white/5
+                  rounded-2xl border border-black/5
                   ${iconBg}
                 `}
               >

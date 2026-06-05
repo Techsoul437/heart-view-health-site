@@ -5,10 +5,11 @@ import { useRouter, useParams } from "next/navigation";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
-import BorderButton from "@/Ui/buttons/BorderButton";
 import SubmitButton from "@/Ui/buttons/SubmitButton";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import ResetButton from "@/Ui/buttons/ResetButton";
+import toast from "react-hot-toast";
 
 interface PatientFormValues {
   name: string;
@@ -111,9 +112,11 @@ export default function EditPatientPage() {
       JSON.stringify(updatedPatients)
     );
 
-    alert("Patient updated successfully");
+     toast.success("Patient updated successfully");
 
+      setTimeout(() => {
     router.push("/lab-admin/patients");
+  }, 1000);
   };
 
   if (loading) {
@@ -126,7 +129,7 @@ export default function EditPatientPage() {
 
   return (
     <div className="min-h-screen text-black">
-      <div className="min-h-screen p-5 sm:p-7 lg:p-10">
+      <div className=" mx-auto min-h-screen  p-6 md:p-12">
         {/* HEADER */}
         <div className="flex flex-col gap-5">
           <div className="flex items-center gap-3">
@@ -159,10 +162,11 @@ export default function EditPatientPage() {
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
+             {({ resetForm }) => (
             <Form className="flex flex-col gap-8">
               {/* NAME */}
               <div className="flex flex-col gap-3">
-                <label className="font-medium text-slate-200">
+                <label className="font-medium text-black">
                   Name
                   <span className="text-red-400">
                     *
@@ -173,7 +177,7 @@ export default function EditPatientPage() {
                   type="text"
                   name="name"
                   placeholder="Enter patient name"
-                  className="rounded-2xl border border-black/10 bg-[#0e151d]/70 px-5 py-4 outline-none transition placeholder:text-slate-500"
+                  className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4 outline-none transition placeholder:text-slate-500"
                 />
 
                 <ErrorMessage
@@ -185,7 +189,7 @@ export default function EditPatientPage() {
 
               {/* MOBILE */}
               <div className="flex flex-col gap-3">
-                <label className="font-medium text-slate-200">
+                <label className="font-medium text-black">
                   Mobile
                   <span className="text-red-400">
                     *
@@ -196,7 +200,7 @@ export default function EditPatientPage() {
                   type="text"
                   name="mobile"
                   placeholder="Enter mobile number"
-                  className="rounded-2xl border border-black/10 bg-[#0e151d]/70 px-5 py-4 outline-none transition placeholder:text-slate-500"
+                  className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4 outline-none transition placeholder:text-slate-500"
                 />
 
                 <ErrorMessage
@@ -207,10 +211,10 @@ export default function EditPatientPage() {
               </div>
 
               {/* AGE + GENDER */}
-              <div className="grid gap-8 lg:grid-cols-2">
+              <div className="grid gap-8 grid-cols-1 lg:grid-cols-2">
                 {/* AGE */}
                 <div className="flex flex-col gap-3">
-                  <label className="font-medium text-slate-200">
+                  <label className="font-medium text-black">
                     Age
                     <span className="text-slate-500">
                       (Optional)
@@ -221,7 +225,7 @@ export default function EditPatientPage() {
                     type="text"
                     name="age"
                     placeholder="Enter age"
-                    className="rounded-2xl border border-black/10 bg-[#0e151d]/70 px-5 py-4 outline-none transition placeholder:text-slate-500"
+                    className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4 outline-none transition placeholder:text-slate-500"
                   />
 
                   <ErrorMessage
@@ -233,7 +237,7 @@ export default function EditPatientPage() {
 
                 {/* GENDER */}
                 <div className="flex flex-col gap-3">
-                  <label className="font-medium text-slate-200">
+                  <label className="font-medium text-black">
                     Gender
                     <span className="text-red-400">
                       *
@@ -243,7 +247,7 @@ export default function EditPatientPage() {
                   <Field
                     as="select"
                     name="gender"
-                    className="rounded-2xl border border-black/10 bg-[#0e151d]/70 px-5 py-4 text-slate-300 outline-none transition"
+                    className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4 text-black outline-none transition"
                   >
                     <option
                       value=""
@@ -283,18 +287,16 @@ export default function EditPatientPage() {
               </div>
 
               {/* BUTTONS */}
-              <div className="flex flex-col-reverse gap-4 pt-4 sm:flex-row sm:justify-end">
-                <BorderButton
-                  text="Cancel"
-                  href="/lab-admin/patients"
-                />
-
+              <div className="flex  gap-4 pt-4 sm:flex-row sm:justify-end">
+              
+<ResetButton onReset={resetForm}></ResetButton>
                 <SubmitButton
                   text="Update Patient"
                   type="submit"
                 />
               </div>
             </Form>
+              )}
           </Formik>
         </div>
       </div>
