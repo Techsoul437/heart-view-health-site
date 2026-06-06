@@ -27,12 +27,12 @@ function HomePage() {
         <Hero></Hero>
         <Problem></Problem>
         <WhatIsHeartView></WhatIsHeartView>
-        <LifestyleSection></LifestyleSection>
+        {/* <LifestyleSection></LifestyleSection> */}
         {/* <CoreFeatures></CoreFeatures> */}
         <TrustSection></TrustSection>
         <WhyHeartView></WhyHeartView>
         <BlogSection></BlogSection>
-        <WhoItsFor></WhoItsFor>
+        {/* <WhoItsFor></WhoItsFor> */}
         <AppDownloadSection></AppDownloadSection>
         <Footer></Footer>
 

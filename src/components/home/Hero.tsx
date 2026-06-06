@@ -7,7 +7,7 @@ import BorderButton from "@/Ui/buttons/BorderButton";
 import ContactModal from "@/Ui/contactModel/ContactModal";
 
 function Hero() {
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   return (
     <section className="w-full">
       <div className="max-w-8xl bg-[#f7f7f7] mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 p-10 ">
@@ -28,12 +28,12 @@ function Hero() {
             {/* Buttons */}
             <div className="flex flex-wrap gap-4 py-6 items-center">
               <FillButton text="Explore Features" href="/features" />
-             <div onClick={() => setOpen(true)}>
-                                     <BorderButton text="Join Early Access" href="" bgColor="bg-[#F7F7F7]"></BorderButton>
+              <div onClick={() => setOpen(true)}>
+                <BorderButton text="Join Early Access" href="" bgColor="bg-[#F7F7F7]"></BorderButton>
 
               </div>
             </div>
-  <ContactModal isOpen={open} onClose={() => setOpen(false)} />
+            <ContactModal isOpen={open} onClose={() => setOpen(false)} />
             {/* Social Proof */}
             {/* <p className="flex items-center gap-2 text-black/80 text-sm font-medium mt-4">
               <svg
@@ -74,8 +74,20 @@ function Hero() {
           <div className="relative w-full h-80 sm:h-96 lg:h-120 ">
 
 
-            <div className="absolute inset-0 bg-black/20 rounded-2xl">
-            <Image alt="hero-image" src="/Media2.png" fill className="object-cover rounded-2xl" />
+            <div className="absolute inset-0 rounded-2xl overflow-hidden">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover rounded-2xl"
+              >
+                <source src="/1.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+
+              {/* Overlay */}
+              {/* <div className="absolute inset-0 bg-black/20" /> */}
             </div>
 
           </div>

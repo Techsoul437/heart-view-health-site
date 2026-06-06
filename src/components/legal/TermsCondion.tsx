@@ -162,24 +162,31 @@ const sections: SectionType[] = [
       },
     ],
   },
-  {
-    number: "10",
-    title: "Subscriptions & Payments",
-    points: [
-      "Services may include paid subscriptions.",
-      {
-        title: "Subscriptions:",
-        items: ["Billed in advance", "Auto-renew unless canceled"],
-      },
-      {
-        title: "Strict No-Refund Policy:",
-        items: [
-          "All payments are non-refundable unless required by applicable law.",
-        ],
-      },
-      "The Company may modify pricing with notice.",
-    ],
-  },
+{
+  number: "10",
+  title: "Subscriptions & Payments",
+  points: [
+    "Services may include paid subscriptions.",
+    {
+      title: "Subscriptions:",
+      items: ["Billed in advance", "Auto-renew unless canceled"],
+    },
+    {
+      title: "Strict No-Refund Policy:",
+      items: [
+        "All payments are non-refundable unless required by applicable law.",
+      ],
+    },
+    {
+      title: "Store Managed Billing",
+      items: [
+        "Subscriptions are managed through Google Play Store or Apple App Store",
+        "Cancellation and refund requests are governed by the respective store policies",
+      ],
+    },
+    "The Company may modify pricing with notice.",
+  ],
+},
   {
     number: "11",
     title: "Data & Analytics Disclaimer",
@@ -276,7 +283,7 @@ const sections: SectionType[] = [
     title: "Governing Law & Jurisdiction",
     points: [
       "These Terms are governed by the laws of India.",
-      "Courts of Mumbai, Maharashtra shall have exclusive jurisdiction.",
+      "Courts of Surat, Gujarat shall have exclusive jurisdiction."
     ],
   },
   {
@@ -298,6 +305,25 @@ const sections: SectionType[] = [
       "Continued use constitutes acceptance.",
     ],
   },
+  {
+    number: "21",
+    title: "Account Deletion",
+    points: [
+      "Users may request deletion of their account and associated personal data.",
+      "Account deletion requests may be submitted through the application or by contacting support.",
+      "Certain information may be retained where required by law, regulatory obligations, or legitimate business purposes.",
+    ],
+  },
+
+  {
+    number: "22",
+    title: "Contact Information",
+    points: [
+      "For questions regarding these Terms and Conditions, users may contact HeartView Health Technologies Private Limited.",
+      "Email: info@heartviewhealth.com",
+      "Address: 19, Arth Residency, Near V.I.P. Circle, Utran, Surat – 394105, Gujarat, India",
+    ],
+  },
 ];
 
 /* ================= SECTION COMPONENT ================= */
@@ -314,7 +340,7 @@ function Section({ data }: { data: SectionType }) {
       className="mb-8 mt-8"
     >
       {/* 🔥 CARD WRAPPER (NEW DESIGN) */}
-      <div className="rounded-2xl shadow-md shadow-white/10 border-t border-black/10 backdrop-blur-md p-5 sm:p-6">
+      <div className="rounded-2xl shadow-md shadow-black/10 border-t border-black/10 backdrop-blur-md p-5 sm:p-6">
 
         {/* HEADER */}
         <div className="flex gap-4 mb-4 items-start">
@@ -333,7 +359,7 @@ function Section({ data }: { data: SectionType }) {
             <div key={i} className="flex items-start gap-3 text-[#475569] text-base sm:text-lg leading-relaxed font-light">
 
               {/* ✅ DOT REPLACED (MODERN LOOK) */}
-              {/* <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#2f5ba5]/70/70 shrink-0" /> */}
+              {/* <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#2f5ba5]/70 shrink-0" /> */}
 
               <div>
                 {typeof point === "string" ? (
@@ -348,7 +374,7 @@ function Section({ data }: { data: SectionType }) {
                       {point.items.map((item, idx) => (
                         <div
                           key={idx}
-                          className="flex items-start gap-3 text-black/50 text-base sm:text-lg leading-relaxed font-light"
+                          className="flex items-start gap-3 text-[#475569]  text-base sm:text-lg leading-relaxed font-light"
                         >
                           <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#2f5ba5]/70/50 shrink-0" />
                           {item}

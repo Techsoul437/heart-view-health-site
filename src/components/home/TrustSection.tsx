@@ -2,29 +2,42 @@
 
 import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 import { motion, useInView } from "framer-motion";
-import { ShieldCheck, Sparkles, LineChart } from "lucide-react";
+import { ShieldCheck  ,Stethoscope,
+  BarChart3,
+  HeartHandshake,
+  Lock,} from "lucide-react";
 import { useRef } from "react";
 
 export default function TrustSection() {
   const headerRef = useRef(null);
   const headerInView = useInView(headerRef, { once: true, margin: "-60px" });
-  const items = [
-    {
-      icon: ShieldCheck,
-      title: "Built for Long-Term Health",
-      desc: "Created to support steady, real-world habits that grow into   awareness over time.",
-    },
-    {
-      icon: Sparkles,
-      title: "Clarity Over Noise",
-      desc: "Everything is simplified so you can focus only on what truly matters.",
-    },
-    {
-      icon: LineChart,
-      title: "Consistency That Stays",
-      desc: "Designed to naturally fit your routine without adding effort or friction.",
-    },
-  ];
+ const items = [
+  {
+    icon: Lock,
+    title: "End-to-End Encryption",
+    desc: "Your health data is protected with bank-grade encryption from end to end.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "HIPAA & GDPR Compliant",
+    desc: "We follow global privacy standards to keep your data safe and confidential.",
+  },
+  {
+    icon: Stethoscope,
+    title: "Doctor Reviewed Insights",
+    desc: "Health insights and content are reviewed by medical professionals.",
+  },
+  {
+    icon: BarChart3,
+    title: "10,000+ Health Records Tracked",
+    desc: "Thousands of users trust HeartView to track and improve their health daily.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Trusted by Families",
+    desc: "Families across the world trust HeartView to care for their loved ones.",
+  },
+];
 
   const trustPoints = [
     "No unnecessary complexity",
@@ -43,10 +56,10 @@ export default function TrustSection() {
         <Headerbadge tag="Trust" text="Built on Trust, Designed for Everyday Reality" />
 
         {/* Features (FIXED GRID ALIGNMENT) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 mb-15 mt-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2  xl:grid-cols-5 gap-12 lg:gap-16 mb-15 mt-5">
           {items.map((item, i) => {
             const Icon = item.icon;
-            const isLastOdd = items.length % 2 !== 0 && i === items.length - 1;
+            const isLastOdd = items.length % 4 !== 0 && i === items.length - 1;
 
             return (
               <motion.div
@@ -56,7 +69,7 @@ export default function TrustSection() {
                 transition={{ delay: i * 0.2 }}
                 className={`flex flex-col items-center text-center group
           
-          ${isLastOdd ? "sm:col-span-2 lg:col-span-1" : ""}
+          ${isLastOdd ? "sm:col-span-2 xl:col-span-1" : ""}
         `}
               >
                 {/* ICON */}
@@ -83,14 +96,14 @@ export default function TrustSection() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="text-center text-base sm:text-lg font-normal text-[#64748B]  max-w-2xl mx-auto mb-12 leading-relaxed"
+          className="text-center text-base sm:text-lg font-normal text-[#64748B]  max-w-2xl mx-auto  leading-relaxed"
         >
           A calm, reliable system that works quietly in the background  helping you stay aware without turning health into effort.
         </motion.p>
 
         {/* TRUST POINTS */}
 
-        <div className="flex flex-wrap justify-center gap-4 mt-4">
+        {/* <div className="flex flex-wrap justify-center gap-4 mt-4">
           {trustPoints.map((item, index) => (
             <motion.span
               key={index}
@@ -102,7 +115,7 @@ export default function TrustSection() {
               {item}
             </motion.span>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );

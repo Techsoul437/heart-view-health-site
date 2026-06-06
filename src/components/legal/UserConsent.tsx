@@ -54,6 +54,8 @@ const sections: SectionType[] = [
         title: "You understand and accept:",
         items: [
           "data may be inaccurate or incomplete",
+          "Health insights are not guaranteed to be accurate",
+"Results should not be interpreted as medical findings",
         ],
       },
       {
@@ -98,6 +100,7 @@ const sections: SectionType[] = [
           "Use of the Services involves inherent risks",
           "Digital health data may be inaccurate",
           "System failures, delays, or outages may occur",
+          "HeartView is not responsible for medical decisions made based on app data",
         ],
       },
       "You use the Services entirely at your own risk.",
@@ -152,6 +155,47 @@ const sections: SectionType[] = [
       "This Consent forms a legally binding agreement between you and HeartView Health Technologies Private Limited.",
     ],
   },
+  {
+  number: "10",
+  title: "Emergency Situations",
+  points: [
+    {
+      title: "The Services must NOT be used during a medical emergency.",
+      items: [
+        "Call emergency services immediately when required",
+        "Contact your physician or healthcare provider",
+        "Do not delay seeking medical treatment based on app data",
+      ],
+    },
+  ],
+},
+
+{
+  number: "11",
+  title: "AI & Predictive Analytics Disclaimer",
+  points: [
+    {
+      title: "HeartView may provide automated insights and analytics.",
+      items: [
+        "Insights are informational only",
+        "Predictions may be inaccurate",
+        "Results should not be interpreted as medical findings",
+        "No guarantee is provided regarding accuracy or outcomes",
+      ],
+    },
+  ],
+},
+
+{
+  number: "12",
+  title: "Contact Information",
+  points: [
+    "For questions regarding this Medical Disclaimer, please contact:",
+    "HeartView Health Technologies Private Limited",
+    "Email: info@heartviewhealth.com",
+    "Address: 19, Arth Residency, Near V.I.P. Circle, Utran, Surat – 394105, Gujarat, India",
+  ],
+},
 ];
 
 /* ================= SECTION COMPONENT ================= */
@@ -168,7 +212,7 @@ function Section({ data }: { data: SectionType }) {
       className="mb-8 mt-8"
     >
       {/* 🔥 CARD */}
-      <div className="rounded-2xl shadow-md shadow-white/10 border-t border-black/10 backdrop-blur-md p-5 sm:p-6">
+      <div className="rounded-2xl shadow-md shadow-black/10 border-t border-black/10 backdrop-blur-md p-5 sm:p-6">
 
         {/* HEADER */}
         <div className="flex gap-4 mb-4 items-start">
@@ -204,7 +248,7 @@ function Section({ data }: { data: SectionType }) {
                       {point.items.map((item, idx) => (
                         <div
                           key={idx}
-                          className="flex items-start gap-3 text-black/50 text-base sm:text-lg leading-relaxed font-light"
+                          className="flex items-start gap-3 text-[#475569] text-base sm:text-lg leading-relaxed font-light"
                         >
                           <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#2f5ba5]/70/50 shrink-0" />
                           {item}

@@ -103,7 +103,7 @@ export default function AppDownloadSection() {
 
                     </div>
                     {/* Bottom Note */}
-                    <motion.div
+                    {/* <motion.div
                         initial={{ opacity: 0 }}
                         animate={isInView ? { opacity: 1 } : {}}
                         transition={{ duration: 0.6, delay: 0.4 }}
@@ -125,7 +125,7 @@ export default function AppDownloadSection() {
                         </svg>
 
                         <p >We’ll notify you as soon as the app is available.</p>
-                    </motion.div>
+                    </motion.div> */}
                 </motion.div>
             </div>
         </section>

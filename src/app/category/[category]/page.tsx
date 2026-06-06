@@ -7,6 +7,8 @@ import { blogs } from "@/data/blogData";
 import Navbar from "@/Ui/navbar/Navbar";
 import FinalCTA from "@/Ui/cta/FinalCTA";
 import { motion, AnimatePresence } from "framer-motion";
+import Footer from "@/Ui/footer/Footer";
+import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 
 
 export default function CategoryPage({
@@ -23,26 +25,17 @@ export default function CategoryPage({
   );
 
   return (
-    <div className="page-bg mt-20">
+    <div className="page-bg ">
       <Navbar />
 
       <div className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-10  lg:pt-14">
 
         {/* HEADING */}
-
-        <div className="w-full py-4 text-center">
-          <motion.span className="inline-block text-xs font-semibold tracking-widest text-[#2f5ba5] uppercase border border-white/30 rounded-full px-4 py-1">
-            {category.replace("-", " ")}
-
-
-          </motion.span>
-
-          <motion.h1 className="mt-4  text-2xl md:text-3xl lg:text-4xl font-medium text-black">
-            {category.replace("-", " ")} Blogs
-
-
-          </motion.h1>
-        </div>
+<Headerbadge  
+  tag={category.replace("-", " ")}
+  text={`Explore Our ${category.replace("-", " ")} Blogs`}
+/>
+        
         {/* GRID */}
         {filteredBlogs.length === 0 ? (
           <p className="text-center text-red-400">
@@ -156,7 +149,8 @@ export default function CategoryPage({
         )}
       </div>
 
-      <FinalCTA />
+      {/* <FinalCTA /> */}
+      <Footer></Footer>
     </div>
   );
 }

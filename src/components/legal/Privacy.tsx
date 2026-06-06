@@ -32,8 +32,11 @@ const sections = [
       {
         subtitle: "Wellness & Health Data",
         list: [
-          "Heart rate and related metrics",
-          "Activity data",
+          "Blood pressure readings",
+          "Blood sugar / glucose readings",
+          "Weight and body measurements",
+          "Sleep data",
+          "Medication details and reminders",
           "User uploaded reports, notes, and medical documents",
         ],
       },
@@ -94,32 +97,44 @@ const sections = [
     title: "Data Storage & Retention",
     content: null,
     list: [
-      "Data is stored securely on servers controlled by us or trusted providers",
-      "Retention period depends on service usage and legal requirements",
-      "Data may be deleted upon user request (subject to legal obligations)",
+      "Data is retained while your account remains active",
+      "Inactive accounts may be deleted after 24 months of inactivity",
+      "Certain records may be retained where required by law or regulatory obligations",
     ],
   },
   {
     number: "8",
+    title: "Google Fit & Apple Health Data",
+    content:
+      "HeartView may access health and activity data from Apple Health and Google Fit only with your explicit permission.",
+    list: [
+      "Data is used solely to provide wellness tracking and app functionality",
+      "Data is not sold to third parties",
+      "Data is not used for advertising purposes",
+      "You may revoke access at any time through your device settings"
+    ],
+  },
+  {
+    number: "9",
     title: "Data Security",
     content:
       "We implement reasonable security measures. However, no system is completely secure, and unauthorized access or breaches may occur. By using the Services, you acknowledge and accept these risks.",
     list: ["Encryption", "Access control", "Secure infrastructure"],
   },
   {
-    number: "9",
+    number: "10",
     title: "Data Breach Disclaimer",
-  highlight: false,
+    highlight: false,
     content:
       "To the maximum extent permitted by law, the Company shall NOT be liable for unauthorized access, data breaches, or data loss.To the maximum extent permitted by law:",
-  list:[
-    "unauthorized access",
-    "data breaches",
-    "data loss",
-  ]
+    list: [
+      "unauthorized access",
+      "data breaches",
+      "data loss",
+    ]
   },
   {
-    number: "10",
+    number: "11",
     title: "User Rights",
     content: "Requests can be made through official support channels.",
     list: [
@@ -130,34 +145,58 @@ const sections = [
     ],
   },
   {
-    number: "11",
+    number: "12",
     title: "International Data Transfers",
     content:
       "Data may be processed outside India depending on infrastructure providers.We ensure reasonable safeguards for such transfers.",
   },
   {
-    number: "12",
+    number: "13",
     title: "Children's Privacy",
     content:
       "The Services are not intended for individuals under 18 without parental consent.",
   },
   {
-    number: "13",
+    number: "14",
     title: "Changes to Policy",
     content:
       "We may update this Privacy Policy periodically. Continued use of our Services constitutes acceptance of the updated policy.",
   },
   {
-  number: "14",
-  title: "Contact Information",
-  content:
-    "For any questions, concerns, or requests regarding this Privacy Policy or your data, you may contact us at:",
-  list: [
-    "HeartView Health Technologies Private Limited",
-    "Address: 19, Arth Residency, Near V.I.P. Circle, Utran, Surat – 394105, Gujarat.",
-    "Email: info@heartviewhealth.com"
-  ],
-}
+    number: "15",
+    title: "Subscription Information",
+    content:
+      "Certain premium features may require a paid subscription.",
+    list: [
+      "Subscriptions are processed through Google Play Store or Apple App Store",
+      "HeartView does not store payment card information",
+      "Subscription status may be used to manage premium features",
+      "Billing and refunds are subject to the policies of the respective app store"
+    ],
+  },
+  {
+    number: "16",
+    title: "Account Deletion",
+    content:
+      "Users may request deletion of their account and personal data at any time.",
+    list: [
+      "Deletion requests may be submitted through the application",
+      "Users may also contact info@heartviewhealth.com",
+      "Certain records may be retained where required by law",
+      "Deleted accounts may lose access to stored reports and analytics"
+    ],
+  },
+  {
+    number: "17",
+    title: "Contact Information",
+    content:
+      "For any questions, concerns, or requests regarding this Privacy Policy or your data, you may contact us at:",
+    list: [
+      "HeartView Health Technologies Private Limited",
+      "Address: 19, Arth Residency, Near V.I.P. Circle, Utran, Surat – 394105, Gujarat.",
+      "Email: info@heartviewhealth.com"
+    ],
+  }
 ];
 
 function AnimatedSection({
@@ -179,7 +218,7 @@ function AnimatedSection({
       className="mb-6"
     >
       {/* CARD */}
-      <div className="rounded-2xl   shadow-md shadow-white/10 border-t border-black/10 backdrop-blur-md p-5 sm:p-6">
+      <div className="rounded-2xl   shadow-md shadow-black/10 border-t border-black/10 backdrop-blur-md p-5 sm:p-6">
 
         {/* HEADER */}
         <div className="flex items-start gap-4 mb-4">
@@ -221,7 +260,7 @@ function AnimatedSection({
                   className="flex items-start gap-3 text-[#475569] text-base sm:text-lg font-light leading-relaxed  "
                 >
                   {/* ✅ DOT REPLACED WITH MODERN ICON STYLE */}
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#2f5ba5]/70/60 shrink-0" />
+                  <span className="mt-2 w-1.5 h-1.5 rounded-full  bg-[#2f5ba5]/60 shrink-0" />
                   {item}
                 </motion.li>
               ))}
@@ -239,7 +278,7 @@ function AnimatedSection({
                 {sub.list.map((item, i) => (
                   <li
                     key={i}
-                    className="flex items-start gap-3 text-black/50 text-base sm:text-lg font-light leading-relaxed  "
+                    className="flex items-start gap-3 text-[#475569]  text-base sm:text-lg font-light leading-relaxed  "
                   >
                     <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#2f5ba5]/70/40 shrink-0" />
                     {item}

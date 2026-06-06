@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Manrope } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
+import PageLoader from "@/Ui/loader/PageLoader";
 
 
 const geistSans = Geist({
@@ -41,7 +42,7 @@ export default function RootLayout({
 
    <Toaster position="top-right" />
    
-        {/* <PageLoader></PageLoader> */}
+        <PageLoader></PageLoader>
 
         {children}
 

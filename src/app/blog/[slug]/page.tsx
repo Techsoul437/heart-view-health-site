@@ -40,11 +40,11 @@ export default function BlogDetails({
   }
 
   return (
-    <div className="page-bg text-black min-h-screen mt-20">
+    <div className="page-bg text-black min-h-screen ">
 
       <Navbar />
 
-      <div className="max-w-7xl mx-auto w-full  mt-10 lg:pt-10">
+      <div className="max-w-7xl mx-auto w-full  mt-10 lg:pt-10 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
         {/* LEFT CONTENT */}
         <div>
 
