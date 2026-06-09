@@ -312,10 +312,9 @@ export default function Contact() {
     const [countryCode, setCountryCode] = useState("+91");
 
     const inputClass = (field: keyof typeof formik.values) =>
-        `w-full border rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-zinc-400 outline-none transition-colors duration-200 focus:ring-1 bg-transparent ${
-            formik.touched[field] && formik.errors[field]
-                ? "border-red-400 focus:border-red-400 focus:ring-red-300/30"
-                : "border-[#c5d5d3] focus:border-[#3D7773] focus:ring-[#3D7773]/20"
+        `w-full border rounded-lg px-4 py-2.5 text-sm text-black placeholder:text-[#64748B]  outline-none transition-colors duration-200 focus:ring-1 bg-transparent ${formik.touched[field] && formik.errors[field]
+            ? "border-red-400 focus:border-red-400 focus:ring-red-300/30"
+            : "border-[#c5d5d3] focus:border-[#64748B]  focus:ring-[#2f5ba5]/30/20"
         }`;
 
     return (
@@ -335,10 +334,10 @@ export default function Contact() {
                         {/* LEFT — Info */}
                         <div className="flex flex-col gap-6 sm:gap-8 mt-5 lg:mt-0">
                             <div>
-                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-zinc-100">
+                                <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-black">
                                     Get In Touch
                                 </h2>
-                                <p className="text-zinc-500 mt-3 text-base sm:text-lg xl:max-w-lg leading-relaxed font-light">
+                                <p className="text-[#64748B]  mt-3 text-base sm:text-lg xl:max-w-lg leading-relaxed font-light">
                                     We&apos;re here to answer your questions and guide you toward
                                     better health. Reach out anytime — we love to hear from you.
                                 </p>
@@ -350,26 +349,26 @@ export default function Contact() {
                                 <div className="flex flex-col gap-3">
 
                                     {/* Phone */}
-                                    <div className="flex items-start gap-3 p-5 lg:h-25 rounded-xl border border-[#3D7773]">
-                                        <div className="w-8 h-8 rounded-lg bg-[#3D7773] flex items-center justify-center">
+                                    <div className="flex items-start gap-3 p-5 lg:h-25 rounded-xl border border-[#64748B] ">
+                                        <div className="w-8 h-8 rounded-lg bg-[#2f5ba5]/70 flex items-center justify-center">
                                             <FiPhone className="text-white text-sm" />
                                         </div>
                                         <div>
-                                            <p className="text-white font-medium text-lg">Phone</p>
-                                            <p className="text-zinc-400 text-base sm:text-lg leading-relaxed font-light mt-0.5">
+                                            <p className="text-black font-medium text-lg">Phone</p>
+                                            <p className="text-[#64748B]  text-base sm:text-lg leading-relaxed font-light mt-0.5">
                                                 +91 8238524984
                                             </p>
                                         </div>
                                     </div>
 
                                     {/* Email */}
-                                    <div className="flex items-start gap-3 p-5 lg:h-25 rounded-xl border border-[#3D7773]">
-                                        <div className="w-8 h-8 rounded-lg bg-[#3D7773] flex items-center justify-center">
+                                    <div className="flex items-start gap-3 p-5 lg:h-25 rounded-xl border border-[#64748B] ">
+                                        <div className="w-8 h-8 rounded-lg bg-[#2f5ba5]/70 flex items-center justify-center">
                                             <FiMail className="text-white text-sm" />
                                         </div>
                                         <div>
-                                            <p className="text-white font-medium text-lg">Email</p>
-                                            <p className="text-zinc-400 text-base sm:text-lg leading-relaxed font-light mt-0.5">
+                                            <p className="text-black font-medium text-lg">Email</p>
+                                            <p className="text-[#64748B]  text-base sm:text-lg leading-relaxed font-light mt-0.5">
                                                 info@heartviewhealth.com
                                             </p>
                                         </div>
@@ -378,13 +377,13 @@ export default function Contact() {
                                 </div>
 
                                 {/* Right side — big address card */}
-                                <div className="flex items-start gap-3 p-5 lg:h-52 rounded-xl border border-[#3D7773]">
-                                    <div className="w-8 h-8 rounded-lg bg-[#3D7773] flex items-center justify-center">
+                                <div className="flex items-start gap-3 p-5 lg:h-52 rounded-xl border border-[#64748B] ">
+                                    <div className="w-8 h-8 rounded-lg bg-[#2f5ba5]/70 flex items-center justify-center">
                                         <FiMapPin className="text-white text-sm" />
                                     </div>
                                     <div>
-                                        <p className="text-white font-medium text-lg">Address</p>
-                                        <p className="text-zinc-400 text-base sm:text-lg font-light mt-0.5 leading-relaxed">
+                                        <p className="text-black font-medium text-lg">Address</p>
+                                        <p className="text-[#64748B]  text-base sm:text-lg font-light mt-0.5 leading-relaxed">
                                             19, Arth Residency, Near V.I.P. Circle,
                                             <br />
                                             Beside Indian Oil Petrol Pump, Utran,
@@ -402,7 +401,7 @@ export default function Contact() {
                             initial={{ opacity: 0, x: 32 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.55, ease: "easeOut" }}
-                            className="p-5 md:p-5 lg:p-4 xl:p-12 flex flex-col gap-5 mt-5 lg:mt-0 rounded-lg border border-[#3D7773]"
+                            className="p-5 md:p-5 lg:p-4 xl:p-12 flex flex-col gap-5 mt-5 lg:mt-0 rounded-lg border border-[#64748B] "
                         >
                             <form
                                 onSubmit={formik.handleSubmit}
@@ -412,7 +411,7 @@ export default function Contact() {
                                 {/* Name + Email */}
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                     <div>
-                                        <label className="block text-zinc-300 font-medium text-lg mb-1.5">
+                                        <label className="block text-[#64748B]  font-medium text-lg mb-1.5">
                                             Name
                                         </label>
                                         <input
@@ -434,7 +433,7 @@ export default function Contact() {
                                         />
                                     </div>
                                     <div>
-                                        <label className="block text-zinc-300 font-medium text-lg mb-1.5">
+                                        <label className="block text-[#64748B]  font-medium text-lg mb-1.5">
                                             Email
                                         </label>
                                         <input
@@ -458,58 +457,58 @@ export default function Contact() {
                                 </div>
 
                                 {/* Phone */}
-                              <div>
-                                        <label className="block text-zinc-300 font-medium text-lg mb-1.5">
-                                            Phone
-                                        </label>
+                                <div>
+                                    <label className="block text-[#64748B]  font-medium text-lg mb-1.5">
+                                        Phone
+                                    </label>
 
-                                        <div className="flex border border-gray-100 rounded-lg overflow-hidden focus-within:ring-1 focus-within:ring-[#3D7773]/20">
+                                    <div className="flex border border-[#2f5ba5]/30 rounded-lg overflow-hidden focus-within:ring-1 focus-within:ring-[#2f5ba5]/20">
 
-                                            {/* Country Code */}
-                                            <div className="relative">
-                                                <select
-                                                    value={countryCode}
-                                                    onChange={(e) => setCountryCode(e.target.value)}
-                                                    className="appearance-none bg-transparent text-white pl-3 pr-8 py-2.5 outline-none border-r border-[#3D7773]"
-                                                >
-                                                    <option className="bg-[#0B1F1E] text-white" value="+91">+91</option>
-                                                </select>
+                                        {/* Country Code */}
+                                        <div className="relative">
+                                            <select
+                                                value={countryCode}
+                                                onChange={(e) => setCountryCode(e.target.value)}
+                                                className="appearance-none bg-transparent text-[#64748B]  pl-3 pr-8 py-2.5 outline-none border-r border-[#2f5ba5]/30"
+                                            >
+                                                <option className="bg-[#64748B] text-[#64748B] " value="+91">+91</option>
+                                            </select>
 
-                                                {/* Custom Dropdown Icon */}
-                                                <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white text-xs">
-                                                    ▼
-                                                </div>
+                                            {/* Custom Dropdown Icon */}
+                                            <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B]  text-xs">
+                                                ▼
                                             </div>
-
-                                            {/* Phone Input */}
-                                            <input
-                                                id="phone"
-                                                name="phone"
-                                                type="tel"
-                                                placeholder="Your phone number"
-                                                value={formik.values.phone}
-                                                onChange={(e) => {
-                                                    const val = e.target.value.replace(/\D/g, "");
-                                                    formik.setFieldValue("phone", val);
-                                                }}
-                                                onBlur={formik.handleBlur}
-                                                className="w-full bg-transparent px-4 py-2.5 text-sm text-white placeholder:text-zinc-400 outline-none"
-                                                maxLength={10}
-                                            />
                                         </div>
 
-                                        <ErrorMsg
-                                            msg={
-                                                formik.touched.phone
-                                                    ? formik.errors.phone
-                                                    : undefined
-                                            }
+                                        {/* Phone Input */}
+                                        <input
+                                            id="phone"
+                                            name="phone"
+                                            type="tel"
+                                            placeholder="Your phone number"
+                                            value={formik.values.phone}
+                                            onChange={(e) => {
+                                                const val = e.target.value.replace(/\D/g, "");
+                                                formik.setFieldValue("phone", val);
+                                            }}
+                                            onBlur={formik.handleBlur}
+                                            className="w-full bg-transparent px-4 py-2.5 text-sm text-black placeholder:text-[#64748B]  outline-none"
+                                            maxLength={10}
                                         />
                                     </div>
 
+                                    <ErrorMsg
+                                        msg={
+                                            formik.touched.phone
+                                                ? formik.errors.phone
+                                                : undefined
+                                        }
+                                    />
+                                </div>
+
                                 {/* Message */}
                                 <div className="flex-1">
-                                    <label className="block text-zinc-300 font-medium text-lg mb-1.5">
+                                    <label className="block text-[#64748B]  font-medium text-lg mb-1.5">
                                         Message
                                     </label>
                                     <textarea
@@ -549,7 +548,7 @@ export default function Contact() {
                                     disabled={formik.isSubmitting}
                                     whileTap={{ scale: 0.97 }}
                                     whileHover={{ scale: 1.01 }}
-                                    className="w-full bg-[#3D7773] hover:bg-[#2f5f5c] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold text-sm py-3 rounded-lg tracking-widest uppercase transition-colors duration-200"
+                                    className="w-full bg-[#2f5ba5]/70 hover:bg-[#2f5ba5] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold text-sm py-3 rounded-lg tracking-widest uppercase transition-colors duration-200"
                                 >
                                     {formik.isSubmitting ? "Sending..." : "Submit"}
                                 </motion.button>

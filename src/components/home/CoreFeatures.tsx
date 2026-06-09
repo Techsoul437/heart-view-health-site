@@ -64,7 +64,7 @@ export default function CoreFeatures() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border border-white/30 rounded-full px-4 py-1"
+          className="inline-block text-xs font-semibold tracking-widest text-[#2f5ba5] uppercase border border-white/30 rounded-full px-4 py-1"
         >
           Features
         </motion.span>
@@ -74,7 +74,7 @@ export default function CoreFeatures() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mt-4 text-2xl md:text-3xl lg:text-4xl font-medium text-white leading-tight"
+          className="mt-4 text-2xl md:text-3xl lg:text-4xl font-medium text-black leading-tight"
         >
           Core Features
 
@@ -88,11 +88,11 @@ export default function CoreFeatures() {
           className="
         absolute top-1/2 -translate-y-1/2
         left-0 lg:-left-8
-        bg-white/10 hover:bg-white/20
+        bg-black/10 hover:bg-white/20
         rounded-full p-3 z-10
       "
         >
-          <ChevronLeft className="text-white" />
+          <ChevronLeft className="text-black" />
         </button>
 
         {/* RIGHT ARROW */}
@@ -101,11 +101,11 @@ export default function CoreFeatures() {
           className="
         absolute top-1/2 -translate-y-1/2
         right-0 lg:-right-8
-        bg-white/10 hover:bg-white/20
+        bg-black/10 hover:bg-white/20
         rounded-full p-3 z-10
       "
         >
-          <ChevronRight className="text-white" />
+          <ChevronRight className="text-black" />
         </button>
 
         {/* SAFE SPACE WRAPPER */}
@@ -129,16 +129,16 @@ export default function CoreFeatures() {
                 w-full sm:w-1/2 lg:w-1/3
               "
                 >
-                  <div className="bg-white/5 backdrop-blur-lg rounded-lg p-6 h-full flex flex-col">
+                  <div className="bg-black/5 backdrop-blur-lg rounded-lg p-6 h-full flex flex-col">
 
                     <div className="min-h-44 flex flex-col">
-                      {/* <Icon className="text-white mb-4" /> */}
+                      {/* <Icon className="text-black mb-4" /> */}
 
-                      <h2 className="text-white text-xl sm:text-xl lg:text-2xl font-medium mb-3">
+                      <h2 className="text-black text-xl sm:text-xl lg:text-2xl font-medium mb-3">
                         {item.title}
                       </h2>
 
-                      <ul className="text-gray-400 text-base sm:text-lg  leading-relaxed  font-light space-y-1 min-h-28">
+                      <ul className="text-[#64748B]   text-base sm:text-lg  leading-relaxed  font-light space-y-1 min-h-28">
                         {item.points.map((point, idx) => (
                           <li key={idx}>• {point}</li>
                         ))}

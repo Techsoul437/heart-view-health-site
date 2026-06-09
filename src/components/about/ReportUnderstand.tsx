@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 // import Image from "next/image";
 
 function ReportUnderstand() {
@@ -9,7 +10,7 @@ function ReportUnderstand() {
 
             {/* Background Glow */}
             <div className="absolute inset-0 -z-10 flex justify-center">
-                <div className="w-80 h-80  bg-[#3D7773]/20 blur-3xl rounded-full"></div>
+                <div className="w-80 h-80  bg-[#2f5ba5]/70/20 blur-3xl rounded-full"></div>
             </div>
 
             <div className="
@@ -19,37 +20,26 @@ function ReportUnderstand() {
             ">
 
                 {/* Badge */}
-                <div className="py-4">
-                    <motion.span
-                        initial={{ opacity: 0, y: 10 }}
+                <div className="">
+                    <motion.div
+                        initial={{ opacity: 0, y: 80 }}
                         whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border border-white/20 rounded-full px-4 py-1"
+                        className="flex flex-col items-center text-center"
                     >
-                        Data to Understanding
-                    </motion.span>
+                        <Headerbadge tag="INTELLIGENCE LAYER" text="From Health Data to Meaningful Decisions" />
 
-                    {/* Heading */}
-                    <motion.h1
-                        initial={{ opacity: 0, y: 16 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="mt-6 text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-white max-w-3xl"
-                    >
-                        Turn Your Health Data
-                        Into Clear Insights
-                    </motion.h1>
+
+                        <div className="mt-2 h-1 w-20 bg-gradient-to-r from-transparent via-[#2f5ba5]/70 to-transparent"></div>
+                    </motion.div>
                 </div>
                 {/* Paragraph */}
                 <p className="
-                    mt-5 text-gray-400 text-base sm:text-lg leading-relaxed 
+                    mt-5 text-[#64748B]   text-base sm:text-lg leading-relaxed 
                     font-light max-w-2xl
                 ">
-                    Most platforms simply store your medical data. HeartView Health goes
-                    further transforming complex reports into easy to understand visual
-                    insights that actually help you take action.
+                    Collecting data is only the beginning. HeartView Health helps users identify trends, understand changes, and gain context around the metrics that matter most.
                 </p>
 
                 {/* POINTS */}
@@ -69,33 +59,34 @@ function ReportUnderstand() {
                                 border border-[#3D7773]/30 
                                 bg-[#0f172a]/50 backdrop-blur-md 
                                 w-full justify-center sm:justify-start
-                                transition-all duration-300 hover:bg-[#3D7773]/10
+                                transition-all duration-300 hover:bg-[#2f5ba5]/70
                             "
                         >
-                            <div className="w-2 h-2 bg-[#3D7773] rounded-full"></div>
+                            <div className="w-2 h-2 bg-[#2f5ba5]/70 rounded-full"></div>
                             <p className="text-gray-300 text-base sm:text-lg font-medium">
                                 {item}
                             </p>
                         </div>
                     ))}
                 </div> */}
- <div className="flex flex-wrap justify-center gap-4 mt-4">
-            {[
-            "Trends over time",
-                        "Changes in key markers",
-                        "Patterns that matter",
-            ].map((item, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="w-65 text-center px-5 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-base sm:text-lg  leading-relaxed font-light backdrop-blur-md"
-              >
-                {item}
-              </motion.span>
-            ))}
-          </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+                    {[
+                        "Predictive Trends",
+                        "Risk Awareness",
+                        "Progress Tracking",
+                        "Personalized Insights",
+                    ].map((item, index) => (
+                        <motion.span
+                            key={index}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                            className="w-full text-center px-5 py-2 rounded-full border border-black/10 bg-black/5 text-[#64748B] text-base sm:text-lg leading-relaxed font-light backdrop-blur-md"
+                        >
+                            {item}
+                        </motion.span>
+                    ))}
+                </div>
             </div>
 
             {/* RIGHT IMAGE (COMMENTED) */}

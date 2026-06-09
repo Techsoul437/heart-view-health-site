@@ -28,7 +28,8 @@
 
 /* BODY pe background image */
 .page-bg {
-  background-image: url('/page-bg.png'); 
+  /* background-image: url('/page-bg.png');  */
+  background-color: white;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -68,21 +69,22 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-text-fill-color: white !important;
-  caret-color: white;
+  -webkit-text-fill-color: black !important;
+  caret-color:  black;
   transition: background-color 9999s ease-in-out 0s;
 }
 input,
 textarea,
-select {
-  color: white !important;
-}
 input::placeholder,
 textarea::placeholder {
   color: #7F8CA3 !important;
 }
+input,
+textarea {
+  color: black !important;
+}
 .custom-input {
-  color: white !important;
+  color: black !important;
 }
 
 .custom-input::placeholder {

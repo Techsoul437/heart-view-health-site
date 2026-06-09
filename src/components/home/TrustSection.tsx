@@ -2,7 +2,12 @@
 
 import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 import { motion, useInView } from "framer-motion";
-import { ShieldCheck, Sparkles, LineChart } from "lucide-react";
+import {
+  ShieldCheck, Stethoscope,
+  BarChart3,
+  HeartHandshake,
+  Lock,
+} from "lucide-react";
 import { useRef } from "react";
 
 export default function TrustSection() {
@@ -10,19 +15,29 @@ export default function TrustSection() {
   const headerInView = useInView(headerRef, { once: true, margin: "-60px" });
   const items = [
     {
+      icon: Lock,
+      title: "End-to-End Encryption",
+      desc: "Your health data is protected with bank-grade encryption from end to end.",
+    },
+    {
       icon: ShieldCheck,
-      title: "Built for Long-Term Health",
-      desc: "Created to support steady, real-world habits that grow into   awareness over time.",
+      title: "HIPAA & GDPR Compliant",
+      desc: "We follow global privacy standards to keep your data safe and confidential.",
     },
     {
-      icon: Sparkles,
-      title: "Clarity Over Noise",
-      desc: "Everything is simplified so you can focus only on what truly matters.",
+      icon: Stethoscope,
+      title: "Doctor Reviewed Insights",
+      desc: "Health insights and content are reviewed by medical professionals.",
     },
     {
-      icon: LineChart,
-      title: "Consistency That Stays",
-      desc: "Designed to naturally fit your routine without adding effort or friction.",
+      icon: BarChart3,
+      title: "10,000+ Health Records Tracked",
+      desc: "Thousands of users trust HeartView to track and improve their health daily.",
+    },
+    {
+      icon: HeartHandshake,
+      title: "Trusted by Families",
+      desc: "Families across the world trust HeartView to care for their loved ones.",
     },
   ];
 
@@ -34,19 +49,19 @@ export default function TrustSection() {
   ];
 
   return (
-    <section className="w-full text-white pt-10">
+    <section className="w-full text-black pt-10">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
 
         {/* Heading */}
 
-      
+
         <Headerbadge tag="Trust" text="Built on Trust, Designed for Everyday Reality" />
 
         {/* Features (FIXED GRID ALIGNMENT) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16 mb-15 mt-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2  xl:grid-cols-5 gap-12 lg:gap-16 mb-15 mt-5">
           {items.map((item, i) => {
             const Icon = item.icon;
-            const isLastOdd = items.length % 2 !== 0 && i === items.length - 1;
+            const isLastOdd = items.length % 4 !== 0 && i === items.length - 1;
 
             return (
               <motion.div
@@ -56,21 +71,21 @@ export default function TrustSection() {
                 transition={{ delay: i * 0.2 }}
                 className={`flex flex-col items-center text-center group
           
-          ${isLastOdd ? "sm:col-span-2 lg:col-span-1" : ""}
+          ${isLastOdd ? "sm:col-span-2 xl:col-span-1" : ""}
         `}
               >
                 {/* ICON */}
-                <div className="w-15 h-15 flex items-center justify-center rounded-full bg-[#3D7773]/15 border border-[#3D7773]/20 text-[#3D7773] mb-4 group-hover:scale-110 transition">
+                <div className="w-15 h-15 flex items-center justify-center rounded-full bg-[#2f5ba5]/70/15 border border-[#3D7773]/20 text-[#2f5ba5] mb-4 group-hover:scale-110 transition">
                   <Icon size={28} />
                 </div>
 
                 {/* TEXT */}
                 <div className="flex flex-col items-center">
-                  <h2 className="text-xl sm:text-xl lg:text-2xl mb-2 min-h-[1rem] lg:min-h-[4rem] xl:min-h-0 group-hover:text-[#3D7773] transition">
+                  <h2 className="text-xl sm:text-xl lg:text-2xl mb-2 min-h-12 lg:min-h-16 flex items-center justify-center text-center">
                     {item.title}
                   </h2>
 
-                  <p className="text-base sm:text-lg lg:max-w-sm font-light max-w-sm text-gray-400 leading-relaxed line-clamp-2">
+                  <p className="text-base sm:text-lg lg:max-w-sm font-light max-w-sm text-[#64748B]   leading-relaxed line-clamp-2 xl:line-clamp-none">
                     {item.desc}
                   </p>
                 </div>
@@ -79,30 +94,30 @@ export default function TrustSection() {
           })}
         </div>
         {/* CENTER STATEMENT */}
-        <motion.p
+        {/* <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="text-center text-base sm:text-lg font-medium text-gray-300 max-w-2xl mx-auto mb-12 leading-relaxed"
+          className="text-center text-base sm:text-lg font-normal text-[#64748B]  max-w-2xl mx-auto  leading-relaxed"
         >
           A calm, reliable system that works quietly in the background  helping you stay aware without turning health into effort.
-        </motion.p>
+        </motion.p> */}
 
         {/* TRUST POINTS */}
 
-        <div className="flex flex-wrap justify-center gap-4 mt-4">
+        {/* <div className="flex flex-wrap justify-center gap-4 mt-4">
           {trustPoints.map((item, index) => (
             <motion.span
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="w-75 sm:w-85 md:w-95 text-center px-5 py-2 rounded-full border border-white/10 bg-white/5 text-white/70 text-base sm:text-lg  leading-relaxed font-light backdrop-blur-md"
+              className="w-75 sm:w-85 md:w-95 text-center px-5 py-2 rounded-full border border-black/10 bg-black/5 text-[#64748B] text-base sm:text-lg  leading-relaxed font-light backdrop-blur-md"
             >
               {item}
             </motion.span>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );

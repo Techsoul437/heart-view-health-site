@@ -217,7 +217,7 @@ export default function QuickValueSection() {
             transition={{ duration: 0.6 }}
             className="mb-4"
           >
-            <span className="text-xs font-semibold font-[InterCustom] tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1">
+            <span className="text-xs font-semibold font-[InterCustom] tracking-widest text-[#2f5ba5] uppercase border border-white/30 rounded-full px-4 py-1">
               Quick Value
             </span>
           </motion.div>
@@ -238,10 +238,10 @@ export default function QuickValueSection() {
         <div className="relative z-10 w-full max-w-8xl px-20 mx-auto   flex items-center gap-6 md:gap-8">
 
           {/* Scroll progress line */}
-          <div className="flex-shrink-0 w-px h-48 bg-white/10 relative">
+          <div className="flex-shrink-0 w-px h-48 bg-black/10 relative">
             <motion.div
               style={{ height: progressHeight }}
-              className="w-full bg-[#3D7773] origin-top"
+              className="w-full bg-[#2f5ba5]/70 origin-top"
             />
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-teal-400/30 border border-white/60" />
           </div>

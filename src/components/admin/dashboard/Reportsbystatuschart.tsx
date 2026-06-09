@@ -50,7 +50,6 @@ const statusData: StatusData = {
     11: { completed: 3250, pending: 880, processing: 370, failed: 100 },
     12: { completed: 3400, pending: 900, processing: 380, failed: 130 },
   },
-
   2025: {
     1: { completed: 3500, pending: 920, processing: 390, failed: 140 },
     2: { completed: 3600, pending: 940, processing: 395, failed: 135 },
@@ -79,29 +78,28 @@ function pct(val: number, total: number): number {
   return Math.round((val / total) * 100);
 }
 
-const CustomLabel = ({
-  cx = 0,
-  cy = 0,
-  total,
-}: CustomLabelProps) => (
+// ✅ FIX: Use cx/cy passed by Recharts (these are the actual center coords)
+const CustomLabel = ({ cx = 0, cy = 0, total }: CustomLabelProps) => (
   <>
     <text
       x={cx}
-      y={cy - 6}
+      y={cy - 8}
       textAnchor="middle"
-      fill="#ffffff"
-      fontSize={24}
-      fontWeight={700}
+      dominantBaseline="middle"
+      fill="#0f172a"
+      fontSize={22}
+      fontWeight={600}
     >
       {total.toLocaleString()}
     </text>
-
     <text
       x={cx}
       y={cy + 16}
       textAnchor="middle"
+      dominantBaseline="middle"
       fill="#94a3b8"
-      fontSize={11}
+      fontWeight={400}
+      fontSize={13}
     >
       Total Reports
     </text>
@@ -112,13 +110,9 @@ export default function ReportsByStatusChart({
   year,
   month,
 }: ReportsByStatusChartProps) {
-  const raw =
-    statusData[year]?.[month] || statusData[2024][5];
+  const raw = statusData[year]?.[month] || statusData[2024][5];
 
-  const total = Object.values(raw).reduce(
-    (a, b) => a + b,
-    0
-  );
+  const total = Object.values(raw).reduce((a, b) => a + b, 0);
 
   const chartData: ChartDataItem[] = Object.entries(raw).map(
     ([key, value]) => ({
@@ -133,24 +127,23 @@ export default function ReportsByStatusChart({
     <div
       className="
         rounded-2xl
-        border border-white/10
-        bg-[#111827]/80
+        border border-black/10
+        bg-[#f7f7f7]
         p-5
         shadow-xl
         backdrop-blur-md
         w-full
         overflow-hidden
         min-h-110
-        h-full
+        h-auto
       "
     >
       {/* Header */}
       <div className="mb-5">
-        <h4 className="text-lg md:text-xl xl:text-2xl text-white">
+        <h4 className="text-lg md:text-xl xl:text-2xl text-black">
           Reports by Status
         </h4>
-
-        <p className="mt-1 text-slate-400">
+        <p className="mt-1 text-[#64748B]">
           Current report processing overview
         </p>
       </div>
@@ -159,21 +152,25 @@ export default function ReportsByStatusChart({
       <div
         className="
           flex
+          flex-col
+          xl:flex-row
           items-center
-          justify-between
-          gap-5
+          xl:items-center
+          gap-6
           w-full
-          h-80
+          h-auto
+          2xl:h-80
         "
       >
-        {/* Chart */}
+        {/* Chart — ✅ FIX: removed hardcoded cx/cy from label prop */}
         <div
           className="
             flex
             items-center
             justify-center
-            min-w-[220px]
-            max-w-[220px]
+            w-full
+            2xl:min-w-55
+            2xl:max-w-55
             h-55
             shrink-0
           "
@@ -190,19 +187,17 @@ export default function ReportsByStatusChart({
                 dataKey="value"
                 stroke="transparent"
                 labelLine={false}
-                label={
+                label={(props) => (
+                  // ✅ Recharts passes cx/cy automatically here — no hardcoding
                   <CustomLabel
-                    cx={110}
-                    cy={110}
+                    cx={props.cx}
+                    cy={props.cy}
                     total={total}
                   />
-                }
+                )}
               >
                 {chartData.map((entry) => (
-                  <Cell
-                    key={entry.key}
-                    fill={entry.color}
-                  />
+                  <Cell key={entry.key} fill={entry.color} />
                 ))}
               </Pie>
 
@@ -213,25 +208,20 @@ export default function ReportsByStatusChart({
                 ]}
                 contentStyle={{
                   background: "#0f172a",
-                  border:
-                    "1px solid rgba(255,255,255,0.08)",
+                  border: "1px solid rgba(255,255,255,0.08)",
                   borderRadius: "14px",
                   color: "#fff",
                   fontSize: "12px",
                 }}
-                itemStyle={{
-                  color: "#e2e8f0",
-                }}
-                labelStyle={{
-                  color: "#94a3b8",
-                }}
+                itemStyle={{ color: "#e2e8f0" }}
+                labelStyle={{ color: "#94a3b8" }}
               />
             </PieChart>
           </ResponsiveContainer>
         </div>
 
         {/* Legend */}
-        <div className="flex-1 min-w-0">
+        <div className="w-full flex-1 min-w-0">
           <ul className="flex flex-col gap-4 w-full">
             {chartData.map((item) => (
               <li
@@ -241,41 +231,23 @@ export default function ReportsByStatusChart({
                   items-center
                   gap-3
                   rounded-xl
-                  border border-white/5
-                  bg-white/5
+                  border border-black/5
+                  bg-black/5
                   px-4
                   py-3
                   w-full
+                  min-w-0
                 "
               >
                 <span
                   className="h-3 w-3 rounded-full shrink-0"
-                  style={{
-                    backgroundColor: item.color,
-                  }}
+                  style={{ backgroundColor: item.color }}
                 />
-
-                <span
-                  className="
-                    text-slate-400
-                    md:text-base
-                    truncate
-                  "
-                >
+                <span className="text-[#64748B] md:text-base truncate">
                   {item.name}
                 </span>
-
-                <span
-                  className="
-                    ml-auto
-                    whitespace-nowrap
-                    text-white
-                    font-semibold
-                    md:text-base
-                  "
-                >
+                <span className="ml-auto shrink-0 whitespace-nowrap text-black font-semibold md:text-base">
                   {item.value.toLocaleString()}
-
                   <span className="ml-1 font-normal text-slate-500">
                     ({pct(item.value, total)}%)
                   </span>

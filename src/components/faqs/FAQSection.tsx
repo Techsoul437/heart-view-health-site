@@ -134,7 +134,7 @@ export default function FAQSection() {
         {/* Heading */}
 
         <Headerbadge tag="FAQs" text="Have Questions?" />
-        <p className="text-gray-400 text-base text-lg text-center sm:text-lg font-light" >
+        <p className="text-[#64748B]   text-base text-lg text-center sm:text-lg font-light" >
           HeartView Health – Frequently Asked Questions
         </p>
         {/* FAQ Grid */}
@@ -146,8 +146,8 @@ export default function FAQSection() {
               <div
                 key={index}
                 className={`rounded-xl border transition-all duration-300 overflow-hidden h-fit ${isOpen
-                  ? "border-[#3D7773]/50 bg-white/5"
-                  : "border-white/10 bg-white/[0.03] hover:border-white/20 hover:bg-white/5"
+                  ? "border-[#2f5ba5]/70 bg-black/5"
+                  : "border-black/10 bg-white/[0.03] hover:border-black/20 hover:bg-black/5"
                   }`}
               >
                 {/* Question */}
@@ -156,7 +156,7 @@ export default function FAQSection() {
                   className="w-full flex items-center font-[InterCustom] justify-between px-6 py-5 text-left gap-4"
                 >
                   <span
-                    className={`text-base sm:text-lg font-medium ${isOpen ? "text-white" : "text-gray-200"
+                    className={`text-base sm:text-lg font-medium ${isOpen ? "text-black" : "text-black"
                       }`}
                   >
                     {faq.question}
@@ -165,12 +165,12 @@ export default function FAQSection() {
                   {/* Icon */}
                   <span
                     className={`flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center border transition-all duration-300 ${isOpen
-                      ? "border-[#3D7773] bg-[#3D7773]/20 rotate-45"
-                      : "border-white/20 bg-white/5"
+                      ? "border-[#2f5ba5]/70 bg-[#2f5ba5]/70/20 rotate-45"
+                      : "border-black/20 bg-black/5"
                       }`}
                   >
                     <svg
-                      className={`w-3.5 h-3.5 ${isOpen ? "text-[#B4B0B0]" : "text-gray-400"
+                      className={`w-3.5 h-3.5 ${isOpen ? "text-[#B4B0B0]" : "text-[#64748B]  "
                         }`}
                       fill="none"
                       stroke="currentColor"
@@ -193,7 +193,7 @@ export default function FAQSection() {
                     : "max-h-0 opacity-0"
                     } overflow-hidden`}
                 >
-                  <p className="px-6 pb-6 text-base sm:text-lg font-light text-gray-400 font-[InterCustom] leading-relaxed whitespace-pre-line">
+                  <p className="px-6 pb-6 text-base sm:text-lg font-light text-[#64748B]   font-[InterCustom] leading-relaxed whitespace-pre-line">
                     {faq.answer}
                   </p>
                 </div>
@@ -204,11 +204,11 @@ export default function FAQSection() {
 
         {/* CTA */}
         <div className="mt-12 text-center">
-          <p className="text-gray-400 text-md">
+          <p className="text-[#64748B]   text-md">
             Still have questions?{" "}
             <a
               href="/contact"
-              className="text-[#5a9e9a] hover:text-[#769bb8] font-medium underline underline-offset-4"
+              className="text-[#2f5ba5] hover:text-[#769bb8] font-medium underline underline-offset-4"
             >
               Contact our team
             </a>

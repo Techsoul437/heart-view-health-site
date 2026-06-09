@@ -15,16 +15,16 @@ export default function FeatureStorySection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.6 }}
                     transition={{ duration: 0.6, ease: "easeOut" }}
-                    className="inline-block text-xs font-medium tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1"
+                    className="inline-block text-xs font-medium tracking-widest text-[#2f5ba5] uppercase border border-white/30 rounded-full px-4 py-1"
                 >
                     Experience
                 </motion.span>
 
-                <h2 className=" text-2xl md:text-3xl lg:text-4xl font-medium mt-3 text-white leading-tight">
+                <h2 className=" text-2xl md:text-3xl lg:text-4xl font-medium mt-3 text-black leading-tight">
                     Smart Health Tracking Made Simple
                 </h2>
 
-                <p className="text-white/60 mt-4 text-lg font-light">
+                <p className="text-[#475569] mt-4 text-lg font-light">
                     Monitor your heart rate, blood pressure, and sugar levels in one place  
                     get guidance, reminders, and insights that help you take better control of your health every day.
                 </p>
@@ -50,11 +50,11 @@ export default function FeatureStorySection() {
 
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/80 to-transparent" />
 
-                    <div className="absolute bottom-6 left-6 right-6 text-white">
+                    <div className="absolute bottom-6 left-6 right-6 text-black">
                         <h3 className="text-xl font-medium">
                             Your Complete Health Timeline
                         </h3>
-                        <p className="text-white/80 mt-2 text-lg font-light">
+                        <p className="text-black/80 mt-2 text-lg font-light">
                             Track heart rate, blood pressure, and sugar levels in one unified timeline to clearly understand your health trends over time.
                         </p>
                     </div>
@@ -80,11 +80,11 @@ export default function FeatureStorySection() {
 
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/80 to-transparent" />
 
-                        <div className="absolute bottom-5 left-5 right-5 text-white">
+                        <div className="absolute bottom-5 left-5 right-5 text-black">
                             <h3 className="text-lg font-medium">
                                 Smart Health Guidance
                             </h3>
-                            <p className="text-white/80 text-lg font-light mt-1">
+                            <p className="text-black/80 text-lg font-light mt-1">
                                 Get intelligent suggestions based on your health data to improve your daily lifestyle and heart health.
                             </p>
                         </div>
@@ -107,11 +107,11 @@ export default function FeatureStorySection() {
 
                         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/80 to-transparent" />
 
-                        <div className="absolute bottom-5 left-5 right-5 text-white">
+                        <div className="absolute bottom-5 left-5 right-5 text-black">
                             <h3 className="text-lg font-medium">
                                 Medication & Routine Reminders
                             </h3>
-                            <p className="text-white/80 text-lg font-light mt-1">
+                            <p className="text-black/80 text-lg font-light mt-1">
                                 Stay on track with timely reminders for medicines, checkups, and daily health routines.
                             </p>
                         </div>
@@ -135,11 +135,11 @@ export default function FeatureStorySection() {
 
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/80 to-transparent" />
 
-                    <div className="absolute bottom-6 left-6 right-6 text-white">
+                    <div className="absolute bottom-6 left-6 right-6 text-black">
                         <h3 className="text-xl font-medium">
                             All Your Reports in One Place
                         </h3>
-                        <p className="text-white/80 mt-2 text-lg font-light">
+                        <p className="text-black/80 mt-2 text-lg font-light">
                             Store and access lab reports, prescriptions, and medical history anytime  secure, organized, and always available.
                         </p>
                     </div>

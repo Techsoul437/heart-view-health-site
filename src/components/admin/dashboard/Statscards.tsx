@@ -224,8 +224,8 @@ export default function StatsCards({
               relative
               overflow-hidden
               rounded-2xl
-              border border-white/10
-              bg-[#111827]/80
+              border border-black/10
+              bg-[#f7f7f7]
               p-5
               shadow-xl
               backdrop-blur-md
@@ -250,11 +250,11 @@ export default function StatsCards({
             <div className="relative flex items-center justify-between">
               {/* Left */}
               <div>
-                <p className="text-slate-400">
+                <p className="text-[#64748B]">
                   {label}
                 </p>
 
-                <h3 className="mt-2 text-2xl font-bold text-white">
+                <h3 className="mt-2 text-2xl font-bold text-black">
                   {data[key]}
                 </h3>
 
@@ -267,7 +267,7 @@ export default function StatsCards({
               <div
                 className={`
                   flex h-14 w-14 items-center justify-center
-                  rounded-2xl border border-white/5
+                  rounded-2xl border border-black/5
                   ${iconBg}
                 `}
               >

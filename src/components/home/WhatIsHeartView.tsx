@@ -5,19 +5,19 @@ import { motion } from "framer-motion";
 
 export default function WhatIsHeartView() {
     return (
-        <section className="w-full max-w-8xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 pt-14 text-white">
+        <section className="w-full max-w-8xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 pt-14 text-black">
 
             {/* MAIN BOX */}
             <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="relative border border-white/10 rounded-3xl p-4 sm:p-6 md:p-10 lg:p-14 overflow-hidden"
+                className="relative border border-black/10 rounded-3xl p-4 sm:p-6 md:p-10 lg:p-14 overflow-hidden"
             >
 
                 {/* 🔥 GLOW (NOW INSIDE BOX) */}
-                <div className="absolute top-0 right-0 w-72 h-72 bg-[#3D7773]/20 blur-3xl rounded-full" />
-                <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#3D7773]/20 blur-3xl rounded-full" />
+                {/* <div className="absolute top-0 right-0 w-72 h-72 bg-[#2f5ba5]/20 blur-3xl rounded-full" />
+                <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#4a7bc9]/20 blur-3xl rounded-full" /> */}
 
                 {/* CONTENT */}
                 <div className="relative z-10">
@@ -25,32 +25,32 @@ export default function WhatIsHeartView() {
                     {/* HEADER */}
 
                     <Headerbadge tag="What is HeartView" text=" Your Personal Heart Health Companion" />
-                    <p className="mt-4 text-gray-400 text-base sm:text-lg  leading-relaxed  font-light max-w-5xl mx-auto">
+                    <p className="mt-4 text-[#64748B]   text-base sm:text-lg  leading-relaxed  font-light max-w-5xl mx-auto">
                         HeartView Health is designed to help you understand your body better through everyday health data. From vital tracking to personalized insights, everything is brought together into one seamless and powerful experience. No confusion. No overload. Just meaningful health awareness that helps you stay informed, aware, and in control of your well-being every day.
                     </p>
                     {/* DIVIDER */}
-                    <div className="mt-14 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+                    <div className="mt-14 h-px w-full bg-gradient-to-r from-transparent via-black/10 to-transparent" />
 
                     {/* GRID */}
                     <div className="mt-14 grid md:grid-cols-3 gap-10 text-center">
 
                         <div>
                             <h2 className="text-xl sm:text-xl lg:text-2xl font-medium">Clear Health View</h2>
-                            <p className="mt-3 text-base sm:text-lg  leading-relaxed  font-light text-gray-400 max-w-sm mx-auto">
+                            <p className="mt-3 text-base sm:text-lg  leading-relaxed  font-light text-[#64748B]   max-w-sm mx-auto">
                                 Easily track and understand your daily health metrics in one simplified dashboard.
                             </p>
                         </div>
 
                         <div>
                             <h2 className="text-xl sm:text-xl lg:text-2xl font-medium">Smart Insights</h2>
-                            <p className="mt-3 text-base sm:text-lg  leading-relaxed  font-light text-gray-400 max-w-sm mx-auto">
+                            <p className="mt-3 text-base sm:text-lg  leading-relaxed  font-light text-[#64748B]   max-w-sm mx-auto">
                                 Get meaningful interpretations of your data without unnecessary complexity.
                             </p>
                         </div>
 
                         <div>
                             <h2 className="text-xl sm:text-xl lg:text-2xl font-medium">Built for Daily Life</h2>
-                            <p className="mt-3 text-base sm:text-lg  leading-relaxed  font-light text-gray-400 max-w-sm mx-auto">
+                            <p className="mt-3 text-base sm:text-lg  leading-relaxed  font-light text-[#64748B]   max-w-sm mx-auto">
                                 Designed to blend into your routine and support consistent health awareness.
                             </p>
                         </div>

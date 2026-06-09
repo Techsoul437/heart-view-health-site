@@ -7,6 +7,8 @@ import { blogs } from "@/data/blogData";
 import Navbar from "@/Ui/navbar/Navbar";
 import FinalCTA from "@/Ui/cta/FinalCTA";
 import { motion, AnimatePresence } from "framer-motion";
+import Footer from "@/Ui/footer/Footer";
+import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 
 
 export default function CategoryPage({
@@ -23,26 +25,17 @@ export default function CategoryPage({
   );
 
   return (
-    <div className="page-bg mt-20">
+    <div className="page-bg ">
       <Navbar />
 
       <div className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-10  lg:pt-14">
 
         {/* HEADING */}
-
-        <div className="w-full py-4 text-center">
-          <motion.span className="inline-block text-xs font-semibold tracking-widest text-[#3D7773] uppercase border-2 border-white/30 rounded-full px-4 py-1">
-            {category.replace("-", " ")}
-
-
-          </motion.span>
-
-          <motion.h1 className="mt-4  text-2xl md:text-3xl lg:text-4xl font-medium text-white">
-            {category.replace("-", " ")} Blogs
-
-
-          </motion.h1>
-        </div>
+<Headerbadge  
+  tag={category.replace("-", " ")}
+  text={`Explore Our ${category.replace("-", " ")} Blogs`}
+/>
+        
         {/* GRID */}
         {filteredBlogs.length === 0 ? (
           <p className="text-center text-red-400">
@@ -55,8 +48,15 @@ export default function CategoryPage({
               <Link key={blog.slug} href={`/blog/${blog.slug}`} className="h-full">
 
                 {/* SAME CARD DESIGN */}
-                <div className="group flex flex-col h-full border border-[#181E2B] rounded-lg p-3 shadow-[0_4px_20px_rgba(0,0,0,0.25)]
-                hover:shadow-[0_8px_30px_rgba(61,119,115,0.35)] transition-all duration-300">
+                    <div className="group h-full flex flex-col
+    border border-[#dcdcdc]
+    rounded-xl p-3
+
+    bg-white/90 backdrop-blur-sm
+
+    
+
+    transition-all duration-300">
 
                   {/* IMAGE */}
                   <div className="relative w-full aspect-video rounded-lg overflow-hidden">
@@ -71,26 +71,57 @@ export default function CategoryPage({
                     )}
 
                     {/* CATEGORY BADGE */}
-                    <div className="absolute top-3 left-3 bg-gradient-to-r from-[#181E2B] to-[#3D7773] backdrop-blur-md text-white text-xs md:text-sm px-2 py-1 lg:px-3 rounded-full shadow-md">
+               
+                  <div
+                    className="
+    group relative inline-flex items-center
+    rounded-full overflow-hidden
+    text-white text-xs md:text-sm top-3 left-3
+    px-2 py-1 lg:px-3
+    shadow-md
+  "
+                  >
+                    {/* Gradient Border */}
+                    <span
+                      className="
+      absolute inset-0 rounded-full
+      p-px
+      bg-linear-to-r from-[#0f61b3] to-[#6AA2E5]/10
+    "
+                    />
+
+                    {/* Inner Background */}
+                    <span
+                      className="
+      absolute inset-px rounded-full
+      bg-linear-to-r from-[#2f5ba5]/70 to-[#4a7bc9]/30
+      backdrop-blur-md
+    "
+                    />
+
+                    {/* Content */}
+                    <span className="relative z-10 tracking-wide">
                       {blog.category.replace("-", " ").toUpperCase()}
-                    </div>
+                    </span>
+                  </div>
 
                   </div>
 
                   {/* CONTENT */}
                   <div className="flex flex-col flex-grow">
 
-                    <h3 className="lg:text-xl sm:text-lg text-lg font-medium mt-4 text-white group-hover:text-[#3D7773] transition line-clamp-2">
+                    <h3 className="lg:text-xl sm:text-lg text-lg font-medium mt-4 text-black group-hover:text-[#2f5ba5] transition line-clamp-2">
                       {blog.title}
                     </h3>
 
-                    <p className="text-base sm:text-lg  leading-relaxed lg:max-w-md font-light text-white/60 line-clamp-2">
+                    <p className="text-base sm:text-lg  leading-relaxed lg:max-w-md font-light text-[#475569] line-clamp-2">
                       {blog.description}
                     </p>
 
                        <div className="mt-auto pt-1 flex justify-end">
-                    <div className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-[#45657D] to-[#3D7773] text-white 
-    group-hover:bg-[#3D7773] group-hover:text-white transition-all duration-300">
+                    <div className="mt-auto pt-1 flex justify-end">
+                    <div className="w-10 h-10 flex items-center justify-center rounded-full    bg-linear-to-r from-[#0f61b3]/70 to-[#4a7bc9]/60 text-white 
+    group-hover:bg-[#2f5ba5]/70 group-hover:text-white transition-all duration-300">
 
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -105,6 +136,7 @@ export default function CategoryPage({
 
                     </div>
                   </div>
+                  </div>
 
                   </div>
 
@@ -117,7 +149,8 @@ export default function CategoryPage({
         )}
       </div>
 
-      <FinalCTA />
+      {/* <FinalCTA /> */}
+      <Footer></Footer>
     </div>
   );
 }

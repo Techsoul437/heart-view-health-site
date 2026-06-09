@@ -163,13 +163,13 @@ const accountSchema = Yup.object({
 // ════════════════════════════════════════════════════════════════════════════
 
 const inputClass =
-  "h-13 w-full rounded-2xl border border-[#45657D]/60 bg-[#131D2B]/90 px-5 text-white placeholder:text-[#7F8CA3] outline-none transition-all duration-300 focus:border-[#4E9B95]  focus:ring-4 focus:ring-[#3D7773]/10";
+  "h-13 w-full rounded-2xl border border-[#2f5ba5]/60 bg-white/90 px-5 text-black placeholder:text-[#7F8CA3] outline-none transition-all duration-300 focus:border-[#2f5ba5]  focus:ring-4 focus:ring-[#2f5ba5]/10";
 
 const buttonClass =
-  "flex h-13 w-full items-center justify-center rounded-2xl bg-[#4A8B86] text-white shadow-lg shadow-[#3D7773]/20 transition-all duration-300 hover:scale-[1.01] hover:bg-[#56A29B] active:scale-[0.99]";
+  "flex h-13 w-full items-center justify-center rounded-2xl bg-linear-to-r from-[#2f5ba5]/70 to-[#4a7bc9]/60 text-white  transition-all duration-300 hover:scale-[1.01] hover:bg-[#56A29B] active:scale-[0.99]";
 
 const outlineButtonClass =
-  "flex h-13 w-full items-center justify-center gap-3 rounded-2xl border border-[#45657D]/40 bg-[#182235]/60 text-white transition-all duration-300 hover:bg-[#1D2A40]";
+  "flex h-13 w-full items-center justify-center gap-3 rounded-2xl border border-[#2f5ba5]/40 bg-white/70 text-black transition-all duration-300 hover:bg-[#2f5ba5]/70 hover:text-white";
 
 // ════════════════════════════════════════════════════════════════════════════
 //  REUSABLE ATOMS
@@ -179,7 +179,7 @@ const BackButton = ({ onClick }: BackButtonProps) => (
   <button
     type="button"
     onClick={onClick}
-    className="mb-6 flex items-center gap-2 text-[#9BA8BC] transition-all hover:text-white"
+    className="mb-6 flex items-center gap-2 text-[#64748B]  transition-all hover:text-black"
   >
     <ArrowLeft className="h-4 w-4" />
     Back
@@ -188,7 +188,7 @@ const BackButton = ({ onClick }: BackButtonProps) => (
 
 const MobileField = () => (
   <div className="flex gap-3">
-    <div className="flex h-13 items-center gap-2 whitespace-nowrap rounded-2xl border border-[#45657D]/60 bg-[#131D2B]/90 px-4 text-white">
+    <div className="flex h-13 items-center gap-2 whitespace-nowrap rounded-2xl border border-[#45657D]/60 bg-white px-4 text-black">
       +91
     </div>
 
@@ -216,7 +216,7 @@ const OtpInputs = () => (
         key={item}
         type="text"
         maxLength={1}
-        className="h-14 w-14 rounded-2xl border border-[#45657D]/50 bg-[#182235]/90 text-center text-lg text-white shadow-inner outline-none transition-all duration-300 focus:border-[#4E9B95] focus:ring-4 focus:ring-[#3D7773]/10"
+        className="h-14 w-14 rounded-2xl border border-[#45657D]/50 bg-white text-center text-lg text-black shadow-inner outline-none transition-all duration-300 focus:border-[#2f5ba5] focus:ring-4 focus:ring-[#2f5ba5]/10"
       />
     ))}
   </div>
@@ -232,8 +232,8 @@ const StepIndicator = ({
         <div key={item} className="flex items-center">
           <div
             className={`flex h-9 w-9 items-center justify-center rounded-full transition-all duration-300 ${current >= item
-              ? "bg-[#4A8B86] text-white"
-              : "bg-[#1E293B] text-[#8391A7]"
+              ? "bg-[#2f5ba5] text-white"
+              : "border border-[#2f5ba5] text-[#8391A7]"
               }`}
           >
             {item}
@@ -242,7 +242,7 @@ const StepIndicator = ({
           {index !== total - 1 && (
             <div
               className={`h-px w-12 transition-all duration-300 ${current > item
-                ? "bg-[#4A8B86]"
+                ? "bg-[#2f5ba5]"
                 : "bg-[#2A3548]"
                 }`}
             />
@@ -265,7 +265,7 @@ const features = [
 ];
 
 const LeftSide = () => (
-  <div className="relative hidden overflow-hidden border-r border-[#45657D]/20 bg-linear-to-b from-[#181E2B] via-[#243B4A] to-[#3D7773] lg:flex lg:flex-col">
+  <div className="relative hidden overflow-hidden border-r border-[#45657D]/20 bg-black lg:flex lg:flex-col">
     <div className="relative z-10 flex h-full flex-col justify-between p-8 xl:p-10">
       <div className="flex justify-start">
         <div className="relative h-16 w-44">
@@ -285,7 +285,7 @@ const LeftSide = () => (
             Create your Lab Portal account
           </h2>
 
-          <p className="mt-5 leading-7 text-white/70">
+          <p className="mt-5 leading-7 text-[#64748B]">
             Securely manage reports, patients, and lab operations
             with a modern healthcare dashboard experience.
           </p>
@@ -295,7 +295,7 @@ const LeftSide = () => (
           {features.map((item) => (
             <div
               key={item.title}
-              className="flex items-center gap-4 rounded-2xl border border-white/5 bg-white/3 px-4 py-3 transition-all duration-300 hover:bg-white/6"
+              className="flex items-center gap-4 rounded-2xl border border-black/5 bg-white/3 px-4 py-3 transition-all duration-300 hover:bg-white/6"
             >
 
 
@@ -320,7 +320,7 @@ const LoginMobileTab = ({
   onSignup,
 }: LoginMobileTabProps) => (
   <>
-    <p className="mt-5 text-[#94A3B8]">
+    <p className="mt-5 text-[#64748B]">
       Enter your registered mobile number
     </p>
 
@@ -358,12 +358,12 @@ const LoginMobileTab = ({
         Sign in with Email
       </button>
 
-      <p className="mt-6 text-center text-[#94A3B8]">
+      <p className="mt-6 text-center text-[#64748B] ">
         Don&apos;t have an account?{" "}
         <button
           type="button"
           onClick={onSignup}
-          className="font-medium text-[#4A8B86] transition-colors hover:text-[#66B3AC]"
+          className="font-medium text-[#2f5ba5] transition-colors hover:text-[#66B3AC]"
         >
           Sign up
         </button>
@@ -448,12 +448,12 @@ const LoginEmailTab = ({
           Sign In
         </button>
 
-        <p className="text-center text-[#94A3B8]">
+        <p className="text-center text-[#64748B] ">
           Don&apos;t have an account?{" "}
           <button
             type="button"
             onClick={onSignup}
-            className="font-medium text-[#4A8B86]"
+            className="font-medium text-[#2f5ba5]"
           >
             Sign up
           </button>
@@ -516,11 +516,11 @@ const LoginOtpVerify = ({
     <>
       <BackButton onClick={onBack} />
 
-      <h2 className="text-3xl text-white">
+      <h2 className="text-3xl text-black">
         Verify OTP
       </h2>
 
-      <p className="mt-3 text-[#94A3B8]">
+      <p className="mt-3 text-[#64748B] ">
         Enter the 6-digit code sent to your mobile number
       </p>
 
@@ -537,7 +537,7 @@ const LoginOtpVerify = ({
             type="button"
             onClick={handleResendOtp}
             disabled={isResending}
-            className="font-medium text-[#4A8B86] hover:text-[#66B3AC]"
+            className="font-medium text-[#2f5ba5] hover:text-[#2f5ba5]/70"
           >
             {isResending ? "Sending..." : "Resend OTP"}
           </button>
@@ -575,11 +575,11 @@ const LoginPanel = ({
   return (
     <>
       <div className="mb-8">
-        <h2 className="text-lg font-normal text-white sm:text-xl lg:text-2xl xl:text-3xl">
+        <h2 className="text-lg font-normal text-black sm:text-xl lg:text-2xl xl:text-3xl">
           Welcome Back!
         </h2>
 
-        <p className="mt-2 text-[#94A3B8]">
+        <p className="mt-2 text-[#64748B] ">
           Sign in to access your HeartView Lab Portal
         </p>
       </div>
@@ -590,8 +590,8 @@ const LoginPanel = ({
             type="button"
             onClick={() => setLoginStep("mobile")}
             className={`flex-1 rounded-xl py-3 font-medium transition-all duration-300 ${loginStep === "mobile"
-              ? "bg-[#4A8B86] text-white"
-              : "text-[#94A3B8]"
+              ? "bg-[#2f5ba5] text-white"
+              : "text-white"
               }`}
           >
             Mobile OTP
@@ -601,8 +601,8 @@ const LoginPanel = ({
             type="button"
             onClick={() => setLoginStep("email")}
             className={`flex-1 rounded-xl py-3 font-medium transition-all duration-300 ${loginStep === "email"
-              ? "bg-[#4A8B86] text-white"
-              : "text-[#94A3B8]"
+              ? "bg-[#2f5ba5] text-white"
+              : "text-white "
               }`}
           >
             Email &amp; Password
@@ -638,11 +638,11 @@ const SignupStep1 = ({
   onLoginClick,
 }: SignupStep1Props) => (
   <>
-    <h2 className="text-lg font-normal text-white sm:text-xl lg:text-2xl xl:text-3xl">
+    <h2 className="text-lg font-normal text-black sm:text-xl lg:text-2xl xl:text-3xl">
       Let&apos;s get started
     </h2>
 
-    <p className="mt-2 text-[#94A3B8]">
+    <p className="mt-2 text-[#64748B]">
       Enter your mobile number to create account
     </p>
 
@@ -677,12 +677,12 @@ const SignupStep1 = ({
       Sign up with Email
     </button>
 
-    <p className="mt-6 text-center text-[#94A3B8]">
+    <p className="mt-6 text-center text-[#64748B] ">
       Already have an account?{" "}
       <button
         type="button"
         onClick={onLoginClick}
-        className="font-medium text-[#4A8B86]"
+        className="font-medium text-[#2f5ba5]"
       >
         Sign in
       </button>
@@ -750,19 +750,19 @@ const SignupStep2 = ({
 
   return (
     <>
-      <h2 className="text-lg font-normal text-white sm:text-xl lg:text-2xl xl:text-3xl">
+      <h2 className="text-lg font-normal text-black sm:text-xl lg:text-2xl xl:text-3xl">
         Verify your number
       </h2>
 
-      <p className="mt-2 text-[#94A3B8]">
+      <p className="mt-2 text-[#64748B] ">
         Enter the 6-digit code sent to{" "}
-        <span className="font-medium text-white">
+        <span className="font-medium text-black">
           +91 {mobile}
         </span>{" "}
         <button
           type="button"
           onClick={onChangeNumber}
-          className="font-medium text-[#4A8B86]"
+          className="font-medium text-[#2f5ba5]"
         >
           Change
         </button>
@@ -781,7 +781,7 @@ const SignupStep2 = ({
             type="button"
             onClick={handleResendOtp}
             disabled={isResending}
-            className="font-medium text-[#4A8B86] hover:text-[#66B3AC]"
+            className="font-medium text-[#2f5ba5] hover:text-[#2f5ba5]"
           >
             {isResending ? "Sending..." : "Resend OTP"}
           </button>
@@ -801,11 +801,11 @@ const SignupStep2 = ({
 
 const SignupStep3 = ({ onNext }: SignupStep3Props) => (
   <>
-    <h2 className="text-lg font-normal text-white sm:text-xl lg:text-2xl xl:text-3xl">
+    <h2 className="text-lg font-normal text-black sm:text-xl lg:text-2xl xl:text-3xl">
       Tell us about your lab
     </h2>
 
-    <p className="mt-2 text-[#94A3B8]">
+    <p className="mt-2 text-[#64748B] ">
       Help us set up your lab profile
     </p>
 
@@ -820,7 +820,7 @@ const SignupStep3 = ({ onNext }: SignupStep3Props) => (
     >
       <Form className="mt-7 space-y-5">
         <div>
-          <label className="mb-1.5 block text-[#94A3B8]">
+          <label className="mb-1.5 block text-[#64748B] ">
             Lab Name
           </label>
 
@@ -840,7 +840,7 @@ const SignupStep3 = ({ onNext }: SignupStep3Props) => (
         </div>
 
         <div>
-          <label className="mb-1.5 block text-[#94A3B8]">
+          <label className="mb-1.5 block text-[#64748B] ">
             Lab Type
           </label>
 
@@ -864,7 +864,7 @@ const SignupStep3 = ({ onNext }: SignupStep3Props) => (
               <select
                 {...field}
                 className={`${inputClass} ${form.values.labType
-                  ? "text-white!"
+                  ? "text-black!"
                   : "text-[#7F8CA3]!"
                   }`}
               >
@@ -893,7 +893,7 @@ const SignupStep3 = ({ onNext }: SignupStep3Props) => (
         </div>
 
         <div>
-          <label className="mb-1.5 block text-[#94A3B8]">
+          <label className="mb-1.5 block text-[#64748B] ">
             City
           </label>
 
@@ -929,11 +929,11 @@ const SignupStep4 = ({
 
   return (
     <>
-      <h2 className="text-lg font-normal text-white sm:text-xl lg:text-2xl xl:text-3xl">
+      <h2 className="text-lg font-normal text-black sm:text-xl lg:text-2xl xl:text-3xl">
         Create your account
       </h2>
 
-      <p className="text-[#94A3B8]">
+      <p className="text-[#64748B] ">
         Set up your login credentials
       </p>
 
@@ -949,7 +949,7 @@ const SignupStep4 = ({
       >
         <Form className="mt-7 space-y-4">
           <div>
-            <label className="mb-1.5 block text-[#94A3B8]">
+            <label className="mb-1.5 block text-[#64748B] ">
               Full Name
             </label>
 
@@ -969,7 +969,7 @@ const SignupStep4 = ({
           </div>
 
           <div>
-            <label className="mb-1.5 block text-[#94A3B8]">
+            <label className="mb-1.5 block text-[#64748B] ">
               Email (Optional)
             </label>
 
@@ -988,7 +988,7 @@ const SignupStep4 = ({
           </div>
 
           <div>
-            <label className="mb-1.5 block text-[#94A3B8]">
+            <label className="mb-1.5 block text-[#64748B] ">
               Password
             </label>
 
@@ -1021,7 +1021,7 @@ const SignupStep4 = ({
           </div>
 
           <div>
-            <label className="mb-1.5 block text-[#94A3B8]">
+            <label className="mb-1.5 block text-[#64748B] ">
               Confirm Password
             </label>
 
@@ -1053,40 +1053,40 @@ const SignupStep4 = ({
             />
           </div>
 
-       <label className="flex items-start gap-3 text-[#94A3B8]">
-  <input
-    type="checkbox"
-    className="mt-1 accent-[#4A8B86]"
-  />
+          <label className="flex items-start gap-3 text-[#64748B] ">
+            <input
+              type="checkbox"
+              className="mt-1 accent-[#2f5ba5]"
+            />
 
-  <span className="flex flex-wrap items-center">
-    <span className="mr-2">I agree to the</span>
+            <span className="flex flex-wrap items-center">
+              <span className="mr-2">I agree to the</span>
 
-    <span className="cursor-pointer text-[#4A8B86] mr-2">
-      Terms of Service
-    </span>
+              <span className="cursor-pointer text-[#2f5ba5] mr-2">
+                Terms of Service
+              </span>
 
-    <span className="mr-2">and</span>
+              <span className="mr-2">and</span>
 
-    <span className="cursor-pointer text-[#4A8B86]">
-      Privacy Policy
-    </span>
-  </span>
-</label>
+              <span className="cursor-pointer text-[#2f5ba5]">
+                Privacy Policy
+              </span>
+            </span>
+          </label>
 
           <button type="submit" className={buttonClass}>
             Create Account
           </button>
-          
+
         </Form>
       </Formik>
 
-      <p className="mt-6 text-center text-[#94A3B8]">
+      <p className="mt-6 text-center text-[#64748B] ">
         Already have an account?{" "}
         <button
           type="button"
           onClick={onLoginClick}
-          className="font-medium text-[#4A8B86]"
+          className="font-medium text-[#2f5ba5]"
         >
           Sign in
         </button>
@@ -1100,6 +1100,11 @@ const SignupPanel = ({
   onSignupSuccess,
 }: SignupPanelProps) => {
   const [step, setStep] = useState<number>(1);
+  const [labData, setLabData] = useState<LabValues>({
+    labName: "",
+    labType: "",
+    city: "",
+  });
   const [mobileNumber, setMobileNumber] =
     useState<string>("");
 
@@ -1150,14 +1155,49 @@ const SignupPanel = ({
       )}
 
       {step === 3 && (
-        <SignupStep3 onNext={() => setStep(4)} />
+        <SignupStep3 onNext={(values) => {
+    setLabData(values);
+    
+    // ✅ Abhi localStorage mein save karo taaki Step 4 mein milega
+    localStorage.setItem(
+      "labProfile",
+      JSON.stringify({
+        logo: "",
+        labName: values.labName,
+        labType: values.labType,
+        branchName: "",
+        phone: "",
+        email: "",
+        website: "",
+        address: values.city,   // ✅ city → address
+      })
+    );
+    
+    setStep(4);
+  }} />
       )}
 
       {step === 4 && (
-        <SignupStep4
-          onSubmit={(values) => onSignupSuccess(values)}
-          onLoginClick={onLoginClick}
-        />
+       <SignupStep4
+      onSubmit={(values) => {
+        // ✅ localStorage mein save karo
+        localStorage.setItem(
+          "labProfile",
+          JSON.stringify({
+            logo: "",
+            labName: labData.labName,
+            labType: labData.labType,
+            branchName: "",
+            phone: "",
+            email: values.email,
+            website: "",
+            address: labData.city,
+          })
+        );
+        onSignupSuccess(values);
+      }}
+      onLoginClick={onLoginClick}
+    />
       )}
     </>
   );
@@ -1181,25 +1221,54 @@ export default function Login(): JSX.Element {
 
   const goToLogin = () => setMode("login");
 
-  const handleSignupSuccess = (values: SignupValues) => {
-    setSavedUser({
+  // const handleSignupSuccess = (values: SignupValues) => {
+  //   setSavedUser({
+  //     email: values.email,
+  //     password: values.password,
+  //   });
+
+  //   router.push("/lab-admin/dashboard");
+  // };
+const handleSignupSuccess = (values: SignupValues) => {
+  setSavedUser({
+    email: values.email,
+    password: values.password,
+  });
+
+  // ✅ Settings page ke liye lab profile save karo
+  const existingProfile = localStorage.getItem("labProfile");
+  const existing = existingProfile ? JSON.parse(existingProfile) : {};
+
+  localStorage.setItem(
+    "labProfile",
+    JSON.stringify({
+      ...existing,
+      labName: existing.labName || "",     // Step 3 se aayega
+      labType: existing.labType || "",
+      city: existing.city || "",
+      fullName: values.fullName,
       email: values.email,
-      password: values.password,
-    });
+      logo: "",
+      branchName: "",
+      registrationNumber: "",
+      phone: "",
+      website: "",
+      address: existing.city || "",        // city ko address mein bhi daal do
+    })
+  );
 
-    setMode("login");
-  };
-
+  router.push("/lab-admin/dashboard");
+};
   const handleLoginSuccess = () => {
     router.push("/lab-admin/dashboard");
   };
 
   return (
     <div className="page-bg relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-4">
-      <div className="relative grid h-200 w-full max-w-6xl overflow-hidden rounded-[30px] border border-[#45657D]/40 bg-[#0D1525]/95 shadow-[0_25px_80px_rgba(0,0,0,0.6)] backdrop-blur-xl lg:grid-cols-[0.65fr_1.15fr]">
+      <div className="relative grid h-200 w-full max-w-6xl overflow-hidden rounded-[30px]   bg-[#0D1525]/95 shadow-[0_25px_80px_rgba(0,0,0,0.6)] backdrop-blur-xl lg:grid-cols-[0.65fr_1.15fr]">
         <LeftSide />
 
-        <div className="flex h-full items-start justify-center overflow-y-auto bg-[#0e151d] px-5 py-8 sm:px-8 lg:px-12">
+        <div className="flex h-full items-start justify-center overflow-y-auto bg-white px-5 py-8 sm:px-8 lg:px-12">
           <div className="w-full max-w-xl">
             {mode === "login" ? (
               <LoginPanel

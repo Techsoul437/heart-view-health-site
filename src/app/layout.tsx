@@ -2,6 +2,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Manrope } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
+import PageLoader from "@/Ui/loader/PageLoader";
 
 
 const geistSans = Geist({
@@ -38,8 +40,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
 
-
-        {/* <PageLoader></PageLoader> */}
+   <Toaster position="top-right" />
+   
+        <PageLoader></PageLoader>
 
         {children}
 

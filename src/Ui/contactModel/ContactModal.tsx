@@ -186,7 +186,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
     });
 
     const inputClass = (field: keyof typeof formik.values) =>
-        `w-full border rounded-lg px-4 py-2 text-sm text-white bg-transparent outline-none ${formik.touched[field] && formik.errors[field] ? "border-red-400" : "border-[#3D7773]"
+        `w-full border rounded-lg px-4 py-2 text-sm text-black bg-transparent outline-none ${formik.touched[field] && formik.errors[field] ? "border-red-400" : "border-[#2f5ba5]/30"
         }`;
 
     const errorVariants = {
@@ -239,22 +239,22 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                                 w-full
                                 max-w-md sm:max-w-lg md:max-w-xl 2xl:max-w-2xl
                                 h-auto
-                                bg-[#0e1118] rounded-lg border border-[#3D7773]
+                                bg-[#EDEDEE] rounded-lg border border-[#2f5ba5]/30
                                 p-2 sm:p-5 md:p-6 lg:p-2 xl:p-8
                                 flex flex-col gap-1 sm:gap-4 relative
                             ">
                                 <button
                                     onClick={onClose}
-                                    className="absolute top-2 right-3 text-zinc-400 hover:text-white text-xl"
+                                    className="absolute top-2 right-3 text-zinc-400 hover:text-black text-xl"
                                 >
                                     ✕
                                 </button>
 
-                                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-zinc-100">
+                                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-black">
                                     Get In Touch
                                 </h2>
 
-                                <p className="text-zinc-500 text-xs sm:text-sm md:text-base leading-relaxed font-light">
+                                <p className="text-[#64748B] text-xs sm:text-sm md:text-base leading-relaxed font-light">
                                     We&apos;re here to answer your questions and guide you toward
                                     better health. Reach out anytime we love to hear from you.
                                 </p>
@@ -262,7 +262,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                                 <form onSubmit={formik.handleSubmit} noValidate className="flex flex-col gap-1  xl:gap-3">
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                         <div>
-                                            <label className="block text-zinc-300 text-sm mb-1">Name</label>
+                                            <label className="block text-[#64748B] text-sm mb-1">Name</label>
                                             <input
                                                 name="name"
                                                 value={formik.values.name}
@@ -273,7 +273,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                                             <ErrorMsg msg={formik.touched.name ? formik.errors.name : undefined} />
                                         </div>
                                         <div>
-                                            <label className="block text-zinc-300 text-sm mb-1">Email</label>
+                                            <label className="block text-[#64748B] text-sm mb-1">Email</label>
                                             <input
                                                 name="email"
                                                 value={formik.values.email}
@@ -286,24 +286,24 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                                     </div>
 
                                     <div>
-                                        <label className="block text-zinc-300 text-sm mb-1">
+                                        <label className="block text-[#64748B] text-sm mb-1">
                                             Phone
                                         </label>
 
-                                        <div className="flex border border-[#3D7773] rounded-lg overflow-hidden focus-within:ring-1 focus-within:ring-[#3D7773]/20">
+                                        <div className="flex border border-[#2f5ba5]/30 rounded-lg overflow-hidden focus-within:ring-1 focus-within:ring-[#2f5ba5]/30/20">
 
                                             {/* Country Code */}
                                             <div className="relative">
                                                 <select
                                                     value={countryCode}
                                                     onChange={(e) => setCountryCode(e.target.value)}
-                                                    className="appearance-none bg-transparent text-white pl-3 pr-8 py-2.5 outline-none border-r border-[#3D7773]"
+                                                    className="appearance-none bg-transparent text-[#64748B]  pl-3 pr-8 py-2.5 outline-none border-r border-[#2f5ba5]/30"
                                                 >
-                                                    <option className="bg-[#0B1F1E] text-white" value="+91">+91</option>
+                                                    <option className="bg-[#0B1F1E] text-[#64748B]" value="+91">+91</option>
                                                 </select>
 
                                                 {/* Custom Dropdown Icon */}
-                                                <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white text-xs">
+                                                <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B]  text-xs">
                                                     ▼
                                                 </div>
                                             </div>
@@ -320,7 +320,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                                                     formik.setFieldValue("phone", val);
                                                 }}
                                                 onBlur={formik.handleBlur}
-                                                className="w-full bg-transparent px-4 py-2.5 text-sm text-white placeholder:text-zinc-400 outline-none"
+                                                className="w-full bg-transparent px-4 py-2.5 text-sm text-black placeholder:text-zinc-400 outline-none"
                                                 maxLength={10}
                                             />
                                         </div>
@@ -339,7 +339,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
 
                                         {/* Message */}
                                         <div className="flex-1">
-                                            <label className="block text-zinc-300 text-sm mb-1">Message</label>
+                                            <label className="block text-[#64748B] text-sm mb-1">Message</label>
                                             <textarea
                                                 name="message"
                                                 rows={4}
@@ -368,7 +368,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                                         disabled={formik.isSubmitting}
                                         whileTap={{ scale: 0.97 }}
                                         whileHover={{ scale: 1.01 }}
-                                        className="w-full bg-[#3D7773] hover:bg-[#2f5f5c] text-white text-sm sm:text-base py-2.5 rounded-lg uppercase"
+                                        className="w-full bg-[#2f5ba5]/70 hover:bg-[#2f5ba5]/70 text-white text-sm sm:text-base py-2.5 rounded-lg uppercase"
                                     >
                                         {formik.isSubmitting ? "Sending..." : "Submit"}
                                     </motion.button>

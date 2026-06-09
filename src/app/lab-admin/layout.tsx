@@ -63,37 +63,96 @@ export default function LabAdminLayout({
 
   if (isLoginPage) {
     return (
-      <div className="min-h-screen page-bg">
+      <div className="h-screen page-bg">
         {children}
       </div>
     );
   }
 
-  return (
-    <div className="min-h-screen page-bg">
-      {/* Fixed Sidebar */}
-      <div className="fixed left-0 top-0 z-50 h-screen">
-        <Sidebar
-          role="admin"
-          menuItems={sidebarMenu}
-          labName="City Diagnostic Lab"
-          userName="Dr. Ramesh Patel"
-          userEmail="ramesh@citylab.com"
-        />
-      </div>
+//   return (
+//     <div className="min-h-screen page-bg">
+//       {/* Fixed Sidebar */}
+//       <div className="fixed left-0 top-0 z-50 h-screen">
+//         <Sidebar
+//           role="admin"
+//           menuItems={sidebarMenu}
+//           labName="City Diagnostic Lab"
+//           userName="Dr. Ramesh Patel"
+//           userEmail="ramesh@citylab.com"
+//         />
+//       </div>
 
-      {/* Scrollable Content */}
-    {/* Scrollable Content */}
-<main
-  className="
-    ml-80
-    h-screen
-    overflow-y-auto
-    overflow-x-hidden
-  "
->
-  {children}
-</main>
+//       {/* Scrollable Content */}
+//     {/* Scrollable Content */}
+// <main
+//   className="
+//     ml-80
+//     h-screen
+//     overflow-y-auto
+//     overflow-x-hidden
+//   "
+// >
+//   {children}
+// </main>
+//     </div>
+//   );
+
+
+//   <div className="min-h-screen page-bg">
+//     <Sidebar
+//       role="admin"
+//       menuItems={sidebarMenu}
+//       labName="City Diagnostic Lab"
+//       userName="Dr. Ramesh Patel"
+//       userEmail="ramesh@citylab.com"
+//     />
+
+//     <main
+//       className="
+//         min-h-screen
+//         lg:ml-80
+//         overflow-x-hidden
+//       "
+//     >
+//       {children}
+//     </main>
+//   </div>
+// );
+
+return (
+  <div className="min-h-screen page-bg">
+    {/* Desktop Sidebar */}
+    <div className="hidden lg:block fixed left-0 top-0 z-50 min-h-screen">
+      <Sidebar
+        role="admin"
+        menuItems={sidebarMenu}
+        labName="City Diagnostic Lab"
+        userName="Dr. Ramesh Patel"
+        userEmail="ramesh@citylab.com"
+      />
     </div>
-  );
+
+    {/* Mobile Sidebar */}
+    <div className="lg:hidden">
+      <Sidebar
+        role="admin"
+        menuItems={sidebarMenu}
+        labName="City Diagnostic Lab"
+        userName="Dr. Ramesh Patel"
+        userEmail="ramesh@citylab.com"
+      />
+    </div>
+
+    {/* Page Content */}
+    <main
+      className="
+        lg:ml-80
+       min-h-screen
+        overflow-x-hidden
+      "
+    >
+      {children}
+    </main>
+  </div>
+);
 }

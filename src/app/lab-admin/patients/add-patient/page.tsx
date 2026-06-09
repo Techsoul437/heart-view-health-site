@@ -12,11 +12,10 @@ import {
 } from "formik";
 import * as Yup from "yup";
 import { ArrowLeft } from "lucide-react";
-import BorderButton from "@/Ui/buttons/BorderButton";
-import FillButton from "@/Ui/buttons/FillButton";
 import SubmitButton from "@/Ui/buttons/SubmitButton";
 import { useEffect, useRef, useState } from "react";
 import ResetButton from "@/Ui/buttons/ResetButton";
+import toast from "react-hot-toast";
 
 interface PatientFormValues {
   name: string;
@@ -28,6 +27,7 @@ interface PatientFormValues {
 
 interface PatientItem extends PatientFormValues {
   id: number;
+    createdAt: string;
 }
 
 export default function AddPatientPage() {
@@ -80,6 +80,7 @@ export default function AddPatientPage() {
       patientId:
         values.patientId ||
         `P00${oldPatients.length + 1}`,
+        createdAt: new Date().toISOString(),
     };
 
     const updatedPatients = [
@@ -92,32 +93,34 @@ export default function AddPatientPage() {
       JSON.stringify(updatedPatients)
     );
 
-    alert("Patient added successfully");
+  toast.success("Patient added successfully");
 
     resetForm();
 
+ setTimeout(() => {
     router.push("/lab-admin/patients");
+  }, 1000);
   };
 
   return (
-    <div className="min-h-screen text-white">
-      <div className="min-h-screen p-5 sm:p-7 lg:p-10">
+    <div className="min-h-screen text-black">
+      <div className="min-h-screen  p-6 md:p-12">
         {/* HEADER */}
         <div className="flex flex-col gap-5">
           <div className="flex items-center gap-3">
             <Link
               href="/lab-admin/patients"
-              className="flex h-10 w-10 items-center justify-center rounded-xl text-white transition hover:bg-white/10"
+              className="flex h-10 w-10 items-center justify-center rounded-xl text-black transition hover:bg-black/10"
             >
               <ArrowLeft size={20} />
             </Link>
 
             <div>
-              <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-white">
+              <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
                 Add Patient
               </h1>
 
-              <p className=" text-slate-400">
+              <p className=" text-[#64748B]">
                 Enter patient details to create a new patient
               </p>
             </div>
@@ -125,7 +128,7 @@ export default function AddPatientPage() {
         </div>
 
         {/* FORM CARD */}
-        <div className="mt-8 rounded-3xl border border-white/10 bg-white/[0.03] p-5 shadow-2xl backdrop-blur-xl sm:p-8 lg:p-10">
+        <div className="mt-8 rounded-3xl border border-black/10 bg-white/3 p-5 shadow-2xl backdrop-blur-xl sm:p-8 lg:p-10">
           <Formik<PatientFormValues>
             initialValues={{
               name: "",
@@ -137,11 +140,11 @@ export default function AddPatientPage() {
             validationSchema={validationSchema}
             onSubmit={handleSubmit}
           >
-            {({ isSubmitting,resetForm  }) => (
+            {({ resetForm }) => (
               <Form className="flex flex-col gap-8">
                 {/* NAME */}
                 <div className="flex flex-col gap-3">
-                  <label className=" font-medium text-slate-200">
+                  <label className=" font-medium text-black">
                     Name{" "}
                     <span className="text-red-400">
                       *
@@ -152,7 +155,7 @@ export default function AddPatientPage() {
                     type="text"
                     name="name"
                     placeholder="Enter patient name"
-                    className="rounded-2xl border border-white/10 bg-[#0e151d]/70 px-5 py-4  outline-none transition placeholder:text-slate-500"
+                    className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4  outline-none transition placeholder:text-slate-500"
                   />
 
                   <ErrorMessage
@@ -164,7 +167,7 @@ export default function AddPatientPage() {
 
                 {/* MOBILE */}
                 <div className="flex flex-col gap-3">
-                  <label className=" font-medium text-slate-200">
+                  <label className=" font-medium text-black">
                     Mobile{" "}
                     <span className="text-red-400">
                       *
@@ -175,7 +178,7 @@ export default function AddPatientPage() {
                     type="text"
                     name="mobile"
                     placeholder="Enter mobile number"
-                    className="rounded-2xl border border-white/10 bg-[#0e151d]/70 px-5 py-4  outline-none transition placeholder:text-slate-500"
+                    className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4  outline-none transition placeholder:text-slate-500"
                   />
 
                   <ErrorMessage
@@ -189,18 +192,18 @@ export default function AddPatientPage() {
                 <div className="grid gap-8 lg:grid-cols-2">
                   {/* AGE */}
                   <div className="flex flex-col gap-3">
-                    <label className=" font-medium text-slate-200">
+                    <label className=" font-medium text-black">
                       Age{" "}
-                       <span className="text-red-400">
-                      *
-                    </span>
+                      <span className="text-red-400">
+                        *
+                      </span>
                     </label>
 
                     <Field
                       type="text"
                       name="age"
                       placeholder="Enter age"
-                      className="rounded-2xl border border-white/10 bg-[#0e151d]/70 px-5 py-4  outline-none transition placeholder:text-slate-500"
+                      className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4  outline-none transition placeholder:text-slate-500"
                     />
 
                     <ErrorMessage
@@ -212,7 +215,7 @@ export default function AddPatientPage() {
 
                   {/* GENDER */}
                   <div className="flex flex-col gap-3">
-                    <label className=" font-medium text-slate-200">
+                    <label className=" font-medium text-black">
                       Gender{" "}
                       <span className="text-red-400">
                         *
@@ -249,8 +252,8 @@ export default function AddPatientPage() {
             w-full
             rounded-2xl
             border
-            border-white/10
-            bg-[#0e151d]/70
+            border-black/10
+            bg-[#f7f7f7]/70
             px-5
             py-4
             outline-none
@@ -264,7 +267,7 @@ export default function AddPatientPage() {
                                 className={
                                   form.values.gender === ""
                                     ? "text-[#7F8CA3]"
-                                    : "text-white"
+                                    : "text-black"
                                 }
                               >
                                 {form.values.gender === ""
@@ -290,8 +293,8 @@ export default function AddPatientPage() {
             w-full
             rounded-2xl
             border
-            border-white/10
-            bg-[#0e151d]
+            border-black/10
+            bg-[#f7f7f7]
             py-2
             shadow-xl
           ">
@@ -306,8 +309,8 @@ export default function AddPatientPage() {
                   cursor-pointer
                   px-5
                   py-3
-                  text-white
-                  hover:bg-white/5
+                  text-black
+                  hover:bg-black/5
                   transition
                 "
                                   >
@@ -338,7 +341,7 @@ export default function AddPatientPage() {
                 {/* BUTTONS */}
                 <div className="flex flex-col-reverse gap-4 pt-4 sm:flex-row sm:justify-end">
 
-    <ResetButton onReset={resetForm} />
+                  <ResetButton onReset={resetForm} />
 
                   {/* SUBMIT */}
 
