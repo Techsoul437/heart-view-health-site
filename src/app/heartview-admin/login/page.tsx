@@ -6,6 +6,7 @@ function page() {
   return (
     <div>
      <AdminLoginPage></AdminLoginPage>
+     
     </div>
   )
 }

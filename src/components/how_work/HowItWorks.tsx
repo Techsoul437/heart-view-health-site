@@ -43,7 +43,7 @@ const STEPS: Step[] = [
     label: "APPOINTMENT MANAGEMENT",
     title: "Stay organized with your doctor visits",
     description:
-      "Schedule, view, and manage appointments. Keep track of upcoming visits, history, and important medical schedules without missing anything.",
+      "Schedule, view, and manage  appointments. Keep track of upcoming visits, history, and important medical schedules without missing anything.",
     image: "/step-4M.png",
   },
   {
@@ -57,6 +57,7 @@ const STEPS: Step[] = [
   {
     number: "06",
     label: "DOCTOR VISIT DETAILS",
+    
     title: "All your visit records in one place",
     description:
       "Access detailed information about your doctor visits including notes, prescriptions, and attachments. Stay prepared for every follow up with organized medical records.",
