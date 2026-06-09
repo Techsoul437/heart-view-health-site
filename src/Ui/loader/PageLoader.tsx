@@ -11,7 +11,6 @@ export default function PageLoader() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Reset on every route change
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisible(true);
     setHide(false);
@@ -83,21 +82,24 @@ export default function PageLoader() {
 
         .loader-content {
           width: 100%;
-        
+          max-width: 1200px;
           display: flex;
           flex-direction: column;
           align-items: center;
+          justify-content: center;
           gap: 20px;
           text-align: center;
+          padding: 0 20px;
         }
 
         .brand-text {
           margin: 0;
           color: #2f5ba5;
           font-weight: 600;
-            letter-spacing: 4px;
+          letter-spacing: 4px;
           line-height: 1.1;
-          font-size: clamp(2rem, 6vw, 68rem);
+          font-size: clamp(2rem, 6vw, 5rem);
+          word-break: break-word;
         }
 
         .percentage {
@@ -126,11 +128,21 @@ export default function PageLoader() {
           );
         }
 
-       
+        @media (max-width: 1024px) {
+          .brand-text {
+            font-size: clamp(2rem, 7vw, 4rem);
+          }
+        }
 
         @media (max-width: 768px) {
           .loader-content {
             gap: 16px;
+            padding: 0 16px;
+          }
+
+          .brand-text {
+            font-size: clamp(1.8rem, 8vw, 3rem);
+            letter-spacing: 2px;
           }
 
           .progress-track {
@@ -140,8 +152,14 @@ export default function PageLoader() {
         }
 
         @media (max-width: 480px) {
+          .loader-content {
+            gap: 14px;
+            padding: 0 12px;
+          }
+
           .brand-text {
-            letter-spacing: 0.5px;
+            font-size: clamp(1.5rem, 9vw, 2.3rem);
+            letter-spacing: 1px;
           }
 
           .percentage {
@@ -150,6 +168,16 @@ export default function PageLoader() {
 
           .progress-track {
             width: 85vw;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .brand-text {
+            font-size: 1.4rem;
+          }
+
+          .progress-track {
+            width: 90vw;
           }
         }
       `}</style>

@@ -169,7 +169,7 @@ function ContentBlock({ step }: { step: Step }) {
 
 export default function AppStepsSection() {
   return (
-    <section className="w-full max-w-7xl  mx-auto pt-5 md:pt-8 lg:pt-20 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-0 mt-0 lg:mt-15 ">
+    <section className="w-full max-w-7xl  mx-auto pt-5 md:pt-8 lg:pt-20 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-0 mt-0 lg:mt-15 overflow-x-hidden">
 
       {/* ── Header ── */}
       

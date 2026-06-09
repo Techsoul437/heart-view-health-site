@@ -17,7 +17,10 @@ export default function CategoryPage({
   params: Promise<{ category: string }>;
 }) {
   const { category } = use(params);
-
+  const categoryLabels: Record<string, string> = {
+  bp: "Blood Pressure",
+ 
+};
   // ✅ filter blogs by category
   const filteredBlogs = blogs.filter(
     (blog) =>
@@ -101,7 +104,8 @@ export default function CategoryPage({
 
                     {/* Content */}
                     <span className="relative z-10 tracking-wide">
-                      {blog.category.replace("-", " ").toUpperCase()}
+                  {categoryLabels[blog.category.toLowerCase()] ||
+    blog.category.replace("-", " ").toUpperCase()}
                     </span>
                   </div>
 

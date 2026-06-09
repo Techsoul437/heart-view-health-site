@@ -22,7 +22,10 @@ export default function BlogDetails({
       b.slug?.toLowerCase().trim() ===
       slug?.toLowerCase().trim()
   );
-
+const categoryLabels: Record<string, string> = {
+  bp: "Blood Pressure",
+ 
+};
   const [activeFAQ, setActiveFAQ] = useState<number | null>(0);
 
   const toggleFAQ = (index: number) => {
@@ -55,7 +58,7 @@ export default function BlogDetails({
 
           {/* CATEGORY */}
           <span className="inline-block text-xs font-semibold tracking-widest text-[#2f5ba5] uppercase border border-[#2f5ba5] rounded-full px-4 py-1">
-            {blog.category}
+              {categoryLabels[blog.category.toLowerCase()] || blog.category}
           </span>
 
           {/* HERO IMAGE */}

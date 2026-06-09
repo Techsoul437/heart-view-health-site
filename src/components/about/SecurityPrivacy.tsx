@@ -54,7 +54,7 @@ function SecurityPrivacy() {
                 </p>
                 <div className="h-1 w-20  mt-6 mx-auto bg-gradient-to-r from-transparent via-[#2f5ba5]/70 to-transparent"></div>
 
-                <div className="grid grid-cols-1 mt-6 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 mt-6 sm:grid-cols-2 xl:grid-cols-4 gap-6">
                     {securityItems.map((item, index) => (
                         <div
                             key={index}
@@ -70,7 +70,7 @@ function SecurityPrivacy() {
                                     {item.title}
                                 </h2>
 
-                                <p className="text-base sm:text-lg   xl:max-w-xl text-[#64748B]   leading-relaxed font-light text-center line-clamp-2">
+                                <p className="text-base sm:text-lg   xl:max-w-xl text-[#64748B]   leading-relaxed font-light text-center ">
 
                                     {item.description}
                                 </p>

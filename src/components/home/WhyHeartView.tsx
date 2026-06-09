@@ -29,11 +29,11 @@ const features = [
     title: "Appointment Management",
     desc: "Book, reschedule and manage your appointments with ease and reminders.",
   },
-  {
-    icon: FaNotesMedical,
-    title: "Doctor Visit Records",
-    desc: "Store and access your doctor visit details, prescriptions and medical notes securely.",
-  },
+  // {
+  //   icon: FaNotesMedical,
+  //   title: "Doctor Visit Records",
+  //   desc: "Store and access your doctor visit details, prescriptions and medical notes securely.",
+  // },
 ];
 
 export default function WhyHeartView() {
@@ -58,7 +58,7 @@ export default function WhyHeartView() {
         viewport={{ once: true }}
         className={`
           relative flex flex-col items-center text-center
-          w-full sm:w-1/2 md:w-1/3 mt-6
+          w-full sm:w-1/2 md:w-1/4 mt-6
 
           ${
             features.length === 5 && index >= 3

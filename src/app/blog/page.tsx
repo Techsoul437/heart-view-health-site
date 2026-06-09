@@ -8,11 +8,14 @@ import FinalCTA from "@/Ui/cta/FinalCTA";
 import { motion, AnimatePresence } from "framer-motion";
 import Footer from "@/Ui/footer/Footer";
 import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
-
+  const categoryLabels: Record<string, string> = {
+  bp: "Blood Pressure",
+ 
+};
 
 export default function BlogList() {
   return (
-    <div className="page-bg">
+    <div className="page-bg pt-5 md:pt-8 lg:pt-20">
       <Navbar />
 
       <div className="max-w-8xl  mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20  lg:pt-14 ">
@@ -86,7 +89,8 @@ export default function BlogList() {
 
                     {/* Content */}
                     <span className="relative z-10 tracking-wide">
-                      {blog.category.replace("-", " ").toUpperCase()}
+                       {categoryLabels[blog.category.toLowerCase()] ||
+    blog.category.replace("-", " ").toUpperCase()}
                     </span>
                   </div>
                 </div>

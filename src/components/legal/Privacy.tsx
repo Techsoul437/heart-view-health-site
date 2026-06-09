@@ -325,8 +325,6 @@ export default function Privacy() {
           </p>
         </motion.div>
 
-        {/* DIVIDER */}
-        <div className="h-px bg-gradient-to-r from-teal-500/40 via-black/10 to-transparent my-8" />
 
         {/* SECTIONS */}
         <div className="space-y-4">

@@ -30,11 +30,11 @@ function HomePage() {
         <WhatIsHeartView></WhatIsHeartView>
         {/* <LifestyleSection></LifestyleSection> */}
         {/* <CoreFeatures></CoreFeatures> */}
-        <TrustSection></TrustSection>
+        {/* <TrustSection></TrustSection> */}
         <Image
   src="/phone-with-shadow.jpg"
   alt="Phone Mockup"
-  width={1920}
+  width={1960}
   height={900}
   className="w-full h-auto"
 />

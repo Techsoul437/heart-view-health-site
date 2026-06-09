@@ -27,6 +27,11 @@ function BlogSection() {
 
     return () => window.removeEventListener("resize", updateCount);
   }, []);
+
+  const categoryLabels: Record<string, string> = {
+  bp: "Blood Pressure",
+ 
+};
   const categories = [
     "all",
     ...new Set(blogs.map((b) => b.category)),
@@ -78,7 +83,7 @@ function BlogSection() {
                 {/* inner layer for border effect */}
                 <span className="absolute inset-[1px] rounded-full bg-transparent group-hover:bg-transparent" />
 
-                <span className="relative z-10">{item}</span>
+                <span className="relative z-10">   {categoryLabels[item.toLowerCase()] || item}</span>
               </motion.span>
             </Link>
           ))}
@@ -144,7 +149,8 @@ function BlogSection() {
 
                   {/* Content */}
                   <span className="relative z-10 tracking-wide">
-                    {blog.category.replace("-", " ").toUpperCase()}
+                  {categoryLabels[blog.category.toLowerCase()] ||
+    blog.category.replace("-", " ").toUpperCase()}
                   </span>
                 </div>
 
