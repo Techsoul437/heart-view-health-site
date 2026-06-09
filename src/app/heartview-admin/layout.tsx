@@ -1,53 +1,104 @@
+"use client";
 
-import type { Metadata } from "next";
-import { Geist, Geist_Mono, Manrope } from "next/font/google";
-import "./globals.css";
-import { Toaster } from "react-hot-toast";
-import PageLoader from "@/Ui/loader/PageLoader";
+import { ReactNode } from "react";
+import { usePathname } from "next/navigation";
 
+import Sidebar from "../../components/admin/Sidebar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+interface LabAdminLayoutProps {
+  children: ReactNode;
+}
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+interface SidebarMenuItem {
+  title: string;
+  href: string;
+  icon: string;
+}
 
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-export const metadata: Metadata = {
-  icons:{icon:"/favicon4.png"},
-  title: "HeartViewHealth",
-  description: "Monitor heart rate, blood pressure, and sugar levels with HeartView Health. Get smart insights, reminders, and health reports in one app.",
-};
-
-export default function RootLayout({
+export default function LabAdminLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${manrope.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
+}: LabAdminLayoutProps) {
+  const pathname = usePathname();
 
-   <Toaster position="top-right" />
-   
-        <PageLoader></PageLoader>
+  const sidebarMenu: SidebarMenuItem[] = [
+    {
+      title: "Dashboard",
+      href: "/lab-staff/dashboard",
+      icon: "dashboard",
+    },
 
+    {
+      title: "Patients",
+      href: "/lab-staff/patients",
+      icon: "users",
+    },
+
+    {
+      title: "Upload Report",
+      href: "/lab-staff/staff_upload_report",
+      icon: "upload",
+    },
+
+    {
+      title: "Reports",
+      href: "/lab-staff/reports",
+      icon: "reports",
+    },
+
+    {
+      title: "Report Links",
+      href: "/lab-staff/report_link",
+      icon: "staff",
+    },
+
+    {
+      title: "My Profile",
+      href: "/lab-staff/profile",
+      icon: "settings",
+    },
+  ];
+
+  const isLoginPage =
+    pathname === "/lab-staff/login";
+
+  if (isLoginPage) {
+    return (
+      <div className="min-h-screen page-bg">
         {children}
+      </div>
+    );
+  }
 
+ return (
+   <div className="min-h-screen page-bg">
+     {/* Desktop Sidebar */}
+     <div className="hidden lg:block fixed left-0 top-0 z-50 min-h-screen">
+       <Sidebar
+         role="admin"
+         menuItems={sidebarMenu}
+        
+       />
+     </div>
+ 
+     {/* Mobile Sidebar */}
+     <div className="lg:hidden">
+      <Sidebar
+          role="staff"
+          menuItems={sidebarMenu}
 
-      </body>
-    </html>
-  );
+        />
+     </div>
+ 
+     {/* Page Content */}
+     <main
+       className="
+         lg:ml-80
+        min-h-screen
+         overflow-x-hidden
+       "
+     >
+       {children}
+     </main>
+   </div>
+ );
 }
