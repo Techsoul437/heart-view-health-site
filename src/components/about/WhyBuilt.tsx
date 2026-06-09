@@ -19,23 +19,23 @@ function WhyBuilt() {
 
           {/* Badge */}
 
-          <Headerbadge tag=" Why We Built" text="Why We Built HeartView Health" />
+          <Headerbadge tag="OUR STORY" text="Built to Bridge the Gap Between Information and Understanding " />
 
           {/* Description */}
           <p className=" text-[#64748B]   text-base sm:text-lg leading-relaxed lg:max-w-3xl font-light mt-5">
-            We saw people struggling with scattered health data, confusing reports, and no clear direction.
-            So we built HeartView Health to make health simple, clear, and actionable.
+            Healthcare data is becoming increasingly accessible, yet many individuals struggle to interpret what it means for their daily lives. 
+
           </p>
 
           {/* Subtext */}
-          <p className="mt-8 text-black text-base sm:text-lg font-light">
-            A platform that connects everything:
+          <p className="mt-8 text-[#64748B] lg:max-w-3xl  text-base sm:text-lg font-light">
+          HeartView Health was created to simplify health management by turning fragmented information into clear, personalized insights that support informed decision-making.
           </p>
 
           {/* Points */}
           <div className="flex flex-wrap justify-center gap-4 mt-4">
             {[
-              "Monitoring", "Insights", "Organization", "Action"
+              "Clarity", "Visibility", "Engagement", "Confidence"
             ].map((item, index) => (
               <motion.span
                 key={index}
@@ -49,12 +49,12 @@ function WhyBuilt() {
             ))}
           </div>
           {/* Bottom */}
-          <p className="mt-8 text-[#64748B]   text-base sm:text-lg leading-relaxed font-light">
+          {/* <p className="mt-8 text-[#64748B]   text-base sm:text-lg leading-relaxed font-light">
             So users don’t just collect data{" "}
             <span className="text-black font-medium">
               they understand and use it.
             </span>
-          </p>
+          </p> */}
 
         </motion.div>
       </div>

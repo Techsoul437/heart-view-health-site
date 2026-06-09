@@ -14,33 +14,33 @@ import {
 export default function WhatWeDo() {
     const cards = [
         {
-            title: "Understand Your Heart Health in Seconds",
-            desc: "Get instant clarity on your cardiovascular health with smart analysis.",
+            title: "Intelligent Health Insights",
+            desc: "Transform complex cardiovascular data into simple, actionable understanding.",
             icon: FaChartLine,
         },
         {
-            title: "Never Miss a Dose Again",
-            desc: "Automated reminders ensure you stay consistent with your medication.",
+            title: "Medication Adherence",
+            desc: "Stay consistent with personalized medication and wellness reminders.",
             icon: FaBell,
         },
         {
-            title: "Stay on Top of Doctor Visits",
-            desc: "Never forget appointments with intelligent scheduling and alerts.",
+            title: "Care Coordination",
+            desc: "Manage appointments, follow-ups, and healthcare activities effortlessly.",
             icon: FaCalendarCheck,
         },
         {
-            title: "All Your Health Reports One Secure Place",
-            desc: "Access all medical records instantly, anytime, anywhere.",
+            title: "Unified Health Records",
+            desc: "Access reports, test results, and health documents from a single location.",
             icon: FaFolderOpen,
         },
         {
-            title: "See Trends at a Glance",
-            desc: "Visual charts turn complex data into meaningful insights.",
+            title: "Trend Intelligence",
+            desc: "Track long-term patterns and changes in important health indicators.",
             icon: FaChartBar,
         },
         {
-            title: "Connect All Your Devices Seamlessly",
-            desc: "Sync data from wearables, apps, and devices automatically.",
+            title: "Connected Health Ecosystem",
+            desc: "Sync data across wearables, health apps, and supported devices.",
             icon: FaWatchmanMonitoring,
         },
     ];
@@ -59,8 +59,9 @@ export default function WhatWeDo() {
     };
 
     return (
-        <section className="w-full pt-5 md:pt-8 lg:pt-20  mt-0 lg:mt-15  text-black">
-            <div className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 text-center">
+                  <section className="w-full max-w-8xl mx-auto  mt-10 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
+
+            <div className="max-w-8xl mx-auto w-full  text-center">
 
                 {/* Heading */}
                 <div className="w-full ">
@@ -72,7 +73,7 @@ export default function WhatWeDo() {
                         viewport={{ once: true }}
                         className="flex flex-col items-center text-center"
                     >
-                        <Headerbadge tag="What we do" text="Smarter Heart Care, All in One Place" />
+                        <Headerbadge tag="PLATFORM CAPABILITIES" text="Everything You Need to Stay Informed About Your Health" />
 
 
                         <div className="mt-2 h-1 w-20 bg-gradient-to-r from-transparent via-[#2f5ba5]/70 to-transparent"></div>

@@ -21,14 +21,14 @@ function ReportUnderstand() {
 
                 {/* Badge */}
                 <div className="">
-                      <motion.div
+                    <motion.div
                         initial={{ opacity: 0, y: 80 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7 }}
                         viewport={{ once: true }}
                         className="flex flex-col items-center text-center"
                     >
-                        <Headerbadge tag="Data to Understanding" text="Turn Your Health Data Into Clear Insights" />
+                        <Headerbadge tag="INTELLIGENCE LAYER" text="From Health Data to Meaningful Decisions" />
 
 
                         <div className="mt-2 h-1 w-20 bg-gradient-to-r from-transparent via-[#2f5ba5]/70 to-transparent"></div>
@@ -39,9 +39,7 @@ function ReportUnderstand() {
                     mt-5 text-[#64748B]   text-base sm:text-lg leading-relaxed 
                     font-light max-w-2xl
                 ">
-                    Most platforms simply store your medical data. HeartView Health goes
-                    further transforming complex reports into easy to understand visual
-                    insights that actually help you take action.
+                    Collecting data is only the beginning. HeartView Health helps users identify trends, understand changes, and gain context around the metrics that matter most.
                 </p>
 
                 {/* POINTS */}
@@ -71,23 +69,24 @@ function ReportUnderstand() {
                         </div>
                     ))}
                 </div> */}
- <div className="flex flex-wrap justify-center gap-4 mt-4">
-            {[
-            "Trends over time",
-                        "Changes in key markers",
-                        "Patterns that matter",
-            ].map((item, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="w-65 text-center px-5 py-2 rounded-full border border-black/10 bg-black/5 text-[#64748B] text-base sm:text-lg  leading-relaxed font-light backdrop-blur-md"
-              >
-                {item}
-              </motion.span>
-            ))}
-          </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+                    {[
+                        "Predictive Trends",
+                        "Risk Awareness",
+                        "Progress Tracking",
+                        "Personalized Insights",
+                    ].map((item, index) => (
+                        <motion.span
+                            key={index}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                            className="w-full text-center px-5 py-2 rounded-full border border-black/10 bg-black/5 text-[#64748B] text-base sm:text-lg leading-relaxed font-light backdrop-blur-md"
+                        >
+                            {item}
+                        </motion.span>
+                    ))}
+                </div>
             </div>
 
             {/* RIGHT IMAGE (COMMENTED) */}

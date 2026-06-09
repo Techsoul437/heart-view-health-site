@@ -5,36 +5,36 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const data = [
-    {
-        num: "01",
-        title: "Understand your health easily",
-        desc: "Health data should be simple, not overwhelming.",
-        points: [
-            "Understand your heart data without confusion",
-            "Visual insights that actually make sense",
-            "Know what matters, when it matters",
-        ],
-    },
-    {
-        num: "02",
-        title: "Stay on track daily",
-        desc: "Daily habits like medication and follow ups matter just as much as monitoring",
-        points: [
-            "Stay on track with daily health routines",
-            "Smart reminders for medication & checkups",
-            "Build habits that support long term health",
-        ],
-    },
-    {
-        num: "03",
-        title: "See long-term progress",
-        desc: "Your health is a journey, not a single moment.",
-        points: [
-            "Track your health journey over time",
-            "Connect past insights with present care",
-            "Always stay one step ahead of risks",
-        ],
-    },
+  {
+    num: "01",
+    title: "Connect",
+    desc: "Securely bring together your health information from devices, reports, and daily tracking.",
+    points: [
+      "Connect wearables and health apps securely",
+      "Import reports, records, and test results",
+      "Keep all your health information in one place",
+    ],
+  },
+  {
+    num: "02",
+    title: "Understand",
+    desc: "Transform complex health information into visual insights that are easy to interpret.",
+    points: [
+      "View trends and patterns with clarity",
+      "Understand changes in key health metrics",
+      "Gain actionable insights from your data",
+    ],
+  },
+  {
+    num: "03",
+    title: "Improve",
+    desc: "Build healthier routines, stay consistent, and monitor progress over time.",
+    points: [
+      "Develop sustainable daily health habits",
+      "Stay consistent with reminders and tracking",
+      "Measure long-term progress and improvement",
+    ],
+  },
 ];
 
 const extendedData = [...data, data[0], data[1]];
@@ -120,11 +120,11 @@ export default function ProcessCards() {
 
     return (
         <section className=" flex justify-center ">
-            <div className="w-full max-w-8xl mx-auto  mt-10 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 ">
+            <div className="w-full max-w-8xl mx-auto  mt-10 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
 
                 {/* Heading SAME */}
 
-                <Headerbadge tag=" Our Approach" text="Your Heart Health, Simplified & Connected" />
+                <Headerbadge tag="USER JOURNEY" text="A Simpler Approach to Health Management " />
                 <p className="text-base sm:text-lg font-light leading-relaxed text-[#64748B]   text-center max-w-3xl mx-auto mt-4">
                     HeartView Health brings everything together—track your health data in one place, monitor trends over time, and gain clear insights into your cardiovascular risk, all designed to simplify complex health information into something you can easily understand and act on.
                 </p>
@@ -136,16 +136,16 @@ export default function ProcessCards() {
                             {extendedData.map((item, i) => (
                                 <div key={i} className="min-w-full px-1 flex flex-col items-center">
 
-                                    <div className="w-14 h-14 rounded-full border border-[#B4B0B0] bg-linear-to-r from-[#2f5ba5]/70 to-[#4a7bc9]/30 text-black flex items-center justify-center">
+                                    <div className="w-14 h-14 rounded-full border border-[#B4B0B0] bg-linear-to-r from-[#2f5ba5]/70 to-[#4a7bc9]/30 text-white flex items-center justify-center">
                                         <span className="text-lg">{item.num}</span>
                                     </div>
 
                                     <div className="w-0 h-0 border-l-8 border-transparent border-r-8 border-transparent border-t-8 border-t-gray-400 mt-1" />
 
                                     {/* ✅ SAME HEIGHT CARD */}
-                                    <div className="mt-4 w-full max-w-md border-[#3D7773] text-black shadow-sm shadow-[#45657D] h-70  mb-1 flex flex-col">
+                                    <div className="mt-4 w-full max-w-md border-[#3D7773] text-white shadow-sm shadow-[#45657D] h-70  mb-1 flex flex-col">
 
-                                        <h2 className="text-center py-2 text-xl sm:text-xl lg:text-2xl text-black bg-[#2f5ba5]/70">
+                                        <h2 className="text-center py-2 text-xl sm:text-xl lg:text-2xl text-white bg-[#2f5ba5]/70">
                                             {item.title}
                                         </h2>
 
@@ -176,15 +176,15 @@ export default function ProcessCards() {
                             {extendedData.map((item, i) => (
                                 <div key={i} className="min-w-1/2 px-4 flex flex-col items-center">
 
-                                    <div className="w-14 h-14 rounded-full border border-[#B4B0B0] bg-linear-to-r from-[#2f5ba5]/70 to-[#4a7bc9]/30 text-black flex items-center justify-center">
+                                    <div className="w-14 h-14 rounded-full border border-[#B4B0B0] bg-linear-to-r from-[#2f5ba5]/70 to-[#4a7bc9]/30 text-white flex items-center justify-center">
                                         <span className="text-lg">{item.num}</span>
                                     </div>
                                     <div className="w-0 h-0 border-l-8  border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-gray-400 mt-1" />
 
                                     <div className="w-0 h-0 border-t-8 border-t-gray-400 mt-1" />
 
-                                    <div className="mt-4 w-full max-w-sm border-[#3D7773] text-black shadow-sm shadow-[#45657D] h-90  mb-1 flex flex-col">
-                                        <h2 className="text-center py-2 text-xl sm:text-xl lg:text-2xl text-black bg-[#2f5ba5]/70">{item.title}</h2>
+                                    <div className="mt-4 w-full max-w-sm border-[#3D7773] text-white shadow-sm shadow-[#45657D] h-90  mb-1 flex flex-col">
+                                        <h2 className="text-center py-2 text-xl sm:text-xl lg:text-2xl text-white bg-[#2f5ba5]/70">{item.title}</h2>
 
                                         <div className="flex flex-col flex-1 px-5 py-4 overflow-hidden">
                                             <p className="text-[#64748B]   mb-4 text-base sm:text-lg  leading-relaxed  font-light line-clamp-3">{item.desc}</p>

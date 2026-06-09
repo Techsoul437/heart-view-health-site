@@ -2,42 +2,44 @@
 
 import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 import { motion, useInView } from "framer-motion";
-import { ShieldCheck  ,Stethoscope,
+import {
+  ShieldCheck, Stethoscope,
   BarChart3,
   HeartHandshake,
-  Lock,} from "lucide-react";
+  Lock,
+} from "lucide-react";
 import { useRef } from "react";
 
 export default function TrustSection() {
   const headerRef = useRef(null);
   const headerInView = useInView(headerRef, { once: true, margin: "-60px" });
- const items = [
-  {
-    icon: Lock,
-    title: "End-to-End Encryption",
-    desc: "Your health data is protected with bank-grade encryption from end to end.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "HIPAA & GDPR Compliant",
-    desc: "We follow global privacy standards to keep your data safe and confidential.",
-  },
-  {
-    icon: Stethoscope,
-    title: "Doctor Reviewed Insights",
-    desc: "Health insights and content are reviewed by medical professionals.",
-  },
-  {
-    icon: BarChart3,
-    title: "10,000+ Health Records Tracked",
-    desc: "Thousands of users trust HeartView to track and improve their health daily.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Trusted by Families",
-    desc: "Families across the world trust HeartView to care for their loved ones.",
-  },
-];
+  const items = [
+    {
+      icon: Lock,
+      title: "End-to-End Encryption",
+      desc: "Your health data is protected with bank-grade encryption from end to end.",
+    },
+    {
+      icon: ShieldCheck,
+      title: "HIPAA & GDPR Compliant",
+      desc: "We follow global privacy standards to keep your data safe and confidential.",
+    },
+    {
+      icon: Stethoscope,
+      title: "Doctor Reviewed Insights",
+      desc: "Health insights and content are reviewed by medical professionals.",
+    },
+    {
+      icon: BarChart3,
+      title: "10,000+ Health Records Tracked",
+      desc: "Thousands of users trust HeartView to track and improve their health daily.",
+    },
+    {
+      icon: HeartHandshake,
+      title: "Trusted by Families",
+      desc: "Families across the world trust HeartView to care for their loved ones.",
+    },
+  ];
 
   const trustPoints = [
     "No unnecessary complexity",
@@ -52,7 +54,7 @@ export default function TrustSection() {
 
         {/* Heading */}
 
-      
+
         <Headerbadge tag="Trust" text="Built on Trust, Designed for Everyday Reality" />
 
         {/* Features (FIXED GRID ALIGNMENT) */}
@@ -79,11 +81,11 @@ export default function TrustSection() {
 
                 {/* TEXT */}
                 <div className="flex flex-col items-center">
-                  <h2 className="text-xl sm:text-xl lg:text-2xl mb-2 min-h-[1rem] lg:min-h-[4rem] xl:min-h-0 group-hover:text-[#2f5ba5] transition">
+                  <h2 className="text-xl sm:text-xl lg:text-2xl mb-2 min-h-12 lg:min-h-16 flex items-center justify-center text-center">
                     {item.title}
                   </h2>
 
-                  <p className="text-base sm:text-lg lg:max-w-sm font-light max-w-sm text-[#64748B]   leading-relaxed line-clamp-2">
+                  <p className="text-base sm:text-lg lg:max-w-sm font-light max-w-sm text-[#64748B]   leading-relaxed line-clamp-2 xl:line-clamp-none">
                     {item.desc}
                   </p>
                 </div>
@@ -92,14 +94,14 @@ export default function TrustSection() {
           })}
         </div>
         {/* CENTER STATEMENT */}
-        <motion.p
+        {/* <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
           className="text-center text-base sm:text-lg font-normal text-[#64748B]  max-w-2xl mx-auto  leading-relaxed"
         >
           A calm, reliable system that works quietly in the background  helping you stay aware without turning health into effort.
-        </motion.p>
+        </motion.p> */}
 
         {/* TRUST POINTS */}
 

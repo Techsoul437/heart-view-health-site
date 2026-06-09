@@ -2,6 +2,8 @@
 
 import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 import { motion } from "framer-motion";
+import { FaHandPointRight } from "react-icons/fa";
+import { FaHand, FaHandPointLeft } from "react-icons/fa6";
 
 export default function OurVision() {
   return (
@@ -21,10 +23,10 @@ export default function OurVision() {
           className="flex flex-col items-center text-center"
         >
 
-          <Headerbadge tag=" Our vision" text="Make health awareness simple and part of daily life." />
+          <Headerbadge tag=" Our vision" text="A Future Where Every Individual Understands Their Health With Confidence " />
 
           <p className=" text-[#64748B]   max-w-2xl sm:max-w-3xl text-base sm:text-lg  leading-relaxed   lg:max-w-3xl font-light ">
-            To create a unified platform where heart awareness meets everyday health management  empowering people with clarity, consistency, and control over their health.
+            We envision a world where health awareness is proactive rather than reactive, empowering people to take greater ownership of their wellbeing through accessible technology and meaningful insights.
           </p>
 
           {/* Glow line */}
@@ -42,21 +44,25 @@ export default function OurVision() {
           {/* subtle glow */}
 
           <div className="relative flex flex-col items-center text-center">
-            <Headerbadge tag="Our Responsibility" text="Built for awareness, not medical decisions" />
+            <Headerbadge tag="OUR COMMITMENT" text="Designed for Wellness. Guided by Responsibility. " />
 
             <p className="text-[#64748B]   max-w-2xl sm:max-w-3xl lg:max-w-2xl text-base sm:text-lg leading-relaxed font-light">
-              HeartView Health is designed for general wellness and informational
-              purposes. We do not provide medical diagnosis or treatment, and we encourage users to consult qualified healthcare professionals when needed.
+              HeartView Health provides informational tools and wellness-focused insights to help users better understand their health journey. Our platform is intended to complement not replace professional medical advice, diagnosis, or treatment.
             </p>
 
             {/* Points */}
-            <div className="flex flex-col items-center gap-3 text-base sm:text-lg leading-relaxed lg:max-w-2xl font-light mt-4">
+            <div className="flex flex-col gap-3 mt-4 lg:max-w-2xl">
               {[
-                "We do not provide medical diagnosis or treatment",
-                "Always consult qualified healthcare professionals when needed",
+                "Privacy-First Design",
+                "Secure Data Handling",
+                "Transparent Information Practices",
+                "User-Controlled Health Data",
               ].map((item, index) => (
-                <div key={index} className="flex items-center gap-3 text-center">
-                  <p className="text-[#64748B]   text-base sm:text-lg leading-relaxed">{item}</p>
+                <div key={index} className="flex items-center gap-3">
+                  <FaHandPointRight className="text-[#2f5ba5]/70 shrink-0" />
+                  <p className="text-[#64748B] text-base sm:text-lg leading-relaxed">
+                    {item}
+                  </p>
                 </div>
               ))}
             </div>

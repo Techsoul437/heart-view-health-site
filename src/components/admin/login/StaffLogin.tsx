@@ -82,7 +82,7 @@ const LeftSide = () => (
               key={item.title}
               className="flex items-center gap-4 rounded-2xl border border-black/5 bg-white/4 px-5 py-4"
             >
-         
+
 
               <h3 className=" font-medium text-white">{item.title}</h3>
             </div>
@@ -122,28 +122,28 @@ const StaffLoginPanel = () => {
           password: "",
         }}
         validationSchema={loginSchema}
-        
-onSubmit={(values) => {
-  const staffUser = {
-    id: 1,
-    fullName: "Lab Staff User",
-    email: values.email,
-    phone: "+91 9876543210",
-    department: "Laboratory",
-    dob: "01 Jan 1995",
-    address: "Ahmedabad, Gujarat",
-    role: "Lab Staff",
-    joinedOn: "10 Mar 2024",
-    status: "Active",
-  };
 
-  localStorage.setItem(
-    "staffUser",
-    JSON.stringify(staffUser)
-  );
+        onSubmit={(values) => {
+          const staffUser = {
+            id: 1,
+            fullName: "Lab Staff User",
+            email: values.email,
+            phone: "+91 9876543210",
+            department: "Laboratory",
+            dob: "01 Jan 1995",
+            address: "Ahmedabad, Gujarat",
+            role: "Lab Staff",
+            joinedOn: "10 Mar 2024",
+            status: "Active",
+          };
 
-  router.push("/lab-staff/dashboard");
-}}
+          localStorage.setItem(
+            "staffUser",
+            JSON.stringify(staffUser)
+          );
+
+          router.push("/lab-staff/dashboard");
+        }}
       >
         <Form className="space-y-6">
           {/* EMAIL */}
@@ -199,7 +199,7 @@ onSubmit={(values) => {
         </Form>
       </Formik>
 
-   
+
     </>
   );
 };

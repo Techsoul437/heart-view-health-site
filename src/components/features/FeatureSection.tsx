@@ -3,16 +3,17 @@
 import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 import { motion } from "framer-motion";
 import {
+   HeartPulse,
     Activity,
-    HeartPulse,
     FileText,
     Pill,
     Watch,
-    Heart,
-    AlertTriangle,
+    ShieldAlert,
+    Calendar,
+    FolderArchive,
+    Bluetooth,
     BarChart,
 } from "lucide-react";
-import Image from "next/image";
 
 const features = [
     {
@@ -83,6 +84,74 @@ const features = [
         ],
     },
 
+    // NEW FEATURES
+
+    {
+        title: "Real-Time ECG Monitoring",
+        icon: Activity,
+        points: [
+            "Live ECG waveform streaming",
+            "Continuous heart rate monitoring",
+            "Record ECG sessions on demand",
+            "Mark symptoms during recording",
+            "Signal quality monitoring (SQI)",
+        ],
+    },
+    {
+        title: "Arrhythmia Detection & Alerts",
+        icon: HeartPulse,
+        points: [
+            "Detects tachycardia and bradycardia patterns",
+            "Pause detection monitoring",
+            "Possible irregular rhythm screening",
+            "ST change monitoring (Beta)",
+            "Event timeline with ECG strips",
+        ],
+    },
+    {
+        title: "Emergency SOS & Family Alerts",
+        icon: ShieldAlert,
+        points: [
+            "Emergency contact management",
+            "One-tap Call 108 assistance",
+            "Location sharing during emergencies",
+            "Automatic no-response escalation",
+            "Instant alerts to family members",
+        ],
+    },
+    {
+        title: "Appointments & Health Follow-Ups",
+        icon: Calendar,
+        points: [
+            "Doctor and lab appointment scheduling",
+            "Custom reminder notifications",
+            "Test and screening follow-ups",
+            "Medication and lab review tracking",
+            "Health maintenance planning",
+        ],
+    },
+    {
+        title: "Health Records Vault",
+        icon: FolderArchive,
+        points: [
+            "Store reports, ECGs, and medical records",
+            "Secure cloud-backed history",
+            "Organized health document management",
+            "Quick search and retrieval",
+            "Long-term health record preservation",
+        ],
+    },
+    {
+        title: "ER1-LW ECG Device Integration",
+        icon: Bluetooth,
+        points: [
+            "Bluetooth pairing and device management",
+            "Real-time ECG data streaming",
+            "Device status and battery monitoring",
+            "Reliable ECG session recording",
+            "Seamless hardware connectivity",
+        ],
+    },
 ];
 
 export default function FeatureSection() {

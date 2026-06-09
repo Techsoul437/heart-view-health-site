@@ -20,7 +20,7 @@ const STEPS: Step[] = [
     title: "Your complete health overview at a glance",
     description:
       "See your heart risk status, vital metrics, and daily health insights all in one place. Quickly access key data like blood pressure, sugar levels, and heart rate, with real time updates across your devices.",
-    image: "/step-1.jpeg",
+    image: "/step-1M.png",
   },
   {
     number: "02",
@@ -28,7 +28,7 @@ const STEPS: Step[] = [
     title: "Understand your heart health clearly",
     description:
       "Get a personalized Heart View Score based on your vitals, lifestyle, and medical data. Identify key contributing factors and make informed decisions to improve your cardiovascular health.",
-    image: "/step-2.jpeg",
+    image: "/step-2M.png",
   },
   {
     number: "03",
@@ -36,7 +36,7 @@ const STEPS: Step[] = [
     title: "Track and manage your glucose levels",
     description:
       "Monitor your blood sugar trends with simple visual graphs. Compare your readings with normal ranges and see how you perform compared to similar users.",
-    image: "/step-3.jpeg",
+    image: "/step-3M.png",
   },
   {
     number: "04",
@@ -44,7 +44,7 @@ const STEPS: Step[] = [
     title: "Stay organized with your doctor visits",
     description:
       "Schedule, view, and manage appointments. Keep track of upcoming visits, history, and important medical schedules without missing anything.",
-    image: "/step-4.jpeg",
+    image: "/step-4M.png",
   },
   {
     number: "05",
@@ -52,7 +52,7 @@ const STEPS: Step[] = [
     title: "Never miss a dose again",
     description:
       "Set reminders for your medicines and track your daily intake. Mark doses as taken, snooze them, or skip when needed ensuring better treatment consistency.",
-    image: "/step-5.jpeg",
+    image: "/step-5M.png",
   },
   {
     number: "06",
@@ -60,7 +60,7 @@ const STEPS: Step[] = [
     title: "All your visit records in one place",
     description:
       "Access detailed information about your doctor visits including notes, prescriptions, and attachments. Stay prepared for every follow up with organized medical records.",
-    image: "/step-6.jpeg",
+    image: "/step-6M.png",
   },
 ];
 
@@ -99,29 +99,14 @@ const phoneVariant = (fromRight: boolean): Variants => ({
 
 function PhoneFrame({ image, alt }: { image: string; alt: string }) {
   return (
-    <div className="relative mx-auto w-64 sm:w-72 mt-5">
-     <div
-  className="
-    relative rounded-[3rem]
-    border-[6px]
-    border-[#2C4363]
-    bg-linear-to-b
-    from-[#3E5F87]
-    via-[#2C4363]
-    to-[#18293D]
-    backdrop-blur-md
-    shadow-[0_25px_90px_rgba(44,67,99,0.45)]
-  "
->
-        <div className="absolute -left-2 top-24 w-1 h-8 bg-[#000000] rounded-l-full" />
-        <div className="absolute -left-2 top-32 w-1 h-8 bg-[#000000] rounded-l-full" />
-        <div className="absolute -left-2 top-16 w-1 h-5 bg-[#000000] rounded-l-full" />
-        <div className="absolute -right-2 top-28 w-1 h-12 bg-[#000000] rounded-r-full" />
-        <div className="rounded-[2.4rem] overflow-hidden">
-          <div className="relative aspect-[9/19.5]">
-            <Image src={image} alt={alt} fill className="object-cover" />
-          </div>
-        </div>
+    <div className="relative mx-auto w-full max-w-md lg:max-w-lg">
+      <div className="relative h-150 overflow-hidden rounded-3xl">
+        <Image
+          src={image}
+          alt={alt}
+          fill
+          className="object-contain"
+        />
       </div>
     </div>
   );

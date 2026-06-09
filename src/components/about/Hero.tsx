@@ -1,58 +1,31 @@
 "use client";
-import FillButton from "@/Ui/buttons/FillButton";
-import Link from "next/link";
-import Image from "next/image";
+
 import React from "react";
+import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 
 function Hero() {
   return (
-    <section className="w-full box-border">
-      <div className="w-full bg-[#0B0B0B] mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 py-14 ">
+    <section className="w-full  xl:pt-20 pt-5 md:pt-8 lg:pt-20  mt-0 lg:mt-15 ">
 
-        {/* LEFT - Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 mt-20">
-        <div className="flex items-end sm:items-center ">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
 
-          <div className="sm:max-w-5xl max-w-4xl">
-
-            <h1 className="heading-font text-2xl md:text-3xl lg:text-4xl font-medium text-black leading-tight tracking-tight mb-3">
-              A Smarter Way to
-              <br />
-              Understand Your Heart
-            </h1>
-
-            <p className="text-base sm:text-lg text-black leading-relaxed font-light lg:max-w-md">
-              Understand Your Heart Health Before Problems Start
-              Track, analyze, and improve your health with simple insights.
-            </p>
-
-            <div className="flex flex-wrap gap-4 py-5 items-center">
-              <Link
-                href="/contact"
-                className="flex items-center gap-2 bg-white/15 hover:bg-white/25 text-black text-xs sm:text-xs md:text-xs xl:text-sm font-semibold px-6 py-3 rounded-full border border-white/40 backdrop-blur-sm transition-all duration-200"
-              >
-                Join Early Access
-              </Link>
-            </div>
-
-          </div>
+        <div className="flex justify-center">
+          <Headerbadge
+            tag="OUR PURPOSE"
+            text="Making Heart Health Clear, Connected & Actionable"
+          />
         </div>
 
-        {/* RIGHT - Image */}
-        {/* <div className="relative w-full h-full min-h-[20rem]">
+        <div className="mt-6 h-1 w-20 mx-auto bg-gradient-to-r from-transparent via-[#2f5ba5]/70 to-transparent"></div>
 
-          <Image
-            src="/.png"
-            alt="Hero Background"
-            fill
-            priority
-            className="object-cover"
-          />
+        <p className=" text-[#64748B]  mt-6 max-w-3xl sm:max-w-3xl text-base sm:text-lg  mx-auto leading-relaxed   lg:max-w-3xl font-light ">
 
-          <div className="absolute inset-0 bg-gradient-to-l from-black/70 via-black/50 to-transparent"></div>
-
-        </div> */}
-</div>
+          Most people have access to health data but lack the clarity
+          needed to understand it. HeartView Health brings health
+          information, insights, reminders, and progress tracking into
+          one intelligent platform designed to support everyday
+          wellness.
+        </p>
       </div>
     </section>
   );

@@ -76,7 +76,7 @@ export default function WhyHeartView() {
           {item.title}
         </h2>
 
-        <p className="text-base sm:text-lg font-light text-[#64748B] leading-relaxed max-w-xs line-clamp-2 ">
+        <p className="text-base sm:text-lg font-light text-[#64748B] leading-relaxed max-w-xs line-clamp-2 xl:line-clamp-none">
           {item.desc}
         </p>
       </motion.div>

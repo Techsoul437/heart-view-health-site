@@ -16,7 +16,9 @@ export default function CompanySection() {
 
         {/* Heading */}
 
-        <Headerbadge tag="Our Company" text="Built with Trust & Transparency" />
+        <Headerbadge tag="COMPANY" text="HeartView Health Technologies Private Limited " />
+ {/* Divider */}
+            <div className="w-16 h-[0.15rem]  mx-auto bg-gradient-to-r from-[#2f5ba5] to-[#45657D]/30 rounded-full" />
 
         {/* Card */}
         <motion.div
@@ -30,32 +32,31 @@ export default function CompanySection() {
 
           <div className="relative z-10 flex flex-col gap-4 text-center">
 
-            {/* Company Name */}
-            <h2 className="text-black  text-2xl md:text-3xl lg:text-4xl font-medium leading-tight ">
-              HeartView Health Technologies Private Limited
-            </h2>
+           
 
-            {/* Divider */}
-            <div className="w-16 h-[0.15rem]  mx-auto bg-gradient-to-r from-[#2f5ba5] to-[#45657D]/30 rounded-full" />
-
+           
             {/* Description */}
-            <p className="text-[#64748B] mt-3 text-base sm:text-lg  leading-relaxed  font-light max-w-2xl lg:max-w-3xl mx-auto">
-              Incorporated in India under the Companies Act, 2013, HeartView Health is built with a vision to create a reliable and transparent platform for everyday health management.
-            </p>
+            <p className="text-[#64748B]  text-base sm:text-lg  leading-relaxed  font-light max-w-2xl lg:max-w-3xl mx-auto">
+              HeartView Health Technologies Private Limited is an India-based healthcare
+              technology company focused on making health awareness more accessible
+              through intelligent digital solutions. Our platform is designed to help
+              individuals better understand, organize, and engage with their health
+              information through simple and meaningful digital experiences.  </p>
 
             {/* Tag Pills */}
             <div className="flex flex-wrap justify-center gap-4 mt-4">
               {[
                 "India Registered Company",
-                "Healthcare Technology",
-                "Trusted Platform",
+                "Healthcare Technology Platform",
+                "Privacy Focused",
+                "Built for Everyday Wellness",
               ].map((item, index) => (
                 <motion.span
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="w-65 text-center px-5 py-2 rounded-full border border-black/10 bg-black/5 text-[#64748B] text-base sm:text-lg  leading-relaxed font-light backdrop-blur-md"
+                  className="w-full sm:w-72 lg:w-80 text-center px-6 py-3 rounded-full border border-black/10 bg-black/5 text-[#64748B] text-base sm:text-lg leading-relaxed font-light backdrop-blur-md"
                 >
                   {item}
                 </motion.span>
