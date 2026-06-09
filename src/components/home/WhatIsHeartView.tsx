@@ -24,7 +24,7 @@ export default function WhatIsHeartView() {
 
                     {/* HEADER */}
 
-                    <Headerbadge tag="What is HeartView" text=" Your Personal Heart Health Companion" />
+                    <Headerbadge tag="What is HeartView Health" text=" Your Personal Heart Health Companion" />
                     <p className="mt-4 text-[#64748B]   text-base sm:text-lg  leading-relaxed  font-light max-w-5xl mx-auto">
                         HeartView Health is designed to help you understand your body better through everyday health data. From vital tracking to personalized insights, everything is brought together into one seamless and powerful experience. No confusion. No overload. Just meaningful health awareness that helps you stay informed, aware, and in control of your well-being every day.
                     </p>

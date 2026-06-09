@@ -17,51 +17,50 @@ const STEPS: Step[] = [
   {
     number: "01",
     label: "HOME DASHBOARD",
-    title: "Your complete health overview at a glance",
+    title: "Your central hub for heart health monitoring",
     description:
-      "See your heart risk status, vital metrics, and daily health insights all in one place. Quickly access key data like blood pressure, sugar levels, and heart rate, with real time updates across your devices.",
+      "Get an instant view of your health status with HeartView Score, daily insights, activity tracking, vital measurements, and personalized recommendations designed to help you maintain a healthier lifestyle.",
     image: "/step-1M.png",
   },
   {
     number: "02",
-    label: "HEART RISK ANALYSIS",
-    title: "Understand your heart health clearly",
+    label: "HEART RISK BREAKDOWN",
+    title: "Data-driven insights for better heart health",
     description:
-      "Get a personalized Heart View Score based on your vitals, lifestyle, and medical data. Identify key contributing factors and make informed decisions to improve your cardiovascular health.",
+      "Analyze the core factors influencing your cardiovascular wellness, uncover potential risk areas, and follow your progress with clear, actionable health intelligence.",
     image: "/step-2M.png",
   },
   {
     number: "03",
-    label: "BLOOD SUGAR INSIGHTS",
-    title: "Track and manage your glucose levels",
+    label: "BLOOD PRESSURE TRACKING",
+    title: "Smart monitoring for better heart health",
     description:
-      "Monitor your blood sugar trends with simple visual graphs. Compare your readings with normal ranges and see how you perform compared to similar users.",
+      "Analyze blood pressure patterns, identify changes over time, and receive actionable recommendations designed to support long-term cardiovascular wellness and healthy lifestyle choices.",
     image: "/step-3M.png",
   },
   {
     number: "04",
     label: "APPOINTMENT MANAGEMENT",
-    title: "Stay organized with your doctor visits",
+    title: "Smart scheduling for seamless healthcare",
     description:
-      "Schedule, view, and manage  appointments. Keep track of upcoming visits, history, and important medical schedules without missing anything.",
+      "Easily organize medical appointments, access visit details, manage upcoming consultations, and maintain a complete record of your healthcare interactions from a single dashboard.",
     image: "/step-4M.png",
   },
   {
     number: "05",
-    label: "MEDICATION TRACKING",
-    title: "Never miss a dose again",
+    label: "APPOINTMENT DETAILS",
+    title: "Everything you need before your visit",
     description:
-      "Set reminders for your medicines and track your daily intake. Mark doses as taken, snooze them, or skip when needed ensuring better treatment consistency.",
-    image: "/step-5M.png",
+      "Quickly access appointment information, doctor details, location, schedule, and related documents from a single screen.",
+    image: "/step-6M.png",
   },
   {
     number: "06",
-    label: "DOCTOR VISIT DETAILS",
-    
-    title: "All your visit records in one place",
+    label: "MEDICATION MANAGEMENT",
+    title: "Stay on track with every dose",
     description:
-      "Access detailed information about your doctor visits including notes, prescriptions, and attachments. Stay prepared for every follow up with organized medical records.",
-    image: "/step-6M.png",
+      "Keep all your prescriptions organized, receive timely dose reminders, monitor medication adherence, and build healthier habits with personalized treatment management tools.",
+    image: "/step-5M.png",
   },
 ];
 

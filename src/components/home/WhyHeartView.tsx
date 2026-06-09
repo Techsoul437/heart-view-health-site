@@ -22,7 +22,7 @@ const features = [
   {
     icon: FaHeartbeat,
     title: "Smart Health Analysis",
-    desc: "Get AI-powered insights and personalized recommendations based on your health data.",
+    desc: "Get insights and personalized recommendations based on your health data.",
   },
   {
     icon: FaCalendarCheck,
@@ -42,7 +42,7 @@ export default function WhyHeartView() {
 
       {/* Header */}
 
-      <Headerbadge tag="Why HeartView" text="Built for Real Life, Not Just Numbers" />
+      <Headerbadge tag="Why HeartView Health" text="Built for Real Life, Not Just Numbers" />
 
       {/* Layout */}
  <div className="flex flex-wrap justify-center mt-5">
