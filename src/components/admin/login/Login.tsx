@@ -1,6 +1,6 @@
 "use client";
 
-import { JSX, useEffect, useState } from "react";
+import { JSX, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -209,18 +209,68 @@ const MobileField = () => (
   </div>
 );
 
-const OtpInputs = () => (
-  <div className="mt-8 flex items-center justify-between gap-3">
-    {[1, 2, 3, 4, 5, 6].map((item) => (
-      <input
-        key={item}
-        type="text"
-        maxLength={1}
-        className="h-14 w-14 rounded-2xl border border-[#45657D]/50 bg-white text-center text-lg text-black shadow-inner outline-none transition-all duration-300 focus:border-[#2f5ba5] focus:ring-4 focus:ring-[#2f5ba5]/10"
-      />
-    ))}
-  </div>
-);
+const OtpInputs = () => {
+  const inputsRef = useRef<(HTMLInputElement | null)[]>([]);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    const value = e.target.value.replace(/[^0-9]/g, "");
+    e.target.value = value;
+
+    if (value && index < 5) {
+      inputsRef.current[index + 1]?.focus();
+    }
+  };
+
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    if (e.key === "Backspace" && !e.currentTarget.value && index > 0) {
+      inputsRef.current[index - 1]?.focus();
+    }
+  };
+
+  const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    const pasted = e.clipboardData.getData("text").replace(/[^0-9]/g, "");
+    if (!pasted) return;
+    e.preventDefault();
+
+    pasted
+      .slice(0, 6)
+      .split("")
+      .forEach((char, i) => {
+        if (inputsRef.current[i]) {
+          inputsRef.current[i]!.value = char;
+        }
+      });
+
+    const nextIndex = Math.min(pasted.length, 5);
+    inputsRef.current[nextIndex]?.focus();
+  };
+
+  return (
+    <div className="mt-8 flex w-full items-center justify-between gap-2 sm:gap-3">
+      {[0, 1, 2, 3, 4, 5].map((index) => (
+        <input
+          key={index}
+          ref={(el) => (inputsRef.current[index] = el)}
+          type="text"
+          inputMode="numeric"
+          autoComplete="one-time-code"
+          maxLength={1}
+          onChange={(e) => handleChange(e, index)}
+          onKeyDown={(e) => handleKeyDown(e, index)}
+          onPaste={handlePaste}
+          className="h-12 w-12 min-w-0 flex-1 rounded-2xl border border-[#45657D]/50 bg-white text-center text-base text-black shadow-inner outline-none transition-all duration-300 focus:border-[#2f5ba5] focus:ring-4 focus:ring-[#2f5ba5]/10 sm:h-14 sm:w-14 sm:text-lg"
+        />
+      ))}
+    </div>
+  );
+};
+
 
 const StepIndicator = ({
   current,
@@ -285,7 +335,7 @@ const LeftSide = () => (
             Create your Lab Portal account
           </h2>
 
-          <p className="mt-5 leading-7 text-[#64748B]">
+          <p className="mt-5 leading-7 text-base sm:text-lg  leading-relaxed  font-light text-[#64748B]">
             Securely manage reports, patients, and lab operations
             with a modern healthcare dashboard experience.
           </p>
@@ -320,7 +370,7 @@ const LoginMobileTab = ({
   onSignup,
 }: LoginMobileTabProps) => (
   <>
-    <p className="mt-5 text-[#64748B]">
+    <p className="mt-5 text-[#64748B] text-base sm:text-lg  leading-relaxed  font-light">
       Enter your registered mobile number
     </p>
 
@@ -342,7 +392,7 @@ const LoginMobileTab = ({
       <div className="my-6 flex items-center gap-4">
         <div className="h-px flex-1 bg-[#243246]" />
 
-        <span className="whitespace-nowrap text-[#718096]">
+        <span className="whitespace-nowrap  text-base sm:text-lg  leading-relaxed  font-light text-[#718096]">
           or continue with
         </span>
 
@@ -358,7 +408,7 @@ const LoginMobileTab = ({
         Sign in with Email
       </button>
 
-      <p className="mt-6 text-center text-[#64748B] ">
+      <p className="mt-6 text-center text-base sm:text-lg  leading-relaxed  font-light text-[#64748B] ">
         Don&apos;t have an account?{" "}
         <button
           type="button"
@@ -448,7 +498,7 @@ const LoginEmailTab = ({
           Sign In
         </button>
 
-        <p className="text-center text-[#64748B] ">
+        <p className="text-center text-base sm:text-lg  leading-relaxed  font-light text-[#64748B] ">
           Don&apos;t have an account?{" "}
           <button
             type="button"
@@ -520,7 +570,7 @@ const LoginOtpVerify = ({
         Verify OTP
       </h2>
 
-      <p className="mt-3 text-[#64748B] ">
+      <p className="mt-3 text-base sm:text-lg  leading-relaxed  font-light text-[#64748B] ">
         Enter the 6-digit code sent to your mobile number
       </p>
 
@@ -579,7 +629,7 @@ const LoginPanel = ({
           Welcome Back!
         </h2>
 
-        <p className="mt-2 text-[#64748B] ">
+        <p className="mt-2 text-[#64748B]  text-base sm:text-lg  leading-relaxed  font-light">
           Sign in to access your HeartView Lab Portal
         </p>
       </div>
@@ -642,7 +692,7 @@ const SignupStep1 = ({
       Let&apos;s get started
     </h2>
 
-    <p className="mt-2 text-[#64748B]">
+    <p className="mt-2 text-[#64748B]  text-base sm:text-lg  leading-relaxed  font-light">
       Enter your mobile number to create account
     </p>
 
@@ -677,7 +727,7 @@ const SignupStep1 = ({
       Sign up with Email
     </button>
 
-    <p className="mt-6 text-center text-[#64748B] ">
+    <p className="mt-6  text-base sm:text-lg  leading-relaxed  font-light text-center text-[#64748B] ">
       Already have an account?{" "}
       <button
         type="button"
@@ -754,7 +804,7 @@ const SignupStep2 = ({
         Verify your number
       </h2>
 
-      <p className="mt-2 text-[#64748B] ">
+      <p className="mt-2 text-[#64748B]  text-base sm:text-lg  leading-relaxed  font-light  ">
         Enter the 6-digit code sent to{" "}
         <span className="font-medium text-black">
           +91 {mobile}
@@ -805,7 +855,7 @@ const SignupStep3 = ({ onNext }: SignupStep3Props) => (
       Tell us about your lab
     </h2>
 
-    <p className="mt-2 text-[#64748B] ">
+    <p className="mt-2 text-[#64748B]  text-base sm:text-lg  leading-relaxed  font-light ">
       Help us set up your lab profile
     </p>
 
@@ -933,7 +983,7 @@ const SignupStep4 = ({
         Create your account
       </h2>
 
-      <p className="text-[#64748B] ">
+      <p className="text-base sm:text-lg  leading-relaxed  font-light text-[#64748B] ">
         Set up your login credentials
       </p>
 
@@ -1059,16 +1109,16 @@ const SignupStep4 = ({
               className="mt-1 accent-[#2f5ba5]"
             />
 
-            <span className="flex flex-wrap items-center">
+            <span className="flex flex-wrap items-center text-base sm:text-lg  leading-relaxed  font-light">
               <span className="mr-2">I agree to the</span>
 
-              <span className="cursor-pointer text-[#2f5ba5] mr-2">
+              <span className="cursor-pointer text-[#2f5ba5] font-medium mr-2">
                 Terms of Service
               </span>
 
               <span className="mr-2">and</span>
 
-              <span className="cursor-pointer text-[#2f5ba5]">
+              <span className="cursor-pointer font-medium text-[#2f5ba5]">
                 Privacy Policy
               </span>
             </span>
@@ -1081,7 +1131,7 @@ const SignupStep4 = ({
         </Form>
       </Formik>
 
-      <p className="mt-6 text-center text-[#64748B] ">
+      <p className="mt-6 text-center text-base sm:text-lg  leading-relaxed  font-light text-[#64748B] ">
         Already have an account?{" "}
         <button
           type="button"
@@ -1265,7 +1315,7 @@ const handleSignupSuccess = (values: SignupValues) => {
 
   return (
     <div className="page-bg relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-4">
-      <div className="relative grid h-200 w-full max-w-6xl overflow-hidden rounded-[30px]   bg-[#0D1525]/95 shadow-[0_25px_80px_rgba(0,0,0,0.6)] backdrop-blur-xl lg:grid-cols-[0.65fr_1.15fr]">
+      <div className="relative grid h-210 w-full max-w-6xl overflow-hidden rounded-[30px]   bg-[#0D1525]/95 shadow-[0_25px_80px_rgba(0,0,0,0.6)] backdrop-blur-xl lg:grid-cols-[0.65fr_1.15fr]">
         <LeftSide />
 
         <div className="flex h-full items-start justify-center overflow-y-auto bg-white px-5 py-8 sm:px-8 lg:px-12">

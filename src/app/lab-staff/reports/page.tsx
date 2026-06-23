@@ -191,11 +191,11 @@ export default function ReportsListPage() {
 
             <div className="flex flex-col gap-5 lg:border-b border-black/8  md:flex-row md:items-start md:justify-between ">
                 <div>
-                    <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
+                    <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
                         Uploaded Reports
                     </h1>
 
-                    <p className="mt-2 text-[#64748B]">
+                    <p className="mt-2 text-[#64748B]  text-base sm:text-lg  leading-relaxed  font-light">
                         View and manage all uploaded reports
                     </p>
                 </div>
@@ -212,11 +212,12 @@ export default function ReportsListPage() {
                         <FiFileText className="text-xl" />
                     </div>
                     <div>
-                        <p className=" text-[#64748B]">Total Reports</p>
+                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+Total Reports</p>
                         <p className="text-2xl font-semibold text-black leading-tight mt-0.5">
                             {stats.total ?? "—"}
                         </p>
-                        <p className=" text-[#64748B] mt-0.5">All uploaded reports</p>
+                        <p className="  text-[#64748B] mt-0.5 text-base sm:text-lg  leading-relaxed  font-light ">All uploaded reports</p>
                     </div>
                 </div>
 
@@ -226,11 +227,12 @@ export default function ReportsListPage() {
                         <FiCalendar className="text-xl" />
                     </div>
                     <div>
-                        <p className=" text-[#64748B]">This Month</p>
+                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+This Month</p>
                         <p className="text-2xl font-semibold text-black leading-tight mt-0.5">
                             {stats.thisMonth ?? "—"}
                         </p>
-                        <p className=" text-[#64748B] mt-0.5">Reports uploaded</p>
+                        <p className="  text-[#64748B] mt-0.5 text-base sm:text-lg  leading-relaxed  font-light ">Reports uploaded</p>
                     </div>
                 </div>
 
@@ -240,11 +242,12 @@ export default function ReportsListPage() {
                         <FiUser className="text-xl" />
                     </div>
                     <div>
-                        <p className=" text-[#64748B]">Total Patients</p>
+                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+Total Patients</p>
                         <p className="text-2xl font-semibold text-black leading-tight mt-0.5">
                             {stats.patients ?? "—"}
                         </p>
-                        <p className=" text-[#64748B] mt-0.5">With reports</p>
+                        <p className="  text-[#64748B] mt-0.5 text-base sm:text-lg  leading-relaxed  font-light ">With reports</p>
                     </div>
                 </div>
 
@@ -335,7 +338,7 @@ export default function ReportsListPage() {
                                                         <p className=" font-medium text-black">
                                                             {report.fileName}
                                                         </p>
-                                                        <p className=" text-[#64748B] mt-0.5">
+                                                        <p className="  text-[#64748B] mt-0.5 text-base sm:text-lg  leading-relaxed  font-light ">
                                                             {fileStyle.label}
                                                             {report.fileSize
                                                                 ? ` • ${formatFileSize(report.fileSize)}`
@@ -369,7 +372,7 @@ export default function ReportsListPage() {
                                             {/* UPLOAD DATE */}
                                             <td className="px-5 py-4">
                                                 <p className=" text-black">{date}</p>
-                                                <p className=" text-[#64748B] mt-0.5">{time}</p>
+                                                <p className="  text-[#64748B] mt-0.5 text-base sm:text-lg  leading-relaxed  font-light ">{time}</p>
                                             </td>
 
                                             {/* ACTIONS */}
@@ -414,13 +417,14 @@ export default function ReportsListPage() {
                                             <h2 className="text-xl font-medium text-black">
                                                 No Reports Found
                                             </h2>
-                                            <p className=" text-[#64748B]">
+                                            <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+
                                                 Upload reports to show data here
                                             </p>
                                             <div className="mt-1">
                                                 <FillButton
                                                     text="Upload Report"
-                                                    href="/lab-staff/upload-report"
+                                                    href="/lab-staff/staff_upload_report"
                                                 />
                                             </div>
                                         </div>
@@ -434,7 +438,8 @@ export default function ReportsListPage() {
                 {/* PAGINATION */}
                 {filteredReports.length > 0 && (
                     <div className="flex flex-wrap items-center justify-between gap-3 border-t border-black/5 px-5 py-4">
-                        <p className=" text-[#64748B]">
+                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+
                             Showing {indexOfFirstItem + 1} to{" "}
                             {Math.min(indexOfLastItem, filteredReports.length)} of{" "}
                             {filteredReports.length} reports

@@ -31,13 +31,16 @@ function HomePage() {
         {/* <LifestyleSection></LifestyleSection> */}
         {/* <CoreFeatures></CoreFeatures> */}
         {/* <TrustSection></TrustSection> */}
+
+        <div className='pt-14'>
         <Image
-  src="/phone-with-shadow.jpg"
-  alt="Phone Mockup"
-  width={1960}
-  height={900}
-  className="w-full h-auto"
-/>
+          src="/phone-with-shadow.jpg"
+          alt="Phone Mockup"
+          width={1960}
+          height={900}
+          className="w-full h-auto"
+        />
+        </div>
         <WhyHeartView></WhyHeartView>
 
 

@@ -40,11 +40,11 @@ function LabStaffMain() {
             <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
                 {/* Left */}
                 <div>
-                    <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
+                    <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
                         Dashboard
                     </h1>
 
-                    <p className="mt-1 text-[#64748B]">
+                    <p className="mt-1 text-[#64748B] text-base sm:text-lg  leading-relaxed  font-light">
                         Overview of reports and activity
                     </p>
                 </div>

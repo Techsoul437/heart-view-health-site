@@ -129,12 +129,12 @@ export default function FAQSection() {
 
   return (
     <section className="w-full max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-0 lg:mt-15 ">
-      <div className="max-w-8xl mx-auto pt-5 md:pt-8 lg:pt-20 ">
+      <div className="max-w-8xl mx-auto pt-5  lg:pt-20 ">
 
         {/* Heading */}
 
         <Headerbadge tag="FAQs" text="Have Questions?" />
-        <p className="text-[#64748B]   text-base text-lg text-center sm:text-lg font-light" >
+        <p className="text-[#64748B]   text-base text-center sm:text-lg font-light" >
           HeartView Health – Frequently Asked Questions
         </p>
         {/* FAQ Grid */}

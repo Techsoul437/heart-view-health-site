@@ -119,11 +119,11 @@ export default function StaffManagementPage() {
 
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div>
-                        <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
+                        <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
 
                             Staff Management
                         </h1>
-                        <p className="mt-2 text-[#64748B]">
+                        <p className="mt-2 text-[#64748B]  text-base sm:text-lg  leading-relaxed  font-light">
 
                             View and manage all staff members
                         </p>
@@ -145,7 +145,7 @@ export default function StaffManagementPage() {
                             </div>
 
                             <div>
-                                <p className=" text-slate-500">
+                                <p className="text-base sm:text-lg  leading-relaxed    text-slate-500">
                                     Total Staff
                                 </p>
 
@@ -163,7 +163,7 @@ export default function StaffManagementPage() {
                             </div>
 
                             <div>
-                                <p className=" text-slate-500">
+                                <p className="text-base sm:text-lg  leading-relaxed   text-slate-500">
                                     Active Staff
                                 </p>
 
@@ -181,7 +181,7 @@ export default function StaffManagementPage() {
                             </div>
 
                             <div>
-                                <p className=" text-slate-500">
+                                <p className="text-base sm:text-lg  leading-relaxed    text-slate-500">
                                     Departments
                                 </p>
 
@@ -199,7 +199,7 @@ export default function StaffManagementPage() {
                             </div>
 
                             <div>
-                                <p className=" text-slate-500">
+                                <p className="text-base sm:text-lg  leading-relaxed  text-slate-500">
                                     Branches
                                 </p>
 

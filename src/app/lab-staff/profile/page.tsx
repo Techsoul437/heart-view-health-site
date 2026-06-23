@@ -100,11 +100,12 @@ export default function StaffProfilePage() {
                     <div className="flex items-center gap-3">
 
                         <div>
-                            <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
+                            <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
                                 My Profile
                             </h1>
 
-                            <p className=" text-[#64748B]">
+                            <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+
                                 Manage your personal and account information.
                             </p>
                         </div>
@@ -140,7 +141,8 @@ export default function StaffProfilePage() {
                         {/* Details */}
                         <div className="flex-1">
                      <div className="mb-8 flex flex-col gap-4">
-    <h2 className="text-xl sm:text-2xl font-medium">
+                                               <h2 className="text-2xl font-medium">
+
         Personal Information
     </h2>
 
@@ -216,7 +218,8 @@ export default function StaffProfilePage() {
 
                 {/* Account Information */}
                 <div className="mt-6 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-                    <h2 className="mb-6 text-xl font-semibold text-black">
+                                                               <h2 className="text-2xl font-medium">
+
                         Account Information
                     </h2>
 

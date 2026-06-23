@@ -87,7 +87,8 @@ export default function ReportDetailPage() {
       <div className="mb-6 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           <div>
-            <p className=" text-[#64748B]">
+            <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+
               Patient Name
             </p>
 
@@ -97,7 +98,8 @@ export default function ReportDetailPage() {
           </div>
 
           <div>
-            <p className=" text-[#64748B]">
+            <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+
               Report Type
             </p>
 

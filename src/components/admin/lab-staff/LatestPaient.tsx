@@ -120,7 +120,7 @@ useEffect(() => {
             Recent Patients
           </h4>
 
-          <p className="mt-1  text-[#64748B]">
+          <p className="mt-1 text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
             Latest added patients
           </p>
         </div>

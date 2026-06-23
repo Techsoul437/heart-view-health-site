@@ -55,11 +55,13 @@ export default function Navbar() {
 
           <div className="flex items-center gap-4">
             <div className="hidden lg:block">
-          <div onClick={() => setOpen(true)}>
+          {/* <div onClick={() => setOpen(true)}>
 
                                      <BorderButton text="Join Early Access" href="" bgColor="bg-black"></BorderButton>
 
-            </div>
+            </div> */}
+                          <BorderButton text="Join Early Access" href="/contact" bgColor="bg-black"></BorderButton>
+
             </div>
 
             <button
@@ -123,10 +125,12 @@ export default function Navbar() {
         </nav>
 
         <div className="mt-auto pt-6 border-t border-white/10">
-          <div onClick={() => setOpen(true)}>
+          {/* <div onClick={() => setOpen(true)}>
                           <BorderButton text="Join Early Access" href="" bgColor="bg-black"></BorderButton>
 
-          </div>
+          </div> */}
+                          <BorderButton text="Join Early Access" href="/contact" bgColor="bg-black"></BorderButton>
+
         </div>
 
       </aside>

@@ -250,7 +250,7 @@ export default function StatsCards({
             <div className="relative flex items-center justify-between">
               {/* Left */}
               <div>
-                <p className="text-[#64748B]">
+                <p className="  text-base sm:text-lg  leading-relaxed   text-[#64748B]">
                   {label}
                 </p>
 

@@ -144,7 +144,7 @@ export default function ReportsOverviewChart({
             Reports Overview
           </h4>
 
-          <p className="mt-1 text-[#64748B]">
+          <p className="mt-1 text-[#64748B] text-base sm:text-lg  leading-relaxed  font-light">
             Monthly upload and activity analytics
           </p>
         </div>

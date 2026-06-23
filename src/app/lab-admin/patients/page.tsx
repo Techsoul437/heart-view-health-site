@@ -137,11 +137,11 @@ export default function PatientsPage() {
 
             <div className="flex flex-col gap-5 lg:border-b border-black/8  md:flex-row md:items-start md:justify-between ">
                 <div>
-                    <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
+                    <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
                         Patients
                     </h1>
 
-                    <p className="mt-2 text-[#64748B]">
+                    <p className="mt-2 text-[#64748B]  text-base sm:text-lg  leading-relaxed  font-light">
                         View and manage patients
                     </p>
                 </div>
@@ -158,9 +158,11 @@ export default function PatientsPage() {
                         <FiUsers className="text-xl text-blue-500" />
                     </div>
                     <div>
-                        <p className=" text-[#64748B]">Total Patients</p>
+                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+Total Patients</p>
                         <p className="text-2xl font-semibold text-black">{totalPatients}</p>
-                        <p className=" text-[#64748B]">All registered patients</p>
+                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+All registered patients</p>
                     </div>
                 </div>
 
@@ -170,9 +172,11 @@ export default function PatientsPage() {
                         <FiUser className="text-xl text-green-500" />
                     </div>
                     <div>
-                        <p className=" text-[#64748B]">Male</p>
+                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+Male</p>
                         <p className="text-2xl font-semibold text-black">{maleCount}</p>
-                        <p className=" text-[#64748B]">{pct(maleCount)}</p>
+                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+{pct(maleCount)}</p>
                     </div>
                 </div>
 
@@ -182,9 +186,11 @@ export default function PatientsPage() {
                         <span className="text-lg text-pink-500">♀</span>
                     </div>
                     <div>
-                        <p className=" text-[#64748B]">Female</p>
+                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+Female</p>
                         <p className="text-2xl font-semibold text-black">{femaleCount}</p>
-                        <p className=" text-[#64748B]">{pct(femaleCount)}</p>
+                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+{pct(femaleCount)}</p>
                     </div>
                 </div>
 
@@ -194,9 +200,11 @@ export default function PatientsPage() {
                         <FiUsers className="text-xl text-purple-500" />
                     </div>
                     <div>
-                        <p className=" text-[#64748B]">Other</p>
+                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+Other</p>
                         <p className="text-2xl font-semibold text-black">{otherCount}</p>
-                        <p className=" text-[#64748B]">{pct(otherCount)}</p>
+                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+{pct(otherCount)}</p>
                     </div>
                 </div>
             </div>
@@ -371,7 +379,8 @@ export default function PatientsPage() {
                 {/* FOOTER */}
                 {filteredPatients.length > 0 && (
                     <div className="flex items-center justify-between border-t border-slate-100 px-5 py-4">
-                        <p className=" text-[#64748B]">
+                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+
                             Showing {indexOfFirstPatient + 1} to{" "}
                             {Math.min(indexOfLastPatient, filteredPatients.length)} of{" "}
                             {filteredPatients.length} patients

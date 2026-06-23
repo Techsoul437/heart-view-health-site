@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  PieChart,
-  Pie,
-  Cell,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 
 type StatusItem = {
   completed: number;
@@ -25,14 +19,8 @@ type ChartDataItem = {
   name: string;
   value: number;
   color: string;
-  key: keyof typeof COLORS;
+  key: keyof StatusItem;
 };
-
-interface CustomLabelProps {
-  cx?: number;
-  cy?: number;
-  total: number;
-}
 
 interface ReportsByStatusChartProps {
   year: number;
@@ -41,7 +29,7 @@ interface ReportsByStatusChartProps {
 
 const statusData: StatusData = {
   2024: {
-    5: { completed: 2540, pending: 780, processing: 320, failed: 100 },
+    5: { completed: 1540, pending: 780, processing: 320, failed: 200 },
     6: { completed: 2700, pending: 800, processing: 330, failed: 110 },
     7: { completed: 2900, pending: 820, processing: 340, failed: 90 },
     8: { completed: 3000, pending: 840, processing: 350, failed: 95 },
@@ -60,14 +48,14 @@ const statusData: StatusData = {
   },
 };
 
-const COLORS = {
+const COLORS: Record<keyof StatusItem, string> = {
   completed: "#22c55e",
   pending: "#f97316",
   processing: "#3b82f6",
   failed: "#ef4444",
 };
 
-const LABELS = {
+const LABELS: Record<keyof StatusItem, string> = {
   completed: "Completed",
   pending: "Pending",
   processing: "Processing",
@@ -78,7 +66,12 @@ function pct(val: number, total: number): number {
   return Math.round((val / total) * 100);
 }
 
-// ✅ FIX: Use cx/cy passed by Recharts (these are the actual center coords)
+interface CustomLabelProps {
+  cx?: number;
+  cy?: number;
+  total: number;
+}
+
 const CustomLabel = ({ cx = 0, cy = 0, total }: CustomLabelProps) => (
   <>
     <text
@@ -87,21 +80,21 @@ const CustomLabel = ({ cx = 0, cy = 0, total }: CustomLabelProps) => (
       textAnchor="middle"
       dominantBaseline="middle"
       fill="#0f172a"
-      fontSize={22}
-      fontWeight={600}
+      fontSize={20}
+      fontWeight={500}
     >
       {total.toLocaleString()}
     </text>
     <text
       x={cx}
-      y={cy + 16}
+      y={cy + 14}
       textAnchor="middle"
       dominantBaseline="middle"
       fill="#94a3b8"
       fontWeight={400}
-      fontSize={13}
+      fontSize={11}
     >
-      Total Reports
+      Total
     </text>
   </>
 );
@@ -111,96 +104,63 @@ export default function ReportsByStatusChart({
   month,
 }: ReportsByStatusChartProps) {
   const raw = statusData[year]?.[month] || statusData[2024][5];
-
   const total = Object.values(raw).reduce((a, b) => a + b, 0);
 
-  const chartData: ChartDataItem[] = Object.entries(raw).map(
-    ([key, value]) => ({
-      name: LABELS[key as keyof typeof LABELS],
-      value,
-      color: COLORS[key as keyof typeof COLORS],
-      key: key as keyof typeof COLORS,
-    })
-  );
+  const chartData: ChartDataItem[] = (
+    Object.entries(raw) as [keyof StatusItem, number][]
+  ).map(([key, value]) => ({
+    name: LABELS[key],
+    value,
+    color: COLORS[key],
+    key,
+  }));
+
+  const statItems: { key: keyof StatusItem; label: string; color: string }[] = [
+    { key: "completed", label: "Completed", color: COLORS.completed },
+    { key: "pending", label: "Pending", color: COLORS.pending },
+    { key: "processing", label: "Processing", color: COLORS.processing },
+    { key: "failed", label: "Failed", color: COLORS.failed },
+  ];
 
   return (
-    <div
-      className="
-        rounded-2xl
-        border border-black/10
-        bg-[#f7f7f7]
-        p-5
-        shadow-xl
-        backdrop-blur-md
-        w-full
-        overflow-hidden
-        min-h-110
-        h-auto
-      "
-    >
+    <div className="rounded-2xl border border-black/10    min-h-170    bg-[#f7f7f7]  shadow-xl
+        backdrop-blur-md p-5 w-full">
       {/* Header */}
-      <div className="mb-5">
-        <h4 className="text-lg md:text-xl xl:text-2xl text-black">
+      <div className="mb-3">
+                 <h4 className="text-lg md:text-xl xl:text-2xl text-black">
+
           Reports by Status
         </h4>
-        <p className="mt-1 text-[#64748B]">
+                <p className="mt-1 text-[#64748B] text-base sm:text-lg  leading-relaxed  font-light">
+
           Current report processing overview
         </p>
       </div>
 
-      {/* Content */}
-      <div
-        className="
-          flex
-          flex-col
-          xl:flex-row
-          items-center
-          xl:items-center
-          gap-6
-          w-full
-          h-auto
-          2xl:h-80
-        "
-      >
-        {/* Chart — ✅ FIX: removed hardcoded cx/cy from label prop */}
-        <div
-          className="
-            flex
-            items-center
-            justify-center
-            w-full
-            2xl:min-w-55
-            2xl:max-w-55
-            h-55
-            shrink-0
-          "
-        >
+      {/* Top section: Donut + 2x2 grid */}
+      <div className="flex items-center gap-3 mb-3">
+        {/* Donut chart */}
+        <div className="relative shrink-0 w-27.5 h-27.5">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
                 data={chartData}
                 cx="50%"
                 cy="50%"
-                innerRadius={58}
-                outerRadius={80}
-                paddingAngle={3}
+                innerRadius={36}
+                outerRadius={52}
+                paddingAngle={2}
                 dataKey="value"
                 stroke="transparent"
                 labelLine={false}
                 label={(props) => (
-                  // ✅ Recharts passes cx/cy automatically here — no hardcoding
-                  <CustomLabel
-                    cx={props.cx}
-                    cy={props.cy}
-                    total={total}
-                  />
+                  <CustomLabel cx={props.cx} cy={props.cy} total={total} />
                 )}
               >
                 {chartData.map((entry) => (
                   <Cell key={entry.key} fill={entry.color} />
                 ))}
               </Pie>
-
               <Tooltip
                 formatter={(value, name) => [
                   Number(value ?? 0).toLocaleString(),
@@ -209,7 +169,7 @@ export default function ReportsByStatusChart({
                 contentStyle={{
                   background: "#0f172a",
                   border: "1px solid rgba(255,255,255,0.08)",
-                  borderRadius: "14px",
+                  borderRadius: "10px",
                   color: "#fff",
                   fontSize: "12px",
                 }}
@@ -220,41 +180,62 @@ export default function ReportsByStatusChart({
           </ResponsiveContainer>
         </div>
 
-        {/* Legend */}
-        <div className="w-full flex-1 min-w-0">
-          <ul className="flex flex-col gap-4 w-full">
-            {chartData.map((item) => (
-              <li
-                key={item.key}
-                className="
-                  flex
-                  items-center
-                  gap-3
-                  rounded-xl
-                  border border-black/5
-                  bg-black/5
-                  px-4
-                  py-3
-                  w-full
-                  min-w-0
-                "
-              >
+        {/* 2x2 stat grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 flex-1 min-w-0">
+          {statItems.map(({ key, label, color }) => (
+            <div
+              key={key}
+              className="bg-white rounded-xl px-3 py-2 flex flex-col gap-0.5 min-w-0"
+            >
+              <div className="flex items-center gap-1.5">
                 <span
-                  className="h-3 w-3 rounded-full shrink-0"
-                  style={{ backgroundColor: item.color }}
+                  className="w-2 h-2 rounded-full shrink-0"
+                  style={{ backgroundColor: color }}
                 />
-                <span className="text-[#64748B] md:text-base truncate">
-                  {item.name}
-                </span>
-                <span className="ml-auto shrink-0 whitespace-nowrap text-black font-semibold md:text-base">
-                  {item.value.toLocaleString()}
-                  <span className="ml-1 font-normal text-slate-500">
-                    ({pct(item.value, total)}%)
-                  </span>
-                </span>
-              </li>
-            ))}
-          </ul>
+                <span className=" text-base sm:text-lg  leading-relaxed  font-light text-[#64748B] truncate">{label}</span>
+              </div>
+              <span className="text-2xl font-bold text-black leading-tight">
+                {raw[key].toLocaleString()}
+              </span>
+              <span className="  text-[#64748B] ">
+                {pct(raw[key], total)}% of total
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom: stacked distribution bar */}
+      <div className="border-t border-black/5 pt-3">
+        <div className="flex justify-between  text-base sm:text-lg  leading-relaxed  font-light text-[#64748B]  mb-1.5">
+          <span>Distribution</span>
+          <span>{total.toLocaleString()} reports</span>
+        </div>
+        <div className="flex h-2 rounded-full overflow-hidden gap-0.5">
+          {statItems.map(({ key, color }) => (
+            <div
+              key={key}
+              className="h-full rounded-full"
+              style={{
+                width: `${pct(raw[key], total)}%`,
+                backgroundColor: color,
+              }}
+            />
+          ))}
+        </div>
+        {/* Bar legend */}
+        <div className="flex flex-wrap gap-x-3 gap-y-1 mt-2">
+          {statItems.map(({ key, label, color }) => (
+            <div key={key} className="flex items-center gap-1">
+              <span
+                className="w-2 h-2 rounded-sm shrink-0"
+                style={{ backgroundColor: color }}
+              />
+              <span className=" text-[#64748B] ">
+                {label} {pct(raw[key], total)}%
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

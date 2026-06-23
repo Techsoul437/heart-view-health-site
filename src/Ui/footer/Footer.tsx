@@ -72,7 +72,7 @@ export default function Footer() {
             <div className="flex flex-col justify-between text-left">
               <div className="max-w-100 sm:max-w-90">
                 <Image src="/APP ICONSM.png" alt="HeartView Health" height={240} width={220} className="h-auto w-full max-w-60" />
-                <p className=" leading-7 text-gray-300  font-light mt-5 max-w-85 sm:max-w-100">
+                <p className="text-gray-300  text-base sm:text-lg  leading-relaxed lg:max-w-md font-light  mt-5 max-w-85 sm:max-w-100">
                   Stay aware, track health easily, and take control of your well-being with smarter insights and effortless habits.
                 </p>
               </div>
@@ -88,7 +88,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm lg:text-base text-gray-300 transition duration-200 ease-in-out hover:text-[#2f5ba5] hover:underline underline-offset-4 active:text-slate-100"
+                      className="text-base sm:text-lg  leading-relaxed lg:max-w-md font-light  text-gray-300 transition duration-200 ease-in-out hover:text-[#2f5ba5] hover:underline underline-offset-4 active:text-slate-100"
                     >
                       {link.label}
                     </Link>
@@ -106,7 +106,7 @@ export default function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm lg:text-base text-gray-300  transition duration-200 ease-in-out hover:text-[#2f5ba5] hover:underline underline-offset-4 active:text-slate-100"
+                      className="text-base sm:text-lg  leading-relaxed lg:max-w-md font-light  text-gray-300  transition duration-200 ease-in-out hover:text-[#2f5ba5] hover:underline underline-offset-4 active:text-slate-100"
                     >
                       {link.label}
                     </Link>
@@ -119,7 +119,7 @@ export default function Footer() {
               <h4 className="text-xl font-semibold tracking-[0.02em] text-white">
                 Contact Details
               </h4>
-              <div className="space-y-2 text-md leading-7 text-gray-300">
+              <div className="space-y-2 text-base sm:text-lg  leading-relaxed lg:max-w-md font-light  text-gray-300">
                 <a
                   href="https://maps.google.com/?q=19,+Arth+Residency,+Near+V.I.P.+Circle,+Utran,+Surat+394105"
                   target="_blank"

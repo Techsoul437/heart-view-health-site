@@ -29,7 +29,7 @@ function Hero() {
             <div className="flex flex-wrap gap-4 py-6 items-center">
               <FillButton text="Explore Features" href="/features" />
               <div onClick={() => setOpen(true)}>
-                <BorderButton text="Join Early Access" href="" bgColor="bg-[#F7F7F7]"></BorderButton>
+                {/* <BorderButton text="Join Early Access" href="" bgColor="bg-[#F7F7F7]"></BorderButton> */}
 
               </div>
             </div>

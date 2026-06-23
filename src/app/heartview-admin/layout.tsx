@@ -20,46 +20,40 @@ export default function LabAdminLayout({
 }: LabAdminLayoutProps) {
   const pathname = usePathname();
 
-  const sidebarMenu: SidebarMenuItem[] = [
-    {
-      title: "Dashboard",
-      href: "/lab-staff/dashboard",
-      icon: "dashboard",
-    },
+const sidebarMenu: SidebarMenuItem[] = [
+  {
+    title: "Dashboard",
+    href: "/heartview-admin/dashboard",
+    icon: "dashboard",
+  },
 
-    {
-      title: "Patients",
-      href: "/lab-staff/patients",
-      icon: "users",
-    },
+  {
+    title: "Labs",
+    href: "/heartview-admin/labs",
+    icon: "users",
+  },
 
-    {
-      title: "Upload Report",
-      href: "/lab-staff/staff_upload_report",
-      icon: "upload",
-    },
+  {
+    title: "Patients",
+    href: "/heartview-admin/patients",
+    icon: "users",
+  },
+ 
+  {
+    title: "Audit Logs",
+    href: "/heartview-admin/audit-logs",
+    icon: "reports",
+  },
 
-    {
-      title: "Reports",
-      href: "/lab-staff/reports",
-      icon: "reports",
-    },
-
-    {
-      title: "Report Links",
-      href: "/lab-staff/report_link",
-      icon: "staff",
-    },
-
-    {
-      title: "My Profile",
-      href: "/lab-staff/profile",
-      icon: "settings",
-    },
-  ];
+  {
+    title: "My Profile",
+    href: "/heartview-admin/profile",
+    icon: "settings",
+  },
+];
 
   const isLoginPage =
-    pathname === "/lab-staff/login";
+    pathname === "/heartview-admin/login";
 
   if (isLoginPage) {
     return (
@@ -74,7 +68,7 @@ export default function LabAdminLayout({
      {/* Desktop Sidebar */}
      <div className="hidden lg:block fixed left-0 top-0 z-50 min-h-screen">
        <Sidebar
-         role="admin"
+         role="heartview-admin"
          menuItems={sidebarMenu}
         
        />
@@ -83,7 +77,7 @@ export default function LabAdminLayout({
      {/* Mobile Sidebar */}
      <div className="lg:hidden">
       <Sidebar
-          role="staff"
+          role="heartview-admin"
           menuItems={sidebarMenu}
 
         />

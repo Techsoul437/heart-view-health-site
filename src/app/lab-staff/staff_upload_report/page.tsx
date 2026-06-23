@@ -207,11 +207,12 @@ export default function UploadReportPage() {
                 <div className="flex items-center gap-3">
 
                     <div>
-                        <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
+                        <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
                             Upload Report
                         </h1>
 
-                        <p className=" text-[#64748B]">
+                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+
                             Upload and manage patient reports
                         </p>
                     </div>
@@ -256,7 +257,7 @@ export default function UploadReportPage() {
                             Patient & Report Details
                         </h2>
 
-                        <p className="mt-2  text-[#64748B]">
+                        <p className="mt-2 text-base sm:text-lg  leading-relaxed  font-light   text-[#64748B]">
                             Fill in the details below to upload
                             a new report
                         </p>

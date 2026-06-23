@@ -45,7 +45,7 @@ const iconMap: Record<string, LucideIcon> = {
 
 export default function Sidebar({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  role = "admin",
+  role = "",
   menuItems = [],
   labName,
   userName,
@@ -61,7 +61,16 @@ export default function Sidebar({
     .join("")
     .toUpperCase()
     .slice(0, 2);
+  // Component ke andar, return se pehle ya upar:
+  const loginPathMap: Record<string, string> = {
+    staff: "/lab-staff/login",
+    "lab-admin": "/lab-admin/login",
+    admin: "/lab-admin/login",
+    "heartview-admin": "/heartview-admin/login",
+    
+  };
 
+  const loginHref = loginPathMap[role ?? ""] ?? "/lab-admin/login";
   return (
     <>
       {/* Mobile Header */}
@@ -107,8 +116,7 @@ export default function Sidebar({
           backdrop-blur-2xl
           transition-transform
           duration-300
-          ${
-            isOpen ? "translate-x-0" : "-translate-x-full"
+          ${isOpen ? "translate-x-0" : "-translate-x-full"
           }
           lg:sticky
           lg:translate-x-0
@@ -153,10 +161,9 @@ export default function Sidebar({
                     px-4
                     transition-all
                     duration-300
-                    ${
-                      isActive
-                        ? "border-white border-2 bg-white text-[#2f5ba5] px-0 rounded-r-none"
-                        : "border-transparent text-white hover:border-black/10 hover:bg-[#101B2D]/90 hover:text-white"
+                    ${isActive
+                      ? "border-white border-2 bg-white text-[#2f5ba5] px-0 rounded-r-none"
+                      : "border-transparent text-white hover:border-black/10 hover:bg-[#101B2D]/90 hover:text-white"
                     }
                   `}
                 >
@@ -166,10 +173,9 @@ export default function Sidebar({
                       flex h-11 w-11
                       items-center justify-center
                       rounded-xl
-                      ${
-                        isActive
-                          ? "bg-[#ffffff] border text-[#2f5ba5]"
-                          : "bg-[#ffffff] text-[#2f5ba5]"
+                      ${isActive
+                        ? "bg-[#ffffff] border text-[#2f5ba5]"
+                        : "bg-[#ffffff] text-[#2f5ba5]"
                       }
                     `}
                   >
@@ -219,25 +225,18 @@ export default function Sidebar({
                 )}
               </div>
 
-              <Link
-                href={
-                  role === "staff"
-                    ? "/lab-staff/login"
-                    : "/lab-admin/login"
-                }
-                onClick={() => setIsOpen(false)}
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-white transition hover:bg-red-500/10 hover:text-red-400"
-              >
-                <LogOut className="h-4 w-4" />
-              </Link>
+            <Link
+              href={loginHref}
+              onClick={() => setIsOpen(false)}
+              className="flex items-center justify-center gap-2 rounded-xl border border-white/10 py-3 text-white transition hover:bg-red-500/10 hover:text-red-400"
+            >
+              <LogOut className="h-5 w-5" />
+              <span>Logout</span>
+            </Link>
             </div>
           ) : (
             <Link
-              href={
-                role === "staff"
-                  ? "/lab-staff/login"
-                  : "/lab-admin/login"
-              }
+              href={loginHref}
               onClick={() => setIsOpen(false)}
               className="flex items-center justify-center gap-2 rounded-xl border border-white/10 py-3 text-white transition hover:bg-red-500/10 hover:text-red-400"
             >

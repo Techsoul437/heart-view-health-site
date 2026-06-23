@@ -398,7 +398,7 @@ function Section({ data }: { data: SectionType }) {
 export default function TermsCondition() {
   return (
     <div className="  max-w-8xl px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-0 lg:mt-15  text-black">
-      <div className="pt-5 md:pt-8 lg:pt-20  mx-auto">
+      <div className="pt-5  lg:pt-16  mx-auto">
         <div className="inline-flex items-center gap-2 mb-4 px-3 py-1.5 rounded-full ">
           <span className="text-xs tracking-widest uppercase font-semibold text-[#2f5ba5] border border-[#2f5ba5]/70 rounded-full px-4 py-1">
 
@@ -407,7 +407,7 @@ export default function TermsCondition() {
         </div>
         {/* Terms & Conditions */}
         <h1 className=" text-2xl md:text-3xl lg:text-4xl font-medium leading-tight text-black mb-4">{title}</h1>
-        <p className="text-base sm:text-lg font-light font-light leading-relaxed mb-10">{subtitle}</p>
+        <p className="text-base sm:text-lg font-light  leading-relaxed mb-10">{subtitle}</p>
 
         {sections.map((sec, i) => (
           <Section key={i} data={sec} />

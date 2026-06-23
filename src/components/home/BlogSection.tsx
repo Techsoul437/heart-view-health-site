@@ -163,7 +163,7 @@ function BlogSection() {
                   {blog.title}
                 </h2>
 
-                <p className="text-base sm:text-lg  leading-relaxed lg:max-w-md font-light text-[#64748B]   mt-2 line-clamp-2 ">
+                <p className="text-base sm:text-lg  leading-relaxed  font-light  lg:max-w-md text-[#64748B]   mt-2 line-clamp-2 ">
                   {blog.description}
                 </p>
 
@@ -196,7 +196,7 @@ function BlogSection() {
       </div>
 
       {/* BUTTONS */}
-      <div className="text-center mt-12 space-y-4">
+      <div className="text-center mt-10 space-y-4">
         <FillButton text="View More Blogs →" href="/blog" />
       </div>
 

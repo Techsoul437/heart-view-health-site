@@ -146,7 +146,7 @@ export default function CoreFeatures() {
                     </div>
 
                     <div className="mt-auto">
-                      <p className="text-gray-300 text-base sm:text-lg  leading-relaxed  font-light">
+                      <p className="text-gray-300 text-base sm:text-lg  leading-relaxed font-light">
                         {item.value}
                       </p>
                     </div>

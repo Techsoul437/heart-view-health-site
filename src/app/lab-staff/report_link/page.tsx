@@ -139,11 +139,11 @@ export default function ReportLinksPage() {
        
  <div className="flex flex-col gap-5 lg:border-b border-black/8  md:flex-row md:items-start md:justify-between ">
                 <div>
-                    <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
+                    <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
                        Report Links
                     </h1>
 
-                    <p className="mt-2 text-[#64748B]">
+                    <p className="mt-2 text-[#64748B]  text-base sm:text-lg  leading-relaxed  font-light">
                            Send, track and manage report links shared with patients.
                     </p>
                 </div>
@@ -376,13 +376,8 @@ export default function ReportLinksPage() {
                             : "Go to Reports and click the send button to share a report"}
                         </p>
                         {!search && statusFilter === "All Status" && (
-                          <button
-                            onClick={() => router.push("/lab-staff/reports")}
-                            className="mt-2 flex items-center gap-2 rounded-xl bg-[#2f5ba5] px-5 py-2.5  text-white hover:bg-[#254a8a]"
-                          >
-                            <FiSend size={14} />
-                            Go to Reports
-                          </button>
+                          
+                          <FillButton text="Go to Reports" href="/lab-staff/reports"></FillButton>
                         )}
                       </div>
                     </td>

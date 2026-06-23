@@ -74,7 +74,7 @@ export default function LabAdminLayout({
      {/* Desktop Sidebar */}
      <div className="hidden lg:block fixed left-0 top-0 z-50 min-h-screen">
        <Sidebar
-         role="admin"
+         role="staff"
          menuItems={sidebarMenu}
         
        />

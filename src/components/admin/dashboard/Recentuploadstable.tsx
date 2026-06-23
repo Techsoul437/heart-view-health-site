@@ -59,15 +59,15 @@ export default function RecentUploadsTable() {
             Recent Uploads
           </h4>
 
-          <p className="mt-1 text-[#64748B]">
+          <p className="mt-1 text-[#64748B] text-base sm:text-lg  leading-relaxed  font-light">
             Latest uploaded reports
           </p>
         </div>
-  <Link
+        <Link
           href="/lab-admin/reports"
         >
-        <button
-          className="
+          <button
+            className="
             rounded-xl
             border border-indigo-500/20
             bg-[#4a7bc9]/20
@@ -76,9 +76,9 @@ export default function RecentUploadsTable() {
             transition-all
             hover:bg-indigo-500/20
           "
-        >
-          View All
-        </button>
+          >
+            View All
+          </button>
         </Link>
       </div>
 
@@ -107,7 +107,7 @@ export default function RecentUploadsTable() {
                 Report Type
               </th>
 
-              <th className="pb-3 font-normal">
+              <th className="pb-3 pr-4 font-normal">
                 Upload Date
               </th>
             </tr>
@@ -125,7 +125,7 @@ export default function RecentUploadsTable() {
                     last:border-0
                   "
                 >
-                  <td className="py-4 pr-4">
+                  <td className="py-4 pr-4 ">
                     <span className="font-medium text-[#64748B]">
                       {report.fileName}
                     </span>

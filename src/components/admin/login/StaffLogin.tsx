@@ -106,7 +106,7 @@ const StaffLoginPanel = () => {
     <>
       {/* HEADER */}
       <div className="mb-10">
-        <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal   text-black">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl  font-normal   text-black">
           Welcome Back!
         </h2>
 
