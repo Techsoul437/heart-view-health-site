@@ -255,17 +255,19 @@ const OtpInputs = () => {
     <div className="mt-8 flex w-full items-center justify-between gap-2 sm:gap-3">
       {[0, 1, 2, 3, 4, 5].map((index) => (
         <input
-          key={index}
-          ref={(el) => (inputsRef.current[index] = el)}
-          type="text"
-          inputMode="numeric"
-          autoComplete="one-time-code"
-          maxLength={1}
-          onChange={(e) => handleChange(e, index)}
-          onKeyDown={(e) => handleKeyDown(e, index)}
-          onPaste={handlePaste}
-          className="h-12 w-12 min-w-0 flex-1 rounded-2xl border border-[#45657D]/50 bg-white text-center text-base text-black shadow-inner outline-none transition-all duration-300 focus:border-[#2f5ba5] focus:ring-4 focus:ring-[#2f5ba5]/10 sm:h-14 sm:w-14 sm:text-lg"
-        />
+  key={index}
+  ref={(el) => {
+    inputsRef.current[index] = el;
+  }}
+  type="text"
+  inputMode="numeric"
+  autoComplete="one-time-code"
+  maxLength={1}
+  onChange={(e) => handleChange(e, index)}
+  onKeyDown={(e) => handleKeyDown(e, index)}
+  onPaste={handlePaste}
+  className="h-12 w-12 min-w-0 flex-1 rounded-2xl border border-[#45657D]/50 bg-white text-center text-base text-black shadow-inner outline-none transition-all duration-300 focus:border-[#2f5ba5] focus:ring-4 focus:ring-[#2f5ba5]/10 sm:h-14 sm:w-14 sm:text-lg"
+/>
       ))}
     </div>
   );
