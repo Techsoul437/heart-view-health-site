@@ -1,5 +1,4 @@
-"use client";
-
+"use client"
 import Link from "next/link";
 import Image from "next/image";
 import { blogs } from "@/data/blogData";
@@ -8,11 +7,35 @@ import FinalCTA from "@/Ui/cta/FinalCTA";
 import { motion, AnimatePresence } from "framer-motion";
 import Footer from "@/Ui/footer/Footer";
 import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
-  const categoryLabels: Record<string, string> = {
+const categoryLabels: Record<string, string> = {
   bp: "Blood Pressure",
- 
-};
 
+};
+  import type { Metadata } from "next";
+
+//   export const  metadata: Metadata = {
+//   title: "Health Blog | HeartView Health",
+//   description:
+//     "Read expert health articles, wellness tips, preventive care guides, nutrition advice, fitness insights, and the latest healthcare updates from HeartView Health.",
+//   keywords: [
+//     "health blog",
+//     "health tips",
+//     "wellness",
+//     "nutrition",
+//     "fitness",
+//     "preventive healthcare",
+//     "heart health",
+//     "health insights",
+//     "HeartView Health",
+//   ],
+//   openGraph: {
+//     title: "Health Blog | Heartview Health",
+//    description:
+//       "Explore expert health articles, wellness tips, nutrition guides, and healthcare insights.",
+//     url: "https://www.heartviewhealth.com/blog",
+//     type: "website",
+//   },
+// };
 export default function BlogList() {
   return (
     <div className="page-bg pt-5  lg:pt-20">
@@ -89,8 +112,8 @@ export default function BlogList() {
 
                     {/* Content */}
                     <span className="relative z-10 tracking-wide">
-                       {categoryLabels[blog.category.toLowerCase()] ||
-    blog.category.replace("-", " ").toUpperCase()}
+                      {categoryLabels[blog.category.toLowerCase()] ||
+                        blog.category.replace("-", " ").toUpperCase()}
                     </span>
                   </div>
                 </div>

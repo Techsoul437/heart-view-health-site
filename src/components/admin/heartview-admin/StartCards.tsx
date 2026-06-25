@@ -144,7 +144,7 @@ const data: StatsData = {
 
             <div className="relative flex items-center justify-between">
               <div>
-                <p className="text-[#64748B]  text-base sm:text-lg  leading-relaxed  ">{label}</p>
+                <p className="text-[#64748B]">{label}</p>
 
                 <h3 className="mt-2 text-2xl font-bold text-black">
                   {data[key]}

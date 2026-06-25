@@ -257,7 +257,7 @@ export default function UploadReportPage() {
                             Patient & Report Details
                         </h2>
 
-                        <p className="mt-2 text-base sm:text-lg  leading-relaxed  font-light   text-[#64748B]">
+                        <p className="mt-2   font-light   text-[#64748B]">
                             Fill in the details below to upload
                             a new report
                         </p>

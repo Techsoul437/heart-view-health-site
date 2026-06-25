@@ -158,11 +158,11 @@ export default function PatientsPage() {
                         <FiUsers className="text-xl text-blue-500" />
                     </div>
                     <div>
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
-Total Patients</p>
+                        <p className="  text-[#64748B]">
+                            Total Patients</p>
                         <p className="text-2xl font-semibold text-black">{totalPatients}</p>
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
-All registered patients</p>
+                        <p className="  text-[#64748B]">
+                            All registered patients</p>
                     </div>
                 </div>
 
@@ -172,11 +172,11 @@ All registered patients</p>
                         <FiUser className="text-xl text-green-500" />
                     </div>
                     <div>
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
-Male</p>
+                        <p className="   text-[#64748B]">
+                            Male</p>
                         <p className="text-2xl font-semibold text-black">{maleCount}</p>
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
-{pct(maleCount)}</p>
+                        <p className="    text-[#64748B]">
+                            {pct(maleCount)}</p>
                     </div>
                 </div>
 
@@ -186,11 +186,11 @@ Male</p>
                         <span className="text-lg text-pink-500">♀</span>
                     </div>
                     <div>
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
-Female</p>
+                        <p className="  text-[#64748B]">
+                            Female</p>
                         <p className="text-2xl font-semibold text-black">{femaleCount}</p>
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
-{pct(femaleCount)}</p>
+                        <p className=" text-[#64748B]">
+                            {pct(femaleCount)}</p>
                     </div>
                 </div>
 
@@ -200,11 +200,11 @@ Female</p>
                         <FiUsers className="text-xl text-purple-500" />
                     </div>
                     <div>
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
-Other</p>
+                        <p className=" text-[#64748B]">
+                            Other</p>
                         <p className="text-2xl font-semibold text-black">{otherCount}</p>
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
-{pct(otherCount)}</p>
+                        <p className="  text-[#64748B]">
+                            {pct(otherCount)}</p>
                     </div>
                 </div>
             </div>
@@ -398,8 +398,8 @@ Other</p>
                                     key={i}
                                     onClick={() => setCurrentPage(i + 1)}
                                     className={`flex h-8 w-8 items-center justify-center rounded-lg  font-semibold transition ${currentPage === i + 1
-                                            ? "bg-[#2f5ba5] text-white"
-                                            : "border border-slate-200 text-[#64748B] hover:bg-slate-50"
+                                        ? "bg-[#2f5ba5] text-white"
+                                        : "border border-slate-200 text-[#64748B] hover:bg-slate-50"
                                         }`}
                                 >
                                     {i + 1}

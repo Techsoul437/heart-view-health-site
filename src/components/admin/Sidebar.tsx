@@ -65,12 +65,12 @@ export default function Sidebar({
   const loginPathMap: Record<string, string> = {
     staff: "/lab-staff/login",
     "lab-admin": "/lab-admin/login",
-    admin: "/lab-admin/login",
     "heartview-admin": "/heartview-admin/login",
     
   };
 
   const loginHref = loginPathMap[role ?? ""] ?? "/lab-admin/login";
+
   return (
     <>
       {/* Mobile Header */}
@@ -228,10 +228,9 @@ export default function Sidebar({
             <Link
               href={loginHref}
               onClick={() => setIsOpen(false)}
-              className="flex items-center justify-center gap-2 rounded-xl border border-white/10 py-3 text-white transition hover:bg-red-500/10 hover:text-red-400"
+              className="flex items-center justify-center gap-2 rounded-xl  py-3 text-white transition hover:bg-red-500/10 hover:text-red-400"
             >
               <LogOut className="h-5 w-5" />
-              <span>Logout</span>
             </Link>
             </div>
           ) : (

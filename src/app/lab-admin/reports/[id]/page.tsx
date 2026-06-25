@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, FileText } from "lucide-react";
+import Image from "next/image";
 
 interface ReportItem {
   id: number;
@@ -134,8 +135,7 @@ export default function ReportDetailPage() {
         )}
 
         {isImage && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={report.fileData}
             alt={report.fileName}
             className="max-h-[85vh] w-full rounded-xl object-contain"

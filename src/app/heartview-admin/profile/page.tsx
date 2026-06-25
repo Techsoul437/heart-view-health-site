@@ -160,7 +160,7 @@ export default function AdminProfilePage() {
                                                 HeartView Admin
                                             </h2>
 
-                                            <p className=" text-base sm:text-lg  leading-relaxed  font-light text-[#64748B] ">
+                                            <p className=" text-[#64748B] ">
                                                 Update your administrator account details
                                             </p>
                                         </div>

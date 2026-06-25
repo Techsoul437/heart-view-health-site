@@ -145,7 +145,7 @@ export default function StaffManagementPage() {
                             </div>
 
                             <div>
-                                <p className="text-base sm:text-lg  leading-relaxed    text-slate-500">
+                                <p className="   text-slate-500">
                                     Total Staff
                                 </p>
 
@@ -163,7 +163,7 @@ export default function StaffManagementPage() {
                             </div>
 
                             <div>
-                                <p className="text-base sm:text-lg  leading-relaxed   text-slate-500">
+                                <p className="  text-slate-500">
                                     Active Staff
                                 </p>
 
@@ -181,7 +181,7 @@ export default function StaffManagementPage() {
                             </div>
 
                             <div>
-                                <p className="text-base sm:text-lg  leading-relaxed    text-slate-500">
+                                <p className=" text-slate-500">
                                     Departments
                                 </p>
 
@@ -199,7 +199,7 @@ export default function StaffManagementPage() {
                             </div>
 
                             <div>
-                                <p className="text-base sm:text-lg  leading-relaxed  text-slate-500">
+                                <p className=" text-slate-500">
                                     Branches
                                 </p>
 

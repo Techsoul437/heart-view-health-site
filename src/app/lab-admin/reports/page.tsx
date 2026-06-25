@@ -212,12 +212,12 @@ export default function ReportsListPage() {
                         <FiFileText className="text-xl" />
                     </div>
                     <div>
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
-Total Reports</p>
+                        <p className="   text-[#64748B]">
+                            Total Reports</p>
                         <p className="text-2xl font-semibold text-black leading-tight mt-0.5">
                             {stats.total ?? "—"}
                         </p>
-                        <p className="  text-[#64748B] mt-0.5 text-base sm:text-lg  leading-relaxed  font-light ">All uploaded reports</p>
+                        <p className="  text-[#64748B] mt-0.5  ">All uploaded reports</p>
                     </div>
                 </div>
 
@@ -227,12 +227,12 @@ Total Reports</p>
                         <FiCalendar className="text-xl" />
                     </div>
                     <div>
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
-This Month</p>
+                        <p className=" text-[#64748B]">
+                            This Month</p>
                         <p className="text-2xl font-semibold text-black leading-tight mt-0.5">
                             {stats.thisMonth ?? "—"}
                         </p>
-                        <p className="  text-[#64748B] mt-0.5 text-base sm:text-lg  leading-relaxed  font-light ">Reports uploaded</p>
+                        <p className="  text-[#64748B] mt-0.5    ">Reports uploaded</p>
                     </div>
                 </div>
 
@@ -242,12 +242,12 @@ This Month</p>
                         <FiUser className="text-xl" />
                     </div>
                     <div>
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
-Total Patients</p>
+                        <p className=" text-[#64748B]">
+                            Total Patients</p>
                         <p className="text-2xl font-semibold text-black leading-tight mt-0.5">
                             {stats.patients ?? "—"}
                         </p>
-                        <p className="  text-[#64748B] mt-0.5 text-base sm:text-lg  leading-relaxed  font-light ">With reports</p>
+                        <p className="  text-[#64748B] mt-0.5   ">With reports</p>
                     </div>
                 </div>
 

@@ -77,8 +77,8 @@ const validationSchema = Yup.object({
 });
 
 export default function UploadReportPage() {
-      const router = useRouter();
-    
+    const router = useRouter();
+
     const [patients, setPatients] = useState<Patient[]>(
         [],
     );
@@ -205,7 +205,7 @@ export default function UploadReportPage() {
 
             <div className="flex flex-col gap-5 shrink-0">
                 <div className="flex items-center gap-3">
-              
+
                     <div>
                         <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
                             Upload Report
@@ -256,7 +256,7 @@ export default function UploadReportPage() {
                             Patient & Report Details
                         </h2>
 
-                        <p className="mt-2 text-base sm:text-lg  leading-relaxed  font-light   text-[#64748B]">
+                        <p className="mt-2 font-light   text-[#64748B]">
                             Fill in the details below to upload
                             a new report
                         </p>
@@ -312,7 +312,7 @@ export default function UploadReportPage() {
                                 reportData,
                             );
 
-  toast.success("Report uploaded  successfully");
+                            toast.success("Report uploaded  successfully");
                             resetForm();
 
                             setTimeout(() => {

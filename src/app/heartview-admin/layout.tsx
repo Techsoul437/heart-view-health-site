@@ -20,37 +20,37 @@ export default function LabAdminLayout({
 }: LabAdminLayoutProps) {
   const pathname = usePathname();
 
-const sidebarMenu: SidebarMenuItem[] = [
-  {
-    title: "Dashboard",
-    href: "/heartview-admin/dashboard",
-    icon: "dashboard",
-  },
+  const sidebarMenu: SidebarMenuItem[] = [
+    {
+      title: "Dashboard",
+      href: "/heartview-admin/dashboard",
+      icon: "dashboard",
+    },
 
-  {
-    title: "Labs",
-    href: "/heartview-admin/labs",
-    icon: "users",
-  },
+    {
+      title: "Labs",
+      href: "/heartview-admin/labs",
+      icon: "users",
+    },
 
-  {
-    title: "Patients",
-    href: "/heartview-admin/patients",
-    icon: "users",
-  },
- 
-  {
-    title: "Audit Logs",
-    href: "/heartview-admin/audit-logs",
-    icon: "reports",
-  },
+    {
+      title: "Patients",
+      href: "/heartview-admin/patients",
+      icon: "users",
+    },
 
-  {
-    title: "My Profile",
-    href: "/heartview-admin/profile",
-    icon: "settings",
-  },
-];
+    {
+      title: "Audit Logs",
+      href: "/heartview-admin/audit-logs",
+      icon: "reports",
+    },
+
+    {
+      title: "My Profile",
+      href: "/heartview-admin/profile",
+      icon: "settings",
+    },
+  ];
 
   const isLoginPage =
     pathname === "/heartview-admin/login";
@@ -63,36 +63,36 @@ const sidebarMenu: SidebarMenuItem[] = [
     );
   }
 
- return (
-   <div className="min-h-screen page-bg">
-     {/* Desktop Sidebar */}
-     <div className="hidden lg:block fixed left-0 top-0 z-50 min-h-screen">
-       <Sidebar
-         role="heartview-admin"
-         menuItems={sidebarMenu}
-        
-       />
-     </div>
- 
-     {/* Mobile Sidebar */}
-     <div className="lg:hidden">
-      <Sidebar
+  return (
+    <div className="min-h-screen page-bg">
+      {/* Desktop Sidebar */}
+      <div className="hidden lg:block fixed left-0 top-0 z-50 min-h-screen">
+        <Sidebar
           role="heartview-admin"
           menuItems={sidebarMenu}
 
         />
-     </div>
- 
-     {/* Page Content */}
-     <main
-       className="
+      </div>
+
+      {/* Mobile Sidebar */}
+      <div className="lg:hidden">
+        <Sidebar
+          role="heartview-admin"
+          menuItems={sidebarMenu}
+
+        />
+      </div>
+
+      {/* Page Content */}
+      <main
+        className="
          lg:ml-80
         min-h-screen
          overflow-x-hidden
        "
-     >
-       {children}
-     </main>
-   </div>
- );
+      >
+        {children}
+      </main>
+    </div>
+  );
 }

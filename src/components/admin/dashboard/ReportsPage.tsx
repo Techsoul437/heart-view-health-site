@@ -165,7 +165,7 @@ export default function ReportsPage() {
       <StatsCards year={year} month={month} />
 
       {/* ───────────────── CHARTS ───────────────── */}
-      <div className="mt-5 grid grid-cols-1 gap-5 2xl:grid-cols-3">
+      <div className="mt-5 grid grid-cols-1 items-stretch gap-5 2xl:grid-cols-3">
         <div className="lg:col-span-2 min-w-0">
           <ReportsOverviewChart
             year={year}

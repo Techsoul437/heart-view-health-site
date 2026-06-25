@@ -136,22 +136,22 @@ export default function ReportLinksPage() {
     <div className="min-h-screen bg-white p-5 md:p-12">
       <div className="mx-auto max-w-8xl space-y-6">
         {/* Header */}
-       
- <div className="flex flex-col gap-5 lg:border-b border-black/8  md:flex-row md:items-start md:justify-between ">
-                <div>
-                    <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
-                       Report Links
-                    </h1>
 
-                    <p className="mt-2 text-[#64748B]  text-base sm:text-lg  leading-relaxed  font-light">
-                           Send, track and manage report links shared with patients.
-                    </p>
-                </div>
+        <div className="flex flex-col gap-5 lg:border-b border-black/8  md:flex-row md:items-start md:justify-between ">
+          <div>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
+              Report Links
+            </h1>
+
+            <p className="mt-2 text-[#64748B]  text-base sm:text-lg  leading-relaxed  font-light">
+              Send, track and manage report links shared with patients.
+            </p>
+          </div>
 
 
-                <FillButton text="Send New Link" href="/lab-staff/reports" ></FillButton>
+          <FillButton text="Send New Link" href="/lab-staff/reports" ></FillButton>
 
-            </div>
+        </div>
         {/* Stats */}
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
@@ -226,40 +226,40 @@ export default function ReportLinksPage() {
             </div>
           </div>
         </div>
- {/* Filters */}
-          <div className="max-w-4xl p-5">
-            <div className="flex flex-col gap-4 xl:flex-row">
-              <div className="relative flex-1">
-                <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-[#64748B] " />
-                <input
-                  type="text"
-                  placeholder="Search by patient name, mobile, or report type..."
-                  value={search}
-                  onChange={(e) => {
-                    setSearch(e.target.value);
-                    setCurrentPage(1);
-                  }}
-                  className="w-full rounded-xl border border-slate-200 py-3 pl-11 pr-4  outline-none focus:border-[#2f5ba5]"
-                />
-              </div>
-
-              <select
-                value={statusFilter}
+        {/* Filters */}
+        <div className="max-w-4xl p-5">
+          <div className="flex flex-col gap-4 xl:flex-row">
+            <div className="relative flex-1">
+              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-[#64748B] " />
+              <input
+                type="text"
+                placeholder="Search by patient name, mobile, or report type..."
+                value={search}
                 onChange={(e) => {
-                  setStatusFilter(e.target.value);
+                  setSearch(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="rounded-xl border border-slate-200 px-4 py-3  outline-none cursor-pointer"
-              >
-                {STATUS_OPTIONS.map((s) => (
-                  <option key={s}>{s}</option>
-                ))}
-              </select>
+                className="w-full rounded-xl border border-slate-200 py-3 pl-11 pr-4  outline-none focus:border-[#2f5ba5]"
+              />
             </div>
+
+            <select
+              value={statusFilter}
+              onChange={(e) => {
+                setStatusFilter(e.target.value);
+                setCurrentPage(1);
+              }}
+              className="rounded-xl border border-slate-200 px-4 py-3  outline-none cursor-pointer"
+            >
+              {STATUS_OPTIONS.map((s) => (
+                <option key={s}>{s}</option>
+              ))}
+            </select>
           </div>
+        </div>
         {/* Table Card */}
         <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
-         
+
 
           {/* Table */}
           <div className="overflow-x-auto">
@@ -277,9 +277,8 @@ export default function ReportLinksPage() {
                   ].map((h) => (
                     <th
                       key={h}
-                      className={`px-5 py-4  font-medium uppercase tracking-wider text-black  ${
-                        h === "Actions" ? "text-center" : "text-left"
-                      }`}
+                      className={`px-5 py-4  font-medium uppercase tracking-wider text-black  ${h === "Actions" ? "text-center" : "text-left"
+                        }`}
                     >
                       {h}
                     </th>
@@ -376,7 +375,7 @@ export default function ReportLinksPage() {
                             : "Go to Reports and click the send button to share a report"}
                         </p>
                         {!search && statusFilter === "All Status" && (
-                          
+
                           <FillButton text="Go to Reports" href="/lab-staff/reports"></FillButton>
                         )}
                       </div>
@@ -421,11 +420,10 @@ export default function ReportLinksPage() {
                     <button
                       key={p}
                       onClick={() => setCurrentPage(p as number)}
-                      className={`rounded-lg px-4 py-2  font-medium transition-colors ${
-                        currentPage === p
+                      className={`rounded-lg px-4 py-2  font-medium transition-colors ${currentPage === p
                           ? "bg-[#2f5ba5] text-white"
                           : "border border-slate-200 hover:bg-slate-50"
-                      }`}
+                        }`}
                     >
                       {p}
                     </button>

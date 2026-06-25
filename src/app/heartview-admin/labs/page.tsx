@@ -141,8 +141,8 @@ export default function LabPage() {
                         <FiActivity className="text-xl text-blue-500" />
                     </div>
                     <div>
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
-Total Labs</p>
+                        <p className="  text-[#64748B]">
+                            Total Labs</p>
                         <p className="text-2xl font-semibold text-black">{totalLabs}</p>
                     </div>
                 </div>
@@ -152,8 +152,8 @@ Total Labs</p>
                         <FiMapPin className="text-xl text-green-500" />
                     </div>
                     <div>
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
-Total Branches</p>
+                        <p className="   text-[#64748B]">
+                            Total Branches</p>
                         <p className="text-2xl font-semibold text-black">{totalBranches}</p>
                     </div>
                 </div>

@@ -212,12 +212,12 @@ export default function ReportsListPage() {
                         <FiFileText className="text-xl" />
                     </div>
                     <div>
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
-Total Reports</p>
+                        <p className=" text-[#64748B]">
+                            Total Reports</p>
                         <p className="text-2xl font-semibold text-black leading-tight mt-0.5">
                             {stats.total ?? "—"}
                         </p>
-                        <p className="  text-[#64748B] mt-0.5 text-base sm:text-lg  leading-relaxed  font-light ">All uploaded reports</p>
+                        <p className="  text-[#64748B] mt-0.5   ">All uploaded reports</p>
                     </div>
                 </div>
 
@@ -227,12 +227,12 @@ Total Reports</p>
                         <FiCalendar className="text-xl" />
                     </div>
                     <div>
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
-This Month</p>
+                        <p className="   text-[#64748B]">
+                            This Month</p>
                         <p className="text-2xl font-semibold text-black leading-tight mt-0.5">
                             {stats.thisMonth ?? "—"}
                         </p>
-                        <p className="  text-[#64748B] mt-0.5 text-base sm:text-lg  leading-relaxed  font-light ">Reports uploaded</p>
+                        <p className="  text-[#64748B] mt-0.5  ">Reports uploaded</p>
                     </div>
                 </div>
 
@@ -242,12 +242,12 @@ This Month</p>
                         <FiUser className="text-xl" />
                     </div>
                     <div>
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
-Total Patients</p>
+                        <p className="    text-[#64748B]">
+                            Total Patients</p>
                         <p className="text-2xl font-semibold text-black leading-tight mt-0.5">
                             {stats.patients ?? "—"}
                         </p>
-                        <p className="  text-[#64748B] mt-0.5 text-base sm:text-lg  leading-relaxed  font-light ">With reports</p>
+                        <p className="  text-[#64748B] mt-0.5  f ">With reports</p>
                     </div>
                 </div>
 
@@ -256,7 +256,7 @@ Total Patients</p>
             {/* SEARCH + FILTERS */}
             <div className="flex flex-wrap gap-3 mb-5">
                 {/* Search */}
-                <div className="relative flex-1 min-w-[200px] max-w-sm">
+                <div className="relative flex-1 min-w-50 max-w-sm">
                     <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-[#64748B] " />
                     <input
                         type="text"
@@ -388,13 +388,13 @@ Total Patients</p>
                                                         <FiEye className="" />
                                                     </button>
                                                     <button
-  onClick={() =>
-    router.push(`/lab-staff/report_link/add-report_link/${report.id}`)
-  }
-  className="w-8 h-8 flex items-center justify-center rounded-xl border border-black/10 text-green-600 hover:bg-green-50"
->
-  <FiSend />
-</button>
+                                                        onClick={() =>
+                                                            router.push(`/lab-staff/report_link/add-report_link/${report.id}`)
+                                                        }
+                                                        className="w-8 h-8 flex items-center justify-center rounded-xl border border-black/10 text-green-600 hover:bg-green-50"
+                                                    >
+                                                        <FiSend />
+                                                    </button>
                                                     <button
                                                         onClick={() => handleDelete(report.id)}
                                                         className="w-8 h-8 flex items-center justify-center rounded-xl border border-black/10 text-red-400 hover:bg-red-50 transition-colors"
@@ -470,8 +470,8 @@ Total Patients</p>
                                             key={p}
                                             onClick={() => setCurrentPage(p as number)}
                                             className={`flex h-8 min-w-8 items-center justify-center rounded-lg px-2  font-medium transition-colors ${currentPage === p
-                                                    ? "bg-[#2f5ba5] text-white"
-                                                    : "border border-black/10 bg-white text-[#64748B] hover:bg-gray-50"
+                                                ? "bg-[#2f5ba5] text-white"
+                                                : "border border-black/10 bg-white text-[#64748B] hover:bg-gray-50"
                                                 }`}
                                         >
                                             {p}

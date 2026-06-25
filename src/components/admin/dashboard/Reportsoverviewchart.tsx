@@ -133,6 +133,7 @@ export default function ReportsOverviewChart({
         border border-black/10
        bg-[#f7f7f7]
         p-5
+        h-full
         shadow-xl
         backdrop-blur-md
       "
@@ -144,14 +145,14 @@ export default function ReportsOverviewChart({
             Reports Overview
           </h4>
 
-          <p className="mt-1 text-[#64748B] text-base sm:text-lg  leading-relaxed  font-light">
+          <p className="mt-1 text-[#64748B]  font-light">
             Monthly upload and activity analytics
           </p>
         </div>
       </div>
 
       {/* Chart */}
-      <ResponsiveContainer width="100%" height={320}>
+      <ResponsiveContainer width="100%" height={420}>
         <LineChart
           data={data}
           margin={{

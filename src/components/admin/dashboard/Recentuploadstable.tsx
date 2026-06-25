@@ -59,7 +59,7 @@ export default function RecentUploadsTable() {
             Recent Uploads
           </h4>
 
-          <p className="mt-1 text-[#64748B] text-base sm:text-lg  leading-relaxed  font-light">
+          <p className="mt-1 text-[#64748B]   font-light">
             Latest uploaded reports
           </p>
         </div>
