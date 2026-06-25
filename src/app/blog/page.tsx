@@ -78,7 +78,7 @@ export default function BlogList() {
                       src={blog.content[0].images[0]}
                       alt={blog.title}
                       fill
-                      className="object-cover group-hover:scale-105 transition duration-300"
+                      className="object-cover transform-gpu group-hover:scale-105 transition duration-300"
                     />
                   )}
 

@@ -52,7 +52,7 @@ export const blogs: Blog[] = [
           "Your heart rate is not constant  it changes throughout the day depending on your activities, emotions, stress levels, and even hydration.",
           "Monitoring your heart rate regularly can help you detect early signs of heart-related issues and maintain a healthier lifestyle.",
         ],
-        images: ["/heartrate.png"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/heartrate.png"],
         references: [
           "WHO cardiovascular guidelines",
           "HeartView monitoring insights",
@@ -230,7 +230,7 @@ export const blogs: Blog[] = [
           "Hypertension increases the risk of heart attack, stroke, kidney disease, and vision problems.",
           "The good news is that lifestyle changes can significantly reduce blood pressure  sometimes without medication.",
         ],
-        images: ["/Bloodpressure2.png"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/Bloodpressure2.png"],
         references: [
           "JNC 8 hypertension guidelines",
           "HeartView BP tracking feature",
@@ -336,7 +336,7 @@ export const blogs: Blog[] = [
       headline: "How to Reduce High BP Naturally",
       description:
         "Effective natural strategies to lower high blood pressure without relying solely on medication.",
-      image: "/Bloodpressure2.png",
+      image: "https://heartview-images.s3.ap-south-1.amazonaws.com/Bloodpressure2.png",
       author: { "@type": "Organization", name: "HeartView" },
       publisher: { "@type": "Organization", name: "HeartView" },
       mainEntityOfPage: {
@@ -396,7 +396,7 @@ export const blogs: Blog[] = [
           "The HbA1c test (also called glycated hemoglobin) reflects your average blood sugar levels over the past 23 months.",
           "Together, these two tests provide a complete picture of both daily sugar control and long-term trends.",
         ],
-        images: ["/bloodSugar3.png"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/bloodSugar3.png"],
         references: [
           "ADA diabetes diagnostic criteria",
           "HeartView glucose tracking insights",
@@ -566,7 +566,7 @@ export const blogs: Blog[] = [
           "Many people dismiss early symptoms as stress or fatigue, delaying critical medical care.",
           "Being aware of the early warning signs can be life-saving  both for yourself and for those around you.",
         ],
-        images: ["/heartProblem.png"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/heartProblem.png"],
         references: [
           "HeartView alerts system helps detect abnormal patterns",
           "Medical research on early cardiac symptoms",
@@ -716,7 +716,7 @@ export const blogs: Blog[] = [
           "LDL (Low-Density Lipoprotein) is often called 'bad' cholesterol, while HDL (High-Density Lipoprotein) is called 'good' cholesterol.",
           "Understanding your LDL and HDL levels is one of the most important steps in assessing your cardiovascular risk.",
         ],
-        images: ["/LDl-Hdl.jpg"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/LDl-Hdl.jpg"],
         references: [
           "HeartView lipid profile analysis",
           "Clinical cholesterol guidelines",
@@ -882,7 +882,7 @@ export const blogs: Blog[] = [
           "Common tools include the Framingham Risk Score and the ASCVD (Atherosclerotic Cardiovascular Disease) Risk Calculator.",
           "Understanding your Heart View Score empowers you to take preventive action before serious problems develop.",
         ],
-        images: ["/physical2.jpg"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/physical2.jpg"],
         references: [
           "Framingham Heart Study",
           "ACC/AHA cardiovascular risk guidelines",
@@ -1051,7 +1051,7 @@ export const blogs: Blog[] = [
           "Natural prevention focuses on modifying lifestyle factors without relying solely on medication.",
           "Studies show that up to 80% of cardiovascular events can be prevented through lifestyle changes alone.",
         ],
-        images: ["/nuts-stethoscope.jpg"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/nuts-stethoscope.jpg"],
         references: ["WHO prevention statistics", "HeartView health insights"],
       },
       {
@@ -1223,7 +1223,7 @@ export const blogs: Blog[] = [
           "Most people wait until symptoms appear before taking heart health seriously  but prevention should start now.",
           "These 10 tips are practical, evidence-backed, and easy to integrate into your daily routine.",
         ],
-        images: ["/tip.png"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/tip.png"],
         references: [
           "HeartView daily health insights",
           "AHA lifestyle recommendations",
@@ -1388,7 +1388,7 @@ export const blogs: Blog[] = [
           "Knowing your target ranges allows you to interpret your glucose readings with confidence.",
           "Abnormal patterns detected early can prevent full-blown diabetes from developing.",
         ],
-        images: ["/Normal-sugar1.png"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/Normal-sugar1.png"],
         references: [
           "HeartView glucose tracking insights",
           "Diabetes care recommendations",
@@ -1556,7 +1556,7 @@ export const blogs: Blog[] = [
           "Cholesterol has no symptoms, which is why regular testing is the only reliable way to know your levels.",
           "Understanding your cholesterol numbers helps you and your doctor make informed decisions about diet, lifestyle, and medications.",
         ],
-        images: ["/cholesterol-infographic.jpg"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/cholesterol-infographic.jpg"],
         references: [
           "HeartView lipid panel insights",
           "ACC/AHA cardiovascular guidelines",
@@ -1727,7 +1727,7 @@ export const blogs: Blog[] = [
           "The balance between LDL and HDL is one of the strongest predictors of cardiovascular risk.",
           "Understanding both numbers — not just total cholesterol — gives a far more accurate picture of your heart health.",
         ],
-        images: ["/cholesterol-comparison.jpg"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/cholesterol-comparison.jpg"],
         references: [
           "HeartView lipid education series",
           "AHA lipoprotein overview",
@@ -1898,7 +1898,7 @@ export const blogs: Blog[] = [
           "No single food is a magic fix, but a consistent pattern of heart-healthy eating produces measurable lipid improvements within weeks.",
           "Combined with exercise and, where needed, medication, dietary changes form the foundation of cholesterol management.",
         ],
-        images: ["/cholesterol.jpg"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/cholesterol.jpg"],
         references: [
           "HeartView nutrition and lipid series",
           "AHA dietary guidelines for heart health",
@@ -2067,7 +2067,7 @@ export const blogs: Blog[] = [
           "Secondary hypertension is caused by an underlying condition such as kidney disease, thyroid disorders, or hormonal imbalances.",
           "Identifying the root cause is essential to choosing the right treatment approach.",
         ],
-        images: ["/bp.jpg"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/bp.jpg"],
         references: ["Hypertension etiology clinical review"],
       },
       {
@@ -2222,7 +2222,7 @@ export const blogs: Blog[] = [
           "The test is typically done after a 912 hour fast to ensure accurate triglyceride measurement.",
           "Results are given in mg/dL and are compared against established reference ranges.",
         ],
-        images: ["/Lipid.jpg"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/Lipid.jpg"],
         references: [
           "Lipid panel testing protocols",
           "HeartView lipid profile analysis",
@@ -2391,7 +2391,7 @@ export const blogs: Blog[] = [
           "Hypotension can cause dizziness, fainting, and in severe cases, life-threatening shock.",
           "Understanding the type and cause of your low BP is key to managing it effectively.",
         ],
-        images: ["/Low-bp1.png"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/Low-bp1.png"],
         references: [
           "Clinical hypotension guidelines",
           "HeartView BP monitoring",
@@ -2547,7 +2547,7 @@ export const blogs: Blog[] = [
           "Dietary changes also address underlying causes of hypertension such as inflammation, arterial stiffness, and insulin resistance.",
           "Combining a heart-healthy diet with other lifestyle changes gives the best long-term results.",
         ],
-        images: ["/diet.jpg"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/diet.jpg"],
         references: ["Diet and blood pressure landmark studies"],
       },
       {
@@ -2710,7 +2710,7 @@ export const blogs: Blog[] = [
           "Early diagnosis allows for lifestyle interventions that can reverse prediabetes and slow the progression of Type 2.",
           "Knowing the early signs can prompt you to get tested before serious complications develop.",
         ],
-        images: ["/bloodSugar3.jpg"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/bloodSugar3.png"],
         references: ["IDF Diabetes Atlas early detection data"],
       },
       {
@@ -2876,7 +2876,7 @@ export const blogs: Blog[] = [
           "Stress affects the heart through direct biological pathways and indirect behavioral ones (poor sleep, smoking, overeating).",
           "Understanding this link empowers you to treat stress as a serious health priority, not just a mental concern.",
         ],
-        images: ["/stress1.png"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/stress1.png"],
         references: [
           "Psychosocial risk and cardiovascular disease meta-analysis",
           "HeartView stress and HRV monitoring",
@@ -3045,7 +3045,7 @@ export const blogs: Blog[] = [
           "Natural management focuses on diet, exercise, stress, sleep, and specific foods proven to support glucose regulation.",
           "Always consult your doctor before stopping or reducing medications  natural management complements, not replaces, medical care.",
         ],
-        images: ["/controll-sugars.jpg"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/controll-sugars.jpg"],
         references: [
           "Lifestyle intervention in Type 2 diabetes",
           "HeartView glucose tracking",
@@ -3214,7 +3214,7 @@ export const blogs: Blog[] = [
           "Focus on foods with a low glycemic index (GI) and high nutrient density to keep sugar stable and energy high.",
           "The right food choices also reduce the risk of diabetes complications like heart disease and kidney damage.",
         ],
-        images: ["/best-diet.png"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/best-diet.png"],
         references: ["ADA diabetes nutrition recommendations"],
       },
       {
@@ -3377,7 +3377,7 @@ export const blogs: Blog[] = [
           "A normal BP reading for a healthy adult is approximately 120/80 mmHg.",
           "Consistent readings above 130/80 mmHg are classified as hypertension, while readings below 90/60 mmHg indicate low blood pressure.",
         ],
-        images: ["/Bloodpressure2.png"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/Bloodpressure2.png"],
         references: [
           "HeartView BP tracking feature",
           "Global hypertension guidelines",
@@ -3486,7 +3486,7 @@ export const blogs: Blog[] = [
       headline: "What is Normal BP Range by Age?",
       description:
         "Learn what blood pressure levels are considered normal and how they vary by age group.",
-      image: "/Bloodpressure2.png",
+      image: "https://heartview-images.s3.ap-south-1.amazonaws.com/Bloodpressure2.png",
       author: { "@type": "Organization", name: "HeartView" },
       publisher: { "@type": "Organization", name: "HeartView" },
       mainEntityOfPage: { "@type": "WebPage", "@id": "/blogs/normal-bp-range" },
@@ -3543,7 +3543,7 @@ export const blogs: Blog[] = [
           "People who consistently get less than 6 hours of sleep have a 2048% higher risk of heart disease.",
           "Both too little and too much sleep (more than 9 hours) are associated with elevated cardiovascular risk.",
         ],
-        images: ["/sleep1.png"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/sleep1.png"],
         references: [
           "Sleep duration and cardiovascular outcomes meta-analysis",
           "HeartView sleep tracking feature",
@@ -3649,7 +3649,7 @@ export const blogs: Blog[] = [
       headline: "How Sleep Affects Your Heart",
       description:
         "Discover the powerful link between quality sleep and cardiovascular health.",
-      image: "/sleep1.png",
+      image: "https://heartview-images.s3.ap-south-1.amazonaws.com/sleep1.png",
       author: { "@type": "Organization", name: "HeartView" },
       publisher: { "@type": "Organization", name: "HeartView" },
       mainEntityOfPage: {
@@ -3709,7 +3709,7 @@ export const blogs: Blog[] = [
           "Early identification of borderline values  even before symptoms appear  enables proactive care.",
           "This guide walks you through the most common sections of a standard blood test report.",
         ],
-        images: ["/blood-test.png"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/blood-test.png"],
         references: [
           "Patient health literacy resources",
           "HeartView lab report insights",
@@ -3818,7 +3818,7 @@ export const blogs: Blog[] = [
       headline: "How to Read Your Blood Test Report",
       description:
         "A beginner-friendly guide to understanding the numbers and abbreviations in your blood test results.",
-      image: "/blood-test.png",
+      image: "https://heartview-images.s3.ap-south-1.amazonaws.com/blood-test.png",
       author: { "@type": "Organization", name: "HeartView" },
       publisher: { "@type": "Organization", name: "HeartView" },
       mainEntityOfPage: {
@@ -3878,7 +3878,7 @@ export const blogs: Blog[] = [
           "Regular walking lowers blood pressure, improves cholesterol, supports weight management, and boosts mood.",
           "The simple act of walking more every day can add years to your life.",
         ],
-        images: ["/exericse.jpg"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/exericse.jpg"],
         references: [
           "Walking and cardiovascular health evidence review",
           "HeartView step counter feature",
@@ -4050,7 +4050,7 @@ export const blogs: Blog[] = [
           "It lowers blood pressure, improves cholesterol, reduces inflammation, and strengthens the heart muscle.",
           "The benefits begin almost immediately  even one session of moderate exercise produces cardiovascular benefits.",
         ],
-        images: ["/exericse2.jpg"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/exericse2.jpg"],
         references: [
           "Exercise and cardiovascular disease prevention meta-analysis",
         ],
@@ -4218,7 +4218,7 @@ export const blogs: Blog[] = [
           "They are the most abundant fat in the body and serve as a major energy reserve.",
           "Elevated triglyceride levels (hypertriglyceridemia) are a significant cardiovascular and metabolic risk factor.",
         ],
-        images: ["/Triglyceride.png"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/Triglyceride.png"],
         references: ["Triglyceride physiology and pathology review"],
       },
       {
@@ -4381,7 +4381,7 @@ export const blogs: Blog[] = [
           "These values together paint a picture of cardiovascular risk more accurately than any single number.",
           "Understanding what each value means helps you take targeted steps to improve your heart health.",
         ],
-        images: ["/cholestro-level.jpg"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/cholestro-level.jpg"],
         references: ["Lipid panel interpretation  ACC/AHA"],
       },
       {
@@ -4547,7 +4547,7 @@ export const blogs: Blog[] = [
           "Hydrating well throughout the day supports circulation and blood pressure regulation.",
           "A consistent daily rhythm helps your cardiovascular system function at its optimal level.",
         ],
-        images: ["/top10healthhabit.jpg"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/top10healthhabit.jpg"],
         references: [
           "HeartView step tracking feature",
           "Lifestyle-based heart studies",
@@ -4701,6 +4701,7 @@ export const blogs: Blog[] = [
       },
     ],
   },
+
     {
     slug: "how-many-hours-of-sleep-do-you-need",
     title: "How Many Hours of Sleep Do You Really Need?",
@@ -4716,7 +4717,7 @@ export const blogs: Blog[] = [
           "Poor sleep is linked to increased risk of heart disease, stroke, obesity, and type 2 diabetes.",
           "Consistently sleeping well is one of the most powerful things you can do for long-term health.",
         ],
-        images: ["/sleep2.jpg"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/sleep2.jpg"],
         references: [
           "Sleep and cardiovascular health evidence review",
           "HeartView sleep tracking feature",
@@ -4872,7 +4873,7 @@ export const blogs: Blog[] = [
           "Sleep deprivation elevates inflammatory markers like C-reactive protein and interleukin-6, which damage arterial walls.",
           "The damage is cumulative — even mild chronic restriction adds up over months and years.",
         ],
-        images: ["/sleep3.jpg"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/sleep3.jpg"],
         references: [
           "Sleep duration and cardiovascular risk meta-analysis",
           "Inflammation and sleep deprivation research",
@@ -5025,7 +5026,7 @@ export const blogs: Blog[] = [
         "Learn how walking improves circulation, strengthens the heart muscle, and helps regulate blood pressure over time.",
         "Understand that the benefits are cumulative — consistent walking over weeks and months produces measurable cardiovascular improvement.",
       ],
-      images: ["/steps.jpg"],
+      images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/steps-blog.jpg"],
       references: [
         "Walking and cardiovascular risk reduction studies",
         "Physical activity and heart disease prevention research",
