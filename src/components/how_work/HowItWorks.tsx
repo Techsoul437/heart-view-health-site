@@ -20,7 +20,7 @@ const STEPS: Step[] = [
     title: "Your central hub for heart health monitoring",
     description:
       "Get an instant view of your health status with HeartView Score, daily insights, activity tracking, vital measurements, and personalized recommendations designed to help you maintain a healthier lifestyle.",
-    image: "/step-1M.png",
+    image: "https://heartview-images.s3.ap-south-1.amazonaws.com/step-1M.png",
   },
   {
     number: "02",
@@ -28,7 +28,7 @@ const STEPS: Step[] = [
     title: "Data-driven insights for better heart health",
     description:
       "Analyze the core factors influencing your cardiovascular wellness, uncover potential risk areas, and follow your progress with clear, actionable health intelligence.",
-    image: "/step-2M.png",
+    image: "https://heartview-images.s3.ap-south-1.amazonaws.com/step-2M.png",
   },
   {
     number: "03",
@@ -36,7 +36,7 @@ const STEPS: Step[] = [
     title: "Smart monitoring for better heart health",
     description:
       "Analyze blood pressure patterns, identify changes over time, and receive actionable recommendations designed to support long-term cardiovascular wellness and healthy lifestyle choices.",
-    image: "/step-3M.png",
+    image: "https://heartview-images.s3.ap-south-1.amazonaws.com/step-3M.png",
   },
   {
     number: "04",
@@ -44,7 +44,7 @@ const STEPS: Step[] = [
     title: "Smart scheduling for seamless healthcare",
     description:
       "Easily organize medical appointments, access visit details, manage upcoming consultations, and maintain a complete record of your healthcare interactions from a single dashboard.",
-    image: "/step-4M.png",
+    image: "https://heartview-images.s3.ap-south-1.amazonaws.com/step-4M.png",
   },
   {
     number: "05",
@@ -52,7 +52,7 @@ const STEPS: Step[] = [
     title: "Everything you need before your visit",
     description:
       "Quickly access appointment information, doctor details, location, schedule, and related documents from a single screen.",
-    image: "/step-6M.png",
+    image: "https://heartview-images.s3.ap-south-1.amazonaws.com/step-6M.png",
   },
   {
     number: "06",
@@ -60,7 +60,7 @@ const STEPS: Step[] = [
     title: "Stay on track with every dose",
     description:
       "Keep all your prescriptions organized, receive timely dose reminders, monitor medication adherence, and build healthier habits with personalized treatment management tools.",
-    image: "/step-5M.png",
+    image: "https://heartview-images.s3.ap-south-1.amazonaws.com/step-5M.png",
   },
 ];
 

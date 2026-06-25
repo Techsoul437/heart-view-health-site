@@ -34,7 +34,7 @@ function HomePage() {
 
         <div className='pt-14'>
         <Image
-          src="/phone-with-shadow.jpg"
+          src="https://heartview-images.s3.ap-south-1.amazonaws.com/phone-with-shadow.jpg"
           alt="Phone Mockup"
           width={1960}
           height={900}

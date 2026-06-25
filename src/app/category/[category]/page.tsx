@@ -5,8 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { blogs } from "@/data/blogData";
 import Navbar from "@/Ui/navbar/Navbar";
-import FinalCTA from "@/Ui/cta/FinalCTA";
-import { motion, AnimatePresence } from "framer-motion";
 import Footer from "@/Ui/footer/Footer";
 import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 
