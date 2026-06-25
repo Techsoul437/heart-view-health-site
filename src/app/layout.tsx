@@ -46,7 +46,7 @@ const manrope = Manrope({
 //     description:
 //       "Monitor heart rate, blood pressure, and blood sugar with smart health insights.",
 //     siteName: "HeartView Health",
-//     url: "https://www.heartviewhealth.com",
+//     url: "https://heartviewhealth.com/",
 //     type: "website",
 //   },
 //   robots: {
@@ -95,7 +95,7 @@ export default function RootLayout({
             "@context": "https://schema.org",
             "@type": "Organization",
             name: "HeartView Health",
-            url: "https://www.heartviewhealth.com",
+            url: "https://heartviewhealth.com/",
             logo: "https://heartview-images.s3.ap-south-1.amazonaws.com/favicon3.png",
           }),
         }}

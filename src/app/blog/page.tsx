@@ -32,7 +32,7 @@ const categoryLabels: Record<string, string> = {
 //     title: "Health Blog | Heartview Health",
 //    description:
 //       "Explore expert health articles, wellness tips, nutrition guides, and healthcare insights.",
-//     url: "https://www.heartviewhealth.com/blog",
+//     url: "https://heartviewhealth.com//blog",
 //     type: "website",
 //   },
 // };

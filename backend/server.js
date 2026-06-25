@@ -15,7 +15,7 @@ const corsOptions = {
     const allowedOrigins = [
       "http://localhost:3000",
       "https://heartviewhealth.com",
-      "https://www.heartviewhealth.com",
+            "https://www.heartviewhealth.com",
       "https://heart-view-health-site.vercel.app",
     ];
 

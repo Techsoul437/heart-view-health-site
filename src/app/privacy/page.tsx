@@ -20,14 +20,14 @@ export const metadata: Metadata = {
   ],
 
   alternates: {
-    canonical: "https://www.heartviewhealth.com/privacy",
+    canonical: "https://heartviewhealth.com//privacy",
   },
 
   openGraph: {
     title: "Privacy Policy | HeartView Health",
     description:
       "Learn how HeartView Health collects, uses, stores, and protects your personal information and health data.",
-    url: "https://www.heartviewhealth.com/privacy",
+    url: "https://heartviewhealth.com//privacy",
     siteName: "HeartView Health",
     type: "website",
     locale: "en_US",

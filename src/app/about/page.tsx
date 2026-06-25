@@ -17,14 +17,14 @@ export const metadata: Metadata = {
   ],
 
   alternates: {
-    canonical: "https://www.heartviewhealth.com/about",
+    canonical: "https://heartviewhealth.com//about",
   },
 
   openGraph: {
     title: "About Us | HeartView Health",
     description:
       "Learn more about HeartView Health, our mission, vision, and commitment to improving healthcare through technology.",
-    url: "https://www.heartviewhealth.com/about",
+    url: "https://heartviewhealth.com//about",
     siteName: "HeartView Health",
     type: "website",
     locale: "en_US",

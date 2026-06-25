@@ -19,14 +19,14 @@ import React from 'react'
   ],
 
   alternates: {
-    canonical: "https://www.heartviewhealth.com/medical-disclaimer",
+    canonical: "https://heartviewhealth.com//medical-disclaimer",
   },
 
   openGraph: {
     title: "Medical Disclaimer | HeartView Health",
     description:
       "Understand the limitations of the health information provided by HeartView Health and why it should not replace professional medical advice.",
-    url: "https://www.heartviewhealth.com/medical-disclaimer",
+    url: "https://heartviewhealth.com//medical-disclaimer",
     siteName: "HeartView Health",
     type: "website",
     locale: "en_US",

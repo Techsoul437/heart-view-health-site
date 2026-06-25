@@ -21,14 +21,14 @@ export const metadata: Metadata = {
   ],
 
   alternates: {
-    canonical: "https://www.heartviewhealth.com/how-it-works",
+    canonical: "https://heartviewhealth.com//how-it-works",
   },
 
   openGraph: {
     title: "How It Works | HeartView Health",
     description:
       "Discover how HeartView Health simplifies healthcare with AI-powered insights, medical report analysis, health tracking, and personalized wellness monitoring.",
-    url: "https://www.heartviewhealth.com/how-it-works",
+    url: "https://heartviewhealth.com//how-it-works",
     siteName: "HeartView Health",
     type: "website",
     locale: "en_US",

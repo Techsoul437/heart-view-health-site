@@ -28,7 +28,7 @@ import WhatsAppButton from "@/Ui/whatsAppButton/WhatsAppButton";
     title: "HeartView Health | AI-Powered Health Tracking & Wellness Platform",
     description:
       "Track your health, analyze medical reports, and receive personalized AI-powered health insights with HeartView Health.",
-    url: "https://www.heartviewhealth.com",
+    url: "https://heartviewhealth.com/",
     type: "website",
   },
 };
