@@ -7,7 +7,10 @@ export type Blog = {
     | "heart-risk"
     | "bp"
     | "diabetes"
+    | "cholesterol"
     | "lifestyle"
+    | "step"
+    | "sleep"
     | "lab-reports";
   description: string;
   content: {
@@ -32,7 +35,6 @@ export type Blog = {
 };
 
 export const blogs: Blog[] = [
-
   // ❤️ HEART RISK & PREVENTION  5 Blogs
 
   {
@@ -79,9 +81,7 @@ export const blogs: Blog[] = [
           "Understanding these factors helps you better interpret your daily heart rate readings.",
         ],
         images: ["/blogs/heart-rate-2.png"],
-        references: [
-          "Lifestyle and heart health reports",
-        ],
+        references: ["Lifestyle and heart health reports"],
       },
       {
         heading: "When Should You Be Concerned?",
@@ -92,9 +92,7 @@ export const blogs: Blog[] = [
           "Consult a doctor if you notice sudden or persistent changes in your heart rate patterns.",
         ],
         images: ["/blogs/heart-rate-3.png"],
-        references: [
-          "Clinical heart risk guidelines",
-        ],
+        references: ["Clinical heart risk guidelines"],
       },
       {
         heading: "Tips to Maintain a Healthy Heart Rate",
@@ -105,62 +103,90 @@ export const blogs: Blog[] = [
           "Adequate sleep and hydration also play a crucial role in maintaining a healthy heart rate.",
         ],
         images: ["/blogs/lifestyle-1.png"],
-        references: [
-          "Preventive heart care research",
-        ],
+        references: ["Preventive heart care research"],
       },
     ],
     faq: [
       {
         question: "What is a normal resting heart rate for adults?",
-        answer: "A normal resting heart rate for adults is between 60 to 100 beats per minute (bpm). Athletes may have a lower resting heart rate, sometimes as low as 4050 bpm, due to improved cardiac efficiency.",
+        answer:
+          "A normal resting heart rate for adults is between 60 to 100 beats per minute (bpm). Athletes may have a lower resting heart rate, sometimes as low as 4050 bpm, due to improved cardiac efficiency.",
       },
       {
         question: "What is a normal heart rate for children?",
-        answer: "Children typically have higher heart rates than adults. Newborns can have 100160 bpm, toddlers around 80130 bpm, school-age children 70110 bpm, and teenagers 60100 bpm.",
+        answer:
+          "Children typically have higher heart rates than adults. Newborns can have 100160 bpm, toddlers around 80130 bpm, school-age children 70110 bpm, and teenagers 60100 bpm.",
       },
       {
         question: "What causes a high resting heart rate?",
-        answer: "High resting heart rate (above 100 bpm) can be caused by stress, dehydration, fever, anemia, hyperthyroidism, or underlying heart conditions. Caffeine and certain medications can also raise it temporarily.",
+        answer:
+          "High resting heart rate (above 100 bpm) can be caused by stress, dehydration, fever, anemia, hyperthyroidism, or underlying heart conditions. Caffeine and certain medications can also raise it temporarily.",
       },
       {
         question: "Is 72 bpm a good heart rate?",
-        answer: "Yes, 72 bpm falls within the normal range of 60100 bpm for adults. It indicates a healthy, well-functioning heart at rest.",
+        answer:
+          "Yes, 72 bpm falls within the normal range of 60100 bpm for adults. It indicates a healthy, well-functioning heart at rest.",
       },
       {
         question: "How can I lower my heart rate naturally?",
-        answer: "You can lower your heart rate naturally through regular aerobic exercise, deep breathing, meditation, staying hydrated, reducing caffeine intake, and managing stress levels.",
+        answer:
+          "You can lower your heart rate naturally through regular aerobic exercise, deep breathing, meditation, staying hydrated, reducing caffeine intake, and managing stress levels.",
       },
     ],
     internalLinks: [
-      { title: "Early Signs of Heart Problems You Should Not Ignore", slug: "early-signs-heart-problems" },
-      { title: "How to Prevent Heart Disease Naturally", slug: "how-to-prevent-heart-disease-naturally" },
-      { title: "Top 10 Heart Health Tips for Daily Life", slug: "top-10-heart-health-tips" },
-      { title: "What is a Good Heart View Score?", slug: "what-is-a-good-heart-risk-score" },
-      { title: "How Stress Affects Heart Health", slug: "how-stress-affects-heart-health" },
+      {
+        title: "Early Signs of Heart Problems You Should Not Ignore",
+        slug: "early-signs-heart-problems",
+      },
+      {
+        title: "How to Prevent Heart Disease Naturally",
+        slug: "how-to-prevent-heart-disease-naturally",
+      },
+      {
+        title: "Top 10 Heart Health Tips for Daily Life",
+        slug: "top-10-heart-health-tips",
+      },
+      {
+        title: "What is a Good Heart View Score?",
+        slug: "what-is-a-good-heart-risk-score",
+      },
+      {
+        title: "How Stress Affects Heart Health",
+        slug: "how-stress-affects-heart-health",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "What is a Normal Heart Rate by Age?",
-      "description": "Understand how heart rate changes with age and what is considered normal for a healthy life.",
-      "image": "/heartrate.png",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/normal-heart-rate-by-age" },
-      "about": { "@type": "MedicalCondition", "name": "Heart Rate" },
-      "FAQPage": {
+      headline: "What is a Normal Heart Rate by Age?",
+      description:
+        "Understand how heart rate changes with age and what is considered normal for a healthy life.",
+      image: "/heartrate.png",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/normal-heart-rate-by-age",
+      },
+      about: { "@type": "MedicalCondition", name: "Heart Rate" },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "What is a normal resting heart rate for adults?",
-            "acceptedAnswer": { "@type": "Answer", "text": "A normal resting heart rate for adults is between 60 to 100 beats per minute (bpm)." },
+            name: "What is a normal resting heart rate for adults?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "A normal resting heart rate for adults is between 60 to 100 beats per minute (bpm).",
+            },
           },
           {
             "@type": "Question",
-            "name": "What is a normal heart rate for children?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Newborns: 100160 bpm, Toddlers: 80130 bpm, School-age: 70110 bpm, Teenagers: 60100 bpm." },
+            name: "What is a normal heart rate for children?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Newborns: 100160 bpm, Toddlers: 80130 bpm, School-age: 70110 bpm, Teenagers: 60100 bpm.",
+            },
           },
         ],
       },
@@ -168,19 +194,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "What heart rate is too high at rest?",
-        answer: "A resting heart rate consistently above 100 bpm is called tachycardia and may require medical evaluation, especially if accompanied by symptoms like dizziness or chest pain.",
+        answer:
+          "A resting heart rate consistently above 100 bpm is called tachycardia and may require medical evaluation, especially if accompanied by symptoms like dizziness or chest pain.",
       },
       {
         question: "Does heart rate increase with age?",
-        answer: "Resting heart rate can slightly increase with age due to changes in the cardiovascular system. Maximum heart rate, however, decreases with age  estimated as 220 minus your age.",
+        answer:
+          "Resting heart rate can slightly increase with age due to changes in the cardiovascular system. Maximum heart rate, however, decreases with age  estimated as 220 minus your age.",
       },
       {
         question: "What is a dangerous heart rate?",
-        answer: "A resting heart rate below 40 bpm (without being an athlete) or above 120 bpm can be dangerous. Seek care if heart rate is irregular, very fast, or accompanied by chest pain.",
+        answer:
+          "A resting heart rate below 40 bpm (without being an athlete) or above 120 bpm can be dangerous. Seek care if heart rate is irregular, very fast, or accompanied by chest pain.",
       },
       {
         question: "Can dehydration affect heart rate?",
-        answer: "Yes. Dehydration reduces blood volume, forcing the heart to beat faster to maintain circulation. Staying hydrated is important for keeping heart rate in a healthy range.",
+        answer:
+          "Yes. Dehydration reduces blood volume, forcing the heart to beat faster to maintain circulation. Staying hydrated is important for keeping heart rate in a healthy range.",
       },
     ],
   },
@@ -229,9 +259,7 @@ export const blogs: Blog[] = [
           "Limiting alcohol consumption and quitting smoking are also highly effective in lowering BP.",
         ],
         images: ["/blogs/bp-exercise.png"],
-        references: [
-          "Physical activity and blood pressure meta-analysis",
-        ],
+        references: ["Physical activity and blood pressure meta-analysis"],
       },
       {
         heading: "Natural Remedies and Supplements",
@@ -242,9 +270,7 @@ export const blogs: Blog[] = [
           "Omega-3 fatty acids from fish oil have a small but consistent BP-lowering effect.",
         ],
         images: ["/blogs/bp-natural.png"],
-        references: [
-          "Journal of hypertension natural interventions",
-        ],
+        references: ["Journal of hypertension natural interventions"],
       },
       {
         heading: "Stress Reduction and Sleep",
@@ -264,48 +290,69 @@ export const blogs: Blog[] = [
     faq: [
       {
         question: "Can high blood pressure be reduced without medication?",
-        answer: "Yes, in many cases lifestyle changes such as a low-sodium diet (DASH diet), regular exercise, weight loss, stress management, and quitting smoking can significantly reduce blood pressure without medication.",
+        answer:
+          "Yes, in many cases lifestyle changes such as a low-sodium diet (DASH diet), regular exercise, weight loss, stress management, and quitting smoking can significantly reduce blood pressure without medication.",
       },
       {
         question: "How quickly can lifestyle changes lower blood pressure?",
-        answer: "Some people see improvements in blood pressure within 24 weeks of making consistent lifestyle changes. The DASH diet alone can lower systolic BP by 814 mmHg within a few weeks.",
+        answer:
+          "Some people see improvements in blood pressure within 24 weeks of making consistent lifestyle changes. The DASH diet alone can lower systolic BP by 814 mmHg within a few weeks.",
       },
       {
         question: "What foods instantly lower blood pressure?",
-        answer: "Foods like beets, leafy greens (spinach, kale), bananas, oats, berries, and garlic have evidence-backed BP-lowering effects. Hibiscus tea is also shown to reduce systolic BP quickly.",
+        answer:
+          "Foods like beets, leafy greens (spinach, kale), bananas, oats, berries, and garlic have evidence-backed BP-lowering effects. Hibiscus tea is also shown to reduce systolic BP quickly.",
       },
       {
         question: "Does drinking water lower blood pressure?",
-        answer: "Staying hydrated helps maintain healthy blood volume and supports kidney function, both of which contribute to blood pressure regulation. It is not a cure but is an important supportive habit.",
+        answer:
+          "Staying hydrated helps maintain healthy blood volume and supports kidney function, both of which contribute to blood pressure regulation. It is not a cure but is an important supportive habit.",
       },
       {
         question: "Is exercise safe if I have high blood pressure?",
-        answer: "Yes, moderate aerobic exercise is generally safe and highly beneficial for high blood pressure. Always consult your doctor before starting a new exercise program, especially if your BP is severely elevated.",
+        answer:
+          "Yes, moderate aerobic exercise is generally safe and highly beneficial for high blood pressure. Always consult your doctor before starting a new exercise program, especially if your BP is severely elevated.",
       },
     ],
     internalLinks: [
       { title: "What is Normal BP Range by Age?", slug: "normal-bp-range" },
-      { title: "Causes of High Blood Pressure", slug: "causes-of-high-blood-pressure" },
+      {
+        title: "Causes of High Blood Pressure",
+        slug: "causes-of-high-blood-pressure",
+      },
       { title: "Best Diet for BP Control", slug: "best-diet-for-bp-control" },
-      { title: "How Stress Affects Heart Health", slug: "how-stress-affects-heart-health" },
-      { title: "How Sleep Affects Your Heart", slug: "how-sleep-affects-your-heart" },
+      {
+        title: "How Stress Affects Heart Health",
+        slug: "how-stress-affects-heart-health",
+      },
+      {
+        title: "How Sleep Affects Your Heart",
+        slug: "how-sleep-affects-your-heart",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "How to Reduce High BP Naturally",
-      "description": "Effective natural strategies to lower high blood pressure without relying solely on medication.",
-      "image": "/Bloodpressure2.png",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/how-to-reduce-high-bp-naturally" },
-      "FAQPage": {
+      headline: "How to Reduce High BP Naturally",
+      description:
+        "Effective natural strategies to lower high blood pressure without relying solely on medication.",
+      image: "/Bloodpressure2.png",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/how-to-reduce-high-bp-naturally",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "Can high blood pressure be reduced without medication?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Yes, lifestyle changes such as DASH diet, regular exercise, weight loss, and stress management can significantly reduce blood pressure without medication." },
+            name: "Can high blood pressure be reduced without medication?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes, lifestyle changes such as DASH diet, regular exercise, weight loss, and stress management can significantly reduce blood pressure without medication.",
+            },
           },
         ],
       },
@@ -313,19 +360,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "What is the fastest way to bring blood pressure down?",
-        answer: "Deep breathing exercises, reducing sodium immediately, drinking hibiscus tea, and light exercise can help lower BP quickly. For  high BP, consult a doctor immediately.",
+        answer:
+          "Deep breathing exercises, reducing sodium immediately, drinking hibiscus tea, and light exercise can help lower BP quickly. For  high BP, consult a doctor immediately.",
       },
       {
         question: "What is a dangerous level of high blood pressure?",
-        answer: "A reading of 180/120 mmHg or higher is a hypertensive crisis  seek medical care immediately. Stage 2 hypertension (140/90+) also requires prompt medical attention.",
+        answer:
+          "A reading of 180/120 mmHg or higher is a hypertensive crisis  seek medical care immediately. Stage 2 hypertension (140/90+) also requires prompt medical attention.",
       },
       {
         question: "Does lemon water lower blood pressure?",
-        answer: "Lemon water may have a mild beneficial effect due to its vitamin C and flavonoid content, but it is not a primary treatment for hypertension. It is a healthy addition to a balanced diet.",
+        answer:
+          "Lemon water may have a mild beneficial effect due to its vitamin C and flavonoid content, but it is not a primary treatment for hypertension. It is a healthy addition to a balanced diet.",
       },
       {
         question: "Which exercises lower blood pressure the most?",
-        answer: "Aerobic exercises such as brisk walking, cycling, swimming, and jogging are most effective. Even 30 minutes of moderate exercise 5 days a week can lower systolic BP by 58 mmHg.",
+        answer:
+          "Aerobic exercises such as brisk walking, cycling, swimming, and jogging are most effective. Even 30 minutes of moderate exercise 5 days a week can lower systolic BP by 58 mmHg.",
       },
     ],
   },
@@ -360,9 +411,7 @@ export const blogs: Blog[] = [
           "Lowering HbA1c by just 1% significantly reduces the risk of diabetes-related complications.",
         ],
         images: ["/blogs/hba1c-1.png"],
-        references: [
-          "HbA1c interpretation clinical standards",
-        ],
+        references: ["HbA1c interpretation clinical standards"],
       },
       {
         heading: "What is a Blood Glucose Test?",
@@ -373,9 +422,7 @@ export const blogs: Blog[] = [
           "Daily glucose monitoring helps identify spikes caused by specific foods, stress, or missed medications.",
         ],
         images: ["/blogs/hba1c-glucose.png"],
-        references: [
-          "Blood glucose reference ranges",
-        ],
+        references: ["Blood glucose reference ranges"],
       },
       {
         heading: "Which Test Is More Important?",
@@ -386,9 +433,7 @@ export const blogs: Blog[] = [
           "A person can have a normal HbA1c but still have dangerous daily spikes  both must be monitored.",
         ],
         images: ["/blogs/hba1c-importance.png"],
-        references: [
-          "Comprehensive diabetes monitoring review",
-        ],
+        references: ["Comprehensive diabetes monitoring review"],
       },
       {
         heading: "How to Improve Both Values",
@@ -407,49 +452,77 @@ export const blogs: Blog[] = [
     ],
     faq: [
       {
-        question: "What is the difference between HbA1c and fasting blood sugar?",
-        answer: "Fasting blood sugar gives your glucose level at a single point in time after fasting for 8+ hours. HbA1c reflects your average blood sugar over the past 23 months. Both are needed for complete diabetes assessment.",
+        question:
+          "What is the difference between HbA1c and fasting blood sugar?",
+        answer:
+          "Fasting blood sugar gives your glucose level at a single point in time after fasting for 8+ hours. HbA1c reflects your average blood sugar over the past 23 months. Both are needed for complete diabetes assessment.",
       },
       {
         question: "Which is more accurate  HbA1c or blood sugar test?",
-        answer: "Neither is strictly more accurate  they measure different things. HbA1c is better for long-term trend monitoring, while daily glucose tests capture real-time fluctuations. Using both gives the fullest picture.",
+        answer:
+          "Neither is strictly more accurate  they measure different things. HbA1c is better for long-term trend monitoring, while daily glucose tests capture real-time fluctuations. Using both gives the fullest picture.",
       },
       {
         question: "Can HbA1c be normal but blood sugar still be high?",
-        answer: "Yes. If you have frequent glucose spikes that normalize quickly, your HbA1c may appear normal while your post-meal blood sugar is dangerously high. This is why daily glucose monitoring is still important.",
+        answer:
+          "Yes. If you have frequent glucose spikes that normalize quickly, your HbA1c may appear normal while your post-meal blood sugar is dangerously high. This is why daily glucose monitoring is still important.",
       },
       {
         question: "How often should I test my HbA1c?",
-        answer: "For people with well-controlled diabetes, every 6 months is sufficient. If your diabetes is not well-managed or medication was recently changed, every 3 months is recommended.",
+        answer:
+          "For people with well-controlled diabetes, every 6 months is sufficient. If your diabetes is not well-managed or medication was recently changed, every 3 months is recommended.",
       },
       {
         question: "What HbA1c level indicates diabetes?",
-        answer: "An HbA1c of 6.5% or higher on two separate tests confirms diabetes. 5.76.4% is prediabetes, and below 5.7% is considered normal.",
+        answer:
+          "An HbA1c of 6.5% or higher on two separate tests confirms diabetes. 5.76.4% is prediabetes, and below 5.7% is considered normal.",
       },
     ],
     internalLinks: [
-      { title: "Normal Blood Sugar Levels Chart", slug: "normal-blood-sugar-levels" },
-      { title: "Early Symptoms of Diabetes", slug: "early-symptoms-of-diabetes" },
-      { title: "How to Control Sugar Naturally", slug: "how-to-control-sugar-naturally" },
-      { title: "Best Foods for Diabetes Patients", slug: "best-foods-for-diabetes" },
-      { title: "How to Read Your Blood Test Report", slug: "how-to-read-blood-test-report" },
+      {
+        title: "Normal Blood Sugar Levels Chart",
+        slug: "normal-blood-sugar-levels",
+      },
+      {
+        title: "Early Symptoms of Diabetes",
+        slug: "early-symptoms-of-diabetes",
+      },
+      {
+        title: "How to Control Sugar Naturally",
+        slug: "how-to-control-sugar-naturally",
+      },
+      {
+        title: "Best Foods for Diabetes Patients",
+        slug: "best-foods-for-diabetes",
+      },
+      {
+        title: "How to Read Your Blood Test Report",
+        slug: "how-to-read-blood-test-report",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "HbA1c vs Blood Sugar  What's the Difference?",
-      "description": "Understand the key differences between HbA1c and blood sugar tests and why both matter for diabetes management.",
-      "image": "/bloodSugar2.png",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/hba1c-vs-blood-sugar" },
-      "FAQPage": {
+      headline: "HbA1c vs Blood Sugar  What's the Difference?",
+      description:
+        "Understand the key differences between HbA1c and blood sugar tests and why both matter for diabetes management.",
+      image: "/bloodSugar2.png",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/hba1c-vs-blood-sugar",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "What HbA1c level indicates diabetes?",
-            "acceptedAnswer": { "@type": "Answer", "text": "An HbA1c of 6.5% or higher on two separate tests confirms diabetes. 5.76.4% is prediabetes." },
+            name: "What HbA1c level indicates diabetes?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "An HbA1c of 6.5% or higher on two separate tests confirms diabetes. 5.76.4% is prediabetes.",
+            },
           },
         ],
       },
@@ -457,19 +530,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "Is HbA1c 6.5 dangerous?",
-        answer: "An HbA1c of 6.5% meets the diagnostic threshold for diabetes. It requires medical consultation, lifestyle changes, and possibly medication. With proper management, it can be lowered.",
+        answer:
+          "An HbA1c of 6.5% meets the diagnostic threshold for diabetes. It requires medical consultation, lifestyle changes, and possibly medication. With proper management, it can be lowered.",
       },
       {
         question: "Can I reduce my HbA1c in 3 months?",
-        answer: "Yes. Consistent dietary changes, regular exercise, and medication adherence can meaningfully lower HbA1c within a 3-month period  the timeframe the test reflects.",
+        answer:
+          "Yes. Consistent dietary changes, regular exercise, and medication adherence can meaningfully lower HbA1c within a 3-month period  the timeframe the test reflects.",
       },
       {
         question: "What blood sugar level is dangerous?",
-        answer: "A fasting blood sugar above 126 mg/dL, post-meal above 200 mg/dL, or a random reading above 200 mg/dL with symptoms is considered dangerous and warrants immediate medical attention.",
+        answer:
+          "A fasting blood sugar above 126 mg/dL, post-meal above 200 mg/dL, or a random reading above 200 mg/dL with symptoms is considered dangerous and warrants immediate medical attention.",
       },
       {
         question: "Does stress raise HbA1c?",
-        answer: "Yes. Chronic stress raises cortisol, which increases blood glucose. Over 3 months, this can measurably elevate HbA1c even without dietary changes.",
+        answer:
+          "Yes. Chronic stress raises cortisol, which increases blood glucose. Over 3 months, this can measurably elevate HbA1c even without dietary changes.",
       },
     ],
   },
@@ -504,9 +581,7 @@ export const blogs: Blog[] = [
           "Swelling in the legs, ankles, or feet can indicate that the heart is not pumping blood efficiently.",
         ],
         images: ["/blogs/heart-signs-2.png"],
-        references: [
-          "American Heart Association symptom guidelines",
-        ],
+        references: ["American Heart Association symptom guidelines"],
       },
       {
         heading: "Subtle Symptoms That Are Often Missed",
@@ -517,9 +592,7 @@ export const blogs: Blog[] = [
           "Cold sweats without an obvious cause may also indicate a cardiac event is beginning.",
         ],
         images: ["/blogs/heart-signs-3.png"],
-        references: [
-          "Clinical cardiology case studies",
-        ],
+        references: ["Clinical cardiology case studies"],
       },
       {
         heading: "Risk Factors That Increase Your Chances",
@@ -530,57 +603,81 @@ export const blogs: Blog[] = [
           "Obesity and chronic stress can also place a heavy burden on your cardiovascular system over time.",
         ],
         images: ["/blogs/heart-risk-factors.png"],
-        references: [
-          "WHO risk factor report",
-          "HeartView risk score feature",
-        ],
+        references: ["WHO risk factor report", "HeartView risk score feature"],
       },
     ],
     faq: [
       {
         question: "What are the first signs of heart problems?",
-        answer: "Early signs include chest tightness or discomfort, shortness of breath, unexplained fatigue, palpitations, and swelling in the legs or ankles. Women may also experience nausea or jaw pain.",
+        answer:
+          "Early signs include chest tightness or discomfort, shortness of breath, unexplained fatigue, palpitations, and swelling in the legs or ankles. Women may also experience nausea or jaw pain.",
       },
       {
         question: "Can heart problems occur without chest pain?",
-        answer: "Yes. Especially in women, diabetes patients, and older adults, heart attacks and other cardiac events can occur with minimal or no chest pain  presenting instead as fatigue, nausea, or shortness of breath.",
+        answer:
+          "Yes. Especially in women, diabetes patients, and older adults, heart attacks and other cardiac events can occur with minimal or no chest pain  presenting instead as fatigue, nausea, or shortness of breath.",
       },
       {
         question: "When should I go to the ER for heart symptoms?",
-        answer: "Go to the ER immediately if you experience sudden chest pain, pain radiating to arm/jaw/back, severe shortness of breath, fainting, or cold sweats. Do not wait to see if symptoms pass.",
+        answer:
+          "Go to the ER immediately if you experience sudden chest pain, pain radiating to arm/jaw/back, severe shortness of breath, fainting, or cold sweats. Do not wait to see if symptoms pass.",
       },
       {
         question: "What does a heart palpitation feel like?",
-        answer: "Heart palpitations feel like a fluttering, pounding, or racing heartbeat  sometimes described as the heart skipping a beat. They can be caused by stress, caffeine, or underlying arrhythmias.",
+        answer:
+          "Heart palpitations feel like a fluttering, pounding, or racing heartbeat  sometimes described as the heart skipping a beat. They can be caused by stress, caffeine, or underlying arrhythmias.",
       },
       {
         question: "Can stress cause heart problems?",
-        answer: "Yes. Chronic stress raises cortisol and adrenaline, which increase heart rate and blood pressure over time. Stress is an independent risk factor for heart disease and can trigger cardiac events.",
+        answer:
+          "Yes. Chronic stress raises cortisol and adrenaline, which increase heart rate and blood pressure over time. Stress is an independent risk factor for heart disease and can trigger cardiac events.",
       },
     ],
     internalLinks: [
-      { title: "What is a Good Heart View Score?", slug: "what-is-a-good-heart-risk-score" },
-      { title: "How to Prevent Heart Disease Naturally", slug: "how-to-prevent-heart-disease-naturally" },
-      { title: "What is a Normal Heart Rate by Age?", slug: "normal-heart-rate-by-age" },
-      { title: "How Stress Affects Heart Health", slug: "how-stress-affects-heart-health" },
-      { title: "LDL vs HDL  Good vs Bad Cholesterol Explained", slug: "ldl-vs-hdl" },
+      {
+        title: "What is a Good Heart View Score?",
+        slug: "what-is-a-good-heart-risk-score",
+      },
+      {
+        title: "How to Prevent Heart Disease Naturally",
+        slug: "how-to-prevent-heart-disease-naturally",
+      },
+      {
+        title: "What is a Normal Heart Rate by Age?",
+        slug: "normal-heart-rate-by-age",
+      },
+      {
+        title: "How Stress Affects Heart Health",
+        slug: "how-stress-affects-heart-health",
+      },
+      {
+        title: "LDL vs HDL  Good vs Bad Cholesterol Explained",
+        slug: "ldl-vs-hdl",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Early Signs of Heart Problems You Should Not Ignore",
-      "description": "Recognize early symptoms of heart issues before they become serious.",
-      "image": "/heartProblem.png",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/early-signs-heart-problems" },
-      "FAQPage": {
+      headline: "Early Signs of Heart Problems You Should Not Ignore",
+      description:
+        "Recognize early symptoms of heart issues before they become serious.",
+      image: "/heartProblem.png",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/early-signs-heart-problems",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "What are the first signs of heart problems?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Early signs include chest tightness, shortness of breath, unexplained fatigue, palpitations, and leg swelling." },
+            name: "What are the first signs of heart problems?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Early signs include chest tightness, shortness of breath, unexplained fatigue, palpitations, and leg swelling.",
+            },
           },
         ],
       },
@@ -588,15 +685,18 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "What are silent heart attack symptoms?",
-        answer: "Silent heart attacks may cause mild chest discomfort, unusual fatigue, slight shortness of breath, or indigestion-like symptoms that are dismissed. They are more common in women and diabetics.",
+        answer:
+          "Silent heart attacks may cause mild chest discomfort, unusual fatigue, slight shortness of breath, or indigestion-like symptoms that are dismissed. They are more common in women and diabetics.",
       },
       {
         question: "How do I know if my chest pain is heart-related?",
-        answer: "Heart-related chest pain is typically a pressure, tightness, or squeezing sensation that may radiate to the arm, jaw, or back. It is often accompanied by sweating or shortness of breath.",
+        answer:
+          "Heart-related chest pain is typically a pressure, tightness, or squeezing sensation that may radiate to the arm, jaw, or back. It is often accompanied by sweating or shortness of breath.",
       },
       {
         question: "Can young people get heart disease?",
-        answer: "Yes. With rising rates of obesity, stress, and sedentary lifestyles, heart disease is increasingly affecting people in their 20s and 30s. Genetic factors can also cause early-onset heart problems.",
+        answer:
+          "Yes. With rising rates of obesity, stress, and sedentary lifestyles, heart disease is increasingly affecting people in their 20s and 30s. Genetic factors can also cause early-onset heart problems.",
       },
     ],
   },
@@ -631,9 +731,7 @@ export const blogs: Blog[] = [
           "Small, dense LDL particles are more dangerous than large LDL  advanced lipid testing can distinguish between them.",
         ],
         images: ["/blogs/cholesterol-ldl.png"],
-        references: [
-          "ACC/AHA cholesterol treatment guidelines",
-        ],
+        references: ["ACC/AHA cholesterol treatment guidelines"],
       },
       {
         heading: "HDL  The 'Good' Cholesterol",
@@ -644,9 +742,7 @@ export const blogs: Blog[] = [
           "Exercise is one of the most effective ways to raise HDL levels naturally.",
         ],
         images: ["/blogs/cholesterol-2.png"],
-        references: [
-          "HDL protective mechanisms",
-        ],
+        references: ["HDL protective mechanisms"],
       },
       {
         heading: "How to Improve Your Cholesterol Profile",
@@ -657,9 +753,7 @@ export const blogs: Blog[] = [
           "Omega-3 fatty acids from fatty fish or supplements reduce triglycerides and improve the overall lipid profile.",
         ],
         images: ["/blogs/cholesterol-3.png"],
-        references: [
-          "Lifestyle interventions for dyslipidemia",
-        ],
+        references: ["Lifestyle interventions for dyslipidemia"],
       },
       {
         heading: "When Medication is Needed",
@@ -679,48 +773,72 @@ export const blogs: Blog[] = [
     faq: [
       {
         question: "What is the difference between LDL and HDL cholesterol?",
-        answer: "LDL (bad cholesterol) deposits cholesterol in artery walls, forming plaques that can cause heart attacks. HDL (good cholesterol) removes excess cholesterol from arteries and returns it to the liver for disposal.",
+        answer:
+          "LDL (bad cholesterol) deposits cholesterol in artery walls, forming plaques that can cause heart attacks. HDL (good cholesterol) removes excess cholesterol from arteries and returns it to the liver for disposal.",
       },
       {
         question: "What is a healthy LDL level?",
-        answer: "Below 100 mg/dL is optimal for most adults. Those with existing heart disease or diabetes should aim for below 70 mg/dL.",
+        answer:
+          "Below 100 mg/dL is optimal for most adults. Those with existing heart disease or diabetes should aim for below 70 mg/dL.",
       },
       {
         question: "How can I raise my HDL naturally?",
-        answer: "Regular aerobic exercise, quitting smoking, consuming healthy fats (olive oil, nuts, avocado), and reducing refined carbohydrates are among the most effective ways to raise HDL.",
+        answer:
+          "Regular aerobic exercise, quitting smoking, consuming healthy fats (olive oil, nuts, avocado), and reducing refined carbohydrates are among the most effective ways to raise HDL.",
       },
       {
         question: "What foods lower LDL cholesterol?",
-        answer: "Oats, barley, beans, lentils, apples, flaxseeds, fatty fish, nuts, and foods with plant sterols are proven to lower LDL cholesterol.",
+        answer:
+          "Oats, barley, beans, lentils, apples, flaxseeds, fatty fish, nuts, and foods with plant sterols are proven to lower LDL cholesterol.",
       },
       {
         question: "Is total cholesterol or LDL more important?",
-        answer: "LDL is generally a better predictor of cardiovascular risk than total cholesterol. The LDL/HDL ratio is even more informative than either value alone.",
+        answer:
+          "LDL is generally a better predictor of cardiovascular risk than total cholesterol. The LDL/HDL ratio is even more informative than either value alone.",
       },
     ],
     internalLinks: [
-      { title: "What is Normal Cholesterol Level?", slug: "what-is-normal-cholesterol-level" },
-      { title: "How to Understand Your Lipid Profile", slug: "how-to-understand-lipid-profile" },
-      { title: "What is Triglycerides and Why It Matters", slug: "what-is-triglycerides-and-why-it-matters" },
-      { title: "What is a Good Heart View Score?", slug: "what-is-a-good-heart-risk-score" },
-      { title: "How to Prevent Heart Disease Naturally", slug: "how-to-prevent-heart-disease-naturally" },
+      {
+        title: "What is Normal Cholesterol Level?",
+        slug: "what-is-normal-cholesterol-level",
+      },
+      {
+        title: "How to Understand Your Lipid Profile",
+        slug: "how-to-understand-lipid-profile",
+      },
+      {
+        title: "What is Triglycerides and Why It Matters",
+        slug: "what-is-triglycerides-and-why-it-matters",
+      },
+      {
+        title: "What is a Good Heart View Score?",
+        slug: "what-is-a-good-heart-risk-score",
+      },
+      {
+        title: "How to Prevent Heart Disease Naturally",
+        slug: "how-to-prevent-heart-disease-naturally",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "LDL vs HDL  Good vs Bad Cholesterol Explained",
-      "description": "Understand the difference between LDL and HDL cholesterol and what your levels mean for your heart.",
-      "image": "/LDl-Hdl.jpg",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/ldl-vs-hdl" },
-      "FAQPage": {
+      headline: "LDL vs HDL  Good vs Bad Cholesterol Explained",
+      description:
+        "Understand the difference between LDL and HDL cholesterol and what your levels mean for your heart.",
+      image: "/LDl-Hdl.jpg",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: { "@type": "WebPage", "@id": "/blogs/ldl-vs-hdl" },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "What is the difference between LDL and HDL cholesterol?",
-            "acceptedAnswer": { "@type": "Answer", "text": "LDL deposits cholesterol in artery walls causing plaques, while HDL removes excess cholesterol from arteries and returns it to the liver." },
+            name: "What is the difference between LDL and HDL cholesterol?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "LDL deposits cholesterol in artery walls causing plaques, while HDL removes excess cholesterol from arteries and returns it to the liver.",
+            },
           },
         ],
       },
@@ -728,19 +846,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "Can high LDL be genetic?",
-        answer: "Yes. Familial hypercholesterolemia is a genetic condition where LDL is very high regardless of diet. It affects 1 in 250 people and significantly raises heart disease risk from an early age.",
+        answer:
+          "Yes. Familial hypercholesterolemia is a genetic condition where LDL is very high regardless of diet. It affects 1 in 250 people and significantly raises heart disease risk from an early age.",
       },
       {
         question: "Does exercise lower LDL cholesterol?",
-        answer: "Exercise primarily raises HDL and lowers triglycerides. It can modestly lower LDL as well, especially when combined with a low-saturated-fat diet.",
+        answer:
+          "Exercise primarily raises HDL and lowers triglycerides. It can modestly lower LDL as well, especially when combined with a low-saturated-fat diet.",
       },
       {
         question: "What does an LDL of 150 mean?",
-        answer: "An LDL of 150 mg/dL is classified as borderline high. Lifestyle changes  reducing saturated fat, increasing fiber, and exercising more  are recommended. Your doctor may also discuss medication.",
+        answer:
+          "An LDL of 150 mg/dL is classified as borderline high. Lifestyle changes  reducing saturated fat, increasing fiber, and exercising more  are recommended. Your doctor may also discuss medication.",
       },
       {
         question: "Is HDL of 40 bad?",
-        answer: "HDL of 40 mg/dL for men is considered a risk factor for heart disease. The goal is above 60 mg/dL. Exercise, healthy fats, and quitting smoking can help raise it.",
+        answer:
+          "HDL of 40 mg/dL for men is considered a risk factor for heart disease. The goal is above 60 mg/dL. Exercise, healthy fats, and quitting smoking can help raise it.",
       },
     ],
   },
@@ -789,9 +911,7 @@ export const blogs: Blog[] = [
           "Physical inactivity, obesity, and chronic stress are additional contributors that push the risk score higher.",
         ],
         images: ["/blogs/heart-risk-score-3.png"],
-        references: [
-          "Clinical lipid research consortium",
-        ],
+        references: ["Clinical lipid research consortium"],
       },
       {
         heading: "How to Lower Your Heart View Score",
@@ -802,9 +922,7 @@ export const blogs: Blog[] = [
           "Regular physical activity of at least 150 minutes per week has a proven impact on reducing cardiovascular risk.",
         ],
         images: ["/blogs/heart-risk-lower.png"],
-        references: [
-          "Preventive cardiology intervention studies",
-        ],
+        references: ["Preventive cardiology intervention studies"],
       },
       {
         heading: "Monitoring Your Heart Risk Over Time",
@@ -824,48 +942,72 @@ export const blogs: Blog[] = [
     faq: [
       {
         question: "What is considered a good Heart View Score?",
-        answer: "A 10-year cardiovascular risk score below 7.5% is considered low risk. Scores between 7.520% are intermediate, and above 20% is high risk requiring active medical management.",
+        answer:
+          "A 10-year cardiovascular risk score below 7.5% is considered low risk. Scores between 7.520% are intermediate, and above 20% is high risk requiring active medical management.",
       },
       {
         question: "How is a Heart View Score calculated?",
-        answer: "It uses your age, sex, total and HDL cholesterol, systolic blood pressure, smoking status, and diabetes status to estimate the probability of a cardiovascular event in the next 10 years.",
+        answer:
+          "It uses your age, sex, total and HDL cholesterol, systolic blood pressure, smoking status, and diabetes status to estimate the probability of a cardiovascular event in the next 10 years.",
       },
       {
         question: "Can a Heart View Score be reduced?",
-        answer: "Yes. Quitting smoking, controlling blood pressure and cholesterol, losing weight, and exercising regularly can meaningfully reduce your Heart View Score over months to years.",
+        answer:
+          "Yes. Quitting smoking, controlling blood pressure and cholesterol, losing weight, and exercising regularly can meaningfully reduce your Heart View Score over months to years.",
       },
       {
         question: "What tools are used to calculate heart risk?",
-        answer: "Common tools include the Framingham Risk Score, the ACC/AHA ASCVD Risk Calculator, and the SCORE2 (used in Europe). HeartView also provides a built-in risk calculation feature.",
+        answer:
+          "Common tools include the Framingham Risk Score, the ACC/AHA ASCVD Risk Calculator, and the SCORE2 (used in Europe). HeartView also provides a built-in risk calculation feature.",
       },
       {
         question: "At what age should I get my Heart View Score checked?",
-        answer: "A baseline cardiovascular risk assessment is recommended starting at age 40 (or earlier if you have risk factors like family history, diabetes, or hypertension).",
+        answer:
+          "A baseline cardiovascular risk assessment is recommended starting at age 40 (or earlier if you have risk factors like family history, diabetes, or hypertension).",
       },
     ],
     internalLinks: [
-      { title: "Early Signs of Heart Problems You Should Not Ignore", slug: "early-signs-heart-problems" },
-      { title: "How to Prevent Heart Disease Naturally", slug: "how-to-prevent-heart-disease-naturally" },
-      { title: "LDL vs HDL  Good vs Bad Cholesterol Explained", slug: "ldl-vs-hdl" },
+      {
+        title: "Early Signs of Heart Problems You Should Not Ignore",
+        slug: "early-signs-heart-problems",
+      },
+      {
+        title: "How to Prevent Heart Disease Naturally",
+        slug: "how-to-prevent-heart-disease-naturally",
+      },
+      {
+        title: "LDL vs HDL  Good vs Bad Cholesterol Explained",
+        slug: "ldl-vs-hdl",
+      },
       { title: "What is Normal BP Range by Age?", slug: "normal-bp-range" },
-      { title: "Top 10 Heart Health Tips for Daily Life", slug: "top-10-heart-health-tips" },
+      {
+        title: "Top 10 Heart Health Tips for Daily Life",
+        slug: "top-10-heart-health-tips",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "What is a Good Heart View Score?",
-      "description": "Learn what a Heart View Score means, how it is calculated, and what your score says about your health.",
-      "image": "/physical2.jpg",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/what-is-a-good-heart-risk-score" },
-      "FAQPage": {
+      headline: "What is a Good Heart View Score?",
+      description:
+        "Learn what a Heart View Score means, how it is calculated, and what your score says about your health.",
+      image: "/physical2.jpg",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/what-is-a-good-heart-risk-score",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "What is considered a good Heart View Score?",
-            "acceptedAnswer": { "@type": "Answer", "text": "A 10-year cardiovascular risk score below 7.5% is considered low risk." },
+            name: "What is considered a good Heart View Score?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "A 10-year cardiovascular risk score below 7.5% is considered low risk.",
+            },
           },
         ],
       },
@@ -873,19 +1015,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "Is a 10% Heart View Score high?",
-        answer: "A 10% score falls in the intermediate risk category (7.520%). Your doctor will likely recommend lifestyle changes and possibly medication depending on your overall health profile.",
+        answer:
+          "A 10% score falls in the intermediate risk category (7.520%). Your doctor will likely recommend lifestyle changes and possibly medication depending on your overall health profile.",
       },
       {
         question: "Can Heart View Score be wrong?",
-        answer: "Risk scores are estimates, not certainties. They are validated for populations but may under- or over-estimate risk for individuals. They should be used alongside clinical judgment.",
+        answer:
+          "Risk scores are estimates, not certainties. They are validated for populations but may under- or over-estimate risk for individuals. They should be used alongside clinical judgment.",
       },
       {
         question: "Does family history affect Heart View Score?",
-        answer: "Standard calculators like Framingham do not always include family history, but premature family history of heart disease (father before 55, mother before 65) is considered a risk-enhancing factor.",
+        answer:
+          "Standard calculators like Framingham do not always include family history, but premature family history of heart disease (father before 55, mother before 65) is considered a risk-enhancing factor.",
       },
       {
         question: "How can I improve my cardiovascular risk score?",
-        answer: "The most impactful changes are quitting smoking, lowering LDL with diet/statins, controlling blood pressure, managing diabetes, and getting regular exercise.",
+        answer:
+          "The most impactful changes are quitting smoking, lowering LDL with diet/statins, controlling blood pressure, managing diabetes, and getting regular exercise.",
       },
     ],
   },
@@ -906,10 +1052,7 @@ export const blogs: Blog[] = [
           "Studies show that up to 80% of cardiovascular events can be prevented through lifestyle changes alone.",
         ],
         images: ["/nuts-stethoscope.jpg"],
-        references: [
-          "WHO prevention statistics",
-          "HeartView health insights",
-        ],
+        references: ["WHO prevention statistics", "HeartView health insights"],
       },
       {
         heading: "Heart-Healthy Diet Principles",
@@ -934,9 +1077,7 @@ export const blogs: Blog[] = [
           "Exercise helps lower blood pressure, reduce bad cholesterol, and maintain a healthy body weight.",
         ],
         images: ["/blogs/prevent-heart-3.png"],
-        references: [
-          "Physical activity guidelines for heart health",
-        ],
+        references: ["Physical activity guidelines for heart health"],
       },
       {
         heading: "Stress Management and Mental Health",
@@ -970,48 +1111,75 @@ export const blogs: Blog[] = [
     faq: [
       {
         question: "Can heart disease be completely prevented?",
-        answer: "While genetics play a role, up to 80% of cardiovascular events are preventable through lifestyle changes. Healthy diet, regular exercise, not smoking, and managing blood pressure and cholesterol dramatically reduce risk.",
+        answer:
+          "While genetics play a role, up to 80% of cardiovascular events are preventable through lifestyle changes. Healthy diet, regular exercise, not smoking, and managing blood pressure and cholesterol dramatically reduce risk.",
       },
       {
         question: "What is the most important thing I can do for my heart?",
-        answer: "Quitting smoking (if you smoke) is the single most impactful action. Otherwise, regular physical activity and a heart-healthy diet (reducing saturated fat and sodium) are among the highest-impact interventions.",
+        answer:
+          "Quitting smoking (if you smoke) is the single most impactful action. Otherwise, regular physical activity and a heart-healthy diet (reducing saturated fat and sodium) are among the highest-impact interventions.",
       },
       {
         question: "Can stress cause a heart attack?",
-        answer: "Yes. Severe acute stress (Takotsubo cardiomyopathy or 'broken heart syndrome') can trigger a heart attack-like event. Chronic stress also gradually damages the cardiovascular system.",
+        answer:
+          "Yes. Severe acute stress (Takotsubo cardiomyopathy or 'broken heart syndrome') can trigger a heart attack-like event. Chronic stress also gradually damages the cardiovascular system.",
       },
       {
         question: "Is red wine good for the heart?",
-        answer: "Some studies suggest resveratrol in red wine has benefits, but current guidelines do not recommend drinking alcohol for heart health. The risks of alcohol generally outweigh any potential benefits.",
+        answer:
+          "Some studies suggest resveratrol in red wine has benefits, but current guidelines do not recommend drinking alcohol for heart health. The risks of alcohol generally outweigh any potential benefits.",
       },
       {
         question: "How does sleep protect the heart?",
-        answer: "During deep sleep, blood pressure drops by 1020%, giving the heart vital rest. Chronic sleep deprivation raises blood pressure, inflammation, and cortisol  all of which harm the heart.",
+        answer:
+          "During deep sleep, blood pressure drops by 1020%, giving the heart vital rest. Chronic sleep deprivation raises blood pressure, inflammation, and cortisol  all of which harm the heart.",
       },
     ],
     internalLinks: [
-      { title: "Top 10 Heart Health Tips for Daily Life", slug: "top-10-heart-health-tips" },
-      { title: "How Stress Affects Heart Health", slug: "how-stress-affects-heart-health" },
-      { title: "How Sleep Affects Your Heart", slug: "how-sleep-affects-your-heart" },
-      { title: "Importance of Exercise for Heart Health", slug: "importance-of-exercise-for-heart" },
-      { title: "Best Daily Habits for Heart Health", slug: "daily-habits-heart-health" },
+      {
+        title: "Top 10 Heart Health Tips for Daily Life",
+        slug: "top-10-heart-health-tips",
+      },
+      {
+        title: "How Stress Affects Heart Health",
+        slug: "how-stress-affects-heart-health",
+      },
+      {
+        title: "How Sleep Affects Your Heart",
+        slug: "how-sleep-affects-your-heart",
+      },
+      {
+        title: "Importance of Exercise for Heart Health",
+        slug: "importance-of-exercise-for-heart",
+      },
+      {
+        title: "Best Daily Habits for Heart Health",
+        slug: "daily-habits-heart-health",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "How to Prevent Heart Disease Naturally",
-      "description": "Discover evidence-based natural strategies to protect your heart and prevent cardiovascular disease.",
-      "image": "/nuts-stethoscope.jpg",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/how-to-prevent-heart-disease-naturally" },
-      "FAQPage": {
+      headline: "How to Prevent Heart Disease Naturally",
+      description:
+        "Discover evidence-based natural strategies to protect your heart and prevent cardiovascular disease.",
+      image: "/nuts-stethoscope.jpg",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/how-to-prevent-heart-disease-naturally",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "Can heart disease be completely prevented?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Up to 80% of cardiovascular events are preventable through lifestyle changes including healthy diet, regular exercise, not smoking, and managing blood pressure and cholesterol." },
+            name: "Can heart disease be completely prevented?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Up to 80% of cardiovascular events are preventable through lifestyle changes including healthy diet, regular exercise, not smoking, and managing blood pressure and cholesterol.",
+            },
           },
         ],
       },
@@ -1019,19 +1187,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "At what age should I start worrying about heart health?",
-        answer: "Heart health habits should start early  even in your 20s. Plaque begins building in arteries decades before symptoms appear. The earlier you adopt healthy habits, the better your lifelong outcomes.",
+        answer:
+          "Heart health habits should start early  even in your 20s. Plaque begins building in arteries decades before symptoms appear. The earlier you adopt healthy habits, the better your lifelong outcomes.",
       },
       {
         question: "Can walking prevent heart disease?",
-        answer: "Yes. Regular walking (6,00010,000 steps/day or 30 minutes/day) reduces cardiovascular disease risk by up to 30%. It lowers blood pressure, improves cholesterol, and supports weight management.",
+        answer:
+          "Yes. Regular walking (6,00010,000 steps/day or 30 minutes/day) reduces cardiovascular disease risk by up to 30%. It lowers blood pressure, improves cholesterol, and supports weight management.",
       },
       {
         question: "What vitamins are good for heart health?",
-        answer: "Omega-3 fatty acids, magnesium, CoQ10, vitamin D, and B vitamins (particularly B12 and folate) have evidence supporting cardiovascular benefits. Always consult your doctor before starting supplements.",
+        answer:
+          "Omega-3 fatty acids, magnesium, CoQ10, vitamin D, and B vitamins (particularly B12 and folate) have evidence supporting cardiovascular benefits. Always consult your doctor before starting supplements.",
       },
       {
         question: "Is genetics or lifestyle more important for heart health?",
-        answer: "Both matter, but lifestyle has a bigger impact than most people realize. Even those with a strong family history of heart disease can significantly reduce their risk through sustained healthy habits.",
+        answer:
+          "Both matter, but lifestyle has a bigger impact than most people realize. Even those with a strong family history of heart disease can significantly reduce their risk through sustained healthy habits.",
       },
     ],
   },
@@ -1067,9 +1239,7 @@ export const blogs: Blog[] = [
           "Tip 5: Avoid ultra-processed foods, sugary drinks, and excessive salt.",
         ],
         images: ["/blogs/heart-tips-2.png"],
-        references: [
-          "Dietary guidelines for cardiovascular prevention",
-        ],
+        references: ["Dietary guidelines for cardiovascular prevention"],
       },
       {
         heading: "Tips 69: Sleep, Stress, and Monitoring",
@@ -1094,9 +1264,7 @@ export const blogs: Blog[] = [
           "Celebrate small wins  each healthy choice is an investment in your future.",
         ],
         images: ["/blogs/heart-tips-habits.png"],
-        references: [
-          "Behavioral science in health promotion",
-        ],
+        references: ["Behavioral science in health promotion"],
       },
       {
         heading: "When to See a Doctor",
@@ -1106,52 +1274,77 @@ export const blogs: Blog[] = [
           "Your doctor can help you personalize these tips based on your specific health history and risk factors.",
         ],
         images: ["/blogs/heart-tips-doctor.png"],
-        references: [
-          "Preventive health screening guidelines",
-        ],
+        references: ["Preventive health screening guidelines"],
       },
     ],
     faq: [
       {
-        question: "What is the single best thing I can do for my heart every day?",
-        answer: "Daily physical activity  even a 30-minute walk  is one of the most impactful daily habits for heart health. It lowers BP, improves cholesterol, manages weight, and reduces stress all at once.",
+        question:
+          "What is the single best thing I can do for my heart every day?",
+        answer:
+          "Daily physical activity  even a 30-minute walk  is one of the most impactful daily habits for heart health. It lowers BP, improves cholesterol, manages weight, and reduces stress all at once.",
       },
       {
         question: "How many steps per day is good for the heart?",
-        answer: "Studies show 6,00010,000 steps per day significantly reduce cardiovascular risk. Even 5,000 steps is far better than a sedentary lifestyle. Aim to build gradually toward 8,00010,000.",
+        answer:
+          "Studies show 6,00010,000 steps per day significantly reduce cardiovascular risk. Even 5,000 steps is far better than a sedentary lifestyle. Aim to build gradually toward 8,00010,000.",
       },
       {
         question: "Does meditation help the heart?",
-        answer: "Yes. Regular mindfulness meditation reduces cortisol levels, lowers blood pressure, improves heart rate variability, and reduces cardiovascular risk over time.",
+        answer:
+          "Yes. Regular mindfulness meditation reduces cortisol levels, lowers blood pressure, improves heart rate variability, and reduces cardiovascular risk over time.",
       },
       {
         question: "How often should I check my blood pressure at home?",
-        answer: "If you are healthy, weekly monitoring is sufficient. If you have hypertension or are adjusting medication, daily readings (morning and evening) provide the most useful data for your doctor.",
+        answer:
+          "If you are healthy, weekly monitoring is sufficient. If you have hypertension or are adjusting medication, daily readings (morning and evening) provide the most useful data for your doctor.",
       },
     ],
     internalLinks: [
-      { title: "How to Prevent Heart Disease Naturally", slug: "how-to-prevent-heart-disease-naturally" },
-      { title: "How Many Steps Should You Walk Daily?", slug: "how-many-steps-should-you-walk-daily" },
-      { title: "Best Daily Habits for Heart Health", slug: "daily-habits-heart-health" },
-      { title: "How Stress Affects Heart Health", slug: "how-stress-affects-heart-health" },
-      { title: "Importance of Exercise for Heart Health", slug: "importance-of-exercise-for-heart" },
+      {
+        title: "How to Prevent Heart Disease Naturally",
+        slug: "how-to-prevent-heart-disease-naturally",
+      },
+      {
+        title: "How Many Steps Should You Walk Daily?",
+        slug: "how-many-steps-should-you-walk-daily",
+      },
+      {
+        title: "Best Daily Habits for Heart Health",
+        slug: "daily-habits-heart-health",
+      },
+      {
+        title: "How Stress Affects Heart Health",
+        slug: "how-stress-affects-heart-health",
+      },
+      {
+        title: "Importance of Exercise for Heart Health",
+        slug: "importance-of-exercise-for-heart",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Top 10 Heart Health Tips for Daily Life",
-      "description": "Simple, actionable tips you can start today to keep your heart strong and healthy.",
-      "image": "/tip.png",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/top-10-heart-health-tips" },
-      "FAQPage": {
+      headline: "Top 10 Heart Health Tips for Daily Life",
+      description:
+        "Simple, actionable tips you can start today to keep your heart strong and healthy.",
+      image: "/tip.png",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/top-10-heart-health-tips",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "What is the single best thing I can do for my heart every day?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Daily physical activity  even a 30-minute walk  is one of the most impactful daily habits for heart health." },
+            name: "What is the single best thing I can do for my heart every day?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Daily physical activity  even a 30-minute walk  is one of the most impactful daily habits for heart health.",
+            },
           },
         ],
       },
@@ -1159,19 +1352,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "What are the worst habits for heart health?",
-        answer: "Smoking, physical inactivity, eating ultra-processed foods, chronic sleep deprivation, excessive alcohol, and unmanaged stress are among the worst habits for your heart.",
+        answer:
+          "Smoking, physical inactivity, eating ultra-processed foods, chronic sleep deprivation, excessive alcohol, and unmanaged stress are among the worst habits for your heart.",
       },
       {
         question: "What are heart-healthy breakfast options?",
-        answer: "Oatmeal with berries, eggs with whole grain toast, Greek yogurt with nuts, smoothies with spinach and flaxseed, and avocado on whole grain bread are all excellent heart-healthy breakfast choices.",
+        answer:
+          "Oatmeal with berries, eggs with whole grain toast, Greek yogurt with nuts, smoothies with spinach and flaxseed, and avocado on whole grain bread are all excellent heart-healthy breakfast choices.",
       },
       {
         question: "Is coffee bad for the heart?",
-        answer: "Moderate coffee consumption (23 cups per day) is generally considered safe and may even have mild cardiovascular benefits. However, excessive caffeine can raise heart rate and BP in some individuals.",
+        answer:
+          "Moderate coffee consumption (23 cups per day) is generally considered safe and may even have mild cardiovascular benefits. However, excessive caffeine can raise heart rate and BP in some individuals.",
       },
       {
         question: "Can yoga improve heart health?",
-        answer: "Yes. Yoga reduces stress hormones, lowers blood pressure, improves heart rate variability, and supports weight management  all of which benefit cardiovascular health.",
+        answer:
+          "Yes. Yoga reduces stress hormones, lowers blood pressure, improves heart rate variability, and supports weight management  all of which benefit cardiovascular health.",
       },
     ],
   },
@@ -1206,9 +1403,7 @@ export const blogs: Blog[] = [
           "For people already diagnosed with diabetes, targets may be adjusted  typically fasting <130 and post-meal <180.",
         ],
         images: ["/blogs/sugar-chart.png"],
-        references: [
-          "ADA blood sugar standards of care",
-        ],
+        references: ["ADA blood sugar standards of care"],
       },
       {
         heading: "Fasting vs Post-Meal: Why Both Matter",
@@ -1219,9 +1414,7 @@ export const blogs: Blog[] = [
           "Monitoring both fasting and post-meal levels gives a complete picture of your sugar metabolism.",
         ],
         images: ["/blogs/sugar-2.png"],
-        references: [
-          "Post-meal glucose and cardiovascular risk",
-        ],
+        references: ["Post-meal glucose and cardiovascular risk"],
       },
       {
         heading: "Factors That Affect Blood Sugar",
@@ -1232,9 +1425,7 @@ export const blogs: Blog[] = [
           "Sleep deprivation reduces insulin sensitivity, causing higher blood sugar the following day.",
         ],
         images: ["/blogs/sugar-3.png"],
-        references: [
-          "Glucose regulation factors overview",
-        ],
+        references: ["Glucose regulation factors overview"],
       },
       {
         heading: "How to Keep Your Blood Sugar in Range",
@@ -1254,48 +1445,75 @@ export const blogs: Blog[] = [
     faq: [
       {
         question: "What is a normal fasting blood sugar level?",
-        answer: "A normal fasting blood sugar (after 8+ hours without food) is below 100 mg/dL. 100125 mg/dL indicates prediabetes, and 126 mg/dL or above on two tests confirms diabetes.",
+        answer:
+          "A normal fasting blood sugar (after 8+ hours without food) is below 100 mg/dL. 100125 mg/dL indicates prediabetes, and 126 mg/dL or above on two tests confirms diabetes.",
       },
       {
         question: "What should blood sugar be 2 hours after eating?",
-        answer: "A post-meal blood sugar below 140 mg/dL is normal. 140199 mg/dL is prediabetic range, and 200 mg/dL or above is in the diabetic range.",
+        answer:
+          "A post-meal blood sugar below 140 mg/dL is normal. 140199 mg/dL is prediabetic range, and 200 mg/dL or above is in the diabetic range.",
       },
       {
         question: "What is a dangerous blood sugar level?",
-        answer: "Blood sugar below 70 mg/dL (hypoglycemia) or above 300 mg/dL (severe hyperglycemia) is dangerous and requires immediate attention. Both can cause serious complications.",
+        answer:
+          "Blood sugar below 70 mg/dL (hypoglycemia) or above 300 mg/dL (severe hyperglycemia) is dangerous and requires immediate attention. Both can cause serious complications.",
       },
       {
         question: "Can blood sugar levels change without diabetes?",
-        answer: "Yes. Even non-diabetics can have temporary blood sugar fluctuations due to stress, illness, poor sleep, high-carb meals, or certain medications.",
+        answer:
+          "Yes. Even non-diabetics can have temporary blood sugar fluctuations due to stress, illness, poor sleep, high-carb meals, or certain medications.",
       },
       {
         question: "What is a good blood sugar level in the morning?",
-        answer: "Fasting morning blood sugar below 100 mg/dL is ideal for non-diabetics. For those with diabetes, targets are typically below 130 mg/dL, as agreed with their doctor.",
+        answer:
+          "Fasting morning blood sugar below 100 mg/dL is ideal for non-diabetics. For those with diabetes, targets are typically below 130 mg/dL, as agreed with their doctor.",
       },
     ],
     internalLinks: [
-      { title: "HbA1c vs Blood Sugar  What's the Difference?", slug: "hba1c-vs-blood-sugar" },
-      { title: "Early Symptoms of Diabetes", slug: "early-symptoms-of-diabetes" },
-      { title: "How to Control Sugar Naturally", slug: "how-to-control-sugar-naturally" },
-      { title: "Best Foods for Diabetes Patients", slug: "best-foods-for-diabetes" },
-      { title: "How to Read Your Blood Test Report", slug: "how-to-read-blood-test-report" },
+      {
+        title: "HbA1c vs Blood Sugar  What's the Difference?",
+        slug: "hba1c-vs-blood-sugar",
+      },
+      {
+        title: "Early Symptoms of Diabetes",
+        slug: "early-symptoms-of-diabetes",
+      },
+      {
+        title: "How to Control Sugar Naturally",
+        slug: "how-to-control-sugar-naturally",
+      },
+      {
+        title: "Best Foods for Diabetes Patients",
+        slug: "best-foods-for-diabetes",
+      },
+      {
+        title: "How to Read Your Blood Test Report",
+        slug: "how-to-read-blood-test-report",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Normal Blood Sugar Levels Chart",
-      "description": "Understand fasting and post-meal sugar levels for better diabetes control.",
-      "image": "/Normal-sugar.png",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/normal-blood-sugar-levels" },
-      "FAQPage": {
+      headline: "Normal Blood Sugar Levels Chart",
+      description:
+        "Understand fasting and post-meal sugar levels for better diabetes control.",
+      image: "/Normal-sugar.png",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/normal-blood-sugar-levels",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "What is a normal fasting blood sugar level?",
-            "acceptedAnswer": { "@type": "Answer", "text": "A normal fasting blood sugar is below 100 mg/dL. 100125 is prediabetes, and 126+ on two tests confirms diabetes." },
+            name: "What is a normal fasting blood sugar level?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "A normal fasting blood sugar is below 100 mg/dL. 100125 is prediabetes, and 126+ on two tests confirms diabetes.",
+            },
           },
         ],
       },
@@ -1303,23 +1521,537 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "Is 140 blood sugar normal after eating?",
-        answer: "140 mg/dL is at the upper boundary of normal post-meal blood sugar. Readings consistently between 140199 mg/dL after meals may indicate prediabetes and should be discussed with a doctor.",
+        answer:
+          "140 mg/dL is at the upper boundary of normal post-meal blood sugar. Readings consistently between 140199 mg/dL after meals may indicate prediabetes and should be discussed with a doctor.",
       },
       {
         question: "What does a blood sugar of 200 mean?",
-        answer: "A random blood sugar of 200 mg/dL with symptoms (thirst, urination, fatigue) is diagnostic of diabetes. A single reading without symptoms should be confirmed with a fasting test.",
+        answer:
+          "A random blood sugar of 200 mg/dL with symptoms (thirst, urination, fatigue) is diagnostic of diabetes. A single reading without symptoms should be confirmed with a fasting test.",
       },
       {
         question: "Can exercise lower blood sugar immediately?",
-        answer: "Yes. Even a 1520 minute walk after a meal can significantly reduce post-meal blood sugar by helping muscles absorb glucose from the bloodstream.",
+        answer:
+          "Yes. Even a 1520 minute walk after a meal can significantly reduce post-meal blood sugar by helping muscles absorb glucose from the bloodstream.",
       },
       {
         question: "Why is blood sugar high in the morning?",
-        answer: "This is called the 'dawn phenomenon'  cortisol and growth hormone naturally rise in the early morning, triggering the liver to release glucose. This is normal but may be more pronounced in diabetics.",
+        answer:
+          "This is called the 'dawn phenomenon'  cortisol and growth hormone naturally rise in the early morning, triggering the liver to release glucose. This is normal but may be more pronounced in diabetics.",
+      },
+    ],
+  },
+  {
+    slug: "normal-cholesterol-levels",
+    title: "Normal Cholesterol Levels Chart",
+    category: "cholesterol",
+    description:
+      "Understand LDL, HDL, and total cholesterol ranges to protect your heart health.",
+    content: [
+      {
+        heading: "Cholesterol Basics",
+        paragraphs: [
+          "Cholesterol is a fatty substance found in your blood, essential for building cells and hormones.",
+          "Too much cholesterol — especially LDL — builds up in artery walls and raises the risk of heart disease.",
+          "Cholesterol has no symptoms, which is why regular testing is the only reliable way to know your levels.",
+          "Understanding your cholesterol numbers helps you and your doctor make informed decisions about diet, lifestyle, and medications.",
+        ],
+        images: ["/cholesterol-infographic.jpg"],
+        references: [
+          "HeartView lipid panel insights",
+          "ACC/AHA cardiovascular guidelines",
+        ],
+      },
+      {
+        heading: "Normal Cholesterol Reference Ranges",
+        paragraphs: [
+          "Total cholesterol: Desirable <200 mg/dL; Borderline high 200–239 mg/dL; High ≥240 mg/dL.",
+          "LDL (bad) cholesterol: Optimal <100 mg/dL; Near optimal 100–129 mg/dL; Borderline high 130–159 mg/dL; High ≥160 mg/dL.",
+          "HDL (good) cholesterol: Low (risk factor) <40 mg/dL in men, <50 mg/dL in women; Protective ≥60 mg/dL.",
+          "Triglycerides: Normal <150 mg/dL; Borderline high 150–199 mg/dL; High ≥200 mg/dL.",
+        ],
+        images: ["/blogs/cholesterol-chart.png"],
+        references: ["AHA cholesterol standards"],
+      },
+      {
+        heading: "LDL vs HDL: What's the Difference?",
+        paragraphs: [
+          "LDL (low-density lipoprotein) carries cholesterol to artery walls and contributes to plaque buildup — hence the label 'bad' cholesterol.",
+          "HDL (high-density lipoprotein) transports cholesterol away from arteries back to the liver for removal — making it 'good' cholesterol.",
+          "High LDL combined with low HDL significantly raises the risk of heart attack and stroke.",
+          "Rather than focusing only on total cholesterol, doctors increasingly look at the LDL-to-HDL ratio for a more accurate cardiovascular risk picture.",
+        ],
+        images: ["/blogs/ldl-hdl.png"],
+        references: ["LDL vs HDL cardiovascular risk review"],
+      },
+      {
+        heading: "Factors That Raise Cholesterol",
+        paragraphs: [
+          "Diets high in saturated fat and trans fat directly increase LDL cholesterol levels.",
+          "Physical inactivity lowers HDL while allowing LDL and triglycerides to rise.",
+          "Obesity, especially belly fat, disrupts lipid metabolism and raises total cholesterol.",
+          "Genetics play a strong role — familial hypercholesterolemia can cause dangerously high LDL regardless of diet.",
+        ],
+        images: ["/blogs/cholesterol-causes.png"],
+        references: ["Lipid metabolism and lifestyle factors"],
+      },
+      {
+        heading: "How to Lower Cholesterol Naturally",
+        paragraphs: [
+          "Replace saturated fats (butter, red meat) with unsaturated fats from olive oil, nuts, and avocados.",
+          "Add soluble fiber from oats, lentils, and fruits — it binds cholesterol in the gut and reduces absorption.",
+          "Exercise for at least 30 minutes most days to raise HDL and lower LDL and triglycerides.",
+          "Quit smoking — it damages blood vessels and lowers protective HDL cholesterol.",
+        ],
+        images: ["/blogs/lower-cholesterol.png"],
+        references: [
+          "HeartView cholesterol management tips",
+          "Dietary approaches to dyslipidemia",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "What is a normal total cholesterol level?",
+        answer:
+          "A total cholesterol level below 200 mg/dL is considered desirable. 200–239 mg/dL is borderline high, and 240 mg/dL or above is classified as high and increases cardiovascular risk.",
+      },
+      {
+        question: "What is a healthy LDL cholesterol level?",
+        answer:
+          "An LDL below 100 mg/dL is optimal for most adults. For those with heart disease or diabetes, doctors may target LDL below 70 mg/dL.",
+      },
+      {
+        question: "What is a good HDL cholesterol level?",
+        answer:
+          "HDL above 60 mg/dL is considered protective. Below 40 mg/dL in men or 50 mg/dL in women is a risk factor for heart disease.",
+      },
+      {
+        question: "Can you have high cholesterol with a healthy diet?",
+        answer:
+          "Yes. Genetics can cause high cholesterol even in people who eat well and exercise. Familial hypercholesterolemia is a common inherited condition that requires medical management.",
+      },
+      {
+        question: "How often should cholesterol be checked?",
+        answer:
+          "Adults over 20 should have a fasting lipid panel every 4–6 years. Those with risk factors like diabetes, obesity, or family history may need annual testing.",
+      },
+    ],
+    internalLinks: [
+      {
+        title: "LDL vs HDL — What's the Difference?",
+        slug: "ldl-vs-hdl-cholesterol",
+      },
+      {
+        title: "Early Signs of High Cholesterol",
+        slug: "early-signs-of-high-cholesterol",
+      },
+      {
+        title: "Best Foods to Lower Cholesterol",
+        slug: "best-foods-to-lower-cholesterol",
+      },
+      {
+        title: "How to Read Your Lipid Panel Report",
+        slug: "how-to-read-lipid-panel",
+      },
+      {
+        title: "Cholesterol and Heart Disease Link",
+        slug: "cholesterol-and-heart-disease",
+      },
+    ],
+    schemaMarkup: {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: "Normal Cholesterol Levels Chart",
+      description:
+        "Understand LDL, HDL, and total cholesterol ranges to protect your heart health.",
+      image: "/blogs/cholesterol-main.png",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/normal-cholesterol-levels",
+      },
+      FAQPage: {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "What is a normal total cholesterol level?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Below 200 mg/dL is desirable. 200–239 is borderline high, and 240+ is high.",
+            },
+          },
+        ],
+      },
+    },
+    peopleAlsoAsk: [
+      {
+        question: "Is 220 cholesterol bad?",
+        answer:
+          "220 mg/dL falls in the borderline high range (200–239 mg/dL). It does not confirm disease but is a signal to review diet, activity, and other risk factors with your doctor.",
+      },
+      {
+        question: "What happens if cholesterol is too high?",
+        answer:
+          "Over time, excess LDL builds up as plaque in artery walls, narrowing them. This raises the risk of chest pain, heart attack, and stroke.",
+      },
+      {
+        question: "Can drinking water lower cholesterol?",
+        answer:
+          "Water alone does not lower cholesterol, but staying well hydrated supports overall metabolism. The biggest dietary levers are reducing saturated fat and increasing soluble fiber.",
+      },
+      {
+        question: "Does stress raise cholesterol?",
+        answer:
+          "Yes. Chronic stress elevates cortisol, which can increase LDL production and lower HDL. Managing stress through sleep, exercise, and relaxation supports healthier lipid levels.",
       },
     ],
   },
 
+  // ─── BLOG 2 ───────────────────────────────────────────────────────────────
+
+  {
+    slug: "ldl-vs-hdl-cholesterol",
+    title: "LDL vs HDL Cholesterol — What's the Difference?",
+    category: "cholesterol",
+    description:
+      "Learn how LDL and HDL cholesterol work, why both matter, and how to improve your ratio.",
+    content: [
+      {
+        heading: "Why Two Types of Cholesterol?",
+        paragraphs: [
+          "Cholesterol cannot dissolve in blood — it must be carried by proteins called lipoproteins.",
+          "LDL (low-density lipoprotein) and HDL (high-density lipoprotein) are the two main carriers, and they move cholesterol in opposite directions.",
+          "The balance between LDL and HDL is one of the strongest predictors of cardiovascular risk.",
+          "Understanding both numbers — not just total cholesterol — gives a far more accurate picture of your heart health.",
+        ],
+        images: ["/cholesterol-comparison.jpg"],
+        references: [
+          "HeartView lipid education series",
+          "AHA lipoprotein overview",
+        ],
+      },
+      {
+        heading: "What Is LDL Cholesterol?",
+        paragraphs: [
+          "LDL carries cholesterol from the liver to cells throughout the body.",
+          "When LDL is too high, excess cholesterol deposits inside artery walls, forming plaques that narrow and harden the arteries.",
+          "This process — atherosclerosis — is the underlying cause of most heart attacks and strokes.",
+          "Optimal LDL is below 100 mg/dL; above 160 mg/dL is considered high risk.",
+        ],
+        images: ["/blogs/ldl-artery.png"],
+        references: ["LDL and atherosclerosis pathophysiology"],
+      },
+      {
+        heading: "What Is HDL Cholesterol?",
+        paragraphs: [
+          "HDL acts as a scavenger, picking up excess cholesterol from the bloodstream and artery walls and returning it to the liver.",
+          "Higher HDL levels are associated with lower risk of heart disease — hence it being called 'good' cholesterol.",
+          "HDL above 60 mg/dL is considered protective; below 40 mg/dL in men and 50 mg/dL in women is a risk factor.",
+          "Raising HDL through exercise and quitting smoking is one of the most impactful things you can do for heart health.",
+        ],
+        images: ["/blogs/hdl-function.png"],
+        references: ["HDL protective mechanisms review"],
+      },
+      {
+        heading: "LDL-to-HDL Ratio: A Better Measure?",
+        paragraphs: [
+          "Total cholesterol alone can be misleading — someone with high total cholesterol may have high protective HDL.",
+          "Dividing total cholesterol by HDL gives a ratio: below 3.5 is ideal; above 5.0 signals elevated risk.",
+          "Some cardiologists also assess non-HDL cholesterol (total minus HDL) to capture all atherogenic particles.",
+          "Ask your doctor to interpret your full lipid panel, not just a single number.",
+        ],
+        images: ["/blogs/cholesterol-ratio.png"],
+        references: ["Lipid ratio cardiovascular risk evidence"],
+      },
+      {
+        heading: "How to Improve Your LDL/HDL Balance",
+        paragraphs: [
+          "Aerobic exercise (brisk walking, cycling, swimming) is the most consistent way to raise HDL.",
+          "Replacing saturated fats with monounsaturated fats from olive oil and nuts lowers LDL without reducing HDL.",
+          "Quitting smoking can raise HDL by up to 10% within weeks of stopping.",
+          "If lifestyle changes are insufficient, statins and other medications can effectively lower LDL under medical supervision.",
+        ],
+        images: ["/blogs/improve-ldl-hdl.png"],
+        references: [
+          "HeartView lifestyle and lipid optimization",
+          "Statin therapy and lipid outcomes",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Which is more dangerous — high LDL or low HDL?",
+        answer:
+          "Both are independent risk factors. High LDL actively deposits cholesterol in arteries, while low HDL means less removal of that cholesterol. Having both simultaneously is the most dangerous combination.",
+      },
+      {
+        question: "Can LDL be too low?",
+        answer:
+          "Extremely low LDL (below 40 mg/dL) is rare and may be associated with certain genetic conditions or aggressive statin therapy. For most people, lower LDL means lower cardiovascular risk.",
+      },
+      {
+        question: "Does eating cholesterol-rich foods raise LDL?",
+        answer:
+          "Dietary cholesterol has less impact than once believed. Saturated and trans fats are the primary dietary drivers of high LDL, not cholesterol in food itself.",
+      },
+      {
+        question: "How quickly can lifestyle changes improve cholesterol?",
+        answer:
+          "Meaningful changes in LDL and HDL can appear within 6–12 weeks of consistent dietary improvements and regular exercise. Full benefit is typically seen at 3–6 months.",
+      },
+      {
+        question: "Is HDL always protective?",
+        answer:
+          "For most people, yes. However, recent research suggests that extremely high HDL (above 80–90 mg/dL) may not always be protective, possibly due to dysfunction in some HDL particles. Optimal HDL is generally 60–80 mg/dL.",
+      },
+    ],
+    internalLinks: [
+      {
+        title: "Normal Cholesterol Levels Chart",
+        slug: "normal-cholesterol-levels",
+      },
+      {
+        title: "Best Foods to Lower Cholesterol",
+        slug: "best-foods-to-lower-cholesterol",
+      },
+      {
+        title: "Cholesterol and Heart Disease Link",
+        slug: "cholesterol-and-heart-disease",
+      },
+      {
+        title: "How to Read Your Lipid Panel Report",
+        slug: "how-to-read-lipid-panel",
+      },
+      {
+        title: "Early Signs of High Cholesterol",
+        slug: "early-signs-of-high-cholesterol",
+      },
+    ],
+    schemaMarkup: {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: "LDL vs HDL Cholesterol — What's the Difference?",
+      description:
+        "Learn how LDL and HDL cholesterol work, why both matter, and how to improve your ratio.",
+      image: "/blogs/ldl-hdl-main.png",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/ldl-vs-hdl-cholesterol",
+      },
+      FAQPage: {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "Which is more dangerous — high LDL or low HDL?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Both are independent risk factors. Having high LDL and low HDL simultaneously is the most dangerous combination.",
+            },
+          },
+        ],
+      },
+    },
+    peopleAlsoAsk: [
+      {
+        question: "What foods raise HDL quickly?",
+        answer:
+          "Olive oil, fatty fish (salmon, mackerel), nuts (almonds, walnuts), avocados, and regular aerobic exercise are the most evidence-backed ways to raise HDL cholesterol.",
+      },
+      {
+        question: "Do eggs raise LDL?",
+        answer:
+          "For most people, moderate egg consumption (up to 1 per day) has minimal effect on LDL. People with diabetes or familial hypercholesterolemia may be more sensitive and should discuss egg intake with their doctor.",
+      },
+      {
+        question: "What is a good LDL level for someone with heart disease?",
+        answer:
+          "For people with existing cardiovascular disease, guidelines recommend LDL below 70 mg/dL, often requiring both lifestyle changes and statin medication.",
+      },
+      {
+        question: "Is HDL tested in a routine blood test?",
+        answer:
+          "Yes. A standard lipid panel (usually part of routine blood work) includes total cholesterol, LDL, HDL, and triglycerides. It requires 9–12 hours of fasting for accurate results.",
+      },
+    ],
+  },
+
+  // ─── BLOG 3 ───────────────────────────────────────────────────────────────
+
+  {
+    slug: "best-foods-to-lower-cholesterol",
+    title: "Best Foods to Lower Cholesterol Naturally",
+    category: "cholesterol",
+    description:
+      "Discover the top foods that lower LDL, raise HDL, and support a heart-healthy diet.",
+    content: [
+      {
+        heading: "Can Food Really Change Cholesterol?",
+        paragraphs: [
+          "Diet is one of the most powerful levers for managing cholesterol — the right food choices can lower LDL by 20–30% in some people.",
+          "The key mechanisms are reducing saturated fat intake, adding soluble fiber to bind cholesterol in digestion, and consuming plant sterols that block cholesterol absorption.",
+          "No single food is a magic fix, but a consistent pattern of heart-healthy eating produces measurable lipid improvements within weeks.",
+          "Combined with exercise and, where needed, medication, dietary changes form the foundation of cholesterol management.",
+        ],
+        images: ["/cholesterol.jpg"],
+        references: [
+          "HeartView nutrition and lipid series",
+          "AHA dietary guidelines for heart health",
+        ],
+      },
+      {
+        heading: "Soluble Fiber Foods",
+        paragraphs: [
+          "Soluble fiber forms a gel in the gut that traps cholesterol and bile acids, preventing them from being absorbed into the bloodstream.",
+          "Oats and oat bran are among the richest sources — just one bowl of oatmeal daily can reduce LDL by 5–10%.",
+          "Other excellent sources include barley, lentils, chickpeas, kidney beans, apples, pears, and psyllium husk.",
+          "Aim for at least 5–10 grams of soluble fiber per day for meaningful cholesterol-lowering effects.",
+        ],
+        images: ["/blogs/soluble-fiber-foods.png"],
+        references: ["Soluble fiber and LDL reduction meta-analysis"],
+      },
+      {
+        heading: "Healthy Fats That Help",
+        paragraphs: [
+          "Replacing saturated fats with monounsaturated fats lowers LDL without reducing protective HDL.",
+          "Olive oil — especially extra-virgin — contains oleic acid and polyphenols with anti-inflammatory, anti-atherogenic properties.",
+          "Avocados are rich in monounsaturated fat and beta-sitosterol, a plant sterol that directly inhibits cholesterol absorption.",
+          "Fatty fish (salmon, sardines, mackerel) provide omega-3 fatty acids that lower triglycerides and raise HDL.",
+        ],
+        images: ["/blogs/healthy-fats.png"],
+        references: ["Dietary fats and cardiovascular outcomes"],
+      },
+      {
+        heading: "Nuts, Seeds, and Plant Sterols",
+        paragraphs: [
+          "Walnuts, almonds, and pistachios contain fiber, unsaturated fat, and plant sterols that collectively reduce LDL.",
+          "A handful of nuts (about 30g) per day is associated with a 5% reduction in LDL in clinical trials.",
+          "Flaxseeds and chia seeds add soluble fiber and alpha-linolenic acid, a plant-based omega-3.",
+          "Plant sterol-enriched foods (certain margarines, yogurts) provide a concentrated dose — 2g of plant sterols daily can lower LDL by up to 10%.",
+        ],
+        images: ["/blogs/nuts-seeds-sterols.png"],
+        references: ["Plant sterols and LDL review"],
+      },
+      {
+        heading: "Foods to Limit or Avoid",
+        paragraphs: [
+          "Saturated fats from red meat, full-fat dairy, butter, and coconut oil raise LDL most directly.",
+          "Trans fats (partially hydrogenated oils in some packaged foods) both raise LDL and lower HDL — the worst combination for heart health.",
+          "Refined carbohydrates and added sugars raise triglycerides and lower HDL over time.",
+          "Processed meats like sausage and deli meat combine saturated fat with high sodium, compounding cardiovascular risk.",
+        ],
+        images: ["/blogs/foods-to-avoid.png"],
+        references: [
+          "HeartView dietary risk factors",
+          "Trans fat cardiovascular evidence",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Which single food lowers cholesterol the most?",
+        answer:
+          "Oats consistently show the strongest LDL-lowering effect in clinical research, largely due to beta-glucan soluble fiber. However, combining oats with other heart-healthy foods produces far greater results than any single food alone.",
+      },
+      {
+        question: "Does garlic lower cholesterol?",
+        answer:
+          "Some studies show modest LDL-lowering effects from aged garlic extract, but the evidence is not strong enough to recommend garlic as a primary cholesterol treatment. It is a healthy addition to a heart-friendly diet.",
+      },
+      {
+        question: "Is dark chocolate good for cholesterol?",
+        answer:
+          "Dark chocolate (70%+ cocoa) contains flavonoids that may modestly raise HDL and improve arterial flexibility. The effect is small and the calorie and saturated fat content means it should be consumed in limited amounts.",
+      },
+      {
+        question: "How long does it take for diet to lower cholesterol?",
+        answer:
+          "Most studies show meaningful reductions in LDL within 4–8 weeks of consistent dietary changes. Maximum benefit from diet alone is typically seen at 3–6 months.",
+      },
+      {
+        question: "Can I lower cholesterol without medication?",
+        answer:
+          "Many people with mildly to moderately elevated cholesterol can reach healthy levels through diet, exercise, and weight management alone. Those with very high LDL or existing heart disease usually need medication in addition to lifestyle changes.",
+      },
+    ],
+    internalLinks: [
+      {
+        title: "Normal Cholesterol Levels Chart",
+        slug: "normal-cholesterol-levels",
+      },
+      {
+        title: "LDL vs HDL — What's the Difference?",
+        slug: "ldl-vs-hdl-cholesterol",
+      },
+      {
+        title: "How to Read Your Lipid Panel Report",
+        slug: "how-to-read-lipid-panel",
+      },
+      {
+        title: "Cholesterol and Heart Disease Link",
+        slug: "cholesterol-and-heart-disease",
+      },
+      {
+        title: "Early Signs of High Cholesterol",
+        slug: "early-signs-of-high-cholesterol",
+      },
+    ],
+    schemaMarkup: {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: "Best Foods to Lower Cholesterol Naturally",
+      description:
+        "Discover the top foods that lower LDL, raise HDL, and support a heart-healthy diet.",
+      image: "/blogs/cholesterol-foods-main.png",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/best-foods-to-lower-cholesterol",
+      },
+      FAQPage: {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "Which single food lowers cholesterol the most?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Oats consistently show the strongest LDL-lowering effect due to beta-glucan soluble fiber, but combining multiple heart-healthy foods produces far greater results.",
+            },
+          },
+        ],
+      },
+    },
+    peopleAlsoAsk: [
+      {
+        question: "Is rice bad for cholesterol?",
+        answer:
+          "White rice in large amounts raises triglycerides and may lower HDL over time due to its high glycemic index. Switching to brown rice adds fiber and has a more neutral effect on lipids.",
+      },
+      {
+        question: "Does coffee affect cholesterol?",
+        answer:
+          "Unfiltered coffee (French press, espresso, Turkish) contains cafestol and kahweol, compounds that raise LDL. Filtered coffee removes most of these, making it the safer choice for cholesterol management.",
+      },
+      {
+        question: "Is coconut oil good or bad for cholesterol?",
+        answer:
+          "Coconut oil is very high in saturated fat and raises LDL significantly. Despite its popularity, it is not recommended as a heart-healthy fat by major cardiovascular health organizations.",
+      },
+      {
+        question:
+          "What is the Mediterranean diet and does it help cholesterol?",
+        answer:
+          "The Mediterranean diet emphasizes olive oil, fish, legumes, vegetables, and whole grains — the same food groups most supported by cholesterol research. It is consistently associated with lower LDL and reduced cardiovascular events in long-term studies.",
+      },
+    ],
+  },
   {
     slug: "causes-of-high-blood-pressure",
     title: "Causes of High Blood Pressure",
@@ -1336,9 +2068,7 @@ export const blogs: Blog[] = [
           "Identifying the root cause is essential to choosing the right treatment approach.",
         ],
         images: ["/bp.jpg"],
-        references: [
-          "Hypertension etiology clinical review",
-        ],
+        references: ["Hypertension etiology clinical review"],
       },
       {
         heading: "Lifestyle Causes",
@@ -1349,9 +2079,7 @@ export const blogs: Blog[] = [
           "Excessive alcohol consumption raises blood pressure both acutely and chronically.",
         ],
         images: ["/blogs/bp-causes-lifestyle.png"],
-        references: [
-          "Modifiable risk factors for hypertension",
-        ],
+        references: ["Modifiable risk factors for hypertension"],
       },
       {
         heading: "Medical and Genetic Causes",
@@ -1362,9 +2090,7 @@ export const blogs: Blog[] = [
           "A family history of hypertension increases your genetic risk  making lifestyle awareness even more important.",
         ],
         images: ["/blogs/bp-causes-medical.png"],
-        references: [
-          "Secondary hypertension diagnosis and management",
-        ],
+        references: ["Secondary hypertension diagnosis and management"],
       },
       {
         heading: "Stress, Emotions, and Medications",
@@ -1375,9 +2101,7 @@ export const blogs: Blog[] = [
           "Anger and emotional suppression have been linked to sustained hypertension in multiple studies.",
         ],
         images: ["/blogs/bp-causes-stress.png"],
-        references: [
-          "Psychosocial factors and hypertension review",
-        ],
+        references: ["Psychosocial factors and hypertension review"],
       },
       {
         heading: "Prevention and Awareness",
@@ -1397,48 +2121,69 @@ export const blogs: Blog[] = [
     faq: [
       {
         question: "What is the most common cause of high blood pressure?",
-        answer: "Primary (essential) hypertension with no single identifiable cause  accounts for 9095% of cases. It develops gradually due to a combination of genetics, diet (high sodium), physical inactivity, obesity, and aging.",
+        answer:
+          "Primary (essential) hypertension with no single identifiable cause  accounts for 9095% of cases. It develops gradually due to a combination of genetics, diet (high sodium), physical inactivity, obesity, and aging.",
       },
       {
         question: "Can stress permanently raise blood pressure?",
-        answer: "Acute stress raises BP temporarily, but chronic stress can contribute to sustained hypertension through sustained sympathetic nervous system activation and unhealthy coping behaviors like smoking and overeating.",
+        answer:
+          "Acute stress raises BP temporarily, but chronic stress can contribute to sustained hypertension through sustained sympathetic nervous system activation and unhealthy coping behaviors like smoking and overeating.",
       },
       {
         question: "Which medications cause high blood pressure?",
-        answer: "NSAIDs (ibuprofen, naproxen), oral contraceptives, decongestants (pseudoephedrine), stimulants, certain antidepressants, and corticosteroids can raise blood pressure. Always inform your doctor of all medicines you take.",
+        answer:
+          "NSAIDs (ibuprofen, naproxen), oral contraceptives, decongestants (pseudoephedrine), stimulants, certain antidepressants, and corticosteroids can raise blood pressure. Always inform your doctor of all medicines you take.",
       },
       {
         question: "Does salt directly cause high blood pressure?",
-        answer: "In salt-sensitive individuals (about 50% of people with hypertension), high sodium intake directly raises blood pressure by increasing blood volume. Reducing sodium to under 1,5002,300 mg/day can lower BP significantly.",
+        answer:
+          "In salt-sensitive individuals (about 50% of people with hypertension), high sodium intake directly raises blood pressure by increasing blood volume. Reducing sodium to under 1,5002,300 mg/day can lower BP significantly.",
       },
       {
         question: "Can thyroid problems cause high blood pressure?",
-        answer: "Yes. Both hyperthyroidism (overactive thyroid) and hypothyroidism (underactive thyroid) can contribute to elevated blood pressure through different hormonal mechanisms.",
+        answer:
+          "Yes. Both hyperthyroidism (overactive thyroid) and hypothyroidism (underactive thyroid) can contribute to elevated blood pressure through different hormonal mechanisms.",
       },
     ],
     internalLinks: [
-      { title: "How to Reduce High BP Naturally", slug: "how-to-reduce-high-bp-naturally" },
+      {
+        title: "How to Reduce High BP Naturally",
+        slug: "how-to-reduce-high-bp-naturally",
+      },
       { title: "What is Normal BP Range by Age?", slug: "normal-bp-range" },
       { title: "Best Diet for BP Control", slug: "best-diet-for-bp-control" },
-      { title: "Low BP Symptoms and Treatment", slug: "low-bp-symptoms-and-treatment" },
-      { title: "How Stress Affects Heart Health", slug: "how-stress-affects-heart-health" },
+      {
+        title: "Low BP Symptoms and Treatment",
+        slug: "low-bp-symptoms-and-treatment",
+      },
+      {
+        title: "How Stress Affects Heart Health",
+        slug: "how-stress-affects-heart-health",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Causes of High Blood Pressure",
-      "description": "Understand the common and hidden causes of hypertension to better prevent and manage it.",
-      "image": "/bp.jpg",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/causes-of-high-blood-pressure" },
-      "FAQPage": {
+      headline: "Causes of High Blood Pressure",
+      description:
+        "Understand the common and hidden causes of hypertension to better prevent and manage it.",
+      image: "/bp.jpg",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/causes-of-high-blood-pressure",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "What is the most common cause of high blood pressure?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Primary (essential) hypertension accounts for 9095% of cases, caused by a combination of genetics, diet, physical inactivity, and aging." },
+            name: "What is the most common cause of high blood pressure?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Primary (essential) hypertension accounts for 9095% of cases, caused by a combination of genetics, diet, physical inactivity, and aging.",
+            },
           },
         ],
       },
@@ -1446,16 +2191,19 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "Can dehydration cause high blood pressure?",
-        answer: "Dehydration actually tends to lower blood pressure initially, but the body compensates by constricting blood vessels, which can raise BP. Chronic dehydration is also linked to kidney dysfunction, a secondary cause of hypertension.",
+        answer:
+          "Dehydration actually tends to lower blood pressure initially, but the body compensates by constricting blood vessels, which can raise BP. Chronic dehydration is also linked to kidney dysfunction, a secondary cause of hypertension.",
       },
       {
         question: "Is high blood pressure hereditary?",
-        answer: "Yes. Having a parent or sibling with hypertension significantly raises your risk. However, genetics alone do not determine your fate  lifestyle factors play an equally important role.",
+        answer:
+          "Yes. Having a parent or sibling with hypertension significantly raises your risk. However, genetics alone do not determine your fate  lifestyle factors play an equally important role.",
       },
       {
         question: "Can lack of sleep cause high blood pressure?",
-        answer: "Yes. People who consistently sleep less than 6 hours per night have a 2032% higher risk of developing hypertension. Sleep deprivation activates the sympathetic nervous system, elevating heart rate and blood pressure.",
-      }
+        answer:
+          "Yes. People who consistently sleep less than 6 hours per night have a 2032% higher risk of developing hypertension. Sleep deprivation activates the sympathetic nervous system, elevating heart rate and blood pressure.",
+      },
     ],
   },
 
@@ -1489,9 +2237,7 @@ export const blogs: Blog[] = [
           "Triglycerides: Blood fats from food and liver. Normal: <150 mg/dL. High: >200 mg/dL.",
         ],
         images: ["/blogs/lipid-values.png"],
-        references: [
-          "Lipid panel reference values  ACC/AHA 2019 guidelines",
-        ],
+        references: ["Lipid panel reference values  ACC/AHA 2019 guidelines"],
       },
       {
         heading: "The LDL/HDL Ratio",
@@ -1502,9 +2248,7 @@ export const blogs: Blog[] = [
           "A high LDL combined with low HDL is the most dangerous lipid pattern for cardiovascular risk.",
         ],
         images: ["/blogs/lipid-ratio.png"],
-        references: [
-          "Cholesterol ratios as cardiovascular risk predictors",
-        ],
+        references: ["Cholesterol ratios as cardiovascular risk predictors"],
       },
       {
         heading: "What Your Lipid Profile Can and Cannot Tell You",
@@ -1515,9 +2259,7 @@ export const blogs: Blog[] = [
           "Context, trends over time, and overall risk factor burden are all essential for accurate interpretation.",
         ],
         images: ["/blogs/lipid-limits.png"],
-        references: [
-          "Advanced lipid testing in risk stratification",
-        ],
+        references: ["Advanced lipid testing in risk stratification"],
       },
       {
         heading: "Taking Action on Your Results",
@@ -1537,48 +2279,75 @@ export const blogs: Blog[] = [
     faq: [
       {
         question: "What does a lipid profile test include?",
-        answer: "A standard lipid profile includes total cholesterol, LDL (bad cholesterol), HDL (good cholesterol), and triglycerides. Some extended panels also include VLDL and non-HDL cholesterol.",
+        answer:
+          "A standard lipid profile includes total cholesterol, LDL (bad cholesterol), HDL (good cholesterol), and triglycerides. Some extended panels also include VLDL and non-HDL cholesterol.",
       },
       {
         question: "Do I need to fast before a lipid profile test?",
-        answer: "Yes. A 912 hour fast is typically required before a lipid profile to ensure accurate triglyceride measurements. Water is allowed. Some newer non-fasting lipid panels are also used but fasting is standard.",
+        answer:
+          "Yes. A 912 hour fast is typically required before a lipid profile to ensure accurate triglyceride measurements. Water is allowed. Some newer non-fasting lipid panels are also used but fasting is standard.",
       },
       {
         question: "What is a normal lipid profile for adults?",
-        answer: "Normal values: Total cholesterol <200 mg/dL, LDL <100 mg/dL, HDL >60 mg/dL, Triglycerides <150 mg/dL. Values outside these ranges may indicate elevated cardiovascular risk.",
+        answer:
+          "Normal values: Total cholesterol <200 mg/dL, LDL <100 mg/dL, HDL >60 mg/dL, Triglycerides <150 mg/dL. Values outside these ranges may indicate elevated cardiovascular risk.",
       },
       {
         question: "How often should I get a lipid profile done?",
-        answer: "Every 46 years for healthy adults over 20. Annually if you have risk factors such as high BP, diabetes, family history of heart disease, or if you are on cholesterol-lowering medication.",
+        answer:
+          "Every 46 years for healthy adults over 20. Annually if you have risk factors such as high BP, diabetes, family history of heart disease, or if you are on cholesterol-lowering medication.",
       },
       {
         question: "Can a lipid profile detect heart disease?",
-        answer: "A lipid profile assesses cardiovascular risk but does not directly detect artery blockages. It is a screening tool  abnormal results indicate the need for further evaluation like stress tests or coronary CT.",
+        answer:
+          "A lipid profile assesses cardiovascular risk but does not directly detect artery blockages. It is a screening tool  abnormal results indicate the need for further evaluation like stress tests or coronary CT.",
       },
     ],
     internalLinks: [
-      { title: "LDL vs HDL  Good vs Bad Cholesterol Explained", slug: "ldl-vs-hdl" },
-      { title: "What is Normal Cholesterol Level?", slug: "what-is-normal-cholesterol-level" },
-      { title: "What is Triglycerides and Why It Matters", slug: "what-is-triglycerides-and-why-it-matters" },
-      { title: "How to Read Your Blood Test Report", slug: "how-to-read-blood-test-report" },
-      { title: "What is a Good Heart View Score?", slug: "what-is-a-good-heart-risk-score" },
+      {
+        title: "LDL vs HDL  Good vs Bad Cholesterol Explained",
+        slug: "ldl-vs-hdl",
+      },
+      {
+        title: "What is Normal Cholesterol Level?",
+        slug: "what-is-normal-cholesterol-level",
+      },
+      {
+        title: "What is Triglycerides and Why It Matters",
+        slug: "what-is-triglycerides-and-why-it-matters",
+      },
+      {
+        title: "How to Read Your Blood Test Report",
+        slug: "how-to-read-blood-test-report",
+      },
+      {
+        title: "What is a Good Heart View Score?",
+        slug: "what-is-a-good-heart-risk-score",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "How to Understand Your Lipid Profile",
-      "description": "A complete guide to reading and interpreting your lipid profile test results.",
-      "image": "/Lipid.jpg",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/how-to-understand-lipid-profile" },
-      "FAQPage": {
+      headline: "How to Understand Your Lipid Profile",
+      description:
+        "A complete guide to reading and interpreting your lipid profile test results.",
+      image: "/Lipid.jpg",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/how-to-understand-lipid-profile",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "What does a lipid profile test include?",
-            "acceptedAnswer": { "@type": "Answer", "text": "A standard lipid profile includes total cholesterol, LDL, HDL, and triglycerides." },
+            name: "What does a lipid profile test include?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "A standard lipid profile includes total cholesterol, LDL, HDL, and triglycerides.",
+            },
           },
         ],
       },
@@ -1586,19 +2355,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "What is a non-fasting lipid profile?",
-        answer: "A non-fasting lipid profile can be done without fasting and measures total cholesterol, HDL, and LDL (calculated). It is less accurate for triglycerides but convenient for screening.",
+        answer:
+          "A non-fasting lipid profile can be done without fasting and measures total cholesterol, HDL, and LDL (calculated). It is less accurate for triglycerides but convenient for screening.",
       },
       {
         question: "Is LDL of 130 bad?",
-        answer: "LDL of 130 mg/dL is classified as borderline high. For most adults, the goal is below 100 mg/dL. If you have heart disease, the target is below 70 mg/dL. Dietary changes are recommended at 130.",
+        answer:
+          "LDL of 130 mg/dL is classified as borderline high. For most adults, the goal is below 100 mg/dL. If you have heart disease, the target is below 70 mg/dL. Dietary changes are recommended at 130.",
       },
       {
         question: "What is VLDL cholesterol?",
-        answer: "VLDL (Very Low-Density Lipoprotein) mainly carries triglycerides. Elevated VLDL (above 30 mg/dL) contributes to plaque formation and is associated with metabolic syndrome.",
+        answer:
+          "VLDL (Very Low-Density Lipoprotein) mainly carries triglycerides. Elevated VLDL (above 30 mg/dL) contributes to plaque formation and is associated with metabolic syndrome.",
       },
       {
         question: "Can exercise change lipid profile results?",
-        answer: "Yes. Aerobic exercise raises HDL and can modestly lower LDL. Triglycerides are the lipid most rapidly lowered by exercise. You should avoid strenuous exercise 24 hours before a lipid test for accurate results.",
+        answer:
+          "Yes. Aerobic exercise raises HDL and can modestly lower LDL. Triglycerides are the lipid most rapidly lowered by exercise. You should avoid strenuous exercise 24 hours before a lipid test for accurate results.",
       },
     ],
   },
@@ -1632,9 +2405,7 @@ export const blogs: Blog[] = [
           "Cold, clammy, or pale skin may accompany episodes of significant blood pressure drop.",
         ],
         images: ["/blogs/low-bp-symptoms.png"],
-        references: [
-          "Hypotension symptom profile studies",
-        ],
+        references: ["Hypotension symptom profile studies"],
       },
       {
         heading: "Causes of Low Blood Pressure",
@@ -1645,9 +2416,7 @@ export const blogs: Blog[] = [
           "Medications including diuretics, antidepressants, and anti-anxiety drugs can lower BP as a side effect.",
         ],
         images: ["/blogs/low-bp-causes.png"],
-        references: [
-          "Secondary hypotension causes overview",
-        ],
+        references: ["Secondary hypotension causes overview"],
       },
       {
         heading: "Treatment for Low Blood Pressure",
@@ -1658,9 +2427,7 @@ export const blogs: Blog[] = [
           "Rise slowly from sitting or lying positions to allow your body time to adjust blood pressure.",
         ],
         images: ["/blogs/low-bp-treatment.png"],
-        references: [
-          "Non-pharmacologic hypotension management",
-        ],
+        references: ["Non-pharmacologic hypotension management"],
       },
       {
         heading: "When to See a Doctor",
@@ -1670,53 +2437,73 @@ export const blogs: Blog[] = [
           "Tracking your BP readings over time with HeartView can provide valuable data for your doctor's assessment.",
         ],
         images: ["/blogs/low-bp-doctor.png"],
-        references: [
-          "Hypotension diagnostic protocols",
-          "HeartView BP log",
-        ],
+        references: ["Hypotension diagnostic protocols", "HeartView BP log"],
       },
     ],
     faq: [
       {
         question: "What is considered low blood pressure?",
-        answer: "Blood pressure below 90/60 mmHg is generally considered low (hypotension). However, for some individuals  especially fit, young people  this may be normal without causing any symptoms.",
+        answer:
+          "Blood pressure below 90/60 mmHg is generally considered low (hypotension). However, for some individuals  especially fit, young people  this may be normal without causing any symptoms.",
       },
       {
         question: "What are the symptoms of low blood pressure?",
-        answer: "Common symptoms include dizziness or lightheadedness (especially when standing), fainting, blurred vision, fatigue, nausea, and cold or clammy skin.",
+        answer:
+          "Common symptoms include dizziness or lightheadedness (especially when standing), fainting, blurred vision, fatigue, nausea, and cold or clammy skin.",
       },
       {
         question: "How can I raise low blood pressure quickly?",
-        answer: "Drinking water, eating a small salty snack, lying down with legs elevated, and drinking a caffeinated beverage (occasionally) can help raise BP quickly. Medical treatment may be needed for chronic hypotension.",
+        answer:
+          "Drinking water, eating a small salty snack, lying down with legs elevated, and drinking a caffeinated beverage (occasionally) can help raise BP quickly. Medical treatment may be needed for chronic hypotension.",
       },
       {
         question: "Can low blood pressure be caused by medication?",
-        answer: "Yes. Diuretics, beta-blockers, antidepressants (especially tricyclics), anti-anxiety drugs, and certain heart medications can lower BP as a side effect. Always discuss this with your doctor.",
+        answer:
+          "Yes. Diuretics, beta-blockers, antidepressants (especially tricyclics), anti-anxiety drugs, and certain heart medications can lower BP as a side effect. Always discuss this with your doctor.",
       },
     ],
     internalLinks: [
       { title: "What is Normal BP Range by Age?", slug: "normal-bp-range" },
-      { title: "Causes of High Blood Pressure", slug: "causes-of-high-blood-pressure" },
-      { title: "How to Reduce High BP Naturally", slug: "how-to-reduce-high-bp-naturally" },
-      { title: "How Sleep Affects Your Heart", slug: "how-sleep-affects-your-heart" },
-      { title: "Best Daily Habits for Heart Health", slug: "daily-habits-heart-health" },
+      {
+        title: "Causes of High Blood Pressure",
+        slug: "causes-of-high-blood-pressure",
+      },
+      {
+        title: "How to Reduce High BP Naturally",
+        slug: "how-to-reduce-high-bp-naturally",
+      },
+      {
+        title: "How Sleep Affects Your Heart",
+        slug: "how-sleep-affects-your-heart",
+      },
+      {
+        title: "Best Daily Habits for Heart Health",
+        slug: "daily-habits-heart-health",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Low BP Symptoms and Treatment",
-      "description": "Learn about hypotension  its causes, symptoms, and how to treat it effectively.",
-      "image": "/Low-bp1.png",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/low-bp-symptoms-and-treatment" },
-      "FAQPage": {
+      headline: "Low BP Symptoms and Treatment",
+      description:
+        "Learn about hypotension  its causes, symptoms, and how to treat it effectively.",
+      image: "/Low-bp1.png",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/low-bp-symptoms-and-treatment",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "What is considered low blood pressure?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Blood pressure below 90/60 mmHg is generally considered low (hypotension)." },
+            name: "What is considered low blood pressure?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Blood pressure below 90/60 mmHg is generally considered low (hypotension).",
+            },
           },
         ],
       },
@@ -1724,19 +2511,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "What foods increase blood pressure quickly?",
-        answer: "Salty foods (olives, cheese, pickles), caffeinated drinks, and foods rich in B12 and folate can help raise low blood pressure. These should only be used as short-term measures under medical guidance.",
+        answer:
+          "Salty foods (olives, cheese, pickles), caffeinated drinks, and foods rich in B12 and folate can help raise low blood pressure. These should only be used as short-term measures under medical guidance.",
       },
       {
         question: "Can low blood pressure cause a heart attack?",
-        answer: "Severe hypotension can reduce blood flow to the heart muscle, potentially causing ischemia. A sudden BP drop can also trigger fainting and falls, causing injury.",
+        answer:
+          "Severe hypotension can reduce blood flow to the heart muscle, potentially causing ischemia. A sudden BP drop can also trigger fainting and falls, causing injury.",
       },
       {
         question: "Why does blood pressure drop when standing?",
-        answer: "This is called orthostatic (postural) hypotension  blood pools in the legs when standing. The body normally compensates quickly, but in some people this compensation is slow, causing dizziness.",
+        answer:
+          "This is called orthostatic (postural) hypotension  blood pools in the legs when standing. The body normally compensates quickly, but in some people this compensation is slow, causing dizziness.",
       },
       {
         question: "Is low BP more dangerous than high BP?",
-        answer: "Both are serious. High BP is a more common chronic risk, but severe acute low BP (shock) is immediately life-threatening. Mild chronic low BP, if asymptomatic, is often less concerning than hypertension.",
+        answer:
+          "Both are serious. High BP is a more common chronic risk, but severe acute low BP (shock) is immediately life-threatening. Mild chronic low BP, if asymptomatic, is often less concerning than hypertension.",
       },
     ],
   },
@@ -1757,9 +2548,7 @@ export const blogs: Blog[] = [
           "Combining a heart-healthy diet with other lifestyle changes gives the best long-term results.",
         ],
         images: ["/diet.jpg"],
-        references: [
-          "Diet and blood pressure landmark studies",
-        ],
+        references: ["Diet and blood pressure landmark studies"],
       },
       {
         heading: "The DASH Diet  Gold Standard for BP",
@@ -1770,10 +2559,7 @@ export const blogs: Blog[] = [
           "Clinical trials show the DASH diet can reduce systolic BP by up to 14 mmHg in hypertensive individuals.",
         ],
         images: ["/blogs/bp-diet-dash.png"],
-        references: [
-          "NEJM DASH diet original trial",
-          "NIH DASH eating plan",
-        ],
+        references: ["NEJM DASH diet original trial", "NIH DASH eating plan"],
       },
       {
         heading: "Best Foods to Lower BP",
@@ -1784,9 +2570,7 @@ export const blogs: Blog[] = [
           "Oats contain beta-glucan fiber that has a direct anti-hypertensive effect.",
         ],
         images: ["/blogs/bp-diet-foods.png"],
-        references: [
-          "Hypertension-fighting food studies",
-        ],
+        references: ["Hypertension-fighting food studies"],
       },
       {
         heading: "Foods to Avoid for BP Control",
@@ -1797,9 +2581,7 @@ export const blogs: Blog[] = [
           "Sugary drinks and excessive caffeine can also spike blood pressure acutely.",
         ],
         images: ["/blogs/bp-diet-avoid.png"],
-        references: [
-          "Sodium and hypertension guidelines",
-        ],
+        references: ["Sodium and hypertension guidelines"],
       },
       {
         heading: "Practical Daily Diet Tips",
@@ -1819,48 +2601,72 @@ export const blogs: Blog[] = [
     faq: [
       {
         question: "What is the best diet to lower blood pressure?",
-        answer: "The DASH (Dietary Approaches to Stop Hypertension) diet is the most clinically proven diet for lowering blood pressure. It emphasizes fruits, vegetables, whole grains, low-fat dairy, and limits sodium and saturated fat.",
+        answer:
+          "The DASH (Dietary Approaches to Stop Hypertension) diet is the most clinically proven diet for lowering blood pressure. It emphasizes fruits, vegetables, whole grains, low-fat dairy, and limits sodium and saturated fat.",
       },
       {
         question: "Which foods lower blood pressure immediately?",
-        answer: "Beet juice, hibiscus tea, potassium-rich foods (banana, spinach), dark chocolate, and oats have evidence for lowering BP relatively quickly. Reducing sodium intake also shows rapid results.",
+        answer:
+          "Beet juice, hibiscus tea, potassium-rich foods (banana, spinach), dark chocolate, and oats have evidence for lowering BP relatively quickly. Reducing sodium intake also shows rapid results.",
       },
       {
         question: "How much sodium should I eat to control BP?",
-        answer: "AHA recommends no more than 2,300 mg/day for most adults, and ideally 1,500 mg/day for those with hypertension. This equals roughly one teaspoon of table salt.",
+        answer:
+          "AHA recommends no more than 2,300 mg/day for most adults, and ideally 1,500 mg/day for those with hypertension. This equals roughly one teaspoon of table salt.",
       },
       {
         question: "Is the Mediterranean diet good for blood pressure?",
-        answer: "Yes. The Mediterranean diet  rich in olive oil, fish, vegetables, legumes, and whole grains  has been shown to lower blood pressure and reduce cardiovascular risk, similar in effect to the DASH diet.",
+        answer:
+          "Yes. The Mediterranean diet  rich in olive oil, fish, vegetables, legumes, and whole grains  has been shown to lower blood pressure and reduce cardiovascular risk, similar in effect to the DASH diet.",
       },
       {
         question: "Can drinking more water lower blood pressure?",
-        answer: "Adequate hydration supports healthy blood volume and kidney function. Dehydration can actually trigger compensatory vasoconstriction that raises BP. Staying well hydrated is part of a BP-healthy lifestyle.",
+        answer:
+          "Adequate hydration supports healthy blood volume and kidney function. Dehydration can actually trigger compensatory vasoconstriction that raises BP. Staying well hydrated is part of a BP-healthy lifestyle.",
       },
     ],
     internalLinks: [
-      { title: "How to Reduce High BP Naturally", slug: "how-to-reduce-high-bp-naturally" },
-      { title: "Causes of High Blood Pressure", slug: "causes-of-high-blood-pressure" },
+      {
+        title: "How to Reduce High BP Naturally",
+        slug: "how-to-reduce-high-bp-naturally",
+      },
+      {
+        title: "Causes of High Blood Pressure",
+        slug: "causes-of-high-blood-pressure",
+      },
       { title: "What is Normal BP Range by Age?", slug: "normal-bp-range" },
-      { title: "How to Prevent Heart Disease Naturally", slug: "how-to-prevent-heart-disease-naturally" },
-      { title: "LDL vs HDL  Good vs Bad Cholesterol Explained", slug: "ldl-vs-hdl" },
+      {
+        title: "How to Prevent Heart Disease Naturally",
+        slug: "how-to-prevent-heart-disease-naturally",
+      },
+      {
+        title: "LDL vs HDL  Good vs Bad Cholesterol Explained",
+        slug: "ldl-vs-hdl",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Best Diet for BP Control",
-      "description": "Discover the most effective dietary strategies to manage and control blood pressure naturally.",
-      "image": "/diet.jpg",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/best-diet-for-bp-control" },
-      "FAQPage": {
+      headline: "Best Diet for BP Control",
+      description:
+        "Discover the most effective dietary strategies to manage and control blood pressure naturally.",
+      image: "/diet.jpg",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/best-diet-for-bp-control",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "What is the best diet to lower blood pressure?",
-            "acceptedAnswer": { "@type": "Answer", "text": "The DASH diet is the most clinically proven diet for lowering blood pressure, emphasizing fruits, vegetables, whole grains, low-fat dairy, and limiting sodium." },
+            name: "What is the best diet to lower blood pressure?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "The DASH diet is the most clinically proven diet for lowering blood pressure, emphasizing fruits, vegetables, whole grains, low-fat dairy, and limiting sodium.",
+            },
           },
         ],
       },
@@ -1868,19 +2674,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "Can a plant-based diet cure hypertension?",
-        answer: "A whole-food plant-based diet can significantly lower blood pressure and in some cases reduce the need for medication. It is not a guaranteed cure but is one of the most powerful dietary interventions for hypertension.",
+        answer:
+          "A whole-food plant-based diet can significantly lower blood pressure and in some cases reduce the need for medication. It is not a guaranteed cure but is one of the most powerful dietary interventions for hypertension.",
       },
       {
         question: "Is banana good for high blood pressure?",
-        answer: "Yes. Bananas are rich in potassium, which helps the kidneys excrete excess sodium and relax blood vessel walls, both of which lower blood pressure.",
+        answer:
+          "Yes. Bananas are rich in potassium, which helps the kidneys excrete excess sodium and relax blood vessel walls, both of which lower blood pressure.",
       },
       {
         question: "Is coffee bad for blood pressure?",
-        answer: "Caffeine can cause a temporary BP spike. For regular coffee drinkers, the effect is smaller. Those with hypertension should limit caffeine to 12 cups per day and monitor their BP response.",
+        answer:
+          "Caffeine can cause a temporary BP spike. For regular coffee drinkers, the effect is smaller. Those with hypertension should limit caffeine to 12 cups per day and monitor their BP response.",
       },
       {
         question: "What is the best drink for high blood pressure?",
-        answer: "Hibiscus tea, beet juice, low-fat milk, and plain water are among the best drinks for managing high blood pressure. Avoid alcohol, sugary drinks, and energy drinks.",
+        answer:
+          "Hibiscus tea, beet juice, low-fat milk, and plain water are among the best drinks for managing high blood pressure. Avoid alcohol, sugary drinks, and energy drinks.",
       },
     ],
   },
@@ -1901,9 +2711,7 @@ export const blogs: Blog[] = [
           "Knowing the early signs can prompt you to get tested before serious complications develop.",
         ],
         images: ["/bloodSugar3.jpg"],
-        references: [
-          "IDF Diabetes Atlas early detection data",
-        ],
+        references: ["IDF Diabetes Atlas early detection data"],
       },
       {
         heading: "Classic Early Warning Signs",
@@ -1914,9 +2722,7 @@ export const blogs: Blog[] = [
           "Increased hunger (polyphagia)  cells starved of glucose send constant hunger signals to the brain.",
         ],
         images: ["/blogs/diabetes-early-signs.png"],
-        references: [
-          "Classic diabetes symptom triad  clinical review",
-        ],
+        references: ["Classic diabetes symptom triad  clinical review"],
       },
       {
         heading: "Subtle Symptoms Often Overlooked",
@@ -1927,9 +2733,7 @@ export const blogs: Blog[] = [
           "Dark, velvety skin patches in body folds (acanthosis nigricans) indicate insulin resistance.",
         ],
         images: ["/blogs/diabetes-subtle.png"],
-        references: [
-          "Early diabetic neuropathy and skin signs",
-        ],
+        references: ["Early diabetic neuropathy and skin signs"],
       },
       {
         heading: "Who is at Risk?",
@@ -1940,9 +2744,7 @@ export const blogs: Blog[] = [
           "Physically inactive people and those over 45 are also in higher-risk categories.",
         ],
         images: ["/blogs/diabetes-risk.png"],
-        references: [
-          "Type 2 diabetes risk stratification",
-        ],
+        references: ["Type 2 diabetes risk stratification"],
       },
       {
         heading: "What to Do If You Notice These Signs",
@@ -1962,48 +2764,75 @@ export const blogs: Blog[] = [
     faq: [
       {
         question: "What are the first signs of diabetes in adults?",
-        answer: "The classic early signs are frequent urination, excessive thirst, unexplained weight loss, and increased hunger. More subtle signs include fatigue, blurred vision, slow-healing wounds, and tingling in hands or feet.",
+        answer:
+          "The classic early signs are frequent urination, excessive thirst, unexplained weight loss, and increased hunger. More subtle signs include fatigue, blurred vision, slow-healing wounds, and tingling in hands or feet.",
       },
       {
         question: "Can you have diabetes without symptoms?",
-        answer: "Yes. Type 2 diabetes often develops silently over years without noticeable symptoms. Many people are diagnosed only when complications appear or during routine blood testing.",
+        answer:
+          "Yes. Type 2 diabetes often develops silently over years without noticeable symptoms. Many people are diagnosed only when complications appear or during routine blood testing.",
       },
       {
         question: "How is early diabetes diagnosed?",
-        answer: "Through a fasting blood glucose test (126 mg/dL or higher), HbA1c (6.5% or higher), or an oral glucose tolerance test (200 mg/dL or higher at 2 hours), confirmed on two separate occasions.",
+        answer:
+          "Through a fasting blood glucose test (126 mg/dL or higher), HbA1c (6.5% or higher), or an oral glucose tolerance test (200 mg/dL or higher at 2 hours), confirmed on two separate occasions.",
       },
       {
         question: "Can prediabetes be reversed?",
-        answer: "Yes. Prediabetes can often be reversed with a 510% reduction in body weight, 150 minutes of exercise per week, and dietary changes. The Diabetes Prevention Program showed a 58% reduction in Type 2 diabetes progression.",
+        answer:
+          "Yes. Prediabetes can often be reversed with a 510% reduction in body weight, 150 minutes of exercise per week, and dietary changes. The Diabetes Prevention Program showed a 58% reduction in Type 2 diabetes progression.",
       },
       {
         question: "What does diabetic tingling feel like?",
-        answer: "Diabetic neuropathy typically causes a burning, tingling, or numbness that starts in the toes and feet, and gradually moves upward. It is often worse at night and may also affect the hands.",
+        answer:
+          "Diabetic neuropathy typically causes a burning, tingling, or numbness that starts in the toes and feet, and gradually moves upward. It is often worse at night and may also affect the hands.",
       },
     ],
     internalLinks: [
-      { title: "Normal Blood Sugar Levels Chart", slug: "normal-blood-sugar-levels" },
-      { title: "HbA1c vs Blood Sugar  What's the Difference?", slug: "hba1c-vs-blood-sugar" },
-      { title: "How to Control Sugar Naturally", slug: "how-to-control-sugar-naturally" },
-      { title: "Best Foods for Diabetes Patients", slug: "best-foods-for-diabetes" },
-      { title: "How to Read Your Blood Test Report", slug: "how-to-read-blood-test-report" },
+      {
+        title: "Normal Blood Sugar Levels Chart",
+        slug: "normal-blood-sugar-levels",
+      },
+      {
+        title: "HbA1c vs Blood Sugar  What's the Difference?",
+        slug: "hba1c-vs-blood-sugar",
+      },
+      {
+        title: "How to Control Sugar Naturally",
+        slug: "how-to-control-sugar-naturally",
+      },
+      {
+        title: "Best Foods for Diabetes Patients",
+        slug: "best-foods-for-diabetes",
+      },
+      {
+        title: "How to Read Your Blood Test Report",
+        slug: "how-to-read-blood-test-report",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Early Symptoms of Diabetes",
-      "description": "Recognize the early warning signs of diabetes to seek timely diagnosis and treatment.",
-      "image": "/bloodSugar3.jpg",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/early-symptoms-of-diabetes" },
-      "FAQPage": {
+      headline: "Early Symptoms of Diabetes",
+      description:
+        "Recognize the early warning signs of diabetes to seek timely diagnosis and treatment.",
+      image: "/bloodSugar3.jpg",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/early-symptoms-of-diabetes",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "What are the first signs of diabetes in adults?",
-            "acceptedAnswer": { "@type": "Answer", "text": "The classic early signs are frequent urination, excessive thirst, unexplained weight loss, and increased hunger." },
+            name: "What are the first signs of diabetes in adults?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "The classic early signs are frequent urination, excessive thirst, unexplained weight loss, and increased hunger.",
+            },
           },
         ],
       },
@@ -2011,19 +2840,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "What does undiagnosed diabetes feel like?",
-        answer: "People with undiagnosed diabetes often feel persistently tired, thirsty, and may notice more frequent urination. They may also have blurry vision, unexplained weight changes, and wounds that heal slowly.",
+        answer:
+          "People with undiagnosed diabetes often feel persistently tired, thirsty, and may notice more frequent urination. They may also have blurry vision, unexplained weight changes, and wounds that heal slowly.",
       },
       {
         question: "Can you feel if your blood sugar is high?",
-        answer: "Some people feel symptoms like fatigue, headache, blurred vision, or irritability when blood sugar is elevated. However, many experience no symptoms at all, especially in the early stages of diabetes.",
+        answer:
+          "Some people feel symptoms like fatigue, headache, blurred vision, or irritability when blood sugar is elevated. However, many experience no symptoms at all, especially in the early stages of diabetes.",
       },
       {
         question: "Does diabetes cause skin problems?",
-        answer: "Yes. Dark velvety patches (acanthosis nigricans) in body folds indicate insulin resistance. Diabetes also increases susceptibility to skin infections, slow wound healing, and itching.",
+        answer:
+          "Yes. Dark velvety patches (acanthosis nigricans) in body folds indicate insulin resistance. Diabetes also increases susceptibility to skin infections, slow wound healing, and itching.",
       },
       {
         question: "How long can you have diabetes without knowing?",
-        answer: "Type 2 diabetes can go undetected for 510 years. During this time, silent damage occurs to blood vessels, kidneys, nerves, and eyes  making early screening essential.",
+        answer:
+          "Type 2 diabetes can go undetected for 510 years. During this time, silent damage occurs to blood vessels, kidneys, nerves, and eyes  making early screening essential.",
       },
     ],
   },
@@ -2058,9 +2891,7 @@ export const blogs: Blog[] = [
           "Stress increases platelet aggregation (blood clotting), raising the risk of stroke and heart attack.",
         ],
         images: ["/blogs/stress-biology.png"],
-        references: [
-          "Cortisol and cardiovascular pathophysiology",
-        ],
+        references: ["Cortisol and cardiovascular pathophysiology"],
       },
       {
         heading: "Behavioral Effects of Stress on the Heart",
@@ -2071,9 +2902,7 @@ export const blogs: Blog[] = [
           "Social isolation  a byproduct of chronic stress  is itself an independent risk factor for heart disease.",
         ],
         images: ["/blogs/stress-behavior.png"],
-        references: [
-          "Psychosocial behaviors and cardiac outcomes",
-        ],
+        references: ["Psychosocial behaviors and cardiac outcomes"],
       },
       {
         heading: "Signs Your Stress Levels Are Too High",
@@ -2084,9 +2913,7 @@ export const blogs: Blog[] = [
           "A declining heart rate variability (HRV)  measurable with some smartwatches  is an early biomarker of chronic stress.",
         ],
         images: ["/blogs/stress-signs.png"],
-        references: [
-          "Stress biomarkers in cardiovascular monitoring",
-        ],
+        references: ["Stress biomarkers in cardiovascular monitoring"],
       },
       {
         heading: "Managing Stress for a Healthier Heart",
@@ -2106,48 +2933,75 @@ export const blogs: Blog[] = [
     faq: [
       {
         question: "Can stress alone cause heart disease?",
-        answer: "Yes. Chronic psychological stress is an independent risk factor for cardiovascular disease. It raises blood pressure, promotes inflammation, and encourages unhealthy behaviors  all of which contribute to heart disease.",
+        answer:
+          "Yes. Chronic psychological stress is an independent risk factor for cardiovascular disease. It raises blood pressure, promotes inflammation, and encourages unhealthy behaviors  all of which contribute to heart disease.",
       },
       {
         question: "What is the connection between stress and blood pressure?",
-        answer: "Stress activates the sympathetic nervous system, triggering release of adrenaline and cortisol. These hormones increase heart rate and constrict blood vessels, raising blood pressure. Chronic stress keeps BP persistently elevated.",
+        answer:
+          "Stress activates the sympathetic nervous system, triggering release of adrenaline and cortisol. These hormones increase heart rate and constrict blood vessels, raising blood pressure. Chronic stress keeps BP persistently elevated.",
       },
       {
         question: "What is Takotsubo cardiomyopathy?",
-        answer: "Also called 'broken heart syndrome,' Takotsubo is a temporary weakening of the heart muscle triggered by intense emotional or physical stress. It mimics a heart attack but usually resolves within weeks.",
+        answer:
+          "Also called 'broken heart syndrome,' Takotsubo is a temporary weakening of the heart muscle triggered by intense emotional or physical stress. It mimics a heart attack but usually resolves within weeks.",
       },
       {
         question: "What is HRV and how does it relate to stress?",
-        answer: "Heart Rate Variability (HRV) measures the variation in time between heartbeats. High HRV indicates good cardiovascular health and resilience to stress. Low HRV is a biomarker of chronic stress and increased heart disease risk.",
+        answer:
+          "Heart Rate Variability (HRV) measures the variation in time between heartbeats. High HRV indicates good cardiovascular health and resilience to stress. Low HRV is a biomarker of chronic stress and increased heart disease risk.",
       },
       {
         question: "What are the best ways to reduce stress for heart health?",
-        answer: "Regular aerobic exercise, mindfulness meditation, yoga, deep breathing, social connection, therapy, and ensuring adequate sleep are the most evidence-backed strategies for reducing stress and protecting the heart.",
+        answer:
+          "Regular aerobic exercise, mindfulness meditation, yoga, deep breathing, social connection, therapy, and ensuring adequate sleep are the most evidence-backed strategies for reducing stress and protecting the heart.",
       },
     ],
     internalLinks: [
-      { title: "How to Prevent Heart Disease Naturally", slug: "how-to-prevent-heart-disease-naturally" },
-      { title: "How Sleep Affects Your Heart", slug: "how-sleep-affects-your-heart" },
-      { title: "Top 10 Heart Health Tips for Daily Life", slug: "top-10-heart-health-tips" },
-      { title: "Causes of High Blood Pressure", slug: "causes-of-high-blood-pressure" },
-      { title: "Best Daily Habits for Heart Health", slug: "daily-habits-heart-health" },
+      {
+        title: "How to Prevent Heart Disease Naturally",
+        slug: "how-to-prevent-heart-disease-naturally",
+      },
+      {
+        title: "How Sleep Affects Your Heart",
+        slug: "how-sleep-affects-your-heart",
+      },
+      {
+        title: "Top 10 Heart Health Tips for Daily Life",
+        slug: "top-10-heart-health-tips",
+      },
+      {
+        title: "Causes of High Blood Pressure",
+        slug: "causes-of-high-blood-pressure",
+      },
+      {
+        title: "Best Daily Habits for Heart Health",
+        slug: "daily-habits-heart-health",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "How Stress Affects Heart Health",
-      "description": "Understand the deep connection between chronic stress and cardiovascular disease  and how to break the cycle.",
-      "image": "/stress1.png",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/how-stress-affects-heart-health" },
-      "FAQPage": {
+      headline: "How Stress Affects Heart Health",
+      description:
+        "Understand the deep connection between chronic stress and cardiovascular disease  and how to break the cycle.",
+      image: "/stress1.png",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/how-stress-affects-heart-health",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "Can stress alone cause heart disease?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Chronic psychological stress is an independent risk factor for cardiovascular disease, raising BP, promoting inflammation, and encouraging unhealthy behaviors." },
+            name: "Can stress alone cause heart disease?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes. Chronic psychological stress is an independent risk factor for cardiovascular disease, raising BP, promoting inflammation, and encouraging unhealthy behaviors.",
+            },
           },
         ],
       },
@@ -2155,19 +3009,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "Can stress cause chest pain without heart problems?",
-        answer: "Yes. Stress and anxiety can cause chest tightness, palpitations, and pain through muscle tension and hyperventilation  without any underlying cardiac condition. This is called non-cardiac chest pain.",
+        answer:
+          "Yes. Stress and anxiety can cause chest tightness, palpitations, and pain through muscle tension and hyperventilation  without any underlying cardiac condition. This is called non-cardiac chest pain.",
       },
       {
         question: "How does meditation help the heart?",
-        answer: "Meditation activates the parasympathetic nervous system, lowering heart rate and blood pressure, reducing cortisol, and improving heart rate variability  all markers of better cardiovascular health.",
+        answer:
+          "Meditation activates the parasympathetic nervous system, lowering heart rate and blood pressure, reducing cortisol, and improving heart rate variability  all markers of better cardiovascular health.",
       },
       {
         question: "Does work stress increase heart attack risk?",
-        answer: "Yes. High job strain (high demands, low control) is associated with a 23% increased risk of heart attack. Long working hours (55+ per week) also independently raise cardiovascular risk.",
+        answer:
+          "Yes. High job strain (high demands, low control) is associated with a 23% increased risk of heart attack. Long working hours (55+ per week) also independently raise cardiovascular risk.",
       },
       {
         question: "What is the link between loneliness and heart disease?",
-        answer: "Social isolation and loneliness are associated with a 29% increased risk of heart attack and 32% increased risk of stroke. They raise inflammatory markers and cortisol, directly harming cardiovascular health.",
+        answer:
+          "Social isolation and loneliness are associated with a 29% increased risk of heart attack and 32% increased risk of stroke. They raise inflammatory markers and cortisol, directly harming cardiovascular health.",
       },
     ],
   },
@@ -2202,9 +3060,7 @@ export const blogs: Blog[] = [
           "Eat smaller, more frequent meals to prevent large glucose swings throughout the day.",
         ],
         images: ["/blogs/sugar-diet.png"],
-        references: [
-          "Glycemic index and diabetes control",
-        ],
+        references: ["Glycemic index and diabetes control"],
       },
       {
         heading: "Exercise as a Natural Glucose Regulator",
@@ -2215,9 +3071,7 @@ export const blogs: Blog[] = [
           "Consistency matters  aim for at least 150 minutes of moderate activity per week.",
         ],
         images: ["/blogs/sugar-exercise.png"],
-        references: [
-          "Exercise and glycemic control meta-analysis",
-        ],
+        references: ["Exercise and glycemic control meta-analysis"],
       },
       {
         heading: "Natural Foods and Spices That Help",
@@ -2228,9 +3082,7 @@ export const blogs: Blog[] = [
           "Apple cider vinegar taken before a high-carb meal reduces the glycemic response in multiple clinical trials.",
         ],
         images: ["/blogs/sugar-foods.png"],
-        references: [
-          "Natural compounds and blood glucose meta-analysis",
-        ],
+        references: ["Natural compounds and blood glucose meta-analysis"],
       },
       {
         heading: "Sleep, Stress, and Consistency",
@@ -2250,48 +3102,75 @@ export const blogs: Blog[] = [
     faq: [
       {
         question: "Can I lower blood sugar naturally without medication?",
-        answer: "Yes, especially for prediabetes and early Type 2 diabetes. Diet changes, regular exercise, weight loss, and stress management can lower HbA1c by 12%  comparable to some oral diabetes medications.",
+        answer:
+          "Yes, especially for prediabetes and early Type 2 diabetes. Diet changes, regular exercise, weight loss, and stress management can lower HbA1c by 12%  comparable to some oral diabetes medications.",
       },
       {
         question: "Which foods lower blood sugar quickly?",
-        answer: "For quick effects: nuts, seeds, non-starchy vegetables, and low-GI whole foods slow glucose absorption. Cinnamon, bitter gourd (karela), and fenugreek have traditional and scientific backing for glucose control.",
+        answer:
+          "For quick effects: nuts, seeds, non-starchy vegetables, and low-GI whole foods slow glucose absorption. Cinnamon, bitter gourd (karela), and fenugreek have traditional and scientific backing for glucose control.",
       },
       {
         question: "Does exercise immediately lower blood sugar?",
-        answer: "Yes. Exercise causes muscle cells to absorb glucose from the blood for energy, which can lower blood sugar within 1530 minutes. A walk after a meal is one of the most effective ways to reduce post-meal spikes.",
+        answer:
+          "Yes. Exercise causes muscle cells to absorb glucose from the blood for energy, which can lower blood sugar within 1530 minutes. A walk after a meal is one of the most effective ways to reduce post-meal spikes.",
       },
       {
         question: "Does drinking water lower blood sugar?",
-        answer: "Drinking water helps the kidneys flush out excess glucose through urine and helps dilute blood sugar concentrations. It is not a treatment but is an important supportive habit for glucose management.",
+        answer:
+          "Drinking water helps the kidneys flush out excess glucose through urine and helps dilute blood sugar concentrations. It is not a treatment but is an important supportive habit for glucose management.",
       },
       {
         question: "How does sleep affect blood sugar?",
-        answer: "Poor sleep raises cortisol, which triggers glucose release from the liver and reduces insulin sensitivity. Even one night of poor sleep can cause blood sugar readings to be 1015% higher the next morning.",
+        answer:
+          "Poor sleep raises cortisol, which triggers glucose release from the liver and reduces insulin sensitivity. Even one night of poor sleep can cause blood sugar readings to be 1015% higher the next morning.",
       },
     ],
     internalLinks: [
-      { title: "Normal Blood Sugar Levels Chart", slug: "normal-blood-sugar-levels" },
-      { title: "HbA1c vs Blood Sugar  What's the Difference?", slug: "hba1c-vs-blood-sugar" },
-      { title: "Best Foods for Diabetes Patients", slug: "best-foods-for-diabetes" },
-      { title: "Early Symptoms of Diabetes", slug: "early-symptoms-of-diabetes" },
-      { title: "How Sleep Affects Your Heart", slug: "how-sleep-affects-your-heart" },
+      {
+        title: "Normal Blood Sugar Levels Chart",
+        slug: "normal-blood-sugar-levels",
+      },
+      {
+        title: "HbA1c vs Blood Sugar  What's the Difference?",
+        slug: "hba1c-vs-blood-sugar",
+      },
+      {
+        title: "Best Foods for Diabetes Patients",
+        slug: "best-foods-for-diabetes",
+      },
+      {
+        title: "Early Symptoms of Diabetes",
+        slug: "early-symptoms-of-diabetes",
+      },
+      {
+        title: "How Sleep Affects Your Heart",
+        slug: "how-sleep-affects-your-heart",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "How to Control Sugar Naturally",
-      "description": "Evidence-based natural methods to lower and stabilize blood sugar without medication.",
-      "image": "/controll-sugars.jpg",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/how-to-control-sugar-naturally" },
-      "FAQPage": {
+      headline: "How to Control Sugar Naturally",
+      description:
+        "Evidence-based natural methods to lower and stabilize blood sugar without medication.",
+      image: "/controll-sugars.jpg",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/how-to-control-sugar-naturally",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "Can I lower blood sugar naturally without medication?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Yes, especially for prediabetes and early Type 2 diabetes. Diet, exercise, weight loss, and stress management can lower HbA1c by 12%." },
+            name: "Can I lower blood sugar naturally without medication?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Yes, especially for prediabetes and early Type 2 diabetes. Diet, exercise, weight loss, and stress management can lower HbA1c by 12%.",
+            },
           },
         ],
       },
@@ -2299,19 +3178,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "How much can exercise lower blood sugar?",
-        answer: "Exercise can lower blood sugar by 2050 mg/dL depending on intensity and duration. Even a 15-minute post-meal walk can reduce post-meal glucose by 30 mg/dL or more.",
+        answer:
+          "Exercise can lower blood sugar by 2050 mg/dL depending on intensity and duration. Even a 15-minute post-meal walk can reduce post-meal glucose by 30 mg/dL or more.",
       },
       {
         question: "Is cinnamon effective for diabetes?",
-        answer: "Clinical studies suggest cinnamon (16g/day) can reduce fasting blood glucose by 1029% in Type 2 diabetics. Results are modest  it is a helpful supplement but not a replacement for medication.",
+        answer:
+          "Clinical studies suggest cinnamon (16g/day) can reduce fasting blood glucose by 1029% in Type 2 diabetics. Results are modest  it is a helpful supplement but not a replacement for medication.",
       },
       {
         question: "What is the best time to check blood sugar?",
-        answer: "Key times are: fasting (morning before eating), 2 hours after each main meal, and before bed. Checking before and after exercise also helps understand how activity affects your glucose.",
+        answer:
+          "Key times are: fasting (morning before eating), 2 hours after each main meal, and before bed. Checking before and after exercise also helps understand how activity affects your glucose.",
       },
       {
         question: "Does stress raise blood sugar in non-diabetics?",
-        answer: "Yes. Cortisol released during stress triggers the liver to release glucose. In non-diabetics, insulin quickly normalizes this. In prediabetics or those with insulin resistance, the spike may take longer to clear.",
+        answer:
+          "Yes. Cortisol released during stress triggers the liver to release glucose. In non-diabetics, insulin quickly normalizes this. In prediabetics or those with insulin resistance, the spike may take longer to clear.",
       },
     ],
   },
@@ -2332,9 +3215,7 @@ export const blogs: Blog[] = [
           "The right food choices also reduce the risk of diabetes complications like heart disease and kidney damage.",
         ],
         images: ["/best-diet.png"],
-        references: [
-          "ADA diabetes nutrition recommendations",
-        ],
+        references: ["ADA diabetes nutrition recommendations"],
       },
       {
         heading: "Best Carbohydrate Choices",
@@ -2345,9 +3226,7 @@ export const blogs: Blog[] = [
           "Avoid white bread, white rice, maida, and sugary cereals which spike blood sugar rapidly.",
         ],
         images: ["/blogs/diabetes-carbs.png"],
-        references: [
-          "Glycemic index food database",
-        ],
+        references: ["Glycemic index food database"],
       },
       {
         heading: "Best Proteins and Fats",
@@ -2358,9 +3237,7 @@ export const blogs: Blog[] = [
           "Olive oil and avocado contain monounsaturated fats that improve metabolic health without spiking glucose.",
         ],
         images: ["/blogs/diabetes-protein.png"],
-        references: [
-          "Protein and fat in diabetic diets",
-        ],
+        references: ["Protein and fat in diabetic diets"],
       },
       {
         heading: "Best Vegetables and Fruits",
@@ -2371,9 +3248,7 @@ export const blogs: Blog[] = [
           "Limit high-GI fruits like mango, banana, and grapes to small portions combined with protein.",
         ],
         images: ["/blogs/diabetes-veggies.png"],
-        references: [
-          "Fruit and vegetable glycemic index guide",
-        ],
+        references: ["Fruit and vegetable glycemic index guide"],
       },
       {
         heading: "Daily Meal Planning Tips",
@@ -2393,48 +3268,72 @@ export const blogs: Blog[] = [
     faq: [
       {
         question: "What is the best food to eat when you have diabetes?",
-        answer: "The best foods are low-glycemic and nutrient-dense: leafy greens, legumes, whole grains, fatty fish, nuts, berries, and eggs. These stabilize blood sugar and reduce the risk of diabetes complications.",
+        answer:
+          "The best foods are low-glycemic and nutrient-dense: leafy greens, legumes, whole grains, fatty fish, nuts, berries, and eggs. These stabilize blood sugar and reduce the risk of diabetes complications.",
       },
       {
         question: "What fruits can diabetics eat?",
-        answer: "Diabetics can eat berries (strawberries, blueberries), guava, jamun (black plum), papaya, pear, and apple in moderate portions. Limit high-GI fruits like mango, banana, and grapes, especially alone.",
+        answer:
+          "Diabetics can eat berries (strawberries, blueberries), guava, jamun (black plum), papaya, pear, and apple in moderate portions. Limit high-GI fruits like mango, banana, and grapes, especially alone.",
       },
       {
         question: "Is rice bad for diabetics?",
-        answer: "White rice has a high glycemic index and should be limited. Brown rice, red rice, or small portions of white rice paired with protein and fiber are better choices. Switching to millets is an excellent option.",
+        answer:
+          "White rice has a high glycemic index and should be limited. Brown rice, red rice, or small portions of white rice paired with protein and fiber are better choices. Switching to millets is an excellent option.",
       },
       {
         question: "Can diabetics eat roti (chapati)?",
-        answer: "Yes. Whole wheat roti is much better than white bread. Multigrain or millet rotis (jowar, bajra, ragi) are even better options due to their higher fiber content and lower GI.",
+        answer:
+          "Yes. Whole wheat roti is much better than white bread. Multigrain or millet rotis (jowar, bajra, ragi) are even better options due to their higher fiber content and lower GI.",
       },
       {
         question: "What is the best breakfast for a diabetic?",
-        answer: "High-protein, high-fiber breakfasts work best: oats with nuts, eggs with vegetables, whole grain toast with avocado, or a smoothie with spinach, seeds, and low-GI fruit. Avoid sugary cereals and white bread.",
+        answer:
+          "High-protein, high-fiber breakfasts work best: oats with nuts, eggs with vegetables, whole grain toast with avocado, or a smoothie with spinach, seeds, and low-GI fruit. Avoid sugary cereals and white bread.",
       },
     ],
     internalLinks: [
-      { title: "How to Control Sugar Naturally", slug: "how-to-control-sugar-naturally" },
-      { title: "Normal Blood Sugar Levels Chart", slug: "normal-blood-sugar-levels" },
-      { title: "HbA1c vs Blood Sugar  What's the Difference?", slug: "hba1c-vs-blood-sugar" },
-      { title: "Early Symptoms of Diabetes", slug: "early-symptoms-of-diabetes" },
+      {
+        title: "How to Control Sugar Naturally",
+        slug: "how-to-control-sugar-naturally",
+      },
+      {
+        title: "Normal Blood Sugar Levels Chart",
+        slug: "normal-blood-sugar-levels",
+      },
+      {
+        title: "HbA1c vs Blood Sugar  What's the Difference?",
+        slug: "hba1c-vs-blood-sugar",
+      },
+      {
+        title: "Early Symptoms of Diabetes",
+        slug: "early-symptoms-of-diabetes",
+      },
       { title: "Best Diet for BP Control", slug: "best-diet-for-bp-control" },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Best Foods for Diabetes Patients",
-      "description": "A practical guide to the best diabetes-friendly foods that help control blood sugar naturally.",
-      "image": "/best-diet.png",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/best-foods-for-diabetes" },
-      "FAQPage": {
+      headline: "Best Foods for Diabetes Patients",
+      description:
+        "A practical guide to the best diabetes-friendly foods that help control blood sugar naturally.",
+      image: "/best-diet.png",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/best-foods-for-diabetes",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "What is the best food to eat when you have diabetes?",
-            "acceptedAnswer": { "@type": "Answer", "text": "The best foods are low-glycemic and nutrient-dense: leafy greens, legumes, whole grains, fatty fish, nuts, berries, and eggs." },
+            name: "What is the best food to eat when you have diabetes?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "The best foods are low-glycemic and nutrient-dense: leafy greens, legumes, whole grains, fatty fish, nuts, berries, and eggs.",
+            },
           },
         ],
       },
@@ -2442,19 +3341,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "Are eggs good for diabetics?",
-        answer: "Yes. Eggs are an excellent food for diabetics  they are high in protein, have virtually no carbohydrates, and do not raise blood sugar. They also improve satiety and help prevent overeating.",
+        answer:
+          "Yes. Eggs are an excellent food for diabetics  they are high in protein, have virtually no carbohydrates, and do not raise blood sugar. They also improve satiety and help prevent overeating.",
       },
       {
         question: "What are the worst foods for diabetics?",
-        answer: "White bread, white rice, sugary drinks, fruit juices, processed snacks, pastries, fried foods, and sweetened yogurts are among the worst choices for blood sugar control.",
+        answer:
+          "White bread, white rice, sugary drinks, fruit juices, processed snacks, pastries, fried foods, and sweetened yogurts are among the worst choices for blood sugar control.",
       },
       {
         question: "Is milk good for diabetics?",
-        answer: "Low-fat or skim milk in moderate amounts is generally safe. Full-fat dairy and flavored milks have more saturated fat or added sugar. Unsweetened plant-based milks (almond, soy) can be good alternatives.",
+        answer:
+          "Low-fat or skim milk in moderate amounts is generally safe. Full-fat dairy and flavored milks have more saturated fat or added sugar. Unsweetened plant-based milks (almond, soy) can be good alternatives.",
       },
       {
         question: "Can diabetics eat sweets occasionally?",
-        answer: "Small portions of sweets on special occasions, combined with protein and eaten after a balanced meal, generally have a smaller glucose impact. Monitoring your response and not making it a habit is key.",
+        answer:
+          "Small portions of sweets on special occasions, combined with protein and eaten after a balanced meal, generally have a smaller glucose impact. Monitoring your response and not making it a habit is key.",
       },
     ],
   },
@@ -2503,9 +3406,7 @@ export const blogs: Blog[] = [
           "Stage 2 Hypertension: Systolic ≥140 or Diastolic ≥90  medication typically required alongside lifestyle changes.",
         ],
         images: ["/blogs/bp-2.png"],
-        references: [
-          "2017 ACC/AHA Hypertension Guidelines",
-        ],
+        references: ["2017 ACC/AHA Hypertension Guidelines"],
       },
       {
         heading: "Why BP Changes With Age",
@@ -2516,9 +3417,7 @@ export const blogs: Blog[] = [
           "Knowing age-appropriate BP targets helps your doctor tailor treatment and monitoring to your specific needs.",
         ],
         images: ["/blogs/bp-aging.png"],
-        references: [
-          "Aging and vascular stiffness research",
-        ],
+        references: ["Aging and vascular stiffness research"],
       },
       {
         heading: "How to Track and Interpret Your BP",
@@ -2538,48 +3437,69 @@ export const blogs: Blog[] = [
     faq: [
       {
         question: "What is a normal blood pressure reading?",
-        answer: "A normal blood pressure for adults is below 120/80 mmHg. Readings of 120129/<80 are elevated, 130139/8089 is Stage 1 hypertension, and 140/90 or above is Stage 2 hypertension.",
+        answer:
+          "A normal blood pressure for adults is below 120/80 mmHg. Readings of 120129/<80 are elevated, 130139/8089 is Stage 1 hypertension, and 140/90 or above is Stage 2 hypertension.",
       },
       {
         question: "What is normal blood pressure for a 60-year-old?",
-        answer: "For adults over 60, a BP below 130/80 mmHg is generally the target. Some guidelines allow slightly higher systolic values (up to 135140 mmHg) for older adults depending on overall health and frailty.",
+        answer:
+          "For adults over 60, a BP below 130/80 mmHg is generally the target. Some guidelines allow slightly higher systolic values (up to 135140 mmHg) for older adults depending on overall health and frailty.",
       },
       {
         question: "What is normal BP for women?",
-        answer: "Normal BP for women is the same as men  below 120/80 mmHg. After menopause, women's BP tends to rise due to hormonal changes and may require closer monitoring.",
+        answer:
+          "Normal BP for women is the same as men  below 120/80 mmHg. After menopause, women's BP tends to rise due to hormonal changes and may require closer monitoring.",
       },
       {
         question: "What is normal blood pressure for teenagers?",
-        answer: "For teenagers aged 1418, normal BP is approximately 110120/6080 mmHg. Values above 130/80 in adolescents warrant medical evaluation.",
+        answer:
+          "For teenagers aged 1418, normal BP is approximately 110120/6080 mmHg. Values above 130/80 in adolescents warrant medical evaluation.",
       },
       {
         question: "How often should I check my blood pressure?",
-        answer: "If you are healthy with normal BP, monthly or quarterly checks are sufficient. If you have hypertension or are on medication, daily home monitoring with readings shared with your doctor is recommended.",
+        answer:
+          "If you are healthy with normal BP, monthly or quarterly checks are sufficient. If you have hypertension or are on medication, daily home monitoring with readings shared with your doctor is recommended.",
       },
     ],
     internalLinks: [
-      { title: "How to Reduce High BP Naturally", slug: "how-to-reduce-high-bp-naturally" },
-      { title: "Causes of High Blood Pressure", slug: "causes-of-high-blood-pressure" },
-      { title: "Low BP Symptoms and Treatment", slug: "low-bp-symptoms-and-treatment" },
+      {
+        title: "How to Reduce High BP Naturally",
+        slug: "how-to-reduce-high-bp-naturally",
+      },
+      {
+        title: "Causes of High Blood Pressure",
+        slug: "causes-of-high-blood-pressure",
+      },
+      {
+        title: "Low BP Symptoms and Treatment",
+        slug: "low-bp-symptoms-and-treatment",
+      },
       { title: "Best Diet for BP Control", slug: "best-diet-for-bp-control" },
-      { title: "What is a Good Heart View Score?", slug: "what-is-a-good-heart-risk-score" },
+      {
+        title: "What is a Good Heart View Score?",
+        slug: "what-is-a-good-heart-risk-score",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "What is Normal BP Range by Age?",
-      "description": "Learn what blood pressure levels are considered normal and how they vary by age group.",
-      "image": "/Bloodpressure2.png",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/normal-bp-range" },
-      "FAQPage": {
+      headline: "What is Normal BP Range by Age?",
+      description:
+        "Learn what blood pressure levels are considered normal and how they vary by age group.",
+      image: "/Bloodpressure2.png",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: { "@type": "WebPage", "@id": "/blogs/normal-bp-range" },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "What is a normal blood pressure reading?",
-            "acceptedAnswer": { "@type": "Answer", "text": "A normal blood pressure for adults is below 120/80 mmHg." },
+            name: "What is a normal blood pressure reading?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "A normal blood pressure for adults is below 120/80 mmHg.",
+            },
           },
         ],
       },
@@ -2587,19 +3507,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "Is 130/85 a normal blood pressure?",
-        answer: "130/85 mmHg falls in the Stage 1 hypertension range (130139 systolic or 8089 diastolic). It is not immediately dangerous but warrants lifestyle changes and medical consultation.",
+        answer:
+          "130/85 mmHg falls in the Stage 1 hypertension range (130139 systolic or 8089 diastolic). It is not immediately dangerous but warrants lifestyle changes and medical consultation.",
       },
       {
         question: "Why does blood pressure increase with age?",
-        answer: "Arteries naturally stiffen with age, reducing their elasticity. This increases resistance to blood flow, raising systolic pressure. Lifestyle factors like diet, activity, and weight also accumulate their effects over time.",
+        answer:
+          "Arteries naturally stiffen with age, reducing their elasticity. This increases resistance to blood flow, raising systolic pressure. Lifestyle factors like diet, activity, and weight also accumulate their effects over time.",
       },
       {
         question: "What is pulse pressure and is it important?",
-        answer: "Pulse pressure is the difference between systolic and diastolic BP. Normal is 40 mmHg. A wide pulse pressure (above 60) in older adults may indicate arterial stiffness and increased cardiovascular risk.",
+        answer:
+          "Pulse pressure is the difference between systolic and diastolic BP. Normal is 40 mmHg. A wide pulse pressure (above 60) in older adults may indicate arterial stiffness and increased cardiovascular risk.",
       },
       {
         question: "Can blood pressure vary throughout the day?",
-        answer: "Yes. BP naturally follows a circadian rhythm  it is lowest during sleep, rises in the morning, peaks in early evening, and drops again at night. Stress, exercise, meals, and caffeine also cause short-term variation.",
+        answer:
+          "Yes. BP naturally follows a circadian rhythm  it is lowest during sleep, rises in the morning, peaks in early evening, and drops again at night. Stress, exercise, meals, and caffeine also cause short-term variation.",
       },
     ],
   },
@@ -2607,7 +3531,7 @@ export const blogs: Blog[] = [
   {
     slug: "how-sleep-affects-your-heart",
     title: "How Sleep Affects Your Heart",
-    category: "lifestyle",
+    category: "sleep",
     description:
       "Discover the powerful link between quality sleep and cardiovascular health.",
     content: [
@@ -2634,9 +3558,7 @@ export const blogs: Blog[] = [
           "Sleep deprivation increases the tendency of blood to clot, raising stroke and heart attack risk.",
         ],
         images: ["/blogs/sleep-harm.png"],
-        references: [
-          "Inflammation and sleep deprivation studies",
-        ],
+        references: ["Inflammation and sleep deprivation studies"],
       },
       {
         heading: "Sleep Apnea and Heart Disease",
@@ -2647,9 +3569,7 @@ export const blogs: Blog[] = [
           "CPAP therapy for sleep apnea significantly reduces blood pressure and improves heart health markers.",
         ],
         images: ["/blogs/sleep-apnea.png"],
-        references: [
-          "Sleep apnea and cardiovascular disease review",
-        ],
+        references: ["Sleep apnea and cardiovascular disease review"],
       },
       {
         heading: "How Many Hours of Sleep Do You Need?",
@@ -2660,9 +3580,7 @@ export const blogs: Blog[] = [
           "Track your sleep patterns with HeartView to identify whether you are getting truly restorative rest.",
         ],
         images: ["/blogs/sleep-hours.png"],
-        references: [
-          "National Sleep Foundation guidelines",
-        ],
+        references: ["National Sleep Foundation guidelines"],
       },
       {
         heading: "Tips to Improve Sleep for Heart Health",
@@ -2673,57 +3591,81 @@ export const blogs: Blog[] = [
           "A 10-minute relaxation practice (breathing, progressive muscle relaxation) at bedtime significantly improves sleep onset.",
         ],
         images: ["/blogs/sleep-tips.png"],
-        references: [
-          "Sleep hygiene guidelines",
-          "HeartView recovery tracking",
-        ],
+        references: ["Sleep hygiene guidelines", "HeartView recovery tracking"],
       },
     ],
     faq: [
       {
         question: "How does sleep affect blood pressure?",
-        answer: "During deep sleep, blood pressure drops by 1020%  a restorative process called 'nocturnal dipping.' People who lack this dip (non-dippers) have significantly higher cardiovascular risk.",
+        answer:
+          "During deep sleep, blood pressure drops by 1020%  a restorative process called 'nocturnal dipping.' People who lack this dip (non-dippers) have significantly higher cardiovascular risk.",
       },
       {
         question: "How many hours of sleep does the heart need?",
-        answer: "Adults need 79 hours of sleep per night for optimal heart health. Both too little (<6 hours) and too much (>9 hours) sleep are independently associated with increased cardiovascular risk.",
+        answer:
+          "Adults need 79 hours of sleep per night for optimal heart health. Both too little (<6 hours) and too much (>9 hours) sleep are independently associated with increased cardiovascular risk.",
       },
       {
         question: "Can sleep apnea cause heart failure?",
-        answer: "Yes. Untreated obstructive sleep apnea causes repeated BP surges, increases inflammation, and strains the heart muscle over time  contributing to hypertension, arrhythmias, and heart failure.",
+        answer:
+          "Yes. Untreated obstructive sleep apnea causes repeated BP surges, increases inflammation, and strains the heart muscle over time  contributing to hypertension, arrhythmias, and heart failure.",
       },
       {
         question: "Is napping good for the heart?",
-        answer: "Short naps (2030 minutes) can reduce stress and improve alertness. Some research shows regular short naps are associated with lower cardiovascular mortality. Naps longer than 60 minutes, however, may indicate underlying sleep issues.",
+        answer:
+          "Short naps (2030 minutes) can reduce stress and improve alertness. Some research shows regular short naps are associated with lower cardiovascular mortality. Naps longer than 60 minutes, however, may indicate underlying sleep issues.",
       },
       {
         question: "What are signs of poor sleep quality?",
-        answer: "Waking unrefreshed despite adequate duration, frequent night awakenings, daytime sleepiness, difficulty concentrating, and morning headaches are all signs that sleep quality is poor and worth investigating.",
+        answer:
+          "Waking unrefreshed despite adequate duration, frequent night awakenings, daytime sleepiness, difficulty concentrating, and morning headaches are all signs that sleep quality is poor and worth investigating.",
       },
     ],
     internalLinks: [
-      { title: "How Stress Affects Heart Health", slug: "how-stress-affects-heart-health" },
-      { title: "How to Prevent Heart Disease Naturally", slug: "how-to-prevent-heart-disease-naturally" },
-      { title: "Best Daily Habits for Heart Health", slug: "daily-habits-heart-health" },
-      { title: "Causes of High Blood Pressure", slug: "causes-of-high-blood-pressure" },
-      { title: "Normal Blood Sugar Levels Chart", slug: "normal-blood-sugar-levels" },
+      {
+        title: "How Stress Affects Heart Health",
+        slug: "how-stress-affects-heart-health",
+      },
+      {
+        title: "How to Prevent Heart Disease Naturally",
+        slug: "how-to-prevent-heart-disease-naturally",
+      },
+      {
+        title: "Best Daily Habits for Heart Health",
+        slug: "daily-habits-heart-health",
+      },
+      {
+        title: "Causes of High Blood Pressure",
+        slug: "causes-of-high-blood-pressure",
+      },
+      {
+        title: "Normal Blood Sugar Levels Chart",
+        slug: "normal-blood-sugar-levels",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "How Sleep Affects Your Heart",
-      "description": "Discover the powerful link between quality sleep and cardiovascular health.",
-      "image": "/sleep1.png",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/how-sleep-affects-your-heart" },
-      "FAQPage": {
+      headline: "How Sleep Affects Your Heart",
+      description:
+        "Discover the powerful link between quality sleep and cardiovascular health.",
+      image: "/sleep1.png",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/how-sleep-affects-your-heart",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "How does sleep affect blood pressure?",
-            "acceptedAnswer": { "@type": "Answer", "text": "During deep sleep, blood pressure drops by 1020%. People who lack this nocturnal dip have significantly higher cardiovascular risk." },
+            name: "How does sleep affect blood pressure?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "During deep sleep, blood pressure drops by 1020%. People who lack this nocturnal dip have significantly higher cardiovascular risk.",
+            },
           },
         ],
       },
@@ -2731,19 +3673,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "Does sleeping position affect blood pressure?",
-        answer: "Yes. Sleeping on the left side may reduce pressure on the heart. Sleeping on your back can worsen sleep apnea, which raises BP. Sleeping on the right side is generally considered safe for most people.",
+        answer:
+          "Yes. Sleeping on the left side may reduce pressure on the heart. Sleeping on your back can worsen sleep apnea, which raises BP. Sleeping on the right side is generally considered safe for most people.",
       },
       {
         question: "Can lack of sleep cause a heart attack?",
-        answer: "Chronic sleep deprivation is a significant independent risk factor for heart attack. It raises BP, promotes inflammation and blood clotting, and worsens other risk factors like obesity and diabetes.",
+        answer:
+          "Chronic sleep deprivation is a significant independent risk factor for heart attack. It raises BP, promotes inflammation and blood clotting, and worsens other risk factors like obesity and diabetes.",
       },
       {
         question: "What is nocturnal hypertension?",
-        answer: "Nocturnal hypertension is high blood pressure during sleep. It is associated with end-organ damage and is a stronger predictor of cardiovascular events than daytime BP readings alone.",
+        answer:
+          "Nocturnal hypertension is high blood pressure during sleep. It is associated with end-organ damage and is a stronger predictor of cardiovascular events than daytime BP readings alone.",
       },
       {
         question: "How can I improve my sleep naturally?",
-        answer: "Maintain consistent sleep/wake times, limit caffeine after 2pm, avoid alcohol before bed, keep your room cool and dark, exercise regularly (not too close to bedtime), and practice relaxation techniques.",
+        answer:
+          "Maintain consistent sleep/wake times, limit caffeine after 2pm, avoid alcohol before bed, keep your room cool and dark, exercise regularly (not too close to bedtime), and practice relaxation techniques.",
       },
     ],
   },
@@ -2778,9 +3724,7 @@ export const blogs: Blog[] = [
           "Platelet count below 150,000 or above 400,000 per microliter requires further evaluation.",
         ],
         images: ["/blogs/blood-test-cbc.png"],
-        references: [
-          "CBC reference ranges  clinical laboratory standards",
-        ],
+        references: ["CBC reference ranges  clinical laboratory standards"],
       },
       {
         heading: "Kidney and Liver Function Tests",
@@ -2791,9 +3735,7 @@ export const blogs: Blog[] = [
           "Bilirubin measures red blood cell breakdown  elevated levels can indicate liver disease or hemolysis.",
         ],
         images: ["/blogs/blood-test-kidney.png"],
-        references: [
-          "Kidney and liver function test interpretation",
-        ],
+        references: ["Kidney and liver function test interpretation"],
       },
       {
         heading: "Blood Sugar and Lipid Values",
@@ -2804,9 +3746,7 @@ export const blogs: Blog[] = [
           "Triglycerides below 150 mg/dL is normal  higher values are associated with metabolic syndrome.",
         ],
         images: ["/blogs/blood-test-sugar.png"],
-        references: [
-          "Metabolic panel interpretation guide",
-        ],
+        references: ["Metabolic panel interpretation guide"],
       },
       {
         heading: "Understanding Reference Ranges",
@@ -2826,48 +3766,75 @@ export const blogs: Blog[] = [
     faq: [
       {
         question: "What are the most important values in a blood test?",
-        answer: "For cardiovascular and metabolic health, the most important values are: hemoglobin, fasting glucose, HbA1c, LDL, HDL, triglycerides, creatinine, and liver enzymes (SGPT/SGOT).",
+        answer:
+          "For cardiovascular and metabolic health, the most important values are: hemoglobin, fasting glucose, HbA1c, LDL, HDL, triglycerides, creatinine, and liver enzymes (SGPT/SGOT).",
       },
       {
         question: "What does 'H' or 'L' mean on a blood test report?",
-        answer: "'H' (high) means your result is above the reference range, and 'L' (low) means it is below. These are flags to discuss with your doctor, not necessarily immediate causes for alarm.",
+        answer:
+          "'H' (high) means your result is above the reference range, and 'L' (low) means it is below. These are flags to discuss with your doctor, not necessarily immediate causes for alarm.",
       },
       {
         question: "What is a normal hemoglobin level?",
-        answer: "Normal hemoglobin is 13.517.5 g/dL for men and 1215.5 g/dL for women. Levels below these ranges suggest anemia; levels above may indicate dehydration or other conditions.",
+        answer:
+          "Normal hemoglobin is 13.517.5 g/dL for men and 1215.5 g/dL for women. Levels below these ranges suggest anemia; levels above may indicate dehydration or other conditions.",
       },
       {
         question: "What does elevated SGPT mean?",
-        answer: "SGPT (also called ALT) is a liver enzyme. Mild elevation (up to 3x normal) may be due to fatty liver, medications, or recent strenuous exercise. Levels more than 3x normal require medical evaluation.",
+        answer:
+          "SGPT (also called ALT) is a liver enzyme. Mild elevation (up to 3x normal) may be due to fatty liver, medications, or recent strenuous exercise. Levels more than 3x normal require medical evaluation.",
       },
       {
         question: "How often should I get a full blood test done?",
-        answer: "A comprehensive blood test is recommended annually for adults above 35, or earlier if you have risk factors like diabetes, hypertension, family history of heart disease, or are on long-term medications.",
+        answer:
+          "A comprehensive blood test is recommended annually for adults above 35, or earlier if you have risk factors like diabetes, hypertension, family history of heart disease, or are on long-term medications.",
       },
     ],
     internalLinks: [
-      { title: "How to Understand Your Lipid Profile", slug: "how-to-understand-lipid-profile" },
-      { title: "HbA1c vs Blood Sugar  What's the Difference?", slug: "hba1c-vs-blood-sugar" },
-      { title: "What is Normal Cholesterol Level?", slug: "what-is-normal-cholesterol-level" },
-      { title: "What is Triglycerides and Why It Matters", slug: "what-is-triglycerides-and-why-it-matters" },
-      { title: "Normal Blood Sugar Levels Chart", slug: "normal-blood-sugar-levels" },
+      {
+        title: "How to Understand Your Lipid Profile",
+        slug: "how-to-understand-lipid-profile",
+      },
+      {
+        title: "HbA1c vs Blood Sugar  What's the Difference?",
+        slug: "hba1c-vs-blood-sugar",
+      },
+      {
+        title: "What is Normal Cholesterol Level?",
+        slug: "what-is-normal-cholesterol-level",
+      },
+      {
+        title: "What is Triglycerides and Why It Matters",
+        slug: "what-is-triglycerides-and-why-it-matters",
+      },
+      {
+        title: "Normal Blood Sugar Levels Chart",
+        slug: "normal-blood-sugar-levels",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "How to Read Your Blood Test Report",
-      "description": "A beginner-friendly guide to understanding the numbers and abbreviations in your blood test results.",
-      "image": "/blood-test.png",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/how-to-read-blood-test-report" },
-      "FAQPage": {
+      headline: "How to Read Your Blood Test Report",
+      description:
+        "A beginner-friendly guide to understanding the numbers and abbreviations in your blood test results.",
+      image: "/blood-test.png",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/how-to-read-blood-test-report",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "What are the most important values in a blood test?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Key values for heart and metabolic health: hemoglobin, fasting glucose, HbA1c, LDL, HDL, triglycerides, creatinine, and liver enzymes." },
+            name: "What are the most important values in a blood test?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Key values for heart and metabolic health: hemoglobin, fasting glucose, HbA1c, LDL, HDL, triglycerides, creatinine, and liver enzymes.",
+            },
           },
         ],
       },
@@ -2875,19 +3842,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "Can I do a blood test without fasting?",
-        answer: "For a lipid profile and fasting glucose, fasting (912 hours) is required for accuracy. CBC, liver enzymes, kidney function, and HbA1c can generally be done without fasting.",
+        answer:
+          "For a lipid profile and fasting glucose, fasting (912 hours) is required for accuracy. CBC, liver enzymes, kidney function, and HbA1c can generally be done without fasting.",
       },
       {
         question: "What does a high WBC count mean?",
-        answer: "A high white blood cell (WBC) count often indicates infection, inflammation, or immune system activation. Very high counts may suggest leukemia. Context, symptoms, and follow-up testing determine the cause.",
+        answer:
+          "A high white blood cell (WBC) count often indicates infection, inflammation, or immune system activation. Very high counts may suggest leukemia. Context, symptoms, and follow-up testing determine the cause.",
       },
       {
         question: "What is creatinine and why is it important?",
-        answer: "Creatinine is a waste product filtered by the kidneys. Elevated creatinine indicates reduced kidney function (GFR decline). It is one of the earliest measurable signs of kidney disease.",
+        answer:
+          "Creatinine is a waste product filtered by the kidneys. Elevated creatinine indicates reduced kidney function (GFR decline). It is one of the earliest measurable signs of kidney disease.",
       },
       {
         question: "What blood tests should I get every year?",
-        answer: "Annual tests recommended for adults: CBC, fasting glucose, HbA1c, complete lipid panel, creatinine, SGPT/SGOT, thyroid function (TSH), and vitamin D. Your doctor may add others based on your profile.",
+        answer:
+          "Annual tests recommended for adults: CBC, fasting glucose, HbA1c, complete lipid panel, creatinine, SGPT/SGOT, thyroid function (TSH), and vitamin D. Your doctor may add others based on your profile.",
       },
     ],
   },
@@ -2895,7 +3866,7 @@ export const blogs: Blog[] = [
   {
     slug: "how-many-steps-should-you-walk-daily",
     title: "How Many Steps Should You Walk Daily?",
-    category: "lifestyle",
+    category: "step",
     description:
       "Find out the optimal daily step count and why walking is one of the best exercises for heart health.",
     content: [
@@ -2936,9 +3907,7 @@ export const blogs: Blog[] = [
           "Adding inclines (hills or stairs) during walks increases intensity and heart rate without longer duration.",
         ],
         images: ["/blogs/steps-pace.png"],
-        references: [
-          "Brisk walking and cardiovascular outcomes",
-        ],
+        references: ["Brisk walking and cardiovascular outcomes"],
       },
       {
         heading: "Best Times to Walk for Heart Health",
@@ -2949,9 +3918,7 @@ export const blogs: Blog[] = [
           "Distributing walks throughout the day  even 5-minute breaks every hour  counters the harm of prolonged sitting.",
         ],
         images: ["/blogs/steps-timing.png"],
-        references: [
-          "Timing of physical activity and metabolic health",
-        ],
+        references: ["Timing of physical activity and metabolic health"],
       },
       {
         heading: "How to Build Your Daily Step Count",
@@ -2971,48 +3938,75 @@ export const blogs: Blog[] = [
     faq: [
       {
         question: "Is 10,000 steps a day really necessary?",
-        answer: "No, 10,000 steps is a useful target but not a strict requirement. Research shows significant cardiovascular benefit starts at 6,0007,000 steps. Any increase from your current baseline is beneficial.",
+        answer:
+          "No, 10,000 steps is a useful target but not a strict requirement. Research shows significant cardiovascular benefit starts at 6,0007,000 steps. Any increase from your current baseline is beneficial.",
       },
       {
         question: "How many steps per day helps with weight loss?",
-        answer: "Consistently walking 8,00010,000 steps per day, combined with a calorie-controlled diet, supports meaningful weight loss. Each 2,000 additional daily steps burns approximately 100 extra calories.",
+        answer:
+          "Consistently walking 8,00010,000 steps per day, combined with a calorie-controlled diet, supports meaningful weight loss. Each 2,000 additional daily steps burns approximately 100 extra calories.",
       },
       {
         question: "Is walking enough exercise for the heart?",
-        answer: "Brisk walking (30+ minutes, 5 days/week) meets the WHO guidelines for moderate aerobic exercise and provides significant cardiovascular benefits. It may be supplemented with strength training for full benefits.",
+        answer:
+          "Brisk walking (30+ minutes, 5 days/week) meets the WHO guidelines for moderate aerobic exercise and provides significant cardiovascular benefits. It may be supplemented with strength training for full benefits.",
       },
       {
         question: "What is a brisk walking pace?",
-        answer: "Brisk walking is roughly 56 km/h (34 mph)  fast enough to raise your heart rate and cause slight breathlessness, but still allowing conversation. This pace provides the most cardiovascular benefit.",
+        answer:
+          "Brisk walking is roughly 56 km/h (34 mph)  fast enough to raise your heart rate and cause slight breathlessness, but still allowing conversation. This pace provides the most cardiovascular benefit.",
       },
       {
         question: "When is the best time to walk for health?",
-        answer: "Morning walks help lower blood pressure and improve metabolism. Post-meal walks (1520 minutes after eating) are particularly effective for blood sugar control. Evening walks reduce stress and support better sleep.",
+        answer:
+          "Morning walks help lower blood pressure and improve metabolism. Post-meal walks (1520 minutes after eating) are particularly effective for blood sugar control. Evening walks reduce stress and support better sleep.",
       },
     ],
     internalLinks: [
-      { title: "Importance of Exercise for Heart Health", slug: "importance-of-exercise-for-heart" },
-      { title: "Best Daily Habits for Heart Health", slug: "daily-habits-heart-health" },
-      { title: "How to Prevent Heart Disease Naturally", slug: "how-to-prevent-heart-disease-naturally" },
-      { title: "How Stress Affects Heart Health", slug: "how-stress-affects-heart-health" },
-      { title: "Normal Blood Sugar Levels Chart", slug: "normal-blood-sugar-levels" },
+      {
+        title: "Importance of Exercise for Heart Health",
+        slug: "importance-of-exercise-for-heart",
+      },
+      {
+        title: "Best Daily Habits for Heart Health",
+        slug: "daily-habits-heart-health",
+      },
+      {
+        title: "How to Prevent Heart Disease Naturally",
+        slug: "how-to-prevent-heart-disease-naturally",
+      },
+      {
+        title: "How Stress Affects Heart Health",
+        slug: "how-stress-affects-heart-health",
+      },
+      {
+        title: "Normal Blood Sugar Levels Chart",
+        slug: "normal-blood-sugar-levels",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "How Many Steps Should You Walk Daily?",
-      "description": "Find out the optimal daily step count and why walking is one of the best exercises for heart health.",
-      "image": "/exericse.jpg",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/how-many-steps-should-you-walk-daily" },
-      "FAQPage": {
+      headline: "How Many Steps Should You Walk Daily?",
+      description:
+        "Find out the optimal daily step count and why walking is one of the best exercises for heart health.",
+      image: "/exericse.jpg",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/how-many-steps-should-you-walk-daily",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "Is 10,000 steps a day really necessary?",
-            "acceptedAnswer": { "@type": "Answer", "text": "No. Research shows significant cardiovascular benefit starts at 6,0007,000 steps per day. Any increase from your current baseline is beneficial." },
+            name: "Is 10,000 steps a day really necessary?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "No. Research shows significant cardiovascular benefit starts at 6,0007,000 steps per day. Any increase from your current baseline is beneficial.",
+            },
           },
         ],
       },
@@ -3020,19 +4014,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "Does walking reduce belly fat?",
-        answer: "Yes. Regular brisk walking reduces visceral (belly) fat over time, especially when combined with dietary changes. It lowers cortisol levels which contribute to abdominal fat storage.",
+        answer:
+          "Yes. Regular brisk walking reduces visceral (belly) fat over time, especially when combined with dietary changes. It lowers cortisol levels which contribute to abdominal fat storage.",
       },
       {
         question: "Is walking or running better for the heart?",
-        answer: "Both are excellent. Running provides more cardiovascular benefit per minute but walking has less injury risk. For people with joint problems or who are just starting out, walking is the safer and more sustainable choice.",
+        answer:
+          "Both are excellent. Running provides more cardiovascular benefit per minute but walking has less injury risk. For people with joint problems or who are just starting out, walking is the safer and more sustainable choice.",
       },
       {
         question: "How many calories does 10,000 steps burn?",
-        answer: "On average, 10,000 steps burns approximately 300500 calories depending on body weight, walking pace, and terrain. Heavier individuals and faster walkers burn more.",
+        answer:
+          "On average, 10,000 steps burns approximately 300500 calories depending on body weight, walking pace, and terrain. Heavier individuals and faster walkers burn more.",
       },
       {
         question: "Can walking lower blood pressure?",
-        answer: "Yes. Regular walking (30 minutes/day, 5 days/week) can lower systolic blood pressure by 48 mmHg. Post-meal walks are particularly effective for preventing BP spikes after eating.",
+        answer:
+          "Yes. Regular walking (30 minutes/day, 5 days/week) can lower systolic blood pressure by 48 mmHg. Post-meal walks are particularly effective for preventing BP spikes after eating.",
       },
     ],
   },
@@ -3066,9 +4064,7 @@ export const blogs: Blog[] = [
           "High-intensity interval training (HIIT) provides maximum cardiovascular benefit in minimum time.",
         ],
         images: ["/blogs/exercise-types.png"],
-        references: [
-          "Exercise modalities and cardiac health review",
-        ],
+        references: ["Exercise modalities and cardiac health review"],
       },
       {
         heading: "How Much Exercise is Enough?",
@@ -3079,9 +4075,7 @@ export const blogs: Blog[] = [
           "Any exercise is better than none  even 10 minutes a day provides measurable cardiovascular benefits.",
         ],
         images: ["/blogs/exercise-dose.png"],
-        references: [
-          "WHO physical activity and sedentary behavior guidelines",
-        ],
+        references: ["WHO physical activity and sedentary behavior guidelines"],
       },
       {
         heading: "Exercise for People with Heart Conditions",
@@ -3092,9 +4086,7 @@ export const blogs: Blog[] = [
           "Never start a new vigorous exercise program without clearance from your cardiologist if you have heart disease.",
         ],
         images: ["/blogs/exercise-cardiac.png"],
-        references: [
-          "Cardiac rehabilitation outcomes data",
-        ],
+        references: ["Cardiac rehabilitation outcomes data"],
       },
       {
         heading: "Staying Motivated to Exercise",
@@ -3114,48 +4106,75 @@ export const blogs: Blog[] = [
     faq: [
       {
         question: "How does exercise help the heart?",
-        answer: "Exercise strengthens the heart muscle, lowers resting blood pressure, improves HDL cholesterol, reduces inflammation, decreases resting heart rate, and improves blood vessel flexibility  all reducing cardiovascular disease risk.",
+        answer:
+          "Exercise strengthens the heart muscle, lowers resting blood pressure, improves HDL cholesterol, reduces inflammation, decreases resting heart rate, and improves blood vessel flexibility  all reducing cardiovascular disease risk.",
       },
       {
         question: "How much exercise do I need for heart health?",
-        answer: "The WHO recommends 150300 minutes of moderate aerobic activity (like brisk walking) or 75150 minutes of vigorous activity per week, plus 2 days of muscle-strengthening exercise.",
+        answer:
+          "The WHO recommends 150300 minutes of moderate aerobic activity (like brisk walking) or 75150 minutes of vigorous activity per week, plus 2 days of muscle-strengthening exercise.",
       },
       {
         question: "Is it safe to exercise with high blood pressure?",
-        answer: "Yes, moderate exercise is safe and beneficial for most people with hypertension. Aerobic exercise actually helps lower BP over time. Avoid heavy weight lifting without medical clearance if BP is severely elevated.",
+        answer:
+          "Yes, moderate exercise is safe and beneficial for most people with hypertension. Aerobic exercise actually helps lower BP over time. Avoid heavy weight lifting without medical clearance if BP is severely elevated.",
       },
       {
         question: "What is the best exercise for heart health?",
-        answer: "Aerobic exercises  brisk walking, cycling, swimming, jogging, dancing  are best for heart health. Resistance training and HIIT also provide significant cardiovascular benefits. A combination is ideal.",
+        answer:
+          "Aerobic exercises  brisk walking, cycling, swimming, jogging, dancing  are best for heart health. Resistance training and HIIT also provide significant cardiovascular benefits. A combination is ideal.",
       },
       {
         question: "Can too much exercise be bad for the heart?",
-        answer: "Extreme endurance exercise (e.g., multiple marathons per year) may be associated with structural cardiac changes in some individuals. For most people, the concern is too little exercise, not too much.",
+        answer:
+          "Extreme endurance exercise (e.g., multiple marathons per year) may be associated with structural cardiac changes in some individuals. For most people, the concern is too little exercise, not too much.",
       },
     ],
     internalLinks: [
-      { title: "How Many Steps Should You Walk Daily?", slug: "how-many-steps-should-you-walk-daily" },
-      { title: "How to Prevent Heart Disease Naturally", slug: "how-to-prevent-heart-disease-naturally" },
-      { title: "Best Daily Habits for Heart Health", slug: "daily-habits-heart-health" },
-      { title: "How Stress Affects Heart Health", slug: "how-stress-affects-heart-health" },
-      { title: "How to Control Sugar Naturally", slug: "how-to-control-sugar-naturally" },
+      {
+        title: "How Many Steps Should You Walk Daily?",
+        slug: "how-many-steps-should-you-walk-daily",
+      },
+      {
+        title: "How to Prevent Heart Disease Naturally",
+        slug: "how-to-prevent-heart-disease-naturally",
+      },
+      {
+        title: "Best Daily Habits for Heart Health",
+        slug: "daily-habits-heart-health",
+      },
+      {
+        title: "How Stress Affects Heart Health",
+        slug: "how-stress-affects-heart-health",
+      },
+      {
+        title: "How to Control Sugar Naturally",
+        slug: "how-to-control-sugar-naturally",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Importance of Exercise for Heart Health",
-      "description": "Understand why regular exercise is the single most powerful thing you can do for your heart.",
-      "image": "/exericse2.jpg",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/importance-of-exercise-for-heart" },
-      "FAQPage": {
+      headline: "Importance of Exercise for Heart Health",
+      description:
+        "Understand why regular exercise is the single most powerful thing you can do for your heart.",
+      image: "/exericse2.jpg",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/importance-of-exercise-for-heart",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "How does exercise help the heart?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Exercise strengthens the heart muscle, lowers resting BP, improves HDL, reduces inflammation, and decreases resting heart rate  all reducing cardiovascular disease risk." },
+            name: "How does exercise help the heart?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Exercise strengthens the heart muscle, lowers resting BP, improves HDL, reduces inflammation, and decreases resting heart rate  all reducing cardiovascular disease risk.",
+            },
           },
         ],
       },
@@ -3163,19 +4182,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "Does exercise reduce risk of heart attack?",
-        answer: "Yes. Regular physical activity reduces the risk of a first heart attack by 35%. For those who have already had a heart attack, exercise-based cardiac rehabilitation reduces recurrence by 25%.",
+        answer:
+          "Yes. Regular physical activity reduces the risk of a first heart attack by 35%. For those who have already had a heart attack, exercise-based cardiac rehabilitation reduces recurrence by 25%.",
       },
       {
         question: "How quickly does exercise improve heart health?",
-        answer: "Blood pressure and resting heart rate begin improving within 24 weeks of consistent exercise. Cholesterol and insulin sensitivity improve within 612 weeks. Structural cardiac improvements take several months.",
+        answer:
+          "Blood pressure and resting heart rate begin improving within 24 weeks of consistent exercise. Cholesterol and insulin sensitivity improve within 612 weeks. Structural cardiac improvements take several months.",
       },
       {
         question: "Is swimming good for the heart?",
-        answer: "Yes. Swimming is one of the best full-body cardiovascular exercises. It raises heart rate, is gentle on joints, improves lung capacity, and is suitable for people of all fitness levels including those with arthritis.",
+        answer:
+          "Yes. Swimming is one of the best full-body cardiovascular exercises. It raises heart rate, is gentle on joints, improves lung capacity, and is suitable for people of all fitness levels including those with arthritis.",
       },
       {
         question: "Does yoga count as exercise for the heart?",
-        answer: "Yoga provides moderate cardiovascular benefit  it lowers BP, reduces stress, and improves flexibility. However, it should be combined with aerobic exercise for full heart health benefits.",
+        answer:
+          "Yoga provides moderate cardiovascular benefit  it lowers BP, reduces stress, and improves flexibility. However, it should be combined with aerobic exercise for full heart health benefits.",
       },
     ],
   },
@@ -3196,9 +4219,7 @@ export const blogs: Blog[] = [
           "Elevated triglyceride levels (hypertriglyceridemia) are a significant cardiovascular and metabolic risk factor.",
         ],
         images: ["/Triglyceride.png"],
-        references: [
-          "Triglyceride physiology and pathology review",
-        ],
+        references: ["Triglyceride physiology and pathology review"],
       },
       {
         heading: "Normal vs High Triglyceride Levels",
@@ -3209,9 +4230,7 @@ export const blogs: Blog[] = [
           "Very high: 500 mg/dL and above  risk of acute pancreatitis; requires immediate medical attention.",
         ],
         images: ["/blogs/tg-levels.png"],
-        references: [
-          "AHA triglyceride classification guidelines",
-        ],
+        references: ["AHA triglyceride classification guidelines"],
       },
       {
         heading: "Why High Triglycerides Are Dangerous",
@@ -3222,9 +4241,7 @@ export const blogs: Blog[] = [
           "Elevated TG often co-exist with low HDL and insulin resistance  a 'triple threat' for heart disease.",
         ],
         images: ["/blogs/tg-risk.png"],
-        references: [
-          "Metabolic syndrome and triglycerides",
-        ],
+        references: ["Metabolic syndrome and triglycerides"],
       },
       {
         heading: "Causes of High Triglycerides",
@@ -3235,9 +4252,7 @@ export const blogs: Blog[] = [
           "Certain medications including beta-blockers, corticosteroids, and some antipsychotics raise triglycerides.",
         ],
         images: ["/bp.png"],
-        references: [
-          "Secondary hypertriglyceridemia causes",
-        ],
+        references: ["Secondary hypertriglyceridemia causes"],
       },
       {
         heading: "How to Lower Triglycerides",
@@ -3257,48 +4272,72 @@ export const blogs: Blog[] = [
     faq: [
       {
         question: "What is a normal triglyceride level?",
-        answer: "Normal triglycerides are below 150 mg/dL. Borderline high is 150199 mg/dL, high is 200499 mg/dL, and very high (above 500 mg/dL) carries a risk of acute pancreatitis.",
+        answer:
+          "Normal triglycerides are below 150 mg/dL. Borderline high is 150199 mg/dL, high is 200499 mg/dL, and very high (above 500 mg/dL) carries a risk of acute pancreatitis.",
       },
       {
         question: "What causes high triglycerides?",
-        answer: "The main causes are excessive sugar and refined carbohydrate intake, alcohol consumption, physical inactivity, obesity, uncontrolled diabetes, hypothyroidism, and certain medications.",
+        answer:
+          "The main causes are excessive sugar and refined carbohydrate intake, alcohol consumption, physical inactivity, obesity, uncontrolled diabetes, hypothyroidism, and certain medications.",
       },
       {
         question: "How can I lower triglycerides quickly?",
-        answer: "Cutting sugar and alcohol consumption can reduce triglycerides significantly within 24 weeks. Increasing omega-3 intake from fish, regular aerobic exercise, and losing 510% body weight also work quickly.",
+        answer:
+          "Cutting sugar and alcohol consumption can reduce triglycerides significantly within 24 weeks. Increasing omega-3 intake from fish, regular aerobic exercise, and losing 510% body weight also work quickly.",
       },
       {
         question: "Are triglycerides the same as cholesterol?",
-        answer: "No. Triglycerides are blood fats stored as energy. Cholesterol is a waxy substance used for cell building and hormone production. Both are measured in a standard lipid panel and both affect cardiovascular risk.",
+        answer:
+          "No. Triglycerides are blood fats stored as energy. Cholesterol is a waxy substance used for cell building and hormone production. Both are measured in a standard lipid panel and both affect cardiovascular risk.",
       },
       {
         question: "Can high triglycerides cause chest pain?",
-        answer: "Very high triglycerides can contribute to atherosclerosis and metabolic syndrome, both of which increase heart disease risk. They can also cause pancreatitis which presents as severe abdominal pain.",
+        answer:
+          "Very high triglycerides can contribute to atherosclerosis and metabolic syndrome, both of which increase heart disease risk. They can also cause pancreatitis which presents as severe abdominal pain.",
       },
     ],
     internalLinks: [
-      { title: "LDL vs HDL  Good vs Bad Cholesterol Explained", slug: "ldl-vs-hdl" },
-      { title: "How to Understand Your Lipid Profile", slug: "how-to-understand-lipid-profile" },
-      { title: "What is Normal Cholesterol Level?", slug: "what-is-normal-cholesterol-level" },
-      { title: "Best Foods for Diabetes Patients", slug: "best-foods-for-diabetes" },
+      {
+        title: "LDL vs HDL  Good vs Bad Cholesterol Explained",
+        slug: "ldl-vs-hdl",
+      },
+      {
+        title: "How to Understand Your Lipid Profile",
+        slug: "how-to-understand-lipid-profile",
+      },
+      {
+        title: "What is Normal Cholesterol Level?",
+        slug: "what-is-normal-cholesterol-level",
+      },
+      {
+        title: "Best Foods for Diabetes Patients",
+        slug: "best-foods-for-diabetes",
+      },
       { title: "Best Diet for BP Control", slug: "best-diet-for-bp-control" },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "What is Triglycerides and Why It Matters",
-      "description": "Understand triglycerides  what they are, why high levels are dangerous, and how to lower them.",
-      "image": "/Triglyceride.png",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/what-is-triglycerides-and-why-it-matters" },
-      "FAQPage": {
+      headline: "What is Triglycerides and Why It Matters",
+      description:
+        "Understand triglycerides  what they are, why high levels are dangerous, and how to lower them.",
+      image: "/Triglyceride.png",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/what-is-triglycerides-and-why-it-matters",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "What is a normal triglyceride level?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Normal triglycerides are below 150 mg/dL. Borderline high is 150199, high is 200499, and very high is 500+ mg/dL." },
+            name: "What is a normal triglyceride level?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Normal triglycerides are below 150 mg/dL. Borderline high is 150199, high is 200499, and very high is 500+ mg/dL.",
+            },
           },
         ],
       },
@@ -3306,19 +4345,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "Does eating fat raise triglycerides?",
-        answer: "Dietary fat has less impact on triglycerides than carbohydrates and sugar. It is excessive calories from refined carbs, sugar, and alcohol that primarily raise blood triglycerides.",
+        answer:
+          "Dietary fat has less impact on triglycerides than carbohydrates and sugar. It is excessive calories from refined carbs, sugar, and alcohol that primarily raise blood triglycerides.",
       },
       {
         question: "Can high triglycerides cause pancreatitis?",
-        answer: "Yes. Triglycerides above 5001000 mg/dL significantly increase the risk of acute pancreatitis  a serious condition causing severe abdominal pain, nausea, and vomiting requiring hospitalization.",
+        answer:
+          "Yes. Triglycerides above 5001000 mg/dL significantly increase the risk of acute pancreatitis  a serious condition causing severe abdominal pain, nausea, and vomiting requiring hospitalization.",
       },
       {
         question: "Is fasting required before a triglyceride test?",
-        answer: "Yes. Triglyceride levels are highly affected by recent food intake. A 912 hour fast is required for accurate measurement. Eating before the test can falsely elevate results by 2050%.",
+        answer:
+          "Yes. Triglyceride levels are highly affected by recent food intake. A 912 hour fast is required for accurate measurement. Eating before the test can falsely elevate results by 2050%.",
       },
       {
         question: "What medications are used to lower triglycerides?",
-        answer: "Fibrates (fenofibrate), high-dose omega-3 fish oil (prescription), and niacin are used for high triglycerides. Statins modestly lower triglycerides as well. Medications are typically used when lifestyle changes are insufficient.",
+        answer:
+          "Fibrates (fenofibrate), high-dose omega-3 fish oil (prescription), and niacin are used for high triglycerides. Statins modestly lower triglycerides as well. Medications are typically used when lifestyle changes are insufficient.",
       },
     ],
   },
@@ -3339,9 +4382,7 @@ export const blogs: Blog[] = [
           "Understanding what each value means helps you take targeted steps to improve your heart health.",
         ],
         images: ["/cholestro-level.jpg"],
-        references: [
-          "Lipid panel interpretation  ACC/AHA",
-        ],
+        references: ["Lipid panel interpretation  ACC/AHA"],
       },
       {
         heading: "Total Cholesterol Reference Ranges",
@@ -3352,9 +4393,7 @@ export const blogs: Blog[] = [
           "Total cholesterol alone is a poor predictor  the LDL/HDL ratio is more informative.",
         ],
         images: ["/blogs/cholesterol-total.png"],
-        references: [
-          "NCEP ATP III cholesterol guidelines",
-        ],
+        references: ["NCEP ATP III cholesterol guidelines"],
       },
       {
         heading: "LDL, HDL, and Triglyceride Targets",
@@ -3365,9 +4404,7 @@ export const blogs: Blog[] = [
           "Non-HDL cholesterol (total minus HDL) should ideally be below 130 mg/dL and is a useful composite risk marker.",
         ],
         images: ["/blogs/cholesterol-targets.png"],
-        references: [
-          "AHA/ACC dyslipidemia guidelines",
-        ],
+        references: ["AHA/ACC dyslipidemia guidelines"],
       },
       {
         heading: "What Raises Cholesterol?",
@@ -3378,9 +4415,7 @@ export const blogs: Blog[] = [
           "Hypothyroidism and diabetes can elevate total cholesterol and LDL independently of dietary choices.",
         ],
         images: ["/blogs/cholesterol-causes.png"],
-        references: [
-          "Causes of elevated cholesterol  clinical review",
-        ],
+        references: ["Causes of elevated cholesterol  clinical review"],
       },
       {
         heading: "How Often Should You Test?",
@@ -3400,48 +4435,75 @@ export const blogs: Blog[] = [
     faq: [
       {
         question: "What is a healthy total cholesterol level?",
-        answer: "A total cholesterol below 200 mg/dL is desirable. 200239 is borderline high, and 240 or above doubles heart disease risk. However, the breakdown into LDL and HDL matters more than total cholesterol alone.",
+        answer:
+          "A total cholesterol below 200 mg/dL is desirable. 200239 is borderline high, and 240 or above doubles heart disease risk. However, the breakdown into LDL and HDL matters more than total cholesterol alone.",
       },
       {
         question: "What is a dangerous cholesterol level?",
-        answer: "LDL above 190 mg/dL or total cholesterol above 240 mg/dL, especially combined with low HDL, is considered dangerous and significantly raises heart attack risk. Immediate medical consultation is recommended.",
+        answer:
+          "LDL above 190 mg/dL or total cholesterol above 240 mg/dL, especially combined with low HDL, is considered dangerous and significantly raises heart attack risk. Immediate medical consultation is recommended.",
       },
       {
         question: "Can cholesterol be too low?",
-        answer: "Very low total cholesterol (below 120130 mg/dL) is rare but associated with health issues including depression, hemorrhagic stroke, and hormonal deficiencies. It is much less common than high cholesterol.",
+        answer:
+          "Very low total cholesterol (below 120130 mg/dL) is rare but associated with health issues including depression, hemorrhagic stroke, and hormonal deficiencies. It is much less common than high cholesterol.",
       },
       {
         question: "How long does it take to lower cholesterol naturally?",
-        answer: "With consistent dietary changes (reducing saturated fat, increasing fiber and omega-3s) and regular exercise, noticeable improvements in LDL typically appear within 612 weeks. Maintaining changes is key.",
+        answer:
+          "With consistent dietary changes (reducing saturated fat, increasing fiber and omega-3s) and regular exercise, noticeable improvements in LDL typically appear within 612 weeks. Maintaining changes is key.",
       },
       {
         question: "Do I need medication if my cholesterol is 220?",
-        answer: "Not necessarily. A total cholesterol of 220 mg/dL warrants evaluation of your full lipid profile and overall cardiovascular risk. Lifestyle changes are the first step; medication is decided based on your overall risk score, not just one number.",
+        answer:
+          "Not necessarily. A total cholesterol of 220 mg/dL warrants evaluation of your full lipid profile and overall cardiovascular risk. Lifestyle changes are the first step; medication is decided based on your overall risk score, not just one number.",
       },
     ],
     internalLinks: [
-      { title: "LDL vs HDL  Good vs Bad Cholesterol Explained", slug: "ldl-vs-hdl" },
-      { title: "How to Understand Your Lipid Profile", slug: "how-to-understand-lipid-profile" },
-      { title: "What is Triglycerides and Why It Matters", slug: "what-is-triglycerides-and-why-it-matters" },
-      { title: "What is a Good Heart View Score?", slug: "what-is-a-good-heart-risk-score" },
-      { title: "How to Read Your Blood Test Report", slug: "how-to-read-blood-test-report" },
+      {
+        title: "LDL vs HDL  Good vs Bad Cholesterol Explained",
+        slug: "ldl-vs-hdl",
+      },
+      {
+        title: "How to Understand Your Lipid Profile",
+        slug: "how-to-understand-lipid-profile",
+      },
+      {
+        title: "What is Triglycerides and Why It Matters",
+        slug: "what-is-triglycerides-and-why-it-matters",
+      },
+      {
+        title: "What is a Good Heart View Score?",
+        slug: "what-is-a-good-heart-risk-score",
+      },
+      {
+        title: "How to Read Your Blood Test Report",
+        slug: "how-to-read-blood-test-report",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "What is Normal Cholesterol Level?",
-      "description": "Learn what cholesterol numbers mean and what targets to aim for to protect your heart.",
-      "image": "/cholestro-level.jpg",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/what-is-normal-cholesterol-level" },
-      "FAQPage": {
+      headline: "What is Normal Cholesterol Level?",
+      description:
+        "Learn what cholesterol numbers mean and what targets to aim for to protect your heart.",
+      image: "/cholestro-level.jpg",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/what-is-normal-cholesterol-level",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "What is a healthy total cholesterol level?",
-            "acceptedAnswer": { "@type": "Answer", "text": "A total cholesterol below 200 mg/dL is desirable. 200239 is borderline high, and 240 or above doubles heart disease risk." },
+            name: "What is a healthy total cholesterol level?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "A total cholesterol below 200 mg/dL is desirable. 200239 is borderline high, and 240 or above doubles heart disease risk.",
+            },
           },
         ],
       },
@@ -3449,19 +4511,23 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "Does eating eggs raise cholesterol?",
-        answer: "Eggs contain dietary cholesterol, but research shows they have a modest effect on blood LDL for most people. The saturated fat in your overall diet has a larger impact on cholesterol than eggs alone.",
+        answer:
+          "Eggs contain dietary cholesterol, but research shows they have a modest effect on blood LDL for most people. The saturated fat in your overall diet has a larger impact on cholesterol than eggs alone.",
       },
       {
         question: "Can stress raise cholesterol?",
-        answer: "Yes. Chronic stress raises cortisol, which stimulates the liver to produce more cholesterol. Stress-related behaviors (poor diet, inactivity) also indirectly raise cholesterol.",
+        answer:
+          "Yes. Chronic stress raises cortisol, which stimulates the liver to produce more cholesterol. Stress-related behaviors (poor diet, inactivity) also indirectly raise cholesterol.",
       },
       {
         question: "What is the best natural cholesterol-lowering food?",
-        answer: "Oats (beta-glucan fiber), almonds, flaxseeds, fatty fish, avocado, olive oil, and plant sterols (found in fortified foods) are among the most evidence-backed natural cholesterol-lowering foods.",
+        answer:
+          "Oats (beta-glucan fiber), almonds, flaxseeds, fatty fish, avocado, olive oil, and plant sterols (found in fortified foods) are among the most evidence-backed natural cholesterol-lowering foods.",
       },
       {
         question: "Is cholesterol of 250 dangerous?",
-        answer: "A total cholesterol of 250 mg/dL is in the high range and warrants medical evaluation. The overall risk depends on the LDL/HDL breakdown, triglycerides, blood pressure, smoking status, and other risk factors.",
+        answer:
+          "A total cholesterol of 250 mg/dL is in the high range and warrants medical evaluation. The overall risk depends on the LDL/HDL breakdown, triglycerides, blood pressure, smoking status, and other risk factors.",
       },
     ],
   },
@@ -3496,9 +4562,7 @@ export const blogs: Blog[] = [
           "Avoiding the phone and news in the first hour of waking reduces cortisol spikes.",
         ],
         images: ["/blogs/lifestyle-morning.png"],
-        references: [
-          "Morning routine and cardiovascular health",
-        ],
+        references: ["Morning routine and cardiovascular health"],
       },
       {
         heading: "Evening Habits for a Healthy Heart",
@@ -3509,9 +4573,7 @@ export const blogs: Blog[] = [
           "A short journaling or gratitude practice in the evening reduces stress and improves heart rate variability.",
         ],
         images: ["/blogs/lifestyle-evening.png"],
-        references: [
-          "Evening habits and cardiovascular outcomes",
-        ],
+        references: ["Evening habits and cardiovascular outcomes"],
       },
       {
         heading: "Habits to Avoid",
@@ -3522,9 +4584,7 @@ export const blogs: Blog[] = [
           "Emotional eating in response to stress leads to poor food choices that directly harm heart health.",
         ],
         images: ["/blogs/lifestyle-avoid.png"],
-        references: [
-          "Behavioral risk factors in heart disease",
-        ],
+        references: ["Behavioral risk factors in heart disease"],
       },
       {
         heading: "Tracking Progress",
@@ -3543,49 +4603,77 @@ export const blogs: Blog[] = [
     ],
     faq: [
       {
-        question: "What are the most important daily habits for a healthy heart?",
-        answer: "The most impactful daily habits are: getting 79 hours of sleep, walking 6,00010,000 steps, eating a low-sodium, fiber-rich diet, managing stress through meditation or breathing, and monitoring BP and heart rate regularly.",
+        question:
+          "What are the most important daily habits for a healthy heart?",
+        answer:
+          "The most impactful daily habits are: getting 79 hours of sleep, walking 6,00010,000 steps, eating a low-sodium, fiber-rich diet, managing stress through meditation or breathing, and monitoring BP and heart rate regularly.",
       },
       {
         question: "What should I eat every day for heart health?",
-        answer: "Daily: oats or whole grains, leafy greens, a handful of nuts, legumes, fatty fish 23 times per week, fruits (especially berries), olive oil, and plenty of water. Limit sodium, sugar, refined carbs, and saturated fats.",
+        answer:
+          "Daily: oats or whole grains, leafy greens, a handful of nuts, legumes, fatty fish 23 times per week, fruits (especially berries), olive oil, and plenty of water. Limit sodium, sugar, refined carbs, and saturated fats.",
       },
       {
         question: "Is drinking water important for heart health?",
-        answer: "Yes. Staying hydrated helps maintain healthy blood viscosity, supports kidney function in regulating blood pressure, and helps the heart pump blood more efficiently. Aim for 23 liters of water daily.",
+        answer:
+          "Yes. Staying hydrated helps maintain healthy blood viscosity, supports kidney function in regulating blood pressure, and helps the heart pump blood more efficiently. Aim for 23 liters of water daily.",
       },
       {
         question: "How can I build heart-healthy habits that stick?",
-        answer: "Start with just 12 changes at a time, track your progress with a health app, attach new habits to existing routines (e.g., walk after every dinner), and reward consistency  not perfection.",
+        answer:
+          "Start with just 12 changes at a time, track your progress with a health app, attach new habits to existing routines (e.g., walk after every dinner), and reward consistency  not perfection.",
       },
       {
         question: "Does eating late at night affect the heart?",
-        answer: "Yes. Eating within 2 hours of bedtime is associated with higher nocturnal blood pressure, worse cholesterol levels, and greater weight gain over time  all harmful to cardiovascular health.",
+        answer:
+          "Yes. Eating within 2 hours of bedtime is associated with higher nocturnal blood pressure, worse cholesterol levels, and greater weight gain over time  all harmful to cardiovascular health.",
       },
     ],
     internalLinks: [
-      { title: "Top 10 Heart Health Tips for Daily Life", slug: "top-10-heart-health-tips" },
-      { title: "How Sleep Affects Your Heart", slug: "how-sleep-affects-your-heart" },
-      { title: "How Stress Affects Heart Health", slug: "how-stress-affects-heart-health" },
-      { title: "Importance of Exercise for Heart Health", slug: "importance-of-exercise-for-heart" },
-      { title: "How Many Steps Should You Walk Daily?", slug: "how-many-steps-should-you-walk-daily" },
+      {
+        title: "Top 10 Heart Health Tips for Daily Life",
+        slug: "top-10-heart-health-tips",
+      },
+      {
+        title: "How Sleep Affects Your Heart",
+        slug: "how-sleep-affects-your-heart",
+      },
+      {
+        title: "How Stress Affects Heart Health",
+        slug: "how-stress-affects-heart-health",
+      },
+      {
+        title: "Importance of Exercise for Heart Health",
+        slug: "importance-of-exercise-for-heart",
+      },
+      {
+        title: "How Many Steps Should You Walk Daily?",
+        slug: "how-many-steps-should-you-walk-daily",
+      },
     ],
     schemaMarkup: {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Best Daily Habits for Heart Health",
-      "description": "Simple daily habits that can significantly improve your heart health.",
-      "image": "/top10healthhabit.jpg",
-      "author": { "@type": "Organization", "name": "HeartView" },
-      "publisher": { "@type": "Organization", "name": "HeartView" },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": "/blogs/daily-habits-heart-health" },
-      "FAQPage": {
+      headline: "Best Daily Habits for Heart Health",
+      description:
+        "Simple daily habits that can significantly improve your heart health.",
+      image: "/top10healthhabit.jpg",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/daily-habits-heart-health",
+      },
+      FAQPage: {
         "@type": "FAQPage",
-        "mainEntity": [
+        mainEntity: [
           {
             "@type": "Question",
-            "name": "What are the most important daily habits for a healthy heart?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Key daily habits: 79 hours sleep, 6,00010,000 steps, low-sodium fiber-rich diet, stress management, and regular BP/heart rate monitoring." },
+            name: "What are the most important daily habits for a healthy heart?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Key daily habits: 79 hours sleep, 6,00010,000 steps, low-sodium fiber-rich diet, stress management, and regular BP/heart rate monitoring.",
+            },
           },
         ],
       },
@@ -3593,20 +4681,486 @@ export const blogs: Blog[] = [
     peopleAlsoAsk: [
       {
         question: "What is the healthiest morning routine for the heart?",
-        answer: "A heart-healthy morning: glass of water on waking, 15-minute walk, high-protein/fiber breakfast (eggs + oats), avoid news/stress in first hour, and take any prescribed medications consistently.",
+        answer:
+          "A heart-healthy morning: glass of water on waking, 15-minute walk, high-protein/fiber breakfast (eggs + oats), avoid news/stress in first hour, and take any prescribed medications consistently.",
       },
       {
         question: "Does gratitude journaling benefit heart health?",
-        answer: "Research suggests gratitude practices reduce stress hormones, improve sleep quality, and are associated with better heart rate variability  all of which benefit cardiovascular health.",
+        answer:
+          "Research suggests gratitude practices reduce stress hormones, improve sleep quality, and are associated with better heart rate variability  all of which benefit cardiovascular health.",
       },
       {
         question: "How does sitting all day affect the heart?",
-        answer: "Prolonged sitting (8+ hours without movement) is independently associated with doubled cardiovascular risk, even in people who exercise. Taking movement breaks every hour significantly counters this harm.",
+        answer:
+          "Prolonged sitting (8+ hours without movement) is independently associated with doubled cardiovascular risk, even in people who exercise. Taking movement breaks every hour significantly counters this harm.",
       },
       {
         question: "Is alcohol ever good for the heart?",
-        answer: "While some older studies suggested mild benefits from red wine, current evidence does not support drinking alcohol for heart health. Any amount of alcohol raises some cardiovascular risks, and abstaining is safest.",
+        answer:
+          "While some older studies suggested mild benefits from red wine, current evidence does not support drinking alcohol for heart health. Any amount of alcohol raises some cardiovascular risks, and abstaining is safest.",
       },
     ],
   },
+    {
+    slug: "how-many-hours-of-sleep-do-you-need",
+    title: "How Many Hours of Sleep Do You Really Need?",
+    category: "sleep",
+    description:
+      "Discover how much sleep is truly recommended by age, and why quality sleep is essential for heart and overall health.",
+    content: [
+      {
+        heading: "Why Sleep Is a Health Pillar",
+        paragraphs: [
+          "Sleep is not a passive state — it is the body's most critical recovery period.",
+          "During deep sleep, the heart rate slows, blood pressure drops, and tissues repair themselves.",
+          "Poor sleep is linked to increased risk of heart disease, stroke, obesity, and type 2 diabetes.",
+          "Consistently sleeping well is one of the most powerful things you can do for long-term health.",
+        ],
+        images: ["/sleep2.jpg"],
+        references: [
+          "Sleep and cardiovascular health evidence review",
+          "HeartView sleep tracking feature",
+        ],
+      },
+      {
+        heading: "Recommended Sleep Duration by Age",
+        paragraphs: [
+          "Adults aged 18–64 need 7–9 hours of sleep per night according to the National Sleep Foundation.",
+          "Older adults (65+) generally need 7–8 hours, though sleep structure changes with age.",
+          "Teenagers require 8–10 hours, while school-age children need 9–11 hours for proper development.",
+          "Sleeping fewer than 6 hours consistently is associated with a 20–30% higher risk of heart disease.",
+        ],
+        images: ["/blogs/sleep-age-chart.png"],
+        references: [
+          "National Sleep Foundation guidelines",
+          "Sleep duration and cardiovascular mortality meta-analysis",
+        ],
+      },
+      {
+        heading: "Signs You Are Not Getting Enough Sleep",
+        paragraphs: [
+          "Daytime fatigue, difficulty concentrating, and irritability are early signs of chronic sleep deprivation.",
+          "Waking unrefreshed, needing an alarm to wake up, and falling asleep quickly all indicate a sleep debt.",
+          "Long-term sleep deprivation raises cortisol and adrenaline levels, straining the cardiovascular system.",
+          "Even one to two nights of poor sleep can temporarily raise blood pressure and impair glucose metabolism.",
+        ],
+        images: ["/blogs/sleep-deprivation-signs.png"],
+        references: ["Sleep deprivation and hormonal effects"],
+      },
+      {
+        heading: "Sleep Quality vs Sleep Quantity",
+        paragraphs: [
+          "Eight hours in bed does not equal eight hours of restorative sleep if you wake frequently.",
+          "Deep sleep (slow-wave sleep) and REM sleep are the most restorative phases for heart and brain recovery.",
+          "Factors like sleep apnea, alcohol, and screen light reduce deep sleep even when total duration is adequate.",
+          "Tracking sleep stages with a wearable or the HeartView app can help you assess true sleep quality.",
+        ],
+        images: ["/blogs/sleep-stages.png"],
+        references: ["Sleep stages and cardiovascular recovery", "HeartView sleep analysis"],
+      },
+      {
+        heading: "Tips to Improve Sleep Duration and Quality",
+        paragraphs: [
+          "Keep a consistent sleep and wake time — even on weekends — to anchor your circadian rhythm.",
+          "Avoid screens, caffeine, and heavy meals within 2 hours of bedtime.",
+          "Keep the bedroom cool (18–20°C), dark, and quiet to promote deep sleep.",
+          "Short naps of 20 minutes can reduce sleep debt without disrupting nighttime sleep.",
+        ],
+        images: ["/blogs/sleep-tips.png"],
+        references: [
+          "Sleep hygiene and circadian rhythm research",
+          "HeartView sleep goals and reminders",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "How many hours of sleep is ideal for adults?",
+        answer:
+          "Most adults need 7–9 hours per night. Sleeping fewer than 6 hours regularly increases the risk of heart disease, obesity, and diabetes.",
+      },
+      {
+        question: "Is 6 hours of sleep enough?",
+        answer:
+          "For most adults, 6 hours is insufficient. Research shows consistent short sleep (under 6 hours) is associated with higher cardiovascular risk and reduced cognitive performance.",
+      },
+      {
+        question: "Can you catch up on sleep on weekends?",
+        answer:
+          "Partially. While weekend recovery sleep can reduce some effects of sleep debt, it does not fully reverse the metabolic and cardiovascular impact of weekday sleep loss.",
+      },
+      {
+        question: "Does sleeping too much cause problems?",
+        answer:
+          "Yes. Consistently sleeping more than 9 hours is also linked to higher rates of heart disease and may indicate an underlying condition like depression or sleep apnea.",
+      },
+      {
+        question: "What is the best time to go to sleep?",
+        answer:
+          "Most adults align naturally with sleeping between 10 PM and 11 PM. Sleeping before midnight is associated with more deep sleep in the first half of the night, which is the most restorative phase.",
+      },
+    ],
+    internalLinks: [
+      { title: "Best Daily Habits for Heart Health", slug: "daily-habits-heart-health" },
+      { title: "How Stress Affects Heart Health", slug: "how-stress-affects-heart-health" },
+      { title: "How to Prevent Heart Disease Naturally", slug: "how-to-prevent-heart-disease-naturally" },
+      { title: "Normal Blood Pressure Range by Age", slug: "normal-blood-pressure-by-age" },
+      { title: "How Many Steps Should You Walk Daily?", slug: "how-many-steps-should-you-walk-daily" },
+    ],
+    schemaMarkup: {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: "How Many Hours of Sleep Do You Really Need?",
+      description:
+        "Discover how much sleep is truly recommended by age, and why quality sleep is essential for heart and overall health.",
+      image: "/blogs/sleep-health.png",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/how-many-hours-of-sleep-do-you-need",
+      },
+      FAQPage: {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "How many hours of sleep is ideal for adults?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Most adults need 7–9 hours per night. Fewer than 6 hours regularly increases cardiovascular and metabolic risk.",
+            },
+          },
+        ],
+      },
+    },
+    peopleAlsoAsk: [
+      {
+        question: "What happens if you sleep only 5 hours a night?",
+        answer:
+          "Chronic 5-hour sleep raises cortisol, blood pressure, and inflammatory markers. Over time it increases risk of heart attack, stroke, and metabolic syndrome significantly.",
+      },
+      {
+        question: "Does napping count toward daily sleep needs?",
+        answer:
+          "A short nap (20–30 minutes) can supplement nighttime sleep and improve alertness. However, long naps or napping late in the day can disrupt the ability to fall asleep at night.",
+      },
+      {
+        question: "Is it better to sleep 7 hours straight or 6 + 1 nap?",
+        answer:
+          "A consolidated 7-hour sleep is generally better for cardiovascular and hormonal health. Fragmented sleep reduces the proportion of deep and REM sleep stages.",
+      },
+      {
+        question: "How does poor sleep affect blood pressure?",
+        answer:
+          "Poor sleep raises nocturnal blood pressure and prevents the normal overnight dip in BP. This is linked to higher daytime blood pressure and greater cardiovascular risk.",
+      },
+    ],
+  },
+    {
+    slug: "how-sleep-deprivation-affects-the-heart",
+    title: "How Sleep Deprivation Affects the Heart",
+    category: "sleep",
+    description:
+      "Find out how chronic sleep deprivation damages cardiovascular health and what you can do to reverse the effects.",
+    content: [
+      {
+        heading: "Sleep Deprivation Is a Cardiovascular Risk",
+        paragraphs: [
+          "Sleeping fewer than 6 hours per night on a regular basis is now classified as a significant independent risk factor for cardiovascular disease.",
+          "Large-scale studies show that short sleepers have a 20–48% higher risk of developing or dying from heart disease.",
+          "Sleep deprivation elevates inflammatory markers like C-reactive protein and interleukin-6, which damage arterial walls.",
+          "The damage is cumulative — even mild chronic restriction adds up over months and years.",
+        ],
+        images: ["/sleep3.jpg"],
+        references: [
+          "Sleep duration and cardiovascular risk meta-analysis",
+          "Inflammation and sleep deprivation research",
+        ],
+      },
+      {
+        heading: "How Lack of Sleep Raises Blood Pressure",
+        paragraphs: [
+          "Sleep is the only time most people's blood pressure consistently falls — missing sleep prevents this vital recovery.",
+          "Sleep deprivation activates the sympathetic nervous system, raising adrenaline and cortisol throughout the day.",
+          "After just one night of poor sleep, daytime blood pressure can rise by 4–8 mmHg in sensitive individuals.",
+          "Chronic sleep deprivation is a leading contributor to treatment-resistant hypertension.",
+        ],
+        images: ["/blogs/sleep-bp.png"],
+        references: ["Sleep deprivation and hypertension mechanisms"],
+      },
+      {
+        heading: "Sleep Loss and Heart Rate",
+        paragraphs: [
+          "Poor sleep increases resting heart rate by activating the sympathetic nervous system.",
+          "A persistently elevated resting heart rate above 80 bpm is associated with significantly higher cardiovascular mortality.",
+          "Heart rate variability (HRV) — a marker of cardiac resilience — falls sharply after even one night of poor sleep.",
+          "Tracking morning resting heart rate is a simple way to monitor the cumulative impact of sleep debt on the heart.",
+        ],
+        images: ["/blogs/sleep-heart-rate.png"],
+        references: ["HRV and sleep quality correlation", "Resting heart rate and mortality"],
+      },
+      {
+        heading: "Metabolic Effects That Harm the Heart",
+        paragraphs: [
+          "Sleep deprivation impairs insulin sensitivity within days, raising blood glucose and triglyceride levels.",
+          "It increases ghrelin (hunger hormone) and reduces leptin (satiety hormone), driving overeating and weight gain.",
+          "Obesity, diabetes, and dyslipidaemia — all worsened by poor sleep — are major drivers of heart disease.",
+          "Even a single week of sleeping 5 hours per night measurably worsens metabolic markers.",
+        ],
+        images: ["/blogs/sleep-metabolism.png"],
+        references: ["Sleep restriction and insulin resistance", "Sleep and appetite hormone dysregulation"],
+      },
+      {
+        heading: "Can You Reverse Sleep Deprivation Damage?",
+        paragraphs: [
+          "Short-term sleep debt can be partially recovered with consistent quality sleep over 1–2 weeks.",
+          "Blood pressure and HRV begin improving within days of restoring adequate sleep.",
+          "However, chronic multi-year sleep deprivation may leave lasting arterial stiffness and metabolic changes.",
+          "The earlier you address sleep habits, the greater the cardiovascular benefit — it is never too late to start.",
+        ],
+        images: ["/blogs/sleep-recovery.png"],
+        references: [
+          "Sleep recovery and cardiovascular markers",
+          "HeartView sleep and BP correlation tracking",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "How does sleep deprivation affect the heart?",
+        answer:
+          "Sleep deprivation raises blood pressure, increases heart rate, elevates inflammatory markers, and reduces heart rate variability — all of which increase the risk of heart attack, stroke, and arrhythmia.",
+      },
+      {
+        question: "Can lack of sleep cause a heart attack?",
+        answer:
+          "Chronic sleep deprivation significantly raises the risk of heart attack. Studies show people sleeping fewer than 6 hours have up to 48% higher coronary heart disease risk compared to those sleeping 7–8 hours.",
+      },
+      {
+        question: "How long does it take to recover from sleep deprivation?",
+        answer:
+          "Mild short-term sleep debt can be largely recovered in 1–2 weeks of adequate sleep. Blood pressure and heart rate variability begin improving within days. Chronic long-term deprivation may have lasting effects.",
+      },
+      {
+        question: "Does one bad night of sleep affect your heart?",
+        answer:
+          "Yes. Even a single night of poor sleep raises cortisol, blood pressure, and inflammatory markers the following day. The effects are temporary for most people but accumulate with repeated poor sleep.",
+      },
+      {
+        question: "What is the minimum sleep needed to protect heart health?",
+        answer:
+          "Most evidence points to 7 hours as the minimum for cardiovascular protection in adults. Sleeping 6–7 hours carries moderate risk; below 6 hours significantly raises heart disease and stroke risk.",
+      },
+    ],
+    internalLinks: [
+      { title: "How Many Hours of Sleep Do You Need?", slug: "how-many-hours-of-sleep-do-you-need" },
+      { title: "Best Sleep Habits for Heart Health", slug: "best-sleep-habits-for-heart-health" },
+      { title: "Normal Blood Pressure Range by Age", slug: "normal-blood-pressure-by-age" },
+      { title: "How Stress Affects Heart Health", slug: "how-stress-affects-heart-health" },
+      { title: "How to Prevent Heart Disease Naturally", slug: "how-to-prevent-heart-disease-naturally" },
+    ],
+    schemaMarkup: {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: "How Sleep Deprivation Affects the Heart",
+      description:
+        "Find out how chronic sleep deprivation damages cardiovascular health and what you can do to reverse the effects.",
+      image: "/blogs/sleep-deprivation-heart.png",
+      author: { "@type": "Organization", name: "HeartView" },
+      publisher: { "@type": "Organization", name: "HeartView" },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": "/blogs/how-sleep-deprivation-affects-the-heart",
+      },
+      FAQPage: {
+        "@type": "FAQPage",
+        mainEntity: [
+          {
+            "@type": "Question",
+            name: "How does sleep deprivation affect the heart?",
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: "Sleep deprivation raises blood pressure, increases heart rate, elevates inflammation, and reduces HRV — increasing the risk of heart attack, stroke, and arrhythmia.",
+            },
+          },
+        ],
+      },
+    },
+    peopleAlsoAsk: [
+      {
+        question: "Is it worse to sleep late or sleep less?",
+        answer:
+          "Both are harmful but in different ways. Sleeping late shifts the circadian rhythm and raises cardiovascular risk. Sleeping too little directly impairs heart rate, blood pressure, and metabolism. Ideally, sleep enough and at a consistent, early time.",
+      },
+      {
+        question: "Does stress-related insomnia affect the heart?",
+        answer:
+          "Yes. Stress-driven poor sleep creates a damaging cycle: stress raises cortisol, cortisol disrupts sleep, and disrupted sleep further raises cortisol and blood pressure — compounding cardiovascular risk.",
+      },
+      {
+        question: "Can caffeine cause sleep deprivation-related heart issues?",
+        answer:
+          "Excessive caffeine delays sleep onset and reduces deep sleep, effectively creating mild chronic sleep deprivation. Combined with its direct stimulant effect on heart rate, high caffeine intake amplifies cardiovascular risk.",
+      },
+      {
+        question: "Does exercise help with sleep deprivation heart effects?",
+        answer:
+          "Regular exercise partially offsets some cardiovascular effects of mild sleep deprivation by improving HRV and blood pressure. However, it does not replace the recovery benefits of adequate sleep.",
+      },
+    ],
+  },
+  {
+  slug: "5-steps-to-improve-heart-health-through-walking",
+  title: "5 Steps to Improve Heart Health Through Walking",
+  category: "step",
+  description:
+    "Discover how regular walking strengthens your heart and learn simple steps to build a heart-healthy walking routine.",
+  content: [
+    {
+      heading: "Step 1: Understand Why Walking Is a Powerful Cardiovascular Tool",
+      paragraphs: [
+        "Start by recognizing that brisk walking is one of the simplest, most accessible forms of cardiovascular exercise available.",
+        "Acknowledge that regular walkers face a significantly lower risk of heart disease compared to sedentary individuals, according to large population studies.",
+        "Learn how walking improves circulation, strengthens the heart muscle, and helps regulate blood pressure over time.",
+        "Understand that the benefits are cumulative — consistent walking over weeks and months produces measurable cardiovascular improvement.",
+      ],
+      images: ["/steps.jpg"],
+      references: [
+        "Walking and cardiovascular risk reduction studies",
+        "Physical activity and heart disease prevention research",
+      ],
+    },
+    {
+      heading: "Step 2: Monitor How Walking Improves Your Blood Pressure",
+      paragraphs: [
+        "Track your blood pressure regularly, as walking helps relax blood vessel walls and improve circulation over time.",
+        "Be aware that consistent walking reduces resting sympathetic nervous system activity, lowering everyday stress on the heart.",
+        "Note that just 30 minutes of brisk walking can produce measurable short-term drops in blood pressure.",
+        "Recognize that regular walking is one of the most effective lifestyle interventions for managing mild to moderate hypertension.",
+      ],
+      images: ["/blogs/walking-bp.png"],
+      references: ["Walking and blood pressure regulation"],
+    },
+    {
+      heading: "Step 3: Track the Impact of Walking on Your Heart Rate and Fitness",
+      paragraphs: [
+        "Check your resting heart rate periodically, as regular walking gradually lowers it by improving heart efficiency.",
+        "Know that a lower resting heart rate over time is associated with better cardiovascular fitness and lower mortality risk.",
+        "Measure your heart rate variability (HRV), which often improves with consistent moderate exercise like walking.",
+        "Use a simple daily step count or walking duration as a practical way to monitor your fitness progress.",
+      ],
+      images: ["/blogs/walking-heart-rate.png"],
+      references: ["Walking and heart rate variability", "Resting heart rate and fitness correlation"],
+    },
+    {
+      heading: "Step 4: Address the Metabolic Benefits That Support Your Heart",
+      paragraphs: [
+        "Improve insulin sensitivity through regular walking, which helps regulate blood glucose and reduce diabetes risk.",
+        "Balance body weight — walking burns calories and helps prevent the weight gain that strains the cardiovascular system.",
+        "Manage cholesterol levels, as regular walking has been shown to raise HDL (good) cholesterol and lower triglycerides.",
+        "Aim for consistency, as even moderate daily walking measurably improves metabolic markers within weeks.",
+      ],
+      images: ["/blogs/walking-metabolism.png"],
+      references: ["Walking and insulin sensitivity", "Exercise and lipid profile improvement"],
+    },
+    {
+      heading: "Step 5: Take Action to Build a Sustainable Walking Routine",
+      paragraphs: [
+        "Begin with achievable goals — even 10–15 minutes of daily walking provides measurable cardiovascular benefit.",
+        "Expect early improvements: mood, energy, and mild blood pressure benefits often appear within the first couple of weeks.",
+        "Gradually increase duration and pace toward 30 minutes of brisk walking most days of the week for optimal heart benefit.",
+        "Remember — consistency matters more than intensity. Regular walking, sustained over months and years, offers lasting heart protection.",
+      ],
+      images: ["/blogs/walking-routine.png"],
+      references: [
+        "Walking duration and cardiovascular outcomes",
+        "HeartView walking and heart health tracking",
+      ],
+    },
+  ],
+  faq: [
+    {
+      question: "How does walking improve heart health?",
+      answer:
+        "Walking strengthens the heart muscle, improves circulation, lowers blood pressure, helps regulate cholesterol and blood sugar, and supports healthy body weight — all of which reduce cardiovascular risk.",
+    },
+    {
+      question: "How many minutes of walking are good for the heart?",
+      answer:
+        "Most guidelines recommend at least 150 minutes of brisk walking per week, roughly 30 minutes on most days, for significant cardiovascular benefit.",
+    },
+    {
+      question: "Can walking lower blood pressure?",
+      answer:
+        "Yes. Regular brisk walking can produce measurable reductions in both systolic and diastolic blood pressure, especially in people with mild to moderate hypertension.",
+    },
+    {
+      question: "Is walking as good as running for heart health?",
+      answer:
+        "Walking offers substantial cardiovascular benefits and is lower-impact than running. While running may produce faster fitness gains, consistent brisk walking still significantly reduces heart disease risk.",
+    },
+    {
+      question: "How soon will I notice heart health benefits from walking?",
+      answer:
+        "Some benefits, like improved mood and mild blood pressure reduction, can appear within days to weeks. More substantial cardiovascular improvements typically build over consistent practice across several months.",
+    },
+  ],
+  internalLinks: [
+    { title: "How Many Hours of Sleep Do You Need?", slug: "how-many-hours-of-sleep-do-you-need" },
+    { title: "Best Exercise Habits for Heart Health", slug: "best-exercise-habits-for-heart-health" },
+    { title: "Normal Blood Pressure Range by Age", slug: "normal-blood-pressure-by-age" },
+    { title: "How Stress Affects Heart Health", slug: "how-stress-affects-heart-health" },
+    { title: "How to Prevent Heart Disease Naturally", slug: "how-to-prevent-heart-disease-naturally" },
+  ],
+  schemaMarkup: {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: "5 Steps to Improve Heart Health Through Walking",
+    description:
+      "Discover how regular walking strengthens your heart and learn simple steps to build a heart-healthy walking routine.",
+    image: "/blogs/walking-heart.png",
+    author: { "@type": "Organization", name: "HeartView" },
+    publisher: { "@type": "Organization", name: "HeartView" },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": "/blogs/5-steps-to-improve-heart-health-through-walking",
+    },
+    FAQPage: {
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "How does walking improve heart health?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Walking strengthens the heart, improves circulation, lowers blood pressure, and supports healthy cholesterol and blood sugar levels.",
+          },
+        },
+      ],
+    },
+  },
+  peopleAlsoAsk: [
+    {
+      question: "Is walking after meals good for the heart?",
+      answer:
+        "Yes. A short walk after meals can help regulate post-meal blood sugar spikes and support healthy digestion, which indirectly benefits cardiovascular health.",
+    },
+    {
+      question: "Does walking speed matter for heart benefits?",
+      answer:
+        "Brisk walking, where you can talk but not sing comfortably, tends to provide greater cardiovascular benefit than very slow walking, though any walking is better than none.",
+    },
+    {
+      question: "Can walking help reverse early heart disease?",
+      answer:
+        "Regular walking can improve risk factors like blood pressure, cholesterol, and weight, which may help slow or partially improve early-stage cardiovascular issues, though it should complement medical care, not replace it.",
+    },
+    {
+      question: "How many steps a day are ideal for heart health?",
+      answer:
+        "While 10,000 steps is a popular target, research suggests meaningful cardiovascular benefits start appearing around 7,000–8,000 steps per day for many adults.",
+    },
+  ],
+}
 ];

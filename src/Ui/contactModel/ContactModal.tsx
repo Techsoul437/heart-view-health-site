@@ -221,7 +221,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                 {isOpen && (
                     <>
                         <motion.div
-                            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+                            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[1090]"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
@@ -233,16 +233,18 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 32 }}
                             transition={{ duration: 0.3, ease: "easeOut" }}
-                            className="fixed inset-0 z-50 flex items-center justify-center px-2 sm:px-4 py-6"
+                            className="fixed inset-0 z-[1100] flex min-h-dvh items-center justify-center overflow-y-auto px-3 py-3 sm:px-4 sm:py-6"
                         >
                             <div
                                 className="
     w-full
+    max-w-md
     sm:max-w-lg
     md:max-w-xl
-    xl:max-w-2xl
-    max-h-[90vh]
+    max-h-[calc(100dvh-24px)]
+    sm:max-h-[calc(100dvh-48px)]
     overflow-y-auto
+    no-scrollbar
     bg-[#EDEDEE]
     rounded-lg
     border border-[#2f5ba5]/30
@@ -252,21 +254,22 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                             >
                                 <button
                                     onClick={onClose}
-                                    className="absolute top-2 right-3 text-zinc-400 hover:text-black text-xl"
+                                    className="sticky top-0 z-10 ml-auto -mb-8 flex h-9 w-9 items-center justify-center rounded-full bg-[#EDEDEE]/90 text-zinc-400 hover:text-black text-xl"
+                                    aria-label="Close contact form"
                                 >
                                     ✕
                                 </button>
 
-                                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-black">
+                                <h2 className="pr-10 text-xl sm:text-2xl lg:text-3xl font-medium text-black">
                                     Get In Touch
                                 </h2>
 
-                                <p className="text-[#64748B] text-base sm:text-lg  leading-relaxed lg:max-w-md font-light ">
+                                <p className="text-[#64748B] text-base sm:text-lg leading-relaxed lg:max-w-md font-light">
                                     We&apos;re here to answer your questions and guide you toward
                                     better health. Reach out anytime we love to hear from you.
                                 </p>
 
-                                <form onSubmit={formik.handleSubmit} noValidate className="flex flex-col gap-1  xl:gap-3">
+                                <form onSubmit={formik.handleSubmit} noValidate className="flex flex-col gap-3">
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                         <div>
                                             <label className="block text-[#64748B] text-base sm:text-lg  leading-relaxed font-light mb-1">Name</label>
@@ -342,7 +345,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                                     </div>
 
                                     {/* Message + reCAPTCHA */}
-                                    <div className="flex flex-col lg:flex-row xl:flex-col gap-4 lg:items-baseline-last xl:items-stretch">
+                                    <div className="flex flex-col gap-3 sm:gap-4">
 
                                         {/* Message */}
                                         <div className="flex-1">
@@ -353,17 +356,16 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                                                 value={formik.values.message}
                                                 onChange={formik.handleChange}
                                                 onBlur={formik.handleBlur}
-                                                className={`${inputClass("message")} resize-none w-full`}
+                                                className={`${inputClass("message")} min-h-28 max-h-36 resize-y w-full`}
                                             />
                                             <ErrorMsg msg={formik.touched.message ? formik.errors.message : undefined} />
                                         </div>
 
                                         {/* reCAPTCHA */}
-                                        <div className="flex-shrink-0 mt-2 lg:mt-6 xl:mt-2">
+                                        <div className="w-full min-h-[65px] overflow-hidden">
                                             <div className="
-  scale-[0.75]
-  sm:scale-[0.85]
-  md:scale-100
+  scale-[0.86]
+  min-[380px]:scale-100
   origin-top-left
 ">
                                                 <ReCAPTCHA
