@@ -2710,7 +2710,7 @@ export const blogs: Blog[] = [
           "Early diagnosis allows for lifestyle interventions that can reverse prediabetes and slow the progression of Type 2.",
           "Knowing the early signs can prompt you to get tested before serious complications develop.",
         ],
-        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/bloodSugar3.png"],
+        images: ["https://heartview-images.s3.ap-south-1.amazonaws.com/bloodSugar3.jpg"],
         references: ["IDF Diabetes Atlas early detection data"],
       },
       {
