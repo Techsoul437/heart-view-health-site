@@ -61,7 +61,13 @@ const manrope = Manrope({
 //     },
 //   },
 // };
-
+export const metadata = {
+  icons: {
+    icon: "https://heartview-images.s3.ap-south-1.amazonaws.com/favicon3.png",
+    shortcut: "https://heartview-images.s3.ap-south-1.amazonaws.com/favicon3.png",
+    apple: "https://heartview-images.s3.ap-south-1.amazonaws.com/favicon3.png",
+  },
+};
 export default function RootLayout({
   children,
 }: {
