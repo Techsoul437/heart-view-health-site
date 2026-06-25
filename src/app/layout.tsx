@@ -1,10 +1,9 @@
 
-import type { Metadata } from "next";
 import { Geist, Geist_Mono, Manrope } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
-import PageLoader from "@/Ui/loader/PageLoader";
 import Script from "next/script";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 
 const geistSans = Geist({
@@ -80,10 +79,8 @@ export default function RootLayout({
         {/* <PageLoader></PageLoader> */}
 
         {children}
-
-
-      </body>
-      <Script
+        <GoogleAnalytics gaId="G-JYXHGBWQVM"></GoogleAnalytics>
+           <Script
         id="organization-schema"
         type="application/ld+json"
         strategy="afterInteractive"
@@ -97,6 +94,8 @@ export default function RootLayout({
           }),
         }}
       />
+      </body>
+   
     </html>
   );
 }
