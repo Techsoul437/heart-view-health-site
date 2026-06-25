@@ -11,7 +11,7 @@ const categoryLabels: Record<string, string> = {
   bp: "Blood Pressure",
 
 };
-  import type { Metadata } from "next";
+import type { Metadata } from "next";
 
 //   export const  metadata: Metadata = {
 //   title: "Health Blog | HeartView Health",
