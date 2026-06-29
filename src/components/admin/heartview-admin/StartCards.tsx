@@ -9,7 +9,7 @@ import {
 } from "react-icons/fi";
 
 type StatsData = {
- totalLabs: number;
+  totalLabs: number;
   activeLabs: number;
   totalPatients: number;
   newLabs: number;
@@ -24,7 +24,7 @@ type StatsConfig = {
 const statsConfig: StatsConfig = {
   2026: {
     6: {
-       totalLabs: 125,
+      totalLabs: 125,
       activeLabs: 98,
       totalPatients: 25400,
       newLabs: 12,
@@ -36,7 +36,7 @@ type CardItem = {
   key: keyof StatsData;
   label: string;
   icon: IconType;
-  iconBg: string;
+  iconBgStyle: string;  // ✅ inline style — Tailwind purge se safe
   iconColor: string;
   trend: string;
 };
@@ -46,7 +46,7 @@ const cards: CardItem[] = [
     key: "totalLabs",
     label: "Total Labs",
     icon: FiHome,
-    iconBg: "bg-blue-100",
+    iconBgStyle: "rgba(59,130,246,0.1)",   // blue-100 equivalent
     iconColor: "text-blue-600",
     trend: "+8%",
   },
@@ -54,7 +54,7 @@ const cards: CardItem[] = [
     key: "activeLabs",
     label: "Active Labs",
     icon: FiCheckCircle,
-    iconBg: "bg-green-100",
+    iconBgStyle: "rgba(34,197,94,0.1)",    // green-100 equivalent
     iconColor: "text-green-600",
     trend: "+5%",
   },
@@ -62,7 +62,7 @@ const cards: CardItem[] = [
     key: "totalPatients",
     label: "Total Patients",
     icon: FiUser,
-    iconBg: "bg-purple-100",
+    iconBgStyle: "rgba(168,85,247,0.1)",   // purple-100 equivalent
     iconColor: "text-purple-600",
     trend: "+12%",
   },
@@ -70,7 +70,7 @@ const cards: CardItem[] = [
     key: "newLabs",
     label: "New Labs This Month",
     icon: FiUsers,
-    iconBg: "bg-orange-100",
+    iconBgStyle: "rgba(249,115,22,0.1)",   // orange-100 equivalent
     iconColor: "text-orange-600",
     trend: "+3%",
   },
@@ -88,86 +88,74 @@ export default function StartCards({
   const selectedYear = Number(year);
   const selectedMonth = Number(month);
 
-const data: StatsData = {
-  totalLabs:
-    statsConfig[selectedYear]?.[selectedMonth]?.totalLabs ?? 0,
-
-  activeLabs:
-    statsConfig[selectedYear]?.[selectedMonth]?.activeLabs ?? 0,
-
-  totalPatients:
-    statsConfig[selectedYear]?.[selectedMonth]?.totalPatients ?? 0,
-
-  newLabs:
-    statsConfig[selectedYear]?.[selectedMonth]?.newLabs ?? 0,
-};
+  const data: StatsData = {
+    totalLabs:     statsConfig[selectedYear]?.[selectedMonth]?.totalLabs ?? 0,
+    activeLabs:    statsConfig[selectedYear]?.[selectedMonth]?.activeLabs ?? 0,
+    totalPatients: statsConfig[selectedYear]?.[selectedMonth]?.totalPatients ?? 0,
+    newLabs:       statsConfig[selectedYear]?.[selectedMonth]?.newLabs ?? 0,
+  };
 
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-      {cards.map(
-        ({
-          key,
-          label,
-          icon: Icon,
-          iconBg,
-          iconColor,
-          trend,
-        }) => (
+      {cards.map(({ key, label, icon: Icon, iconBgStyle, iconColor, trend }) => (
+        <div
+          key={key}
+          className="
+            group
+            relative
+            rounded-2xl
+            border border-black/10
+            bg-[#f7f7f7]
+            p-5
+            shadow-xl
+            backdrop-blur-md
+            transition-all duration-300
+            hover:-translate-y-1
+            hover:border-white/20
+          "
+        >
+          {/* Glow */}
           <div
-            key={key}
             className="
-              group
-              relative
-              overflow-hidden
-              rounded-2xl
-              border border-black/10
-              bg-[#f7f7f7]
-              p-5
-              shadow-xl
-              backdrop-blur-md
-              transition-all duration-300
-              hover:-translate-y-1
-              hover:border-white/20
+              absolute inset-0
+              bg-linear-to-br
+              from-white/3
+              to-transparent
+              opacity-0
+              transition-opacity duration-300
+              group-hover:opacity-100
             "
-          >
+          />
+
+          <div className="relative flex items-start justify-between gap-3">
+            {/* Left */}
+            <div className="min-w-0 flex-1">
+                 <p className="text-[#64748B] line-clamp-none lg:line-clamp-2 2xl:line-clamp-none h-12 lg:leading-6 leading-0">{label}</p>
+
+              <h3 className="mt-2 text-2xl font-bold text-black">
+                {data[key].toLocaleString()}
+              </h3>
+
+              <p className="mt-2 flex items-center gap-1 whitespace-nowrap font-medium text-emerald-500">
+                <span>{trend}</span>
+                <span>vs yesterday</span>
+                <span>↑</span>
+              </p>
+            </div>
+
+            {/* Right Icon — overflow-hidden nahi, inline bg, responsive size */}
             <div
+              style={{ backgroundColor: iconBgStyle }}
               className="
-                absolute inset-0
-                bg-linear-to-br
-                from-white/3
-                to-transparent
-                opacity-0
-                transition-opacity duration-300
-                group-hover:opacity-100
+                mt-0.5 flex h-12 w-12 xl:h-12 xl:w-12 flex-shrink-0 items-center justify-center
+                rounded-lg xl:rounded-xl border border-black/5
               "
-            />
-
-            <div className="relative flex items-center justify-between">
-              <div>
-                <p className="text-[#64748B]">{label}</p>
-
-                <h3 className="mt-2 text-2xl font-bold text-black">
-                  {data[key]}
-                </h3>
-
-                <p className="mt-2 text-emerald-400">
-                  {trend} vs yesterday ↑
-                </p>
-              </div>
-
-              <div
-                className={`
-                  flex h-14 w-14 items-center justify-center
-                  rounded-2xl border border-black/5
-                  ${iconBg}
-                `}
-              >
-                <Icon className={`text-2xl ${iconColor}`} />
-              </div>
+            >
+              <Icon className={`text-lg xl:text-2xl ${iconColor}`} />
             </div>
           </div>
-        )
-      )}
+        </div>
+      ))}
     </div>
   );
 }

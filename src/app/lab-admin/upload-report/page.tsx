@@ -397,7 +397,7 @@ export default function UploadReportPage() {
                                                 >
                                                     {selectedPatient
                                                         ? selectedPatient.name
-                                                        : "Search by name or mobile number"}
+                                                        : "Search patients"}
                                                 </span>
                                             </div>
 

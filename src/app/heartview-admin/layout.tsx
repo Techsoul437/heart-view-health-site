@@ -70,7 +70,9 @@ export default function LabAdminLayout({
         <Sidebar
           role="heartview-admin"
           menuItems={sidebarMenu}
-
+          labName=""
+          userName="Dr. john Patel"
+          userEmail="john@citylab.com"
         />
       </div>
 

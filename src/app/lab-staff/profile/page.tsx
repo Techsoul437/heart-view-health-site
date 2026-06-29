@@ -133,27 +133,27 @@ export default function StaffProfilePage() {
                                 {profile.fullName}
                             </h3>
 
-                            <p className=" text-[#64748B] ">
+                            <p className=" text-black">
                                 {profile.role}
                             </p>
                         </div>
 
                         {/* Details */}
                         <div className="flex-1">
-                     <div className="mb-8 flex flex-col gap-4">
-                                               <h2 className="text-2xl font-medium">
+                            <div className="mb-8 flex flex-col gap-4">
+                                <h2 className="text-2xl ">
 
-        Personal Information
-    </h2>
+                                    Personal Information
+                                </h2>
 
-    <button
-        onClick={() => setIsEditing(true)}
-        className="flex w-full sm:w-fit items-center justify-center gap-2 rounded-xl border border-[#2f5ba5] px-5 py-3 text-[#2f5ba5]"
-    >
-        <Edit3 size={18} />
-        Edit Profile
-    </button>
-</div>
+                                <button
+                                    onClick={() => setIsEditing(true)}
+                                    className="flex w-full sm:w-fit items-center justify-center gap-2 rounded-xl border border-[#2f5ba5] px-5 py-3 text-[#2f5ba5]"
+                                >
+                                    <Edit3 size={18} />
+                                    Edit Profile
+                                </button>
+                            </div>
 
                             <div className="grid gap-6 md:grid-cols-2">
                                 <ProfileField
@@ -202,12 +202,12 @@ export default function StaffProfilePage() {
                                 />
 
                                 <div>
-                                    <label className="mb-2 flex items-center gap-2  text-[#64748B] ">
+                                    <label className="mb-2 flex items-center gap-2  text-black">
                                         <Shield size={16} />
                                         Department
                                     </label>
 
-                                    <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 font-medium text-black">
+                                    <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3  text-black">
                                         {profile.department}
                                     </div>
                                 </div>
@@ -218,42 +218,43 @@ export default function StaffProfilePage() {
 
                 {/* Account Information */}
                 <div className="mt-6 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-                                                               <h2 className="text-2xl font-medium">
+                    <h2 className="text-2xl ">
 
                         Account Information
                     </h2>
-
+ {/* Divider */}
+  <div className="mt-3 mb-6 h-px w-full bg-slate-200" />
                     <div className="grid gap-6 md:grid-cols-2">
                         <div>
-                            <p className=" text-[#64748B] ">Role</p>
-                            <p className="mt-1 font-medium text-black">
+                            <p className=" text-black">Role</p>
+                            <p className="mt-1  text-[#64748B] ">
                                 {profile.role}
                             </p>
                         </div>
 
                         <div>
-                            <p className=" text-[#64748B] ">Joined On</p>
-                            <p className="mt-1 font-medium text-black">
+                            <p className=" text-black">Joined On</p>
+                            <p className="mt-1  text-[#64748B] ">
                                 {profile.joinedOn}
                             </p>
                         </div>
 
                         <div>
-                            <p className=" text-[#64748B] ">Status</p>
+                            <p className=" text-black">Status</p>
 
                             <div className="mt-1 flex items-center gap-2">
                                 <div className="h-2 w-2 rounded-full bg-green-500" />
-                                <span className="font-medium text-black">
+                                <span className=" text-[#64748B] ">
                                     {profile.status}
                                 </span>
                             </div>
                         </div>
 
                         <div>
-                            <p className=" text-[#64748B] ">
+                            <p className=" text-black">
                                 Last Login
                             </p>
-                            <p className="mt-1 font-medium text-black">
+                            <p className="mt-1  text-[#64748B] ">
                                 Today, 10:30 AM
                             </p>
                         </div>
@@ -275,7 +276,7 @@ function ProfileField({
 }: any) {
     return (
         <div>
-            <label className="mb-2 flex items-center gap-2  text-[#64748B] ">
+            <label className="mb-2 flex items-center gap-2  text-black">
                 {icon}
                 {label}
             </label>
@@ -289,7 +290,7 @@ function ProfileField({
                     className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[#2f5ba5]"
                 />
             ) : (
-                <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 font-medium text-black">
+                <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3  text-black">
                     {value}
                 </div>
             )}

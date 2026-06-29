@@ -118,7 +118,7 @@ export default function LabPage() {
         <div className="min-h-screen bg-white p-5 text-black md:p-12">
             {/* HEADER */}
 
-            <div className="flex flex-col gap-5 lg:border-b border-black/8  md:flex-row md:items-start md:justify-between ">
+            <div className="flex flex-col gap-5  md:flex-row md:items-start md:justify-between ">
                 <div>
                     <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
                         Labs
@@ -170,7 +170,7 @@ export default function LabPage() {
                     <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B]" />
                     <input
                         type="text"
-                        placeholder="Search by name or mobile number..."
+                        placeholder="Search patients..."
                         value={search}
                         onChange={(e) => {
                             setSearch(e.target.value);

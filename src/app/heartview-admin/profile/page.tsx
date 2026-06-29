@@ -108,7 +108,7 @@ export default function AdminProfilePage() {
 
                 {/* Header */}
 
-                <div className="flex flex-col gap-5 border-b border-black/8  md:flex-row md:items-start md:justify-between ">
+                <div className="flex flex-col gap-5   md:flex-row md:items-start md:justify-between ">
                     <div>
                         <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
                             Admin Profile

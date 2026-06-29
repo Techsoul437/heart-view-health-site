@@ -52,12 +52,12 @@ function getFileIconColor(fileType: string): {
 
 function getBadgeStyle(type: string): string {
     const t = (type || "").toLowerCase();
-    if (t.includes("ecg")) return "bg-blue-50 text-blue-700";
-    if (t.includes("blood")) return "bg-yellow-50 text-yellow-700";
-    if (t.includes("lipid")) return "bg-green-50 text-green-700";
-    if (t.includes("echo")) return "bg-purple-50 text-purple-700";
-    if (t.includes("tmt")) return "bg-rose-50 text-rose-700";
-    return "bg-gray-100 text-gray-600";
+    if (t.includes("ecg")) return "text-blue-700";
+    if (t.includes("blood")) return "text-yellow-700";
+    if (t.includes("lipid")) return " text-green-700";
+    if (t.includes("echo")) return "text-purple-700";
+    if (t.includes("tmt")) return " text-rose-700";
+    return "text-gray-600";
 }
 
 function formatUploadDate(str: string): { date: string; time: string } {
@@ -189,7 +189,7 @@ export default function ReportsListPage() {
         <div className="min-h-screen p-5 md:p-12 text-black">
             {/* HEADER */}
 
-            <div className="flex flex-col gap-5 lg:border-b border-black/8  md:flex-row md:items-start md:justify-between ">
+            <div className="flex flex-col gap-5   md:flex-row md:items-start md:justify-between ">
                 <div>
                     <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
                         Uploaded Reports
@@ -208,7 +208,7 @@ export default function ReportsListPage() {
             <div className="grid grid-cols mt-5 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-6">
                 {/* Total Reports */}
                 <div className="bg-white border border-black/5 rounded-2xl p-4 flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500 flex-shrink-0">
+                    <div className="w-11 h-11 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500 shrink-0">
                         <FiFileText className="text-xl" />
                     </div>
                     <div>
@@ -217,13 +217,13 @@ export default function ReportsListPage() {
                         <p className="text-2xl font-semibold text-black leading-tight mt-0.5">
                             {stats.total ?? "—"}
                         </p>
-                        <p className="  text-[#64748B] mt-0.5  ">All uploaded reports</p>
+                        <p className="  text-[#64748B] mt-0.5  ">uploaded reports</p>
                     </div>
                 </div>
 
                 {/* This Month */}
                 <div className="bg-white border border-black/5 rounded-2xl p-4 flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-xl bg-green-50 flex items-center justify-center text-green-600 flex-shrink-0">
+                    <div className="w-11 h-11 rounded-xl bg-green-50 flex items-center justify-center text-green-600 shrink-0">
                         <FiCalendar className="text-xl" />
                     </div>
                     <div>

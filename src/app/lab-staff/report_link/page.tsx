@@ -40,15 +40,15 @@ const ITEMS_PER_PAGE = 10;
 function getStatusStyle(status: string) {
   switch (status) {
     case "Viewed":
-      return "bg-blue-100 text-blue-700";
+      return " text-blue-700";
     case "Sent":
-      return "bg-slate-100 text-[#64748B] ";
+      return " text-[#64748B] ";
     case "Downloaded":
-      return "bg-green-100 text-green-700";
+      return "text-green-700";
     case "Failed":
-      return "bg-red-100 text-red-700";
+      return " text-red-700";
     default:
-      return "bg-slate-100 text-[#64748B] ";
+      return "text-[#64748B] ";
   }
 }
 
@@ -137,7 +137,7 @@ export default function ReportLinksPage() {
       <div className="mx-auto max-w-8xl space-y-6">
         {/* Header */}
 
-        <div className="flex flex-col gap-5 lg:border-b border-black/8  md:flex-row md:items-start md:justify-between ">
+        <div className="flex flex-col gap-5   md:flex-row md:items-start md:justify-between ">
           <div>
             <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
               Report Links

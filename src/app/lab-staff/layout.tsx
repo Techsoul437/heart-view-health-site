@@ -76,7 +76,9 @@ export default function LabAdminLayout({
        <Sidebar
          role="staff"
          menuItems={sidebarMenu}
-        
+         labName="City Diagnostic Lab"
+        userName=" Test Patel"
+        userEmail="test@citylab.com"
        />
      </div>
  
