@@ -141,7 +141,7 @@ export default function ReportsOverviewChart({
       {/* Header */}
       <div className="mb-5">
         <div>
-          <h4 className="text-lg md:text-xl xl:text-2xl text-black">
+          <h4 className="text-md md:text-lg xl:text-xl font-medium text-black">
             Reports Overview
           </h4>
 
@@ -207,7 +207,7 @@ export default function ReportsOverviewChart({
             iconType="circle"
             iconSize={8}
             wrapperStyle={{
-              fontSize: "16px",
+              fontSize: "14px",
               paddingTop: "16px",
               color: "#334155",
             }}

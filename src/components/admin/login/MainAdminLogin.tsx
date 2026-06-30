@@ -13,16 +13,16 @@ const loginSchema = Yup.object({
 });
 
 const inputClass =
-  "h-12 w-full rounded-2xl border border-[#2f5ba5]/60 bg-white px-5 text-black placeholder:text-[#7F8CA3] outline-none transition-all duration-300 focus:border-[#2f5ba5] focus:ring-4 focus:ring-[#2f5ba5]/10";
+  "h-12 w-full rounded-2xl border border-[#2f5ba5]/60 bg-white px-5 text-black  outline-none transition-all duration-300 focus:border-[#2f5ba5] focus:ring-4 focus:ring-[#2f5ba5]/10";
 
 const buttonClass =
   "flex h-12 w-full items-center justify-center rounded-2xl bg-linear-to-r from-[#2f5ba5]/70 to-[#4a7bc9]/60 text-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99]";
 
 const features = [
-  { icon: FileHeart, title: "Easy report upload" },
-  { icon: ShieldCheck, title: "Secure patient data" },
-  { icon: BadgeCheck, title: "Instant report delivery" },
-  { icon: Sparkles, title: "Smart health insights" },
+  { icon: FileHeart, title: "Manage Labs" },
+  { icon: ShieldCheck, title: "Monitor Report Activity" },
+  { icon: BadgeCheck, title: "User & Staff Management" },
+  { icon: Sparkles, title: "Platform Analytics" },
 ];
 
 const LeftSide = () => (
@@ -45,8 +45,7 @@ const LeftSide = () => (
           Admin Portal Access
         </h2>
         <p className="mt-3 hidden lg:block leading-6 text-[#64748B] text-sm">
-            Securely manage labs, monitor patient reports, and oversee
-            platform operations with the HeartView Admin Portal.
+          Manage laboratories, monitor report activity, oversee platform operations, and ensure secure healthcare data management.
         </p>
       </div>
 
@@ -72,10 +71,10 @@ const AdminLoginPanel = () => {
   return (
     <>
       <div className="mb-7">
-        <h2 className="text-2xl lg:text-3xl xl:text-4xl font-normal text-black">
+        <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal text-black">
           Welcome Back!
         </h2>
-        <p className="mt-2 text-[#94A3B8] text-sm">
+        <p className="mt-2 text-[#94A3B8] ">
          Sign in to access your HeartView Admin Portal
         </p>
       </div>

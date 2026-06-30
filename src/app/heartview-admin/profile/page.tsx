@@ -110,11 +110,11 @@ export default function AdminProfilePage() {
 
                 <div className="flex flex-col gap-5   md:flex-row md:items-start md:justify-between ">
                     <div>
-                        <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
+                        <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl   font-normal tracking-tight text-black">
                             Admin Profile
                         </h1>
 
-                        <p className="mt-2 text-[#64748B]  text-base sm:text-lg  leading-relaxed  font-light">
+                        <p className="mt-2 text-[#64748B]  leading-relaxed  font-light">
                             Manage your HeartView Admin account and profile
                             information
                         </p>
@@ -156,11 +156,11 @@ export default function AdminProfilePage() {
                                         </div>
 
                                         <div>
-                                            <h2 className="text-2xl font-medium">
+                                            <h2 className="text-md md:text-lg xl:text-xl font-medium">
                                                 HeartView Admin
                                             </h2>
 
-                                            <p className=" text-[#64748B] ">
+                                            <p className="font-light text-[#64748B] ">
                                                 Update your administrator account details
                                             </p>
                                         </div>
@@ -236,7 +236,7 @@ export default function AdminProfilePage() {
 
                                             <Field
                                                 name="fullName"
-                                                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-blue-500"
+                                                className="w-full rounded-xl text-sm border border-slate-300 text-[#64748B] bg-white px-4 py-3 outline-none transition focus:border-blue-500"
                                             />
 
                                             <ErrorMessage
@@ -255,7 +255,7 @@ export default function AdminProfilePage() {
 
                                             <Field
                                                 name="adminId"
-                                                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-blue-500"
+                                                className="w-full rounded-xl border text-[#64748B] text-sm border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-blue-500"
                                             />
 
                                             <ErrorMessage
@@ -274,7 +274,7 @@ export default function AdminProfilePage() {
 
                                             <Field
                                                 name="role"
-                                                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-blue-500"
+                                                className="w-full rounded-xl border border-slate-300 text-sm bg-white px-4 py-3 outline-none transition focus:border-blue-500"
                                             />
 
                                             <ErrorMessage
@@ -297,7 +297,7 @@ export default function AdminProfilePage() {
 
                                                 <Field
                                                     name="phone"
-                                                    className="w-full rounded-xl border border-slate-300 py-3 pl-11 pr-4 outline-none transition focus:border-blue-500"
+                                                    className="w-full rounded-xl text-[#64748B] border text-sm border-slate-300 py-3 pl-11 pr-4 outline-none transition focus:border-blue-500"
                                                 />
 
                                             </div>
@@ -323,7 +323,7 @@ export default function AdminProfilePage() {
                                                 <Field
                                                     type="email"
                                                     name="email"
-                                                    className="w-full rounded-xl border border-slate-300 py-3 pl-11 pr-4 outline-none transition focus:border-blue-500"
+                                                    className="w-full rounded-xl border text-sm border-slate-300 py-3 pl-11 pr-4 outline-none transition focus:border-blue-500"
                                                 />
 
                                             </div>
@@ -349,7 +349,7 @@ export default function AdminProfilePage() {
 
                                                 <Field
                                                     name="address"
-                                                    className="w-full rounded-xl border border-slate-300 py-3 pl-11 pr-4 outline-none transition focus:border-blue-500"
+                                                    className="w-full rounded-xl border border-slate-300 text-sm py-3 pl-11 pr-4 outline-none transition focus:border-blue-500"
                                                 />
 
                                             </div>

@@ -134,7 +134,7 @@ const accountSchema = Yup.object({
 
 // h-11 (44px) instead of h-13 — saves ~16px per field = ~80px across 5 fields
 const inputClass =
-  "h-11 w-full rounded-2xl border border-[#2f5ba5]/60 bg-white/90 px-4 text-black placeholder:text-[#7F8CA3] outline-none transition-all duration-300 focus:border-[#2f5ba5] focus:ring-4 focus:ring-[#2f5ba5]/10 text-sm";
+  "h-11 w-full rounded-2xl border border-[#2f5ba5]/60 bg-white/90 px-4 text-black  outline-none transition-all duration-300 focus:border-[#2f5ba5] focus:ring-4 focus:ring-[#2f5ba5]/10 text-sm";
 
 const buttonClass =
   "flex h-11 w-full items-center justify-center rounded-2xl bg-gradient-to-r from-[#2f5ba5]/70 to-[#4a7bc9]/60 text-white transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] text-sm font-medium";
@@ -249,10 +249,10 @@ const StepIndicator = ({ current, total = 4 }: StepIndicatorProps) => (
 // ═══════════════════════════════════════
 
 const features = [
-  { icon: FileHeart, title: "Easy report upload" },
-  { icon: ShieldCheck, title: "Secure patient data" },
-  { icon: BadgeCheck, title: "Instant report delivery" },
-  { icon: Sparkles, title: "Smart health insights" },
+  { icon: FileHeart, title: "Laboratory Management" },
+  { icon: ShieldCheck, title: "Staff & Patient Management" },
+  { icon: BadgeCheck, title: "Report Tracking & Delivery" },
+  { icon: Sparkles, title: "Lab Performance Analytics" },
 ];
 
 const LeftSide = () => (
@@ -276,8 +276,7 @@ const LeftSide = () => (
         </h2>
                 <p className="mt-3 hidden lg:block leading-6 text-[#64748B] text-sm">
 
-          Securely manage reports, patients, and lab operations
-          with a modern healthcare dashboard experience.
+        Manage your laboratory, oversee staff, upload patient reports, monitor report delivery, and track lab performance from one secure dashboard.
         </p>
       </div>
 
@@ -457,7 +456,7 @@ const LoginPanel = ({ savedUser, onSignup, onLoginSuccess }: LoginPanelProps) =>
   return (
     <>
       <div className="mb-4">
-        <h2 className="text-xl font-normal text-black lg:text-2xl xl:text-3xl">
+        <h2 className=" font-normal text-black text-lg sm:text-xl lg:text-2xl xl:text-3xl">
           Welcome Back!
         </h2>
         <p className="mt-1 text-[#64748B] text-sm leading-relaxed">
@@ -465,7 +464,7 @@ const LoginPanel = ({ savedUser, onSignup, onLoginSuccess }: LoginPanelProps) =>
         </p>
       </div>
 
-      <div className="rounded-2xl bg-[#182235] p-1">
+      <div className="rounded-2xl bg-[#212731] p-1">
         <div className="flex">
           <button
             type="button"

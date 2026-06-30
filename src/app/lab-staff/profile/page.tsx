@@ -100,11 +100,11 @@ export default function StaffProfilePage() {
                     <div className="flex items-center gap-3">
 
                         <div>
-                            <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
+                            <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl   font-normal tracking-tight text-black">
                                 My Profile
                             </h1>
 
-                            <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+                            <p className=" leading-relaxed  font-light  text-[#64748B]">
 
                                 Manage your personal and account information.
                             </p>
@@ -133,15 +133,15 @@ export default function StaffProfilePage() {
                                 {profile.fullName}
                             </h3>
 
-                            <p className=" text-black">
+                            {/* <p className=" text-black">
                                 {profile.role}
-                            </p>
+                            </p> */}
                         </div>
 
                         {/* Details */}
                         <div className="flex-1">
                             <div className="mb-8 flex flex-col gap-4">
-                                <h2 className="text-2xl ">
+                                <h2 className="text-md md:text-lg xl:text-xl">
 
                                     Personal Information
                                 </h2>
@@ -155,7 +155,7 @@ export default function StaffProfilePage() {
                                 </button>
                             </div>
 
-                            <div className="grid gap-6 md:grid-cols-2">
+                            <div className="grid gap-6  md:grid-cols-2">
                                 <ProfileField
                                     icon={<User size={16} />}
                                     label="Full Name"
@@ -287,10 +287,10 @@ function ProfileField({
                     name={name}
                     value={value}
                     onChange={onChange}
-                    className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-[#2f5ba5]"
+                    className="w-full rounded-xl text-sm border border-slate-300 px-4 py-3 outline-none transition focus:border-[#2f5ba5]"
                 />
             ) : (
-                <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3  text-black">
+                <div className="rounded-xl border text-sm border-slate-200 bg-slate-50 px-4 py-3  text-black">
                     {value}
                 </div>
             )}

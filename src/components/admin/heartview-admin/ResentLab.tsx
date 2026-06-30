@@ -153,7 +153,7 @@ export default function ResentLab() {
             {labs.map((item) => (
               <tr
                 key={item.id}
-                className="border-b border-black/10 hover:bg-slate-50"
+                className="border-b text-sm border-black/10 hover:bg-slate-50"
               >
                 <td className="px-6 py-4 font-medium text-[#64748B]">
                   {item.labName}

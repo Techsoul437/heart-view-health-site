@@ -111,7 +111,7 @@ export default function StatsCards({
     };
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {cards.map(({ key, label, icon: Icon, iconBgStyle, iconColor, trend }) => (
         <div
           key={key}
@@ -145,13 +145,13 @@ export default function StatsCards({
           <div className="relative flex items-start justify-between gap-3">
             {/* Left — text classes bilkul same hain */}
             <div className="min-w-0 flex-1">
-              <p className="text-[#64748B] line-clamp-none lg:line-clamp-2 h-12 leading-6">{label}</p>
+              <p className="text-[#64748B] line-clamp-none lg:line-clamp-2 lg:h-12 xl:h-6 leading-6">{label}</p>
 
               <h3 className="mt-2 text-2xl font-bold text-black">
                 {data[key]}
               </h3>
 
-              <p className="mt-2 flex items-center gap-1 whitespace-nowrap  font-medium text-emerald-500">
+              <p className="mt-2 flex items-center gap-1 whitespace-nowrap  text-sm  font-medium text-emerald-500">
                   <span>{trend}</span>
                   <span>vs yesterday</span>
                   <span>↑</span>

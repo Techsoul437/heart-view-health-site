@@ -25,7 +25,7 @@ const ActionBadge = ({ action }: { action: string }) => {
         Login: 'bg-blue-100 text-blue-700 border border-blue-200',
     };
     return (
-        <span className={`px-3 py-1 rounded-full  font-semibold ${styles[action as keyof typeof styles] || 'bg-gray-100 text-[#64748B]'}`}>
+        <span className={`px-3 py-1 rounded-full  font-medium ${styles[action as keyof typeof styles] || 'bg-gray-100 text-[#64748B]'}`}>
             {action}
         </span>
     );
@@ -49,7 +49,7 @@ const AuditLogDetailModal = ({
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="flex items-start justify-between">
-                    <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
+                    <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl  font-normal tracking-tight text-black">
 
                         Audit Log Details
                     </h1>
@@ -64,29 +64,29 @@ const AuditLogDetailModal = ({
                 <div className="mt-5 space-y-4">
                     <div>
                         <p className=" font-medium text-black">Timestamp</p>
-                        <p className="mt-1 text-gray-500 font-medium">{log.timestamp}</p>
+                        <p className="mt-1 text-gray-500 text-sm font-medium">{log.timestamp}</p>
                     </div>
 
                     <div>
                         <p className=" font-medium text-black">User</p>
-                        <p className="mt-1 text-[#64748B] text-base sm:text-lg  leading-relaxed  font-light font-medium">{log.user}</p>
+                        <p className="mt-1 text-[#64748B] text-sm   leading-relaxed   font-medium">{log.user}</p>
                     </div>
 
                     <div>
                         <p className=" font-medium text-black">Action</p>
-                        <div className="mt-1">
+                        <div className="mt-1 text-sm ">
                             <ActionBadge action={log.action} />
                         </div>
                     </div>
 
                     <div>
                         <p className=" font-medium text-black">Target</p>
-                        <p className="mt-1 text-[#64748B] text-base sm:text-lg  leading-relaxed  font-light">{log.target}</p>
+                        <p className="mt-1 text-[#64748B]  leading-relaxed text-sm  font-light">{log.target}</p>
                     </div>
 
                     <div>
                         <p className=" font-medium text-black">Details</p>
-                        <p className="mt-1 text-[#64748B] text-base sm:text-lg  leading-relaxed  font-light">{log.details}</p>
+                        <p className="mt-1 text-[#64748B]   leading-relaxed text-sm   font-light">{log.details}</p>
                     </div>
                 </div>
 
@@ -129,11 +129,11 @@ const AuditLogs = () => {
 
                 <div className="flex flex-col gap-5   md:flex-row md:items-start md:justify-between ">
                     <div>
-                        <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
+                        <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl   font-normal tracking-tight text-black">
                             Audit Logs
                         </h1>
 
-                        <p className="mt-2 text-[#64748B]  text-base sm:text-lg  leading-relaxed  font-light">
+                        <p className="mt-2 text-[#64748B]  leading-relaxed  font-light">
                             Overview of user activities and system changes
                         </p>
                     </div>
@@ -180,20 +180,20 @@ const AuditLogs = () => {
                                     {auditLogs.map((log) => (
                                         <tr key={log.id} className="border-b border-slate-50 transition hover:bg-slate-50"
                                         >
-                                            <td className="px-5 py-4 whitespace-nowrap text-gray-500 font-medium">
+                                            <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-500 font-medium">
                                                 {log.timestamp}
                                             </td>
                                             <td className="px-5 py-4 whitespace-nowrap flex items-center gap-3">
 
-                                                <span className="text-[#64748B] font-medium">{log.user}</span>
+                                                <span className="text-[#64748B] text-sm font-medium">{log.user}</span>
                                             </td>
-                                            <td className="px-5 py-4 whitespace-nowrap">
+                                            <td className="px-5 py-4 text-sm whitespace-nowrap">
                                                 <ActionBadge action={log.action} />
                                             </td>
-                                            <td className="px-5 py-4 whitespace-nowrap text-[#64748B]">
+                                            <td className="px-5 py-4  text-sm whitespace-nowrap text-[#64748B]">
                                                 {log.target}
                                             </td>
-                                            <td className="px-5 py-4 text-[#64748B] max-w-50 truncate" title={log.details}>
+                                            <td className="px-5 py-4 text-[#64748B] text-sm max-w-50 truncate" title={log.details}>
                                                 {log.details}
                                             </td>
                                             <td className="px-5 py-4">
@@ -215,7 +215,7 @@ const AuditLogs = () => {
                         {/* Footer / Pagination */}
                         {filtered.length > 0 && (
                             <div className="flex flex-col gap-4 border-t border-slate-200 p-5 lg:flex-row lg:items-center lg:justify-between">
-                                <p className=" text-[#64748B] ">
+                                <p className="text-sm font-normal text-[#64748B] ">
                                     Showing{" "}
                                     {Math.min(
                                         (currentPage - 1) * ITEMS_PER_PAGE + 1,

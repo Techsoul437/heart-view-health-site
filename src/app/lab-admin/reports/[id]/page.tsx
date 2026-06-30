@@ -73,7 +73,7 @@ export default function ReportDetailPage() {
         </Link>
 
         <div>
-                           <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
+                           <h1 className="ttext-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
 
             Report Details
           </h1>
@@ -121,7 +121,7 @@ export default function ReportDetailPage() {
             className="text-blue-600"
           />
 
-          <h2 className="text-xl font-semibold text-black">
+          <h2 className="text-md md:text-lg xl:text-xl font-medium text-black">
             Report Preview
           </h2>
         </div>

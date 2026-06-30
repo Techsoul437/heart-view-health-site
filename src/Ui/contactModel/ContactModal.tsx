@@ -330,7 +330,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                                                     formik.setFieldValue("phone", val);
                                                 }}
                                                 onBlur={formik.handleBlur}
-                                                className="w-full bg-transparent px-4 py-2.5 text-base sm:text-lg  leading-relaxed font-light text-black placeholder:text-zinc-400 outline-none"
+                                                className="w-full bg-transparent px-4 py-2.5 text-base sm:text-lg  leading-relaxed font-light text-black  outline-none"
                                                 maxLength={10}
                                             />
                                         </div>

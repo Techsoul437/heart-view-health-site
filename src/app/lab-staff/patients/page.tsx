@@ -114,19 +114,19 @@ export default function PatientsPage() {
         const g = gender?.toLowerCase();
         if (g === "male")
             return (
-                <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-3 py-1  font-semibold text-blue-600">
-                    ♂ Male
+                <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-3 py-1  font-medium text-blue-600">
+                     Male
                 </span>
             );
         if (g === "female")
             return (
-                <span className="inline-flex items-center gap-1 rounded-full bg-pink-50 px-3 py-1  font-semibold text-pink-600">
-                    ♀ Female
+                <span className="inline-flex items-center gap-1 rounded-full bg-pink-50 px-3 py-1  font-medium text-pink-600">
+                    Female
                 </span>
             );
         return (
-            <span className="inline-flex items-center gap-1 rounded-full bg-purple-50 px-3 py-1  font-semibold text-purple-600">
-                ⚥ Other
+            <span className="inline-flex items-center gap-1 rounded-full bg-purple-50 px-3 py-1  font-medium text-purple-600">
+                Other
             </span>
         );
     };
@@ -141,7 +141,7 @@ export default function PatientsPage() {
                         Patients
                     </h1>
 
-                    <p className="mt-2 text-[#64748B]  text-base sm:text-lg  leading-relaxed  font-light">
+                    <p className="mt-2 text-[#64748B]    leading-relaxed  font-light">
                         View and manage patients
                     </p>
                 </div>
@@ -161,7 +161,7 @@ export default function PatientsPage() {
                         <p className=" text-[#64748B]">
                              All patients</p>
                         <p className="text-2xl font-semibold text-black">{totalPatients}</p>
-                        <p className=" text-[#64748B]">
+                        <p className="text-sm text-[#64748B]">
                               Registered </p>
                     </div>
                 </div>
@@ -175,7 +175,7 @@ export default function PatientsPage() {
                         <p className="  text-[#64748B]">
                             Male</p>
                         <p className="text-2xl font-semibold text-black">{maleCount}</p>
-                        <p className=" text-[#64748B]">
+                        <p className="text-sm text-[#64748B]">
                             {pct(maleCount)}</p>
                     </div>
                 </div>
@@ -189,7 +189,7 @@ export default function PatientsPage() {
                         <p className="  text-[#64748B]">
                             Female</p>
                         <p className="text-2xl font-semibold text-black">{femaleCount}</p>
-                        <p className="  text-[#64748B]">
+                        <p className="text-sm  text-[#64748B]">
                             {pct(femaleCount)}</p>
                     </div>
                 </div>
@@ -203,7 +203,7 @@ export default function PatientsPage() {
                         <p className="  text-[#64748B]">
                             Other</p>
                         <p className="text-2xl font-semibold text-black">{otherCount}</p>
-                        <p className=" text-[#64748B]">
+                        <p className="text-sm text-[#64748B]">
                             {pct(otherCount)}</p>
                     </div>
                 </div>
@@ -222,7 +222,7 @@ export default function PatientsPage() {
                             setSearch(e.target.value);
                             setCurrentPage(1);
                         }}
-                        className="h-10 w-full rounded-lg border border-slate-200 bg-white pl-9 pr-4  text-black outline-none placeholder:text-[#64748B] focus:border-blue-300 focus:ring-1 focus:ring-blue-200"
+                        className="h-10 w-full rounded-lg border border-slate-200 bg-white pl-9 pr-4  text-black outline-none  focus:border-blue-300 focus:ring-1 focus:ring-blue-200"
                     />
                 </div> */}
 
@@ -235,7 +235,7 @@ export default function PatientsPage() {
                             setGenderFilter(e.target.value);
                             setCurrentPage(1);
                         }}
-                        className="h-10 rounded-lg border border-slate-200 bg-white px-3  text-black outline-none focus:border-blue-300"
+                        className="h-10 rounded-lg border text-sm border-slate-200 bg-white px-3  text-black outline-none focus:border-blue-300"
                     >
                         <option value="All">All</option>
                         <option value="Male">Male</option>
@@ -250,7 +250,7 @@ export default function PatientsPage() {
                     <select
                         value={sortBy}
                         onChange={(e) => setSortBy(e.target.value)}
-                        className="h-10 rounded-lg border border-slate-200 bg-white px-3  text-black outline-none focus:border-blue-300"
+                        className="h-10  text-sm rounded-lg border border-slate-200 bg-white px-3  text-black outline-none focus:border-blue-300"
                     >
                         <option value="name-az">Name (A-Z)</option>
                         <option value="name-za">Name (Z-A)</option>
@@ -300,27 +300,27 @@ export default function PatientsPage() {
                                             {indexOfFirstPatient + index + 1}
                                         </td>
                                         <td className="px-5 py-4">
-                                            <div className="flex items-center gap-3">
+                                            <div className="flex items-center text-sm gap-3">
                                                 <div
                                                     className={`flex h-8 w-8 items-center justify-center rounded-full  font-semibold ${getAvatarColor(index)}`}
                                                 >
                                                     {getInitials(patient.name)}
                                                 </div>
-                                                <span className=" text-black">
+                                                <span className="text-sm text-black">
                                                     {patient.name}
                                                 </span>
                                             </div>
                                         </td>
-                                        <td className="px-5 py-4  text-[#64748B]">
+                                        <td className="px-5 py-4 text-sm text-[#64748B]">
                                             {patient.mobile}
                                         </td>
-                                        <td className="px-5 py-4  text-[#64748B]">
+                                        <td className="px-5 py-4 text-sm text-[#64748B]">
                                             {patient.age}
                                         </td>
-                                        <td className="px-5 py-4">
+                                        <td className="px-5 text-sm  py-4">
                                             <GenderBadge gender={patient.gender} />
                                         </td>
-                                        <td className="px-5 py-4  text-[#64748B]">
+                                        <td className="px-5 py-4 text-sm text-[#64748B]">
                                             {patient.createdAt ? (
                                                 <>
                                                     <div>
@@ -379,7 +379,7 @@ export default function PatientsPage() {
                 {/* FOOTER */}
                 {filteredPatients.length > 0 && (
                     <div className="flex items-center justify-between border-t border-slate-100 px-5 py-4">
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+                        <p className=" text-sm leading-relaxed  font-light  text-[#64748B]">
 
                             Showing {indexOfFirstPatient + 1} to{" "}
                             {Math.min(indexOfLastPatient, filteredPatients.length)} of{" "}

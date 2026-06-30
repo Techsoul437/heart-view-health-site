@@ -139,11 +139,11 @@ export default function ReportLinksPage() {
 
         <div className="flex flex-col gap-5   md:flex-row md:items-start md:justify-between ">
           <div>
-            <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
+            <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl   font-normal tracking-tight text-black">
               Report Links
             </h1>
 
-            <p className="mt-2 text-[#64748B]  text-base sm:text-lg  leading-relaxed  font-light">
+            <p className="mt-2 text-[#64748B]   leading-relaxed  font-light">
               Send, track and manage report links shared with patients.
             </p>
           </div>
@@ -164,7 +164,7 @@ export default function ReportLinksPage() {
                 <h3 className="text-2xl font-semibold text-slate-900">
                   {stats.total || "—"}
                 </h3>
-                <p className=" text-[#64748B] ">All time</p>
+                <p className="text-sm text-[#64748B] ">All time</p>
               </div>
             </div>
           </div>
@@ -179,7 +179,7 @@ export default function ReportLinksPage() {
                 <h3 className="text-3xl font-bold text-slate-900">
                   {stats.total ? stats.sent : "—"}
                 </h3>
-                <p className=" text-[#64748B] ">
+                <p className="text-sm text-[#64748B] ">
                   {stats.total
                     ? `${Math.round((stats.sent / stats.total) * 100)}% of total`
                     : "No links yet"}
@@ -198,7 +198,7 @@ export default function ReportLinksPage() {
                 <h3 className="text-3xl font-bold text-slate-900">
                   {stats.total ? stats.viewed : "—"}
                 </h3>
-                <p className=" text-[#64748B] ">
+                <p className="text-sm text-[#64748B] ">
                   {stats.total
                     ? `${Math.round((stats.viewed / stats.total) * 100)}% of total`
                     : "No links yet"}
@@ -217,7 +217,7 @@ export default function ReportLinksPage() {
                 <h3 className="text-3xl font-bold text-slate-900">
                   {stats.total ? stats.downloaded : "—"}
                 </h3>
-                <p className=" text-[#64748B] ">
+                <p className="text-sm text-[#64748B] ">
                   {stats.total
                     ? `${Math.round((stats.downloaded / stats.total) * 100)}% of total`
                     : "No links yet"}
@@ -227,7 +227,7 @@ export default function ReportLinksPage() {
           </div>
         </div>
         {/* Filters */}
-        <div className="max-w-4xl p-5">
+        <div className="max-w-4xl ">
           <div className="flex flex-col gap-4 xl:flex-row">
             <div className="relative flex-1">
               <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-[#64748B] " />
@@ -239,7 +239,7 @@ export default function ReportLinksPage() {
                   setSearch(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="w-full rounded-xl border border-slate-200 py-3 pl-11 pr-4  outline-none focus:border-[#2f5ba5]"
+                className="w-full rounded-xl border border-slate-200 py-3 pl-11 pr-4  text-sm outline-none focus:border-[#2f5ba5]"
               />
             </div>
 
@@ -249,7 +249,7 @@ export default function ReportLinksPage() {
                 setStatusFilter(e.target.value);
                 setCurrentPage(1);
               }}
-              className="rounded-xl border border-slate-200 px-4 py-3  outline-none cursor-pointer"
+              className="rounded-xl border border-slate-200 px-4 py-3 text-sm outline-none cursor-pointer"
             >
               {STATUS_OPTIONS.map((s) => (
                 <option key={s}>{s}</option>
@@ -291,22 +291,22 @@ export default function ReportLinksPage() {
                   paginated.map((item) => (
                     <tr
                       key={item.id}
-                      className="border-t border-slate-100 hover:bg-slate-50 transition-colors"
+                      className="border-t border-slate-100  hover:bg-slate-50 transition-colors"
                     >
                       <td className="px-5 py-4">
                         <div className="flex items-center gap-3">
                           <div
-                            className={`flex h-10 w-10 items-center justify-center rounded-full font-semibold  flex-shrink-0 ${getInitialsBg(
+                            className={`flex h-10 w-10 items-center text-sm justify-center rounded-full font-semibold  flex-shrink-0 ${getInitialsBg(
                               item.patientInitials
                             )}`}
                           >
                             {item.patientInitials}
                           </div>
                           <div>
-                            <p className="font-medium text-slate-900">
+                            <p className="font-medium text-sm text-slate-900">
                               {item.patientName}
                             </p>
-                            <p className=" text-[#64748B] ">
+                            <p className="text-sm text-[#64748B] ">
                               Report #{item.reportId}
                             </p>
                           </div>
@@ -314,19 +314,19 @@ export default function ReportLinksPage() {
                       </td>
 
                       <td className="px-5 py-4">
-                        <p className="font-medium text-slate-900">
+                        <p className="font-medium text-sm text-slate-900">
                           {item.report}
                         </p>
-                        <p className=" text-[#64748B] ">{item.date}</p>
+                        <p className=" text-[#64748B] text-sm">{item.date}</p>
                       </td>
 
-                      <td className="px-5 py-4  text-[#64748B] ">
+                      <td className="px-5 py-4 text-sm text-[#64748B] ">
                         {item.maskedMobile}
                       </td>
 
                       <td className="px-5 py-4">
                         <span
-                          className={`inline-flex items-center rounded-full px-3 py-1  font-medium ${getStatusStyle(
+                          className={`inline-flex items-center rounded-full px-3 py-1 text-sm  font-medium ${getStatusStyle(
                             item.status
                           )}`}
                         >
@@ -335,13 +335,13 @@ export default function ReportLinksPage() {
                       </td>
 
                       <td className="px-5 py-4">
-                        <p className=" text-slate-900">{item.sentOn}</p>
-                        <p className=" text-[#64748B] ">{item.sentTime}</p>
+                        <p className="text-sm text-slate-900">{item.sentOn}</p>
+                        <p className="text-sm text-[#64748B] ">{item.sentTime}</p>
                       </td>
 
                       <td className="px-5 py-4">
-                        <p className=" text-slate-900">{item.expireOn}</p>
-                        <p className=" text-[#64748B] ">
+                        <p className="text-sm text-slate-900">{item.expireOn}</p>
+                        <p className="text-sm text-[#64748B] ">
                           {item.expireTime}
                         </p>
                       </td>
@@ -389,7 +389,7 @@ export default function ReportLinksPage() {
           {/* Footer / Pagination */}
           {filtered.length > 0 && (
             <div className="flex flex-col gap-4 border-t border-slate-200 p-5 lg:flex-row lg:items-center lg:justify-between">
-              <p className=" text-[#64748B] ">
+              <p className="text-sm text-[#64748B] ">
                 Showing{" "}
                 {Math.min(
                   (currentPage - 1) * ITEMS_PER_PAGE + 1,

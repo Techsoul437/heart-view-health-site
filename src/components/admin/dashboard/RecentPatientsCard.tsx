@@ -45,7 +45,7 @@ export default function RecentPatientsCard() {
       {/* Header */}
       <div className="flex items-center justify-between border-b border-black/10 p-6">
         <div>
-                 <h4 className="text-lg md:text-xl xl:text-2xl text-black">
+                 <h4 className="text-md md:text-lg xl:text-xl text-black">
 
             Recent Patients
           </h4>
@@ -108,21 +108,21 @@ export default function RecentPatientsCard() {
                     <div className="flex items-center gap-3">
                       <UserCircle2 className="h-5 w-5 text-blue-500" />
 
-                      <span className="font-medium text-[#64748B]">
+                      <span className="font-medium text-sm  text-[#64748B]">
                         {patient.name}
                       </span>
                     </div>
                   </td>
 
-                  <td className="px-6 py-4 text-[#64748B]">
+                  <td className="px-6 py-4 text-sm  text-[#64748B]">
                     {patient.mobile}
                   </td>
 
-                  <td className="px-6 py-4 text-[#64748B]">
+                  <td className="px-6 py-4 text-sm  text-[#64748B]">
                     {patient.age}
                   </td>
 
-                  <td className="px-6 py-4 text-[#64748B]">
+                  <td className="px-6 py-4 text-sm  text-[#64748B]">
                     {patient.gender}
                   </td>
                 </tr>

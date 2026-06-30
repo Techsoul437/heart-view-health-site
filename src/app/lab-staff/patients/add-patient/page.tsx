@@ -54,12 +54,12 @@ export default function AddPatientPage() {
                 </button>
 
                 <div>
-                                      <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
+                                      <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl   font-normal tracking-tight text-black">
 
                         Add Patient
                     </h1>
 
-                    <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]
+                    <p className=" leading-relaxed  font-light  text-[#64748B]
 ">
                         Enter patient details to create a new patient
                     </p>
@@ -108,14 +108,14 @@ export default function AddPatientPage() {
                             <div className="space-y-8">
                                 {/* Name */}
                                 <div>
-                                    <label className="mb-3 block text-lg font-medium">
+                                    <label className="mb-3 block  font-medium">
                                         Name <span className="text-red-500">*</span>
                                     </label>
 
                                     <Field
                                         name="name"
                                         placeholder="Enter patient name"
-                                        className={`h-16 w-full rounded-2xl border px-5 text-lg outline-none
+                                        className={`h-16 w-full rounded-2xl border px-5  outline-none
                     ${touched.name && errors.name
                                                 ? "border-red-500"
                                                 : "border-slate-200"
@@ -131,14 +131,14 @@ export default function AddPatientPage() {
 
                                 {/* Mobile */}
                                 <div>
-                                    <label className="mb-3 block text-lg font-medium">
+                                    <label className="mb-3 block  font-medium">
                                         Mobile <span className="text-red-500">*</span>
                                     </label>
 
                                     <Field
                                         name="mobile"
                                         placeholder="Enter mobile number"
-                                        className={`h-16 w-full rounded-2xl border px-5 text-lg outline-none
+                                        className={`h-16 w-full rounded-2xl border px-5  outline-none
                     ${touched.mobile && errors.mobile
                                                 ? "border-red-500"
                                                 : "border-slate-200"
@@ -155,14 +155,14 @@ export default function AddPatientPage() {
                                 <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
                                     {/* Age */}
                                     <div>
-                                        <label className="mb-3 block text-lg font-medium">
+                                        <label className="mb-3 block  font-medium">
                                             Age <span className="text-red-500">*</span>
                                         </label>
 
                                         <Field
                                             name="age"
                                             placeholder="Enter age"
-                                            className={`h-16 w-full rounded-2xl border px-5 text-lg outline-none
+                                            className={`h-16 w-full rounded-2xl border px-5  outline-none
                       ${touched.age && errors.age
                                                     ? "border-red-500"
                                                     : "border-slate-200"
@@ -178,14 +178,14 @@ export default function AddPatientPage() {
 
                                     {/* Gender */}
                                     <div>
-                                        <label className="mb-3 block text-lg font-medium">
+                                        <label className="mb-3 block  font-medium">
                                             Gender <span className="text-red-500">*</span>
                                         </label>
 
                                         <Field
                                             as="select"
                                             name="gender"
-                                            className={`h-16 w-full rounded-2xl border px-5 text-lg outline-none placeholder:text-[#64748B]
+                                            className={`h-16 w-full rounded-2xl border px-5  outline-none 
                       ${touched.gender && errors.gender
                                                     ? "border-red-500"
                                                     : "border-slate-200"

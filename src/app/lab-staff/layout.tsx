@@ -94,7 +94,7 @@ export default function LabAdminLayout({
      {/* Page Content */}
      <main
        className="
-         lg:ml-80
+         lg:ml-60
         min-h-screen
          overflow-x-hidden
        "

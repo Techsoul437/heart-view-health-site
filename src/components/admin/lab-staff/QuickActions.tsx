@@ -43,7 +43,7 @@ export default function QuickActions() {
     return (
         <section className="rounded-3xl border border-slate-200 bg-[#f7f7f7] p-6 shadow-sm">
             <div className="mb-5">
-                <h4 className="text-lg md:text-xl xl:text-2xl text-black">
+                <h4 className="text-md md:text-lg xl:text-xl text-black">
                     Quick Actions
                 </h4>
             </div>

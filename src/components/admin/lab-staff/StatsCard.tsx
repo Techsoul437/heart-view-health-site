@@ -165,7 +165,7 @@ export default function StatCard({
                 {data[key]}
               </h3>
 
-              <p className="mt-2 flex items-center gap-1 whitespace-nowrap font-medium text-emerald-500">
+              <p className="mt-2 flex items-center text-sm gap-1 whitespace-nowrap font-medium text-emerald-500">
                 <span>{trend}</span>
                 <span>vs yesterday</span>
                 <span>↑</span>

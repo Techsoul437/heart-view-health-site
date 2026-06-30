@@ -140,7 +140,7 @@ export default function ReportChart({
       {/* Header */}
       <div className="mb-5">
         <div>
-          <h4 className="text-lg md:text-xl xl:text-2xl text-black">
+          <h4 className="text-md md:text-lg xl:text-xl text-black">
             Reports Overview
           </h4>
 

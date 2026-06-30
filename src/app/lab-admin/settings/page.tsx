@@ -110,11 +110,11 @@ export default function SettingsPage() {
 
                 <div className="flex flex-col gap-5   md:flex-row md:items-start md:justify-between ">
                     <div>
-                        <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
+                        <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl  font-normal tracking-tight text-black">
                             Settings
                         </h1>
 
-                        <p className="mt-2 text-[#64748B]  text-base sm:text-lg  leading-relaxed  font-light">
+                        <p className="mt-2 text-[#64748B]   leading-relaxed  font-light">
                             Manage laboratory settings and profile
                             information
                         </p>
@@ -156,7 +156,7 @@ export default function SettingsPage() {
                                         </div>
 
                                         <div>
-                                            <h2 className="text-2xl font-medium">
+                                            <h2 className="text-md md:text-lg xl:text-xl font-medium">
 
                                                 Lab Profile
                                             </h2>
@@ -200,7 +200,7 @@ export default function SettingsPage() {
 
                                             </div>
 
-                                            <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-blue-200 bg-blue-50 px-4 py-2  font-medium text-blue-700">
+                                            <label className="flex cursor-pointer items-center gap-2 text-sm rounded-xl border border-blue-200 bg-blue-50 px-4 py-2  font-medium text-blue-700">
 
                                                 <Upload className="h-4 w-4" />
 
@@ -237,7 +237,7 @@ export default function SettingsPage() {
 
                                             <Field
                                                 name="labName"
-                                                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-blue-500"
+                                                className="w-full text-sm rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-blue-500"
                                             />
 
                                             <ErrorMessage
@@ -256,7 +256,7 @@ export default function SettingsPage() {
 
                                             <Field
                                                 name="branchName"
-                                                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-blue-500"
+                                                className="w-full text-sm rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-blue-500"
                                             />
 
                                             <ErrorMessage
@@ -275,7 +275,7 @@ export default function SettingsPage() {
 
                                             <Field
                                                 name="labtype"
-                                                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-blue-500"
+                                                className="w-full text-sm rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none transition focus:border-blue-500"
                                             />
 
                                             <ErrorMessage
@@ -298,7 +298,7 @@ export default function SettingsPage() {
 
                                                 <Field
                                                     name="phone"
-                                                    className="w-full rounded-xl border border-slate-300 py-3 pl-11 pr-4 outline-none transition focus:border-blue-500"
+                                                    className="w-full text-sm rounded-xl border border-slate-300 py-3 pl-11 pr-4 outline-none transition focus:border-blue-500"
                                                 />
 
                                             </div>
@@ -324,7 +324,7 @@ export default function SettingsPage() {
                                                 <Field
                                                     type="email"
                                                     name="email"
-                                                    className="w-full rounded-xl border border-slate-300 py-3 pl-11 pr-4 outline-none transition focus:border-blue-500"
+                                                    className="w-full text-sm rounded-xl border border-slate-300 py-3 pl-11 pr-4 outline-none transition focus:border-blue-500"
                                                 />
 
                                             </div>
@@ -350,7 +350,7 @@ export default function SettingsPage() {
 
                                                 <Field
                                                     name="address"
-                                                    className="w-full rounded-xl border border-slate-300 py-3 pl-11 pr-4 outline-none transition focus:border-blue-500"
+                                                    className="w-full text-sm rounded-xl border border-slate-300 py-3 pl-11 pr-4 outline-none transition focus:border-blue-500"
                                                 />
 
                                             </div>

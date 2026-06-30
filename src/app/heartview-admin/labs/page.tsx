@@ -120,11 +120,11 @@ export default function LabPage() {
 
             <div className="flex flex-col gap-5  md:flex-row md:items-start md:justify-between ">
                 <div>
-                    <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
+                    <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl   font-normal tracking-tight text-black">
                         Labs
                     </h1>
 
-                    <p className="mt-2 text-[#64748B]  text-base sm:text-lg  leading-relaxed  font-light">
+                    <p className="mt-2 text-[#64748B]    leading-relaxed  font-light">
                         Manage and Monitor all registered laboratories
                     </p>
                 </div>
@@ -176,7 +176,7 @@ export default function LabPage() {
                             setSearch(e.target.value);
                             setCurrentPage(1);
                         }}
-                        className="h-10 w-full rounded-lg border border-slate-200 bg-white pl-9 pr-4  text-black outline-none placeholder:text-[#64748B] focus:border-blue-300 focus:ring-1 focus:ring-blue-200"
+                        className="h-10 w-full rounded-lg border border-slate-200 bg-white pl-9 pr-4  text-black outline-none  focus:border-blue-300 focus:ring-1 focus:ring-blue-200"
                     />
                 </div> */}
 
@@ -188,7 +188,7 @@ export default function LabPage() {
                     <select
                         value={sortBy}
                         onChange={(e) => setSortBy(e.target.value)}
-                        className="h-10 rounded-lg border border-slate-200 bg-white px-3"
+                        className="h-10 rounded-lg border border-slate-200 text-sm bg-white px-3"
                     >
                         <option value="name-az">Lab Name (A-Z)</option>
                         <option value="name-za">Lab Name (Z-A)</option>
@@ -232,7 +232,7 @@ export default function LabPage() {
                                         key={lab.id}
                                         className="border-b border-slate-50 transition hover:bg-slate-50"
                                     >
-                                        <td className="px-5 py-4">
+                                        <td className="px-5 text-sm py-4">
                                             <div className="flex items-center gap-3">
                                                 <div
                                                     className={`flex h-8 w-8 items-center justify-center rounded-full  font-semibold ${getAvatarColor(index)}`}
@@ -244,18 +244,18 @@ export default function LabPage() {
                                                 </span>
                                             </div>
                                         </td>
-                                        <td className="px-5 py-4  text-[#64748B]">
+                                        <td className="px-5 py-4 text-sm text-[#64748B]">
                                             {lab.branchName}
                                         </td>
 
-                                        <td className="px-5 py-4  text-[#64748B]">
+                                        <td className="px-5 py-4 text-sm  text-[#64748B]">
                                             {lab.contactPerson}
                                         </td>
-                                        <td className="px-5 py-4  text-[#64748B]">
+                                        <td className="px-5 py-4 text-sm  text-[#64748B]">
                                             {lab.mobile}
                                         </td>
 
-                                        <td className="px-5 py-4  text-[#64748B]">
+                                        <td className="px-5 py-4 text-sm  text-[#64748B]">
                                             {lab.createdAt ? (
                                                 <>
                                                     <div>
@@ -314,7 +314,7 @@ export default function LabPage() {
                 {/* FOOTER */}
                 {filteredLabs.length > 0 && (
                     <div className="flex items-center justify-between border-t border-slate-100 px-5 py-4">
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+                        <p className="text-sm leading-relaxed  font-light  text-[#64748B]">
 
                             Showing {indexOfFirstlab + 1} to{" "}
                             {Math.min(indexOfLastlab, filteredLabs.length)} of{" "}

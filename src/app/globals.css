@@ -91,6 +91,9 @@ input::placeholder,
 textarea::placeholder {
   color: #7F8CA3 !important;
 }
+label{
+color : black  !important;
+}
 input,
 textarea {
   color: black !important;
@@ -100,11 +103,12 @@ textarea {
 }
 
 .custom-input::placeholder {
-  color: #7F8CA3 !important;
+  color: #99a5b9 !important;
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: 'PoppinsCustom';
 }
+
 /* ✅ Apply Custom Font */
 body {
   background: var(--background);

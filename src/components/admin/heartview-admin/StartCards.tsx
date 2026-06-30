@@ -89,10 +89,10 @@ export default function StartCards({
   const selectedMonth = Number(month);
 
   const data: StatsData = {
-    totalLabs:     statsConfig[selectedYear]?.[selectedMonth]?.totalLabs ?? 0,
-    activeLabs:    statsConfig[selectedYear]?.[selectedMonth]?.activeLabs ?? 0,
+    totalLabs: statsConfig[selectedYear]?.[selectedMonth]?.totalLabs ?? 0,
+    activeLabs: statsConfig[selectedYear]?.[selectedMonth]?.activeLabs ?? 0,
     totalPatients: statsConfig[selectedYear]?.[selectedMonth]?.totalPatients ?? 0,
-    newLabs:       statsConfig[selectedYear]?.[selectedMonth]?.newLabs ?? 0,
+    newLabs: statsConfig[selectedYear]?.[selectedMonth]?.newLabs ?? 0,
   };
 
   return (
@@ -130,13 +130,15 @@ export default function StartCards({
           <div className="relative flex items-start justify-between gap-3">
             {/* Left */}
             <div className="min-w-0 flex-1">
-                 <p className="text-[#64748B] line-clamp-none lg:line-clamp-2 2xl:line-clamp-none h-12 lg:leading-6 leading-0">{label}</p>
+               <p className="text-[#64748B] line-clamp-none lg:line-clamp-2 lg:h-12 xl:h-6 leading-6">
+                {label}
+              </p>
 
-              <h3 className="mt-2 text-2xl font-bold text-black">
+              <h3 className="mt-1 text-2xl font-bold text-black">
                 {data[key].toLocaleString()}
               </h3>
 
-              <p className="mt-2 flex items-center gap-1 whitespace-nowrap font-medium text-emerald-500">
+              <p className="mt-2 flex items-center gap-1 text-sm font-medium text-emerald-500 whitespace-nowrap">
                 <span>{trend}</span>
                 <span>vs yesterday</span>
                 <span>↑</span>

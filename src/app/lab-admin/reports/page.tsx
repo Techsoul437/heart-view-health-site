@@ -191,11 +191,11 @@ export default function ReportsListPage() {
 
             <div className="flex flex-col gap-5   md:flex-row md:items-start md:justify-between ">
                 <div>
-                    <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
+                    <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
                         Uploaded Reports
                     </h1>
 
-                    <p className="mt-2 text-[#64748B]  text-base sm:text-lg  leading-relaxed  font-light">
+                    <p className="mt-2 text-[#64748B]   leading-relaxed  font-light">
                         View and manage all uploaded reports
                     </p>
                 </div>
@@ -217,7 +217,7 @@ export default function ReportsListPage() {
                         <p className="text-2xl font-semibold text-black leading-tight mt-0.5">
                             {stats.total ?? "—"}
                         </p>
-                        <p className="  text-[#64748B] mt-0.5  ">uploaded reports</p>
+                        <p className=" text-sm text-[#64748B] mt-0.5  ">uploaded reports</p>
                     </div>
                 </div>
 
@@ -232,7 +232,7 @@ export default function ReportsListPage() {
                         <p className="text-2xl font-semibold text-black leading-tight mt-0.5">
                             {stats.thisMonth ?? "—"}
                         </p>
-                        <p className="  text-[#64748B] mt-0.5    ">Reports uploaded</p>
+                        <p className=" text-sm text-[#64748B] mt-0.5    ">Reports uploaded</p>
                     </div>
                 </div>
 
@@ -247,7 +247,7 @@ export default function ReportsListPage() {
                         <p className="text-2xl font-semibold text-black leading-tight mt-0.5">
                             {stats.patients ?? "—"}
                         </p>
-                        <p className="  text-[#64748B] mt-0.5   ">With reports</p>
+                        <p className="text-sm  text-[#64748B] mt-0.5   ">With reports</p>
                     </div>
                 </div>
 
@@ -257,13 +257,13 @@ export default function ReportsListPage() {
             <div className="flex flex-wrap gap-3 mb-5">
                 {/* Search */}
                 <div className="relative flex-1 min-w-[200px] max-w-sm">
-                    <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-[#64748B] " />
+                    <FiSearch className="absolute left-4 top-1/2 text-sm -translate-y-1/2 text-[#64748B] " />
                     <input
                         type="text"
                         placeholder="Search reports by name or patient..."
                         value={search}
                         onChange={handleSearchChange}
-                        className="h-10 w-full rounded-xl border border-black/10 bg-white pl-10 pr-4  text-black outline-none placeholder:text-[#64748B] focus:border-cyan-400/40"
+                        className="h-10 w-full rounded-xl border text-sm border-black/10 bg-white pl-10 pr-4  text-black outline-none  focus:border-cyan-400/40"
                     />
                 </div>
 
@@ -273,7 +273,7 @@ export default function ReportsListPage() {
                 <select
                     value={typeFilter}
                     onChange={handleTypeChange}
-                    className="h-10 px-4 rounded-xl border border-black/10 bg-white  text-[#64748B] outline-none cursor-pointer hover:bg-gray-50"
+                    className="h-10 px-4 rounded-xl border border-black/10 bg-white  text-sm text-black outline-none cursor-pointer hover:bg-gray-50"
                 >
                     <option value="">All Report Types</option>
                     {reportTypes.map((t) => (
@@ -335,10 +335,10 @@ export default function ReportsListPage() {
                                                         <FiFileText className="text-lg" />
                                                     </div>
                                                     <div>
-                                                        <p className=" font-medium text-black">
+                                                        <p className=" font-medium text-sm text-black">
                                                             {report.fileName}
                                                         </p>
-                                                        <p className="  text-[#64748B] mt-0.5 text-base sm:text-lg  leading-relaxed  font-light ">
+                                                        <p className="  text-[#64748B] mt-0.5 text-sm    leading-relaxed  font-light ">
                                                             {fileStyle.label}
                                                             {report.fileSize
                                                                 ? ` • ${formatFileSize(report.fileSize)}`
@@ -350,7 +350,7 @@ export default function ReportsListPage() {
 
                                             {/* PATIENT */}
                                             <td className="px-5 py-4">
-                                                <span className=" text-[#64748B] font-medium cursor-pointer hover:underline">
+                                                <span className=" text-[#64748B] text-sm font-medium cursor-pointer hover:underline">
                                                     {report.patientName}
                                                 </span>
                                             </td>
@@ -358,26 +358,26 @@ export default function ReportsListPage() {
                                             {/* REPORT TYPE */}
                                             <td className="px-5 py-4">
                                                 <span
-                                                    className={`inline-flex items-center text-[#64748B]  font-medium `}
+                                                    className={`inline-flex items-center text-sm text-[#64748B]  font-medium `}
                                                 >
                                                     {report.reportType}
                                                 </span>
                                             </td>
 
                                             {/* TEST DATE */}
-                                            <td className="px-5 py-4  text-[#64748B]">
+                                            <td className="px-5 py-4 text-sm text-[#64748B]">
                                                 {report.testDate}
                                             </td>
 
                                             {/* UPLOAD DATE */}
                                             <td className="px-5 py-4">
-                                                <p className=" text-black">{date}</p>
-                                                <p className="  text-[#64748B] mt-0.5 text-base sm:text-lg  leading-relaxed  font-light ">{time}</p>
+                                                <p className="text-sm text-black">{date}</p>
+                                                <p className="  text-[#64748B] mt-0.5  text-sm leading-relaxed  font-light ">{time}</p>
                                             </td>
 
                                             {/* ACTIONS */}
                                             <td className="px-5 py-4">
-                                                <div className="flex items-center justify-center gap-1">
+                                                <div className="flex items-center  justify-center gap-1">
                                                     <button
                                                         onClick={() =>
                                                             router.push(`/lab-admin/reports/${report.id}`)
@@ -438,7 +438,7 @@ export default function ReportsListPage() {
                 {/* PAGINATION */}
                 {filteredReports.length > 0 && (
                     <div className="flex flex-wrap items-center justify-between gap-3 border-t border-black/5 px-5 py-4">
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+                        <p className="text-sm leading-relaxed  font-light  text-[#64748B]">
 
                             Showing {indexOfFirstItem + 1} to{" "}
                             {Math.min(indexOfLastItem, filteredReports.length)} of{" "}

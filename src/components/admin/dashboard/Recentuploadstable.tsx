@@ -55,7 +55,7 @@ export default function RecentUploadsTable() {
       {/* Header */}
       <div className="mb-5 flex items-center justify-between">
         <div>
-          <h4 className="text-lg md:text-xl xl:text-2xl text-black">
+          <h4 className="text-md md:text-lg xl:text-xl text-black">
             Recent Uploads
           </h4>
 
@@ -91,7 +91,6 @@ export default function RecentUploadsTable() {
                 border-b border-black/10
                 text-left
                 uppercase
-                tracking-wider
                 text-black
               "
             >
@@ -126,20 +125,20 @@ export default function RecentUploadsTable() {
                   "
                 >
                   <td className="py-4 pr-4 ">
-                    <span className="font-medium text-[#64748B]">
+                    <span className="font-medium text-sm  text-[#64748B]">
                       {report.fileName}
                     </span>
                   </td>
 
-                  <td className="py-4 pr-4 text-[#64748B]">
+                  <td className="py-4 pr-4 text-sm  text-[#64748B]">
                     {report.patientName}
                   </td>
 
-                  <td className="py-4 pr-4 text-[#64748B]">
+                  <td className="py-4 pr-4 text-sm  text-[#64748B]">
                     {report.reportType}
                   </td>
 
-                  <td className="py-4 text-[#64748B]">
+                  <td className="py-4 text-sm   text-[#64748B]">
                     {new Date(
                       report.createdAt
                     ).toLocaleDateString()}

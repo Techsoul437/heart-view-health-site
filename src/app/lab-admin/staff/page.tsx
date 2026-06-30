@@ -119,11 +119,11 @@ export default function StaffManagementPage() {
 
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div>
-                        <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
+                        <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl  font-normal tracking-tight text-black">
 
                             Staff Management
                         </h1>
-                        <p className="mt-2 text-[#64748B]  text-base sm:text-lg  leading-relaxed  font-light">
+                        <p className="mt-2 text-[#64748B]   leading-relaxed  font-light">
 
                             View and manage all staff members
                         </p>
@@ -211,88 +211,88 @@ export default function StaffManagementPage() {
                     </div>
 
                 </div>
-      {/* Filters Same Rahenge */}
-                    <div className="border-b border-slate-200 p-4">
-                        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+                {/* Filters Same Rahenge */}
+                <div className="border-b border-slate-200 p-4">
+                    <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
 
-                            <div className="relative">
-                                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#64748B]" />
+                        <div className="relative">
+                            <Search className="absolute left-3 top-1/2 text-sm h-4 w-4 -translate-y-1/2 text-[#64748B]" />
 
-                                <input
-                                    type="text"
-                                    placeholder="Search staff..."
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="w-full rounded-lg border border-slate-200 bg-white py-2 pl-10 pr-4 outline-none focus:border-blue-500"
-                                />
-                            </div>
-
-                            <select
-                                value={departmentFilter}
-                                onChange={(e) =>
-                                    setDepartmentFilter(e.target.value)
-                                }
-                                className="rounded-lg border border-slate-200 bg-white px-3 py-2 outline-none focus:border-blue-500"
-                            >
-                                <option value="">All Departments</option>
-
-                                {departments.map((department) => (
-                                    <option
-                                        key={department}
-                                        value={department}
-                                    >
-                                        {department}
-                                    </option>
-                                ))}
-                            </select>
-
-                            <select
-                                value={branchFilter}
-                                onChange={(e) =>
-                                    setBranchFilter(e.target.value)
-                                }
-                                className="rounded-lg border border-slate-200 bg-white px-3 py-2 outline-none focus:border-blue-500"
-                            >
-                                <option value="">All Branches</option>
-
-                                {branches.map((branch) => (
-                                    <option key={branch} value={branch}>
-                                        {branch}
-                                    </option>
-                                ))}
-                            </select>
-
-                            <select
-                                value={statusFilter}
-                                onChange={(e) =>
-                                    setStatusFilter(e.target.value)
-                                }
-                                className="rounded-lg border border-slate-200 bg-white px-3 py-2 outline-none focus:border-blue-500"
-                            >
-                                <option value="">All Status</option>
-                                <option value="Active">Active</option>
-                                <option value="Inactive">Inactive</option>
-                            </select>
-
-                            <button
-                                onClick={() => {
-                                    setSearchTerm("");
-                                    setDepartmentFilter("");
-                                    setBranchFilter("");
-                                    setStatusFilter("");
-                                }}
-                                className="flex items-center justify-center gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-2 font-medium text-red-600"
-                            >
-                                <Filter className="h-4 w-4" />
-                                Reset
-                            </button>
-
+                            <input
+                                type="text"
+                                placeholder="Search staff..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="w-full rounded-lg border text-sm border-slate-200 bg-white py-2 pl-10 pr-4 outline-none focus:border-blue-500"
+                            />
                         </div>
+
+                        <select
+                            value={departmentFilter}
+                            onChange={(e) =>
+                                setDepartmentFilter(e.target.value)
+                            }
+                            className="rounded-lg border text-sm border-slate-200 bg-white px-3 py-2 outline-none focus:border-blue-500"
+                        >
+                            <option value="">All Departments</option>
+
+                            {departments.map((department) => (
+                                <option
+                                    key={department}
+                                    value={department}
+                                >
+                                    {department}
+                                </option>
+                            ))}
+                        </select>
+
+                        <select
+                            value={branchFilter}
+                            onChange={(e) =>
+                                setBranchFilter(e.target.value)
+                            }
+                            className="rounded-lg border text-sm border-slate-200 bg-white px-3 py-2 outline-none focus:border-blue-500"
+                        >
+                            <option value="">All Branches</option>
+
+                            {branches.map((branch) => (
+                                <option key={branch} value={branch}>
+                                    {branch}
+                                </option>
+                            ))}
+                        </select>
+
+                        <select
+                            value={statusFilter}
+                            onChange={(e) =>
+                                setStatusFilter(e.target.value)
+                            }
+                            className="rounded-lg border text-sm border-slate-200 bg-white px-3 py-2 outline-none focus:border-blue-500"
+                        >
+                            <option value="">All Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+
+                        <button
+                            onClick={() => {
+                                setSearchTerm("");
+                                setDepartmentFilter("");
+                                setBranchFilter("");
+                                setStatusFilter("");
+                            }}
+                            className="flex items-center justify-center gap-2 text-sm rounded-lg border border-red-200 bg-red-50 px-4 py-2 font-medium text-red-600"
+                        >
+                            <Filter className="h-4 w-4" />
+                            Reset
+                        </button>
+
                     </div>
+                </div>
                 {/* Table Card */}
                 <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
 
-              
+
 
                     {/* Table */}
                     <div className="overflow-x-auto">
@@ -329,45 +329,45 @@ export default function StaffManagementPage() {
                                     filteredData.map((staff, index) => (
                                         <tr
                                             key={staff.id}
-                                            className="border-b border-slate-100 hover:bg-slate-50"
+                                            className="border-b border-slate-100 text-sm hover:bg-slate-50"
                                         >
-                                            <td className="px-4 py-4 text-[#64748B]  ">
+                                            <td className="px-4 py-4 text-[#64748B] text-sm  ">
                                                 {index + 1}
                                             </td>
 
-                                            <td className="px-4 py-4 text-[#64748B]  font-medium">
+                                            <td className="px-4 py-4 text-[#64748B] text-sm  font-medium">
                                                 {staff.empId}
                                             </td>
 
-                                            <td className="px-4 py-4 text-[#64748B]   font-medium">
+                                            <td className="px-4 py-4 text-[#64748B] text-sm  font-medium">
                                                 {staff.fullName || staff.name}
                                             </td>
 
-                                            <td className="px-4  text-[#64748B]  py-4 ">
+                                            <td className="px-4  text-[#64748B] text-sm py-4 ">
                                                 {staff.phone}
                                             </td>
 
-                                            <td className="px-4 text-[#64748B]  py-4 ">
+                                            <td className="px-4 text-[#64748B] text-sm py-4 ">
                                                 {staff.email}
                                             </td>
 
-                                            <td className="px-4 text-[#64748B]  py-4 ">
+                                            <td className="px-4 text-[#64748B] text-sm py-4 ">
                                                 {staff.designation}
                                             </td>
 
-                                            <td className="px-4 text-[#64748B]  py-4 ">
+                                            <td className="px-4 text-[#64748B] text-sm py-4 ">
                                                 {staff.department}
                                             </td>
 
-                                            <td className="px-4 text-[#64748B]  py-4 ">
+                                            <td className="px-4 text-[#64748B] text-sm py-4 ">
                                                 {staff.branch}
                                             </td>
 
                                             <td className="px-4 py-4">
                                                 <span
-                                                    className={`rounded-full px-3 py-1  font-medium ${staff.status === "Active"
-                                                            ? "bg-green-100 text-green-700"
-                                                            : "bg-red-100 text-red-700"
+                                                    className={`rounded-full px-3 py-1 text-sm font-medium ${staff.status === "Active"
+                                                        ? "bg-green-100 text-green-700"
+                                                        : "bg-red-100 text-red-700"
                                                         }`}
                                                 >
                                                     {staff.status}
@@ -382,7 +382,8 @@ export default function StaffManagementPage() {
                                                 <div className="flex justify-center gap-2">
                                                     <button
                                                         onClick={() => router.push(`/lab-admin/staff/add-staff/${staff.id}`)}
-                                                        className="rounded-lg p-2 text-green-600 hover:bg-green-100"
+                                                        className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 text-blue-500 transition hover:bg-blue-50"
+
                                                     >
                                                         <Pencil className="h-4 w-4" />
                                                     </button>
@@ -390,7 +391,8 @@ export default function StaffManagementPage() {
                                                         onClick={() =>
                                                             handleDelete(staff.id)
                                                         }
-                                                        className="rounded-lg p-2 text-red-600 hover:bg-red-100"
+                                                        className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 text-red-400 transition hover:bg-red-50"
+
                                                     >
                                                         <Trash2 className="h-4 w-4" />
                                                     </button>
@@ -405,9 +407,9 @@ export default function StaffManagementPage() {
                     </div>
 
                     <div className="border-t border-slate-200 p-4">
-                        <p className="text-slate-500">
+                        <p className=" text-sm font-light text-[#64748B]">
                             Showing {filteredData.length} of{" "}
-                            {staffData.length} staff members
+                            {staffData.length} Staff members
                         </p>
                     </div>
 

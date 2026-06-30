@@ -73,7 +73,8 @@ export default function ReportDetailPage() {
         </Link>
 
         <div>
-          <h1 className="text-3xl font-semibold text-black">
+                                     <h1 className="ttext-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
+
             Report Details
           </h1>
 

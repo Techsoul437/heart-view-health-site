@@ -141,7 +141,7 @@ export default function ReportsByStatusChart({ year, month }: ReportsByStatusCha
       {/* Header */}
       <div className="flex items-start justify-between mb-4 shrink-0">
         <div>
-          <h4 className="text-lg md:text-xl xl:text-2xl text-black">Reports by Status</h4>
+          <h4 className="text-md md:text-lg xl:text-xl text-black">Reports by Status</h4>
           <p className="mt-1 text-[#64748B] font-light">Current report processing overview</p>
         </div>
         <button className="text-[#64748B] hover:text-black transition-colors mt-1">
@@ -178,7 +178,7 @@ export default function ReportsByStatusChart({ year, month }: ReportsByStatusCha
 
       {/* Distribution bar — pinned to bottom */}
       <div className="border-t border-black/5 pt-3 shrink-0">
-        <div className="flex justify-between font-light text-[#64748B] mb-1.5">
+        <div className="flex text-sm justify-between font-light text-[#64748B] mb-1.5">
           <span>Distribution</span>
           <span>{total.toLocaleString()} reports</span>
         </div>
@@ -193,7 +193,7 @@ export default function ReportsByStatusChart({ year, month }: ReportsByStatusCha
         </div>
         <div className="flex flex-wrap gap-x-3 gap-y-1 mt-2">
           {statKeys.map((key) => (
-            <div key={key} className="flex items-center gap-1">
+            <div key={key} className="flex items-center gap-1 text-sm">
               <span className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: COLORS[key] }} />
               <span className="text-[#64748B]">{LABELS[key]} {pct(raw[key], total)}%</span>
             </div>

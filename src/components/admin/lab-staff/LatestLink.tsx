@@ -90,7 +90,7 @@ export default function LatestLinks() {
       {/* Header */}
       <div className="flex items-center justify-between border-b border-black/10 p-6">
         <div>
-          <h4 className="text-lg text-black md:text-xl xl:text-2xl">
+          <h4 className="text-lg text-black text-md md:text-lg xl:text-xl">
             Recent Report Links
           </h4>
 
@@ -152,29 +152,27 @@ export default function LatestLinks() {
                     <div className="flex items-center gap-3">
                       <FiLink className="h-5 w-5 text-[#2f5ba5]" />
 
-                      <span className="font-medium text-[#64748B]">
+                      <span className="font-medium text-sm text-[#64748B]">
                         {item.patientName}
                       </span>
                     </div>
                   </td>
 
-                  <td className="px-6 py-4 text-[#64748B]">
+                  <td className="px-6 py-4 text-sm text-[#64748B]">
                     {item.reportName}
                   </td>
 
-                  <td className="px-6 py-4 text-[#64748B]">
+                  <td className="px-6 py-4 text-sm text-[#64748B]">
                     {item.mobile}
                   </td>
 
-                  <td className="px-6 py-4">
+                  <td className="px-6 text-sm py-4">
                     {item.status === "Viewed" ? (
-                      <span className="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-sm text-green-700">
-                        <FiEye />
+                      <span className="inline-flex items-center gap-2 rounded-full bg-green-100 font-medium px-3 py-1 text-sm text-green-700">
                         Viewed
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-sm text-amber-700">
-                        <FiClock />
+                      <span className="inline-flex items-center gap-2 rounded-full bg-amber-100 font-medium px-3 py-1 text-sm text-amber-700">
                         Pending
                       </span>
                     )}

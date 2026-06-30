@@ -312,7 +312,7 @@ export default function Contact() {
     const [countryCode, setCountryCode] = useState("+91");
 
     const inputClass = (field: keyof typeof formik.values) =>
-        `w-full border rounded-lg px-4 py-2.5 text-sm text-black placeholder:text-[#64748B]  outline-none transition-colors duration-200 focus:ring-1 bg-transparent ${formik.touched[field] && formik.errors[field]
+        `w-full border rounded-lg px-4 py-2.5 text-sm text-black   outline-none transition-colors duration-200 focus:ring-1 bg-transparent ${formik.touched[field] && formik.errors[field]
             ? "border-red-400 focus:border-red-400 focus:ring-red-300/30"
             : "border-[#c5d5d3] focus:border-[#64748B]  focus:ring-[#2f5ba5]/30/20"
         }`;
@@ -492,7 +492,7 @@ export default function Contact() {
                                                 formik.setFieldValue("phone", val);
                                             }}
                                             onBlur={formik.handleBlur}
-                                            className="w-full bg-transparent px-4 py-2.5 text-sm text-black placeholder:text-[#64748B]  outline-none"
+                                            className="w-full bg-transparent px-4 py-2.5 text-sm text-black   outline-none"
                                             maxLength={10}
                                         />
                                     </div>

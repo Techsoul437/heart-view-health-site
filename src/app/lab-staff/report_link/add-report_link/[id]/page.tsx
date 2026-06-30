@@ -249,12 +249,12 @@ export default function SendLinkPage() {
         </button>
 
         <div>
-                             <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
+                             <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl   font-normal tracking-tight text-black">
 
             Send Report Link
           </h1>
 
-          <p className="mt-1 text-[#64748B] text-base sm:text-lg  leading-relaxed  font-light">
+          <p className="mt-1 text-[#64748B] leading-relaxed  font-light">
             Share secure report access with patient
           </p>
         </div>
@@ -264,7 +264,7 @@ export default function SendLinkPage() {
         <div className="mt-6 grid gap-6 lg:grid-cols-3">
           {/* Patient Details */}
           <div className="rounded-3xl border border-black/5 bg-white p-6 lg:col-span-2">
-                              <h2 className="text-2xl font-medium">
+                              <h2 className="text-md md:text-lg xl:text-xl font-medium">
 
               Patient Information
             </h2>
@@ -480,13 +480,13 @@ export default function SendLinkPage() {
             {/* Timeline */}
             <div className="mt-8">
               <h3 className="font-medium text-black">Delivery Timeline</h3>
-              <div className="mt-5 flex flex-col gap-5">
+              <div className="mt-5 flex flex-col gap-3">
                 <div
                   className={`flex items-center gap-3 ${generatedUrl ? "text-green-600" : "text-[#64748B]"
                     }`}
                 >
                   <FiCheckCircle />
-                  <span className="">Link Generated</span>
+                  <span className="text-sm">Link Generated</span>
                 </div>
 
                 <div
@@ -496,7 +496,7 @@ export default function SendLinkPage() {
                     }`}
                 >
                   <FiCheckCircle />
-                  <span className="">Message Sent</span>
+                  <span className="text-sm">Message Sent</span>
                 </div>
 
                 <div
@@ -504,7 +504,7 @@ export default function SendLinkPage() {
                     }`}
                 >
                   <FiCheckCircle />
-                  <span className="">Viewed By Patient</span>
+                  <span className="text-sm">Viewed By Patient</span>
                 </div>
 
                 <div
@@ -514,7 +514,7 @@ export default function SendLinkPage() {
                     }`}
                 >
                   <FiCheckCircle />
-                  <span className="">Downloaded Report</span>
+                  <span className="text-sm">Downloaded Report</span>
                 </div>
               </div>
             </div>
@@ -522,11 +522,11 @@ export default function SendLinkPage() {
             {/* Sent info */}
             {existingLink && (
               <div className="mt-8 rounded-2xl bg-green-50 p-4  text-green-700">
-                <p className="font-medium">Last Sent</p>
-                <p className="mt-1 text-green-600">
+                <p className="font-medium text-sm">Last Sent</p>
+                <p className="mt-1 text-sm text-green-600">
                   {existingLink.sentOn} at {existingLink.sentTime}
                 </p>
-                <p className="mt-1 text-green-600">
+                <p className="mt-1 text-sm text-green-600">
                   Expires: {existingLink.expireOn}
                 </p>
               </div>

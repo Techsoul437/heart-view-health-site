@@ -207,11 +207,11 @@ export default function UploadReportPage() {
                 <div className="flex items-center gap-3">
 
                     <div>
-                        <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
+                        <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl  font-normal tracking-tight text-black">
                             Upload Report
                         </h1>
 
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+                        <p className=" leading-relaxed  font-light  text-[#64748B]">
 
                             Upload and manage patient reports
                         </p>
@@ -221,7 +221,7 @@ export default function UploadReportPage() {
             {/* FORM CARD */}
             <div
                 className="
-          mt-8
+          mt-6
             h-[calc(100vh-140px)]
       overflow-y-auto
       no-scrollbar
@@ -253,7 +253,7 @@ export default function UploadReportPage() {
                     </div>
 
                     <div>
-                        <h2 className="text-2xl font-medium">
+                        <h2 className="text-md md:text-lg xl:text-xl font-medium">
                             Patient & Report Details
                         </h2>
 
@@ -262,7 +262,7 @@ export default function UploadReportPage() {
                             a new report
                         </p>
                     </div>
-                </div>
+                </div> 
 
                 {/* FORMIK */}
                 <Formik
@@ -344,7 +344,7 @@ export default function UploadReportPage() {
 
                         return (
 
-                            <Form className="mt-10">
+                            <Form className="mt-8">
                                 {/* TOP GRID */}
                                 <div className="grid gap-6 xl:grid-cols-3">
                                     {/* PATIENT DROPDOWN */}
@@ -376,6 +376,7 @@ export default function UploadReportPage() {
                         border
                         border-black/10 bg-[#f7f7f7]/70
                         px-4
+                        text-sm
                         text-left
                         transition-all
                         ${errors.patientId &&
@@ -385,7 +386,7 @@ export default function UploadReportPage() {
                                                 }
                       `}
                                         >
-                                            <div className="flex items-center gap-3">
+                                            <div className="flex text-sm items-center gap-3">
                                                 <FiUser className="text-[#64748B]" />
 
                                                 <span
@@ -450,7 +451,7 @@ export default function UploadReportPage() {
                               
                               text-black
                               outline-none
-                              placeholder:text-[#64748B]
+                              
                               
                             "
                                                     />
@@ -468,7 +469,7 @@ export default function UploadReportPage() {
                             bg-[#2f5ba5]/10
                             px-4
                             py-3
-                            
+                            text-sm
                             font-medium
                             text-[#2f5ba5]
                             transition-all
@@ -481,11 +482,11 @@ export default function UploadReportPage() {
 
                                                 {/* LIST */}
                                                 <div className="mt-5">
-                                                    <p className="mb-4   font-medium uppercase  text-[#64748B]">
+                                                    <p className="mb-4 text-sm  font-medium uppercase  text-[#64748B]">
                                                         Recent Patients
                                                     </p>
 
-                                                    <div className="max-h-72 space-y-2 overflow-y-auto pr-1">
+                                                    <div className="max-h-72 text-sm space-y-2 overflow-y-auto pr-1">
                                                         {filteredPatients.length >
                                                             0 ? (
                                                             filteredPatients.map(
@@ -567,7 +568,7 @@ export default function UploadReportPage() {
                                                                 ),
                                                             )
                                                         ) : (
-                                                            <div className="rounded-2xl border border-dashed border-black/10 py-10 text-center  text-[#64748B]">
+                                                            <div className="rounded-2xl border text-sm border-dashed border-black/10 py-10 text-center  text-[#64748B]">
                                                                 No patient found
                                                             </div>
                                                         )}
@@ -600,6 +601,7 @@ export default function UploadReportPage() {
     border
     bg-[#f7f7f7]/70
     px-4
+    text-sm
     pr-12
     text-[#64748B]
     outline-none
@@ -649,6 +651,7 @@ export default function UploadReportPage() {
                         justify-between
                         rounded-2xl
                         border
+                        text-sm
                         bg-[#f7f7f7]/70
                         px-4
                         text-left
@@ -720,7 +723,7 @@ export default function UploadReportPage() {
                                   px-4
                                   py-3
                                   text-left
-                                  
+                                  text-sm
                                   text-black
                                   transition-all
                                   hover:bg-cyan-500/10
@@ -738,7 +741,7 @@ export default function UploadReportPage() {
                                 </div>
 
                                 {/* FILE UPLOAD */}
-                                <div className="mt-8">
+                                <div className="mt-6">
                                     <label className="mb-3 block  font-medium text-black">
                                         Upload Report File{" "}
                                         <span className="text-red-400">
@@ -776,9 +779,9 @@ export default function UploadReportPage() {
                       border
                       border-dashed
                       bg-[#f7f7f7]/70
-                      p-6
+                      p-4
                       transition-all
-                      sm:p-10
+                     
                       ${dragActive
                                                 ? "border-cyan-700 bg-cyan-500/10"
                                                 : errors.reportFile &&
@@ -814,8 +817,8 @@ export default function UploadReportPage() {
                                                 <div
                                                     className="
                             flex
-                            h-20
-                            w-20
+                            h-15
+                            w-15
                             items-center
                             justify-center
                             rounded-full
@@ -823,20 +826,21 @@ export default function UploadReportPage() {
                             text-cyan-700
                           "
                                                 >
-                                                    <FiUploadCloud className="text-4xl" />
+                                                    <FiUploadCloud className="text-2xl" />
+
                                                 </div>
 
-                                                <h3 className="mt-6 text-xl font-medium text-black">
+                                                <h3 className="mt-6 text-sm font-medium text-black">
                                                     Drag and drop your file
                                                     here
                                                 </h3>
 
-                                                <p className="mt-3 text-[#64748B]">
+                                                <p className="mt-3 text-sm text-[#64748B]">
                                                     Or click to browse report
                                                     file
                                                 </p>
 
-                                                <p className="mt-4  text-[#64748B]">
+                                                <p className="mt-4 text-sm text-[#64748B]">
                                                     Supports PDF, JPG, PNG
                                                     files up to 5MB
                                                 </p>
@@ -847,7 +851,7 @@ export default function UploadReportPage() {
                                         {values.reportFile && (
                                             <div
                                                 className="
-      mt-8
+      mt-6
       flex
       flex-col
       sm:flex-row
@@ -924,7 +928,7 @@ export default function UploadReportPage() {
                                         className="mt-2  text-red-400"
                                     />
 
-                                    <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between text-[#64748B]">
+                                    <div className="mt-4 flex flex-col gap-2 text-sm sm:flex-row sm:items-center sm:justify-between text-[#64748B]">
                                         <p>
                                             Accepted formats: PDF, JPG,
                                             PNG
@@ -935,7 +939,7 @@ export default function UploadReportPage() {
                                 </div>
 
                                 {/* NOTES */}
-                                <div className="mt-8">
+                                <div className="mt-6">
                                     <label className="mb-3 block  font-medium text-black">
                                         Notes{" "}
                                         <span className="text-[#64748B]">
@@ -959,11 +963,12 @@ export default function UploadReportPage() {
                       border
                       border-black/10
                       bg-[#f7f7f7]/70
-                      p-5
+                      p-4
+                      text-sm
                       text-black
                       outline-none
                       transition-all
-                      placeholder:text-[#64748B]
+                      
                       
                     "
                                     />

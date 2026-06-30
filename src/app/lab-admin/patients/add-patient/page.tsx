@@ -116,11 +116,11 @@ export default function AddPatientPage() {
             </Link>
 
             <div>
-              <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
+              <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl   font-normal tracking-tight text-black">
                 Add Patient
               </h1>
 
-              <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+              <p className=" leading-relaxed  font-light  text-[#64748B]">
 
                 Enter patient details to create a new patient
               </p>
@@ -156,7 +156,7 @@ export default function AddPatientPage() {
                     type="text"
                     name="name"
                     placeholder="Enter patient name"
-                    className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4  outline-none transition placeholder:text-slate-500"
+                    className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4  outline-none transition "
                   />
 
                   <ErrorMessage
@@ -179,7 +179,7 @@ export default function AddPatientPage() {
                     type="text"
                     name="mobile"
                     placeholder="Enter mobile number"
-                    className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4  outline-none transition placeholder:text-slate-500"
+                    className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4  outline-none transition "
                   />
 
                   <ErrorMessage
@@ -204,7 +204,7 @@ export default function AddPatientPage() {
                       type="text"
                       name="age"
                       placeholder="Enter age"
-                      className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4  outline-none transition placeholder:text-slate-500"
+                      className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4  outline-none transition "
                     />
 
                     <ErrorMessage

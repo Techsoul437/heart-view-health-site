@@ -103,11 +103,11 @@ export default function EditStaffPage() {
                         </Link>
 
                         <div>
-                            <h1 className="text-2xl md:text-3xl lg:text-4xl  font-normal tracking-tight text-black">
+                            <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl   font-normal tracking-tight text-black">
                                 Edit Staff
                             </h1>
 
-                            <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
+                            <p className=" leading-relaxed  font-light  text-[#64748B]">
 
                                 Update staff member details
                             </p>

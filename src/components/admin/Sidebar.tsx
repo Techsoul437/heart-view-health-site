@@ -111,7 +111,7 @@ export default function Sidebar({
           top-0
           z-50
           h-screen
-          w-80
+          w-60
           bg-black
           backdrop-blur-2xl
           transition-transform
@@ -140,7 +140,7 @@ export default function Sidebar({
 
         {/* ── Menu ── */}
         <div className="relative z-10 flex-1 py-6 overflow-y-auto">
-          <nav className="flex flex-col gap-2 pl-4 rounded-l-2xl">
+          <nav className="flex flex-col gap-2 pl-2 rounded-l-2xl">
             {menuItems.map((item, index) => {
               const Icon = iconMap[item.icon];
 
@@ -170,7 +170,7 @@ export default function Sidebar({
                   <div
                     className={`
                       shrink-0
-                      flex h-11 w-11
+                      flex h-9 w-9
                       items-center justify-center
                       rounded-xl
                       ${isActive
@@ -179,11 +179,11 @@ export default function Sidebar({
                       }
                     `}
                   >
-                    {Icon && <Icon className="h-5 w-5" />}
+                    {Icon && <Icon className="h-4 w-4" />}
                   </div>
 
                   <div className="ml-4 flex items-center gap-3">
-                    <span className="whitespace-nowrap text-base font-medium">
+                    <span className="whitespace-nowrap text-sm font-medium">
                       {item.title}
                     </span>
 
