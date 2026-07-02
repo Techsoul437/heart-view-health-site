@@ -343,15 +343,16 @@ const LoginEmailTab = ({ savedUser, onSignup, onSuccess }: LoginEmailTabProps) =
       initialValues={{ email: savedUser.email || "", password: "" }}
       validationSchema={loginSchema}
       onSubmit={(values: LoginValues) => {
-        if (
-          savedUser.email &&
-          values.email === savedUser.email &&
-          values.password === savedUser.password
-        ) {
+        // if (
+        //   savedUser.email &&
+        //   values.email === savedUser.email &&
+        //   values.password === savedUser.password
+        // ) {
+        // } else {
+        //   alert("Invalid credentials. Please check your email and password.");
+        // }
           onSuccess();
-        } else {
-          alert("Invalid credentials. Please check your email and password.");
-        }
+
       }}
     >
       <Form className="mt-4 space-y-3">
@@ -715,7 +716,7 @@ const SignupStep4 = ({ onSubmit, onLoginClick }: SignupStep4Props) => {
             <Field
               name="email"
               type="email"
-              placeholder="Email address (optional)"
+              placeholder="Email address"
               className={inputClass}
             />
             <ErrorMessage name="email" component="div" className="mt-0.5 text-red-400 text-xs" />
@@ -771,12 +772,12 @@ const SignupStep4 = ({ onSubmit, onLoginClick }: SignupStep4Props) => {
         </Form>
       </Formik>
 
-      <p className="mt-3 text-center text-sm text-[#64748B]">
+      {/* <p className="mt-3 text-center text-sm text-[#64748B]">
         Already have an account?{" "}
         <button type="button" onClick={onLoginClick} className="font-medium text-[#2f5ba5]">
           Sign in
         </button>
-      </p>
+      </p> */}
     </>
   );
 };
