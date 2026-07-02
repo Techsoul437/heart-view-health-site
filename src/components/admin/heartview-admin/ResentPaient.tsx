@@ -115,8 +115,7 @@ useEffect(() => {
       {/* Header */}
       <div className="flex items-center justify-between border-b border-black/10 p-6">
         <div>
-                 <h4 className="text-md md:text-lg xl:text-xl text-black">
-
+                <h4 className="text-md md:text-lg xl:text-xl text-black">
             Recent Patients
           </h4>
 
@@ -132,9 +131,9 @@ useEffect(() => {
           className="
             rounded-xl
             border border-indigo-500/20
-             bg-[#4a7bc9]/20
+             bg-black
             px-3 py-1.5
-            text-[#2f5ba5]
+            text-white
             transition-all
             hover:bg-indigo-500/20
           "
@@ -176,7 +175,6 @@ useEffect(() => {
                 >
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <UserCircle2 className="h-5 w-5 text-blue-500" />
 
                       <span className="font-medium text-sm text-[#64748B]">
                         {patient.name}

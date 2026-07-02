@@ -295,13 +295,7 @@ export default function ReportLinksPage() {
                     >
                       <td className="px-5 py-4">
                         <div className="flex items-center gap-3">
-                          <div
-                            className={`flex h-10 w-10 items-center text-sm justify-center rounded-full font-semibold  flex-shrink-0 ${getInitialsBg(
-                              item.patientInitials
-                            )}`}
-                          >
-                            {item.patientInitials}
-                          </div>
+                        
                           <div>
                             <p className="font-medium text-sm text-slate-900">
                               {item.patientName}

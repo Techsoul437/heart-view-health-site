@@ -63,84 +63,74 @@ const defaultPatients: PatientItem[] = [
 export default function LatestPaient() {
   const [patients, setPatients] = useState<PatientItem[]>([]);
 
-//  useEffect(() => {
-//   const storedPatients: PatientItem[] = JSON.parse(
-//     localStorage.getItem("patients") || "[]"
-//   );
+  //  useEffect(() => {
+  //   const storedPatients: PatientItem[] = JSON.parse(
+  //     localStorage.getItem("patients") || "[]"
+  //   );
 
-//   const latestPatients = [...storedPatients]
-//     .sort((a, b) => {
-//       const dateA = a.createdAt
-//         ? new Date(a.createdAt).getTime()
-//         : 0;
+  //   const latestPatients = [...storedPatients]
+  //     .sort((a, b) => {
+  //       const dateA = a.createdAt
+  //         ? new Date(a.createdAt).getTime()
+  //         : 0;
 
-//       const dateB = b.createdAt
-//         ? new Date(b.createdAt).getTime()
-//         : 0;
+  //       const dateB = b.createdAt
+  //         ? new Date(b.createdAt).getTime()
+  //         : 0;
 
-//       return dateB - dateA;
-//     })
-//     .slice(0, 5);
+  //       return dateB - dateA;
+  //     })
+  //     .slice(0, 5);
 
-//   // eslint-disable-next-line react-hooks/set-state-in-effect
-//   setPatients(latestPatients);
-// }, []);
-useEffect(() => {
-  const storedPatients: PatientItem[] = JSON.parse(
-    localStorage.getItem("patients") || "[]"
-  );
+  //   // eslint-disable-next-line react-hooks/set-state-in-effect
+  //   setPatients(latestPatients);
+  // }, []);
+  useEffect(() => {
+    const storedPatients: PatientItem[] = JSON.parse(
+      localStorage.getItem("patients") || "[]"
+    );
 
-  const data =
-    storedPatients.length > 0 ? storedPatients : defaultPatients;
+    const data =
+      storedPatients.length > 0 ? storedPatients : defaultPatients;
 
-  const latestPatients = [...data]
-    .sort((a, b) => {
-      const dateA = a.createdAt
-        ? new Date(a.createdAt).getTime()
-        : 0;
+    const latestPatients = [...data]
+      .sort((a, b) => {
+        const dateA = a.createdAt
+          ? new Date(a.createdAt).getTime()
+          : 0;
 
-      const dateB = b.createdAt
-        ? new Date(b.createdAt).getTime()
-        : 0;
+        const dateB = b.createdAt
+          ? new Date(b.createdAt).getTime()
+          : 0;
 
-      return dateB - dateA;
-    })
-    .slice(0, 5);
+        return dateB - dateA;
+      })
+      .slice(0, 5);
 
-  // eslint-disable-next-line react-hooks/set-state-in-effect
-  setPatients(latestPatients);
-}, []);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setPatients(latestPatients);
+  }, []);
   return (
     <div className="rounded-2xl border   min-h-125 border-slate-200  bg-[#f7f7f7] shadow-sm">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-black/10 p-6">
-        <div>
-                 <h4 className="text-md md:text-lg xl:text-xl text-black">
-
+      <div className="flex items-start justify-between gap-4 border-b border-black/10 p-6">
+        <div className="min-w-0 flex-1">
+                          <h4 className="text-md md:text-lg xl:text-xl text-black">
             Recent Patients
           </h4>
 
-          <p className="mt-1   font-light  text-[#64748B]">
+          <p className="mt-5 sm:mt-1 whitespace-nowrap font-light text-[#64748B]">
             Latest added patients
           </p>
         </div>
 
-        <Link
-          href="/lab-staff/patients"
-        >
+        <Link href="/lab-staff/patients">
           <button
-          className="
-            rounded-xl
-            border border-indigo-500/20
-             bg-[#4a7bc9]/20
-            px-3 py-1.5
-            text-[#2f5ba5]
-            transition-all
-            hover:bg-indigo-500/20
-          "
-        >
-          View All
-        </button>
+                  className="shrink-0 whitespace-nowrap rounded-xl border border-[#2f5ba5]/20 bg-black px-4 py-2 text-white"
+
+          >
+            View All
+          </button>
         </Link>
       </div>
 
@@ -176,7 +166,6 @@ useEffect(() => {
                 >
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <UserCircle2 className="h-5 w-5 text-blue-500" />
 
                       <span className="font-medium text-sm text-[#64748B]">
                         {patient.name}
@@ -211,7 +200,7 @@ useEffect(() => {
         </table>
       </div>
 
-    
+
     </div>
   );
 }

@@ -234,11 +234,7 @@ export default function LabPage() {
                                     >
                                         <td className="px-5 text-sm py-4">
                                             <div className="flex items-center gap-3">
-                                                <div
-                                                    className={`flex h-8 w-8 items-center justify-center rounded-full  font-semibold ${getAvatarColor(index)}`}
-                                                >
-                                                    {getInitials(lab.labName)}
-                                                </div>
+                                             
                                                 <span className=" text-black">
                                                     {lab.labName}
                                                 </span>

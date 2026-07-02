@@ -301,11 +301,7 @@ export default function PatientsPage() {
                                         </td>
                                         <td className="px-5 py-4">
                                             <div className="flex items-center text-sm gap-3">
-                                                <div
-                                                    className={`flex h-8 w-8 items-center justify-center rounded-full  font-semibold ${getAvatarColor(index)}`}
-                                                >
-                                                    {getInitials(patient.name)}
-                                                </div>
+                                             
                                                 <span className="text-sm text-black">
                                                     {patient.name}
                                                 </span>

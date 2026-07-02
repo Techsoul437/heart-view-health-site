@@ -88,30 +88,21 @@ export default function LatestLinks() {
   return (
     <div className="min-h-125 rounded-2xl border border-slate-200 bg-[#f7f7f7] shadow-sm">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-black/10 p-6">
-        <div>
-          <h4 className="text-lg text-black text-md md:text-lg xl:text-xl">
+      <div className="flex items-start justify-between gap-4 border-b border-black/10 p-6">
+        <div className="min-w-0 flex-1">
+          <h4 className="text-md md:text-lg xl:text-xl text-black">
             Recent Report Links
           </h4>
 
-          <p className="mt-1 text-[#64748B]   font-light">
+          <p className="mt-5 sm:mt-1 whitespace-nowrap  font-light text-[#64748B]">
             Recently shared report links
           </p>
         </div>
 
         <Link href="/lab-staff/report-links/history">
           <button
-            className="
-              rounded-xl
-              border
-              border-[#2f5ba5]/20
-              bg-[#4a7bc9]/20
-              px-3
-              py-1.5
-              text-[#2f5ba5]
-              transition-all
-              hover:bg-[#4a7bc9]/30
-            "
+            className="shrink-0 whitespace-nowrap rounded-xl border border-[#2f5ba5]/20 bg-black px-4 py-2 text-white"
+
           >
             View All
           </button>
@@ -150,7 +141,6 @@ export default function LatestLinks() {
                 >
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
-                      <FiLink className="h-5 w-5 text-[#2f5ba5]" />
 
                       <span className="font-medium text-sm text-[#64748B]">
                         {item.patientName}

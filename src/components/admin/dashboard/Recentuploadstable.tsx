@@ -53,29 +53,21 @@ export default function RecentUploadsTable() {
       "
     >
       {/* Header */}
-      <div className="mb-5 flex items-center justify-between">
-        <div>
-          <h4 className="text-md md:text-lg xl:text-xl text-black">
+      <div className="mb-5 flex items-start justify-between gap-4">
+        <div className="min-w-0 flex-1">
+                      <h4 className="text-md md:text-lg xl:text-xl text-black">
+
             Recent Uploads
           </h4>
 
-          <p className="mt-1 text-[#64748B]   font-light">
+          <p className="mt-5 sm:mt-1 whitespace-nowrap  font-light text-[#64748B]">
             Latest uploaded reports
           </p>
         </div>
-        <Link
-          href="/lab-admin/reports"
-        >
+
+        <Link href="/lab-admin/reports">
           <button
-            className="
-            rounded-xl
-            border border-indigo-500/20
-            bg-[#4a7bc9]/20
-            px-3 py-1.5
-            text-[#2f5ba5]
-            transition-all
-            hover:bg-indigo-500/20
-          "
+            className="shrink-0 whitespace-nowrap rounded-xl border border-[#2f5ba5]/20 bg-black px-4 py-2 text-white"
           >
             View All
           </button>

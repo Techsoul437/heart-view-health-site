@@ -99,30 +99,21 @@ export default function ResentLab() {
   return (
     <div className="min-h-125 rounded-2xl border border-slate-200 bg-[#f7f7f7] shadow-sm">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-black/10 p-6">
-        <div>
-          <h4 className="text-lg text-black md:text-xl xl:text-2xl">
+      <div className="flex items-start justify-between gap-4 border-b border-black/10 p-6">
+        <div className="flex-1 min-w-0">
+                    <h4 className="text-md md:text-lg xl:text-xl text-black">
+
             Recent Labs
           </h4>
 
-          <p className="mt-1 text-[#64748B]   font-light">
+          <p className="mt-5 sm:mt-1 whitespace-nowrap   text-[#64748B] font-light">
             Recently registered laboratories
           </p>
         </div>
 
         <Link href="/heartview-admin/labs">
           <button
-            className="
-              rounded-xl
-              border
-              border-[#2f5ba5]/20
-              bg-[#4a7bc9]/20
-              px-3
-              py-1.5
-              text-[#2f5ba5]
-              transition-all
-              hover:bg-[#4a7bc9]/30
-            "
+            className="shrink-0 whitespace-nowrap rounded-xl border border-[#2f5ba5]/20 bg-black px-4 py-2 text-white"
           >
             View All
           </button>
