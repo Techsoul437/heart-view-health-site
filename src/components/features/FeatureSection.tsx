@@ -3,7 +3,7 @@
 import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 import { motion } from "framer-motion";
 import {
-   HeartPulse,
+    HeartPulse,
     Activity,
     FileText,
     Pill,
@@ -109,7 +109,7 @@ export default function FeatureSection() {
                                 className="group rounded-2xl  p-6 border border-black/10 hover:border hover:border-[#4a7bc9]/30 hover:bg-white/2   transition-all"
                             >
                                 <div className="flex items-center gap-4">
-                                    <div     className="
+                                    <div className="
     group relative rounded-xl
     bg-linear-to-r from-[#7CC4FF] to-[#85bdf8]
     text-white overflow-hidden
@@ -118,9 +118,9 @@ export default function FeatureSection() {
     before:bg-linear-to-r before:from-[#0f61b3] before:to-[#6AA2E5]/10
     before:content-['']
     shadow-[0_10px_30px_rgba(47,91,165,0.18)]">
-                                            <div className="relative z-10 flex items-center justify-center rounded-xl bg-linear-to-r from-[#2f5ba5]/80 to-[#4a7bc9]/50 p-3 backdrop-blur-xl transition duration-300 group-hover:scale-105">
+                                        <div className="relative z-10 flex items-center justify-center rounded-xl bg-linear-to-r from-[#2f5ba5]/80 to-[#4a7bc9]/50 p-3 backdrop-blur-xl transition duration-300 group-hover:scale-105">
 
-                                        <Icon className="w-6 h-6" />
+                                            <Icon className="w-6 h-6" />
                                         </div>
                                     </div>
                                     <h2 className="text-xl sm:text-xl lg:text-2xl font-medium text-black">
