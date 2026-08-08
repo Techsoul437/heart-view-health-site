@@ -6,6 +6,7 @@ interface SubmitButtonProps {
   text?: string;
   type?: "button" | "submit" | "reset";
   onClick?: () => void;
+  disabled?: boolean;
 }
 
 function SubmitButton({
