@@ -134,8 +134,8 @@ export default function EditLabPage() {
             } else {
                 toast.error(response.message || "Failed to update lab");
             }
-          } catch (error: any) {
-            toast.error(typeof error === "string" ? error : (error.message || "Something went wrong"));
+          } catch (error: unknown) {
+            toast.error(typeof error === "string" ? error : (error instanceof Error ? error.message : "Something went wrong"));
           } finally {
             setSubmitting(false);
           }
@@ -334,7 +334,6 @@ export default function EditLabPage() {
                 <SubmitButton
                   text="Update Lab"
                   type="submit"
-                  disabled={loading || isSubmitting}
                 />
               </div>
 
