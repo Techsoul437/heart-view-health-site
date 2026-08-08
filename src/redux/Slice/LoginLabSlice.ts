@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginLab } from "../Api";
+import { loginWithEmail  } from "../Api";
 
 interface LoginState {
   loading: boolean;
@@ -24,15 +24,15 @@ const LoginLabSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(loginLab.pending, (state) => {
+      .addCase(loginWithEmail .pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(loginLab.fulfilled, (state, action) => {
+      .addCase(loginWithEmail .fulfilled, (state, action) => {
         state.loading = false;
         state.data = action.payload;
       })
-      .addCase(loginLab.rejected, (state, action) => {
+      .addCase(loginWithEmail .rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || "Login Failed";
       });
