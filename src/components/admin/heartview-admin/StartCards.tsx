@@ -7,7 +7,10 @@ import {
   FiCheckCircle,
   FiHome,
 } from "react-icons/fi";
-
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import { getAllUsers, getAllLabs } from "@/redux/Api";
 type StatsData = {
   totalLabs: number;
   activeLabs: number;
@@ -87,14 +90,66 @@ export default function StartCards({
 }: StatsCardsProps) {
   const selectedYear = Number(year);
   const selectedMonth = Number(month);
+  const dispatch = useDispatch<AppDispatch>();
+  const { labs } = useSelector(
+    (state: RootState) => state.getalllabs
+  );
+  const [totalPatients, setTotalPatients] = useState(0);
+ const totalLabs = labs.length;
 
-  const data: StatsData = {
-    totalLabs: statsConfig[selectedYear]?.[selectedMonth]?.totalLabs ?? 0,
-    activeLabs: statsConfig[selectedYear]?.[selectedMonth]?.activeLabs ?? 0,
-    totalPatients: statsConfig[selectedYear]?.[selectedMonth]?.totalPatients ?? 0,
-    newLabs: statsConfig[selectedYear]?.[selectedMonth]?.newLabs ?? 0,
-  };
+const activeLabs = labs.filter(
+  (lab) => lab.status?.toLowerCase() === "active"
+).length;
 
+const currentMonth = new Date().getMonth();
+const currentYear = new Date().getFullYear();
+
+const newLabs = labs.filter((lab) => {
+  if (!lab.createdAt) return false;
+
+  const date = new Date(lab.createdAt);
+
+  return (
+    date.getMonth() === currentMonth &&
+    date.getFullYear() === currentYear
+  );
+}).length;
+
+const data = {
+  totalLabs,
+  activeLabs,
+  totalPatients,
+  newLabs,
+};
+  useEffect(() => {
+    dispatch(getAllLabs());
+
+    const fetchPatients = async () => {
+      try {
+        const response = await dispatch(getAllUsers()).unwrap();
+        setTotalPatients(response.data?.length || 0);
+      } catch (error) {
+        console.error(error);
+        setTotalPatients(0);
+      }
+    };
+
+    fetchPatients();
+  }, [dispatch]);
+  useEffect(() => {
+    const fetchPatients = async () => {
+      try {
+        const response = await dispatch(getAllUsers()).unwrap();
+
+        setTotalPatients(response.data?.length || 0);
+      } catch (error) {
+        console.error("Failed to fetch patients:", error);
+        setTotalPatients(0);
+      }
+    };
+
+    fetchPatients();
+  }, [dispatch]);
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {cards.map(({ key, label, icon: Icon, iconBgStyle, iconColor, trend }) => (
@@ -130,7 +185,7 @@ export default function StartCards({
           <div className="relative flex items-start justify-between gap-3">
             {/* Left */}
             <div className="min-w-0 flex-1">
-               <p className="text-[#64748B] line-clamp-none lg:line-clamp-2 lg:h-12 xl:h-6 leading-6">
+              <p className="text-[#64748B] line-clamp-none lg:line-clamp-2 lg:h-12 xl:h-6 leading-6">
                 {label}
               </p>
 

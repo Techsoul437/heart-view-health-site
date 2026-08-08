@@ -1,20 +1,16 @@
 "use client";
 
-import React, { useState } from 'react';
 import {
     Calendar, ChevronDown, X,
 } from 'lucide-react';
 import { FiChevronLeft, FiChevronRight, FiEye } from 'react-icons/fi';
 import FillButton from '@/Ui/buttons/FillButton';
-
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState, AppDispatch } from "@/redux/store";
+import { getAllAuditLogs, AuditLog } from "@/redux/Api";
 // Mock Data for the Audit Log Table
-const auditLogs = [
-    { id: 1, timestamp: '2026-06-20 10:45 AM', user: 'Dr. Ananya Sharma', action: 'Created', target: 'Patient (Ankit R.)', details: 'Registered new patient profile' },
-    { id: 2, timestamp: '2026-06-20 09:15 AM', user: 'Lab Tech. Raj', action: 'Updated', target: 'Lab (PathCare)', details: 'Updated lab branch address' },
-    { id: 3, timestamp: '2026-06-19 04:30 PM', user: 'Admin User', action: 'Deleted', target: 'Patient (Old Record)', details: 'Removed duplicate patient ID #4432' },
-    { id: 4, timestamp: '2026-06-19 02:00 PM', user: 'Dr. Ananya Sharma', action: 'Login', target: 'System', details: 'Successful login from IP 192.168.1.10' },
-    { id: 5, timestamp: '2026-06-19 11:20 AM', user: 'Manager Shyam', action: 'Created', target: 'User (New Staff)', details: 'Added new lab assistant account' },
-];
+
 
 // Helper component for Action Badges
 const ActionBadge = ({ action }: { action: string }) => {
@@ -36,7 +32,7 @@ const AuditLogDetailModal = ({
     log,
     onClose,
 }: {
-    log: typeof auditLogs[number];
+   log: AuditLog;
     onClose: () => void;
 }) => {
     return (
@@ -64,12 +60,12 @@ const AuditLogDetailModal = ({
                 <div className="mt-5 space-y-4">
                     <div>
                         <p className=" font-medium text-black">Timestamp</p>
-                        <p className="mt-1 text-gray-500 text-sm font-medium">{log.timestamp}</p>
+                        <p className="mt-1 text-gray-500 text-sm font-medium">{new Date(log.createdAt).toLocaleString()}</p>
                     </div>
 
                     <div>
                         <p className=" font-medium text-black">User</p>
-                        <p className="mt-1 text-[#64748B] text-sm   leading-relaxed   font-medium">{log.user}</p>
+                        <p className="mt-1 text-[#64748B] text-sm   leading-relaxed   font-medium">{log.adminName}</p>
                     </div>
 
                     <div>
@@ -81,22 +77,19 @@ const AuditLogDetailModal = ({
 
                     <div>
                         <p className=" font-medium text-black">Target</p>
-                        <p className="mt-1 text-[#64748B]  leading-relaxed text-sm  font-light">{log.target}</p>
+                        <p className="mt-1 text-[#64748B]  leading-relaxed text-sm  font-light">{log.module}</p>
                     </div>
 
                     <div>
                         <p className=" font-medium text-black">Details</p>
-                        <p className="mt-1 text-[#64748B]   leading-relaxed text-sm   font-light">{log.details}</p>
+                        <p className="mt-1 text-[#64748B]   leading-relaxed text-sm   font-light">{log.description}</p>
                     </div>
                 </div>
 
                 <div className="mt-6 flex justify-end">
-                    <button
-                        onClick={onClose}
-                    >
-                        <FillButton text="Close" href=""></FillButton>
+                   
+                        <FillButton text="Close" href="" onClick={onClose}></FillButton>
 
-                    </button>
                 </div>
             </div>
         </div>
@@ -105,7 +98,18 @@ const AuditLogDetailModal = ({
 
 const AuditLogs = () => {
     const [currentPage, setCurrentPage] = useState(1);
-    const [selectedLog, setSelectedLog] = useState<typeof auditLogs[number] | null>(null);
+const dispatch = useDispatch<AppDispatch>();
+
+const { loading, data: auditLogs } = useSelector(
+  (state: RootState) => state.auditLogs
+);
+
+const [selectedLog, setSelectedLog] =
+  useState<AuditLog | null>(null);
+
+useEffect(() => {
+  dispatch(getAllAuditLogs());
+}, [dispatch]);
 
     const ITEMS_PER_PAGE = 10;
 
@@ -178,23 +182,23 @@ const AuditLogs = () => {
                                 </thead>
                                 <tbody className="divide-y divide-gray-100">
                                     {auditLogs.map((log) => (
-                                        <tr key={log.id} className="border-b border-slate-50 transition hover:bg-slate-50"
+                                        <tr key={log._id} className="border-b border-slate-50 transition hover:bg-slate-50"
                                         >
                                             <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-500 font-medium">
-                                                {log.timestamp}
+                                               {new Date(log.createdAt).toLocaleString()}
                                             </td>
                                             <td className="px-5 py-4 whitespace-nowrap flex items-center gap-3">
 
-                                                <span className="text-[#64748B] text-sm font-medium">{log.user}</span>
+                                                <span className="text-[#64748B] text-sm font-medium">{log.adminName}</span>
                                             </td>
                                             <td className="px-5 py-4 text-sm whitespace-nowrap">
                                                 <ActionBadge action={log.action} />
                                             </td>
                                             <td className="px-5 py-4  text-sm whitespace-nowrap text-[#64748B]">
-                                                {log.target}
+                                                {log.module}
                                             </td>
-                                            <td className="px-5 py-4 text-[#64748B] text-sm max-w-50 truncate" title={log.details}>
-                                                {log.details}
+                                            <td className="px-5 py-4 text-[#64748B] text-sm max-w-50 truncate" title={log.description}>
+                                                {log.description}
                                             </td>
                                             <td className="px-5 py-4">
                                                 <div className="flex justify-start">

@@ -2,73 +2,58 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-interface ReportItem {
-  id: number;
-  patientId: number;
-  patientName: string;
-  reportType: string;
-  testDate: string;
-  notes: string;
-  fileName: string;
-  fileType: string;
-  fileSize: number;
-  fileData: string;
-  createdAt: string;
-}
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { getAllReports, ReportData } from "@/redux/Api";
 
 export default function RecentUploadsTable() {
-  const [reports, setReports] = useState<ReportItem[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const [reports, setReports] = useState<ReportData[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedReports = localStorage.getItem("reports");
+    fetchRecentReports();
+  }, []);
 
-    if (storedReports) {
-      const parsedReports: ReportItem[] =
-        JSON.parse(storedReports);
+  const fetchRecentReports = async () => {
+    try {
+      setLoading(true);
 
-      // Latest 5 reports
-      const latestReports = parsedReports
+      const response = await dispatch(getAllReports()).unwrap();
+
+      const latestReports = [...response.data]
         .sort(
-          (a, b) =>
-            new Date(b.createdAt).getTime() -
-            new Date(a.createdAt).getTime()
+          (a: ReportData, b: ReportData) =>
+            new Date(b.createdAt ?? "").getTime() -
+            new Date(a.createdAt ?? "").getTime()
         )
         .slice(0, 5);
 
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       setReports(latestReports);
+    } catch (error) {
+      console.error("Failed to fetch reports:", error);
+    } finally {
+      setLoading(false);
     }
-  }, []);
+  };
 
   return (
-    <div
-      className="
-        rounded-2xl
-        border border-black/10
-        bg-[#f7f7f7]
-        p-5
-        shadow-xl
-        min-h-125
-      "
-    >
+    <div className="min-h-125 rounded-2xl border border-black/10 bg-[#f7f7f7] p-5 shadow-xl">
       {/* Header */}
-      <div className="mb-5 flex items-start justify-between gap-4">
-        <div className="min-w-0 flex-1">
-                      <h4 className="text-md md:text-lg xl:text-xl text-black">
-
+      <div className="mb-5 flex items-center justify-between">
+        <div>
+          <h4 className="text-xl font-semibold text-black">
             Recent Uploads
           </h4>
 
-          <p className="mt-5 sm:mt-1 whitespace-nowrap  font-light text-[#64748B]">
+          <p className="mt-1 text-sm text-[#64748B]">
             Latest uploaded reports
           </p>
         </div>
 
         <Link href="/lab-admin/reports">
-          <button
-            className="shrink-0 whitespace-nowrap rounded-xl border border-[#2f5ba5]/20 bg-black px-4 py-2 text-white"
-          >
+          <button className="rounded-xl bg-black px-4 py-2 text-sm text-white hover:bg-neutral-800">
             View All
           </button>
         </Link>
@@ -76,68 +61,26 @@ export default function RecentUploadsTable() {
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="w-full min-w-162.5">
+        <table className="w-full table-fixed">
           <thead>
-            <tr
-              className="
-                border-b border-black/10
-                text-left
-                uppercase
-                text-black
-              "
-            >
-              <th className="pb-3 pr-4 font-normal">
-                Report Name
-              </th>
-
-              <th className="pb-3 pr-4 font-normal">
-                Patient Name
-              </th>
-
-              <th className="pb-3 pr-4 font-normal">
-                Report Type
-              </th>
-
-              <th className="pb-3 pr-4 font-normal">
-                Upload Date
-              </th>
+            <tr className="border-b border-black/10 text-left text-sm uppercase text-black">
+              <th className="w-[45%] py-3">Report Name</th>
+              <th className="w-[25%] py-3">Patient</th>
+              <th className="w-[15%] py-3">Upload Date</th>
             </tr>
           </thead>
 
           <tbody>
-            {reports.length > 0 ? (
-              reports.map((report) => (
-                <tr
-                  key={report.id}
-                  className="
-                    border-b border-black/5
-                    transition-all
-                    hover:bg-black/5
-                    last:border-0
-                  "
+            {loading ? (
+              <tr>
+                <td
+                  colSpan={4}
+                  className="py-10 text-center text-[#64748B]"
                 >
-                  <td className="py-4 pr-4 ">
-                    <span className="font-medium text-sm  text-[#64748B]">
-                      {report.fileName}
-                    </span>
-                  </td>
-
-                  <td className="py-4 pr-4 text-sm  text-[#64748B]">
-                    {report.patientName}
-                  </td>
-
-                  <td className="py-4 pr-4 text-sm  text-[#64748B]">
-                    {report.reportType}
-                  </td>
-
-                  <td className="py-4 text-sm   text-[#64748B]">
-                    {new Date(
-                      report.createdAt
-                    ).toLocaleDateString()}
-                  </td>
-                </tr>
-              ))
-            ) : (
+                  Loading...
+                </td>
+              </tr>
+            ) : reports.length === 0 ? (
               <tr>
                 <td
                   colSpan={4}
@@ -146,6 +89,33 @@ export default function RecentUploadsTable() {
                   No reports uploaded yet
                 </td>
               </tr>
+            ) : (
+              reports.map((report) => (
+                <tr
+                  key={report._id}
+                  className="border-b border-black/5 hover:bg-black/5"
+                >
+                  <td className="py-4">
+                    <div
+                      className="max-w-full truncate text-sm font-medium text-[#64748B]"
+                      title={report.filename}
+                    >
+                      {report.filename || "-"}
+                    </div>
+                  </td>
+                  <td className="py-4 text-sm text-[#64748B]">
+                    {report.userId || "-"}
+                  </td>
+
+                
+
+                  <td className="py-4 text-sm text-[#64748B]">
+                    {report.createdAt
+                      ? new Date(report.createdAt).toLocaleDateString("en-GB")
+                      : "-"}
+                  </td>
+                </tr>
+              ))
             )}
           </tbody>
         </table>

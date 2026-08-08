@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
     User,
     Phone,
@@ -15,6 +15,10 @@ import * as Yup from "yup";
 import Link from "next/link";
 import ResetButton from "@/Ui/buttons/ResetButton";
 import SubmitButton from "@/Ui/buttons/SubmitButton";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import { getStaffById, updateStaff } from "@/redux/Api";
+import { resetUpdateStaff } from "@/redux/Slice/UpdateStaffSlice"; // ✅ apna actual path daalo
 
 const StaffSchema = Yup.object().shape({
     fullName: Yup.string().required("Full Name is required"),
@@ -40,53 +44,71 @@ interface StaffFormValues {
     department: string;
     branch: string;
     address: string;
-    status: string;
+    status: "Active" | "Inactive";
 }
 
 export default function EditStaffPage() {
     const router = useRouter();
     const params = useParams();
-    const staffId = Number(params.id);
+    const staffId = params.id as string; // ✅ Mongo _id string hota hai, Number() nahi chahiye
 
-    const [initialValues, setInitialValues] =
-        useState<StaffFormValues | null>(null);
-    const [empId, setEmpId] = useState("");
+    const dispatch = useDispatch<AppDispatch>();
 
+    // ✅ Fetch-by-id state
+    const {
+        staff,
+        loading: fetchLoading,
+        error: fetchError,
+    } = useSelector((state: RootState) => state.getStaffById);
+
+    // ✅ Update state
+    const {
+        loading: updateLoading,
+        success: updateSuccess,
+        error: updateError,
+    } = useSelector((state: RootState) => state.updateStaff);
+
+    // ✅ Fetch staff on mount
     useEffect(() => {
-        const storedStaff = JSON.parse(
-            localStorage.getItem("staffData") || "[]"
-        );
+        if (staffId) {
+            dispatch(getStaffById(staffId));
+        }
+    }, [staffId, dispatch]);
 
-        const staff = storedStaff.find(
-            (item: { id: number }) => item.id === staffId
-        );
-
-        if (staff) {
-            // eslint-disable-next-line react-hooks/set-state-in-effect
-            setEmpId(staff.empId);
-            setInitialValues({
-                fullName: staff.fullName || staff.name || "",
-                phone: staff.phone || "",
-                email: staff.email || "",
-                designation: staff.designation || "",
-                department: staff.department || "",
-                branch: staff.branch || "",
-                address: staff.address || "",
-                status: staff.status || "Active",
-            });
-        } else {
-            // Staff not found, go back
+    // ✅ Redirect after successful update
+    useEffect(() => {
+        if (updateSuccess) {
             router.push("/lab-admin/staff");
         }
-    }, [staffId, router]);
+    }, [updateSuccess, router]);
 
-    if (!initialValues) {
+    // ✅ Cleanup update state on unmount (taaki next visit fresh ho)
+    useEffect(() => {
+        return () => {
+            dispatch(resetUpdateStaff());
+        };
+    }, [dispatch]);
+
+    if (fetchLoading || !staff) {
         return (
             <div className="flex min-h-screen items-center justify-center bg-slate-50">
-                <p className="text-slate-500">Loading...</p>
+                <p className="text-slate-500">
+                    {fetchError ? fetchError : "Loading..."}
+                </p>
             </div>
         );
     }
+
+    const initialValues: StaffFormValues = {
+        fullName: staff.fullName || "",
+        phone: staff.phone || "",
+        email: staff.email || "",
+        designation: staff.designation || "",
+        department: staff.department || "",
+        branch: staff.branch || "",
+        address: staff.address || "",
+        status: staff.status || "Active",
+    };
 
     return (
         <div className="min-h-screen bg-slate-50 p-5 md:p-12">
@@ -108,37 +130,33 @@ export default function EditStaffPage() {
                             </h1>
 
                             <p className=" leading-relaxed  font-light  text-[#64748B]">
-
                                 Update staff member details
                             </p>
                         </div>
                     </div>
                 </div>
-                <Formik
+
+                {/* ✅ Update error */}
+                {updateError && (
+                    <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-red-600">
+                        {updateError}
+                    </div>
+                )}
+
+                <Formik<StaffFormValues>
                     initialValues={initialValues}
                     validationSchema={StaffSchema}
                     onSubmit={(values) => {
-                        const storedStaff = JSON.parse(
-                            localStorage.getItem("staffData") || "[]"
+                        // ✅ API call via redux thunk
+                        dispatch(
+                            updateStaff({
+                                id: staffId,
+                                data: values,
+                            })
                         );
-
-                        const updatedStaff = storedStaff.map(
-                            (item: { id: number }) =>
-                                item.id === staffId
-                                    ? { ...item, ...values }
-                                    : item
-                        );
-
-                        localStorage.setItem(
-                            "staffData",
-                            JSON.stringify(updatedStaff)
-                        );
-
-                        router.push("/lab-admin/staff");
                     }}
                 >
-                    {({ resetForm }) => (  // ✅ Fix here
-
+                    {({ resetForm }) => (
                         <Form>
                             <div className="rounded-2xl border border-slate-200 bg-white shadow-sm">
                                 <div className="p-6">
@@ -177,7 +195,7 @@ export default function EditStaffPage() {
 
                                             <input
                                                 type="text"
-                                                value={empId}
+                                                value={staff.empId || ""}
                                                 readOnly
                                                 className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-3 font-medium text-slate-700"
                                             />
@@ -340,11 +358,12 @@ export default function EditStaffPage() {
                                     </div>
 
                                     {/* Footer */}
-
-
                                     <div className="flex  gap-4 pt-4 sm:flex-row sm:justify-end">
                                         <ResetButton onReset={resetForm} />
-                                        <SubmitButton text="Update" type="submit" />
+                                        <SubmitButton
+                                            text={updateLoading ? "Updating..." : "Update"}
+                                            type="submit"
+                                        />
                                     </div>
                                 </div>
                             </div>

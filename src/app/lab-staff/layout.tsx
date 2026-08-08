@@ -1,8 +1,10 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { usePathname } from "next/navigation";
-
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "@/redux/store";
+import { getStaffProfile } from "@/redux/Api";
 import Sidebar from "../../components/admin/Sidebar";
 
 interface LabAdminLayoutProps {
@@ -19,6 +21,22 @@ export default function LabAdminLayout({
   children,
 }: LabAdminLayoutProps) {
   const pathname = usePathname();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { data } = useSelector(
+    (state: RootState) => state.staffProfile
+  );
+
+  useEffect(() => {
+    const token =
+      localStorage.getItem("staffToken") ||
+      localStorage.getItem("token") ||
+      sessionStorage.getItem("staffToken");
+
+    if (token && !data) {
+      dispatch(getStaffProfile());
+    }
+  }, [dispatch, data]);
 
   const sidebarMenu: SidebarMenuItem[] = [
     {
@@ -26,31 +44,26 @@ export default function LabAdminLayout({
       href: "/lab-staff/dashboard",
       icon: "dashboard",
     },
-
     {
       title: "Patients",
       href: "/lab-staff/patients",
       icon: "users",
     },
-
     {
       title: "Upload Report",
       href: "/lab-staff/staff_upload_report",
       icon: "upload",
     },
-
     {
       title: "Reports",
       href: "/lab-staff/reports",
       icon: "reports",
     },
-
     {
       title: "Report Links",
       href: "/lab-staff/report_link",
       icon: "staff",
     },
-
     {
       title: "My Profile",
       href: "/lab-staff/profile",
@@ -58,49 +71,35 @@ export default function LabAdminLayout({
     },
   ];
 
-  const isLoginPage =
-    pathname === "/lab-staff/login";
-
-  if (isLoginPage) {
-    return (
-      <div className="min-h-screen page-bg">
-        {children}
-      </div>
-    );
+  if (pathname === "/lab-staff") {
+    return <div className="min-h-screen page-bg">{children}</div>;
   }
 
- return (
-   <div className="min-h-screen page-bg">
-     {/* Desktop Sidebar */}
-     <div className="hidden lg:block fixed left-0 top-0 z-50 min-h-screen">
-       <Sidebar
-         role="staff"
-         menuItems={sidebarMenu}
-         labName="City Diagnostic Lab"
-        userName=" Test Patel"
-        userEmail="test@citylab.com"
-       />
-     </div>
- 
-     {/* Mobile Sidebar */}
-     <div className="lg:hidden">
-      <Sidebar
+  return (
+    <div className="min-h-screen page-bg">
+      <div className="hidden lg:block fixed left-0 top-0 z-50 min-h-screen">
+        <Sidebar
           role="staff"
           menuItems={sidebarMenu}
-
+          labName={data?.branch ?? ""}
+          userName={data?.fullName ?? ""}
+          userEmail={data?.email ?? ""}
         />
-     </div>
- 
-     {/* Page Content */}
-     <main
-       className="
-         lg:ml-60
-        min-h-screen
-         overflow-x-hidden
-       "
-     >
-       {children}
-     </main>
-   </div>
- );
+      </div>
+
+      <div className="lg:hidden">
+        <Sidebar
+          role="staff"
+          menuItems={sidebarMenu}
+          labName={data?.branch ?? ""}
+          userName={data?.fullName ?? ""}
+          userEmail={data?.email ?? ""}
+        />
+      </div>
+
+      <main className="lg:ml-60 min-h-screen overflow-x-hidden">
+        {children}
+      </main>
+    </div>
+  );
 }

@@ -57,8 +57,7 @@ export default function ReportsPage() {
         </div>
 
         {/* Right Controls */}
-        <div className="flex flex-wrap items-center gap-3">
-          {/* Month Select */}
+        {/* <div className="flex flex-wrap items-center gap-3">
           <div className="relative">
             <select
               value={month}
@@ -97,7 +96,6 @@ export default function ReportsPage() {
            
           </div>
 
-          {/* Year Select */}
           <div className="relative">
             <select
               value={year}
@@ -137,7 +135,6 @@ export default function ReportsPage() {
            
           </div>
 
-          {/* Date Badge */}
           <div
             className="
               flex items-center gap-2
@@ -154,7 +151,7 @@ export default function ReportsPage() {
             <FiCalendar className="text-[#64748B]" />
             {monthLabel} {year}
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* ───────────────── STATS ───────────────── */}

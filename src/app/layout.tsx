@@ -4,6 +4,10 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Script from "next/script";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Providers from "./providers";
+import NotificationPermission from "@/components/NotificationPermission";
+import FcmProvider from "@/components/FcmProvider";
+
 
 
 const geistSans = Geist({
@@ -78,30 +82,34 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${manrope.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col" cz-shortcut-listen="true">
 
         <Toaster position="top-right" />
 
         {/* <PageLoader></PageLoader> */}
+        <NotificationPermission />
+        <FcmProvider></FcmProvider>
+        <Providers>
+          {children}
 
-        {children}
+        </Providers>
         <GoogleAnalytics gaId="G-JYXHGBWQVM"></GoogleAnalytics>
-           <Script
-        id="organization-schema"
-        type="application/ld+json"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: "HeartView Health",
-            url: "https://heartviewhealth.com/",
-            logo: "https://heartview-images.s3.ap-south-1.amazonaws.com/favicon3.png",
-          }),
-        }}
-      />
+        <Script
+          id="organization-schema"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "HeartView Health",
+              url: "https://heartviewhealth.com/",
+              logo: "https://heartview-images.s3.ap-south-1.amazonaws.com/favicon3.png",
+            }),
+          }}
+        />
       </body>
-   
+
     </html>
   );
 }

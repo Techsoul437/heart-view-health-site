@@ -19,6 +19,9 @@ import MapSection from "./MapSection";
 import ReCAPTCHA from "react-google-recaptcha";
 import type { Variants } from "framer-motion";
 import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "@/redux/store";
+import { createInquiry } from "@/redux/Api";
 
 // ─── Env ───────────────────────────────────────────────────────────────────────
 // NEXT_PUBLIC_ vars are inlined at build time — never guard with && in JSX
@@ -94,7 +97,6 @@ function ToastItem({
 }) {
     const style = toastStyles[toast.type];
     const Icon = style.icon;
-
     return (
         <motion.div
             layout
@@ -254,6 +256,7 @@ function ErrorMsg({ msg }: { msg?: string }) {
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function Contact() {
     const [toasts, setToasts] = useState<Toast[]>([]);
+const dispatch = useDispatch<AppDispatch>();
 
     // FIX 1: useRef instead of let — so counter never resets on re-render
     const toastCounter = useRef(0);
@@ -275,39 +278,54 @@ export default function Contact() {
     const formik = useFormik({
         initialValues: { name: "", email: "", phone: "", message: "" },
         validationSchema,
-        onSubmit: async (values, { resetForm }) => {
-            try {
-                const token = recaptchaRef.current?.getValue() || "";
+      onSubmit: async (values, { resetForm }) => {
+    try {
+        const token = recaptchaRef.current?.getValue() || "";
 
-                if (!token) {
-                    addToast("error", "Captcha Required", "Please verify captcha");
-                    return;
-                }
+        if (!token) {
+            addToast(
+                "error",
+                "Captcha Required",
+                "Please verify captcha"
+            );
+            return;
+        }
 
-                const res = await fetch(`${API_URL}/contact`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ ...values, captcha: token }),
-                });
+        const result = await dispatch(
+            createInquiry({
+                name: values.name,
+                email: values.email,
+                phone: values.phone,
+                message: values.message,
+            })
+        );
 
-                const data = await res.json();
+        if (createInquiry.fulfilled.match(result)) {
+            addToast(
+                "success",
+                "Message Sent!",
+                result.payload.message
+            );
 
-                if (!res.ok) throw new Error(data.message);
+            resetForm();
+            recaptchaRef.current?.reset();
+        } else {
+            throw new Error(
+                typeof result.payload === "string"
+                    ? result.payload
+                    : "Failed to submit inquiry."
+            );
+        }
+    } catch (error) {
+        console.error(error);
 
-                addToast("success", "Message Sent!", data.message);
-                resetForm();
-
-                // FIX 3: reset captcha after successful submission
-                recaptchaRef.current?.reset();
-            } catch (error) {
-                console.error(error);
-                addToast(
-                    "error",
-                    "Submission Failed",
-                    "Something went wrong. Please try again."
-                );
-            }
-        },
+        addToast(
+            "error",
+            "Submission Failed",
+            "Something went wrong. Please try again."
+        );
+    }
+},
     });
     const [countryCode, setCountryCode] = useState("+91");
 

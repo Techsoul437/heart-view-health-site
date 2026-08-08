@@ -2,131 +2,61 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { UserCircle2 } from "lucide-react";
+import { getAllUsers, type Patient } from "@/redux/Api";
+import type { AppDispatch } from "@/redux/store";
+import { useDispatch } from "react-redux";
 
-interface PatientItem {
-  id: number;
-  name: string;
-  mobile: string;
-  age: string;
-  gender: string;
-  patientId: string;
-  createdAt?: string;
-}
-const defaultPatients: PatientItem[] = [
-  {
-    id: 1,
-    name: "Rajesh Patel",
-    mobile: "9876543210",
-    age: "42",
-    gender: "Male",
-    patientId: "PAT001",
-    createdAt: "2026-06-05T10:00:00",
-  },
-  {
-    id: 2,
-    name: "Priya Shah",
-    mobile: "9876543211",
-    age: "35",
-    gender: "Female",
-    patientId: "PAT002",
-    createdAt: "2026-06-05T09:30:00",
-  },
-  {
-    id: 3,
-    name: "Amit Mehta",
-    mobile: "9876543212",
-    age: "51",
-    gender: "Male",
-    patientId: "PAT003",
-    createdAt: "2026-06-05T09:00:00",
-  },
-  {
-    id: 4,
-    name: "Neha Joshi",
-    mobile: "9876543213",
-    age: "28",
-    gender: "Female",
-    patientId: "PAT004",
-    createdAt: "2026-06-05T08:30:00",
-  },
-  {
-    id: 5,
-    name: "Karan Desai",
-    mobile: "9876543214",
-    age: "39",
-    gender: "Male",
-    patientId: "PAT005",
-    createdAt: "2026-06-05T08:00:00",
-  },
-];
-export default function LatestPaient() {
-  const [patients, setPatients] = useState<PatientItem[]>([]);
 
-  //  useEffect(() => {
-  //   const storedPatients: PatientItem[] = JSON.parse(
-  //     localStorage.getItem("patients") || "[]"
-  //   );
+export default function RecentPatientsCard() {
+  const dispatch = useDispatch<AppDispatch>();
 
-  //   const latestPatients = [...storedPatients]
-  //     .sort((a, b) => {
-  //       const dateA = a.createdAt
-  //         ? new Date(a.createdAt).getTime()
-  //         : 0;
 
-  //       const dateB = b.createdAt
-  //         ? new Date(b.createdAt).getTime()
-  //         : 0;
-
-  //       return dateB - dateA;
-  //     })
-  //     .slice(0, 5);
-
-  //   // eslint-disable-next-line react-hooks/set-state-in-effect
-  //   setPatients(latestPatients);
-  // }, []);
+  const [patients, setPatients] = useState<Patient[]>([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const storedPatients: PatientItem[] = JSON.parse(
-      localStorage.getItem("patients") || "[]"
-    );
+    const fetchPatients = async () => {
+      try {
+        setLoading(true);
 
-    const data =
-      storedPatients.length > 0 ? storedPatients : defaultPatients;
+        const response = await dispatch(getAllUsers()).unwrap();
 
-    const latestPatients = [...data]
-      .sort((a, b) => {
-        const dateA = a.createdAt
-          ? new Date(a.createdAt).getTime()
-          : 0;
+        const latestPatients = [...(response.data || [])]
+          .sort(
+            (a, b) =>
+              new Date(b.createdAt ?? "").getTime() -
+              new Date(a.createdAt ?? "").getTime()
+          )
+          .slice(0, 5);
 
-        const dateB = b.createdAt
-          ? new Date(b.createdAt).getTime()
-          : 0;
+        setPatients(latestPatients);
+      } catch (error) {
+        console.error("Failed to fetch patients:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-        return dateB - dateA;
-      })
-      .slice(0, 5);
+    fetchPatients();
+  }, [dispatch]);
 
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setPatients(latestPatients);
-  }, []);
   return (
     <div className="rounded-2xl border   min-h-125 border-slate-200  bg-[#f7f7f7] shadow-sm">
       {/* Header */}
       <div className="flex items-start justify-between gap-4 border-b border-black/10 p-6">
         <div className="min-w-0 flex-1">
-                          <h4 className="text-md md:text-lg xl:text-xl text-black">
+          <h4 className="text-md md:text-lg xl:text-xl text-black">
+
             Recent Patients
           </h4>
 
-          <p className="mt-5 sm:mt-1 whitespace-nowrap font-light text-[#64748B]">
+          <p className="mt-5 sm:mt-1 whitespace-nowrap  font-light text-[#64748B]">
             Latest added patients
           </p>
         </div>
 
         <Link href="/lab-staff/patients">
           <button
-                  className="shrink-0 whitespace-nowrap rounded-xl border border-[#2f5ba5]/20 bg-black px-4 py-2 text-white"
+            className="shrink-0 whitespace-nowrap rounded-xl border border-[#2f5ba5]/20 bg-black px-4 py-2 text-white"
 
           >
             View All
@@ -148,7 +78,7 @@ export default function LatestPaient() {
               </th>
 
               <th className="px-6 py-4 text-left  font-medium uppercase tracking-wide text-black">
-                Age
+                Role
               </th>
 
               <th className="px-6 py-4 text-left  font-medium uppercase tracking-wide text-black">
@@ -158,40 +88,40 @@ export default function LatestPaient() {
           </thead>
 
           <tbody>
-            {patients.length > 0 ? (
+            {loading ? (
+              <tr>
+                <td colSpan={4} className="py-10 text-center">
+                  Loading...
+                </td>
+              </tr>
+            ) : patients.length > 0 ? (
               patients.map((patient) => (
                 <tr
-                  key={patient.id}
+                  key={patient._id}
                   className="border-b border-black/10 transition hover:bg-slate-50"
                 >
                   <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
-
-                      <span className="font-medium text-sm text-[#64748B]">
-                        {patient.name}
-                      </span>
-                    </div>
+                    <span className="font-medium text-sm text-[#64748B]">
+                      {patient.name}
+                    </span>
                   </td>
 
                   <td className="px-6 py-4 text-sm text-[#64748B]">
-                    {patient.mobile}
+                    {patient.phone}
                   </td>
 
                   <td className="px-6 py-4 text-sm text-[#64748B]">
-                    {patient.age}
+                    {patient.role}
                   </td>
 
                   <td className="px-6 py-4 text-sm text-[#64748B]">
-                    {patient.gender}
+                    {patient.sex}
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td
-                  colSpan={4}
-                  className="py-10 text-center text-black"
-                >
+                <td colSpan={4} className="py-10 text-center text-black">
                   No patients available
                 </td>
               </tr>

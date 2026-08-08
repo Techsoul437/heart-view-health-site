@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { FiPhone, FiMail, FiMapPin, FiX, FiCheckCircle, FiAlertCircle, FiInfo, FiAlertTriangle } from "react-icons/fi";
+import {FiX, FiCheckCircle, FiAlertCircle, FiInfo, FiAlertTriangle } from "react-icons/fi";
 import ReCAPTCHA from "react-google-recaptcha";
 
 const validationSchema = Yup.object({
@@ -127,7 +127,6 @@ function ToastContainer({ toasts, onClose }: { toasts: Toast[]; onClose: (id: st
 
 // ─── ContactModal ─────────────────────────────────────────────────────────────
 export default function ContactModal({ isOpen, onClose }: Props) {
-    const [loading, setLoading] = useState(false);
     const [toasts, setToasts] = useState<Toast[]>([]);
     const [countryCode, setCountryCode] = useState("+91");
     const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string;
@@ -221,7 +220,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                 {isOpen && (
                     <>
                         <motion.div
-                            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[1090]"
+                            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-1090"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
@@ -233,7 +232,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 32 }}
                             transition={{ duration: 0.3, ease: "easeOut" }}
-                            className="fixed inset-0 z-[1100] flex min-h-dvh items-center justify-center overflow-y-auto px-3 py-3 sm:px-4 sm:py-6"
+                            className="fixed inset-0 z-1100 flex min-h-dvh items-center justify-center overflow-y-auto px-3 py-3 sm:px-4 sm:py-6"
                         >
                             <div
                                 className="
@@ -362,7 +361,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                                         </div>
 
                                         {/* reCAPTCHA */}
-                                        <div className="w-full min-h-[65px] overflow-hidden">
+                                        <div className="w-full min-h-16.25 overflow-hidden">
                                             <div className="
   scale-[0.86]
   min-[380px]:scale-100
@@ -382,7 +381,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                                         disabled={formik.isSubmitting}
                                         whileTap={{ scale: 0.97 }}
                                         whileHover={{ scale: 1.01 }}
-                                        className="w-full bg-[#2f5ba5]/70 hover:bg-[#2f5ba5]/70 text-white text-base sm:text-lg  leading-relaxed font-light sm:text-base py-2.5 rounded-lg uppercase"
+                                        className="w-full bg-[#2f5ba5]/70 hover:bg-[#2f5ba5]/70 text-white text-base sm:text-lg  leading-relaxed font-light py-2.5 rounded-lg uppercase"
                                     >
                                         {formik.isSubmitting ? "Sending..." : "Submit"}
                                     </motion.button>

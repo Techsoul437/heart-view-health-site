@@ -6,6 +6,11 @@ import Image from "next/image";
 import { Eye, EyeOff, ShieldCheck, FileHeart, BadgeCheck, Sparkles } from "lucide-react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "@/redux/store";
+import { getHeartViewAdminProfile, loginHeartViewAdminWithEmail } from "@/redux/Api";
+import { getToken, isSupported } from "firebase/messaging";
+import { app } from "@/lib/firebase"; // <-- adjust path to wherever your initialized Firebase `app` lives
 
 const loginSchema = Yup.object({
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -24,6 +29,30 @@ const features = [
   { icon: BadgeCheck, title: "User & Staff Management" },
   { icon: Sparkles, title: "Platform Analytics" },
 ];
+
+// Safely fetch an FCM token. Runs only in the browser and only if the
+// browser actually supports Firebase Messaging (Safari/older browsers may not).
+async function getFcmTokenSafely(): Promise<string> {
+  if (typeof window === "undefined") return "";
+
+  try {
+    const supported = await isSupported();
+    if (!supported) return "";
+
+    // Dynamic import keeps `getMessaging` out of the SSR bundle entirely.
+    const { getMessaging } = await import("firebase/messaging");
+    const messaging = getMessaging(app);
+
+    const token = await getToken(messaging, {
+      vapidKey: process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY,
+    });
+
+    return token ?? "";
+  } catch (err) {
+    console.log("FCM Error:", err);
+    return "";
+  }
+}
 
 const LeftSide = () => (
   <div className="relative flex flex-col bg-black lg:border-r lg:border-[#45657D]/20">
@@ -67,6 +96,7 @@ const LeftSide = () => (
 const AdminLoginPanel = () => {
   const router = useRouter();
   const [showPass, setShowPass] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <>
@@ -75,35 +105,41 @@ const AdminLoginPanel = () => {
           Welcome Back!
         </h2>
         <p className="mt-2 text-[#94A3B8] ">
-         Sign in to access your HeartView Admin Portal
+          Sign in to access your HeartView Admin Portal
         </p>
       </div>
 
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={loginSchema}
-        onSubmit={(values) => {
-          const adminUser = {
-            id: 1,
-            fullName: "HeartView Administrator",
-            email: values.email,
-            role: "HeartView Admin",
-            status: "Active",
-            permissions: [
-              "lab_management",
-              "report_monitoring",
-              "audit_logs",
-              "user_management",
-              "system_settings",
-            ],
-          };
+        onSubmit={async (values, { setSubmitting }) => {
+          try {
+            const fcmToken = await getFcmTokenSafely();
 
-          localStorage.setItem(
-            "heartViewAdmin",
-            JSON.stringify(adminUser)
-          );
+            const result = await dispatch(
+              loginHeartViewAdminWithEmail({
+                email: values.email,
+                password: values.password,
+                fcmToken,
+              })
+            );
 
-          router.push("/heartview-admin/dashboard");
+            if (loginHeartViewAdminWithEmail.fulfilled.match(result)) {
+              localStorage.setItem(
+                "heartViewAdmin",
+                JSON.stringify(result.payload.data)
+              );
+              await dispatch(getHeartViewAdminProfile());
+              router.push("/heartview-admin/dashboard");
+            } else {
+              alert(result.payload || "Login failed");
+            }
+          } catch (error) {
+            console.error(error);
+            alert("Something went wrong");
+          } finally {
+            setSubmitting(false);
+          }
         }}
       >
         <Form className="space-y-4">
@@ -145,33 +181,24 @@ const AdminLoginPanel = () => {
 
 export default function AdminLoginPage() {
   return (
-    // KEY FIX: h-dvh for dynamic viewport height (handles mobile browser chrome)
-    // overflow-hidden prevents any outer scroll
     <div className="relative flex h-dvh w-screen items-center justify-center overflow-hidden bg-white p-4">
       {/* BG GLOW */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,#1E3A5F22,transparent_55%)]" />
 
-      {/* CARD
-          KEY FIX:
-          - w-full max-w-5xl keeps it contained horizontally
-          - NO fixed height — let content define it
-          - max-h ensures it never exceeds viewport
-          - The card itself does NOT scroll (overflow-hidden)
-      */}
-    <div
-  className="
-    relative z-10
-    w-full max-w-sm sm:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl
-    overflow-hidden
-    rounded-[28px]
-    bg-white
-    shadow-[0_25px_90px_rgba(0,0,0,0.45)]
-    grid
-    grid-cols-1
-    lg:grid-cols-[0.75fr_1.25fr]
-  "
-  style={{ maxHeight: "calc(100dvh - 2rem)" }}
->
+      <div
+        className="
+          relative z-10
+          w-full max-w-sm sm:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl
+          overflow-hidden
+          rounded-[28px]
+          bg-white
+          shadow-[0_25px_90px_rgba(0,0,0,0.45)]
+          grid
+          grid-cols-1
+          lg:grid-cols-[0.75fr_1.25fr]
+        "
+        style={{ maxHeight: "calc(100dvh - 2rem)" }}
+      >
         {/* LEFT */}
         <LeftSide />
 
