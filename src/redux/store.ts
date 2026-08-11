@@ -89,8 +89,8 @@ export const store = configureStore({
     auditLogs: AuditLogReducer,
     getlabbyid: GetLabByIdReducer,
     heartViewAdminProfile: HeartViewAdminProfileReducer,
-updateHeartViewAdminProfile: UpdateHeartViewAdminProfileReducer,
-getLabUsers: GetLabUsersReducer,
+    updateHeartViewAdminProfile: UpdateHeartViewAdminProfileReducer,
+    getLabUsers: GetLabUsersReducer,
   },
 });
 

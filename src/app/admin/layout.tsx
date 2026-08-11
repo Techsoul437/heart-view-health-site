@@ -1,5 +1,4 @@
 "use client";
-
 import { ReactNode, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,7 +18,7 @@ export default function AdminLayout({
   const dispatch = useDispatch<AppDispatch>();
 
   const { data: profile } = useSelector(
-    (state: RootState) => state.adminProfile
+    (state: RootState) => state.heartViewAdminProfile
   );
 
   useEffect(() => {

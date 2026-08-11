@@ -1,11 +1,5 @@
-import React from 'react'
+import WebAdminLogin from '@/components/admin/login/WebAdminLogin';
 
-function page() {
-  return (
-    <div>
-      <h1>Admin</h1>
-    </div>
-  )
+export default function AdminPage() {
+  return <WebAdminLogin />;
 }
-
-export default page

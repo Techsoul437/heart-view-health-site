@@ -182,7 +182,7 @@ const blogContentToHtml = (blocks?: BlogContent[] | null): string => {
             let html = "";
             if (block.heading) html += `<h2>${block.heading}</h2>`;
 
-            block.paragraphs?.forEach((p) => {
+            block.paragraphs?.forEach((p: string) => {
                 // list HTML (<ul>/<ol>) already teyar hai, seedha use karo,
                 // baaki sab plain paragraph maan lo
                 html += /^\s*<(ul|ol)>/i.test(p) ? p : `<p>${p}</p>`;

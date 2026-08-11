@@ -32,7 +32,7 @@ export default function AdminProfilePage() {
     const dispatch = useDispatch<AppDispatch>();
 
     const { data: profile, loading: profileLoading, updateLoading } = useSelector(
-        (state: RootState) => state.adminProfile
+        (state: RootState) => state.heartViewAdminProfile
     );
 
     useEffect(() => {

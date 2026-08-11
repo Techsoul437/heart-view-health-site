@@ -68,6 +68,8 @@ export const metadata = {
     apple: "https://heartview-images.s3.ap-south-1.amazonaws.com/favicon3.png",
   },
 };
+import Providers from "./providers";
+
 export default function RootLayout({
   children,
 }: {
@@ -90,26 +92,24 @@ export default function RootLayout({
 
         <Toaster position="top-right" />
 
-        {/* <PageLoader></PageLoader> */}
+        <Providers>{children}</Providers>
 
-        {children}
         <GoogleAnalytics gaId="G-JYXHGBWQVM"></GoogleAnalytics>
-           <Script
-        id="organization-schema"
-        type="application/ld+json"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: "HeartView Health",
-            url: "https://heartviewhealth.com/",
-            logo: "https://heartview-images.s3.ap-south-1.amazonaws.com/favicon3.png",
-          }),
-        }}
-      />
+        <Script
+          id="organization-schema"
+          type="application/ld+json"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "HeartView Health",
+              url: "https://heartviewhealth.com/",
+              logo: "https://heartview-images.s3.ap-south-1.amazonaws.com/favicon3.png",
+            }),
+          }}
+        />
       </body>
-   
     </html>
   );
 }
