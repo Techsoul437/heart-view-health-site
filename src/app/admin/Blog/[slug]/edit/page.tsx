@@ -329,24 +329,26 @@ export default function EditBlogPage() {
             const result = await dispatch(
                 updateBlog({
                     id,
-                    title: values.title.trim(),
-                    slug: values.slug.trim(),
-                    author: values.author.trim(),
-                    publishDate: values.publishDate,
-                    category: values.category,
-                    mainImage,
-                    description: values.excerpt.trim(),
-                    content: htmlToBlogContent(values.content),
-                    tags: values.tags
-                        .split(",")
-                        .map((tag) => tag.trim())
-                        .filter(Boolean),
-                    status: values.status,
-                    peopleAlsoAsk: peopleAlsoAskPayload,
-                    faq: faqPayload,
-                    seoTitle: values.metaTitle.trim(),
-                    seoDescription: values.metaDescription.trim(),
-                    schemaMarkup: null,
+                    data: {
+                        title: values.title.trim(),
+                        slug: values.slug.trim(),
+                        author: values.author.trim(),
+                        publishDate: values.publishDate,
+                        category: values.category,
+                        mainImage,
+                        description: values.excerpt.trim(),
+                        content: htmlToBlogContent(values.content),
+                        tags: values.tags
+                            .split(",")
+                            .map((tag) => tag.trim())
+                            .filter(Boolean),
+                        status: values.status,
+                        peopleAlsoAsk: peopleAlsoAskPayload,
+                        faq: faqPayload,
+                        seoTitle: values.metaTitle.trim(),
+                        seoDescription: values.metaDescription.trim(),
+                        schemaMarkup: null,
+                    },
                 })
             ).unwrap();
 
