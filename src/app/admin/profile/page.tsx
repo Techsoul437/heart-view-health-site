@@ -76,13 +76,14 @@ export default function AdminProfilePage() {
                     validationSchema={validationSchema}
                     onSubmit={async (values) => {
                         try {
-                            const payload = {
-                                id: values.adminId,
-                                fullName: values.fullName,
-                            };
+                            const formData = new FormData();
+                            formData.append("fullName", values.fullName);
 
                             await dispatch(
-                                updateAdminProfile(payload)
+                                updateAdminProfile({
+                                    id: values.adminId,
+                                    data: formData,
+                                })
                             ).unwrap();
 
                             toast.success("Profile Updated Successfully");
