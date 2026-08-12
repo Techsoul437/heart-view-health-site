@@ -92,24 +92,24 @@ const categoryLabels: Record<string, string> = {
           </div>
 
           {/* AUTHOR INFO */}
-          {blog.author && (
-            <div className="mt-4 mb-8 flex items-center gap-2 text-[#64748B]">
-              <span className="text-sm">Written by</span>
-              <span className="text-base font-medium text-black">{blog.author}</span>
-              {blog.publishDate && (
-                <>
-                  <span className="text-sm mx-2">•</span>
-                  <span className="text-sm">
-                    {new Date(blog.publishDate).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </span>
-                </>
-              )}
-            </div>
-          )}
+          <div className="mt-4 mb-8 flex items-center justify-between text-[#64748B]">
+            {blog.author && (
+              <div className="flex items-center gap-2">
+                <span className="text-sm">Written by</span>
+                <span className="text-base font-medium text-black">{blog.author}</span>
+              </div>
+            )}
+            
+            {blog.publishDate && (
+              <span className="text-sm text-right">
+                {new Date(blog.publishDate).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </span>
+            )}
+          </div>
 
           {/* DESCRIPTION */}
           <p className="text-[#64748B] text-base sm:text-lg   font-light mb-10">
@@ -187,7 +187,7 @@ const categoryLabels: Record<string, string> = {
           {blog.peopleAlsoAsk?.length > 0 && (
             <div className="mt-10">
               <h2 className="text-xl sm:text-xl lg:text-2xl text-[#2f5ba5] mb-5">
-                People Also Ask
+               Common Questions About {categoryLabels[blog.category.toLowerCase()] || blog.category}
               </h2>
 
               <div className="space-y-4">
@@ -218,7 +218,7 @@ const categoryLabels: Record<string, string> = {
               relatedBlogs.length > 0 && (
                 <div className="mt-14">
                   <h2 className="text-xl sm:text-xl lg:text-2xl text-[#2f5ba5] mb-6">
-                    Related Articles
+                    {categoryLabels[blog.category.toLowerCase()] || blog.category}
                   </h2>
 
                   {/* GRID SAME AS BLOG LIST */}
@@ -280,16 +280,29 @@ const categoryLabels: Record<string, string> = {
 
                     {/* Content */}
                     <span className="relative z-10 tracking-wide">
-                      {blog.category.replace("-", " ").toUpperCase()}
+                      {item.category.replace("-", " ").toUpperCase()}
                     </span>
                   </div>
 
                           </div>
 
+                          {/* DATE */}
+                          {item.publishDate && (
+                            <div className="w-full flex justify-end mt-2 px-1">
+                              <span className="text-xs text-gray-500 font-medium">
+                                {new Date(item.publishDate).toLocaleDateString("en-US", {
+                                  year: "numeric",
+                                  month: "long",
+                                  day: "numeric",
+                                })}
+                              </span>
+                            </div>
+                          )}
+
                           {/* CONTENT */}
                           <div className="flex flex-col flex-grow">
 
-                            <h3 className="lg:text-xl sm:text-lg text-lg font-medium mt-4 text-black group-hover:text-[#2f5ba5] transition line-clamp-2">
+                            <h3 className="lg:text-xl sm:text-lg text-lg font-medium mt-2 text-black group-hover:text-[#2f5ba5] transition line-clamp-2">
                               {item.title}
                             </h3>
 
