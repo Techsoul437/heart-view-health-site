@@ -188,7 +188,7 @@ const blogContentToHtml = (blocks?: BlogContent[] | null): string => {
                 html += /^\s*<(ul|ol)>/i.test(p) ? p : `<p>${p}</p>`;
             });
 
-            block.images?.forEach((src) => {
+            block.images?.forEach((src: string) => {
                 html += `<figure class="image"><img src="${src}" /></figure>`;
             });
 
