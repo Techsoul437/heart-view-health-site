@@ -2,8 +2,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 
-const API = axios.create({
-  baseURL: "https://api.heartviewhealth.com/api",
+export const API = axios.create({
+  baseURL: "http://localhost:3000/api",
+  // baseURL: "https://api.heartviewhealth.com/api",
+
 });
 
 // ==============================
@@ -610,6 +612,154 @@ export interface GetLabUsersResponse {
   success: boolean;
   count: number;
   data: LabUserItem[];
+}
+// ==============================
+// ADMIN LOGIN TYPES
+// ==============================
+
+export interface AdminLoginPayload {
+  email: string;
+  password: string;
+  fcmToken?: string;
+}
+
+export interface AdminUser {
+  _id: string;
+  fullName: string;
+  email: string;
+  mobile?: string;
+  profileImage?: string;
+  role: string;
+  status: string;
+  isEmailVerified?: boolean;
+  fcmToken?: string;
+}
+
+export interface AdminLoginResponse {
+  success: boolean;
+  message: string;
+  data: AdminUser;
+  accessToken: string;
+  refreshToken: string;
+}
+export interface AdminData {
+  _id: string;
+  fullName: string;
+  email: string;
+  mobile?: string | null;
+  profileImage?: string | null;
+  role: "admin";
+  status: "active" | "inactive";
+  isEmailVerified?: boolean;
+  fcmToken?: string | null;
+  lastLogin?: string | null;
+}
+
+export interface AdminProfileResponse {
+  success: boolean;
+  data: AdminData;
+}
+// ==============================
+// BLOG TYPES
+// ==============================
+
+export interface BlogContent {
+  heading: string;
+  paragraphs: string[];
+  images: string[];
+}
+
+export interface BlogFAQ {
+  question: string;
+  answer: string;
+}
+
+export interface BlogData {
+   _id: string;
+  title: string;
+  slug: string;
+  author: string;
+  publishDate: string;
+  category: string;
+  mainImage: string;
+  description: string;
+  content: BlogContent[];
+  tags: string[];
+  status: "draft" | "published";
+  peopleAlsoAsk: BlogFAQ[];
+  faq: BlogFAQ[];
+  seoTitle?: string;
+  seoDescription?: string;
+  schemaMarkup?: unknown;
+}
+export interface BlogResponse {
+  success: boolean;
+  message: string;
+  data: BlogData;
+}
+export interface AddBlogPayload {
+  title: string;
+  slug: string;
+  author: string;
+  publishDate: string;
+  category: string;
+  mainImage: string;
+  description: string;
+  content: BlogContent[];
+  tags: string[];
+  status: "draft" | "published";
+  peopleAlsoAsk: BlogFAQ[];
+  faq: BlogFAQ[];
+  seoTitle?: string;
+  seoDescription?: string;
+  schemaMarkup?: unknown;
+}
+
+export interface UpdateBlogPayload extends AddBlogPayload {
+  id: string;
+}
+// =========================
+// Team Interface
+// =========================
+
+export interface TeamMember {
+  _id?: string;
+  fullName: string;
+  designation: string;
+  description?: string;
+  status: "Active" | "Inactive";
+  image?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+// =========================
+// Response Interfaces
+// =========================
+
+interface TeamResponse {
+  success: boolean;
+  message: string;
+  data?: TeamMember;
+}
+
+export interface GetTeamsResponse {
+  success: boolean;
+  count?: number;
+  data: TeamMember[];
+  message?: string;
+}
+export interface DeleteBlogResponse {
+  success: boolean;
+  message: string;
+  data?: BlogData;
+}
+export interface UpdateAdminProfilePayload {
+  id: string;
+  fullName?: string;
+  mobile?: string;
+  fcmToken?: string;
+  profileImage?: File | null;
 }
 // ==============================
 // GET ALL USERS
@@ -1926,7 +2076,18 @@ export interface UpdateLabResponse {
   message: string;
   data: Lab;
 }
+export interface GetAllBlogsResponse {
+  success: boolean;
+  message: string;
+  count: number;
+  data: BlogData[];
+}
 
+export interface GetBlogByIdResponse {
+  success: boolean;
+  message: string;
+  data: BlogData;
+}
 export const updateLab = createAsyncThunk<
   UpdateLabResponse,
   UpdateLabPayload,
@@ -2172,392 +2333,8 @@ export const getLabUsers = createAsyncThunk<
 );
 
 // ==============================
-// ADD BLOG
+// ADMIN LOGIN
 // ==============================
-
-export const addBlog = createAsyncThunk<
-  AddBlogResponse,
-  AddBlogPayload,
-  { rejectValue: string }
->("blog/addBlog", async (data, { rejectWithValue }) => {
-  try {
-    const token = localStorage.getItem("accessToken");
-
-    const response = await API.post<AddBlogResponse>(
-      "/blog/add",
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    return response.data;
-  } catch (error) {
-    const err = error as AxiosError<ErrorResponse>;
-
-    return rejectWithValue(
-      err.response?.data?.message || err.message
-    );
-  }
-});
-
-
-// ==============================
-// GET ALL BLOGS
-// ==============================
-
-export const getBlogs = createAsyncThunk<
-  GetBlogsResponse,
-  void,
-  { rejectValue: string }
->("blog/getBlogs", async (_, { rejectWithValue }) => {
-  try {
-    const token = localStorage.getItem("accessToken");
-
-    const response = await API.get<GetBlogsResponse>(
-      "/blog/all",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    return response.data;
-  } catch (error) {
-    const err = error as AxiosError<ErrorResponse>;
-
-    return rejectWithValue(
-      err.response?.data?.message || err.message
-    );
-  }
-});
-
-
-// ==============================
-// GET BLOG BY ID
-// ==============================
-
-export const getBlogById = createAsyncThunk<
-  GetBlogByIdResponse,
-  string,
-  { rejectValue: string }
->("blog/getBlogById", async (id, { rejectWithValue }) => {
-  try {
-    const token = localStorage.getItem("accessToken");
-
-    const response = await API.get<GetBlogByIdResponse>(
-      `/blog/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    return response.data;
-  } catch (error) {
-    const err = error as AxiosError<ErrorResponse>;
-
-    return rejectWithValue(
-      err.response?.data?.message || err.message
-    );
-  }
-});
-
-
-// ==============================
-// UPDATE BLOG
-// ==============================
-
-export const updateBlog = createAsyncThunk<
-  UpdateBlogResponse,
-  {
-    id: string;
-    data: UpdateBlogPayload;
-  },
-  { rejectValue: string }
->("blog/updateBlog", async ({ id, data }, { rejectWithValue }) => {
-  try {
-    const token = localStorage.getItem("accessToken");
-
-    const response = await API.put<UpdateBlogResponse>(
-      `/blog/update/${id}`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    return response.data;
-  } catch (error) {
-    const err = error as AxiosError<ErrorResponse>;
-
-    return rejectWithValue(
-      err.response?.data?.message || err.message
-    );
-  }
-});
-
-
-// ==============================
-// DELETE BLOG
-// ==============================
-
-export const deleteBlog = createAsyncThunk<
-  DeleteBlogResponse,
-  string,
-  { rejectValue: string }
->("blog/deleteBlog", async (id, { rejectWithValue }) => {
-  try {
-    const token = localStorage.getItem("accessToken");
-
-    const response = await API.delete<DeleteBlogResponse>(
-      `/blog/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    return response.data;
-  } catch (error) {
-    const err = error as AxiosError<ErrorResponse>;
-
-    return rejectWithValue(
-      err.response?.data?.message || err.message
-    );
-  }
-});
-
-// ==============================
-// ADD TEAM
-// ==============================
-
-export const addTeam = createAsyncThunk<
-  AddTeamResponse,
-  FormData,
-  { rejectValue: string }
->("team/addTeam", async (data, { rejectWithValue }) => {
-  try {
-    const token = localStorage.getItem("accessToken");
-
-    const response = await API.post<AddTeamResponse>(
-      "/team/add",
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
-
-    return response.data;
-  } catch (error) {
-    const err = error as AxiosError<ErrorResponse>;
-
-    return rejectWithValue(
-      err.response?.data?.message || err.message
-    );
-  }
-});
-
-
-// ==============================
-// GET ALL TEAMS
-// ==============================
-
-export const getTeams = createAsyncThunk<
-  GetTeamsResponse,
-  void,
-  { rejectValue: string }
->("team/getTeams", async (_, { rejectWithValue }) => {
-  try {
-    const response = await API.get<GetTeamsResponse>(
-      "/team/all"
-    );
-
-    return response.data;
-  } catch (error) {
-    const err = error as AxiosError<ErrorResponse>;
-
-    return rejectWithValue(
-      err.response?.data?.message || err.message
-    );
-  }
-});
-
-// ==============================
-// GET TEAM BY ID
-// ==============================
-
-export const getTeamById = createAsyncThunk<
-  GetTeamByIdResponse,
-  string,
-  { rejectValue: string }
->("team/getTeamById", async (id, { rejectWithValue }) => {
-  try {
-    const response = await API.get<GetTeamByIdResponse>(
-      `/team/${id}`
-    );
-
-    return response.data;
-  } catch (error) {
-    const err = error as AxiosError<ErrorResponse>;
-
-    return rejectWithValue(
-      err.response?.data?.message || err.message
-    );
-  }
-});
-
-// ==============================
-// UPDATE TEAM
-// ==============================
-
-export const updateTeam = createAsyncThunk<
-  UpdateTeamResponse,
-  {
-    id: string;
-    data: FormData;
-  },
-  { rejectValue: string }
->("team/updateTeam", async ({ id, data }, { rejectWithValue }) => {
-  try {
-    const token = localStorage.getItem("accessToken");
-
-    const response = await API.put<UpdateTeamResponse>(
-      `/team/update/${id}`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
-
-    return response.data;
-  } catch (error) {
-    const err = error as AxiosError<ErrorResponse>;
-
-    return rejectWithValue(
-      err.response?.data?.message || err.message
-    );
-  }
-});
-
-// ==============================
-// DELETE TEAM
-// ==============================
-
-export const deleteTeam = createAsyncThunk<
-  DeleteTeamResponse,
-  string,
-  { rejectValue: string }
->("team/deleteTeam", async (id, { rejectWithValue }) => {
-  try {
-    const token = localStorage.getItem("accessToken");
-
-    const response = await API.delete<DeleteTeamResponse>(
-      `/team/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    return response.data;
-  } catch (error) {
-    const err = error as AxiosError<ErrorResponse>;
-
-    return rejectWithValue(
-      err.response?.data?.message || err.message
-    );
-  }
-});
-
-// ==============================
-// GET ADMIN PROFILE
-// ==============================
-
-export const getAdminProfile = createAsyncThunk<
-  GetAdminProfileResponse,
-  void,
-  { rejectValue: string }
->("admin/getAdminProfile", async (_, { rejectWithValue }) => {
-  try {
-    const token = localStorage.getItem("accessToken");
-
-    const response = await API.get<GetAdminProfileResponse>(
-      "/admin/profile",
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    return response.data;
-  } catch (error) {
-    const err = error as AxiosError<ErrorResponse>;
-
-    return rejectWithValue(
-      err.response?.data?.message || err.message
-    );
-  }
-});
-
-export const updateAdminProfile = createAsyncThunk<
-  UpdateAdminProfileResponse,
-  {
-    id: string;
-    data: FormData;
-  },
-  { rejectValue: string }
->("admin/updateAdminProfile", async ({ id, data }, { rejectWithValue }) => {
-  try {
-    const token = localStorage.getItem("accessToken");
-
-    const response = await API.put<UpdateAdminProfileResponse>(
-      `/heartview-admin/profile/${id}`,
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
-
-    return response.data;
-  } catch (error) {
-    const err = error as AxiosError<ErrorResponse>;
-
-    return rejectWithValue(
-      err.response?.data?.message || err.message
-    );
-  }
-});
-
-export const getImageUrl = (image?: string | null): string => {
-  if (!image) return "";
-
-  // Already full URL
-  if (image.startsWith("http://") || image.startsWith("https://")) {
-    return image;
-  }
-
-  // Relative backend path
-  return `https://api.heartviewhealth.com${image.startsWith("/") ? image : `/${image}`}`;
-};
 
 export const loginAdminWithEmail = createAsyncThunk<
   AdminLoginResponse,
@@ -2568,8 +2345,8 @@ export const loginAdminWithEmail = createAsyncThunk<
   async (data, { rejectWithValue }) => {
     try {
       const response = await API.post<AdminLoginResponse>(
-        "/heartview-admin/login-email",
-        data,
+        "/admin/login-email",
+        data
       );
 
       // Save Tokens
@@ -2581,6 +2358,445 @@ export const loginAdminWithEmail = createAsyncThunk<
       localStorage.setItem(
         "refreshToken",
         response.data.refreshToken
+      );
+
+      return response.data;
+    } catch (error) {
+      const err = error as AxiosError<ErrorResponse>;
+
+      return rejectWithValue(
+        err.response?.data?.message || err.message
+      );
+    }
+  }
+);
+
+// ===============================
+// GET ADMIN PROFILE
+// ===============================
+
+export const getAdminProfile = createAsyncThunk<
+  AdminProfileResponse,
+  void,
+  { rejectValue: string }
+>(
+  "admin/profile",
+  async (_, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem("accessToken");
+
+      if (!token) {
+        return rejectWithValue(
+          "Access token not found"
+        );
+      }
+
+      const response = await API.get(
+        "/admin/profile",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      const err = error as AxiosError<ErrorResponse>;
+
+      return rejectWithValue(
+        err.response?.data?.message || err.message
+      );
+    }
+  } 
+);
+
+export const addBlog = createAsyncThunk<
+  BlogResponse,
+  AddBlogPayload,
+  { rejectValue: string }
+>("blog/addBlog", async (data, { rejectWithValue }) => {
+  try {
+    const token = localStorage.getItem("accessToken");
+
+    if (!token) {
+      return rejectWithValue("Please login again. Access token not found.");
+    }
+
+    const { data: responseData } = await API.post<BlogResponse>(
+      "/blog/add",
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return responseData;
+  } catch (error) {
+    const err = error as AxiosError<ErrorResponse>;
+
+    return rejectWithValue(
+      err.response?.data?.message ||
+      err.message ||
+      "Unable to save blog"
+    );
+  }
+});
+
+
+export const updateBlog = createAsyncThunk<
+  BlogResponse,
+  UpdateBlogPayload,
+  { rejectValue: string }
+>(
+  "blog/updateBlog",
+  async (data, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem("accessToken");
+
+      if (!token) {
+        return rejectWithValue(
+          "Access token not found"
+        );
+      }
+
+      const { id, ...blogData } = data;
+
+      const response = await API.put(
+        `/blog/update/${id}`,
+        blogData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      const err = error as AxiosError<ErrorResponse>;
+
+      return rejectWithValue(
+        err.response?.data?.message ||
+          err.message
+      );
+    }
+  }
+);
+
+// ===============================
+// GET ALL BLOGS
+// ===============================
+
+export const getBlogs = createAsyncThunk<
+  GetAllBlogsResponse,
+  void,
+  { rejectValue: string }
+>("blog/getBlogs", async (_, { rejectWithValue }) => {
+  try {
+    const token = typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
+
+    const headers = token ? { Authorization: `Bearer ${token}` } : {};
+
+    const response = await API.get<GetAllBlogsResponse>(
+      "/blog/all",
+      { headers }
+    );
+
+    return response.data;
+  } catch (error) {
+    const err = error as AxiosError<ErrorResponse>;
+
+    return rejectWithValue(
+      err.response?.data?.message ||
+        err.message ||
+        "Unable to fetch blogs"
+    );
+  }
+});
+
+// ===============================
+// GET BLOG BY ID
+// ===============================
+
+export const getBlogById = createAsyncThunk<
+  GetBlogByIdResponse,
+  string,
+  { rejectValue: string }
+>("blog/getBlogById", async (id, { rejectWithValue }) => {
+  try {
+    const token = typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
+
+    const headers = token ? { Authorization: `Bearer ${token}` } : {};
+
+    const response = await API.get<GetBlogByIdResponse>(
+      `/blog/${id}`,
+      { headers }
+    );
+
+    return response.data;
+  } catch (error) {
+    const err = error as AxiosError<ErrorResponse>;
+
+    return rejectWithValue(
+      err.response?.data?.message ||
+        err.message ||
+        "Unable to fetch blog"
+    );
+  }
+});
+// =========================
+// ADD TEAM
+// =========================
+
+export const addTeam = createAsyncThunk<
+  TeamResponse,
+  FormData,
+  { rejectValue: string }
+>("team/addTeam", async (formData, { rejectWithValue }) => {
+  try {
+    const token = localStorage.getItem("accessToken");
+
+    if (!token) {
+      return rejectWithValue("Access token not found");
+    }
+
+    const response = await API.post<TeamResponse>(
+      "/team/add",
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error: any) {
+    return rejectWithValue(
+      error?.response?.data?.message || "Failed to add team member"
+    );
+  }
+});
+
+// =========================
+// GET ALL TEAMS
+// =========================
+
+export const getTeams = createAsyncThunk<
+  GetTeamsResponse,
+  void,
+  { rejectValue: string }
+>("team/getTeams", async (_, { rejectWithValue }) => {
+  try {
+    const token = typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
+    const headers = token ? { Authorization: `Bearer ${token}` } : {};
+
+    const response = await API.get<GetTeamsResponse>(
+      "/team/all",
+      { headers }
+    );
+
+    return response.data;
+  } catch (error: any) {
+    return rejectWithValue(
+      error?.response?.data?.message || "Failed to get team members"
+    );
+  }
+});
+
+// =========================
+// GET TEAM BY ID
+// =========================
+export const getImageUrl = (imagePath: string | undefined) => {
+  if (!imagePath) return "";
+  if (imagePath.startsWith("http")) return imagePath;
+  let normalizedPath = imagePath.replace(/\\/g, "/");
+  if (normalizedPath.startsWith("public/")) {
+    normalizedPath = normalizedPath.replace("public/", "");
+  }
+  
+  // Return relative path so it uses Next.js rewrites to proxy to backend
+  return `${normalizedPath.startsWith("/") ? "" : "/"}${normalizedPath}`;
+};
+export const getTeamById = createAsyncThunk<
+  TeamResponse,
+  string,
+  { rejectValue: string }
+>("team/getTeamById", async (id, { rejectWithValue }) => {
+  try {
+    const token = typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
+    const headers = token ? { Authorization: `Bearer ${token}` } : {};
+
+    const response = await API.get<TeamResponse>(
+      `/team/${id}`,
+      { headers }
+    );
+
+    return response.data;
+  } catch (error: any) {
+    return rejectWithValue(
+      error?.response?.data?.message || "Failed to get team member"
+    );
+  }
+});
+
+// =========================
+// UPDATE TEAM
+// =========================
+
+export const updateTeam = createAsyncThunk<
+  TeamResponse,
+  { id: string; formData: FormData },
+  { rejectValue: string }
+>("team/updateTeam", async ({ id, formData }, { rejectWithValue }) => {
+  try {
+    const token = localStorage.getItem("accessToken");
+
+    if (!token) {
+      return rejectWithValue("Access token not found");
+    }
+
+    const response = await API.put<TeamResponse>(
+      `/team/update/${id}`,
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error: any) {
+    return rejectWithValue(
+      error?.response?.data?.message || "Failed to update team member"
+    );
+  }
+});
+
+// =========================
+// DELETE TEAM
+// =========================
+
+export const deleteTeam = createAsyncThunk<
+  TeamResponse,
+  string,
+  { rejectValue: string }
+>(
+  "team/deleteTeam",
+  async (id, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem("accessToken");
+
+      if (!token) {
+        return rejectWithValue("Access token not found");
+      }
+
+      const response = await API.delete<TeamResponse>(
+        `/team/delete/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      return response.data;
+    } catch (error: any) {
+      return rejectWithValue(
+        error?.response?.data?.message ||
+          "Failed to delete team member"
+      );
+    }
+  }
+);
+
+export const deleteBlog = createAsyncThunk<
+  DeleteBlogResponse,
+  string,
+  { rejectValue: string }
+>(
+  "blog/deleteBlog",
+  async (id, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem("accessToken");
+
+      if (!token) {
+        return rejectWithValue("Access token not found");
+      }
+
+      const response = await API.delete<DeleteBlogResponse>(
+        `/blog/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      const err = error as AxiosError<ErrorResponse>;
+
+      return rejectWithValue(
+        err.response?.data?.message ||
+          err.message ||
+          "Unable to delete blog"
+      );
+    }
+  }
+);
+// ===============================
+// UPDATE ADMIN PROFILE
+// ===============================
+
+export const updateAdminProfile = createAsyncThunk<
+  AdminProfileResponse,
+  UpdateAdminProfilePayload,
+  { rejectValue: string }
+>(
+  "admin/updateAdminProfile",
+  async ({ id, fullName, mobile, fcmToken, profileImage }, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem("accessToken");
+
+      if (!token) {
+        return rejectWithValue("Access token not found");
+      }
+
+      const formData = new FormData();
+
+      if (fullName !== undefined) {
+        formData.append("fullName", fullName);
+      }
+
+      if (mobile !== undefined) {
+        formData.append("mobile", mobile);
+      }
+
+      if (fcmToken !== undefined) {
+        formData.append("fcmToken", fcmToken);
+      }
+
+      if (profileImage) {
+        formData.append("profileImage", profileImage);
+      }
+
+      const response = await API.put<AdminProfileResponse>(
+        `/admin/profile/${id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
 
       return response.data;

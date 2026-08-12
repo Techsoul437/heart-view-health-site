@@ -23,13 +23,14 @@ export default function AppDownloadSection() {
                     className="w-full "
                 >
 
-                    <Headerbadge tag="Mobile Experience" text=" Prefer Mobile? Get the App" />
+                    <Headerbadge tag="MOBILE APP SECTION" text="HeartView Health Mobile App" />
 
                     {/* Paragraph */}
-                    <p className="text-[#475569] max-w-2xl mx-auto text-base sm:text-lg mt-5 leading-relaxed font-light mb-8">
-                        Stay in control of your health anytime, anywhere.
-                        Monitor vitals, track progress, and access everything
-                        you need right from your phone.
+                    <p className="text-[#64748B] max-w-2xl mx-auto text-base sm:text-lg mt-5 leading-relaxed font-light mb-2">
+                        Access your health information from your mobile device.
+                    </p>
+                    <p className="text-[#64748B] max-w-3xl mx-auto text-base sm:text-lg leading-relaxed font-light mb-8">
+                        View your reports, review supported health measurements, monitor your history and stay connected with your health information wherever you are.
                     </p>
                     {/* Launching Soon Card */}
                     {/* <motion.div

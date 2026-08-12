@@ -1,218 +1,99 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useMotionValue, useAnimation } from "framer-motion";
-import Image from "next/image";
-import BorderButton from "@/Ui/buttons/BorderButton";
-
-const team = [
-
-  {
-    name: "Dishant Chanchad",
-    role: "Advisory Board",
-    image: "/Team2.png",
-    color: "#45657D",
-  },
-  {
-    name: "Menno Henselmens",
-    role: "Advisory Board · Scientist",
-    image: "/team/menno.jpg",
-    color: "#B4B0B0",
-  },
-  {
-    name: "Dr. Sarah Okonkwo",
-    role: "Advisory Board",
-    image: "", // 👉 no image → fallback color
-    color: "#181E2B",
-  },
-  {
-    name: "Priya Mehta",
-    role: "Head of Research",
-    image: "/team/priya.jpg",
-    color: "#3D7773",
-  },
-
-];
-
-const STEP = 288;
+import { useEffect } from "react";
+import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import { getTeams, getImageUrl } from "@/redux/Api";
 
 export default function TeamSection() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const controls = useAnimation();
+  const dispatch = useDispatch<AppDispatch>();
 
-  const isDragging = useRef(false);
-  const [dragging, setDragging] = useState(false);
-  const dragStartX = useRef(0);
-  const dragStartTime = useRef<number | null>(null);
-  const [offset, setOffset] = useState(0);
+  const { teams, loading } = useSelector((state: RootState) => state.team);
 
-  const maxOffset = () => {
-    if (!trackRef.current) return 0;
-    const containerWidth = trackRef.current.parentElement?.clientWidth ?? 0;
-    const totalWidth = team.length * STEP;
-    return Math.max(0, totalWidth - containerWidth);
-  };
+  useEffect(() => {
+    dispatch(getTeams());
+  }, [dispatch]);
 
-  const clamp = (val: number) =>
-    Math.min(0, Math.max(-maxOffset(), val));
-
-  const handleDragMove = (e: React.PointerEvent) => {
-    if (!isDragging.current) return;
-    const newOffset = clamp(e.clientX - dragStartX.current);
-    setOffset(newOffset);
-    x.set(newOffset);
-  };
-
-  const handleDragStart = (e: React.PointerEvent) => {
-    isDragging.current = true;
-    setDragging(true);
-    dragStartX.current = e.clientX - offset;
-    dragStartTime.current = e.timeStamp;
-    trackRef.current?.setPointerCapture(e.pointerId);
-    controls.stop();
-  };
-
-  const handleDragEnd = (e: React.PointerEvent) => {
-    if (!isDragging.current) return;
-
-    isDragging.current = false;
-    setDragging(false);
-
-    const dt =
-      dragStartTime.current != null
-        ? (e.timeStamp - dragStartTime.current) / 1000
-        : 0.3;
-
-    const dx = e.clientX - (dragStartX.current + offset);
-    const velocity = dx / dt;
-
-    const momentum = clamp(offset + velocity * 0.15);
-
-    setOffset(momentum);
-    controls.start({
-      x: momentum,
-      transition: { type: "spring", damping: 30, stiffness: 200 },
-    });
-  };
-
-  const scrollBy = (dir: 1 | -1) => {
-    const newOffset = clamp(offset + dir * -STEP * 2);
-    setOffset(newOffset);
-    controls.start({
-      x: newOffset,
-      transition: { type: "spring", damping: 30, stiffness: 180 },
-    });
-  };
+  // Filter to show only active members
+  const activeTeams = teams?.filter((member) => member.status === "Active") || [];
 
   return (
-    <section className="w-full mt-20 py-20 overflow-hidden font-sans ">
-      <div className="max-w-8xl mx-auto px-20 md:px-20 grid md:grid-cols-2 gap-10 items-start">
-
-        {/* LEFT */}
+    <section className="w-full bg-slate-50 py-20 font-sans">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
         
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-                <motion.span
-          initial={{ opacity: 0, y: 40 }}
+        {/* Heading */}
+        <motion.h2 
+          initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="inline-block text-xs font-semibold tracking-widest text-[#2f5ba5] uppercase border mt-3 border-white/30 rounded-full px-4 py-1"
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl font-medium text-black mb-4"
         >
-          Team
-        </motion.span>
-          <h2 className=" text-2xl md:text-3xl lg:text-4xl font-medium mt-4  text-black leading-tight mb-6">
-           Meet the Experts Behind <br /> Our Vision
-          </h2>
+          Our Team
+        </motion.h2>
 
-          <p className="text-[#475569] text-lg md:text-base lg:text-2xl font-light w-2xl mb-8">
-    Dedicated professionals combining knowledge, experience, and innovation to make healthcare better for everyone.
-          </p>
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-[#64748B] text-lg md:text-xl font-light max-w-2xl mx-auto mb-16"
+        >
+          We are a group of innovative, experienced, and proficient teams. You will love to collaborate with us.
+        </motion.p>
 
-              <BorderButton text="Learn More" href="/learn-more" />
-         
-        </motion.div>
-
-        {/* RIGHT */}
-        <div className="relative overflow-hidden">
-
-          <motion.div
-            ref={trackRef}
-            animate={controls}
-            style={{ x }}
-            className={`flex gap-6 ${dragging ? "cursor-grabbing" : "cursor-grab"}`}
-            onPointerDown={handleDragStart}
-            onPointerMove={handleDragMove}
-            onPointerUp={handleDragEnd}
-            onPointerCancel={handleDragEnd}
-          >
-            {team.map((member, i) => (
+        {loading ? (
+          <div className="flex justify-center items-center py-20">
+            <div className="h-10 w-10 animate-spin rounded-full border-4 border-slate-200 border-t-blue-600" />
+          </div>
+        ) : activeTeams.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {activeTeams.map((member, i) => (
               <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08 }}
-                className="w-64 shrink-0"
+                key={member._id || i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group relative bg-white rounded-xl shadow-[0px_4px_20px_rgba(0,0,0,0.05)] overflow-hidden transition-all hover:-translate-y-2 hover:shadow-[0px_8px_30px_rgba(0,0,0,0.1)]"
               >
-                {/* IMAGE + COLOR FALLBACK */}
-                <div
-                  className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden"
-                  style={{ backgroundColor: member.color }}
-                >
-                  {member.image && (
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover"
+                {/* Image Container */}
+                <div className="relative w-full aspect-[5/4] bg-slate-900 overflow-hidden">
+                  {member.image ? (
+                    <img
+                      src={getImageUrl(member.image)}
+                      alt={member.fullName}
+                      className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                     />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-slate-400 bg-slate-100">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                    </div>
                   )}
-
-                  {/* overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  {/* Subtle Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
-                {/* INFO */}
-                <div className="mt-3 flex ml-3 justify-between items-start">
-                  <div>
-                    <p className="text-black text-lg font-semibold">
-                      {member.name}
-                    </p>
-                    <p className="text-black/50 text-md mt-1">  
-                      {member.role}
-                    </p>
-                  </div>
-
-                  {/* <div className="w-7 h-7 bg-black/10 rounded-md flex items-center justify-center">
-                    <div className="w-2 h-2 bg-white rounded-full" />
-                  </div> */}
+                {/* Content */}
+                <div className="p-6 text-left bg-white relative z-10 border-t-4 border-transparent group-hover:border-blue-500 transition-colors">
+                  <h3 className="text-xl font-bold text-slate-900 mb-1">
+                    {member.fullName}
+                  </h3>
+                  <p className="text-sm font-medium text-slate-500">
+                    {member.designation}
+                  </p>
                 </div>
               </motion.div>
             ))}
-          </motion.div>
-
-          {/* BUTTONS */}
-          {team.length > 3 && (
-  <div className="flex justify-end gap-3 mt-8">
-    <button
-      onClick={() => scrollBy(-1)}
-      className="w-15 h-15 rounded-full border font-bold border-white/20 bg-black/10 text-black"
-    >
-      ←
-    </button>
-    <button
-      onClick={() => scrollBy(1)}
-      className="w-15 h-15 rounded-full border font-bold border-white/20 bg-black/10 text-black"
-    >
-      →
-    </button>
-  </div>
-)}
-        </div>
+          </div>
+        ) : (
+          <div className="py-20 text-slate-500 text-lg">
+            No active team members found.
+          </div>
+        )}
       </div>
     </section>
   );

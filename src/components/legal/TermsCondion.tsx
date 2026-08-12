@@ -340,7 +340,7 @@ function Section({ data }: { data: SectionType }) {
       className="mb-8 mt-8"
     >
       {/* 🔥 CARD WRAPPER (NEW DESIGN) */}
-      <div className="rounded-2xl shadow-md shadow-black/10 border-t border-black/10 backdrop-blur-md p-5 sm:p-6">
+      <div className="rounded-2xl  backdrop-blur-md ">
 
         {/* HEADER */}
         <div className="flex gap-4 mb-4 items-start">

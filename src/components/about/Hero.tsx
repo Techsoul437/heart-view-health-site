@@ -5,7 +5,7 @@ import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 
 function Hero() {
   return (
-    <section className="w-full  xl:pt-20 pt-5  lg:pt-20  mt-0 lg:mt-15 ">
+    <section className="w-full mt-10">
 
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center">
 

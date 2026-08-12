@@ -117,22 +117,28 @@ const sections = [
   {
     number: "9",
     title: "Data Security",
-    content:
+    // FIX: pehle "content" key do baar thi (duplicate) — JS silently
+    // sirf last wali use karta tha, pehli wali (real content) gayab ho jaati thi.
+    // Ab dono paragraphs array mein hain, dono render honge.
+    content: [
       "We implement reasonable security measures. However, no system is completely secure, and unauthorized access or breaches may occur. By using the Services, you acknowledge and accept these risks.",
+      "We may also use aggregated and anonymized data for research and product development.",
+    ],
     list: ["Encryption", "Access control", "Secure infrastructure"],
   },
   {
     number: "10",
-    title: "Data Breach Disclaimer",
+    title: "Limitation of Liability ",
     highlight: false,
-    content:
-      "To the maximum extent permitted by law, the Company shall NOT be liable for unauthorized access, data breaches, or data loss.To the maximum extent permitted by law:",
-    list: [
-      "unauthorized access",
-      "data breaches",
-      "data loss",
-    ]
+
+    // FIX: pehle "content" key do baar thi (duplicate) — JS silently
+    // sirf last wali use karta tha, pehli wali (real content) gayab ho jaati thi.
+    // Ab dono paragraphs array mein hain, dono render honge.
+    content: [
+      "To the maximum extent permitted by applicable law, the Company’s liability for any unauthorized access, data breach, or data loss shall be limited, and the Company shall not be liable for events arising from circumstances beyond its reasonable control. Nothing in this Policy excludes or limits any liability that cannot be excluded or limited under applicable law.",
+    ],
   },
+
   {
     number: "11",
     title: "User Rights",
@@ -146,24 +152,34 @@ const sections = [
   },
   {
     number: "12",
-    title: "International Data Transfers",
+    title: "Grievance Officer",
     content:
-      "Data may be processed outside India depending on infrastructure providers.We ensure reasonable safeguards for such transfers.",
+      "In accordance with applicable Indian data-protection law, you may contact our Grievance Officer for any complaints or concerns regarding the processing of your personal data:",
+    list: [
+      "Email: info@heartviewhealth.com",
+      "Address: 19, Arth Residency, Near V.I.P. Circle, Utran, Surat – 394105, Gujarat, India",
+    ],
   },
   {
     number: "13",
-    title: "Children's Privacy",
+    title: "International Data Transfers",
     content:
-      "The Services are not intended for individuals under 18 without parental consent.",
+      "Your data may be processed outside India depending on our infrastructure providers. Where this occurs, we take reasonable steps to ensure that appropriate safeguards are in place to protect your data. ",
   },
   {
     number: "14",
-    title: "Changes to Policy",
+    title: "Children's Privacy",
     content:
-      "We may update this Privacy Policy periodically. Continued use of our Services constitutes acceptance of the updated policy.",
+      "The Services are intended for individuals aged 18 and above. We do not knowingly collect personal data from individuals under 18 without verifiable consent from a parent or legal guardian. If we become aware that we have collected such data without the required consent, we will take steps to delete it.",
   },
   {
     number: "15",
+    title: "Changes to Policy",
+    content:
+      "We may update this Privacy Policy periodically. Material changes will be communicated through the Services. Your continued use of the Services after such updates constitutes acceptance of the revised policy. ",
+  },
+  {
+    number: "16",
     title: "Subscription Information",
     content:
       "Certain premium features may require a paid subscription.",
@@ -175,7 +191,7 @@ const sections = [
     ],
   },
   {
-    number: "16",
+    number: "17",
     title: "Account Deletion",
     content:
       "Users may request deletion of their account and personal data at any time.",
@@ -187,7 +203,7 @@ const sections = [
     ],
   },
   {
-    number: "17",
+    number: "18",
     title: "Contact Information",
     content:
       "For any questions, concerns, or requests regarding this Privacy Policy or your data, you may contact us at:",
@@ -198,7 +214,6 @@ const sections = [
     ],
   }
 ];
-
 function AnimatedSection({
   section,
   index,
@@ -218,7 +233,7 @@ function AnimatedSection({
       className="mb-6"
     >
       {/* CARD */}
-      <div className="rounded-2xl   shadow-md shadow-black/10 border-t border-black/10 backdrop-blur-md p-5 sm:p-6">
+      <div className="rounded-2xl  backdrop-blur-md p-5 sm:p-4">
 
         {/* HEADER */}
         <div className="flex items-start gap-4 mb-4">

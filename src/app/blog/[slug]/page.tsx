@@ -1,7 +1,9 @@
 "use client";
 
-import React, { useState, use } from "react";
-import { blogs } from "@/data/blogData";
+import React, { useState, useEffect, use } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getBlogs } from "@/redux/Api";
+import type { AppDispatch, RootState } from "@/redux/store";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/Ui/navbar/Navbar";
@@ -17,6 +19,13 @@ export default function BlogDetails({
 }) {
   const { slug } = use(params);
 
+  const dispatch = useDispatch<AppDispatch>();
+  const { blogs, loading } = useSelector((state: RootState) => state.BlogList);
+
+  useEffect(() => {
+    dispatch(getBlogs());
+  }, [dispatch]);
+
   const blog = blogs.find(
     (b) =>
       b.slug?.toLowerCase().trim() ===
@@ -31,6 +40,14 @@ const categoryLabels: Record<string, string> = {
   const toggleFAQ = (index: number) => {
     setActiveFAQ(activeFAQ === index ? null : index);
   };
+
+  if (loading && !blog) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-[#2f5ba5] text-xl font-medium">Loading blog...</p>
+      </div>
+    );
+  }
 
   if (!blog) {
     return (
@@ -63,14 +80,36 @@ const categoryLabels: Record<string, string> = {
 
           {/* HERO IMAGE */}
           <div className="relative w-full lg:h-120 h-60 mt-10 xl:h-170 sm:h-130 md:h-100 my-3   rounded-2xl overflow-hidden">
-            <Image
-              src={blog.content?.[0]?.images?.[0]}
-              fill
-              className="object-cover"
-              alt={blog.title}
-              priority
-            />
+            {blog.mainImage && (
+              <Image
+                src={blog.mainImage}
+                fill
+                className="object-cover"
+                alt={blog.title}
+                priority
+              />
+            )}
           </div>
+
+          {/* AUTHOR INFO */}
+          {blog.author && (
+            <div className="mt-4 mb-8 flex items-center gap-2 text-[#64748B]">
+              <span className="text-sm">Written by</span>
+              <span className="text-base font-medium text-black">{blog.author}</span>
+              {blog.publishDate && (
+                <>
+                  <span className="text-sm mx-2">•</span>
+                  <span className="text-sm">
+                    {new Date(blog.publishDate).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </span>
+                </>
+              )}
+            </div>
+          )}
 
           {/* DESCRIPTION */}
           <p className="text-[#64748B] text-base sm:text-lg   font-light mb-10">
@@ -86,9 +125,7 @@ const categoryLabels: Record<string, string> = {
               </h2>
 
               {section.paragraphs.map((p, i) => (
-                <p key={i} className="text-[#64748B] text-base sm:text-lg font-light mb-3 ">
-                  {p}
-                </p>
+                <div key={i} className="text-[#64748B] text-base sm:text-lg font-light mb-3 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5" dangerouslySetInnerHTML={{ __html: p }} />
               ))}
             </div>
           ))}
@@ -203,9 +240,9 @@ const categoryLabels: Record<string, string> = {
                           {/* IMAGE */}
                           <div className="relative w-full aspect-video rounded-lg overflow-hidden">
 
-                            {item.content?.[0]?.images?.[0] && (
+                            {item.mainImage && (
                               <Image
-                                src={item.content[0].images[0]}
+                                src={item.mainImage}
                                 alt={item.title}
                                 fill
                                 className="object-cover group-hover:scale-105 transition duration-300"

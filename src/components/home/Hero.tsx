@@ -17,17 +17,23 @@ function Hero() {
           {/* LEFT SIDE - CONTENT */}
           <div className="text-black">
 
-            <h1 className="heading-font text-2xl md:text-3xl lg:text-4xl font-medium text-black leading-tight tracking-tight mb-3 max-w-md">
-              Track, Understand & Improve Your Heart Health Daily
+            <h1 className="heading-font text-2xl md:text-3xl lg:text-4xl font-medium text-black leading-tight tracking-tight mb-3 max-w-xl">
+              Manage Your Health Information in One Place
+
             </h1>
 
-            <p className="text-base sm:text-lg text-[#64748B]  leading-relaxed font-light lg:max-w-md">
-              All your health data, insights, and habits in one simple dashboard.
+            <p className="text-base sm:text-lg text-[#64748B]  leading-relaxed font-light lg:max-w-xl">
+              HeartView Health helps you organize your health information, track supported health measurements, access
+              laboratory reports, and review your health history over time.
             </p>
-
+            <p className="text-base sm:text-lg text-[#64748B] mt-4  leading-relaxed font-light lg:max-w-xl">
+              Keep your important health information organized and easier to understand from one secure platform
+            </p>
             {/* Buttons */}
             <div className="flex flex-wrap gap-4 py-6 items-center">
               <FillButton text="Explore Features" href="/features" />
+              <BorderButton text="Join Early Access" href="/contact" bgColor="bg-[#F7F7F7]"></BorderButton>
+
               <div onClick={() => setOpen(true)}>
                 {/* <BorderButton text="Join Early Access" href="" bgColor="bg-[#F7F7F7]"></BorderButton> */}
 

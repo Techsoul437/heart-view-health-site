@@ -7,7 +7,7 @@ import { FaHand, FaHandPointLeft } from "react-icons/fa6";
 
 export default function OurVision() {
   return (
-    <section className="relative w-full ">
+    <section className="relative w-full mt-10">
 
       {/* Glow Background */}
       <div className="absolute inset-0 opacity-20 blur-3xl "></div>

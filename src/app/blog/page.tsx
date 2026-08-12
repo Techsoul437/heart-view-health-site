@@ -1,12 +1,27 @@
 "use client"
 import Link from "next/link";
 import Image from "next/image";
-import { blogs } from "@/data/blogData";
+import { useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getBlogs } from "@/redux/Api";
+import type { AppDispatch, RootState } from "@/redux/store";
 import Navbar from "@/Ui/navbar/Navbar";
 import FinalCTA from "@/Ui/cta/FinalCTA";
 import { motion, AnimatePresence } from "framer-motion";
 import Footer from "@/Ui/footer/Footer";
 import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
+
+const categoriesList = [
+  "Heart-Risk",
+  "Blood Pressure",
+  "Diabetes",
+  "Lab-Reports",
+  "Cholesterol",
+  "Lifestyle",
+  "Sleep",
+  "Step"
+];
+
 const categoryLabels: Record<string, string> = {
   bp: "Blood Pressure",
 
@@ -37,6 +52,22 @@ import type { Metadata } from "next";
 //   },
 // };
 export default function BlogList() {
+  const dispatch = useDispatch<AppDispatch>();
+  const { blogs, loading } = useSelector((state: RootState) => state.BlogList);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  useEffect(() => {
+    dispatch(getBlogs());
+  }, [dispatch]);
+
+  const publishedBlogs = useMemo(() => {
+    let filtered = [...blogs].filter((blog) => blog.status === "published").reverse();
+    if (selectedCategory) {
+      filtered = filtered.filter((blog) => blog.category.toLowerCase() === selectedCategory.toLowerCase());
+    }
+    return filtered;
+  }, [blogs, selectedCategory]);
+
   return (
     <div className="page-bg pt-5  lg:pt-20">
       <Navbar />
@@ -53,10 +84,41 @@ export default function BlogList() {
 
         </div>
 
+        {/* CATEGORY FILTER */}
+        <div className="flex flex-wrap items-center justify-center gap-3 mt-8 mb-4">
+          <button
+            onClick={() => setSelectedCategory(null)}
+            className={`px-5 py-2 rounded-full text-sm font-medium transition-colors border ${
+              selectedCategory === null
+                ? "bg-[#2f5ba5] text-white border-[#2f5ba5]"
+                : "bg-[#F3F4F6] text-[#64748B] border-[#E5E7EB] hover:bg-[#E5E7EB]"
+            }`}
+          >
+            All
+          </button>
+          {categoriesList.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-colors border ${
+                selectedCategory === cat
+                  ? "bg-[#2f5ba5] text-white border-[#2f5ba5]"
+                  : "bg-[#F3F4F6] text-[#64748B] border-[#E5E7EB] hover:bg-[#E5E7EB]"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
         {/* GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-5 gap-4 md:gap-8 lg:gap-6 xl:gap-7">
 
-          {blogs.map((blog) => (
+          {loading && blogs.length === 0 ? (
+            <div className="col-span-full py-10 text-center text-[#64748B]">Loading blogs...</div>
+          ) : publishedBlogs.length === 0 ? (
+            <div className="col-span-full py-10 text-center text-[#64748B]">No blogs found.</div>
+          ) : publishedBlogs.map((blog) => (
             <Link key={blog.slug} href={`/blog/${blog.slug}`} className="h-full">
 
               {/* CARD */}
@@ -73,9 +135,9 @@ export default function BlogList() {
                 {/* IMAGE */}
                 <div className="relative w-full aspect-video rounded-lg overflow-hidden">
 
-                  {blog.content?.[0]?.images?.[0] && (
+                  {blog.mainImage && (
                     <Image
-                      src={blog.content[0].images[0]}
+                      src={blog.mainImage}
                       alt={blog.title}
                       fill
                       loading="lazy"

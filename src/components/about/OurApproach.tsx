@@ -5,36 +5,36 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 const data = [
-  {
-    num: "01",
-    title: "Connect",
-    desc: "Securely bring together your health information from devices, reports, and daily tracking.",
-    points: [
-      "Connect wearables and health apps securely",
-      "Import reports, records, and test results",
-      "Keep all your health information in one place",
-    ],
-  },
-  {
-    num: "02",
-    title: "Understand",
-    desc: "Transform complex health information into visual insights that are easy to interpret.",
-    points: [
-      "View trends and patterns with clarity",
-      "Understand changes in key health metrics",
-      "Gain actionable insights from your data",
-    ],
-  },
-  {
-    num: "03",
-    title: "Improve",
-    desc: "Build healthier routines, stay consistent, and monitor progress over time.",
-    points: [
-      "Develop sustainable daily health habits",
-      "Stay consistent with reminders and tracking",
-      "Measure long-term progress and improvement",
-    ],
-  },
+    {
+        num: "01",
+        title: "Connect",
+        desc: "Securely bring together your health information from devices, reports, and daily tracking.",
+        points: [
+            "Connect wearables and health apps securely",
+            "Import reports, records, and test results",
+            "Keep all your health information in one place",
+        ],
+    },
+    {
+        num: "02",
+        title: "Understand",
+        desc: "Transform complex health information into visual insights that are easy to interpret.",
+        points: [
+            "View trends and patterns with clarity",
+            "Understand changes in key health metrics",
+            "Gain actionable insights from your data",
+        ],
+    },
+    {
+        num: "03",
+        title: "Improve",
+        desc: "Build healthier routines, stay consistent, and monitor progress over time.",
+        points: [
+            "Develop sustainable daily health habits",
+            "Stay consistent with reminders and tracking",
+            "Measure long-term progress and improvement",
+        ],
+    },
 ];
 
 const extendedData = [...data, data[0], data[1]];
@@ -145,7 +145,8 @@ export default function ProcessCards() {
                                     {/* ✅ SAME HEIGHT CARD */}
                                     <div className="mt-4 w-full max-w-md border-[#3D7773] text-white shadow-sm shadow-[#45657D] h-70  mb-1 flex flex-col">
 
-                                        <h2 className="text-center py-2 text-xl sm:text-xl lg:text-2xl text-white bg-[#2f5ba5]/70">
+                                        <h2 className="text-xl sm:text-xl lg:text-2xl font-medium  text-black flex items-center justify-center">
+
                                             {item.title}
                                         </h2>
 

@@ -1,15 +1,24 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { blogs } from "@/data/blogData";
+import { useDispatch, useSelector } from "react-redux";
+import { getBlogs } from "@/redux/Api";
+import type { AppDispatch, RootState } from "@/redux/store";
 import { motion } from "framer-motion";
 import FillButton from "@/Ui/buttons/FillButton";
 import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 
 function BlogSection() {
   const [blogCount, setBlogCount] = useState(3);
+  const dispatch = useDispatch<AppDispatch>();
+  const { blogs, loading } = useSelector((state: RootState) => state.BlogList);
+
+  useEffect(() => {
+    dispatch(getBlogs());
+  }, [dispatch]);
+
   useEffect(() => {
     const updateCount = () => {
       const width = window.innerWidth;
@@ -32,11 +41,22 @@ function BlogSection() {
   bp: "Blood Pressure",
  
 };
+  const publishedBlogs = useMemo(() => {
+    return [...blogs].filter((blog) => blog.status === "published").reverse();
+  }, [blogs]);
+
   const categories = [
-    "all",
-    ...new Set(blogs.map((b) => b.category)),
+    "Heart-Risk",
+    "Blood Pressure",
+    "Diabetes",
+    "Lab-Reports",
+    "Cholesterol",
+    "Lifestyle",
+    "Sleep",
+    "Step"
   ];
-  const selectedBlogs = blogs.slice(0, blogCount);
+  
+  const selectedBlogs = publishedBlogs.slice(0, blogCount);
   return (
     <section className="max-w-screen-8xl pt-10 mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 ">
 
@@ -112,12 +132,14 @@ function BlogSection() {
               {/* IMAGE */}
               <div className="relative w-full aspect-video rounded-lg overflow-hidden">
 
-                <Image
-                  src={blog.content[0].images[0]}
-                  alt={blog.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition duration-300"
-                />
+                {blog.mainImage && (
+                  <Image
+                    src={blog.mainImage}
+                    alt={blog.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition duration-300"
+                  />
+                )}
 
                 {/* 🔥 CATEGORY BADGE */}
                 <div

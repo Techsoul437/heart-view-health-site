@@ -63,10 +63,11 @@ export default function Sidebar({
     .slice(0, 2);
   // Component ke andar, return se pehle ya upar:
   const loginPathMap: Record<string, string> = {
-    staff: "/lab-staff/login",
-    "lab-admin": "/lab-admin/login",
-    "heartview-admin": "/heartview-admin/login",
-    
+    staff: "/lab-staff",
+    "lab-admin": "/lab-admin",
+    "heartview-admin": "/heartview-admin",
+    "admin": "/admin",
+
   };
 
   const loginHref = loginPathMap[role ?? ""] ?? "/lab-admin/login";

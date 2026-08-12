@@ -4,6 +4,12 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
+        protocol: "http",
+        hostname: "localhost",
+        port: "3000",
+        pathname: "/**",
+      },
+      {
         protocol: "https",
         hostname: "api.qrserver.com",
         pathname: "/v1/create-qr-code/**",
@@ -17,6 +23,15 @@ const nextConfig = {
   },
 
   compress: true,
+
+  async rewrites() {
+    return [
+      {
+        source: '/uploads/:path*',
+        destination: 'http://localhost:3000/uploads/:path*',
+      },
+    ];
+  },
 
   async headers() {
     return [
@@ -39,46 +54,19 @@ const nextConfig = {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=()",
           },
-          {
-            key: "Content-Security-Policy",
-            value: `
-              default-src 'self';
-
-              script-src 'self'
-                'unsafe-inline'
-                ${isDev ? "'unsafe-eval'" : ""}
-                https://www.googletagmanager.com
-                https://www.google-analytics.com;
-
-              style-src 'self' 'unsafe-inline';
-
-              img-src 'self' data: blob:
-                https://api.qrserver.com
-                https://heartview-images.s3.ap-south-1.amazonaws.com
-                https://www.google-analytics.com
-                https://www.googletagmanager.com
-                https://*.google.com
-                https://*.gstatic.com;
-
-              connect-src 'self'
-                https://www.google-analytics.com
-                https://www.googletagmanager.com;
-
-              font-src 'self' data:;
-
-              frame-src
-                https://www.google.com
-                https://www.google.com/maps;
-
-              object-src 'none';
-              base-uri 'self';
-              form-action 'self';
-              frame-ancestors 'none';
-            `
-              .replace(/\n/g, "")
-              .replace(/\s{2,}/g, " ")
-              .trim(),
-          },
+   {
+  key: "Content-Security-Policy",
+  value: `
+    default-src 'self';
+    script-src 'self' 'unsafe-inline' ${
+      isDev ? "'unsafe-eval'" : ""
+    } https://www.gstatic.com https://www.google.com https://www.gstatic.cn https://www.recaptcha.net;
+    frame-src https://www.google.com https://recaptcha.google.com https://www.recaptcha.net;
+    connect-src 'self' https://*.googleapis.com https://securetoken.googleapis.com https://identitytoolkit.googleapis.com https://www.googleapis.com https://firebaseinstallations.googleapis.com;
+    img-src 'self' data: https: http://localhost:*;
+    style-src 'self' 'unsafe-inline';
+  `.replace(/\n/g, " "),
+}
         ],
       },
     ];

@@ -9,10 +9,11 @@ import {
 } from "react-icons/fi";
 
 type StatsData = {
-  totalLabs: number;
-  activeLabs: number;
-  totalPatients: number;
-  newLabs: number;
+  inquiries: number;
+  blogPosts: number;
+  teamMembers: number;
+  unread: number;
+  [key: string]: number; // Allow dynamic access
 };
 
 type StatsConfig = {
@@ -43,36 +44,36 @@ type CardItem = {
 
 const cards: CardItem[] = [
   {
-    key: "totalLabs",
-    label: "Total Labs",
-    icon: FiHome,
-    iconBgStyle: "rgba(59,130,246,0.1)",   // blue-100 equivalent
+    key: "inquiries",
+    label: "Inquiries",
+    icon: FiUser, // Replace with appropriate icon
+    iconBgStyle: "rgba(59,130,246,0.1)",
     iconColor: "text-blue-600",
-    trend: "+8%",
+    trend: "+12%",
   },
   {
-    key: "activeLabs",
-    label: "Active Labs",
-    icon: FiCheckCircle,
-    iconBgStyle: "rgba(34,197,94,0.1)",    // green-100 equivalent
+    key: "blogPosts",
+    label: "Blog Posts",
+    icon: FiHome,
+    iconBgStyle: "rgba(34,197,94,0.1)",
     iconColor: "text-green-600",
     trend: "+5%",
   },
   {
-    key: "totalPatients",
-    label: "Total Patients",
-    icon: FiUser,
-    iconBgStyle: "rgba(168,85,247,0.1)",   // purple-100 equivalent
+    key: "teamMembers",
+    label: "Team Members",
+    icon: FiUsers,
+    iconBgStyle: "rgba(168,85,247,0.1)",
     iconColor: "text-purple-600",
-    trend: "+12%",
+    trend: "+2%",
   },
   {
-    key: "newLabs",
-    label: "New Labs This Month",
-    icon: FiUsers,
-    iconBgStyle: "rgba(249,115,22,0.1)",   // orange-100 equivalent
+    key: "unread",
+    label: "Unread",
+    icon: FiCheckCircle,
+    iconBgStyle: "rgba(249,115,22,0.1)",
     iconColor: "text-orange-600",
-    trend: "+3%",
+    trend: "-1%",
   },
 ];
 
@@ -95,6 +96,77 @@ export default function StartCards({
     newLabs: statsConfig[selectedYear]?.[selectedMonth]?.newLabs ?? 0,
   };
 
+const currentMonth = new Date().getMonth();
+const currentYear = new Date().getFullYear();
+
+const newLabs = labs.filter((lab) => {
+  if (!lab.createdAt) return false;
+
+  const date = new Date(lab.createdAt);
+
+  return (
+    date.getMonth() === currentMonth &&
+    date.getFullYear() === currentYear
+  );
+}).length;
+
+const data: StatsData = {
+  inquiries: 128,
+  blogPosts: 24,
+  teamMembers: 12,
+  unread: 8,
+};
+  const { data: inquiriesData } = useSelector((state: RootState) => state.inquiry);
+  const { blogs } = useSelector((state: RootState) => state.BlogList);
+  const { teams } = useSelector((state: RootState) => state.team);
+
+  useEffect(() => {
+    dispatch(getAllLabs());
+
+    const fetchPatients = async () => {
+      try {
+        const response = await dispatch(getAllUsers()).unwrap();
+        setTotalPatients(response.data?.length || 0);
+      } catch (error) {
+        console.error(error);
+        setTotalPatients(0);
+      }
+    };
+
+    fetchPatients();
+  }, [dispatch]);
+  
+  useEffect(() => {
+    const fetchPatients = async () => {
+      try {
+        const response = await dispatch(getAllUsers()).unwrap();
+
+        setTotalPatients(response.data?.length || 0);
+      } catch (error) {
+        console.error("Failed to fetch patients:", error);
+        setTotalPatients(0);
+      }
+    };
+
+    fetchPatients();
+  }, [dispatch]);
+
+  // Fetch API data for cards
+  useEffect(() => {
+    import("@/redux/Api").then(({ getAllInquiry, getBlogs, getTeams }) => {
+      dispatch(getAllInquiry());
+      dispatch(getBlogs());
+      dispatch(getTeams());
+    });
+  }, [dispatch]);
+
+  const cardData: StatsData = {
+    inquiries: inquiriesData?.length || 0,
+    blogPosts: blogs?.length || 0,
+    teamMembers: teams?.length || 0,
+    unread: 0, // Calculate this dynamically if there is a way to determine unread inquiries later
+  };
+  
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {cards.map(({ key, label, icon: Icon, iconBgStyle, iconColor, trend }) => (
@@ -135,7 +207,7 @@ export default function StartCards({
               </p>
 
               <h3 className="mt-1 text-2xl font-bold text-black">
-                {data[key].toLocaleString()}
+                {cardData[key].toLocaleString()}
               </h3>
 
               <p className="mt-2 flex items-center gap-1 text-sm font-medium text-emerald-500 whitespace-nowrap">

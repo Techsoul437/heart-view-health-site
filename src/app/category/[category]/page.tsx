@@ -1,29 +1,42 @@
 "use client";
 
-import { use } from "react";
+import { useEffect, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { blogs } from "@/data/blogData";
+import { useDispatch, useSelector } from "react-redux";
+import { getBlogs } from "@/redux/Api";
+import type { AppDispatch, RootState } from "@/redux/store";
 import Navbar from "@/Ui/navbar/Navbar";
 import Footer from "@/Ui/footer/Footer";
 import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
+import { useParams } from "next/navigation";
 
 
-export default function CategoryPage({
-  params,
-}: {
-  params: Promise<{ category: string }>;
-}) {
-  const { category } = use(params);
+export default function CategoryPage() {
+  const params = useParams();
+  const rawCategory = params?.category;
+  const category = decodeURIComponent(Array.isArray(rawCategory) ? rawCategory[0] : (rawCategory || ""));
   const categoryLabels: Record<string, string> = {
-  bp: "Blood Pressure",
- 
-};
+    bp: "Blood Pressure",
+  };
+
+  const dispatch = useDispatch<AppDispatch>();
+  const { blogs, loading } = useSelector((state: RootState) => state.BlogList);
+
+  useEffect(() => {
+    dispatch(getBlogs());
+  }, [dispatch]);
+
+  const publishedBlogs = useMemo(() => {
+    return blogs.filter((blog) => blog.status === "published");
+  }, [blogs]);
+
   // ✅ filter blogs by category
-  const filteredBlogs = blogs.filter(
-    (blog) =>
-      blog.category.toLowerCase() === category.toLowerCase()
-  );
+  const filteredBlogs = useMemo(() => {
+    return publishedBlogs.filter(
+      (blog) => blog.category.toLowerCase() === category.toLowerCase()
+    );
+  }, [publishedBlogs, category]);
 
   return (
     <div className="page-bg pt-5  lg:pt-20">
@@ -38,9 +51,13 @@ export default function CategoryPage({
 />
         
         {/* GRID */}
-        {filteredBlogs.length === 0 ? (
-          <p className="text-center text-red-400">
-            No blogs found ❌
+        {loading && blogs.length === 0 ? (
+          <p className="text-center text-[#64748B] py-10">
+            Loading blogs...
+          </p>
+        ) : filteredBlogs.length === 0 ? (
+          <p className="text-center text-[#64748B] py-10">
+            No blogs found in this category.
           </p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-5 gap-4 md:gap-5 lg:gap-6 xl:gap-7">
@@ -62,11 +79,12 @@ export default function CategoryPage({
                   {/* IMAGE */}
                   <div className="relative w-full aspect-video rounded-lg overflow-hidden">
 
-                    {blog.content?.[0]?.images?.[0] && (
+                    {blog.mainImage && (
                       <Image
-                        src={blog.content[0].images[0]}
+                        src={blog.mainImage}
                         alt={blog.title}
                         fill
+                        sizes="(max-width:768px) 100vw, (max-width:1024px) 50vw, 33vw"
                         className="object-cover group-hover:scale-105 transition duration-300"
                       />
                     )}

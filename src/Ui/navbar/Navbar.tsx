@@ -60,7 +60,7 @@ export default function Navbar() {
                                      <BorderButton text="Join Early Access" href="" bgColor="bg-black"></BorderButton>
 
             </div> */}
-                          <BorderButton text="Join Early Access" href="/contact" bgColor="bg-black"></BorderButton>
+                          {/* <BorderButton text="Join Early Access" href="/contact" bgColor="bg-black"></BorderButton> */}
 
             </div>
 
