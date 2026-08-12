@@ -23,6 +23,7 @@ import AddOrUpdateHealthReducer from "./Slice/AddOrUpdateHealthSlice";
 import GetUserByIdReducer from "./Slice/GetUserByIdSlice";
 import GetHealthByIdReducer from "./Slice/GetHealthByIdSlice";
 import GetTeamByIdReducer from "./Slice/GetTeamByIdSlice";
+import TeamReducer from "./Slice/TeamSlice";
 import ReportReducer from "./Slice/GetreportSlice";
 import UpdateReportMetricReducer from "./Slice/UpdateReportMetricSlice";
 import finalSaveReportReducer from "./Slice/finalSaveReportSlice";
@@ -74,6 +75,7 @@ export const store = configureStore({
     addOrUpdateHealth: AddOrUpdateHealthReducer,
     GetUserById: GetUserByIdReducer,
     getHealthById: GetHealthByIdReducer,
+    team: TeamReducer,
     getTeamById: GetTeamByIdReducer,
     Getreport: ReportReducer,
     updateReportMetric: UpdateReportMetricReducer,
