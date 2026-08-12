@@ -266,7 +266,7 @@ export default function EditBlogPage() {
             content: blogContentToHtml(blog.content),
             mainImage: null,
             tags: Array.isArray(blog.tags) ? blog.tags.join(", ") : "",
-            status: blog.status ?? "draft",
+            status: blog.status === "published" ? "published" : "draft",
             metaTitle: blog.seoTitle ?? "",
             metaDescription: blog.seoDescription ?? "",
             peopleAlsoAsk: blog.peopleAlsoAsk?.length

@@ -5,38 +5,12 @@ import { usePathname, useRouter } from "next/navigation";
 import { ErrorMessage, Field, FieldArray, Form, Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { ArrowLeft, ImagePlus, Plus, Trash2 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import SubmitButton from "@/Ui/buttons/SubmitButton";
 import ResetButton from "@/Ui/buttons/ResetButton";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import {
-    Alignment,
-    AutoImage,
-    Base64UploadAdapter,
-    BlockQuote,
-    Bold,
-    ClassicEditor,
-    CodeBlock,
-    Essentials,
-    Font,
-    Heading,
-    Image,
-    ImageCaption,
-    ImageInsert,
-    ImageStyle,
-    ImageToolbar,
-    ImageUpload,
-    Italic,
-    Link as CKEditorLink,
-    List,
-    Paragraph,
-    RemoveFormat,
-    Strikethrough,
-    Underline,
-    Undo,
-} from "ckeditor5";
-import "ckeditor5/ckeditor5.css";
+// CKEditor is heavy and incompatible with SSR — load it only on the client.
+// We'll dynamically import the editor component and build on the client.
 import { useDispatch } from "react-redux";
 import { addBlog } from "@/redux/Api";
 import type { AppDispatch } from "@/redux/store";
@@ -44,20 +18,13 @@ import type { BlogContent } from "@/redux/Api";
 
 const editorConfig = {
     licenseKey: "GPL",
-    plugins: [
-        Essentials, Paragraph, Heading, Bold, Italic, Underline, Strikethrough,
-        Font, Alignment, List, CKEditorLink, Image, ImageToolbar, ImageUpload,
-        ImageCaption, ImageStyle, ImageInsert, AutoImage, Base64UploadAdapter,
-        BlockQuote, CodeBlock, RemoveFormat, Undo,
-    ],
     toolbar: [
-        "undo", "redo", "|", "heading", "|", "fontFamily", "fontSize",
-        "fontColor", "fontBackgroundColor", "|", "bold", "italic", "underline",
-        "strikethrough", "|", "alignment", "|", "numberedList", "bulletedList",
-        "|", "link", "insertImage", "blockQuote", "codeBlock", "|", "removeFormat",
+        "undo", "redo", "|", "heading", "|", "bold", "italic", "link", "insertImage", "blockQuote", "codeBlock",
     ],
-    image: { toolbar: ["imageTextAlternative", "toggleImageCaption", "imageStyle:inline", "imageStyle:block", "imageStyle:side"] },
+    image: { toolbar: ["imageTextAlternative"] },
 };
+
+/* EditorComponent and ClassicEditorBuild are loaded client-side inside the component */
 
 type Faq = {
     question: string;
@@ -209,6 +176,33 @@ export default function AddBlogPage() {
     const [mainImagePreview, setMainImagePreview] = useState("");
     const dispatch = useDispatch<AppDispatch>();
 
+    const [EditorComponent, setEditorComponent] = useState<any>(null);
+    const [ClassicEditorBuild, setClassicEditorBuild] = useState<any>(null);
+
+    useEffect(() => {
+        let mounted = true;
+        if (typeof window === "undefined") return;
+
+        (async () => {
+            try {
+                const mod = await import("@ckeditor/ckeditor5-react");
+                const ck = await import("ckeditor5");
+
+                if (!mounted) return;
+
+                setEditorComponent((mod as any).CKEditor || (mod as any).default || mod);
+                setClassicEditorBuild((ck as any).ClassicEditor || (ck as any).default || ck);
+            } catch (e) {
+                // eslint-disable-next-line no-console
+                console.error("Failed to load CKEditor on client:", e);
+            }
+        })();
+
+        return () => {
+            mounted = false;
+        };
+    }, []);
+
     const makeSlug = (title: string) =>
         title
             .toLowerCase()
@@ -348,12 +342,16 @@ export default function AddBlogPage() {
                             <div className="flex flex-col gap-2">
                                 <label className="font-medium">Blog content <span className="text-red-500">*</span></label>
                                 <div className="ck-editor-wrapper overflow-hidden rounded-xl border border-black/10 [&_.ck-content]:min-h-64 [&_.ck-editor__editable]:border-x-0 [&_.ck-editor__editable]:border-b-0 [&_.ck-toolbar]:border-x-0 [&_.ck-toolbar]:border-t-0">
-                                    <CKEditor
-                                        editor={ClassicEditor}
-                                        config={editorConfig}
-                                        data={values.content}
-                                        onChange={(_, editor) => setFieldValue("content", editor.getData())}
-                                    />
+                                    {EditorComponent && ClassicEditorBuild ? (
+                                        <EditorComponent
+                                            editor={ClassicEditorBuild}
+                                            config={editorConfig}
+                                            data={values.content}
+                                            onChange={(_evt: any, editor: any) => setFieldValue("content", editor.getData())}
+                                        />
+                                    ) : (
+                                        <textarea value={values.content} onChange={(e) => setFieldValue("content", e.target.value)} className="w-full rounded-xl border border-black/10 bg-[#f7f7f7] px-4 py-3" />
+                                    )}
                                 </div>
                                 <ErrorMessage name="content" component="p" className="text-sm text-red-500" />
                             </div>
