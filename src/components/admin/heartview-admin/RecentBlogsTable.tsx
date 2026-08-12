@@ -16,10 +16,16 @@ export default function RecentBlogsTable() {
   useEffect(() => {
     if (blogs && blogs.length > 0) {
       const latest = [...blogs]
-        // @ts-ignore - Assuming Blog/BlogData has createdAt or publishDate
         .sort((a, b) => new Date(b.createdAt || b.publishDate || "").getTime() - new Date(a.createdAt || a.publishDate || "").getTime())
         .slice(0, 5);
-      setRecentBlogs(latest);
+
+      const normalized = latest.map((b) => ({
+        // Ensure `_id` is a string to satisfy `BlogData` type
+        ...b,
+        _id: (b as any)._id ?? (b as any).slug ?? "",
+      })) as BlogData[];
+
+      setRecentBlogs(normalized);
     }
   }, [blogs]);
 
