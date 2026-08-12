@@ -3,8 +3,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 
 const API = axios.create({
-  // baseURL: "https://api.heartviewhealth.com/api",
-  baseURL: "http://localhost:3000/api",
+  baseURL: "https://api.heartviewhealth.com/api",
+  // baseURL: "http://localhost:3000/api",
 
 });
 
