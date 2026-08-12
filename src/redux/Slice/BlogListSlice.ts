@@ -41,7 +41,7 @@ export interface Blog {
 
   tags: string[];
 
-  status: "draft" | "published";
+  status: string;
 
   peopleAlsoAsk: BlogFAQ[];
 
@@ -73,7 +73,7 @@ export interface AddBlogPayload {
 
   tags: string[];
 
-  status: "draft" | "published";
+  status: string;
 
   peopleAlsoAsk: BlogFAQ[];
   faq: BlogFAQ[];
