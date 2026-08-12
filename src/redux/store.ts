@@ -43,6 +43,7 @@ import HeartViewAdminProfileReducer from "./Slice/HeartViewAdminProfileSlice";
 import UpdateHeartViewAdminProfileReducer from "./Slice/UpdateHeartViewAdminProfileSlice";
 import GetLabUsersReducer from "./Slice/GetLabUsersSlice";
 import BlogListReducer from "./Slice/BlogListSlice";
+import AdminProfileReducer from "./Slice/AdminProfileSlice";
 export const store = configureStore({
   reducer: {
     getPatients: GetPatientsReducer,
@@ -89,6 +90,7 @@ export const store = configureStore({
     getalllabs: GetAllLabsReducer,
     auditLogs: AuditLogReducer,
     getlabbyid: GetLabByIdReducer,
+    adminProfile: AdminProfileReducer,
     heartViewAdminProfile: HeartViewAdminProfileReducer,
     updateHeartViewAdminProfile: UpdateHeartViewAdminProfileReducer,
     getLabUsers: GetLabUsersReducer,
