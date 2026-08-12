@@ -176,7 +176,9 @@ export default function AddBlogPage() {
     const [mainImagePreview, setMainImagePreview] = useState("");
     const dispatch = useDispatch<AppDispatch>();
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [EditorComponent, setEditorComponent] = useState<any>(null);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [ClassicEditorBuild, setClassicEditorBuild] = useState<any>(null);
 
     useEffect(() => {
@@ -190,7 +192,9 @@ export default function AddBlogPage() {
 
                 if (!mounted) return;
 
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 setEditorComponent((mod as any).CKEditor || (mod as any).default || mod);
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 setClassicEditorBuild((ck as any).ClassicEditor || (ck as any).default || ck);
             } catch (e) {
                 // eslint-disable-next-line no-console
@@ -347,7 +351,7 @@ export default function AddBlogPage() {
                                             editor={ClassicEditorBuild}
                                             config={editorConfig}
                                             data={values.content}
-                                            onChange={(_evt: any, editor: any) => setFieldValue("content", editor.getData())}
+                                            onChange={(_evt: unknown, editor: { getData: () => string }) => setFieldValue("content", editor.getData())}
                                         />
                                     ) : (
                                         <textarea value={values.content} onChange={(e) => setFieldValue("content", e.target.value)} className="w-full rounded-xl border border-black/10 bg-[#f7f7f7] px-4 py-3" />

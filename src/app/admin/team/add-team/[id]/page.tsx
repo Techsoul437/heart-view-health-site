@@ -140,7 +140,7 @@ export default function EditTeamPage() {
                         if (imageFile) {
                             formData.append("image", imageFile);
                         }
-                        dispatch(updateTeam({ id: teamId, data: formData }));
+                        dispatch(updateTeam({ id: teamId, formData }));
                     }}
                 >
                     {({ resetForm }) => (

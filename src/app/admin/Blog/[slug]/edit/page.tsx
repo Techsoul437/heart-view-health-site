@@ -329,30 +329,27 @@ export default function EditBlogPage() {
             const result = await dispatch(
                 updateBlog({
                     id,
-                    data: {
-                        title: values.title.trim(),
-                        slug: values.slug.trim(),
-                        author: values.author.trim(),
-                        publishDate: values.publishDate,
-                        category: values.category,
-                        mainImage,
-                        description: values.excerpt.trim(),
-                        content: htmlToBlogContent(values.content),
-                        tags: values.tags
-                            .split(",")
-                            .map((tag) => tag.trim())
-                            .filter(Boolean),
-                        status: values.status,
-                        peopleAlsoAsk: peopleAlsoAskPayload,
-                        faq: faqPayload,
-                        seoTitle: values.metaTitle.trim(),
-                        seoDescription: values.metaDescription.trim(),
-                        schemaMarkup: null,
-                    },
+                    title: values.title.trim(),
+                    slug: values.slug.trim(),
+                    author: values.author.trim(),
+                    publishDate: values.publishDate,
+                    category: values.category,
+                    mainImage,
+                    description: values.excerpt.trim(),
+                    content: htmlToBlogContent(values.content),
+                    tags: values.tags
+                        .split(",")
+                        .map((tag) => tag.trim())
+                        .filter(Boolean),
+                    status: values.status,
+                    peopleAlsoAsk: peopleAlsoAskPayload,
+                    faq: faqPayload,
+                    seoTitle: values.metaTitle.trim(),
+                    seoDescription: values.metaDescription.trim(),
+                    schemaMarkup: null,
                 })
             ).unwrap();
 
-            toast.success(result.message || "Blog updated successfully");
             router.push(`${baseUrl}/Blog`);
         } catch (error) {
             toast.error(typeof error === "string" ? error : "Blog update failed");
@@ -451,10 +448,11 @@ export default function EditBlogPage() {
                                 <label className="font-medium">Blog content <span className="text-red-500">*</span></label>
                                 <div className="ck-editor-wrapper overflow-hidden rounded-xl border border-black/10 [&_.ck-content]:min-h-64 [&_.ck-editor__editable]:border-x-0 [&_.ck-editor__editable]:border-b-0 [&_.ck-toolbar]:border-x-0 [&_.ck-toolbar]:border-t-0">
                                     <CKEditor
-                                        editor={ClassicEditor}
+                                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                                        editor={ClassicEditor as any}
                                         config={editorConfig}
                                         data={values.content}
-                                        onChange={(_, editor) => setFieldValue("content", editor.getData())}
+                                        onChange={(_evt: unknown, editor: { getData: () => string }) => setFieldValue("content", editor.getData())}
                                     />
                                 </div>
                                 <ErrorMessage name="content" component="p" className="text-sm text-red-500" />

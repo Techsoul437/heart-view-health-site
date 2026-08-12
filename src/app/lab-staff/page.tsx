@@ -1,7 +1,7 @@
 "use client"
 
+import StaffLoginPage from '@/components/admin/login/StaffLogin'
 import React from 'react'
-import StaffLoginPage from '../../../components/admin/login/StaffLogin'
 
 function page() {
   return (

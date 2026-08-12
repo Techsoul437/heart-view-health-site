@@ -1,11 +1,20 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Eye, EyeOff, ShieldCheck, FileHeart, BadgeCheck, Sparkles } from "lucide-react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import type { AppDispatch } from "@/redux/store";
+import { unwrapResult } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { requestNotificationPermission } from "@/lib/firebaseMessaging";
+import {
+  loginStaffWithEmail,
+  getStaffProfile,
+} from "@/redux/Api";
 
 const loginSchema = Yup.object({
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -45,7 +54,7 @@ const LeftSide = () => (
           Staff Portal Access
         </h2>
         <p className="mt-3 hidden lg:block leading-6 text-[#64748B] text-sm">
-        Upload patient reports, manage report delivery, and securely share diagnostic results with patients through HeartView.
+          Upload patient reports, manage report delivery, and securely share diagnostic results with patients through HeartView.
         </p>
       </div>
 
@@ -67,7 +76,21 @@ const LeftSide = () => (
 const StaffLoginPanel = () => {
   const router = useRouter();
   const [showPass, setShowPass] = useState(false);
+  const [fcmToken, setFcmToken] = useState("");
+  useEffect(() => {
+    const loadFcm = async () => {
+      let token = localStorage.getItem("fcmToken");
 
+      if (!token) {
+        token = await requestNotificationPermission();
+      }
+
+      setFcmToken(token || "");
+    };
+
+    loadFcm();
+  }, []);
+  const dispatch = useDispatch<AppDispatch>();
   return (
     <>
       <div className="mb-7">
@@ -82,21 +105,31 @@ const StaffLoginPanel = () => {
       <Formik
         initialValues={{ email: "", password: "" }}
         validationSchema={loginSchema}
-        onSubmit={(values) => {
-          const staffUser = {
-            id: 1,
-            fullName: "Lab Staff User",
-            email: values.email,
-            phone: "+91 9876543210",
-            department: "Laboratory",
-            dob: "01 Jan 1995",
-            address: "Ahmedabad, Gujarat",
-            role: "Lab Staff",
-            joinedOn: "10 Mar 2024",
-            status: "Active",
-          };
-          localStorage.setItem("staffUser", JSON.stringify(staffUser));
-          router.push("/lab-staff/dashboard");
+        onSubmit={async (values, { setSubmitting }) => {
+          try {
+            const resultAction = await dispatch(
+              loginStaffWithEmail({
+                email: values.email,
+                password: values.password,
+                fcmToken,
+              })
+            );
+
+            const data = unwrapResult(resultAction);
+
+            localStorage.setItem("staffUser", JSON.stringify(data.data));
+            localStorage.setItem("accessToken", data.accessToken);
+            localStorage.setItem("refreshToken", data.refreshToken);
+            await dispatch(getStaffProfile()).unwrap();
+
+            toast.success(data.message);
+
+            router.push("/lab-staff/dashboard");
+          } catch (error: unknown) {
+            toast.error("Login Failed");
+          } finally {
+            setSubmitting(false);
+          }
         }}
       >
         <Form className="space-y-4">
@@ -151,8 +184,8 @@ export default function StaffLoginPage() {
           - max-h ensures it never exceeds viewport
           - The card itself does NOT scroll (overflow-hidden)
       */}
-    <div
-  className="
+      <div
+        className="
     relative z-10
     w-full max-w-sm sm:max-w-xl lg:max-w-3xl xl:max-w-4xl 2xl:max-w-5xl
     overflow-hidden
@@ -163,8 +196,8 @@ export default function StaffLoginPage() {
     grid-cols-1
     lg:grid-cols-[0.75fr_1.25fr]
   "
-  style={{ maxHeight: "calc(100dvh - 2rem)" }}
->
+        style={{ maxHeight: "calc(100dvh - 2rem)" }}
+      >
         {/* LEFT */}
         <LeftSide />
 

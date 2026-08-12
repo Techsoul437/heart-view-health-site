@@ -2,9 +2,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 
-export const API = axios.create({
-  baseURL: "http://localhost:3000/api",
-  // baseURL: "https://api.heartviewhealth.com/api",
+const API = axios.create({
+  baseURL: "https://api.heartviewhealth.com/api",
+  // baseURL: "http://localhost:3000/api",
 
 });
 
@@ -688,8 +688,8 @@ export interface BlogData {
   status: "draft" | "published";
   peopleAlsoAsk: BlogFAQ[];
   faq: BlogFAQ[];
-  seoTitle?: string;
-  seoDescription?: string;
+  seoTitle: string;
+  seoDescription: string;
   schemaMarkup?: unknown;
 }
 export interface BlogResponse {
@@ -723,7 +723,7 @@ export interface UpdateBlogPayload extends AddBlogPayload {
 // =========================
 
 export interface TeamMember {
-  _id?: string;
+  _id: string;
   fullName: string;
   designation: string;
   description?: string;
@@ -740,19 +740,19 @@ export interface TeamMember {
 interface TeamResponse {
   success: boolean;
   message: string;
-  data?: TeamMember;
+  data: TeamMember;
 }
 
 export interface GetTeamsResponse {
   success: boolean;
-  count?: number;
+  count: number;
   data: TeamMember[];
-  message?: string;
+  message: string;
 }
 export interface DeleteBlogResponse {
   success: boolean;
   message: string;
-  data?: BlogData;
+  data: BlogData;
 }
 export interface UpdateAdminProfilePayload {
   id: string;
@@ -761,39 +761,6 @@ export interface UpdateAdminProfilePayload {
   fcmToken?: string;
   profileImage?: File | null;
 }
-// ==============================
-// GET ALL USERS
-// ==============================
-export interface BlogContent {
-  [key: string]: any;
-}
-
-export interface BlogData {
-  _id: string;
-  title: string;
-  slug: string;
-  author: string;
-  publishDate: string;
-  category: string;
-  mainImage: string;
-  description: string;
-
-  content: BlogContent[];
-  tags: string[];
-
-  status: string;
-
-  peopleAlsoAsk: any[];
-  faq: any[];
-
-  seoTitle: string;
-  seoDescription: string;
-  schemaMarkup?: any;
-
-  createdAt?: string;
-  updatedAt?: string;
-}
-
 
 // ==============================
 // BLOG TYPES
@@ -820,41 +787,24 @@ export interface Blog {
   updatedAt?: string;
 }
 
-export interface AddBlogPayload {
-  title: string;
-  slug: string;
-  author: string;
-  publishDate: string;
-  category: string;
-  mainImage: string;
-  description: string;
-  content?: any[];
-  tags?: string[];
-  status?: string;
-  peopleAlsoAsk?: any[];
-  faq?: any[];
-  seoTitle?: string;
-  seoDescription?: string;
-  schemaMarkup?: any;
-}
 
-export interface UpdateBlogPayload {
-  title?: string;
-  slug?: string;
-  author?: string;
-  publishDate?: string;
-  category?: string;
-  mainImage?: string;
-  description?: string;
-  content?: any[];
-  tags?: string[];
-  status?: string;
-  peopleAlsoAsk?: any[];
-  faq?: any[];
-  seoTitle?: string;
-  seoDescription?: string;
-  schemaMarkup?: any;
-}
+// export interface UpdateBlogPayload {
+//   title?: string;
+//   slug?: string;
+//   author?: string;
+//   publishDate?: string;
+//   category?: string;
+//   mainImage?: string;
+//   description?: string;
+//   content?: any[];
+//   tags?: string[];
+//   status?: string;
+//   peopleAlsoAsk?: any[];
+//   faq?: any[];
+//   seoTitle?: string;
+//   seoDescription?: string;
+//   schemaMarkup?: any;
+// }
 
 export interface AddBlogResponse {
   success: boolean;
@@ -881,26 +831,9 @@ export interface GetBlogByIdResponse {
   data: Blog;
 }
 
-export interface DeleteBlogResponse {
-  success: boolean;
-  message: string;
-  data: Blog;
-}
-
 // ==============================
 // TEAM TYPES
 // ==============================
-
-export interface TeamMember {
-  _id: string;
-  fullName: string;
-  designation: string;
-  description?: string;
-  status: "Active" | "Inactive";
-  image?: string | null;
-  createdAt?: string;
-  updatedAt?: string;
-}
 
 export interface AddTeamPayload {
   fullName: string;
@@ -978,35 +911,20 @@ export interface UpdateAdminProfileResponse {
   message: string;
   data: AdminProfile;
 }
-
-export type AdminData = AdminProfile;
-export type AdminProfileResponse = GetAdminProfileResponse;
-
 export interface AdminLoginPayload {
   email: string;
   password: string;
   fcmToken?: string;
 }
-
-export interface AdminUser {
-  _id: string;
-  fullName: string;
-  email: string;
-  mobile?: string;
-  profileImage?: string;
-  role: string;
-  status: string;
-  isEmailVerified?: boolean;
-  fcmToken?: string;
-}
-
-export interface AdminLoginResponse {
+export interface GetAllBlogsResponse {
   success: boolean;
   message: string;
-  data: AdminUser;
-  accessToken: string;
-  refreshToken: string;
+  count: number;
+  data: BlogData[];
 }
+// ==============================
+// GET ALL USERS
+// ==============================
 
 export const getAllUsers = createAsyncThunk<
   ApiResponse<Patient[]>,
@@ -2076,18 +1994,7 @@ export interface UpdateLabResponse {
   message: string;
   data: Lab;
 }
-export interface GetAllBlogsResponse {
-  success: boolean;
-  message: string;
-  count: number;
-  data: BlogData[];
-}
 
-export interface GetBlogByIdResponse {
-  success: boolean;
-  message: string;
-  data: BlogData;
-}
 export const updateLab = createAsyncThunk<
   UpdateLabResponse,
   UpdateLabPayload,

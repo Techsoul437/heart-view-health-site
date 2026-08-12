@@ -18,7 +18,7 @@ export default function AdminLayout({
   const dispatch = useDispatch<AppDispatch>();
 
   const { data: profile } = useSelector(
-    (state: RootState) => state.heartViewAdminProfile
+    (state: RootState) => state.adminProfile
   );
 
   useEffect(() => {

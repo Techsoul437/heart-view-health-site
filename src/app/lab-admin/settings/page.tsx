@@ -10,18 +10,24 @@ import {
     Mail,
     MapPin,
     Upload,
-    Save,
+
 } from "lucide-react";
 import SubmitButton from "@/Ui/buttons/SubmitButton";
-
-interface LabProfile {
-    logo: string;
-    labName: string;
-    branchName: string;
-    labtype: string;
-    phone: string;
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "@/redux/store";
+import { getProfile, updateProfile } from "@/redux/Api";
+import toast from "react-hot-toast";
+export interface LabProfile {
+    _id: string;
+    fullName: string;
     email: string;
-    address: string;
+    mobile: string;
+    labName: string;
+    labType: string;
+    city: string;
+    role: string;
+    logo?: string;       // 👈 add this
+    branchName?: string; // 👈 add this
 }
 
 const validationSchema = Yup.object({
@@ -38,69 +44,89 @@ const validationSchema = Yup.object({
 
 export default function SettingsPage() {
     const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch<AppDispatch>();
 
-    const [initialValues, setInitialValues] =
-        useState<LabProfile>({
-            logo: "",
-            labName: "",
-            branchName: "",
-            labtype: "",
-            phone: "",
-            email: "",
-            address: "",
-        });
+    const { profile } = useSelector(
+        (state: RootState) => state.getProfile
+    );
+
+    const { loading: updateLoading } = useSelector(
+        (state: RootState) => state.updateProfile
+    );
+    const [initialValues, setInitialValues] = useState({
+        logo: "",
+        labName: "",
+        branchName: "",
+        labtype: "",
+        phone: "",
+        email: "",
+        address: "",
+    });
 
     useEffect(() => {
-        const storedData = localStorage.getItem("labProfile");
+        dispatch(getProfile());
+    }, [dispatch]);
 
-        if (storedData) {
+    useEffect(() => {
+        if (profile) {
             // eslint-disable-next-line react-hooks/set-state-in-effect
-            setInitialValues(JSON.parse(storedData));
-        } else {
             setInitialValues({
-                logo: "",
-                labName: "HeartView Diagnostic Lab",
-                branchName: "Main Branch",
-                labtype: "Diagnostic Lab",
-                phone: "+91 9876543210",
-                email: "info@heartview.com",
-                address: "Ahmedabad, Gujarat, India",
+                logo: profile.logo || "",
+                labName: profile.labName || "",
+                branchName: profile.branchName || "",
+                labtype: profile.labType || "",
+                phone: profile.mobile || "",
+                email: profile.email || "",
+                address: profile.city || "",
             });
+            setLoading(false);
         }
-
-        setLoading(false);
-    }, []);
+    }, [profile]);
+    const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
 
     const handleLogoUpload = (
-        e: ChangeEvent<HTMLInputElement>,
-        setFieldValue: (
-            field: string,
-            value: string
-        ) => void
+        e: React.ChangeEvent<HTMLInputElement>,
+        setFieldValue: (field: string, value: string) => void
     ) => {
         const file = e.target.files?.[0];
 
         if (!file) return;
 
+        // Only image files
+        if (!file.type.startsWith("image/")) {
+            toast.error("Please upload a valid image file.");
+            e.target.value = "";
+            setFieldValue("logo", "");
+            return;
+        }
+
+        // File size validation
+        if (file.size > MAX_FILE_SIZE) {
+            const fileSize = (file.size / (1024 * 1024)).toFixed(2);
+
+            toast.error(
+                `Selected image is ${fileSize} MB. Maximum allowed size is 10 MB.`
+            );
+
+            e.target.value = "";
+            setFieldValue("logo", "");
+            return;
+        }
+
         const reader = new FileReader();
 
-        reader.onloadend = () => {
-            setFieldValue(
-                "logo",
-                reader.result as string
-            );
+        reader.onload = () => {
+            setFieldValue("logo", reader.result as string);
+        };
+
+        reader.onerror = () => {
+            toast.error("Failed to read image.");
+            e.target.value = "";
+            setFieldValue("logo", "");
         };
 
         reader.readAsDataURL(file);
     };
-
-    if (loading) {
-        return (
-            <div className="flex min-h-screen items-center justify-center">
-                Loading...
-            </div>
-        );
-    }
 
     return (
         <div className="min-h-screen bg-slate-50 p-6 md:p-12">
@@ -127,15 +153,25 @@ export default function SettingsPage() {
                     enableReinitialize
                     initialValues={initialValues}
                     validationSchema={validationSchema}
-                    onSubmit={(values) => {
-                        localStorage.setItem(
-                            "labProfile",
-                            JSON.stringify(values)
+                    onSubmit={async (values) => {
+                        const result = await dispatch(
+                            updateProfile({
+                                labName: values.labName,
+                                branchName: values.branchName,
+                                labType: values.labtype,
+                                mobile: values.phone,
+                                email: values.email,
+                                city: values.address,
+                                logo: values.logo,
+                            })
                         );
 
-                        alert(
-                            "Profile Updated Successfully"
-                        );
+                        if (updateProfile.fulfilled.match(result)) {
+                            toast.success("Profile Updated Successfully");
+                            dispatch(getProfile());
+                        } else {
+                            toast.error("Selected image is smaller than 10 MB.");
+                        }
                     }}
                 >
                     {({

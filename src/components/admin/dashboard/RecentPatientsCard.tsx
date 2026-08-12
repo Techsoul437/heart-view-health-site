@@ -3,6 +3,9 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { UserCircle2 } from "lucide-react";
+import { getAllUsers, type Patient } from "@/redux/Api";
+import type { RootState, AppDispatch } from "@/redux/store";
+import { useDispatch, useSelector } from "react-redux";
 
 interface PatientItem {
   id: number;
@@ -15,30 +18,36 @@ interface PatientItem {
 }
 
 export default function RecentPatientsCard() {
-  const [patients, setPatients] = useState<PatientItem[]>([]);
+    const dispatch = useDispatch<AppDispatch>();
 
-  useEffect(() => {
-    const storedPatients: PatientItem[] = JSON.parse(
-      localStorage.getItem("patients") || "[]"
-    );
 
-    const latestPatients = [...storedPatients]
-      .sort((a, b) => {
-        const dateA = a.createdAt
-          ? new Date(a.createdAt).getTime()
-          : 0;
+const [patients, setPatients] = useState<Patient[]>([]);
+const [loading, setLoading] = useState(true);
+useEffect(() => {
+  const fetchPatients = async () => {
+    try {
+      setLoading(true);
 
-        const dateB = b.createdAt
-          ? new Date(b.createdAt).getTime()
-          : 0;
+      const response = await dispatch(getAllUsers()).unwrap();
 
-        return dateB - dateA;
-      })
-      .slice(0, 5);
+      const latestPatients = [...(response.data || [])]
+        .sort(
+          (a, b) =>
+            new Date(b.createdAt ?? "").getTime() -
+            new Date(a.createdAt ?? "").getTime()
+        )
+        .slice(0, 5);
 
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setPatients(latestPatients);
-  }, []);
+      setPatients(latestPatients);
+    } catch (error) {
+      console.error("Failed to fetch patients:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchPatients();
+}, [dispatch]);
 
   return (
     <div className="rounded-2xl border   min-h-125 border-slate-200  bg-[#f7f7f7] shadow-sm">
@@ -79,7 +88,7 @@ export default function RecentPatientsCard() {
               </th>
 
               <th className="px-6 py-4 text-left  font-medium uppercase tracking-wide text-black">
-                Age
+                Role
               </th>
 
               <th className="px-6 py-4 text-left  font-medium uppercase tracking-wide text-black">
@@ -88,46 +97,46 @@ export default function RecentPatientsCard() {
             </tr>
           </thead>
 
-          <tbody>
-            {patients.length > 0 ? (
-              patients.map((patient) => (
-                <tr
-                  key={patient.id}
-                  className="border-b border-black/10 transition hover:bg-slate-50"
-                >
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
+         <tbody>
+  {loading ? (
+    <tr>
+      <td colSpan={4} className="py-10 text-center">
+        Loading...
+      </td>
+    </tr>
+  ) : patients.length > 0 ? (
+    patients.map((patient) => (
+      <tr
+        key={patient._id}
+        className="border-b border-black/10 transition hover:bg-slate-50"
+      >
+        <td className="px-6 py-4">
+          <span className="font-medium text-sm text-[#64748B]">
+            {patient.name}
+          </span>
+        </td>
 
-                      <span className="font-medium text-sm  text-[#64748B]">
-                        {patient.name}
-                      </span>
-                    </div>
-                  </td>
+        <td className="px-6 py-4 text-sm text-[#64748B]">
+          {patient.phone}
+        </td>
 
-                  <td className="px-6 py-4 text-sm  text-[#64748B]">
-                    {patient.mobile}
-                  </td>
+        <td className="px-6 py-4 text-sm text-[#64748B]">
+          {patient.role}
+        </td>
 
-                  <td className="px-6 py-4 text-sm  text-[#64748B]">
-                    {patient.age}
-                  </td>
-
-                  <td className="px-6 py-4 text-sm  text-[#64748B]">
-                    {patient.gender}
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td
-                  colSpan={4}
-                  className="py-10 text-center text-black"
-                >
-                  No patients available
-                </td>
-              </tr>
-            )}
-          </tbody>
+        <td className="px-6 py-4 text-sm text-[#64748B]">
+          {patient.sex}
+        </td>
+      </tr>
+    ))
+  ) : (
+    <tr>
+      <td colSpan={4} className="py-10 text-center text-black">
+        No patients available
+      </td>
+    </tr>
+  )}
+</tbody>
         </table>
       </div>
 

@@ -76,13 +76,10 @@ export default function AdminProfilePage() {
                     validationSchema={validationSchema}
                     onSubmit={async (values) => {
                         try {
-                            const formData = new FormData();
-                            formData.append("fullName", values.fullName);
-
                             await dispatch(
                                 updateAdminProfile({
                                     id: values.adminId,
-                                    data: formData,
+                                    fullName: values.fullName,
                                 })
                             ).unwrap();
 

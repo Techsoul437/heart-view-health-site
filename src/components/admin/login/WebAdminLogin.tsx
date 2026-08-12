@@ -9,9 +9,7 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "@/redux/store";
 import { getAdminProfile, loginAdminWithEmail } from "@/redux/Api";
-import { getToken, isSupported } from "firebase/messaging";
-import { app } from "@/lib/firebase"; // <-- adjust path to wherever your initialized Firebase `app` lives
-
+import { requestNotificationPermission } from "@/lib/firebaseMessaging";
 const loginSchema = Yup.object({
   email: Yup.string().email("Invalid email").required("Email is required"),
   password: Yup.string().required("Password is required"),
@@ -36,24 +34,20 @@ async function getFcmTokenSafely(): Promise<string> {
   if (typeof window === "undefined") return "";
 
   try {
-    const supported = await isSupported();
-    if (!supported) return "";
+    const existingToken = localStorage.getItem("fcmToken");
 
-    // Dynamic import keeps `getMessaging` out of the SSR bundle entirely.
-    const { getMessaging } = await import("firebase/messaging");
-    const messaging = getMessaging(app);
+    if (existingToken) {
+      return existingToken;
+    }
 
-    const token = await getToken(messaging, {
-      vapidKey: process.env.NEXT_PUBLIC_FIREBASE_VAPID_KEY,
-    });
+    const token = await requestNotificationPermission();
 
     return token ?? "";
-  } catch (err) {
-    console.log("FCM Error:", err);
+  } catch (error) {
+    console.error("FCM Error:", error);
     return "";
   }
 }
-
 const LeftSide = () => (
   <div className="relative flex flex-col bg-black lg:border-r lg:border-[#45657D]/20">
     <div className="relative z-10 flex h-full flex-col p-7 xl:p-9 gap-6">

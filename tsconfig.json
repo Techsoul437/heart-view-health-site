@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@firebase/messaging": ["./node_modules/@firebase/messaging/dist/esm/src/api.d.ts"]
     }
   },
   "include": [

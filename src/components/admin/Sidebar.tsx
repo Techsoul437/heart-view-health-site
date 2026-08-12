@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
 import {
@@ -13,12 +13,19 @@ import {
   Settings,
   ChevronRight,
   LogOut,
-  LucideIcon,
   Menu,
   X,
+
+  Building2,
+  MessageSquare,
+  ClipboardList,
+  UserCircle,
+  LucideIcon,
+  KeyRound,
 } from "lucide-react";
 
 import Image from "next/image";
+import { useDispatch } from "react-redux";
 
 interface SidebarMenuItem {
   title: string;
@@ -36,15 +43,22 @@ interface SidebarProps {
 
 const iconMap: Record<string, LucideIcon> = {
   dashboard: LayoutDashboard,
+
+  building: Building2,
+
+  inquiry: MessageSquare,
+
+  audit: ClipboardList,
+
   users: Users,
+  staff: ShieldCheck,
   upload: Upload,
   reports: FileText,
-  staff: ShieldCheck,
-  settings: Settings,
+  permission: KeyRound,
+  settings: UserCircle,
 };
 
 export default function Sidebar({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   role = "",
   menuItems = [],
   labName,
@@ -53,7 +67,7 @@ export default function Sidebar({
 }: SidebarProps) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-
+  const dispatch = useDispatch();
   // Initials from userName
   const initials = (userName ?? "")
     .split(" ")
@@ -69,8 +83,18 @@ export default function Sidebar({
     "admin": "/admin",
 
   };
+  const router = useRouter();
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("labProfile");
+    localStorage.removeItem("fcmToken");
+    sessionStorage.clear();
 
-  const loginHref = loginPathMap[role ?? ""] ?? "/lab-admin/login";
+    setIsOpen(false);
+    router.replace(loginHref);
+  };
+  const loginHref = loginPathMap[role ?? ""] ?? "/lab-admin";
 
   return (
     <>
@@ -112,7 +136,7 @@ export default function Sidebar({
           top-0
           z-50
           h-screen
-          w-60
+          w-62
           bg-black
           backdrop-blur-2xl
           transition-transform
@@ -226,23 +250,24 @@ export default function Sidebar({
                 )}
               </div>
 
-            <Link
-              href={loginHref}
-              onClick={() => setIsOpen(false)}
-              className="flex items-center justify-center gap-2 rounded-xl  py-3 text-white transition hover:bg-red-500/10 hover:text-red-400"
-            >
-              <LogOut className="h-5 w-5" />
-            </Link>
+              <Link
+                href={loginHref}
+                onClick={handleLogout}
+                className="flex items-center justify-center gap-2 rounded-xl  py-3 text-white transition hover:bg-red-500/10 hover:text-red-400"
+              >
+                <LogOut className="h-5 w-5" />
+              </Link>
             </div>
           ) : (
-            <Link
-              href={loginHref}
-              onClick={() => setIsOpen(false)}
-              className="flex items-center justify-center gap-2 rounded-xl border border-white/10 py-3 text-white transition hover:bg-red-500/10 hover:text-red-400"
-            >
-              <LogOut className="h-5 w-5" />
-              <span>Logout</span>
-            </Link>
+            // <Link
+            //   href={loginHref}
+            //    onClick={handleLogout}
+            //   className="flex items-center justify-center gap-2 rounded-xl border border-white/10 py-3 text-white transition hover:bg-red-500/10 hover:text-red-400"
+            // >
+            //   <LogOut className="h-5 w-5" />
+            //   <span>Logout</span>
+            // </Link>
+            <></>
           )}
         </div>
       </aside>

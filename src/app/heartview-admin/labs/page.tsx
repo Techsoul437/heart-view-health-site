@@ -2,7 +2,8 @@
 
 import FillButton from "@/Ui/buttons/FillButton";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
+import toast from "react-hot-toast";
 import {
     FiEdit2,
     FiTrash2,
@@ -27,23 +28,45 @@ interface LabItem {
     createdAt?: string;
 }
 
-export default function LabPage() {
-    const [labs, setLabs] = useState<LabItem[]>(() => {
-        if (typeof window !== "undefined") {
-            return JSON.parse(localStorage.getItem("labs") || "[]");
-        }
-        return [];
-    });
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import { getAllLabs, Lab } from "@/redux/Api";
 
+export default function LabPage() {
+    const dispatch = useDispatch<AppDispatch>();
+    
+    // Select from redux
+    const { labs: labsData, loading } = useSelector((state: RootState) => state.getalllabs);
+    
+    // Local state for search/sort
     const [search, setSearch] = useState("");
     const [branchFilter, setBranchFilter] = useState("All");
     const [sortBy, setSortBy] = useState("name-az");
     const [currentPage, setCurrentPage] = useState(1);
+    
+    useEffect(() => {
+        dispatch(getAllLabs());
+    }, [dispatch]);
 
-    const handleDelete = (id: number) => {
-        const updatedLabs = labs.filter((lab) => lab.id !== id);
-        setLabs(updatedLabs);
-        localStorage.setItem("labs", JSON.stringify(updatedLabs));
+    // Format the labs array
+    const labs: LabItem[] = useMemo(() => {
+        if (!labsData) return [];
+        return labsData.map((lab: Lab) => ({
+            id: lab._id as unknown as number, // Cast to unknown then number to satisfy interface, though string would be better if we changed LabItem
+            labName: lab.labName,
+            branchName: lab.branchName || "",
+            branches: 1, // Defaulting as branch count isn't in Lab model
+            location: lab.city || "",
+            contactPerson: lab.fullName || "",
+            mobile: lab.mobile || "",
+            reports: 0,
+            createdAt: lab.createdAt
+        }));
+    }, [labsData]);
+
+    const handleDelete = async (id: number | string) => {
+        // Mock delete for now, in real scenario call delete API
+        toast("Delete feature not implemented on backend yet", { icon: "ℹ️" });
     };
 
     const itemsPerPage = 10;
@@ -206,9 +229,6 @@ export default function LabPage() {
                                 <th className="px-5 py-3 text-left  font-medium text-black">
                                     Lab Name
                                 </th>
-                                <th className="px-5 py-3 text-left  font-medium text-black">
-                                    Branch Name
-                                </th>
 
                                 <th className="px-5 py-3 text-left  font-medium text-black">
                                     Contact Person
@@ -240,9 +260,7 @@ export default function LabPage() {
                                                 </span>
                                             </div>
                                         </td>
-                                        <td className="px-5 py-4 text-sm text-[#64748B]">
-                                            {lab.branchName}
-                                        </td>
+                                     
 
                                         <td className="px-5 py-4 text-sm  text-[#64748B]">
                                             {lab.contactPerson}
@@ -278,7 +296,7 @@ export default function LabPage() {
                                         <td className="px-5 py-4">
                                             <div className="flex items-center gap-2">
                                                 <Link
-                                                    href={`/heartview-admin/labs/add-lab/${lab.id}`}
+                                                    href={`/heartview-admin/labs/edit-lab/${lab.id}`}
                                                     className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 text-blue-500 transition hover:bg-blue-50"
                                                 >
                                                     <FiEdit2 className="" />

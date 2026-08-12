@@ -8,7 +8,10 @@ import { useState, useEffect } from "react";
 import ResetButton from "@/Ui/buttons/ResetButton";
 import SubmitButton from "@/Ui/buttons/SubmitButton";
 import toast from "react-hot-toast";
-
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { registerLabAdmin } from "@/redux/Api";
 const labschema = Yup.object({
   labName: Yup.string()
     .trim()
@@ -50,9 +53,10 @@ const labschema = Yup.object({
 
 });
 export default function AddLabPage() {
+  const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [labs, setlabs] = useState<any[]>([]);
-  const router = useRouter();
   useEffect(() => {
     const loadlabs = () => {
       const storedlabs = JSON.parse(
@@ -107,41 +111,48 @@ export default function AddLabPage() {
           pincode: "",
           gstNumber: "",
           panNumber: "",
-          labLogo: null,
-          licenseFile: null,
+          labType: "Pathology",
+          password: "password123",
         }}
         validationSchema={labschema}
-        onSubmit={(values) => {
-          const labs = JSON.parse(
-            localStorage.getItem("labs") || "[]"
-          );
+        onSubmit={async (values, { setSubmitting }) => {
+          try {
+            const payload = {
+                fullName: values.contactPerson,
+                email: values.email,
+                password: values.password,
+                mobile: values.mobile,
+                labName: values.labName,
+                labType: values.labType,
+                city: values.city,
+                branchName: values.branchName,
+                address: values.address,
+                state: values.state,
+                pincode: values.pincode,
+            };
 
-          const newLab = {
-            id: Date.now(),
-            labId: `LAB${Date.now().toString().slice(-6)}`,
-            ...values,
-            createdAt: new Date().toISOString(),
-          };
-
-          labs.push(newLab);
-
-          localStorage.setItem(
-            "labs",
-            JSON.stringify(labs)
-          );
-
-          toast.success("Lab added successfully");
-
-          setTimeout(() => {
-            router.push("/heartview-admin/labs");
-          }, 1000);
+            const response = await dispatch(registerLabAdmin(payload)).unwrap();
+            
+            if (response.success) {
+                toast.success("Lab added successfully");
+                setTimeout(() => {
+                  router.push("/heartview-admin/labs");
+                }, 1000);
+            } else {
+                toast.error(response.message || "Failed to add lab");
+            }
+          } catch (error: unknown) {
+            toast.error(typeof error === "string" ? error : ("Something went wrong"));
+          } finally {
+            setSubmitting(false);
+          }
         }}
       >
         {({
           touched,
           errors,
           resetForm,
-          setFieldValue,
+          isSubmitting,
         }) => (
           <Form>
             <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">

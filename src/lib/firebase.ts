@@ -1,6 +1,6 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getMessaging, isSupported } from "firebase/messaging";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD9UgR4BiYzqEQxe0eJPBP1zK_bZQHJayU",
@@ -9,30 +9,43 @@ const firebaseConfig = {
   storageBucket: "heartview-a5908.firebasestorage.app",
   messagingSenderId: "1060260729053",
   appId: "1:1060260729053:web:d2166892a7017a45d78b34",
-  measurementId: "G-JYXHGBWQVM"
+  measurementId: "G-JYXHGBWQVM",
 };
-console.log({
-  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-});
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
-import { getFirestore } from "firebase/firestore";
+const app = !getApps().length
+  ? initializeApp(firebaseConfig)
+  : getApp();
 
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
 export { app };
 
-// Messaging (Web)
+// Firebase Cloud Messaging - Web
+// Firebase Cloud Messaging - Web
 export const getFirebaseMessaging = async () => {
-  if (typeof window === "undefined") return null;
+  if (typeof window === "undefined") {
+    return null;
+  }
 
-  const supported = await isSupported();
+  try {
+    const messagingModule = await import("firebase/messaging");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { getMessaging, isSupported } = messagingModule as any;
+    
+    const supported = await isSupported();
+    if (!supported) {
+      console.warn("Firebase Messaging is not supported in this browser.");
+      return null;
+    }
 
-  if (!supported) return null;
+    return getMessaging(app);
+  } catch (error) {
+    console.error(
+      "Firebase Messaging initialization failed:",
+      error
+    );
 
-  return getMessaging(app);
+    return null;
+  }
 };
