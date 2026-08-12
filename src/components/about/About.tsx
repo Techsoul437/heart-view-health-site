@@ -24,7 +24,7 @@ function About() {
       <OurMission></OurMission>
 
       {/* <Hero></Hero> */}
-<WhyHeartview></WhyHeartview>
+      <WhyHeartview></WhyHeartview>
       {/* <WhatDo></WhatDo> */}
       {/* <ReportUnderstand></ReportUnderstand> */}
       <OurApproach></OurApproach>

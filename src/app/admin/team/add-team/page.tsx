@@ -102,16 +102,16 @@ export default function AddTeamPage() {
                     }}
                     validationSchema={TeamSchema}
                     onSubmit={(values) => {
-                        const formData = new FormData();
-                        formData.append("fullName", values.fullName);
-                        formData.append("designation", values.designation);
-                        formData.append("description", values.description);
-                        formData.append("status", values.status);
-                        formData.append("baseUrl", window.location.origin);
-                        if (imageFile) {
-                            formData.append("image", imageFile);
+                        const payload: unknown = {
+                            fullName: values.fullName,
+                            designation: values.designation,
+                            description: values.description,
+                            status: values.status,
+                        };
+                        if (imagePreview) {
+                            payload.image = imagePreview;
                         }
-                        dispatch(addTeam(formData));
+                        dispatch(addTeam(payload));
                     }}
                 >
                     {({ resetForm }) => (

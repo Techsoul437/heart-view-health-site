@@ -3,8 +3,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 
 const API = axios.create({
-  baseURL: "https://api.heartviewhealth.com/api",
-  // baseURL: "http://localhost:3000/api",
+  // baseURL: "https://api.heartviewhealth.com/api",
+  baseURL: "http://localhost:3000/api",
 
 });
 
@@ -840,7 +840,7 @@ export interface AddTeamPayload {
   designation: string;
   description?: string;
   status?: "Active" | "Inactive";
-  baseUrl?: string;
+  image?: string;
 }
 
 export interface UpdateTeamPayload {
@@ -848,7 +848,7 @@ export interface UpdateTeamPayload {
   designation?: string;
   description?: string;
   status?: "Active" | "Inactive";
-  baseUrl?: string;
+  image?: string;
 }
 
 export interface AddTeamResponse {
@@ -2461,9 +2461,9 @@ export const getBlogById = createAsyncThunk<
 
 export const addTeam = createAsyncThunk<
   TeamResponse,
-  FormData,
+  AddTeamPayload,
   { rejectValue: string }
->("team/addTeam", async (formData, { rejectWithValue }) => {
+>("team/addTeam", async (payload, { rejectWithValue }) => {
   try {
     const token = localStorage.getItem("accessToken");
 
@@ -2473,11 +2473,11 @@ export const addTeam = createAsyncThunk<
 
     const response = await API.post<TeamResponse>(
       "/team/add",
-      formData,
+      payload,
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
       }
     );
@@ -2521,14 +2521,23 @@ export const getTeams = createAsyncThunk<
 // =========================
 export const getImageUrl = (imagePath: string | undefined) => {
   if (!imagePath) return "";
-  if (imagePath.startsWith("http")) return imagePath;
+  if (imagePath.startsWith("http") || imagePath.startsWith("data:image")) return imagePath;
+  
   let normalizedPath = imagePath.replace(/\\/g, "/");
   if (normalizedPath.startsWith("public/")) {
     normalizedPath = normalizedPath.replace("public/", "");
   }
   
-  // Return relative path so it uses Next.js rewrites to proxy to backend
-  return `${normalizedPath.startsWith("/") ? "" : "/"}${normalizedPath}`;
+  const leadingSlash = normalizedPath.startsWith("/") ? "" : "/";
+  const finalPath = `${leadingSlash}${normalizedPath}`;
+
+  // Attach the base URL explicitly using the frontend's origin to avoid CORS 
+  // (Next.js will proxy it to the backend via rewrites)
+  if (typeof window !== "undefined") {
+    return `${window.location.origin}${finalPath}`;
+  }
+  
+  return finalPath;
 };
 export const getTeamById = createAsyncThunk<
   TeamResponse,

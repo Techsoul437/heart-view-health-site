@@ -31,8 +31,8 @@ const principles = [
     icon: FaShieldAlt,
   },
   {
-    title: "Evidence-based content.",
-    desc: "Our blog and in-app insights are grounded in established medical guidelines and peer-reviewed research, not trends or anecdote.",
+    title: "Research-informed content.",
+    desc: "Our health information is developed using reputable medical and public-health sources and is reviewed and updated as appropriate.",
     icon: FaBookMedical,
   },
 ];

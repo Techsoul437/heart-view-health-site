@@ -18,8 +18,7 @@ function Hero() {
           <div className="text-black">
 
             <h1 className="heading-font text-2xl md:text-3xl lg:text-4xl font-medium text-black leading-tight tracking-tight mb-3 max-w-xl">
-              Manage Your Health Information in One Place
-
+            Manage Your Health Information in One Place
             </h1>
 
             <p className="text-base sm:text-lg text-[#64748B]  leading-relaxed font-light lg:max-w-xl">

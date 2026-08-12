@@ -63,7 +63,7 @@ export default function HealthGuidesSection() {
       <div className="max-w-8xl mx-auto relative mb-16">
 
         {/* SVG Zig-Zag Connector (Hidden on Mobile) */}
-        <div className="hidden lg:block absolute top-[88px] left-[10%] w-[80%] h-[128px] z-0">
+        <div className="hidden lg:block absolute top-22 left-[10%] w-[80%] h-32 z-0">
           <svg viewBox="0 0 400 128" preserveAspectRatio="none" className="w-full h-full overflow-visible">
             {/* The main dotted line */}
             <path d="M 0,0 L 100,128 L 200,0 L 300,128 L 400,0" stroke="#2f5ba5" strokeOpacity="0.4" strokeWidth="2" strokeDasharray="6 6" fill="none" />
@@ -110,7 +110,7 @@ export default function HealthGuidesSection() {
                 {item.title}
               </h2>
 
-              <p className="text-base sm:text-lg   xl:max-w-xl text-[#64748B]   leading-relaxed font-light text-center line-clamp-2">
+              <p className="text-base sm:text-lg   xl:max-w-xl text-[#64748B]  mt-4  leading-relaxed font-light text-center ">
 
                 {item.desc}
               </p>

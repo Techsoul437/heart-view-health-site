@@ -25,10 +25,16 @@ const nextConfig = {
   compress: true,
 
   async rewrites() {
+    // Only proxy uploads in production.
+    // Locally backend and frontend are both running on port 3000.
+    if (isDev) {
+      return [];
+    }
+
     return [
       {
-        source: '/uploads/:path*',
-        destination: 'http://localhost:3000/uploads/:path*',
+        source: "/uploads/:path*",
+        destination: "https://api.heartviewhealth.com/uploads/:path*",
       },
     ];
   },
@@ -54,19 +60,24 @@ const nextConfig = {
             key: "Permissions-Policy",
             value: "camera=(), microphone=(), geolocation=()",
           },
-   {
-  key: "Content-Security-Policy",
-  value: `
-    default-src 'self';
-    script-src 'self' 'unsafe-inline' ${
-      isDev ? "'unsafe-eval'" : ""
-    } https://www.gstatic.com https://www.google.com https://www.gstatic.cn https://www.recaptcha.net;
-    frame-src https://www.google.com https://recaptcha.google.com https://www.recaptcha.net;
-    connect-src 'self' https://*.googleapis.com https://securetoken.googleapis.com https://identitytoolkit.googleapis.com https://www.googleapis.com https://firebaseinstallations.googleapis.com;
-    img-src 'self' data: https: http://localhost:*;
-    style-src 'self' 'unsafe-inline';
-  `.replace(/\n/g, " "),
-}
+          {
+            key: "Content-Security-Policy",
+            value: `
+              default-src 'self';
+              script-src 'self' 'unsafe-inline' ${
+                isDev ? "'unsafe-eval'" : ""
+              } https://www.gstatic.com https://www.google.com https://www.gstatic.cn https://www.recaptcha.net;
+              frame-src https://www.google.com https://recaptcha.google.com https://www.recaptcha.net;
+              connect-src 'self'
+                https://*.googleapis.com
+                https://securetoken.googleapis.com
+                https://identitytoolkit.googleapis.com
+                https://www.googleapis.com
+                https://firebaseinstallations.googleapis.com;
+              img-src 'self' data: https: http://localhost:*;
+              style-src 'self' 'unsafe-inline';
+            `.replace(/\s+/g, " "),
+          },
         ],
       },
     ];

@@ -136,7 +136,6 @@ export default function EditTeamPage() {
                         formData.append("designation", values.designation);
                         formData.append("description", values.description);
                         formData.append("status", values.status);
-                        formData.append("baseUrl", window.location.origin);
                         if (imageFile) {
                             formData.append("image", imageFile);
                         }

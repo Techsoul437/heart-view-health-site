@@ -10,32 +10,32 @@ import {
 } from "react-icons/fa";
 
 function SecurityPrivacy() {
-    const securityItems = [
-        {
-            icon: <FaShieldAlt />,
-            title: "Secure Infrastructure",
-            description:
-                "Built on a reliable foundation designed to support secure and dependable access.",
-        },
-        {
-            icon: <FaLock />,
-            title: "Data Privacy",
-            description:
-                "Health information is handled with privacy-focused practices and controlled access.",
-        },
-        {
-            icon: <FaDatabase />,
-            title: "Encrypted Storage",
-            description:
-                "Sensitive data is protected through secure storage and encryption standards.",
-        },
-        {
-            icon: <FaEye />,
-            title: "Transparency",
-            description:
-                "Clear information practices help users understand how their data is managed.",
-        },
-    ];
+  const securityItems = [
+    {
+        icon: <FaLock />,
+        title: "Secure Infrastructure",
+        description:
+            "Built on a reliable foundation designed to support secure and dependable access.",
+    },
+    {
+        icon: <FaShieldAlt />,
+        title: "Data Privacy",
+        description:
+            "Health information is handled with privacy-focused practices and controlled access.",
+    },
+    {
+        icon: <FaDatabase />,
+        title: "Secure Data Storage",
+        description:
+            "Health information is stored using appropriate security controls designed to help protect sensitive data.",
+    },
+    {
+        icon: <FaEye />,
+        title: "Transparency",
+        description:
+            "Clear information helps users understand how their data is collected, used, stored, and managed.",
+    },
+];
 
     return (
         <section className="w-full max-w-8xl mx-auto mt-10 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 relative">
@@ -43,14 +43,12 @@ function SecurityPrivacy() {
 
                 <Headerbadge
                     tag="Security & Privacy"
-                    text="Your Health Information Deserves the Highest Level of Protection"
+                    text="Protecting Your Health Information"
                 />
 
 
                 <p className="max-w-4xl mx-auto text-center text-[#64748B] text-base sm:text-lg font-light  leading-relaxed">
-                    HeartView Health is designed with security and privacy at its core,
-                    helping ensure that health information remains protected, responsibly
-                    managed, and accessible only through trusted platform experiences.
+                   HeartView Health is designed with security and privacy in mind to help protect your health information and provide transparency about how your data is managed.
                 </p>
                 <div className="h-1 w-20  mt-6 mx-auto bg-gradient-to-r from-transparent via-[#2f5ba5]/70 to-transparent"></div>
 
