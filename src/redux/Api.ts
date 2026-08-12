@@ -829,6 +829,9 @@ export interface UpdateAdminProfileResponse {
   data: AdminProfile;
 }
 
+export type AdminData = AdminProfile;
+export type AdminProfileResponse = GetAdminProfileResponse;
+
 export interface AdminLoginPayload {
   email: string;
   password: string;
@@ -853,17 +856,6 @@ export interface AdminLoginResponse {
   data: AdminUser;
   accessToken: string;
   refreshToken: string;
-}
-
-export interface GetAdminProfileResponse {
-  success: boolean;
-  data: AdminUser;
-}
-
-export interface UpdateAdminProfileResponse {
-  success: boolean;
-  message: string;
-  data: AdminUser;
 }
 
 export const getAllUsers = createAsyncThunk<
