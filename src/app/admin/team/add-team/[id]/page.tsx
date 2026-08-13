@@ -131,15 +131,16 @@ export default function EditTeamPage() {
                     validationSchema={TeamSchema}
                     enableReinitialize
                     onSubmit={(values) => {
-                        const formData = new FormData();
-                        formData.append("fullName", values.fullName);
-                        formData.append("designation", values.designation);
-                        formData.append("description", values.description);
-                        formData.append("status", values.status);
-                        if (imageFile) {
-                            formData.append("image", imageFile);
+                        const payload: Record<string, string> = {
+                            fullName: values.fullName,
+                            designation: values.designation,
+                            description: values.description,
+                            status: values.status,
+                        };
+                        if (imageFile && imagePreview) {
+                            payload.image = imagePreview;
                         }
-                        dispatch(updateTeam({ id: teamId, formData }));
+                        dispatch(updateTeam({ id: teamId, formData: payload }));
                     }}
                 >
                     {({ resetForm }) => (

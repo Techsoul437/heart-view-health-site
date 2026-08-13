@@ -6,7 +6,7 @@ import { getAllInquiry, getBlogs, getTeams } from '@/redux/Api';
 import Link from 'next/link';
 import { FiMessageSquare, FiFileText, FiUsers, FiClock } from "react-icons/fi";
 
-export default function HeartviewAdminDashboard() {
+export default function AdminDashboard() {
     const dispatch = useDispatch<AppDispatch>();
 
     const { data: profile } = useSelector((state: RootState) => state.adminProfile);
@@ -66,7 +66,7 @@ export default function HeartviewAdminDashboard() {
             <div className="mb-6 flex flex-wrap items-start justify-between gap-5">
                 <div>
                     <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
-                        HeartView Dashboard
+                        Admin Dashboard
                     </h1>
                     <p className="mt-1 text-[#64748B] leading-relaxed font-light">
                         Welcome back, {profile?.fullName || 'Admin'}
@@ -83,9 +83,9 @@ export default function HeartviewAdminDashboard() {
                         <div className="min-w-0 flex-1">
                             <p className="text-[#64748B] line-clamp-none lg:line-clamp-2 lg:h-12 xl:h-6 leading-6">Inquiries</p>
                             <h3 className="mt-1 text-2xl font-bold text-black">{loadingInquiries ? '...' : totalInquiries.toLocaleString()}</h3>
-                            <p className="mt-2 flex items-center gap-1 text-sm font-medium text-emerald-500 whitespace-nowrap">
+                            {/* <p className="mt-2 flex items-center gap-1 text-sm font-medium text-emerald-500 whitespace-nowrap">
                                 <span>+18%</span><span>vs yesterday</span><span>↑</span>
-                            </p>
+                            </p> */}
                         </div>
                         <div style={{ backgroundColor: "rgba(59,130,246,0.1)" }} className="mt-0.5 flex h-12 w-12 xl:h-12 xl:w-12 flex-shrink-0 items-center justify-center rounded-lg xl:rounded-xl border border-black/5">
                             <FiMessageSquare className="text-lg xl:text-2xl text-blue-600" />
@@ -100,9 +100,9 @@ export default function HeartviewAdminDashboard() {
                         <div className="min-w-0 flex-1">
                             <p className="text-[#64748B] line-clamp-none lg:line-clamp-2 lg:h-12 xl:h-6 leading-6">Blog Posts</p>
                             <h3 className="mt-1 text-2xl font-bold text-black">{loadingBlogs ? '...' : totalBlogs.toLocaleString()}</h3>
-                            <p className="mt-2 flex items-center gap-1 text-sm font-medium text-emerald-500 whitespace-nowrap">
+                            {/* <p className="mt-2 flex items-center gap-1 text-sm font-medium text-emerald-500 whitespace-nowrap">
                                 <span>+5%</span><span>vs yesterday</span><span>↑</span>
-                            </p>
+                            </p> */}
                         </div>
                         <div style={{ backgroundColor: "rgba(168,85,247,0.1)" }} className="mt-0.5 flex h-12 w-12 xl:h-12 xl:w-12 flex-shrink-0 items-center justify-center rounded-lg xl:rounded-xl border border-black/5">
                             <FiFileText className="text-lg xl:text-2xl text-purple-600" />
@@ -117,9 +117,9 @@ export default function HeartviewAdminDashboard() {
                         <div className="min-w-0 flex-1">
                             <p className="text-[#64748B] line-clamp-none lg:line-clamp-2 lg:h-12 xl:h-6 leading-6">Team Members</p>
                             <h3 className="mt-1 text-2xl font-bold text-black">{loadingTeams ? '...' : totalTeams.toLocaleString()}</h3>
-                            <p className="mt-2 flex items-center gap-1 text-sm font-medium text-emerald-500 whitespace-nowrap">
+                            {/* <p className="mt-2 flex items-center gap-1 text-sm font-medium text-emerald-500 whitespace-nowrap">
                                 <span>+12%</span><span>vs yesterday</span><span>↑</span>
-                            </p>
+                            </p> */}
                         </div>
                         <div style={{ backgroundColor: "rgba(34,197,94,0.1)" }} className="mt-0.5 flex h-12 w-12 xl:h-12 xl:w-12 flex-shrink-0 items-center justify-center rounded-lg xl:rounded-xl border border-black/5">
                             <FiUsers className="text-lg xl:text-2xl text-green-600" />
@@ -134,9 +134,9 @@ export default function HeartviewAdminDashboard() {
                         <div className="min-w-0 flex-1">
                             <p className="text-[#64748B] line-clamp-none lg:line-clamp-2 lg:h-12 xl:h-6 leading-6">Today Inquiries</p>
                             <h3 className="mt-1 text-2xl font-bold text-black">{loadingInquiries ? '...' : unreadInquiries.toLocaleString()}</h3>
-                            <p className="mt-2 flex items-center gap-1 text-sm font-medium text-emerald-500 whitespace-nowrap">
+                            {/* <p className="mt-2 flex items-center gap-1 text-sm font-medium text-emerald-500 whitespace-nowrap">
                                 <span>+22%</span><span>vs yesterday</span><span>↑</span>
-                            </p>
+                            </p> */}
                         </div>
                         <div style={{ backgroundColor: "rgba(249,115,22,0.1)" }} className="mt-0.5 flex h-12 w-12 xl:h-12 xl:w-12 flex-shrink-0 items-center justify-center rounded-lg xl:rounded-xl border border-black/5">
                             <FiClock className="text-lg xl:text-2xl text-orange-600" />

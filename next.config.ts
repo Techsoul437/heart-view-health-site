@@ -22,15 +22,19 @@ const nextConfig = {
     ],
   },
 
-  transpilePackages: ['ckeditor5', 'ckeditor5-premium-features'],
+  transpilePackages: ["ckeditor5", "ckeditor5-premium-features"],
 
   compress: true,
 
   async rewrites() {
-    // Only proxy uploads in production.
-    // Locally backend and frontend are both running on port 3000.
     if (isDev) {
-      return [];
+      return [
+        {
+          // Proxy API requests to bypass CORS in local development
+          source: "/api-proxy/:path*",
+          destination: "https://api.heartviewhealth.com/api/:path*",
+        },
+      ];
     }
 
     return [

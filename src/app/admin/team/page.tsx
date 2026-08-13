@@ -41,7 +41,6 @@ export default function TeamManagementPage() {
     useEffect(() => {
         if (success && selectedId) {
             // eslint-disable-next-line react-hooks/set-state-in-effect
-            setOpenDeleteModal(false);
             setSelectedId(null);
             dispatch(getTeams());
             dispatch(resetTeamState());
@@ -242,6 +241,7 @@ export default function TeamManagementPage() {
                 onConfirm={() => {
                     if (selectedId) {
                         dispatch(deleteTeam(selectedId));
+                        setOpenDeleteModal(false);
                     }
                 }}
                 title="Delete Team Member"

@@ -2567,7 +2567,7 @@ export const getTeamById = createAsyncThunk<
 
 export const updateTeam = createAsyncThunk<
   TeamResponse,
-  { id: string; formData: FormData },
+  { id: string; formData: UpdateTeamPayload },
   { rejectValue: string }
 >("team/updateTeam", async ({ id, formData }, { rejectWithValue }) => {
   try {
@@ -2583,7 +2583,7 @@ export const updateTeam = createAsyncThunk<
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
       }
     );

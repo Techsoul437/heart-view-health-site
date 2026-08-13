@@ -193,11 +193,11 @@ const data = {
                 {data[key].toLocaleString()}
               </h3>
 
-              <p className="mt-2 flex items-center gap-1 text-sm font-medium text-emerald-500 whitespace-nowrap">
+              {/* <p className="mt-2 flex items-center gap-1 text-sm font-medium text-emerald-500 whitespace-nowrap">
                 <span>{trend}</span>
                 <span>vs yesterday</span>
                 <span>↑</span>
-              </p>
+              </p> */}
             </div>
 
             {/* Right Icon — overflow-hidden nahi, inline bg, responsive size */}
