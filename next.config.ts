@@ -69,6 +69,9 @@ const nextConfig = {
               } https://www.gstatic.com https://www.google.com https://www.gstatic.cn https://www.recaptcha.net;
               frame-src https://www.google.com https://recaptcha.google.com https://www.recaptcha.net;
               connect-src 'self'
+               https://api.heartviewhealth.com
+               https://www.heartviewhealth.com
+               https://heartviewhealth.com
                 https://*.googleapis.com
                 https://securetoken.googleapis.com
                 https://identitytoolkit.googleapis.com
