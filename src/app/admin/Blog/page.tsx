@@ -176,7 +176,7 @@ export default function BlogListPage() {
                         Manage all your blog articles.
                     </p>
                 </div>
-                <FillButton text="Add Blog" href={`${baseUrl}/Blog/add`} />
+                <FillButton text="Add Blog" href="/admin/Blog/add" />
             </div>
 
             {/* MAIN CARD */}

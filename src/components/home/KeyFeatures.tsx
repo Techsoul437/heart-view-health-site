@@ -10,19 +10,19 @@ const leftFeatures = [
     num: "01",
     title: "Health Dashboard",
     desc: "View available health information from one organized dashboard.",
-    icon: <LayoutDashboard className="text-[#2f5ba5]" size={40} strokeWidth={1.5} />,
+    icon: <LayoutDashboard className="text-[#2f5ba5] w-7 h-7 md:w-10 md:h-10" strokeWidth={1.5} />,
   },
   {
     num: "02",
     title: "Health Measurements",
     desc: "Record and review supported measurements including heart rate, blood pressure, SpO₂, weight and other available health metrics.",
-    icon: <HeartPulse className="text-[#2f5ba5]" size={40} strokeWidth={1.5} />,
+    icon: <HeartPulse className="text-[#2f5ba5] w-7 h-7 md:w-10 md:h-10" strokeWidth={1.5} />,
   },
   {
     num: "03",
     title: "Laboratory Reports",
     desc: "Access laboratory reports that have been securely associated with your account.",
-    icon: <FlaskConical className="text-[#2f5ba5]" size={40} strokeWidth={1.5} />,
+    icon: <FlaskConical className="text-[#2f5ba5] w-7 h-7 md:w-10 md:h-10" strokeWidth={1.5} />,
   },
 ];
 
@@ -31,19 +31,19 @@ const rightFeatures = [
     num: "04",
     title: "Report History",
     desc: "Review previous reports and measurements to keep your health information organized over time.",
-    icon: <FileClock className="text-[#2f5ba5]" size={40} strokeWidth={1.5} />,
+    icon: <FileClock className="text-[#2f5ba5] w-7 h-7 md:w-10 md:h-10" strokeWidth={1.5} />,
   },
   {
     num: "05",
     title: "Health Trends",
     desc: "Compare supported measurements across different dates and monitor changes in your recorded data.",
-    icon: <LineChart className="text-[#2f5ba5]" size={40} strokeWidth={1.5} />,
+    icon: <LineChart className="text-[#2f5ba5] w-7 h-7 md:w-10 md:h-10" strokeWidth={1.5} />,
   },
   {
     num: "06",
     title: "Health Insights",
     desc: "View simplified information for supported health measurements and report values.",
-    icon: <BarChart2 className="text-[#2f5ba5]" size={40} strokeWidth={1.5} />,
+    icon: <BarChart2 className="text-[#2f5ba5] w-7 h-7 md:w-10 md:h-10" strokeWidth={1.5} />,
   },
 ];
 

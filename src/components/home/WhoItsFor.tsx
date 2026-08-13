@@ -9,22 +9,22 @@ const audiences = [
   {
     title: "Individuals",
     desc: "Keep your health information and laboratory reports organized in one place.",
-    icon: <User className="text-[#2f5ba5]" size={32} strokeWidth={1.5} />,
+    icon: <User className="text-[#2f5ba5] w-6 h-6 sm:w-8 sm:h-8" strokeWidth={1.5} />,
   },
   {
     title: "Health-Conscious Users",
     desc: "Track supported health measurements and review changes over time.",
-    icon: <HeartPulse className="text-[#2f5ba5]" size={32} strokeWidth={1.5} />,
+    icon: <HeartPulse className="text-[#2f5ba5] w-6 h-6 sm:w-8 sm:h-8" strokeWidth={1.5} />,
   },
   {
     title: "Families",
     desc: "Keep important health records easier to access and manage.",
-    icon: <Users className="text-[#2f5ba5]" size={32} strokeWidth={1.5} />,
+    icon: <Users className="text-[#2f5ba5] w-6 h-6 sm:w-8 sm:h-8" strokeWidth={1.5} />,
   },
   {
     title: "Participating Laboratories",
     desc: "Digitally deliver laboratory reports to verified users through the HeartView Lab Portal.",
-    icon: <FlaskConical className="text-[#2f5ba5]" size={32} strokeWidth={1.5} />,
+    icon: <FlaskConical className="text-[#2f5ba5] w-6 h-6 sm:w-8 sm:h-8" strokeWidth={1.5} />,
   },
 ];
 
@@ -70,20 +70,13 @@ export default function WhoItsFor() {
                 </div>
               )}
 
-              {/* Horizontal Divider (Mobile/Tablet) */}
-              {i !== audiences.length - 1 && (
-                <div className="lg:hidden absolute -bottom-6 left-[20%] right-[20%] h-[1px] items-center justify-center z-0">
-                  <div className="h-[1px] w-full border-b border-dashed border-[#2f5ba5]/30 relative flex items-center justify-center">
-                    <div className="w-2 h-2 rounded-full bg-[#4285f4] shadow-sm absolute"></div>
-                  </div>
-                </div>
-              )}
+
 
               {/* Icon Container with glowing background */}
-              <div className="relative mb-8">
+              <div className="relative mb-2 sm:mb-8">
                 <div className="absolute inset-0 bg-[#eef4ff] blur-xl rounded-full opacity-70 scale-125"></div>
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white border border-[#2f5ba5]/10 flex items-center justify-center shadow-sm relative z-10 shrink-0 aspect-square">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-[#2f5ba5]/20 flex items-center justify-center bg-white shadow-sm">
+                <div className="w-16 h-16 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full bg-white border border-[#2f5ba5]/10 flex items-center justify-center shadow-sm relative z-10 shrink-0 aspect-square">
+                  <div className="w-10 h-10 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-full border border-[#2f5ba5]/20 flex items-center justify-center bg-white shadow-sm">
                     {item.icon}
                   </div>
                 </div>

@@ -16,13 +16,7 @@ import { addBlog } from "@/redux/Api";
 import type { AppDispatch } from "@/redux/store";
 import type { BlogContent } from "@/redux/Api";
 
-const editorConfig = {
-    licenseKey: "GPL",
-    toolbar: [
-        "undo", "redo", "|", "heading", "|", "bold", "italic", "link", "insertImage", "blockQuote", "codeBlock",
-    ],
-    image: { toolbar: ["imageTextAlternative"] },
-};
+// editorConfig is built dynamically inside the component to use ck plugins.
 
 /* EditorComponent and ClassicEditorBuild are loaded client-side inside the component */
 
@@ -180,6 +174,8 @@ export default function AddBlogPage() {
     const [EditorComponent, setEditorComponent] = useState<any>(null);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [ClassicEditorBuild, setClassicEditorBuild] = useState<any>(null);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [editorConfig, setEditorConfig] = useState<any>(null);
 
     useEffect(() => {
         let mounted = true;
@@ -189,13 +185,34 @@ export default function AddBlogPage() {
             try {
                 const mod = await import("@ckeditor/ckeditor5-react");
                 const ck = await import("ckeditor5");
+                await import("ckeditor5/ckeditor5.css");
 
                 if (!mounted) return;
 
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                setEditorComponent((mod as any).CKEditor || (mod as any).default || mod);
+                setEditorComponent(() => (mod as any).CKEditor || (mod as any).default || mod);
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                setClassicEditorBuild((ck as any).ClassicEditor || (ck as any).default || ck);
+                setClassicEditorBuild(() => (ck as any).ClassicEditor || (ck as any).default || ck);
+
+                setEditorConfig({
+                    licenseKey: "GPL",
+                    plugins: [
+                        ck.Essentials, ck.Paragraph, ck.Heading, ck.Bold, ck.Italic, ck.Underline, ck.Strikethrough,
+                        ck.Font, ck.Alignment, ck.List, ck.Link, ck.Image, ck.ImageToolbar, ck.ImageUpload,
+                        ck.ImageCaption, ck.ImageStyle, ck.ImageInsert, ck.AutoImage, ck.Base64UploadAdapter,
+                        ck.BlockQuote, ck.CodeBlock, ck.RemoveFormat, ck.Undo, ck.Table, ck.TableToolbar,
+                    ],
+                    toolbar: [
+                        "undo", "redo", "|", "heading", "|", "fontFamily", "fontSize",
+                        "fontColor", "fontBackgroundColor", "|", "bold", "italic", "underline",
+                        "strikethrough", "|", "alignment", "|", "numberedList", "bulletedList",
+                        "|", "link", "insertImage", "insertTable", "blockQuote", "codeBlock", "|", "removeFormat",
+                    ],
+                    image: { toolbar: ["imageTextAlternative", "toggleImageCaption", "imageStyle:inline", "imageStyle:block", "imageStyle:side"] },
+                    table: {
+                        contentToolbar: ["tableColumn", "tableRow", "mergeTableCells"]
+                    }
+                });
             } catch (e) {
                 // eslint-disable-next-line no-console
                 console.error("Failed to load CKEditor on client:", e);
@@ -346,7 +363,7 @@ export default function AddBlogPage() {
                             <div className="flex flex-col gap-2">
                                 <label className="font-medium">Blog content <span className="text-red-500">*</span></label>
                                 <div className="ck-editor-wrapper overflow-hidden rounded-xl border border-black/10 [&_.ck-content]:min-h-64 [&_.ck-editor__editable]:border-x-0 [&_.ck-editor__editable]:border-b-0 [&_.ck-toolbar]:border-x-0 [&_.ck-toolbar]:border-t-0">
-                                    {EditorComponent && ClassicEditorBuild ? (
+                                    {EditorComponent && ClassicEditorBuild && editorConfig ? (
                                         <EditorComponent
                                             editor={ClassicEditorBuild}
                                             config={editorConfig}
@@ -444,6 +461,9 @@ export default function AddBlogPage() {
                     color: #1d7daf;
                     text-decoration: underline;
                 }
+                .ck-editor-wrapper .ck-content table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+                .ck-editor-wrapper .ck-content table td, .ck-editor-wrapper .ck-content table th { border: 1px solid #cbd5e1; padding: 0.5rem; }
+                .ck-editor-wrapper .ck-content table th { background-color: #f8fafc; font-weight: 600; text-align: left; }
             `}</style>
         </div>
     );

@@ -10,31 +10,31 @@ const guides = [
     num: "01",
     title: "Heart Health",
     desc: "Understand your heart, risk factors and ways to keep it healthy.",
-    icon: <HeartPulse className="text-[#2f5ba5]" size={36} strokeWidth={1.5} />,
+    icon: <HeartPulse className="text-[#2f5ba5]" size={24} strokeWidth={1.5} />,
   },
   {
     num: "02",
     title: "Laboratory Tests",
     desc: "Learn about common lab tests and what your results mean.",
-    icon: <FlaskConical className="text-[#2f5ba5]" size={36} strokeWidth={1.5} />,
+    icon: <FlaskConical className="text-[#2f5ba5]" size={24} strokeWidth={1.5} />,
   },
   {
     num: "03",
     title: "Diabetes & Blood Sugar",
     desc: "Explore blood sugar management and tips for a healthier you.",
-    icon: <Activity className="text-[#2f5ba5]" size={36} strokeWidth={1.5} />,
+    icon: <Activity className="text-[#2f5ba5]" size={24} strokeWidth={1.5} />,
   },
   {
     num: "04",
     title: "Cholesterol",
     desc: "Understand cholesterol levels and how they affect your health.",
-    icon: <Droplet className="text-[#2f5ba5]" size={36} strokeWidth={1.5} />,
+    icon: <Droplet className="text-[#2f5ba5]" size={24} strokeWidth={1.5} />,
   },
   {
     num: "05",
     title: "General Health",
     desc: "Read about daily habits, prevention and overall well-being.",
-    icon: <ShieldPlus className="text-[#2f5ba5]" size={36} strokeWidth={1.5} />,
+    icon: <ShieldPlus className="text-[#2f5ba5]" size={24} strokeWidth={1.5} />,
   },
 ];
 
@@ -76,8 +76,7 @@ export default function HealthGuidesSection() {
           <div className="absolute top-1/2 left-[87.5%] -translate-x-1/2 -translate-y-1/2 w-[14px] h-[14px] rounded-full bg-[#2f5ba5] shadow-sm border-2 border-white"></div>
         </div>
 
-        {/* Mobile Vertical Connector */}
-        <div className="lg:hidden absolute top-8 bottom-8 left-1/2 -translate-x-1/2 w-[2px] bg-transparent border-l-2 border-dashed border-[#2f5ba5]/40 z-0"></div>
+
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-y-12 lg:gap-y-0 relative z-10">
           {guides.map((item, i) => (
@@ -95,10 +94,10 @@ export default function HealthGuidesSection() {
               </span>
 
               {/* Icon Container with glowing background */}
-              <div className="relative mb-6">
+              <div className="relative mb-2 sm:mb-6">
                 <div className="absolute inset-0 bg-[#eef4ff] blur-md rounded-full opacity-50 scale-125"></div>
-                <div className="w-24 h-24 rounded-full bg-white border border-[#2f5ba5]/10 flex items-center justify-center shadow-sm relative z-10 shrink-0 aspect-square">
-                  <div className="w-16 h-16 rounded-full border-2 border-[#2f5ba5]/20 flex items-center justify-center bg-white shadow-sm">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white border border-[#2f5ba5]/10 flex items-center justify-center shadow-sm relative z-10 shrink-0 aspect-square">
+                  <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full border-2 border-[#2f5ba5]/20 flex items-center justify-center bg-white shadow-sm">
                     {item.icon}
                   </div>
                 </div>

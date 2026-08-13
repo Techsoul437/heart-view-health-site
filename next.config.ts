@@ -22,6 +22,8 @@ const nextConfig = {
     ],
   },
 
+  transpilePackages: ['ckeditor5', 'ckeditor5-premium-features'],
+
   compress: true,
 
   async rewrites() {
@@ -70,6 +72,8 @@ const nextConfig = {
               frame-src https://www.google.com https://recaptcha.google.com https://www.recaptcha.net;
               connect-src 'self'
                https://api.heartviewhealth.com
+                   http://localhost:3001
+                   http://localhost:3000
                https://www.heartviewhealth.com
                https://heartviewhealth.com
                 https://*.googleapis.com

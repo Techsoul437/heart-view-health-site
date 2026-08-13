@@ -22,12 +22,11 @@ function Hero() {
             </h1>
 
             <p className="text-base sm:text-lg text-[#64748B]  leading-relaxed font-light lg:max-w-xl">
-              HeartView Health helps you organize your health information, track supported health measurements, access
-              laboratory reports, and review your health history over time.
+           Store laboratory reports, track health measurements, review health history, and understand your health information through one organized platform. 
             </p>
-            <p className="text-base sm:text-lg text-[#64748B] mt-4  leading-relaxed font-light lg:max-w-xl">
+            {/* <p className="text-base sm:text-lg text-[#64748B] mt-4  leading-relaxed font-light lg:max-w-xl">
               Keep your important health information organized and easier to understand from one secure platform
-            </p>
+            </p> */}
             {/* Buttons */}
             <div className="flex flex-wrap gap-4 py-6 items-center">
               <FillButton text="Explore Features" href="/features" />

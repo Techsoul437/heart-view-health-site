@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/Ui/navbar/Navbar";
 import Image from "next/image";
 import FinalCTA from "@/Ui/cta/FinalCTA";
-import { Plus, X } from "lucide-react";
+import { Plus, X, ShieldCheck } from "lucide-react";
 import Footer from "@/Ui/footer/Footer";
 
 export default function BlogDetails({
@@ -74,12 +74,19 @@ const categoryLabels: Record<string, string> = {
           </h1>
 
           {/* CATEGORY */}
-          <span className="inline-block text-xs font-semibold tracking-widest text-[#2f5ba5] uppercase border border-[#2f5ba5] rounded-full px-4 py-1">
-              {categoryLabels[blog.category.toLowerCase()] || blog.category}
-          </span>
+          <div className="flex flex-wrap gap-2">
+            {blog.category.split(',').map((cat, idx) => {
+              const cleanCat = cat.trim();
+              return (
+                <span key={idx} className="inline-block text-xs font-semibold tracking-widest text-[#2f5ba5] uppercase border border-[#2f5ba5] rounded-full px-4 py-1">
+                  {categoryLabels[cleanCat.toLowerCase()] || cleanCat}
+                </span>
+              );
+            })}
+          </div>
 
           {/* HERO IMAGE */}
-          <div className="relative w-full lg:h-120 h-60 mt-10 xl:h-170 sm:h-130 md:h-100 my-3   rounded-2xl overflow-hidden">
+          <div className="relative w-full lg:h-120 h-60 mt-10 xl:h-150 sm:h-130 md:h-100 my-3   rounded-2xl overflow-hidden">
             {blog.mainImage && (
               <Image
                 src={blog.mainImage}
@@ -129,6 +136,8 @@ const categoryLabels: Record<string, string> = {
               ))}
             </div>
           ))}
+
+          
 
           {/* FAQ ACCORDION */}
           {blog.faq?.length > 0 && (
@@ -203,7 +212,18 @@ const categoryLabels: Record<string, string> = {
               </div>
             </div>
           )}
-
+{/* MEDICAL DISCLAIMER */}
+          <div className="mt-8 mb-10 bg-[#f5f8fc] border border-[#d1e0f0] rounded-xl p-5 sm:p-6 flex items-start gap-4">
+            <div className="shrink-0 mt-0.5">
+              <ShieldCheck className="text-[#2f5ba5]" size={28} strokeWidth={2} />
+            </div>
+            <div>
+              <h3 className="text-[18px] font-semibold text-[#1e293b] mb-1">Medical Disclaimer</h3>
+              <p className="text-[#64748B] text-[18px] font-light leading-relaxed">
+                This article is for general informational and educational purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. For medical concerns or decisions, consult a qualified healthcare professional.
+              </p>
+            </div>
+          </div>
           {/* INTERNAL LINKS */}
           {/* RELATED ARTICLES (SAME CATEGORY) */}
           {(() => {
@@ -218,7 +238,7 @@ const categoryLabels: Record<string, string> = {
               relatedBlogs.length > 0 && (
                 <div className="mt-14">
                   <h2 className="text-xl sm:text-xl lg:text-2xl text-[#2f5ba5] mb-6">
-                    {categoryLabels[blog.category.toLowerCase()] || blog.category}
+                Related Articles     {/* {categoryLabels[blog.category.toLowerCase()] || blog.category} */}
                   </h2>
 
                   {/* GRID SAME AS BLOG LIST */}
@@ -250,39 +270,46 @@ const categoryLabels: Record<string, string> = {
                             )}
 
                             {/* CATEGORY */}
-                         
-                  <div
-                    className="
-    group relative inline-flex items-center
-    rounded-full overflow-hidden
-    text-white text-xs md:text-sm top-3 left-3
-    px-2 py-1 lg:px-3
-    shadow-md
-  "
-                  >
-                    {/* Gradient Border */}
-                    <span
-                      className="
-      absolute inset-0 rounded-full
-      p-px
-      bg-linear-to-r from-[#0f61b3] to-[#6AA2E5]/10
-    "
-                    />
+                            <div className="absolute top-3 left-3 flex flex-wrap gap-2 pr-3">
+                              {item.category.split(',').map((cat, idx) => {
+                                const cleanCat = cat.trim();
+                                return (
+                                  <div
+                                    key={idx}
+                                    className="
+                                      group relative inline-flex items-center
+                                      rounded-full overflow-hidden
+                                      text-white text-xs md:text-sm
+                                      px-2 py-1 lg:px-3
+                                      shadow-md
+                                    "
+                                  >
+                                    {/* Gradient Border */}
+                                    <span
+                                      className="
+                                        absolute inset-0 rounded-full
+                                        p-px
+                                        bg-linear-to-r from-[#0f61b3] to-[#6AA2E5]/10
+                                      "
+                                    />
 
-                    {/* Inner Background */}
-                    <span
-                      className="
-      absolute inset-px rounded-full
-      bg-linear-to-r from-[#2f5ba5]/70 to-[#4a7bc9]/30
-      backdrop-blur-md
-    "
-                    />
+                                    {/* Inner Background */}
+                                    <span
+                                      className="
+                                        absolute inset-px rounded-full
+                                        bg-linear-to-r from-[#2f5ba5]/70 to-[#4a7bc9]/30
+                                        backdrop-blur-md
+                                      "
+                                    />
 
-                    {/* Content */}
-                    <span className="relative z-10 tracking-wide">
-                      {item.category.replace("-", " ").toUpperCase()}
-                    </span>
-                  </div>
+                                    {/* Content */}
+                                    <span className="relative z-10 tracking-wide">
+                                      {cleanCat.replace("-", " ").toUpperCase()}
+                                    </span>
+                                  </div>
+                                );
+                              })}
+                            </div>
 
                           </div>
 

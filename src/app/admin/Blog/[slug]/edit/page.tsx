@@ -98,10 +98,6 @@ const emptyValues: BlogFormValues = {
     faqs: [{ question: "", answer: "" }],
 };
 
-// mainImage ko backend "string" expect karta hai (File nahi), aur koi alag
-// image-upload endpoint bhi available nahi hai — isliye file ko base64
-// data-url string mein convert kar rahe hain (CKEditor ke images bhi isi
-// tarah base64 store hote hain, so consistent approach hai).
 const fileToBase64 = (file: File): Promise<string> =>
     new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -110,9 +106,6 @@ const fileToBase64 = (file: File): Promise<string> =>
         reader.readAsDataURL(file);
     });
 
-// CKEditor se milta hai raw HTML string, lekin backend "content" field
-// BlogContent[] (heading + paragraphs[] + images[]) expect karta hai.
-// Yahan HTML ko headings (h1-h6) ke basis par blocks mein todte hain.
 const htmlToBlogContent = (html: string): BlogContent[] => {
     if (typeof window === "undefined" || !html.trim()) return [];
 
@@ -151,7 +144,6 @@ const htmlToBlogContent = (html: string): BlogContent[] => {
             return;
         }
 
-        // p, blockquote, pre, and any other block-level element -> paragraph
         const inner = el.innerHTML.trim();
         if (inner) current.paragraphs.push(inner);
         el.querySelectorAll("img").forEach((img) => {
@@ -162,8 +154,6 @@ const htmlToBlogContent = (html: string): BlogContent[] => {
 
     pushCurrentIfNeeded();
 
-    // Agar koi block-level element nahi mila (sirf plain text), poora HTML
-    // ek hi paragraph ke roop mein daal do taaki content lost na ho.
     if (blocks.length === 0) {
         blocks.push({ heading: "", paragraphs: [html], images: [] });
     }
@@ -171,9 +161,6 @@ const htmlToBlogContent = (html: string): BlogContent[] => {
     return blocks;
 };
 
-// Reverse of htmlToBlogContent — jab existing blog edit karne aate hain,
-// backend se BlogContent[] milta hai, use CKEditor ke liye HTML string mein
-// wapas convert karna padta hai warna editor khaali khulega.
 const blogContentToHtml = (blocks?: BlogContent[] | null): string => {
     if (!blocks || !blocks.length) return "";
 
@@ -208,9 +195,6 @@ const validationSchema = Yup.object({
         const plainText = value?.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, "").trim();
         return Boolean(plainText);
     }),
-    // Edit page pe existing image bhi valid hai — naya file upload karna
-    // zaroori nahi. Actual "koi image nahi hai" check handleSubmit mein
-    // mainImagePreview ke against ho raha hai.
     mainImage: Yup.mixed<File>().nullable(),
     metaTitle: Yup.string().max(60, "SEO title should be 60 characters or fewer"),
     metaDescription: Yup.string().max(160, "SEO description should be 160 characters or fewer"),
@@ -243,16 +227,11 @@ export default function EditBlogPage() {
     const { blog, loading } = useSelector((state: RootState) => state.BlogList);
 
     useEffect(() => {
-        console.log("EditBlogPage id from useParams:", id);
         if (id) {
-            console.log("Dispatching getBlogById with:", id);
             dispatch(getBlogById(id));
-        } else {
-            console.warn("id missing — check route param name in useParams()");
         }
     }, [dispatch, id]);
 
-    // blog ab useSelector se pehle hi mil chuka hai, isliye ye safe hai
     const formInitialValues = useMemo<BlogFormValues>(() => {
         if (!blog) return emptyValues;
 
@@ -312,11 +291,9 @@ export default function EditBlogPage() {
 
             let mainImage = "";
 
-            // Agar new image upload ki hai
             if (values.mainImage) {
                 mainImage = await fileToBase64(values.mainImage);
             } else {
-                // Existing image ko same rakho
                 mainImage = mainImagePreview;
             }
 

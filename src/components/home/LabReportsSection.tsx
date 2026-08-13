@@ -9,22 +9,22 @@ const steps = [
   {
     title: "Receive",
     desc: "Participating laboratories can upload reports through the HeartView Lab Portal.",
-    icon: <CloudUpload className="text-[#2f5ba5]" size={36} strokeWidth={1.5} />,
+    icon: <CloudUpload className="text-[#2f5ba5]" size={24} strokeWidth={1.5} />,
   },
   {
     title: "Verify",
     desc: "User information can be verified using supported mobile number or email verification.",
-    icon: <ShieldCheck className="text-[#2f5ba5]" size={36} strokeWidth={1.5} />,
+    icon: <ShieldCheck className="text-[#2f5ba5]" size={24} strokeWidth={1.5} />,
   },
   {
     title: "Access",
     desc: "Once securely associated with the correct account, the report can be accessed by the user.",
-    icon: <FolderLock className="text-[#2f5ba5]" size={36} strokeWidth={1.5} />,
+    icon: <FolderLock className="text-[#2f5ba5]" size={24} strokeWidth={1.5} />,
   },
   {
     title: "Review",
     desc: "Users can review current and previous reports from their account.",
-    icon: <FileSearch className="text-[#2f5ba5]" size={36} strokeWidth={1.5} />,
+    icon: <FileSearch className="text-[#2f5ba5]" size={24} strokeWidth={1.5} />,
   },
 ];
 
@@ -75,19 +75,10 @@ export default function LabReportsSection() {
                 </div>
               )}
 
-              {/* Connector Line (Mobile) */}
-              {i !== steps.length - 1 && (
-                <div className="md:hidden absolute top-[100%] left-1/2 -translate-x-1/2 h-8 flex flex-col items-center justify-center -z-10">
-                   <div className="w-[2px] border-l-2 border-dashed border-[#2f5ba5]/30 h-full relative">
-                    <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-[#2f5ba5] flex items-center justify-center text-white shadow-sm">
-                      <ChevronRight size={12} strokeWidth={3} className="rotate-90" />
-                    </div>
-                   </div>
-                </div>
-              )}
+
 
               {/* Icon */}
-              <div className="w-22 h-22 sm:w-24 sm:h-24 rounded-full bg-[#f0f4f8] border border-[#2f5ba5]/10 flex items-center justify-center mb-6 shadow-sm shrink-0 aspect-square">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#f0f4f8] border border-[#2f5ba5]/10 flex items-center justify-center mb-2 sm:mb-6 shadow-sm shrink-0 aspect-square">
                 {step.icon}
               </div>
 

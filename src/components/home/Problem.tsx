@@ -45,31 +45,31 @@ const steps = [
     num: "01",
     title: "Track",
     desc: "Record supported health measurements and keep them organized.",
-    icon: <ClipboardList className="text-[#2f5ba5]" size={26} />,
+    icon: <ClipboardList className="text-[#2f5ba5]" size={22} />,
   },
   {
     num: "02",
     title: "Store",
     desc: "Access laboratory reports and health information from one place.",
-    icon: <Folder className="text-[#2f5ba5]" size={26} />,
+    icon: <Folder className="text-[#2f5ba5]" size={22} />,
   },
   {
     num: "03",
     title: "Review",
     desc: "Look back at previous measurements and reports whenever needed.",
-    icon: <History className="text-[#2f5ba5]" size={26} />,
+    icon: <History className="text-[#2f5ba5]" size={22} />,
   },
   {
     num: "04",
     title: "Understand",
     desc: "View supported health information in a clear and structured format.",
-    icon: <Info className="text-[#2f5ba5]" size={26} />,
+    icon: <Info className="text-[#2f5ba5]" size={22} />,
   },
   {
     num: "05",
     title: "Monitor",
     desc: "Follow changes in your recorded health information over time.",
-    icon: <LineChart className="text-[#2f5ba5]" size={26} />,
+    icon: <LineChart className="text-[#2f5ba5]" size={22} />,
   },
 ];
 
@@ -127,7 +127,7 @@ export default function Problem() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.6 }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="flex flex-col items-center text-center relative"
+              className={`flex flex-col items-center text-center relative ${i === steps.length - 1 ? 'sm:col-span-2 lg:col-span-1' : ''}`}
             >
               
               {/* Desktop Connector Line */}
@@ -139,16 +139,9 @@ export default function Problem() {
                 </div>
               )}
 
-              {/* Mobile/Tablet Connector Line */}
-              {i !== steps.length - 1 && (
-                <div className="lg:hidden absolute -bottom-5 left-[20%] right-[20%] h-[1px] items-center justify-center z-0">
-                  <div className="h-[1px] w-full border-b border-dashed border-[#2f5ba5]/30 relative flex items-center justify-center">
-                    <div className="w-2 h-2 rounded-full bg-[#2f5ba5] shadow-sm absolute"></div>
-                  </div>
-                </div>
-              )}
 
-              <div className="mb-5 flex items-center justify-center w-16 h-16 rounded-full bg-white shadow-sm border border-[#2f5ba5]/10 relative z-10 shrink-0">
+
+              <div className="mb-2 sm:mb-5 flex items-center justify-center w-14 h-14 rounded-full bg-white shadow-sm border border-[#2f5ba5]/10 relative z-10 shrink-0">
                 {item.icon}
               </div>
               
