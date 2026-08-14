@@ -104,7 +104,7 @@ export default function HealthGuidesSection() {
               </div>
 
               {/* Text Content */}
-              <h2 className="text-xl sm:text-xl lg:text-2xl font-medium h-10 text-black flex items-center justify-center">
+              <h2 className="text-xl sm:text-xl lg:text-2xl font-medium h-11 text-black flex items-center justify-center">
 
                 {item.title}
               </h2>

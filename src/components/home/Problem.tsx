@@ -78,7 +78,7 @@ export default function Problem() {
     <section className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-10">
       
       {/* ===== SECTION 1 ===== */}
-      <div className="pt-10">
+      <div className="">
         <Headerbadge tag="EVERYTHING IN ONE PLACE" text="Everything You Need to Manage Your Health Information" />
         
         <motion.p

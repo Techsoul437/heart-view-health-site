@@ -270,70 +270,104 @@ export default function EditBlogPage() {
             .replace(/[^a-z0-9]+/g, "-")
             .replace(/^-+|-+$/g, "");
 
-    const handleSubmit = async (
-        values: BlogFormValues,
-        { setSubmitting }: FormikHelpers<BlogFormValues>
-    ) => {
-        try {
-            const peopleAlsoAskPayload = values.peopleAlsoAsk.filter(
-                (item) => item.question.trim() && item.answer.trim()
+const handleSubmit = async (
+    values: BlogFormValues,
+    { setSubmitting }: FormikHelpers<BlogFormValues>
+) => {
+    try {
+        const peopleAlsoAskPayload =
+            values.peopleAlsoAsk.filter(
+                (item) =>
+                    item.question.trim() &&
+                    item.answer.trim()
             );
 
-            const faqPayload = values.faqs.filter(
-                (faq) => faq.question.trim() && faq.answer.trim()
+        const faqPayload =
+            values.faqs.filter(
+                (faq) =>
+                    faq.question.trim() &&
+                    faq.answer.trim()
             );
 
-            if (!id) {
-                toast.error("Blog ID not found");
-                setSubmitting(false);
-                return;
-            }
-
-            let mainImage = "";
-
-            if (values.mainImage) {
-                mainImage = await fileToBase64(values.mainImage);
-            } else {
-                mainImage = mainImagePreview;
-            }
-
-            if (!mainImage) {
-                toast.error("Please upload a main image");
-                setSubmitting(false);
-                return;
-            }
-
-            const result = await dispatch(
-                updateBlog({
-                    id,
-                    title: values.title.trim(),
-                    slug: values.slug.trim(),
-                    author: values.author.trim(),
-                    publishDate: values.publishDate,
-                    category: values.category,
-                    mainImage,
-                    description: values.excerpt.trim(),
-                    content: htmlToBlogContent(values.content),
-                    tags: values.tags
-                        .split(",")
-                        .map((tag) => tag.trim())
-                        .filter(Boolean),
-                    status: values.status,
-                    peopleAlsoAsk: peopleAlsoAskPayload,
-                    faq: faqPayload,
-                    seoTitle: values.metaTitle.trim(),
-                    seoDescription: values.metaDescription.trim(),
-                    schemaMarkup: null,
-                })
-            ).unwrap();
-
-            router.push(`${baseUrl}/Blog`);
-        } catch (error) {
-            toast.error(typeof error === "string" ? error : "Blog update failed");
-        } finally {
+        if (!id) {
+            toast.error("Blog ID not found");
             setSubmitting(false);
+            return;
         }
-    };
+
+        const result = await dispatch(
+            updateBlog({
+                id,
+
+                title: values.title.trim(),
+
+                slug: values.slug.trim(),
+
+                author: values.author.trim(),
+
+                publishDate:
+                    values.publishDate,
+
+                category:
+                    values.category,
+
+                // Only send if new image selected
+                ...(values.mainImage
+                    ? {
+                        mainImage:
+                            values.mainImage,
+                    }
+                    : {}),
+
+                description:
+                    values.excerpt.trim(),
+
+                content:
+                    htmlToBlogContent(
+                        values.content
+                    ),
+
+                tags: values.tags
+                    .split(",")
+                    .map((tag) => tag.trim())
+                    .filter(Boolean),
+
+                status:
+                    values.status,
+
+                peopleAlsoAsk:
+                    peopleAlsoAskPayload,
+
+                faq:
+                    faqPayload,
+
+                seoTitle:
+                    values.metaTitle.trim(),
+
+                seoDescription:
+                    values.metaDescription.trim(),
+
+                schemaMarkup: null,
+            })
+        ).unwrap();
+
+        // toast.success(
+        //     result.message ||
+        //     "Blog updated successfully"
+        // );
+
+        router.push(`${baseUrl}/Blog`);
+
+    } catch (error) {
+        toast.error(
+            typeof error === "string"
+                ? error
+                : "Blog update failed"
+        );
+    } finally {
+        setSubmitting(false);
+    }
+};
 
     const inputClass = "w-full rounded-xl border border-black/10 bg-[#f7f7f7] px-4 py-3 outline-none transition focus:border-black/40";
 

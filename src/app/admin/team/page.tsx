@@ -167,7 +167,7 @@ export default function TeamManagementPage() {
                                         <tr key={item._id} className="transition hover:bg-slate-50">
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center gap-4">
-                                                    <div className="relative h-12 w-12 overflow-hidden rounded-full border border-slate-200 bg-slate-100 flex items-center justify-center">
+                                                    <div className="relative h-12 w-12 overflow-hidden    flex items-center justify-center">
                                                         {item.image ? (
                                                             <div className="flex flex-col items-center">
                                                               <img

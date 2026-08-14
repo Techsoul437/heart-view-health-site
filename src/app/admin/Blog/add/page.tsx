@@ -59,21 +59,7 @@ const initialValues: BlogFormValues = {
     faqs: [{ question: "", answer: "" }],
 };
 
-// mainImage ko backend "string" expect karta hai (File nahi), aur koi alag
-// image-upload endpoint bhi available nahi hai — isliye file ko base64
-// data-url string mein convert kar rahe hain (CKEditor ke images bhi isi
-// tarah base64 store hote hain, so consistent approach hai).
-const fileToBase64 = (file: File): Promise<string> =>
-    new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result as string);
-        reader.onerror = () => reject(new Error("Failed to read image file"));
-        reader.readAsDataURL(file);
-    });
 
-// CKEditor se milta hai raw HTML string, lekin backend "content" field
-// BlogContent[] (heading + paragraphs[] + images[]) expect karta hai.
-// Yahan HTML ko headings (h1-h6) ke basis par blocks mein todte hain.
 const htmlToBlogContent = (html: string): BlogContent[] => {
     if (typeof window === "undefined" || !html.trim()) return [];
 
@@ -233,7 +219,7 @@ export default function AddBlogPage() {
 
     // Formik gives us the actual form values here — this was the main bug,
     // pehle yeh alag hi (khali) state se data bana raha tha.
-   const handleSubmit = async (
+const handleSubmit = async (
   values: BlogFormValues,
   { setSubmitting }: FormikHelpers<BlogFormValues>
 ) => {
@@ -246,12 +232,19 @@ export default function AddBlogPage() {
   }
 
   try {
-    const peopleAlsoAskPayload = values.peopleAlsoAsk.filter(
-      (item) => item.question.trim() && item.answer.trim()
-    );
-    const faqPayload = values.faqs.filter(
-      (faq) => faq.question.trim() && faq.answer.trim()
-    );
+    const peopleAlsoAskPayload =
+      values.peopleAlsoAsk.filter(
+        (item) =>
+          item.question.trim() &&
+          item.answer.trim()
+      );
+
+    const faqPayload =
+      values.faqs.filter(
+        (faq) =>
+          faq.question.trim() &&
+          faq.answer.trim()
+      );
 
     const result = await dispatch(
       addBlog({
@@ -260,25 +253,51 @@ export default function AddBlogPage() {
         author: values.author.trim(),
         publishDate: values.publishDate,
         category: values.category,
-        mainImage: await fileToBase64(mainImage), // null error fixed
+
+        // FILE directly
+        mainImage,
+
         description: values.excerpt.trim(),
-        content: htmlToBlogContent(values.content),
-        tags: values.tags.split(",").map((tag) => tag.trim()).filter(Boolean),
+
+        content: htmlToBlogContent(
+          values.content
+        ),
+
+        tags: values.tags
+          .split(",")
+          .map((tag) => tag.trim())
+          .filter(Boolean),
+
         status: values.status,
 
-        peopleAlsoAsk: peopleAlsoAskPayload,
-        faq: faqPayload, // required AddBlogPayload field
+        peopleAlsoAsk:
+          peopleAlsoAskPayload,
 
-        seoTitle: values.metaTitle.trim(),
-        seoDescription: values.metaDescription.trim(),
+        faq: faqPayload,
+
+        seoTitle:
+          values.metaTitle.trim(),
+
+        seoDescription:
+          values.metaDescription.trim(),
+
         schemaMarkup: null,
       })
     ).unwrap();
 
-    toast.success(result.message || "Blog added successfully");
+    toast.success(
+      result.message ||
+      "Blog added successfully"
+    );
+
     router.push(`${baseUrl}/Blog`);
+
   } catch (error) {
-    toast.error(typeof error === "string" ? error : "Blog save failed");
+    toast.error(
+      typeof error === "string"
+        ? error
+        : "Blog save failed"
+    );
   } finally {
     setSubmitting(false);
   }

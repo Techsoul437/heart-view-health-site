@@ -8,6 +8,7 @@ import {
   updateBlog,
   deleteBlog,
   getBlogs,
+  getLatestBlogs,
   getBlogById,
 } from "../Api";
 
@@ -345,9 +346,9 @@ const BlogListSlice = createSlice({
         state.updateLoading = false;
         state.success = true;
 
-        state.message =
-          action.payload.message ||
-          "Blog updated successfully";
+        // state.message =
+        //   action.payload.message ||
+        //   "Blog updated successfully";
 
         const updatedBlog = action.payload.data;
 
@@ -452,7 +453,33 @@ const BlogListSlice = createSlice({
           action.payload ||
           "Unable to fetch blogs";
       })
+   // =====================================================
+      // GET Latest BLOGS
+      // =====================================================
 
+      .addCase(getLatestBlogs.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+
+      .addCase(getLatestBlogs.fulfilled, (state, action) => {
+        state.loading = false;
+        state.success = true;
+
+        state.blogs = action.payload.data || [];
+
+        state.message =
+          action.payload.message || null;
+      })
+
+      .addCase(getLatestBlogs.rejected, (state, action) => {
+        state.loading = false;
+        state.success = false;
+
+        state.error =
+          action.payload ||
+          "Unable to fetch blogs";
+      })
       // =====================================================
       // GET BLOG BY ID
       // =====================================================

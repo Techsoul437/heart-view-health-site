@@ -703,7 +703,7 @@ export interface AddBlogPayload {
   author: string;
   publishDate: string;
   category: string;
-  mainImage: string;
+  mainImage: File;
   description: string;
   content: BlogContent[];
   tags: string[];
@@ -715,8 +715,23 @@ export interface AddBlogPayload {
   schemaMarkup?: unknown;
 }
 
-export interface UpdateBlogPayload extends AddBlogPayload {
+export interface UpdateBlogPayload {
   id: string;
+  title: string;
+  slug: string;
+  author: string;
+  publishDate: string;
+  category: string;
+  mainImage?: File;
+  description: string;
+  content: BlogContent[];
+  tags: string[];
+  status: "draft" | "published";
+  peopleAlsoAsk: BlogFAQ[];
+  faq: BlogFAQ[];
+  seoTitle?: string;
+  seoDescription?: string;
+  schemaMarkup?: unknown;
 }
 // =========================
 // Team Interface
@@ -2322,37 +2337,94 @@ export const addBlog = createAsyncThunk<
   BlogResponse,
   AddBlogPayload,
   { rejectValue: string }
->("blog/addBlog", async (data, { rejectWithValue }) => {
-  try {
-    const token = localStorage.getItem("accessToken");
+>(
+  "blog/addBlog",
+  async (data, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem("accessToken");
 
-    if (!token) {
-      return rejectWithValue("Please login again. Access token not found.");
-    }
-
-    const { data: responseData } = await API.post<BlogResponse>(
-      "/blog/add",
-      data,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
+      if (!token) {
+        return rejectWithValue(
+          "Please login again. Access token not found."
+        );
       }
-    );
 
-    return responseData;
-  } catch (error) {
-    const err = error as AxiosError<ErrorResponse>;
+      const formData = new FormData();
 
-    return rejectWithValue(
-      err.response?.data?.message ||
-      err.message ||
-      "Unable to save blog"
-    );
+      formData.append("title", data.title);
+      formData.append("slug", data.slug);
+      formData.append("author", data.author);
+      formData.append("publishDate", data.publishDate);
+      formData.append("category", data.category);
+      formData.append("description", data.description);
+
+      formData.append(
+        "content",
+        JSON.stringify(data.content)
+      );
+
+      formData.append(
+        "tags",
+        JSON.stringify(data.tags)
+      );
+
+      formData.append("status", data.status);
+
+      formData.append(
+        "peopleAlsoAsk",
+        JSON.stringify(data.peopleAlsoAsk)
+      );
+
+      formData.append(
+        "faq",
+        JSON.stringify(data.faq)
+      );
+
+      formData.append(
+        "seoTitle",
+        data.seoTitle || ""
+      );
+
+      formData.append(
+        "seoDescription",
+        data.seoDescription || ""
+      );
+
+      formData.append(
+        "schemaMarkup",
+        JSON.stringify(data.schemaMarkup || null)
+      );
+
+      // IMPORTANT
+      formData.append(
+        "mainImage",
+        data.mainImage
+      );
+
+      const { data: responseData } =
+        await API.post<BlogResponse>(
+          "/blog/add",
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+      return responseData;
+
+    } catch (error) {
+      const err = error as AxiosError<ErrorResponse>;
+
+      return rejectWithValue(
+        err.response?.data?.message ||
+        err.message ||
+        "Unable to save blog"
+      );
+    }
   }
-});
-
+);
 
 export const updateBlog = createAsyncThunk<
   BlogResponse,
@@ -2372,9 +2444,68 @@ export const updateBlog = createAsyncThunk<
 
       const { id, ...blogData } = data;
 
-      const response = await API.put(
+      const formData = new FormData();
+
+      formData.append("title", blogData.title);
+      formData.append("slug", blogData.slug);
+      formData.append("author", blogData.author);
+      formData.append("publishDate", blogData.publishDate);
+      formData.append("category", blogData.category);
+      formData.append("description", blogData.description);
+
+      formData.append(
+        "content",
+        JSON.stringify(blogData.content)
+      );
+
+      formData.append(
+        "tags",
+        JSON.stringify(blogData.tags)
+      );
+
+      formData.append(
+        "status",
+        blogData.status
+      );
+
+      formData.append(
+        "peopleAlsoAsk",
+        JSON.stringify(blogData.peopleAlsoAsk)
+      );
+
+      formData.append(
+        "faq",
+        JSON.stringify(blogData.faq)
+      );
+
+      formData.append(
+        "seoTitle",
+        blogData.seoTitle || ""
+      );
+
+      formData.append(
+        "seoDescription",
+        blogData.seoDescription || ""
+      );
+
+      formData.append(
+        "schemaMarkup",
+        JSON.stringify(
+          blogData.schemaMarkup || null
+        )
+      );
+
+      // Only append when new image selected
+      if (blogData.mainImage) {
+        formData.append(
+          "mainImage",
+          blogData.mainImage
+        );
+      }
+
+      const response = await API.put<BlogResponse>(
         `/blog/update/${id}`,
-        blogData,
+        formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -2383,12 +2514,14 @@ export const updateBlog = createAsyncThunk<
       );
 
       return response.data;
+
     } catch (error) {
       const err = error as AxiosError<ErrorResponse>;
 
       return rejectWithValue(
         err.response?.data?.message ||
-          err.message
+        err.message ||
+        "Blog update failed"
       );
     }
   }
@@ -2424,7 +2557,36 @@ export const getBlogs = createAsyncThunk<
     );
   }
 });
+// ===============================
+// GET Latest BLOGS
+// ===============================
 
+export const getLatestBlogs = createAsyncThunk<
+  GetAllBlogsResponse,
+  void,
+  { rejectValue: string }
+>("blog/getLatestBlogs", async (_, { rejectWithValue }) => {
+  try {
+    const token = typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
+
+    const headers = token ? { Authorization: `Bearer ${token}` } : {};
+
+    const response = await API.get<GetAllBlogsResponse>(
+      "/blog/latest",
+      { headers }
+    );
+
+    return response.data;
+  } catch (error) {
+    const err = error as AxiosError<ErrorResponse>;
+
+    return rejectWithValue(
+      err.response?.data?.message ||
+        err.message ||
+        "Unable to fetch blogs"
+    );
+  }
+});
 // ===============================
 // GET BLOG BY ID
 // ===============================
@@ -2461,9 +2623,9 @@ export const getBlogById = createAsyncThunk<
 
 export const addTeam = createAsyncThunk<
   TeamResponse,
-  AddTeamPayload,
+  FormData,
   { rejectValue: string }
->("team/addTeam", async (payload, { rejectWithValue }) => {
+>("team/addTeam", async (formData, { rejectWithValue }) => {
   try {
     const token = localStorage.getItem("accessToken");
 
@@ -2473,19 +2635,22 @@ export const addTeam = createAsyncThunk<
 
     const response = await API.post<TeamResponse>(
       "/team/add",
-      payload,
+      formData,
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
         },
       }
     );
 
     return response.data;
-  } catch (error: any) {
+  } catch (error) {
+    const err = error as AxiosError<ErrorResponse>;
+
     return rejectWithValue(
-      error?.response?.data?.message || "Failed to add team member"
+      err.response?.data?.message ||
+        err.message ||
+        "Failed to add team member"
     );
   }
 });
@@ -2566,35 +2731,40 @@ export const getTeamById = createAsyncThunk<
 // =========================
 
 export const updateTeam = createAsyncThunk<
-  TeamResponse,
-  { id: string; formData: UpdateTeamPayload },
-  { rejectValue: string }
->("team/updateTeam", async ({ id, formData }, { rejectWithValue }) => {
-  try {
-    const token = localStorage.getItem("accessToken");
+    TeamResponse,
+    { id: string; formData: FormData },
+    { rejectValue: string }
+>(
+    "team/updateTeam",
+    async ({ id, formData }, { rejectWithValue }) => {
+        try {
+            const token = localStorage.getItem("accessToken");
 
-    if (!token) {
-      return rejectWithValue("Access token not found");
+            if (!token) {
+                return rejectWithValue(
+                    "Access token not found"
+                );
+            }
+
+            const response = await API.put<TeamResponse>(
+                `/team/update/${id}`,
+                formData,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            return response.data;
+        } catch (error: any) {
+            return rejectWithValue(
+                error?.response?.data?.message ||
+                    "Failed to update team member"
+            );
+        }
     }
-
-    const response = await API.put<TeamResponse>(
-      `/team/update/${id}`,
-      formData,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    return response.data;
-  } catch (error: any) {
-    return rejectWithValue(
-      error?.response?.data?.message || "Failed to update team member"
-    );
-  }
-});
+);
 
 // =========================
 // DELETE TEAM
