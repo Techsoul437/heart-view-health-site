@@ -72,8 +72,9 @@ interface MobileValues {
 
 interface LabValues {
   labName: string;
-  labType: string;
   city: string;
+  branchName: string;
+  logo: string | null;
 }
 
 interface BackButtonProps { onClick: () => void; }
@@ -148,8 +149,8 @@ const mobileSchema = Yup.object({
 
 const labSchema = Yup.object({
   labName: Yup.string().required("Lab name required"),
-  labType: Yup.string().required("Lab type required"),
   city: Yup.string().required("City required"),
+  branchName: Yup.string().optional(),
 });
 
 const accountSchema = Yup.object({
@@ -199,7 +200,7 @@ function useFirebaseOtp(containerId: string) {
   }
 
   recaptchaRef.current = new RecaptchaVerifier(auth, containerId, {
-    size: "normal",
+    size: "invisible",
   });
 
   await recaptchaRef.current.render();
@@ -889,11 +890,12 @@ const SignupStep3 = ({ onNext }: SignupStep3Props) => (
       Help us set up your lab profile
     </p>
 
-    <Formik
-      initialValues={{ labName: "", labType: "", city: "" }}
+    <Formik<LabValues>
+      initialValues={{ labName: "", city: "", branchName: "", logo: null }}
       validationSchema={labSchema}
       onSubmit={onNext}
     >
+      {({ setFieldValue }) => (
       <Form className="mt-4 space-y-3">
         <div>
           <Field
@@ -907,31 +909,14 @@ const SignupStep3 = ({ onNext }: SignupStep3Props) => (
         </div>
 
         <div>
-          <Field name="labType">
-            {({
-              field,
-              form,
-            }: {
-              field: {
-                name: string;
-                value: string;
-                onChange: React.ChangeEventHandler<HTMLSelectElement>;
-                onBlur: React.FocusEventHandler<HTMLSelectElement>;
-              };
-              form: { values: { labType: string } };
-            }) => (
-              <select
-                {...field}
-                className={`${inputClass} ${form.values.labType ? "text-black" : "text-[#7F8CA3]"}`}
-              >
-                <option value="">Select lab type</option>
-                <option value="Diagnostic Lab">Diagnostic Lab</option>
-                <option value="Hospital Lab">Hospital Lab</option>
-                <option value="Pathology Lab">Pathology Lab</option>
-              </select>
-            )}
-          </Field>
-          <ErrorMessage name="labType" component="div" className="mt-1 text-red-400 text-xs" />
+          <Field
+            name="branchName"
+            type="text"
+            placeholder="Branch name (Optional)"
+            className={inputClass}
+            spellCheck={false}
+          />
+          <ErrorMessage name="branchName" component="div" className="mt-1 text-red-400 text-xs" />
         </div>
 
         <div>
@@ -945,8 +930,28 @@ const SignupStep3 = ({ onNext }: SignupStep3Props) => (
           <ErrorMessage name="city" component="div" className="mt-1 text-red-400 text-xs" />
         </div>
 
+        <div>
+           <label className="block text-sm text-[#64748B] mb-1 ml-2">Profile Picture / Logo (Optional)</label>
+           <input
+             type="file"
+             accept="image/*"
+             onChange={(e) => {
+               if (e.target.files && e.target.files[0]) {
+                 const file = e.target.files[0];
+                 const reader = new FileReader();
+                 reader.onloadend = () => {
+                   setFieldValue("logo", reader.result as string);
+                 };
+                 reader.readAsDataURL(file);
+               }
+             }}
+             className="w-full text-sm text-[#64748B] file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#2f5ba5]/10 file:text-[#2f5ba5] hover:file:bg-[#2f5ba5]/20"
+           />
+        </div>
+
         <button type="submit" className={buttonClass}>Continue</button>
       </Form>
+      )}
     </Formik>
   </>
 );
@@ -1044,7 +1049,7 @@ const SignupStep4 = ({ onSubmit, onLoginClick }: SignupStep4Props) => {
 
 const SignupPanel = ({ onLoginClick, onSignupSuccess }: SignupPanelProps) => {
   const [step, setStep] = useState<number>(1);
-  const [labData, setLabData] = useState<LabValues>({ labName: "", labType: "", city: "" });
+  const [labData, setLabData] = useState<LabValues>({ labName: "", city: "", branchName: "", logo: null });
   const [mobileNumber, setMobileNumber] = useState<string>("");
   const dispatch = useDispatch<AppDispatch>();
   const otpFlow = useFirebaseOtp("recaptcha-signup");
@@ -1131,8 +1136,7 @@ const SignupPanel = ({ onLoginClick, onSignupSuccess }: SignupPanelProps) => {
               JSON.stringify({
                 logo: "",
                 labName: values.labName,
-                labType: values.labType,
-                branchName: "",
+                branchName: values.branchName,
                 phone: "",
                 email: "",
                 website: "",
@@ -1164,8 +1168,9 @@ const SignupPanel = ({ onLoginClick, onSignupSuccess }: SignupPanelProps) => {
                     password: values.password,
                     mobile: mobileNumber,
                     labName: labData.labName,
-                    labType: labData.labType,
                     city: labData.city,
+                    branchName: labData.branchName,
+                    logo: labData.logo,
                     fcmToken,
                   })
                   : registerWithEmail({
@@ -1173,8 +1178,9 @@ const SignupPanel = ({ onLoginClick, onSignupSuccess }: SignupPanelProps) => {
                     email: values.email,
                     password: values.password,
                     labName: labData.labName,
-                    labType: labData.labType,
                     city: labData.city,
+                    branchName: labData.branchName,
+                    logo: labData.logo,
                     fcmToken,
                   })
               ).unwrap();

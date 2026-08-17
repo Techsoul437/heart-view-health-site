@@ -138,7 +138,7 @@ export default function LabAdminLayout({
       {/* Desktop Sidebar */}
       <div className="hidden lg:block fixed left-0 top-0 z-50 min-h-screen">
         <Sidebar
-          role="admin"
+          role="lab-admin"
           menuItems={sidebarMenu}
           labName={profile?.labName || ""}
           userName={profile?.fullName || ""}
@@ -149,7 +149,7 @@ export default function LabAdminLayout({
       {/* Mobile Sidebar */}
       <div className="lg:hidden">
         <Sidebar
-          role="admin"
+          role="lab-admin"
           menuItems={sidebarMenu}
           labName={profile?.labName || ""}
           userName={profile?.fullName || ""}

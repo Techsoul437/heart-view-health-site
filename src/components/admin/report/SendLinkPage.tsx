@@ -28,6 +28,7 @@ interface ReportItem {
   fileType: string;
   fileSize: number;
   fileData: string;
+  fileUrl?: string;
   createdAt: string;
   role: string;
   mobile?: string;
@@ -174,6 +175,7 @@ export default function SendLinkPage() {
       fileType: rawReport.fileType || "",
       fileSize: computedFileSize,
       fileData: rawReport.fileData || "",
+      fileUrl: rawReport.fileUrl || "",
       createdAt: rawReport.createdAt || "",
       role: rawReport.Role || "",
     };
@@ -195,16 +197,10 @@ export default function SendLinkPage() {
     }
   }, [reportSuccess, reportData, reportId]);
 
-  // Side-effect only: toast + WhatsApp open. No setState here (fixes the lint error).
+  // Side-effect only: toast + WhatsApp sending logic is handled by backend.
   useEffect(() => {
     if (success && data) {
-      toast.success("Report Link Sent Successfully");
-
-      const whatsappUrl = `https://wa.me/${formik.values.mobile}?text=${encodeURIComponent(
-        `Your report is ready.\n${data.linkUrl}`
-      )}`;
-
-      window.open(whatsappUrl, "_blank");
+      toast.success("Report Link Sent Successfully via WhatsApp");
       setSentStatus("sent");
     }
 
@@ -241,7 +237,7 @@ export default function SendLinkPage() {
   });
 
   // Derived value instead of syncing Redux data into local state via effect
-  const displayUrl = data?.linkUrl || generatedUrl;
+  const displayUrl = report?.fileUrl || data?.linkUrl || generatedUrl;
 
   const isFieldError = (field: keyof typeof formik.values) =>
     formik.touched[field] && Boolean(formik.errors[field]);

@@ -149,13 +149,13 @@ export interface RegisterPayload {
   password: string;
   mobile: string;
   labName: string;
-  labType: string;
   city: string;
   branchName?: string;
   address?: string;
   state?: string;
   pincode?: string;
-  fcmToken?: string; // ✅ Add this
+  fcmToken?: string;
+  logo?: string | null;
 }
 export interface RegisterResponse {
   success: boolean;
@@ -170,9 +170,10 @@ export interface RegisterWithEmailPayload {
   email: string;
   password: string;
   labName: string;
-  labType: string;
   city: string;
+  branchName?: string;
   fcmToken?: string;
+  logo?: string | null;
 }
 
 export interface RegisterWithEmailResponse {
@@ -1158,7 +1159,7 @@ export const registerLabAdmin = createAsyncThunk<
   try {
     const response = await API.post<RegisterResponse>(
       "/lab-auth/register",
-      data,
+      data
     );
 
     return response.data;
@@ -1177,7 +1178,7 @@ export const registerWithEmail = createAsyncThunk<
   try {
     const response = await API.post<RegisterWithEmailResponse>(
       "/lab-auth/register-email",
-      data,
+      data
     );
 
     return response.data;
@@ -1303,7 +1304,6 @@ export const uploadReport = createAsyncThunk<
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
         },
       },
     );
@@ -2880,7 +2880,6 @@ export const updateAdminProfile = createAsyncThunk<
         {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
           },
         }
       );

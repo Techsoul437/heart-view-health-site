@@ -19,6 +19,16 @@ const nextConfig = {
         hostname: "heartview-images.s3.ap-south-1.amazonaws.com",
         pathname: "/**",
       },
+      {
+        protocol: "http",
+        hostname: "api.heartviewhealth.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "api.heartviewhealth.com",
+        pathname: "/**",
+      },
     ],
   },
 

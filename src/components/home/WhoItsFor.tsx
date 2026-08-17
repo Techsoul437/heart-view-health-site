@@ -34,7 +34,7 @@ export default function WhoItsFor() {
 
       {/* HEADER SECTION */}
       <div className="flex flex-col items-center text-center">
-        <Headerbadge tag="WHO CAN USE HEARTVIEW HEALTH?" text="Who Can Use HeartView Health?" />
+        <Headerbadge tag="WHO IT’S FOR" text="Who Can Use HeartView Health?" />
 
         <motion.div
           initial={{ opacity: 0, y: 10 }}

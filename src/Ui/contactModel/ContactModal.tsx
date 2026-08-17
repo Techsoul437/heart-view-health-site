@@ -4,7 +4,10 @@ import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { FiPhone, FiMail, FiMapPin, FiX, FiCheckCircle, FiAlertCircle, FiInfo, FiAlertTriangle } from "react-icons/fi";
+import { FiPhone, FiMail, FiMapPin, FiX, FiCheckCircle, FiAlertCircle, FiInfo, FiAlertTriangle, FiArrowRight } from "react-icons/fi";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "@/redux/store";
+import { createInquiry } from "@/redux/Api";
 import ReCAPTCHA from "react-google-recaptcha";
 
 const validationSchema = Yup.object({
@@ -127,8 +130,8 @@ function ToastContainer({ toasts, onClose }: { toasts: Toast[]; onClose: (id: st
 
 // ─── ContactModal ─────────────────────────────────────────────────────────────
 export default function ContactModal({ isOpen, onClose }: Props) {
-    const [loading, setLoading] = useState(false);
     const [toasts, setToasts] = useState<Toast[]>([]);
+    const dispatch = useDispatch<AppDispatch>();
     const [countryCode, setCountryCode] = useState("+91");
     const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string;
     const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
@@ -148,38 +151,44 @@ export default function ContactModal({ isOpen, onClose }: Props) {
         validationSchema,
         onSubmit: async (values, { resetForm }) => {
             try {
-                const token = recaptchaRef.current?.getValue() || "";
+                let token = recaptchaRef.current?.getValue() || "";
+
+                if (!token) {
+                    token = await recaptchaRef.current?.executeAsync() || "";
+                }
 
                 if (!token) {
                     addToast("error", "Captcha Required", "Please verify captcha");
                     return;
                 }
 
-                const res = await fetch(`${API_URL}/contact`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
+                const resultAction = await dispatch(
+                    createInquiry({
                         ...values,
                         phone: `${countryCode} ${values.phone}`, // 🔥 yaha combine kiya
                         captcha: token,
-                    }),
-                });
+                    } as unknown as Parameters<typeof createInquiry>[0])
+                );
 
-                const data = await res.json();
-
-                if (!res.ok) throw new Error(data.message);
-
-                addToast("success", "Message Sent!", data.message);
-                resetForm();
-
-                // FIX 3: reset captcha after successful submission
-                recaptchaRef.current?.reset();
-            } catch (error) {
+                if (createInquiry.fulfilled.match(resultAction)) {
+                    addToast(
+                        "success",
+                        "Message Sent!",
+                        resultAction.payload.message || "Your inquiry has been submitted successfully."
+                    );
+                    resetForm();
+                    // FIX 3: reset captcha after successful submission
+                    recaptchaRef.current?.reset();
+                } else {
+                    throw new Error(resultAction.payload || "Failed to submit inquiry.");
+                }
+            } catch (error: unknown) {
                 console.error(error);
+                const errorMessage = error instanceof Error ? error.message : "Something went wrong. Please try again.";
                 addToast(
                     "error",
                     "Submission Failed",
-                    "Something went wrong. Please try again."
+                    errorMessage
                 );
             }
         },
@@ -302,7 +311,6 @@ export default function ContactModal({ isOpen, onClose }: Props) {
 
                                         <div className="flex border border-[#2f5ba5]/30 rounded-lg overflow-hidden focus-within:ring-1 focus-within:ring-[#2f5ba5]/30/20">
 
-                                            {/* Country Code */}
                                             <div className="relative">
                                                 <select
                                                     value={countryCode}
@@ -311,11 +319,6 @@ export default function ContactModal({ isOpen, onClose }: Props) {
                                                 >
                                                     <option className="bg-[#0B1F1E] text-[#64748B]" value="+91">+91</option>
                                                 </select>
-
-                                                {/* Custom Dropdown Icon */}
-                                                <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B]  text-xs">
-                                                    ▼
-                                                </div>
                                             </div>
 
                                             {/* Phone Input */}

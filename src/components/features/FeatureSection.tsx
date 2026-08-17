@@ -110,7 +110,7 @@ export default function FeatureSection() {
                             >
                                 <div className="flex items-center gap-4">
                                     <div className="
-    group relative rounded-xl
+    shrink-0 group relative rounded-xl
     bg-linear-to-r from-[#7CC4FF] to-[#85bdf8]
     text-white overflow-hidden
     before:absolute before:inset-0 before:rounded-xl

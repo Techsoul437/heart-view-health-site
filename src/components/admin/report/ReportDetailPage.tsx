@@ -42,21 +42,31 @@ export default function ReportDetailPage() {
             </div>
         );
     }
-const fileUrl = report.fileUrl;
+    const sourceUrl = report.fileUrl || report.fileData || "";
+    const altText = report.fileName || report.filename || "Report Preview";
 
-const extension = fileUrl?.split(".").pop()?.toLowerCase();
+    let isPdf = false;
+    let isImage = false;
 
-const isPdf = extension === "pdf";
-
-const isImage = ["jpg", "jpeg", "png", "gif", "webp"].includes(
-  extension || ""
-);
+    if (sourceUrl.startsWith("data:application/pdf")) {
+        isPdf = true;
+    } else if (sourceUrl.startsWith("data:image/")) {
+        isImage = true;
+    } else {
+        const extension =
+            report.fileUrl?.split(".").pop()?.toLowerCase() ||
+            report.fileName?.split(".").pop()?.toLowerCase() ||
+            "";
+        isPdf = extension === "pdf";
+        isImage = ["jpg", "jpeg", "png", "gif", "webp"].includes(extension);
+    }
     
+    // We only render Image/Iframe if there is an actual source URL
+    const hasValidSource = Boolean(sourceUrl);
 
     return (
         <div className="min-h-screen  p-6 md:p-12">
             {/* Header */}
-
             <div className="mb-6 flex items-center gap-3">
                 <Link
                     href={`/${currentRole}/reports`}
@@ -66,76 +76,46 @@ const isImage = ["jpg", "jpeg", "png", "gif", "webp"].includes(
                 </Link>
 
                 <div>
-                    <h1 className="ttext-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
-
+                    <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
                         Report Details
                     </h1>
-
                     <p className="text-gray-500">
                         Report Preview
                     </p>
                 </div>
             </div>
 
-            {/* Patient Information */}
-
-            {/* <div className="mb-6 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-                <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                    <div>
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
-
-                            Patient Name
-                        </p>
-
-                        <h2 className="mt-1  font-medium text-black">
-                            {report.}
-                        </h2>
-                    </div>
-
-                    <div>
-                        <p className="text-base sm:text-lg  leading-relaxed  font-light  text-[#64748B]">
-
-                            Report Type
-                        </p>
-
-                        <h2 className="mt-1  font-medium text-black">
-                            {report.reportType}
-                        </h2>
-                    </div>
-                </div>
-            </div> */}
-
-            {/* PDF Preview */}
-
+            {/* Preview Section */}
             <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
                 <div className="mb-4 flex items-center gap-2">
                     <FileText
                         size={20}
                         className="text-blue-600"
                     />
-
                     <h2 className="text-xl font-semibold text-black">
                         Report Preview
                     </h2>
                 </div>
 
-               {isPdf && (
-  <iframe
-    src={fileUrl}
-    title="PDF Preview"
-    className="h-[85vh] w-full rounded-xl border"
-  />
-)}
+                {hasValidSource && isPdf && (
+                    <iframe
+                        src={sourceUrl}
+                        title="PDF Preview"
+                        className="h-[85vh] w-full rounded-xl border"
+                    />
+                )}
 
-                {isImage && (
+                {hasValidSource && isImage && (
                     <Image
-                        src={report.fileData}
-                        alt={report.fileName}
+                        src={sourceUrl}
+                        alt={altText}
+                        width={1200}
+                        height={800}
                         className="max-h-[85vh] w-full rounded-xl object-contain"
                     />
                 )}
 
-                {!isPdf && !isImage && (
+                {(!hasValidSource || (!isPdf && !isImage)) && (
                     <div className="flex h-125 items-center justify-center rounded-xl border">
                         <p className="text-gray-500">
                             Preview not available

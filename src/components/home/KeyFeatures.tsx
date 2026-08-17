@@ -1,55 +1,71 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { LayoutDashboard, HeartPulse, FlaskConical, FileClock, LineChart, BarChart2 } from "lucide-react";
 import React from "react";
 import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 
-const leftFeatures = [
+const features = [
   {
     num: "01",
     title: "Health Dashboard",
     desc: "View available health information from one organized dashboard.",
-    icon: <LayoutDashboard className="text-[#2f5ba5] w-7 h-7 md:w-10 md:h-10" strokeWidth={1.5} />,
+    icon: LayoutDashboard,
   },
   {
     num: "02",
     title: "Health Measurements",
     desc: "Record and review supported measurements including heart rate, blood pressure, SpO₂, weight and other available health metrics.",
-    icon: <HeartPulse className="text-[#2f5ba5] w-7 h-7 md:w-10 md:h-10" strokeWidth={1.5} />,
+    icon: HeartPulse,
   },
   {
     num: "03",
     title: "Laboratory Reports",
     desc: "Access laboratory reports that have been securely associated with your account.",
-    icon: <FlaskConical className="text-[#2f5ba5] w-7 h-7 md:w-10 md:h-10" strokeWidth={1.5} />,
+    icon: FlaskConical,
   },
-];
-
-const rightFeatures = [
   {
     num: "04",
     title: "Report History",
     desc: "Review previous reports and measurements to keep your health information organized over time.",
-    icon: <FileClock className="text-[#2f5ba5] w-7 h-7 md:w-10 md:h-10" strokeWidth={1.5} />,
+    icon: FileClock,
   },
   {
     num: "05",
     title: "Health Trends",
     desc: "Compare supported measurements across different dates and monitor changes in your recorded data.",
-    icon: <LineChart className="text-[#2f5ba5] w-7 h-7 md:w-10 md:h-10" strokeWidth={1.5} />,
+    icon: LineChart,
   },
   {
     num: "06",
     title: "Health Insights",
     desc: "View simplified information for supported health measurements and report values.",
-    icon: <BarChart2 className="text-[#2f5ba5] w-7 h-7 md:w-10 md:h-10" strokeWidth={1.5} />,
+    icon: BarChart2,
   },
 ];
 
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
 export default function KeyFeatures() {
   return (
-    <section className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-10 text-black">
+    <section className="w-full max-w-7xl mx-auto mt-10 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-0 text-black">
       
       {/* HEADER SECTION */}
       <div className="flex flex-col items-center text-center">
@@ -67,76 +83,49 @@ export default function KeyFeatures() {
       </div>
 
       {/* GRID SECTION */}
-      <div className="max-w-6xl mx-auto relative">
-        {/* Middle Vertical Divider (Only on MD and above) */}
-        <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[1px] bg-black/10 -translate-x-1/2"></div>
-        
-        <div className="grid md:grid-cols-2 gap-x-16 gap-y-0">
-          
-          {/* Left Column */}
-          <div className="flex flex-col">
-            {leftFeatures.map((feature, i) => (
-              <motion.div
-                key={feature.num}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                className={`flex gap-5 sm:gap-6 ${
-                  i === 0 ? "pb-8" : i === leftFeatures.length - 1 ? "pt-8" : "py-8"
-                } ${i !== leftFeatures.length - 1 ? "border-b border-black/10" : ""}`}
-              >
-                {/* <span className="text-2xl sm:text-3xl font-semibold text-[#2f5ba5] shrink-0 mt-1">
-                  {feature.num}
-                </span> */}
-                <div className="text-[#2f5ba5] shrink-0 mt-0.5">
-                  {feature.icon}
-                </div>
-                <div className="flex flex-col ml-1 sm:ml-2">
-                  <h3 className="text-xl sm:text-2xl font-medium text-gray-950 mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="text-base sm:text-lg font-light text-[#64748B] leading-relaxed">
-                    {feature.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+      >
+        {features.map((feature) => {
+          const Icon = feature.icon;
+          return (
+            <motion.div
+              key={feature.num}
+              variants={cardVariants}
+              className="relative group bg-white rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-gray-100 hover:shadow-[0_8px_30px_rgb(47,91,165,0.12)] transition-all duration-300 overflow-hidden flex flex-col h-full"
+            >
+              {/* Background Number Watermark */}
+              <div className="absolute -right-4 -top-6 text-[120px] font-black text-gray-50/50 group-hover:text-[#2f5ba5]/5 transition-colors duration-500 pointer-events-none select-none leading-none z-0">
+                {feature.num}
+              </div>
 
-          {/* Right Column */}
-          <div className="flex flex-col">
-            {rightFeatures.map((feature, i) => (
-              <motion.div
-                key={feature.num}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
-                transition={{ duration: 0.4, delay: i * 0.1 + 0.3 }}
-                className={`flex gap-5 sm:gap-6 ${
-                  i === 0 ? "pt-8 md:pt-0 pb-8 border-t border-black/10 md:border-t-0" : i === rightFeatures.length - 1 ? "pt-8" : "py-8"
-                } ${i !== rightFeatures.length - 1 ? "border-b border-black/10" : ""}`}
-              >
-                {/* <span className="text-2xl sm:text-3xl font-semibold text-[#2f5ba5] shrink-0 mt-1">
-                  {feature.num}
-                </span> */}
-                <div className="text-[#2f5ba5] shrink-0 mt-0.5">
-                  {feature.icon}
+              <div className="relative z-10 flex flex-col h-full">
+                {/* Icon Container */}
+                <div className="w-14 h-14 rounded-2xl bg-[#2f5ba5]/10 text-[#2f5ba5] flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#2f5ba5] group-hover:text-white transition-all duration-300">
+                  <Icon size={28} strokeWidth={1.5} />
                 </div>
-                <div className="flex flex-col ml-1 sm:ml-2">
-                  <h3 className="text-xl sm:text-2xl font-medium text-gray-950 mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="text-base sm:text-lg font-light text-[#64748B] leading-relaxed">
-                    {feature.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
 
-        </div>
-      </div>
+                {/* Step Number Badge */}
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-sm font-bold text-[#2f5ba5] tracking-wider">FEATURE {feature.num}</span>
+                </div>
+
+                {/* Content */}
+                <h2 className="text-xl sm:text-xl lg:text-2xl font-medium h-16 text-black flex ">
+                  {feature.title}
+                </h2>
+                <p className="text-[#64748B] font-light text-lg leading-relaxed grow">
+                  {feature.desc}
+                </p>
+              </div>
+            </motion.div>
+          );
+        })}
+      </motion.div>
 
     </section>
   );

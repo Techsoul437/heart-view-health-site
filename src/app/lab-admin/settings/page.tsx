@@ -32,7 +32,6 @@ export interface LabProfile {
 
 const validationSchema = Yup.object({
     labName: Yup.string().required("Lab Name is required"),
-    labtype: Yup.string().required("Lab Type is required"),
     phone: Yup.string()
         .matches(/^[0-9+\-\s()]+$/, "Invalid phone number")
         .required("Phone Number is required"),
@@ -158,7 +157,6 @@ export default function SettingsPage() {
                             updateProfile({
                                 labName: values.labName,
                                 branchName: values.branchName,
-                                labType: values.labtype,
                                 mobile: values.phone,
                                 email: values.email,
                                 city: values.address,
@@ -170,7 +168,7 @@ export default function SettingsPage() {
                             toast.success("Profile Updated Successfully");
                             dispatch(getProfile());
                         } else {
-                            toast.error("Selected image is smaller than 10 MB.");
+                            toast.error((result.payload as string) || "Failed to update profile");
                         }
                     }}
                 >
@@ -222,11 +220,10 @@ export default function SettingsPage() {
                                             <div className="relative h-36 w-36 overflow-hidden rounded-full border border-slate-200">
 
                                                 {values.logo ? (
-                                                    <Image
+                                                    <img
                                                         src={values.logo}
                                                         alt="Lab Logo"
-                                                        fill
-                                                        className="object-cover"
+                                                        className="h-full w-full object-cover"
                                                     />
                                                 ) : (
                                                     <div className="flex h-full w-full items-center justify-center bg-slate-100">
@@ -304,7 +301,7 @@ export default function SettingsPage() {
 
                                         {/* Lab Type */}
 
-                                        <div>
+                                        {/* <div>
                                             <label className="mb-2 block  font-medium">
                                                 Lab Type
                                             </label>
@@ -319,7 +316,7 @@ export default function SettingsPage() {
                                                 component="p"
                                                 className="mt-1  text-red-500"
                                             />
-                                        </div>
+                                        </div> */}
 
                                         {/* Phone */}
 

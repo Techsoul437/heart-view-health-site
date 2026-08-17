@@ -21,7 +21,6 @@ import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import {
-    getAllUsers,
     uploadReport,
     getReportsByUser, // ⚠️ path apne actual slice file ke hisaab se adjust karo
     type LabUserItem,

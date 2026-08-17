@@ -14,6 +14,9 @@ import {
     FiInfo,
     FiAlertTriangle,
 } from "react-icons/fi";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "@/redux/store";
+import { createInquiry } from "@/redux/Api";
 import { RiInstagramLine } from "react-icons/ri";
 import MapSection from "./MapSection";
 import ReCAPTCHA from "react-google-recaptcha";
@@ -23,7 +26,7 @@ import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 // ─── Env ───────────────────────────────────────────────────────────────────────
 // NEXT_PUBLIC_ vars are inlined at build time — never guard with && in JSX
 const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string;
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 // ─── Validation ───────────────────────────────────────────────────────────────
 const validationSchema = Yup.object({
@@ -254,6 +257,7 @@ function ErrorMsg({ msg }: { msg?: string }) {
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function Contact() {
     const [toasts, setToasts] = useState<Toast[]>([]);
+    const dispatch = useDispatch<AppDispatch>();
 
     // FIX 1: useRef instead of let — so counter never resets on re-render
     const toastCounter = useRef(0);
@@ -277,34 +281,40 @@ export default function Contact() {
         validationSchema,
         onSubmit: async (values, { resetForm }) => {
             try {
-                const token = recaptchaRef.current?.getValue() || "";
+                let token = recaptchaRef.current?.getValue() || "";
+
+                if (!token) {
+                    token = await recaptchaRef.current?.executeAsync() || "";
+                }
 
                 if (!token) {
                     addToast("error", "Captcha Required", "Please verify captcha");
                     return;
                 }
 
-                const res = await fetch(`${API_URL}/contact`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ ...values, captcha: token }),
-                });
+                const resultAction = await dispatch(
+                    createInquiry({ ...values, captcha: token } as unknown as Parameters<typeof createInquiry>[0])
+                );
 
-                const data = await res.json();
-
-                if (!res.ok) throw new Error(data.message);
-
-                addToast("success", "Message Sent!", data.message);
-                resetForm();
-
-                // FIX 3: reset captcha after successful submission
-                recaptchaRef.current?.reset();
-            } catch (error) {
+                if (createInquiry.fulfilled.match(resultAction)) {
+                    addToast(
+                        "success",
+                        "Message Sent!",
+                        resultAction.payload.message || "Your inquiry has been submitted successfully."
+                    );
+                    resetForm();
+                    // FIX 3: reset captcha after successful submission
+                    recaptchaRef.current?.reset();
+                } else {
+                    throw new Error(resultAction.payload || "Failed to submit inquiry.");
+                }
+            } catch (error: unknown) {
                 console.error(error);
+                const errorMessage = error instanceof Error ? error.message : "Something went wrong. Please try again.";
                 addToast(
                     "error",
                     "Submission Failed",
-                    "Something went wrong. Please try again."
+                    errorMessage
                 );
             }
         },
@@ -464,7 +474,6 @@ export default function Contact() {
 
                                     <div className="flex border border-[#2f5ba5]/30 rounded-lg overflow-hidden focus-within:ring-1 focus-within:ring-[#2f5ba5]/20">
 
-                                        {/* Country Code */}
                                         <div className="relative">
                                             <select
                                                 value={countryCode}
@@ -473,11 +482,6 @@ export default function Contact() {
                                             >
                                                 <option className="bg-[#64748B] text-[#64748B] " value="+91">+91</option>
                                             </select>
-
-                                            {/* Custom Dropdown Icon */}
-                                            <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-[#64748B]  text-xs">
-                                                ▼
-                                            </div>
                                         </div>
 
                                         {/* Phone Input */}
