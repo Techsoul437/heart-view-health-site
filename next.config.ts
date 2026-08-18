@@ -127,7 +127,7 @@ const nextConfig = {
                 https://*.g.doubleclick.net
                 https://pagead2.googlesyndication.com
                 https://googleads.g.doubleclick.net;
-
+                https://*.adtrafficquality.google;
               img-src
                 'self'
                 data:
