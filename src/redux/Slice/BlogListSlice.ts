@@ -346,9 +346,9 @@ const BlogListSlice = createSlice({
         state.updateLoading = false;
         state.success = true;
 
-        // state.message =
-        //   action.payload.message ||
-        //   "Blog updated successfully";
+        state.message =
+          action.payload.message ||
+          "Blog updated successfully";
 
         const updatedBlog = action.payload.data;
 
@@ -441,8 +441,7 @@ const BlogListSlice = createSlice({
 
         state.blogs = action.payload.data || [];
 
-        state.message =
-          action.payload.message || null;
+        state.message = null;
       })
 
       .addCase(getBlogs.rejected, (state, action) => {
@@ -468,8 +467,7 @@ const BlogListSlice = createSlice({
 
         state.blogs = action.payload.data || [];
 
-        state.message =
-          action.payload.message || null;
+        state.message = null;
       })
 
       .addCase(getLatestBlogs.rejected, (state, action) => {
@@ -496,8 +494,7 @@ const BlogListSlice = createSlice({
 
         state.blog = action.payload.data;
 
-        state.message =
-          action.payload.message || null;
+        state.message = null;
       })
 
       .addCase(getBlogById.rejected, (state, action) => {

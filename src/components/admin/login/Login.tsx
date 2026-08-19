@@ -1156,7 +1156,8 @@ const SignupPanel = ({ onLoginClick, onSignupSuccess }: SignupPanelProps) => {
 
               const fcmToken =
                 localStorage.getItem("fcmToken") ??
-                (await requestNotificationPermission()) ??
+                // Notification feature disabled temporarily per user request
+                // (await requestNotificationPermission()) ??
                 "";
 
 

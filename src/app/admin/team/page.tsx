@@ -112,33 +112,30 @@ export default function TeamManagementPage() {
                     </div>
                 </div>
 
-                {/* Main Content Area */}
-                <div className="rounded-2xl border border-slate-200 bg-white shadow-sm">
-                    {/* Filters Bar */}
-                    <div className="border-b border-slate-200 p-6">
-                        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                            <div className="relative flex-1 md:max-w-md">
-                                <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
-                                <input
-                                    type="text"
-                                    placeholder="Search by name..."
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-4 text-sm outline-none transition focus:border-blue-500 focus:bg-white"
-                                />
-                            </div>
-                        </div>
+                {/* CONTROLS */}
+                <div className="mb-4 mt-6 flex flex-wrap items-center gap-3">
+                    <div className="relative w-full max-w-sm">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B] h-5 w-5" />
+                        <input
+                            type="text"
+                            placeholder="Search by name..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="h-10 w-full rounded-lg border border-slate-200 bg-white pl-9 pr-4 text-black outline-none focus:border-blue-300 focus:ring-1 focus:ring-blue-200"
+                        />
                     </div>
+                </div>
 
-                    {/* Table */}
+                {/* TABLE */}
+                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
                     <div className="overflow-x-auto">
-                        <table className="w-full text-left text-sm">
-                            <thead className="bg-slate-50 text-slate-500">
-                                <tr>
-                                    <th className="px-6 py-4 font-medium">Member</th>
-                                    <th className="px-6 py-4 font-medium">Role</th>
-                                    <th className="px-6 py-4 font-medium">Status</th>
-                                    <th className="px-6 py-4 font-medium text-center">Actions</th>
+                        <table className="w-full text-left ">
+                            <thead>
+                                <tr className="border-b border-slate-100 bg-slate-50">
+                                    <th className="px-6 py-4 text-left font-medium text-black">Member</th>
+                                    <th className="px-6 py-4 text-left font-medium text-black">Role</th>
+                                    <th className="px-6 py-4 text-left font-medium text-black">Status</th>
+                                    <th className="px-6 py-4 text-center font-medium text-black">Actions</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-slate-200">

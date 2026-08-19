@@ -270,104 +270,104 @@ export default function EditBlogPage() {
             .replace(/[^a-z0-9]+/g, "-")
             .replace(/^-+|-+$/g, "");
 
-const handleSubmit = async (
-    values: BlogFormValues,
-    { setSubmitting }: FormikHelpers<BlogFormValues>
-) => {
-    try {
-        const peopleAlsoAskPayload =
-            values.peopleAlsoAsk.filter(
-                (item) =>
-                    item.question.trim() &&
-                    item.answer.trim()
+    const handleSubmit = async (
+        values: BlogFormValues,
+        { setSubmitting }: FormikHelpers<BlogFormValues>
+    ) => {
+        try {
+            const peopleAlsoAskPayload =
+                values.peopleAlsoAsk.filter(
+                    (item) =>
+                        item.question.trim() &&
+                        item.answer.trim()
+                );
+
+            const faqPayload =
+                values.faqs.filter(
+                    (faq) =>
+                        faq.question.trim() &&
+                        faq.answer.trim()
+                );
+
+            if (!id) {
+                toast.error("Blog ID not found");
+                setSubmitting(false);
+                return;
+            }
+
+            const result = await dispatch(
+                updateBlog({
+                    id,
+
+                    title: values.title.trim(),
+
+                    slug: values.slug.trim(),
+
+                    author: values.author.trim(),
+
+                    publishDate:
+                        values.publishDate,
+
+                    category:
+                        values.category,
+
+                    // Only send if new image selected
+                    ...(values.mainImage
+                        ? {
+                            mainImage:
+                                values.mainImage,
+                        }
+                        : {}),
+
+                    description:
+                        values.excerpt.trim(),
+
+                    content:
+                        htmlToBlogContent(
+                            values.content
+                        ),
+
+                    tags: values.tags
+                        .split(",")
+                        .map((tag) => tag.trim())
+                        .filter(Boolean),
+
+                    status:
+                        values.status,
+
+                    peopleAlsoAsk:
+                        peopleAlsoAskPayload,
+
+                    faq:
+                        faqPayload,
+
+                    seoTitle:
+                        values.metaTitle.trim(),
+
+                    seoDescription:
+                        values.metaDescription.trim(),
+
+                    schemaMarkup: null,
+                })
+            ).unwrap();
+
+            toast.success(
+                result.message ||
+                "Blog updated successfully"
             );
 
-        const faqPayload =
-            values.faqs.filter(
-                (faq) =>
-                    faq.question.trim() &&
-                    faq.answer.trim()
-            );
+            router.push(`${baseUrl}/Blog`);
 
-        if (!id) {
-            toast.error("Blog ID not found");
+        } catch (error) {
+            toast.error(
+                typeof error === "string"
+                    ? error
+                    : "Blog update failed"
+            );
+        } finally {
             setSubmitting(false);
-            return;
         }
-
-        const result = await dispatch(
-            updateBlog({
-                id,
-
-                title: values.title.trim(),
-
-                slug: values.slug.trim(),
-
-                author: values.author.trim(),
-
-                publishDate:
-                    values.publishDate,
-
-                category:
-                    values.category,
-
-                // Only send if new image selected
-                ...(values.mainImage
-                    ? {
-                        mainImage:
-                            values.mainImage,
-                    }
-                    : {}),
-
-                description:
-                    values.excerpt.trim(),
-
-                content:
-                    htmlToBlogContent(
-                        values.content
-                    ),
-
-                tags: values.tags
-                    .split(",")
-                    .map((tag) => tag.trim())
-                    .filter(Boolean),
-
-                status:
-                    values.status,
-
-                peopleAlsoAsk:
-                    peopleAlsoAskPayload,
-
-                faq:
-                    faqPayload,
-
-                seoTitle:
-                    values.metaTitle.trim(),
-
-                seoDescription:
-                    values.metaDescription.trim(),
-
-                schemaMarkup: null,
-            })
-        ).unwrap();
-
-        // toast.success(
-        //     result.message ||
-        //     "Blog updated successfully"
-        // );
-
-        router.push(`${baseUrl}/Blog`);
-
-    } catch (error) {
-        toast.error(
-            typeof error === "string"
-                ? error
-                : "Blog update failed"
-        );
-    } finally {
-        setSubmitting(false);
-    }
-};
+    };
 
     const inputClass = "w-full rounded-xl border border-black/10 bg-[#f7f7f7] px-4 py-3 outline-none transition focus:border-black/40";
 
@@ -377,16 +377,23 @@ const handleSubmit = async (
 
     return (
         <div className="min-h-screen p-4 text-black sm:p-6 md:p-12">
-            <div className="flex items-center gap-3">
-                <Link href={`${baseUrl}/Blog`} aria-label="Back to blogs" className="flex h-10 w-10 items-center justify-center rounded-lg transition hover:bg-black/10">
-                    <ArrowLeft size={20} />
-                </Link>
-                <div>
-                    <h1 className="text-2xl font-semibold">Edit Blog</h1>
-                    <p className="text-sm text-[#64748B]">Create an article with content, SEO details and FAQs.</p>
+
+            <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
+                <div className="flex items-center gap-3">
+
+                    <Link href={`${baseUrl}/Blog`} aria-label="Back to blogs" className="flex h-10 w-10 items-center justify-center rounded-lg transition hover:bg-black/10">
+                        <ArrowLeft size={20} />
+                    </Link>
+                     <div>
+                    <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
+                        Edit Blog
+                    </h1>
+                    <p className="mt-2 text-[#64748B] leading-relaxed font-light">
+                        Create an article with content, SEO details and FAQs.
+                    </p>
+                    </div>
                 </div>
             </div>
-
             <div className="mt-8  rounded-lg border border-black/10 bg-white p-5 shadow-sm sm:p-8">
                 <Formik
                     initialValues={formInitialValues}

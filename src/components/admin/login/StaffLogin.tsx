@@ -82,7 +82,9 @@ const StaffLoginPanel = () => {
       let token = localStorage.getItem("fcmToken");
 
       if (!token) {
-        token = await requestNotificationPermission();
+        // Notification feature disabled temporarily per user request
+        // token = await requestNotificationPermission();
+        token = null;
       }
 
       setFcmToken(token || "");

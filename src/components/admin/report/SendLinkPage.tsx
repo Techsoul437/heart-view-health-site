@@ -18,6 +18,7 @@ import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import { sendReportLink, getReportDetails } from "@/redux/Api";
+import { resetSendReportLink } from "@/redux/Slice/SendReportLinkSlice";
 
 interface ReportItem {
   id: string; // was: number — IDs are ObjectId-style strings
@@ -141,6 +142,7 @@ export default function SendLinkPage() {
   useEffect(() => {
     if (reportId) {
       dispatch(getReportDetails(reportId));
+      dispatch(resetSendReportLink());
     }
   }, [dispatch, reportId]);
 
@@ -199,17 +201,17 @@ export default function SendLinkPage() {
 
   // Side-effect only: toast + WhatsApp sending logic is handled by backend.
   useEffect(() => {
-    if (success && data) {
-      toast.success("Report Link Sent Successfully via WhatsApp");
+    if (success && sentStatus !== "sent") {
+      toast.success("Report link sent successfully on WhatsApp.");
       setSentStatus("sent");
     }
 
-    if (error) {
+    if (error && sentStatus !== "idle") {
       toast.error(error);
       setSentStatus("idle");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [success, error, data]);
+  }, [success, error, data, sentStatus]);
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -230,7 +232,8 @@ export default function SendLinkPage() {
         sendReportLink({
           reportId: report.id,
           patientId: report.patientId,
-           mobile: values.mobile,
+          mobile: values.mobile,
+          expiryDays: values.expiryDays,
         })
       );
     },

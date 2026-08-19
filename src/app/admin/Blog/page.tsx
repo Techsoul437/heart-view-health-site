@@ -10,6 +10,7 @@ import {
     Search,
     Trash2,
 } from "lucide-react";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +21,11 @@ import {
     getBlogs,
     deleteBlog,
 } from "@/redux/Api";
+
+import {
+    clearBlogMessage,
+    clearBlogError,
+} from "@/redux/Slice/BlogListSlice";
 
 import ConfirmModal from "@/Ui/ConfirmModal";
 import FillButton from "@/Ui/buttons/FillButton";
@@ -56,6 +62,10 @@ export default function BlogListPage() {
         "all" | "draft" | "published"
     >("all");
 
+    // Pagination State
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const blogsPerPage = 10;
+
     const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false);
     const [selectedId, setSelectedId] = useState<string | null>(null);
     const [selectedTitle, setSelectedTitle] = useState<string>("");
@@ -67,26 +77,6 @@ export default function BlogListPage() {
     useEffect(() => {
         dispatch(getBlogs());
     }, [dispatch]);
-
-    // =========================
-    // ERROR TOAST
-    // =========================
-
-    useEffect(() => {
-        if (error) {
-            toast.error(error);
-        }
-    }, [error]);
-
-    // =========================
-    // SUCCESS TOAST
-    // =========================
-
-    useEffect(() => {
-        if (success && message) {
-            toast.success(message);
-        }
-    }, [success, message]);
 
     // =========================
     // FILTER BLOGS
@@ -112,6 +102,14 @@ export default function BlogListPage() {
             return matchesSearch && matchesStatus;
         });
     }, [blogs, search, status]);
+
+    // =========================
+    // PAGINATION LOGIC
+    // =========================
+    const indexOfLastBlog = currentPage * blogsPerPage;
+    const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+    const currentBlogs = filteredBlogs.slice(indexOfFirstBlog, indexOfLastBlog);
+    const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
 
     // =========================
     // OPEN DELETE MODAL
@@ -145,7 +143,7 @@ export default function BlogListPage() {
         );
 
         if (deleteBlog.fulfilled.match(result)) {
-          
+            toast.success(result.payload.message || "Blog deleted successfully");
 
             // ✅ Refresh list so latest records show
             dispatch(getBlogs());
@@ -169,67 +167,72 @@ export default function BlogListPage() {
         <div className="min-h-screen p-6 text-black md:p-12">
             {/* HEADER */}
 
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+           <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
                 <div>
-                    <h1 className="text-2xl font-semibold">Blogs</h1>
-                    <p className="mt-1 text-sm text-[#64748B]">
+                    <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
+                        Blogs
+                    </h1>
+                    <p className="mt-2 text-[#64748B] leading-relaxed font-light">
                         Manage all your blog articles.
+
                     </p>
                 </div>
                 <FillButton text="Add Blog" href="/admin/Blog/add" />
             </div>
+            
+            {/* CONTROLS */}
+            <div className="mt-8 mb-4 flex flex-wrap items-center gap-3">
+                <div className="relative w-full max-w-sm">
+                    <Search
+                        className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B]"
+                        size={18}
+                    />
+                    <input
+                        type="text"
+                        value={search}
+                        onChange={(event) => {
+                            setSearch(event.target.value);
+                            setCurrentPage(1);
+                        }}
+                        placeholder="Search by title, author or category"
+                        className="h-10 w-full rounded-lg border border-slate-200 bg-white pl-9 pr-4 text-black outline-none focus:border-blue-300 focus:ring-1 focus:ring-blue-200"
+                    />
+                </div>
 
-            {/* MAIN CARD */}
-
-            <div className="mt-8 rounded-xl border border-black/10 bg-white p-4 shadow-sm md:p-6">
-                <div className="flex flex-col gap-3 md:flex-row">
-                    <label className="relative flex-1">
-                        <Search
-                            className="absolute left-3 top-1/2 -translate-y-1/2 text-[#64748B]"
-                            size={18}
-                        />
-
-                        <input
-                            type="text"
-                            value={search}
-                            onChange={(event) =>
-                                setSearch(event.target.value)
-                            }
-                            placeholder="Search by title, author or category"
-                            className="w-full rounded-lg border border-black/10 bg-[#F8FAFC] py-3 pl-10 pr-4 outline-none focus:border-[#1D7DAF]"
-                        />
-                    </label>
-
+                <div className="flex items-center gap-2">
+                    <span className="text-[#64748B] text-sm">Status</span>
                     <select
                         value={status}
-                        onChange={(event) =>
+                        onChange={(event) => {
                             setStatus(
                                 event.target.value as
                                 | "all"
                                 | "draft"
                                 | "published"
-                            )
-                        }
-                        className="rounded-lg border border-black/10 bg-[#F8FAFC] px-4 py-3 outline-none focus:border-[#1D7DAF]"
+                            );
+                            setCurrentPage(1);
+                        }}
+                        className="h-10 rounded-lg border border-slate-200 text-sm bg-white px-3 text-black outline-none focus:border-blue-300"
                     >
                         <option value="all">All statuses</option>
                         <option value="draft">Draft</option>
                         <option value="published">Published</option>
                     </select>
                 </div>
+            </div>
 
-                {/* BLOG TABLE */}
-
-                <div className="mt-6 overflow-x-auto">
+            {/* TABLE */}
+            <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+                <div className="overflow-x-auto">
                     <table className="w-full min-w-[850px] text-left">
-                        <thead className="border-y border-black/10 bg-[#F8FAFC] text-sm text-[#64748B]">
-                            <tr>
-                                <th className="p-4 font-medium">Blog</th>
-                                <th className="p-4 font-medium">Category</th>
-                                <th className="p-4 font-medium">Author</th>
-                                <th className="p-4 font-medium">Date</th>
-                                <th className="p-4 font-medium">Status</th>
-                                <th className="p-4 text-right font-medium">Actions</th>
+                        <thead>
+                            <tr className="border-b border-slate-100 bg-slate-50">
+                                <th className="px-5 py-3 text-left font-medium text-black">Blog</th>
+                                <th className="px-5 py-3 text-left font-medium text-black">Category</th>
+                                <th className="px-5 py-3 text-left font-medium text-black">Author</th>
+                                <th className="px-5 py-3 text-left font-medium text-black">Date</th>
+                                <th className="px-5 py-3 text-left font-medium text-black">Status</th>
+                                <th className="px-5 py-3 text-right font-medium text-black">Actions</th>
                             </tr>
                         </thead>
 
@@ -240,7 +243,7 @@ export default function BlogListPage() {
                                         Loading blogs...
                                     </td>
                                 </tr>
-                            ) : filteredBlogs.length === 0 ? (
+                            ) : currentBlogs.length === 0 ? (
                                 <tr>
                                     <td colSpan={6} className="p-10 text-center text-[#64748B]">
                                         <FileText className="mx-auto mb-3" size={30} />
@@ -248,7 +251,7 @@ export default function BlogListPage() {
                                     </td>
                                 </tr>
                             ) : (
-                                filteredBlogs.map((blog) => (
+                                currentBlogs.map((blog) => (
                                     <tr
                                         key={blog._id}
                                         className="border-b border-black/10 last:border-0"
@@ -290,8 +293,8 @@ export default function BlogListPage() {
                                         <td className="p-4">
                                             <span
                                                 className={`rounded-full px-3 py-1 text-xs font-medium ${blog.status === "published"
-                                                        ? "bg-green-100 text-green-700"
-                                                        : "bg-amber-100 text-amber-700"
+                                                    ? "bg-green-100 text-green-700"
+                                                    : "bg-amber-100 text-amber-700"
                                                     }`}
                                             >
                                                 {blog.status}
@@ -336,6 +339,45 @@ export default function BlogListPage() {
                         </tbody>
                     </table>
                 </div>
+
+                {/* PAGINATION */}
+                {filteredBlogs.length > 0 && (
+                    <div className="flex items-center justify-between border-t border-slate-100 px-5 py-4">
+                        <p className="text-sm font-light text-[#64748B]">
+                            Showing {indexOfFirstBlog + 1} to{" "}
+                            {Math.min(indexOfLastBlog, filteredBlogs.length)} of{" "}
+                            {filteredBlogs.length} blogs
+                        </p>
+                        <div className="flex items-center gap-1">
+                            <button
+                                disabled={currentPage === 1}
+                                onClick={() => setCurrentPage((p) => p - 1)}
+                                className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 text-[#64748B] disabled:cursor-not-allowed disabled:opacity-40 hover:bg-slate-50"
+                            >
+                                <FiChevronLeft />
+                            </button>
+                            {Array.from({ length: totalPages }, (_, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => setCurrentPage(i + 1)}
+                                    className={`flex h-8 w-8 items-center justify-center rounded-lg font-semibold transition ${currentPage === i + 1
+                                            ? "bg-[#2f5ba5] text-white"
+                                            : "border border-slate-200 text-[#64748B] hover:bg-slate-50"
+                                        }`}
+                                >
+                                    {i + 1}
+                                </button>
+                            ))}
+                            <button
+                                disabled={currentPage === totalPages || totalPages === 0}
+                                onClick={() => setCurrentPage((p) => p + 1)}
+                                className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 text-[#64748B] disabled:cursor-not-allowed disabled:opacity-40 hover:bg-slate-50"
+                            >
+                                <FiChevronRight />
+                            </button>
+                        </div>
+                    </div>
+                )}
             </div>
 
             {/* DELETE CONFIRM MODAL */}

@@ -444,25 +444,38 @@ export interface UpdateStaffProfilePayload {
 export interface SendReportLinkPayload {
   reportId: string;
   patientId: string;
-  mobile:string;
+  mobile?: string;
+  expiryDays?: number;
 }
 
 export interface ReportLink {
-  _id: string;
+  _id?: string;
   reportId: string;
   patientId: string;
   mobile: string;
-  token: string;
-  linkUrl: string;
-  status: "Sent" | "Viewed" | "Downloaded" | "Expired" | "Failed";
-  expiresAt: string;
-  createdAt: string;
+  twilioMessageSid?: string;
+  token?: string;
+  linkUrl?: string;
+  status?: "Sent" | "Viewed" | "Downloaded" | "Expired" | "Failed";
+  expiresAt?: string;
+  createdAt?: string;
 }
 
 export interface SendReportLinkResponse {
   success: boolean;
   message: string;
   data: ReportLink;
+}
+
+export interface GetAllReportLinksResponse {
+  success: boolean;
+  message: string;
+  data: ReportLink[];
+}
+
+export interface DeleteReportLinkResponse {
+  success: boolean;
+  message: string;
 }
 export interface ReportDetails {
   report: ReportData;
@@ -1758,6 +1771,66 @@ export const sendReportLink = createAsyncThunk<
       const response = await API.post<SendReportLinkResponse>(
         "/report-links/send",
         data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      const err = error as AxiosError<any>;
+
+      return rejectWithValue(
+        err.response?.data?.message || err.message
+      );
+    }
+  }
+);
+
+export const getAllReportLinks = createAsyncThunk<
+  GetAllReportLinksResponse,
+  void,
+  { rejectValue: string }
+>(
+  "report/getAllReportLinks",
+  async (_, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem("accessToken");
+
+      const response = await API.get<GetAllReportLinksResponse>(
+        "/report-links/",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      const err = error as AxiosError<any>;
+
+      return rejectWithValue(
+        err.response?.data?.message || err.message
+      );
+    }
+  }
+);
+
+export const deleteReportLink = createAsyncThunk<
+  DeleteReportLinkResponse,
+  string,
+  { rejectValue: string }
+>(
+  "report/deleteReportLink",
+  async (id, { rejectWithValue }) => {
+    try {
+      const token = localStorage.getItem("accessToken");
+
+      const response = await API.delete<DeleteReportLinkResponse>(
+        `/report-links/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

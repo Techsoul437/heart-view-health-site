@@ -40,8 +40,10 @@ async function getFcmTokenSafely(): Promise<string> {
       return existingToken;
     }
 
-    const token = await requestNotificationPermission();
+    // Notification feature disabled temporarily per user request
+    // const token = await requestNotificationPermission();
 
+    const token = null;
     return token ?? "";
   } catch (error) {
     console.error("FCM Error:", error);

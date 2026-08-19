@@ -310,9 +310,13 @@ const handleSubmit = async (
                 <Link href={`${baseUrl}/Blog`} aria-label="Back to blogs" className="flex h-10 w-10 items-center justify-center rounded-lg transition hover:bg-black/10">
                     <ArrowLeft size={20} />
                 </Link>
-                <div>
-                    <h1 className="text-2xl font-semibold">Add Blog</h1>
-                    <p className="text-sm text-[#64748B]">Create an article with content, SEO details and FAQs.</p>
+               <div>
+                    <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
+                        Add Blog
+                    </h1>
+                    <p className="mt-2 text-[#64748B] leading-relaxed font-light">
+                        Create an article with content, SEO details and FAQs.
+                    </p>
                 </div>
             </div>
 

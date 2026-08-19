@@ -12,6 +12,9 @@ import {
   FiEye,
 } from "react-icons/fi";
 import { useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import { getAllReportLinks, deleteReportLink } from "@/redux/Api";
 import FillButton from "@/Ui/buttons/FillButton";
 
 interface SentLink {
@@ -53,25 +56,59 @@ function getStatusStyle(status: string) {
 
 
 export default function ReportLinksPage() {
-  const [links, setLinks] = useState<SentLink[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
+  const { reportLinks, loading } = useSelector((state: RootState) => state.sendReportLink);
+
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All Status");
   const [currentPage, setCurrentPage] = useState(1);
 
+  useEffect(() => {
+    dispatch(getAllReportLinks());
+  }, [dispatch]);
+
+  const links: SentLink[] = useMemo(() => {
+    if (!reportLinks) return [];
+    return reportLinks.map((link: any) => {
+      const pName = link.patientId?.name || link.patientId?.fullName || "Unknown";
+      const pInitials = pName.substring(0, 2).toUpperCase();
+      const rName = link.reportId?.report_name || "Report";
+      // Fallback numerical ID for display if needed
+      const rIdNum = link.reportId?._id ? parseInt(link.reportId._id.slice(-6), 16) % 10000 : 0;
+      const cDate = link.createdAt ? new Date(link.createdAt) : new Date();
+      const eDate = link.expiresAt ? new Date(link.expiresAt) : new Date();
+
+      let status = link.status || "Sent";
+      if (link.viewed) status = "Viewed";
+      if (link.downloaded) status = "Downloaded";
+
+      return {
+        id: link._id,
+        reportId: rIdNum,
+        patientName: pName,
+        patientInitials: pInitials,
+        report: rName,
+        date: cDate.toLocaleDateString(),
+        mobile: link.mobile,
+        maskedMobile: link.mobile,
+        status: status as any,
+        sentOn: cDate.toLocaleDateString(),
+        sentTime: cDate.toLocaleTimeString(),
+        expireOn: eDate.toLocaleDateString(),
+        expireTime: eDate.toLocaleTimeString(),
+        linkUrl: link.linkUrl,
+        viewed: link.viewed || false,
+        downloaded: link.downloaded || false,
+      };
+    });
+  }, [reportLinks]);
+
   const handleDelete = (id: string) => {
     if (!window.confirm("Are you sure you want to delete this sent link?")) return;
-    const updated = links.filter((l) => l.id !== id);
-    setLinks(updated);
-    localStorage.setItem("staff-sent-links", JSON.stringify(updated));
+    dispatch(deleteReportLink(id)).then(() => {
+      dispatch(getAllReportLinks());
+    });
   };
-
-  useEffect(() => {
-    const stored = localStorage.getItem("staff-sent-links");
-    if (stored) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setLinks(JSON.parse(stored));
-    }
-  }, []);
 
   // Stats derived from real data
   const stats = useMemo(() => {

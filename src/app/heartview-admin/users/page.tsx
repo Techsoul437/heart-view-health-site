@@ -40,7 +40,7 @@ export default function UsersPage() {
       <div className="mb-6 flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
         <div>
           <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
-            User Management
+            Staff Management
           </h1>
           <p className="mt-2 text-[#64748B] leading-relaxed font-light">
             Manage Lab Admins and Lab Staff across all laboratories.
