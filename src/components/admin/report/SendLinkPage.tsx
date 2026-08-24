@@ -240,7 +240,7 @@ export default function SendLinkPage() {
   });
 
   // Derived value instead of syncing Redux data into local state via effect
-  const displayUrl = report?.fileUrl || data?.linkUrl || generatedUrl;
+  const displayUrl = data?.linkUrl || existingLink?.linkUrl || generatedUrl;
 
   const isFieldError = (field: keyof typeof formik.values) =>
     formik.touched[field] && Boolean(formik.errors[field]);

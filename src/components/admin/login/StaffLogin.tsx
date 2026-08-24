@@ -120,8 +120,8 @@ const StaffLoginPanel = () => {
             const data = unwrapResult(resultAction);
 
             localStorage.setItem("staffUser", JSON.stringify(data.data));
-            localStorage.setItem("accessToken", data.accessToken);
-            localStorage.setItem("refreshToken", data.refreshToken);
+            localStorage.setItem("staff_accessToken", data.accessToken);
+            localStorage.setItem("staff_refreshToken", data.refreshToken);
             await dispatch(getStaffProfile()).unwrap();
 
             toast.success(data.message);

@@ -1,8 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { getReportLinkStats, getAllUsers } from "@/redux/Api";
 import { IconType } from "react-icons";
 import {
-  FiUploadCloud,
   FiClock,
   FiEye,
   FiDownload,
@@ -21,40 +24,11 @@ type StatsData = {
   downloaded: number;
 };
 
-type StatsConfig = {
-  [year: number]: {
-    [month: number]: StatsData;
-  };
-};
-
-const statsConfig: StatsConfig = {
-  2025: {
-    1: {
-      totalPatients: 126,
-      uploaded: 38,
-      linksSent: 34,
-      viewed: 18,
-      newPatients: 5,
-      pending: 45,
-      downloaded: 25,
-    },
-    2: {
-      totalPatients: 145,
-      uploaded: 42,
-      linksSent: 28,
-      viewed: 21,
-      newPatients: 7,
-      pending: 32,
-      downloaded: 18,
-    },
-  },
-};
-
 type CardItem = {
   key: keyof StatsData;
   label: string;
   icon: IconType;
-  iconBgStyle: string;  // ✅ inline style — Tailwind purge se safe
+  iconBgStyle: string;
   iconColor: string;
   trend: string;
 };
@@ -64,23 +38,15 @@ const cards: CardItem[] = [
     key: "totalPatients",
     label: "Total Patients",
     icon: FiUser,
-    iconBgStyle: "rgba(59,130,246,0.1)",    // blue-100 equivalent
+    iconBgStyle: "rgba(59,130,246,0.1)",
     iconColor: "text-blue-600",
     trend: "+12%",
   },
-  // {
-  //   key: "uploaded",
-  //   label: "Reports Uploaded",
-  //   icon: FiUploadCloud,
-  //   iconBgStyle: "rgba(34,197,94,0.1)",
-  //   iconColor: "text-green-600",
-  //   trend: "+8%",
-  // },
   {
     key: "linksSent",
     label: "Links Sent",
     icon: FiLink,
-    iconBgStyle: "rgba(168,85,247,0.1)",    // purple-100 equivalent
+    iconBgStyle: "rgba(168,85,247,0.1)",
     iconColor: "text-purple-600",
     trend: "+15%",
   },
@@ -88,7 +54,7 @@ const cards: CardItem[] = [
     key: "viewed",
     label: "Reports Viewed",
     icon: FiEye,
-    iconBgStyle: "rgba(6,182,212,0.1)",     // cyan-100 equivalent
+    iconBgStyle: "rgba(6,182,212,0.1)",
     iconColor: "text-cyan-600",
     trend: "+6%",
   },
@@ -96,7 +62,7 @@ const cards: CardItem[] = [
     key: "newPatients",
     label: "New Patients",
     icon: FiFileText,
-    iconBgStyle: "rgba(249,115,22,0.1)",    // orange-100 equivalent
+    iconBgStyle: "rgba(249,115,22,0.1)",
     iconColor: "text-orange-600",
     trend: "+4%",
   },
@@ -111,18 +77,53 @@ export default function StatCard({
   year = 2025,
   month = 1,
 }: StatsCardsProps) {
-  const selectedYear = Number(year);
-  const selectedMonth = Number(month);
+  const dispatch = useDispatch<AppDispatch>();
+  const [data, setData] = useState<StatsData>({
+    totalPatients: 0,
+    uploaded: 0,
+    linksSent: 0,
+    viewed: 0,
+    newPatients: 0,
+    pending: 0,
+    downloaded: 0,
+  });
 
-  const data: StatsData = {
-    totalPatients: statsConfig[selectedYear]?.[selectedMonth]?.totalPatients ?? 0,
-    uploaded:      statsConfig[selectedYear]?.[selectedMonth]?.uploaded ?? 0,
-    linksSent:     statsConfig[selectedYear]?.[selectedMonth]?.linksSent ?? 0,
-    viewed:        statsConfig[selectedYear]?.[selectedMonth]?.viewed ?? 0,
-    newPatients:   statsConfig[selectedYear]?.[selectedMonth]?.newPatients ?? 0,
-    pending:       statsConfig[selectedYear]?.[selectedMonth]?.pending ?? 0,
-    downloaded:    statsConfig[selectedYear]?.[selectedMonth]?.downloaded ?? 0,
-  };
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const [statsResult, usersResult] = await Promise.allSettled([
+          dispatch(getReportLinkStats({ year, month })).unwrap(),
+          dispatch(getAllUsers()).unwrap()
+        ]);
+        
+        const stats = statsResult.status === 'fulfilled' ? statsResult.value.data : null;
+        const users = usersResult.status === 'fulfilled' ? usersResult.value.data || [] : [];
+        
+        const targetMonth = month ? month - 1 : new Date().getMonth();
+        const targetYear = year || new Date().getFullYear();
+        
+        const newPatientsCount = users.filter((u: { createdAt?: string }) => {
+          if (!u.createdAt) return false;
+          const date = new Date(u.createdAt);
+          return date.getMonth() === targetMonth && date.getFullYear() === targetYear;
+        }).length;
+        
+        setData((prev) => ({
+          ...prev,
+          totalPatients: users.length,
+          newPatients: newPatientsCount,
+          linksSent: stats?.totalSent || 0,
+          viewed: stats?.totalViewed || 0,
+          downloaded: stats?.totalDownloaded || 0,
+          pending: stats?.totalPending || 0,
+        }));
+      } catch (error) {
+        console.error("Failed to fetch stats:", error);
+      }
+    };
+
+    fetchStats();
+  }, [dispatch, year, month]);
 
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -165,11 +166,11 @@ export default function StatCard({
                 {data[key]}
               </h3>
 
-              <p className="mt-2 flex items-center text-sm gap-1 whitespace-nowrap font-medium text-emerald-500">
+              {/* <p className="mt-2 flex items-center text-sm gap-1 whitespace-nowrap font-medium text-emerald-500">
                 <span>{trend}</span>
                 <span>vs yesterday</span>
                 <span>↑</span>
-              </p>
+              </p> */}
             </div>
 
             {/* Right Icon — ✅ overflow-hidden nahi, inline bg, responsive size */}

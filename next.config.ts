@@ -42,7 +42,7 @@ const nextConfig = {
         {
           // Proxy API requests to bypass CORS in local development
           source: "/api-proxy/:path*",
-          destination: "https://api.heartviewhealth.com/api/:path*",
+          destination: "http://localhost:3000/api/:path*",
         },
       ];
     }

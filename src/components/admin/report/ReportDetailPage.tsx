@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams, usePathname } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, FileText } from "lucide-react";
@@ -27,6 +27,14 @@ export default function ReportDetailPage() {
 
         dispatch(getReportById(params.id as string));
     }, [dispatch, params.id]);
+    const [sourceUrl, setSourceUrl] = useState<string>("");
+
+    useEffect(() => {
+        if (!report) return;
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setSourceUrl(report.fileUrl || "");
+    }, [report]);
+
     if (loading) {
         return (
             <div className="flex min-h-screen items-center justify-center">
@@ -42,23 +50,32 @@ export default function ReportDetailPage() {
             </div>
         );
     }
-    const sourceUrl = report.fileUrl || report.fileData || "";
     const altText = report.fileName || report.filename || "Report Preview";
 
+    // If it's our frontend report link, we want to just iframe it.
+    // It's technically an HTML page now, not just a PDF, but iframe handles it perfectly.
     let isPdf = false;
     let isImage = false;
 
-    if (sourceUrl.startsWith("data:application/pdf")) {
+    if (sourceUrl.startsWith("http")) {
+        // If it's the heartviewhealth.com/report/ link, treat it as a document to be iframed
+        if (sourceUrl.includes("/report/")) {
+            isPdf = true; 
+        } else {
+            const urlWithoutQuery = sourceUrl.split("?")[0] || "";
+            const extension =
+                urlWithoutQuery.split(".").pop()?.toLowerCase() ||
+                report.fileName?.split(".").pop()?.toLowerCase() ||
+                report.filename?.split(".").pop()?.toLowerCase() ||
+                report.fileType?.toLowerCase() ||
+                "";
+            isPdf = extension === "pdf" || extension === "application/pdf";
+            isImage = ["jpg", "jpeg", "png", "gif", "webp"].includes(extension) || extension.startsWith("image/");
+        }
+    } else if (sourceUrl.startsWith("data:application/pdf")) {
         isPdf = true;
     } else if (sourceUrl.startsWith("data:image/")) {
         isImage = true;
-    } else {
-        const extension =
-            report.fileUrl?.split(".").pop()?.toLowerCase() ||
-            report.fileName?.split(".").pop()?.toLowerCase() ||
-            "";
-        isPdf = extension === "pdf";
-        isImage = ["jpg", "jpeg", "png", "gif", "webp"].includes(extension);
     }
     
     // We only render Image/Iframe if there is an actual source URL
@@ -106,11 +123,9 @@ export default function ReportDetailPage() {
                 )}
 
                 {hasValidSource && isImage && (
-                    <Image
+                    <img
                         src={sourceUrl}
                         alt={altText}
-                        width={1200}
-                        height={800}
                         className="max-h-[85vh] w-full rounded-xl object-contain"
                     />
                 )}

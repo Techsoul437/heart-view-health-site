@@ -1,5 +1,10 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { getReportStatusStats } from "@/redux/Api";
+
 type StatusItem = {
   completed: number;
   pending: number;
@@ -56,7 +61,7 @@ const BG_COLORS: Record<keyof StatusItem, string> = {
 const LABELS: Record<keyof StatusItem, string> = {
   completed: "Completed",
   pending: "Pending",
-  processing: "Processing",
+  processing: "Viewed",
   failed: "Failed",
 };
 
@@ -129,8 +134,31 @@ function CircularRing({
 }
 
 export default function ReportsByStatusChart({ year, month }: ReportsByStatusChartProps) {
-  const raw = statusData[year]?.[month] || statusData[2024][5];
-  const total = Object.values(raw).reduce((a, b) => a + b, 0);
+  const dispatch = useDispatch<AppDispatch>();
+  const [raw, setRaw] = useState<StatusItem>({ completed: 0, pending: 0, processing: 0, failed: 0 });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await dispatch(getReportStatusStats({ year, month }));
+        if (getReportStatusStats.fulfilled.match(result)) {
+          const data = result.payload?.data || {};
+          setRaw({
+            completed: data.completed || 0,
+            pending: data.pending || 0,
+            processing: data.processing || 0,
+            failed: data.failed || 0,
+          });
+        }
+      } catch (error) {
+        console.error("Failed to fetch report status stats:", error);
+      }
+    };
+    fetchData();
+  }, [dispatch, year, month]);
+
+  const actualTotal = Object.values(raw).reduce((a, b) => a + b, 0);
+  const total = actualTotal || 1; // avoid division by zero
 
   const statKeys: (keyof StatusItem)[] = ["completed", "pending", "processing", "failed"];
 
@@ -144,13 +172,13 @@ export default function ReportsByStatusChart({ year, month }: ReportsByStatusCha
           <h4 className="text-md md:text-lg xl:text-xl text-black">Reports by Status</h4>
           <p className="mt-1 text-[#64748B] font-light">Current report processing overview</p>
         </div>
-        <button className="text-[#64748B] hover:text-black transition-colors mt-1">
+        {/* <button className="text-[#64748B] hover:text-black transition-colors mt-1">
           <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
             <circle cx="5" cy="12" r="2" />
             <circle cx="12" cy="12" r="2" />
             <circle cx="19" cy="12" r="2" />
           </svg>
-        </button>
+        </button> */}
       </div>
 
       {/* 2×2 grid of rings — grows to fill available space */}
@@ -180,7 +208,7 @@ export default function ReportsByStatusChart({ year, month }: ReportsByStatusCha
       <div className="border-t border-black/5 pt-3 shrink-0">
         <div className="flex text-sm justify-between font-light text-[#64748B] mb-1.5">
           <span>Distribution</span>
-          <span>{total.toLocaleString()} reports</span>
+          <span>{actualTotal.toLocaleString()} reports</span>
         </div>
         <div className="flex h-2 rounded-full overflow-hidden gap-0.5">
           {statKeys.map((key) => (

@@ -43,6 +43,7 @@ import {
   verifyMobileOtp, registerLabAdmin, registerWithEmail, loginWithEmail,
   loginWithMobile,
   getProfile,
+  resendOtpApi
 } from "@/redux/Api";
 import { requestNotificationPermission } from "@/lib/firebaseMessaging";
 import { FirebaseError } from "firebase/app";
@@ -672,8 +673,8 @@ const LoginPanel = ({ savedUser, onSignup, onLoginSuccess }: LoginPanelProps) =>
         })
       ).unwrap();
 
-      localStorage.setItem("accessToken", response.accessToken);
-      localStorage.setItem("refreshToken", response.refreshToken);
+      localStorage.setItem("labAdmin_accessToken", response.accessToken);
+      localStorage.setItem("labAdmin_refreshToken", response.refreshToken);
       localStorage.setItem(
         "labProfile",
         JSON.stringify(response.data)
@@ -695,8 +696,14 @@ const LoginPanel = ({ savedUser, onSignup, onLoginSuccess }: LoginPanelProps) =>
     }
   };
 
-  const handleResend = () => {
-    otpFlow.resendOtp(mobileNumber);
+  const handleResend = async () => {
+    try {
+      await dispatch(resendOtpApi({ mobile: mobileNumber })).unwrap();
+      otpFlow.resendOtp(mobileNumber);
+    } catch (err: any) {
+      toast.error(err || "Failed to resend OTP");
+      otpFlow.setErrorMsg(err || "Failed to resend OTP");
+    }
   };
 
   if (loginStep === "otp") {
@@ -1097,8 +1104,14 @@ const SignupPanel = ({ onLoginClick, onSignupSuccess }: SignupPanelProps) => {
     }
   };
 
-  const handleResend = () => {
-    otpFlow.resendOtp(mobileNumber);
+  const handleResend = async () => {
+    try {
+      await dispatch(resendOtpApi({ mobile: mobileNumber })).unwrap();
+      otpFlow.resendOtp(mobileNumber);
+    } catch (err: any) {
+      toast.error(err || "Failed to resend OTP");
+      otpFlow.setErrorMsg(err || "Failed to resend OTP");
+    }
   };
 
   return (

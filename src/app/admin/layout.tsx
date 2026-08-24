@@ -22,8 +22,10 @@ export default function AdminLayout({
   );
 
   useEffect(() => {
-    dispatch(getAdminProfile());
-  }, [dispatch]);
+    if (pathname !== "/admin") {
+      dispatch(getAdminProfile());
+    }
+  }, [dispatch, pathname]);
 
   const sidebarMenu = [
     {

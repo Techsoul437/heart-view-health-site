@@ -134,7 +134,7 @@ export default function ContactModal({ isOpen, onClose }: Props) {
     const dispatch = useDispatch<AppDispatch>();
     const [countryCode, setCountryCode] = useState("+91");
     const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY as string;
-    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+    const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
     const recaptchaRef = useRef<ReCAPTCHA>(null);
     const addToast = (type: ToastType, title: string, message: string) => {
         const id = crypto.randomUUID();

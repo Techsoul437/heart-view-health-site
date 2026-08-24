@@ -29,8 +29,10 @@ export default function LabAdminLayout({
   );
 
   useEffect(() => {
-    dispatch(getProfile());
-  }, [dispatch]);
+    if (pathname !== "/lab-admin") {
+      dispatch(getProfile());
+    }
+  }, [dispatch, pathname]);
   const sidebarMenu: SidebarMenuItem[] = [
     {
       title: "Dashboard",

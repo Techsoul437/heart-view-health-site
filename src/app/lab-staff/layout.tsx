@@ -28,15 +28,10 @@ export default function LabAdminLayout({
   );
 
   useEffect(() => {
-    const token =
-      localStorage.getItem("staffToken") ||
-      localStorage.getItem("token") ||
-      sessionStorage.getItem("staffToken");
-
-    if (token && !data) {
+    if (pathname !== "/lab-staff") {
       dispatch(getStaffProfile());
     }
-  }, [dispatch, data]);
+  }, [dispatch, pathname]);
 
   const sidebarMenu: SidebarMenuItem[] = [
     {

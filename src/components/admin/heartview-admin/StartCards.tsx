@@ -101,8 +101,8 @@ const activeLabs = labs.filter(
   (lab) => lab.status?.toLowerCase() === "active"
 ).length;
 
-const currentMonth = new Date().getMonth();
-const currentYear = new Date().getFullYear();
+const targetMonth = selectedMonth ? selectedMonth - 1 : new Date().getMonth();
+const targetYear = selectedYear || new Date().getFullYear();
 
 const newLabs = labs.filter((lab) => {
   if (!lab.createdAt) return false;
@@ -110,8 +110,8 @@ const newLabs = labs.filter((lab) => {
   const date = new Date(lab.createdAt);
 
   return (
-    date.getMonth() === currentMonth &&
-    date.getFullYear() === currentYear
+    date.getMonth() === targetMonth &&
+    date.getFullYear() === targetYear
   );
 }).length;
 

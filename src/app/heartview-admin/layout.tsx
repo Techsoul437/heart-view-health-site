@@ -30,8 +30,10 @@ export default function LabAdminLayout({
   );
 
   useEffect(() => {
-    dispatch(getHeartViewAdminProfile());
-  }, [dispatch]);
+    if (pathname !== "/heartview-admin") {
+      dispatch(getHeartViewAdminProfile());
+    }
+  }, [dispatch, pathname]);
 const sidebarMenu = [
   {
     title: "Dashboard",

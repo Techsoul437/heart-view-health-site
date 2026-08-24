@@ -3,10 +3,24 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 
 const API = axios.create({
-  baseURL: "https://api.heartviewhealth.com/api",
-  // baseURL: "http://localhost:3000/api",
-
+  baseURL: process.env.NODE_ENV === "development" 
+    ? "/api-proxy" 
+    : process.env.NEXT_PUBLIC_API_URL || "https://api.heartviewhealth.com/api",
 });
+
+export const getToken = () => {
+  if (typeof window === "undefined") return null;
+  const path = window.location.pathname;
+  if (path.startsWith("/lab-admin")) return localStorage.getItem("labAdmin_accessToken") || localStorage.getItem("accessToken");
+  if (path.startsWith("/lab-staff")) return localStorage.getItem("staff_accessToken") || localStorage.getItem("accessToken");
+  if (path.startsWith("/heartview-admin")) return localStorage.getItem("heartviewAdmin_accessToken") || localStorage.getItem("accessToken");
+  if (path.startsWith("/admin")) return localStorage.getItem("admin_accessToken") || localStorage.getItem("accessToken");
+  return localStorage.getItem("labAdmin_accessToken") || 
+         localStorage.getItem("staff_accessToken") || 
+         localStorage.getItem("heartviewAdmin_accessToken") || 
+         localStorage.getItem("admin_accessToken") || 
+         localStorage.getItem("accessToken");
+};
 
 // ==============================
 // Types
@@ -420,6 +434,16 @@ export interface GetReportByIdResponse {
   success: boolean;
   data: ReportData;
 }
+export interface PublicReportData {
+  reportId: string;
+  patientName: string;
+  createdAt: string;
+  reportUrl: string;
+}
+export interface GetPublicReportResponse {
+  success: boolean;
+  data: PublicReportData;
+}
 export interface StaffProfile {
   _id: string;
   empId: string;
@@ -477,6 +501,20 @@ export interface DeleteReportLinkResponse {
   success: boolean;
   message: string;
 }
+
+export interface GetReportLinkStatsResponse {
+  success: boolean;
+  message: string;
+  data: {
+    totalSent: number;
+    totalViewed: number;
+    totalDownloaded: number;
+    totalFailed: number;
+    totalExpired: number;
+    totalPending: number;
+  };
+}
+
 export interface ReportDetails {
   report: ReportData;
   user: Patient;
@@ -961,7 +999,12 @@ export const getAllUsers = createAsyncThunk<
   { rejectValue: string }
 >("users/getAllUsers", async (_, { rejectWithValue }) => {
   try {
-    const response = await API.get<ApiResponse<Patient[]>>("/auth/all-user");
+    const token = getToken();
+    const response = await API.get<ApiResponse<Patient[]>>("/auth/all-user", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     const err = error as AxiosError<any>;
@@ -1036,7 +1079,7 @@ export const getAllStaff = createAsyncThunk<
   { rejectValue: string }
 >("staff/getAllStaff", async (_, { rejectWithValue }) => {
   try {
-    const token = localStorage.getItem("accessToken");
+    const token = getToken();
 
     const response = await API.get<ApiResponse<Staff[]>>("/staff", {
       headers: {
@@ -1143,6 +1186,25 @@ export const deleteStaff = createAsyncThunk<
   }
 });
 
+export const resendOtpApi = createAsyncThunk<
+  ApiResponse<any>,
+  { mobile: string },
+  { rejectValue: string }
+>("lab/resendOtpApi", async (data, { rejectWithValue }) => {
+  try {
+    const response = await API.post<ApiResponse<any>>(
+      "/lab-auth/resend-otp",
+      data
+    );
+
+    return response.data;
+  } catch (error) {
+    const err = error as AxiosError<ErrorResponse>;
+
+    return rejectWithValue(err.response?.data?.message || err.message);
+  }
+});
+
 export const verifyMobileOtp = createAsyncThunk<
   ApiResponse<any>,
   VerifyOtpPayload,
@@ -1234,7 +1296,7 @@ export const getProfile = createAsyncThunk<
   { rejectValue: string }
 >("lab/getProfile", async (_, { rejectWithValue }) => {
   try {
-    const token = localStorage.getItem("accessToken");
+    const token = getToken();
     const response = await API.get<ApiResponse<LabProfile>>(
       "/lab-auth/getprofile",
       {
@@ -1261,7 +1323,7 @@ export const updateProfile = createAsyncThunk<
   { rejectValue: string }
 >("lab/updateProfile", async (data, { rejectWithValue }) => {
   try {
-    const token = localStorage.getItem("accessToken");
+    const token = getToken();
 
     const response = await API.put<ApiResponse<LabProfile>>(
       "/lab-auth/profile",
@@ -1309,7 +1371,7 @@ export const uploadReport = createAsyncThunk<
   { rejectValue: string }
 >("report/uploadReport", async (formData, { rejectWithValue }) => {
   try {
-    const token = localStorage.getItem("accessToken");
+    const token = getToken();
 
     const response = await API.post<UploadReportResponse>(
       "/lab-admin/upload-report",
@@ -1339,7 +1401,7 @@ export const updateUser = createAsyncThunk<
   { rejectValue: string }
 >("users/updateUser", async (data, { rejectWithValue }) => {
   try {
-    const token = localStorage.getItem("accessToken");
+    const token = getToken();
 
     const response = await API.put<UpdateUserResponse>(
       "/lab-auth/user-update",
@@ -1365,7 +1427,7 @@ export const addOrUpdateHealth = createAsyncThunk<
   { rejectValue: string }
 >("health/addOrUpdateHealth", async (data, { rejectWithValue }) => {
   try {
-    const token = localStorage.getItem("accessToken");
+    const token = getToken();
 
     const response = await API.post<HealthProfileResponse>(
       "/lab-auth/helth-profile",
@@ -1394,7 +1456,7 @@ export const getUserById = createAsyncThunk<
   { rejectValue: string }
 >("users/getUserById", async (id, { rejectWithValue }) => {
   try {
-    const token = localStorage.getItem("accessToken");
+    const token = getToken();
 
     const response = await API.get<GetUserByIdResponse>(
       `/lab-auth/getuser/${id}`,
@@ -1419,7 +1481,7 @@ export const getHealthById = createAsyncThunk<
   { rejectValue: string }
 >("health/getHealthById", async (id, { rejectWithValue }) => {
   try {
-    const token = localStorage.getItem("accessToken");
+    const token = getToken();
 
     const response = await API.get<GetHealthByIdResponse>(
       `/lab-auth/get-health/${id}`,
@@ -1444,7 +1506,7 @@ export const getReportsByUser = createAsyncThunk<
   { rejectValue: string }
 >("report/getReportsByUser", async (id, { rejectWithValue }) => {
   try {
-    const token = localStorage.getItem("accessToken");
+    const token = getToken();
 
     const response = await API.get<GetReportsByUserResponse>(
       `/lab-admin/user-reports/${id}`,
@@ -1468,7 +1530,7 @@ export const updateReportMetric = createAsyncThunk<
   { rejectValue: string }
 >("report/updateReportMetric", async (data, { rejectWithValue }) => {
   try {
-    const token = localStorage.getItem("accessToken");
+    const token = getToken();
 
     const response = await API.put<UpdateReportMetricResponse>(
       "/lab-admin/update-report-metric",
@@ -1495,7 +1557,7 @@ export const finalSaveReport = createAsyncThunk<
   "report/finalSaveReport",
   async (data, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       const response = await API.put<FinalSaveReportResponse>(
         "/lab-admin/final-save-report",
@@ -1526,7 +1588,7 @@ export const deleteReportMetric = createAsyncThunk<
   "report/deleteReportMetric",
   async (data, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       const response = await API.delete<DeleteReportMetricResponse>(
         "/lab-admin/delete-metric",
@@ -1557,7 +1619,7 @@ export const deleteUser = createAsyncThunk<
   "user/deleteUser",
   async (id, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       const response = await API.delete<DeleteUserResponse>(
         `/lab-auth/delete-user/${id}`,
@@ -1587,10 +1649,18 @@ export const getAllReports = createAsyncThunk<
   "report/getAllReports",
   async (_, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
+      
+      let prefix = "/lab-admin";
+      if (typeof window !== "undefined") {
+        const path = window.location.pathname;
+        if (path.startsWith("/admin")) prefix = "/admin";
+        else if (path.startsWith("/heartview-admin")) prefix = "/heartview-admin";
+        else if (path.startsWith("/lab-staff")) prefix = "/lab-admin"; // Lab staff uses lab-admin for reports?
+      }
 
       const response = await API.get<GetAllReportsResponse>(
-        "/lab-admin/all-reports",
+        `${prefix}/all-reports`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -1617,7 +1687,7 @@ export const getReportById = createAsyncThunk<
   "report/getReportById",
   async (reportId, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       const response = await API.get<GetReportByIdResponse>(
         `/lab-admin/report/${reportId}`,
@@ -1639,6 +1709,58 @@ export const getReportById = createAsyncThunk<
   }
 );
 
+export const getPublicReportData = createAsyncThunk<
+  GetPublicReportResponse,
+  string,
+  { rejectValue: string }
+>(
+  "report/getPublicReport",
+  async (reportId, { rejectWithValue }) => {
+    try {
+      // It is a public API, no token needed.
+      const response = await API.get<GetPublicReportResponse>(
+        `/report/public/${reportId}`
+      );
+      return response.data;
+    } catch (error) {
+      const err = error as AxiosError<ErrorResponse>;
+      return rejectWithValue(
+        err.response?.data?.message || err.message
+      );
+    }
+  }
+);
+
+
+
+export const fetchReportBlob = async (token: string): Promise<Blob> => {
+  const response = await API.get(`/report/public/stream/${token}`, {
+    responseType: "blob",
+  });
+  return response.data;
+};
+
+export const getPublicReportInfoByToken = createAsyncThunk<
+  GetPublicReportResponse,
+  string,
+  { rejectValue: string }
+>(
+  "report/getPublicReportInfoByToken",
+  async (token, { rejectWithValue }) => {
+    try {
+      const response = await API.get<GetPublicReportResponse>(
+        `/report/public/info/${token}`
+      );
+      return response.data;
+    } catch (error) {
+      const err = error as AxiosError<ErrorResponse>;
+      return rejectWithValue(
+        err.response?.data?.message || err.message
+      );
+    }
+  }
+);
+
 export const loginStaffWithEmail = createAsyncThunk<
   StaffLoginResponse,
   StaffLoginPayload,
@@ -1653,8 +1775,8 @@ export const loginStaffWithEmail = createAsyncThunk<
       );
 
       // Save Tokens
-      localStorage.setItem("accessToken", response.data.accessToken);
-      localStorage.setItem("refreshToken", response.data.refreshToken);
+      localStorage.setItem("staff_accessToken", response.data.accessToken);
+      localStorage.setItem("staff_refreshToken", response.data.refreshToken);
 
       return response.data;
     } catch (error) {
@@ -1675,7 +1797,7 @@ export const getStaffProfile = createAsyncThunk<
   "staff/getStaffProfile",
   async (_, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       const response = await API.get<ApiResponse<StaffProfile>>(
         "/staff/staff-profile",
@@ -1705,7 +1827,7 @@ export const updateStaffProfile = createAsyncThunk<
   "staff/updateStaffProfile",
   async (data, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       const response = await API.put<ApiResponse<StaffProfile>>(
         "/staff/profile",
@@ -1736,7 +1858,7 @@ export const deleteReport = createAsyncThunk<
   "report/deleteReport",
   async (reportId, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       const response = await API.delete<ApiResponse<null>>(
         `/lab-admin/delete-report/${reportId}`,
@@ -1766,7 +1888,7 @@ export const sendReportLink = createAsyncThunk<
   "report/sendReportLink",
   async (data, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       const response = await API.post<SendReportLinkResponse>(
         "/report-links/send",
@@ -1797,10 +1919,10 @@ export const getAllReportLinks = createAsyncThunk<
   "report/getAllReportLinks",
   async (_, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       const response = await API.get<GetAllReportLinksResponse>(
-        "/report-links/",
+        "/report-links",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -1818,6 +1940,77 @@ export const getAllReportLinks = createAsyncThunk<
     }
   }
 );
+export const getReportLinkStats = createAsyncThunk<
+  GetReportLinkStatsResponse,
+  { year?: number; month?: number } | void,
+  { rejectValue: string }
+>(
+  "report/getReportLinkStats",
+  async (params, { rejectWithValue }) => {
+    try {
+      const token = getToken();
+
+      const response = await API.get<GetReportLinkStatsResponse>(
+        "/report-links/stats",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: params || {},
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      const err = error as AxiosError<any>;
+
+      return rejectWithValue(
+        err.response?.data?.message || err.message
+      );
+    }
+  }
+);
+
+export interface GetReportStatusStatsResponse {
+  success: boolean;
+  message: string;
+  data: {
+    completed: number;
+    pending: number;
+    processing: number;
+    failed: number;
+  };
+}
+
+export const getReportStatusStats = createAsyncThunk<
+  GetReportStatusStatsResponse,
+  { year?: number; month?: number } | void,
+  { rejectValue: string }
+>(
+  "report/getReportStatusStats",
+  async (params, { rejectWithValue }) => {
+    try {
+      const token = getToken();
+
+      const response = await API.get<GetReportStatusStatsResponse>(
+        "/report-links/status-stats",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: params || {},
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      const err = error as AxiosError<any>;
+      return rejectWithValue(
+        err.response?.data?.message || err.message
+      );
+    }
+  }
+);
 
 export const deleteReportLink = createAsyncThunk<
   DeleteReportLinkResponse,
@@ -1827,7 +2020,7 @@ export const deleteReportLink = createAsyncThunk<
   "report/deleteReportLink",
   async (id, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       const response = await API.delete<DeleteReportLinkResponse>(
         `/report-links/${id}`,
@@ -1857,7 +2050,7 @@ export const getReportDetails = createAsyncThunk<
   "report/getReportDetails",
   async (reportId, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       const response = await API.get<GetReportDetailsResponse>(
         `/lab-admin/report-details/${reportId}`,
@@ -1910,7 +2103,7 @@ export const getAllInquiry = createAsyncThunk<
   "inquiry/getAllInquiry",
   async (_, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       const response = await API.get<GetAllInquiryResponse>(
         "/contact/all",
@@ -1939,7 +2132,7 @@ export const deleteInquiry = createAsyncThunk<
   "inquiry/deleteInquiry",
   async (id, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       const response = await API.delete<DeleteInquiryResponse>(
         `/contact/delete/${id}`,
@@ -1975,8 +2168,8 @@ export const loginHeartViewAdminWithEmail = createAsyncThunk<
       );
 
       // Save Tokens
-      localStorage.setItem("accessToken", response.data.accessToken);
-      localStorage.setItem("refreshToken", response.data.refreshToken);
+      localStorage.setItem("heartviewAdmin_accessToken", response.data.accessToken);
+      localStorage.setItem("heartviewAdmin_refreshToken", response.data.refreshToken);
 
       return response.data;
     } catch (error) {
@@ -2001,7 +2194,7 @@ export const getAllLabs = createAsyncThunk<
         "/lab-auth/all-labs",
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${getToken()}`,
           },
         }
       );
@@ -2029,7 +2222,7 @@ export const getAllAuditLogs = createAsyncThunk<
         "/audit",
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${getToken()}`,
           },
         }
       );
@@ -2057,7 +2250,7 @@ export const getLabById = createAsyncThunk<
         `/lab-auth/labs/${id}`,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${getToken()}`,
           },
         }
       );
@@ -2096,7 +2289,7 @@ export const updateLab = createAsyncThunk<
         data,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${getToken()}`,
           },
         }
       );
@@ -2129,7 +2322,7 @@ export const approveLab = createAsyncThunk<
         {},
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${getToken()}`,
           },
         }
       );
@@ -2162,7 +2355,7 @@ export const rejectLab = createAsyncThunk<
         { reason },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${getToken()}`,
           },
         }
       );
@@ -2195,7 +2388,7 @@ export const updateLabStatus = createAsyncThunk<
         { status },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${getToken()}`,
           },
         }
       );
@@ -2222,7 +2415,7 @@ export const deleteLab = createAsyncThunk<
         `/lab-auth/labs/${id}`,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${getToken()}`,
           },
         }
       );
@@ -2246,7 +2439,7 @@ export const getHeartViewAdminProfile = createAsyncThunk<
   "heartview-admin/profile",
   async (_, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
     const response = await API.get<HeartViewAdminResponse>(
   "/heartview-admin/profile",
@@ -2280,7 +2473,7 @@ export const updateHeartViewAdminProfile = createAsyncThunk<
         data,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${getToken()}`,
             "Content-Type": "application/json",
           },
         }
@@ -2305,7 +2498,7 @@ export const getLabUsers = createAsyncThunk<
   "lab/getLabUsers",
   async (_, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       const response = await API.get<GetLabUsersResponse>(
         "/lab-auth/lab-users",
@@ -2346,12 +2539,12 @@ export const loginAdminWithEmail = createAsyncThunk<
 
       // Save Tokens
       localStorage.setItem(
-        "accessToken",
+        "admin_accessToken",
         response.data.accessToken
       );
 
       localStorage.setItem(
-        "refreshToken",
+        "admin_refreshToken",
         response.data.refreshToken
       );
 
@@ -2378,7 +2571,7 @@ export const getAdminProfile = createAsyncThunk<
   "admin/profile",
   async (_, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       if (!token) {
         return rejectWithValue(
@@ -2414,7 +2607,7 @@ export const addBlog = createAsyncThunk<
   "blog/addBlog",
   async (data, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       if (!token) {
         return rejectWithValue(
@@ -2507,7 +2700,7 @@ export const updateBlog = createAsyncThunk<
   "blog/updateBlog",
   async (data, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       if (!token) {
         return rejectWithValue(
@@ -2610,7 +2803,7 @@ export const getBlogs = createAsyncThunk<
   { rejectValue: string }
 >("blog/getBlogs", async (_, { rejectWithValue }) => {
   try {
-    const token = typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
+    const token = typeof window !== "undefined" ? getToken() : null;
 
     const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
@@ -2640,7 +2833,7 @@ export const getLatestBlogs = createAsyncThunk<
   { rejectValue: string }
 >("blog/getLatestBlogs", async (_, { rejectWithValue }) => {
   try {
-    const token = typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
+    const token = typeof window !== "undefined" ? getToken() : null;
 
     const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
@@ -2670,7 +2863,7 @@ export const getBlogById = createAsyncThunk<
   { rejectValue: string }
 >("blog/getBlogById", async (id, { rejectWithValue }) => {
   try {
-    const token = typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
+    const token = typeof window !== "undefined" ? getToken() : null;
 
     const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
@@ -2700,7 +2893,7 @@ export const addTeam = createAsyncThunk<
   { rejectValue: string }
 >("team/addTeam", async (formData, { rejectWithValue }) => {
   try {
-    const token = localStorage.getItem("accessToken");
+    const token = getToken();
 
     if (!token) {
       return rejectWithValue("Access token not found");
@@ -2738,7 +2931,7 @@ export const getTeams = createAsyncThunk<
   { rejectValue: string }
 >("team/getTeams", async (_, { rejectWithValue }) => {
   try {
-    const token = typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
+    const token = typeof window !== "undefined" ? getToken() : null;
     const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
     const response = await API.get<GetTeamsResponse>(
@@ -2783,7 +2976,7 @@ export const getTeamById = createAsyncThunk<
   { rejectValue: string }
 >("team/getTeamById", async (id, { rejectWithValue }) => {
   try {
-    const token = typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
+    const token = typeof window !== "undefined" ? getToken() : null;
     const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
     const response = await API.get<TeamResponse>(
@@ -2811,7 +3004,7 @@ export const updateTeam = createAsyncThunk<
     "team/updateTeam",
     async ({ id, formData }, { rejectWithValue }) => {
         try {
-            const token = localStorage.getItem("accessToken");
+            const token = getToken();
 
             if (!token) {
                 return rejectWithValue(
@@ -2851,7 +3044,7 @@ export const deleteTeam = createAsyncThunk<
   "team/deleteTeam",
   async (id, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       if (!token) {
         return rejectWithValue("Access token not found");
@@ -2884,7 +3077,7 @@ export const deleteBlog = createAsyncThunk<
   "blog/deleteBlog",
   async (id, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       if (!token) {
         return rejectWithValue("Access token not found");
@@ -2923,7 +3116,7 @@ export const updateAdminProfile = createAsyncThunk<
   "admin/updateAdminProfile",
   async ({ id, fullName, mobile, fcmToken, profileImage }, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem("accessToken");
+      const token = getToken();
 
       if (!token) {
         return rejectWithValue("Access token not found");

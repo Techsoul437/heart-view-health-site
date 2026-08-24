@@ -85,6 +85,19 @@ export default function Sidebar({
   };
   const router = useRouter();
   const handleLogout = () => {
+    if (role === 'lab-admin') {
+      localStorage.removeItem("labAdmin_accessToken");
+      localStorage.removeItem("labAdmin_refreshToken");
+    } else if (role === 'lab-staff') {
+      localStorage.removeItem("staff_accessToken");
+      localStorage.removeItem("staff_refreshToken");
+    } else if (role === 'heartview-admin') {
+      localStorage.removeItem("heartviewAdmin_accessToken");
+      localStorage.removeItem("heartviewAdmin_refreshToken");
+    } else if (role === 'admin') {
+      localStorage.removeItem("admin_accessToken");
+      localStorage.removeItem("admin_refreshToken");
+    }
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     localStorage.removeItem("labProfile");

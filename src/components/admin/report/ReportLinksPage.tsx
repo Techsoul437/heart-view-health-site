@@ -16,6 +16,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import { getAllReportLinks, deleteReportLink } from "@/redux/Api";
 import FillButton from "@/Ui/buttons/FillButton";
+import ConfirmModal from "@/Ui/ConfirmModal";
+import { usePathname } from "next/navigation";
 
 interface SentLink {
   id: string;
@@ -62,14 +64,32 @@ export default function ReportLinksPage() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All Status");
   const [currentPage, setCurrentPage] = useState(1);
-
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+const pathname = usePathname();
+const role = pathname.split("/")[1]; // lab-admin / staff
   useEffect(() => {
     dispatch(getAllReportLinks());
   }, [dispatch]);
 
   const links: SentLink[] = useMemo(() => {
     if (!reportLinks) return [];
-    return reportLinks.map((link: any) => {
+    
+    type ReportLinkResponse = {
+      _id: string;
+      patientId?: { name?: string; fullName?: string };
+      reportId?: { report_name?: string; _id?: string };
+      createdAt?: string;
+      expiresAt?: string;
+      status?: string;
+      viewed?: boolean;
+      downloaded?: boolean;
+      mobile: string;
+      linkUrl: string;
+    };
+
+    return (reportLinks as unknown as ReportLinkResponse[]).map((link) => {
       const pName = link.patientId?.name || link.patientId?.fullName || "Unknown";
       const pInitials = pName.substring(0, 2).toUpperCase();
       const rName = link.reportId?.report_name || "Report";
@@ -91,7 +111,7 @@ export default function ReportLinksPage() {
         date: cDate.toLocaleDateString(),
         mobile: link.mobile,
         maskedMobile: link.mobile,
-        status: status as any,
+        status: status as SentLink["status"],
         sentOn: cDate.toLocaleDateString(),
         sentTime: cDate.toLocaleTimeString(),
         expireOn: eDate.toLocaleDateString(),
@@ -103,10 +123,16 @@ export default function ReportLinksPage() {
     });
   }, [reportLinks]);
 
-  const handleDelete = (id: string) => {
-    if (!window.confirm("Are you sure you want to delete this sent link?")) return;
-    dispatch(deleteReportLink(id)).then(() => {
+  const handleDelete = () => {
+    if (!selectedId) return;
+    setIsDeleting(true);
+    dispatch(deleteReportLink(selectedId)).then(() => {
       dispatch(getAllReportLinks());
+      setIsDeleting(false);
+      setOpenDeleteModal(false);
+      setSelectedId(null);
+    }).catch(() => {
+      setIsDeleting(false);
     });
   };
 
@@ -160,6 +186,19 @@ export default function ReportLinksPage() {
     <div className="min-h-screen bg-white p-5 md:p-12">
       <div className="mx-auto max-w-8xl space-y-6">
         {/* Header */}
+        <ConfirmModal
+          isOpen={openDeleteModal}
+          title="Delete Report Link"
+          message="Are you sure you want to delete this sent link? This action cannot be undone."
+          confirmText="Delete"
+          cancelText="Cancel"
+          loading={isDeleting}
+          onConfirm={handleDelete}
+          onCancel={() => {
+            setOpenDeleteModal(false);
+            setSelectedId(null);
+          }}
+        />
 
         <div className="flex flex-col gap-5   md:flex-row md:items-start md:justify-between ">
           <div>
@@ -173,7 +212,7 @@ export default function ReportLinksPage() {
           </div>
 
 
-          <FillButton text="Send New Link" href="/lab-staff/reports" ></FillButton>
+          <FillButton text="Send New Link"  href={`/${role}/reports`} ></FillButton>
 
         </div>
         {/* Stats */}
@@ -367,7 +406,10 @@ export default function ReportLinksPage() {
                       <td className="px-5 py-4">
                         <div className="flex justify-center gap-2">
                           <button
-                            onClick={() => handleDelete(item.id)}
+                            onClick={() => {
+                              setSelectedId(item.id);
+                              setOpenDeleteModal(true);
+                            }}
                             className="rounded-lg border border-slate-200 p-2 text-red-400 hover:bg-red-50 transition-colors"
                             title="Delete link"
                           >
