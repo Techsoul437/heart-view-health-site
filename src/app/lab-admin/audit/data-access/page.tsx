@@ -6,7 +6,7 @@ import { format } from "date-fns";
 export default function DataAccessPage() {
   const columns = [
     { key: "createdAt", label: "Date & Time", render: (val: string) => val ? format(new Date(val), "dd MMM yyyy, hh:mm a") : "-" },
-    { key: "actorName", label: "Actor" },
+    { key: "actorName", label: "Actor", render: (val: string, row: Record<string, string>) => row.actorName || row.adminName || row.user || "Unknown" },
     { key: "action", label: "Action" },
     { key: "module", label: "Module" },
     { key: "patientId", label: "Patient", render: (val: { name?: string; firstName?: string } | string | null | undefined) => (typeof val === 'object' && val !== null ? (val.name || val.firstName) : val) || "-" },

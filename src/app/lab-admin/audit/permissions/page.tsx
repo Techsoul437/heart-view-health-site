@@ -7,7 +7,7 @@ import { SeverityBadge } from "@/components/admin/audit/Badges";
 export default function PermissionsAuditPage() {
   const columns = [
     { key: "createdAt", label: "Date & Time", render: (val: string) => val ? format(new Date(val), "dd MMM yyyy, hh:mm a") : "-" },
-    { key: "actorName", label: "Changed By" },
+    { key: "actorName", label: "Changed By", render: (val: string, row: Record<string, string>) => row.actorName || row.adminName || row.user || "Unknown" },
     { key: "actorRole", label: "Role" },
     { key: "action", label: "Action" },
     { key: "description", label: "Details" },

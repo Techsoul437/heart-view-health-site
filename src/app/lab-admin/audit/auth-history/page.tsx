@@ -7,7 +7,7 @@ import { format } from "date-fns";
 export default function AuthHistoryPage() {
   const columns = [
     { key: "createdAt", label: "Date & Time", render: (val: string) => val ? format(new Date(val), "dd MMM yyyy, hh:mm a") : "-" },
-    { key: "actorName", label: "User" },
+    { key: "actorName", label: "User", render: (val: string, row: Record<string, string>) => row.actorName || row.adminName || row.user || "Unknown" },
     { key: "actorRole", label: "Role" },
     { key: "action", label: "Event Type" },
     { key: "status", label: "Status", render: (val: string) => <StatusBadge status={val} /> },

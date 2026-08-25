@@ -146,7 +146,27 @@ export default function LabAdminLayout({
     pathname === "/lab-admin";
   if (isLoginPage) {
     
+  
+  if (hasAnyPerm("audit")) {
+    sidebarMenu.push({
+      title: "Audit & Security",
+      href: "#",
+      icon: "audit", // "audit" icon should exist in Sidebar iconMap (ClipboardList)
+      subItems: [
+        { title: "Audit Dashboard", href: "/lab-admin/audit/dashboard" },
+        { title: "My Activity Log", href: "/lab-admin/audit/my-activity" },
+        { title: "Login & Authentication", href: "/lab-admin/audit/auth-history" },
+        { title: "Active Sessions", href: "/lab-admin/audit/sessions" },
+        { title: "Data Access Audit", href: "/lab-admin/audit/data-access" },
+        { title: "Role & Permission", href: "/lab-admin/audit/permissions" },
+        { title: "Security Alerts", href: "/lab-admin/audit/alerts" },
+        { title: "Security Profile", href: "/lab-admin/audit/profile" },
+      ]
+    });
+  }
+
   return (
+
 
       <div className="h-screen page-bg">
         {children}

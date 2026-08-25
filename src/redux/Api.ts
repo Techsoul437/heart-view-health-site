@@ -631,12 +631,16 @@ export interface GetAllLabsResponse {
 }
 export interface AuditLog {
   _id: string;
-  adminId: string;
-  adminName: string;
+  adminId?: string; // Legacy frontend field
+  adminName?: string; // Legacy frontend field
+  actorId?: string;
+  actorName?: string;
+  actorRole?: string;
   action: string;
   module: string;
   description: string;
   status: string;
+  severity?: string;
   ipAddress: string;
   createdAt: string;
   updatedAt: string;
@@ -645,6 +649,8 @@ export interface AuditLog {
   device?: string;
   browser?: string;
   targetId?: string;
+  targetType?: string;
+  sessionId?: string;
 }
 
 export interface GetAllAuditLogsResponse {
@@ -1657,16 +1663,9 @@ export const getAllReports = createAsyncThunk<
     try {
       const token = getToken();
       
-      let prefix = "/lab-admin";
-      if (typeof window !== "undefined") {
-        const path = window.location.pathname;
-        if (path.startsWith("/admin")) prefix = "/admin";
-        else if (path.startsWith("/heartview-admin")) prefix = "/heartview-admin";
-        else if (path.startsWith("/lab-staff")) prefix = "/lab-admin"; // Lab staff uses lab-admin for reports?
-      }
 
       const response = await API.get<GetAllReportsResponse>(
-        `${prefix}/all-reports`,
+        "/lab-admin/all-reports",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -2225,7 +2224,7 @@ export const getAllAuditLogs = createAsyncThunk<
   async (_, { rejectWithValue }) => {
     try {
       const response = await API.get<GetAllAuditLogsResponse>(
-        "/audit",
+        "/audit?limit=500",
         {
           headers: {
             Authorization: `Bearer ${getToken()}`,
@@ -2240,6 +2239,27 @@ export const getAllAuditLogs = createAsyncThunk<
       return rejectWithValue(
         err.response?.data?.message || err.message
       );
+    }
+  }
+);
+
+export const createAuditLog = createAsyncThunk<
+  any,
+  { action: string; module: string; description: string; status: string; actorRole?: string },
+  { rejectValue: string }
+>(
+  "audit/createAuditLog",
+  async (logData, { rejectWithValue }) => {
+    try {
+      const response = await API.post("/audit", logData, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      const err = error as AxiosError<any>;
+      return rejectWithValue(err.response?.data?.message || err.message);
     }
   }
 );

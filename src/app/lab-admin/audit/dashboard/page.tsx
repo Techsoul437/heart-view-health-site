@@ -2,11 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 import { API } from "@/redux/Api";
-import { Activity, ShieldAlert, LogIn, Monitor, Lock, Database } from "lucide-react";
+import { Activity, ShieldAlert, LogIn, Monitor, Lock } from "lucide-react";
 import toast from "react-hot-toast";
 import { format } from "date-fns";
 import AuditTable from "@/components/admin/audit/AuditTable";
 import { StatusBadge, SeverityBadge } from "@/components/admin/audit/Badges";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 interface Metrics {
   totalActivities: number;
@@ -18,16 +20,72 @@ interface Metrics {
   dataAccess: number;
 }
 
+interface AuditLogEntry {
+  actorId?: string;
+  adminId?: string;
+  actorName?: string;
+  adminName?: string;
+  user?: string;
+  action?: string;
+  status?: string;
+  module?: string;
+}
+
 export default function AuditDashboard() {
   const [metrics, setMetrics] = useState<Metrics | null>(null);
   const [loading, setLoading] = useState(true);
+  
+  const { profile } = useSelector((state: RootState) => state.getProfile || { profile: null });
 
   useEffect(() => {
     const fetchMetrics = async () => {
       try {
-        const res = await API.get("/audit/dashboard");
+        const res = await API.get("/audit?limit=500");
         if (res.data?.success) {
-          setMetrics(res.data.data.metrics);
+          const logs = res.data.data || [];
+          
+          const totalActivities = logs.length;
+          
+          const myId = profile?._id || (profile as unknown as { id?: string })?.id;
+          let myActivities = 0;
+          if (myId) {
+            myActivities = logs.filter((l: AuditLogEntry) => l.actorId === myId || l.adminId === myId).length;
+          } else {
+            myActivities = logs.filter((l: AuditLogEntry) => l.actorName || l.adminName || l.user).length;
+          }
+          
+          const failedLogins = logs.filter((l: AuditLogEntry) => l.action?.toLowerCase().includes('login') && l.status?.toLowerCase() === 'failed').length;
+          
+          // Active Sessions: unique successful logins based on user/adminId
+          const activeSessionsSet = new Set();
+          logs.forEach((log: AuditLogEntry) => {
+             if (log.action?.toLowerCase().includes('login') && log.status?.toLowerCase() !== 'failed') {
+                 if (log.actorId || log.adminId) activeSessionsSet.add(log.actorId || log.adminId);
+             }
+          });
+          const activeSessions = activeSessionsSet.size;
+
+          const criticalActions = logs.filter((l: AuditLogEntry) => {
+              const act = l.action?.toLowerCase() || '';
+              return act.includes('delete') || act.includes('export') || act.includes('permission');
+          }).length;
+          
+          const openAlerts = logs.filter((l: AuditLogEntry) => l.status?.toLowerCase() === 'failed' || (l.action && l.action.toLowerCase().includes('delete'))).length;
+          
+          const dataAccess = logs.filter((l: AuditLogEntry) => {
+              const mod = l.module?.toLowerCase() || '';
+              return mod.includes('report') || mod.includes('patient') || mod.includes('data');
+          }).length;
+
+          setMetrics({
+            totalActivities,
+            myActivities,
+            failedLogins,
+            activeSessions,
+            openAlerts,
+            criticalActions,
+            dataAccess
+          });
         }
       } catch (err: unknown) {
         toast.error("Failed to load dashboard metrics");
@@ -36,7 +94,7 @@ export default function AuditDashboard() {
       }
     };
     fetchMetrics();
-  }, []);
+  }, [profile]);
 
   const cards = metrics ? [
     { title: "Total Activities", value: metrics.totalActivities, icon: Activity, color: "bg-blue-50 text-blue-600" },
@@ -49,7 +107,7 @@ export default function AuditDashboard() {
 
   const columns = [
     { key: "createdAt", label: "Date & Time", render: (val: string) => val ? format(new Date(val), "dd MMM yyyy, hh:mm a") : "-" },
-    { key: "actorName", label: "User" },
+    { key: "actorName", label: "User", render: (val: string, row: Record<string, string>) => row.actorName || row.adminName || row.user || "Unknown" },
     { key: "action", label: "Action" },
     { key: "module", label: "Module" },
     { key: "status", label: "Status", render: (val: string) => <StatusBadge status={val} /> },

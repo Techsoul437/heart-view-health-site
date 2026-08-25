@@ -455,7 +455,7 @@ export default function PermissionManagementPage() {
       const currentUser = auth.currentUser;
       const user = currentUser?.displayName || currentUser?.email || "System Admin"; 
       
-      const { API } = await import("@/redux/Api");
+      const { API, getToken } = await import("@/redux/Api");
       const response = await API.put("/rbac", {
         permState,
         lastUpdated: updatedTime,
@@ -463,6 +463,23 @@ export default function PermissionManagementPage() {
       });
       if (!response.data?.success) {
         throw new Error(response.data?.message || "Failed to save permissions");
+      }
+
+      // 📝 DYNAMIC AUDIT LOG CREATION
+      try {
+        const activeRoleObj = ROLES.find((r) => r.id === activeRole) || ROLES[0];
+        await API.post("/audit", {
+          action: "Update",
+          module: "Role & Permission",
+          description: `Updated permissions for the ${activeRoleObj.label} role.`,
+          status: "Success"
+        }, {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        });
+      } catch (auditErr) {
+        console.warn("Could not save audit log:", auditErr);
       }
 
       setLastUpdated(updatedTime);

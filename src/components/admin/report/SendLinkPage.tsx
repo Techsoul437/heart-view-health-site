@@ -236,7 +236,7 @@ export default function SendLinkPage() {
       patientName: report?.patientName || "",
       mobile: report?.mobile || "",
       email: report?.email || "",
-      expiryDays: 10,
+      expiryDays: 30,
       message:
         "Your medical report is ready. Please use the secure link below to view or download it.",
     },
