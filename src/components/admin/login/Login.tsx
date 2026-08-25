@@ -700,9 +700,10 @@ const LoginPanel = ({ savedUser, onSignup, onLoginSuccess }: LoginPanelProps) =>
     try {
       await dispatch(resendOtpApi({ mobile: mobileNumber })).unwrap();
       otpFlow.resendOtp(mobileNumber);
-    } catch (err: any) {
-      toast.error(err || "Failed to resend OTP");
-      otpFlow.setErrorMsg(err || "Failed to resend OTP");
+    } catch (err) {
+      const errorMessage = typeof err === "string" && err ? err : (err instanceof Error ? err.message : "Failed to resend OTP");
+      toast.error(errorMessage);
+      otpFlow.setErrorMsg(errorMessage);
     }
   };
 
@@ -1108,9 +1109,10 @@ const SignupPanel = ({ onLoginClick, onSignupSuccess }: SignupPanelProps) => {
     try {
       await dispatch(resendOtpApi({ mobile: mobileNumber })).unwrap();
       otpFlow.resendOtp(mobileNumber);
-    } catch (err: any) {
-      toast.error(err || "Failed to resend OTP");
-      otpFlow.setErrorMsg(err || "Failed to resend OTP");
+    } catch (err) {
+      const errorMessage = typeof err === "string" && err ? err : (err instanceof Error ? err.message : "Failed to resend OTP");
+      toast.error(errorMessage);
+      otpFlow.setErrorMsg(errorMessage);
     }
   };
 

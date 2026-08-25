@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
+import PermissionGuard from "@/components/PermissionGuard";
 import {
   getCountries,
   getCountryByCode,
@@ -188,6 +189,7 @@ const baseUrl = `/${role}`;
   };
 
   return (
+    <PermissionGuard moduleName="patients" permissionName="edit_patient">
     <div className="min-h-screen text-black">
       <div className="min-h-screen p-6 md:p-12">
         {/* HEADER */}
@@ -596,5 +598,6 @@ const baseUrl = `/${role}`;
         </div>
       </div>
     </div>
+    </PermissionGuard>
   );
 }

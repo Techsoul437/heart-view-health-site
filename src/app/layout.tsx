@@ -63,9 +63,9 @@ const manrope = Manrope({
 // };
 export const metadata = {
   icons: {
-    icon: "https://heartview-images.s3.ap-south-1.amazonaws.com/favicon3.png",
-    shortcut: "https://heartview-images.s3.ap-south-1.amazonaws.com/favicon3.png",
-    apple: "https://heartview-images.s3.ap-south-1.amazonaws.com/favicon3.png",
+    icon: "/favicon3.png",
+    shortcut: "/favicon3.png",
+    apple: "/favicon3.png",
   },
 };
 import Providers from "./providers";
@@ -106,7 +106,7 @@ export default function RootLayout({
               "@type": "Organization",
               name: "HeartView Health",
               url: "https://heartviewhealth.com/",
-              logo: "https://heartview-images.s3.ap-south-1.amazonaws.com/favicon3.png",
+              logo: "https://heartviewhealth.com/favicon3.png",
             }),
           }}
         />

@@ -62,12 +62,43 @@ export default function PatientsPage() {
 const [openDeleteModal, setOpenDeleteModal] = useState(false);
 const [selectedId, setSelectedId] = useState<string | null>(null);
     // Patients removed from the UI after a successful delete API call
-    const [deletedIds, setDeletedIds] = useState<(number | string)[]>([]);
+const [deletedIds, setDeletedIds] = useState<(number | string)[]>([]);
     const [deletingId, setDeletingId] = useState<string | null>(null);
     const [deleteError, setDeleteError] = useState<string | null>(null);
-const pathname = usePathname();
-const role = pathname.split("/")[1]; // lab-admin / staff
-const handleDelete = async () => {
+
+    const pathname = usePathname();
+    const role = pathname.split("/")[1]; // lab-admin / staff
+
+    // Dynamic Permission Checks
+    const [perms, setPerms] = useState<Record<string, Record<string, boolean>> | null>(null);
+    useEffect(() => {
+        const fetchPermissions = async () => {
+            try {
+                const { API } = await import("@/redux/Api");
+                const response = await API.get("/rbac");
+                if (response.data?.success && response.data.data) {
+                    const data = response.data.data;
+                    const userRole = role === "lab-staff" ? "staff" : "admin";
+                    if (data.permState?.[userRole]) {
+                        setPerms(data.permState[userRole]);
+                    }
+                }
+            } catch (error) {
+                console.error("Error fetching permissions:", error);
+            }
+        };
+        fetchPermissions();
+    }, [role]);
+
+    const hasPerm = (module: string, perm: string) => {
+        if (!perms) return true; // Show by default until loaded
+        return perms[module]?.[perm] === true;
+    };
+    const canCreatePatient = hasPerm("patients", "create_patient");
+    const canEditPatient = hasPerm("patients", "edit_patient");
+    const canDeletePatient = hasPerm("patients", "delete_patient");
+
+    const handleDelete = async () => {
     if (!selectedId) return;
 
     try {
@@ -237,10 +268,12 @@ const handleDelete = async () => {
                     </p>
                 </div>
 
-               <FillButton
-  text="Add Patient"
-  href={`/${role}/patients/add-patient`}
-/>
+                {canCreatePatient && (
+                    <FillButton
+                        text="Add Patient"
+                        href={`/${role}/patients/add-patient`}
+                    />
+                )}
             </div>
 
             {/* DELETE ERROR BANNER */}
@@ -458,22 +491,26 @@ const handleDelete = async () => {
                                             </td>
                                             <td className="px-5 py-4">
                                                 <div className="flex items-center gap-2">
-                                                    <Link
-                                                        href={`/${role}/patients/add-patient/${key}`}
-                                                        className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 text-blue-500 transition hover:bg-blue-50"
-                                                    >
-                                                        <FiEdit2 />
-                                                    </Link>
-                                                    <button
-                                                       onClick={() => {
-    setSelectedId(String(key));
-    setOpenDeleteModal(true);
-}}
-                                                        disabled={isDeleting}
-                                                        className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 text-red-400 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-40"
-                                                    >
-                                                        <FiTrash2 />
-                                                    </button>
+                                                    {canEditPatient && (
+                                                        <Link
+                                                            href={`/${role}/patients/add-patient/${key}`}
+                                                            className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 text-blue-500 transition hover:bg-blue-50"
+                                                        >
+                                                            <FiEdit2 />
+                                                        </Link>
+                                                    )}
+                                                    {canDeletePatient && (
+                                                        <button
+                                                            onClick={() => {
+                                                                setSelectedId(String(key));
+                                                                setOpenDeleteModal(true);
+                                                            }}
+                                                            disabled={isDeleting}
+                                                            className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 text-red-400 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-40"
+                                                        >
+                                                            <FiTrash2 />
+                                                        </button>
+                                                    )}
                                                 </div>
                                             </td>
                                         </tr>

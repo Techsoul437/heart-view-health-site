@@ -30,8 +30,7 @@ import {
 } from "lucide-react";
 import SubmitButton from "@/Ui/buttons/SubmitButton";
 import ResetButton from "@/Ui/buttons/ResetButton";
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { db ,auth} from "@/lib/firebase";
+import { auth } from "@/lib/firebase";
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
@@ -92,23 +91,10 @@ const MODULES: ModuleDef[] = [
     desc: "Overview widgets, KPIs and shortcuts",
     icon: LayoutDashboard,
     permissions: [
-      { id: "view_analytics", label: "View analytics widgets", desc: "See KPI cards and charts on the home screen", admin: true, staff: true },
-      { id: "view_summary", label: "View reports summary", desc: "See a rollup of recent report activity", admin: true, staff: true },
-      { id: "export_data", label: "Export dashboard data", desc: "Download dashboard metrics as CSV or PDF", admin: true, staff: false },
-      { id: "customize_widgets", label: "Customize widgets", desc: "Rearrange or hide dashboard widgets", admin: true, staff: false },
-    ],
-  },
-  {
-    id: "laboratory",
-    title: "Laboratory Management",
-    desc: "Labs, branches and equipment records",
-    icon: FlaskConical,
-    permissions: [
-      { id: "view_labs", label: "View labs", desc: "Browse the list of registered labs", admin: true, staff: true },
-      { id: "create_lab", label: "Create lab", desc: "Register a new lab or branch", admin: true, staff: false },
-      { id: "edit_lab", label: "Edit lab details", desc: "Update lab profile and contact info", admin: true, staff: false },
-      { id: "delete_lab", label: "Delete lab", desc: "Permanently remove a lab record", admin: true, staff: false },
-      { id: "manage_equipment", label: "Manage equipment", desc: "Add or retire lab equipment entries", admin: true, staff: false },
+      { id: "view_dashboard", label: "View Dashboard", desc: "Access the dashboard", admin: true, staff: true },
+      { id: "view_widgets", label: "View Dashboard Widgets", desc: "See KPI cards and charts", admin: true, staff: true },
+      { id: "view_summary", label: "View Reports Summary", desc: "See a rollup of recent report activity", admin: true, staff: true },
+      { id: "export_data", label: "Export Dashboard Data", desc: "Download dashboard metrics as CSV or PDF", admin: true, staff: false },
     ],
   },
   {
@@ -117,49 +103,38 @@ const MODULES: ModuleDef[] = [
     desc: "Patient records and demographic data",
     icon: Users,
     permissions: [
-      { id: "view_patients", label: "View patients", desc: "Search and open patient profiles", admin: true, staff: true },
-      { id: "create_patient", label: "Create patient", desc: "Register a new patient record", admin: true, staff: true },
-      { id: "edit_patient", label: "Edit patient records", desc: "Update demographic or contact details", admin: true, staff: true },
-      { id: "delete_patient", label: "Delete patient", desc: "Permanently remove a patient record", admin: true, staff: false },
-      { id: "export_patient", label: "Export patient data", desc: "Download patient records in bulk", admin: true, staff: false },
+      { id: "view_patients", label: "View Patients", desc: "Search and open patient profiles", admin: true, staff: true },
+      { id: "create_patient", label: "Create Patient", desc: "Register a new patient record", admin: true, staff: true },
+      { id: "edit_patient", label: "Edit Patient", desc: "Update demographic or contact details", admin: true, staff: true },
+      { id: "delete_patient", label: "Delete Patient", desc: "Permanently remove a patient record", admin: true, staff: false },
+      { id: "export_patient", label: "Export Patient Data", desc: "Download patient records in bulk", admin: true, staff: false },
     ],
   },
   {
     id: "reports",
     title: "Report Management",
-    desc: "Lab reports, approvals and delivery",
+    desc: "Manage patient test reports and results",
     icon: FileText,
     permissions: [
-      { id: "view_reports", label: "View reports", desc: "Open and read generated lab reports", admin: true, staff: true },
-      { id: "create_reports", label: "Create reports", desc: "Generate a new report from results", admin: true, staff: true },
-      { id: "edit_reports", label: "Edit reports", desc: "Modify report contents before release", admin: true, staff: false },
-      { id: "approve_reports", label: "Approve reports", desc: "Sign off on reports before release", admin: true, staff: false },
-      { id: "print_reports", label: "Print reports", desc: "Print or download a finalized report", admin: true, staff: true },
-      { id: "delete_reports", label: "Delete reports", desc: "Permanently remove a report", admin: true, staff: false },
+      { id: "view_reports", label: "View Reports", desc: "View all patient reports", admin: true, staff: true },
+      { id: "create_reports", label: "Upload & Create Reports", desc: "Upload new reports for patients", admin: true, staff: true },
+      { id: "edit_reports", label: "Edit Reports", desc: "Modify existing report data", admin: true, staff: false },
+      { id: "print_reports", label: "Print Reports", desc: "Print physical copies of reports", admin: true, staff: true },
+      { id: "delete_reports", label: "Delete Reports", desc: "Permanently delete patient reports", admin: true, staff: false },
     ],
   },
   {
-    id: "ocr",
-    title: "OCR Management",
-    desc: "Automated document scanning queue",
-    icon: ScanLine,
+    id: "report_links",
+    title: "Report Links",
+    desc: "Manage and send report links to patients",
+    icon: FileText,
     permissions: [
-      { id: "view_ocr", label: "View OCR queue", desc: "See documents pending recognition", admin: true, staff: true },
-      { id: "upload_docs", label: "Upload documents", desc: "Submit scanned documents for OCR", admin: true, staff: true },
-      { id: "reprocess_ocr", label: "Reprocess OCR", desc: "Re-run recognition on a document", admin: true, staff: false },
-      { id: "delete_ocr", label: "Delete OCR records", desc: "Remove processed OCR entries", admin: true, staff: false },
-    ],
-  },
-  {
-    id: "test_dictionary",
-    title: "Lab Test Dictionary",
-    desc: "Standardized catalog of lab tests",
-    icon: BookOpen,
-    permissions: [
-      { id: "view_catalog", label: "View test catalog", desc: "Browse the standardized test list", admin: true, staff: true },
-      { id: "add_test", label: "Add test entry", desc: "Add a new test to the dictionary", admin: true, staff: false },
-      { id: "edit_test", label: "Edit test entry", desc: "Update reference ranges or units", admin: true, staff: false },
-      { id: "delete_test", label: "Delete test entry", desc: "Remove a test from the dictionary", admin: true, staff: false },
+      { id: "view_links", label: "View Report Links", desc: "Access the report links page", admin: true, staff: true },
+      { id: "send_link", label: "Create/Send Report Link", desc: "Send a report link to a patient", admin: true, staff: true },
+      { id: "resend_link", label: "Resend Report Link", desc: "Resend the report link", admin: true, staff: true },
+      { id: "view_status", label: "View Link Status", desc: "See pending, sent, viewed, downloaded status", admin: true, staff: true },
+      { id: "track_viewed", label: "Track Report Viewed", desc: "Track if patient opened the report", admin: true, staff: true },
+      { id: "track_downloaded", label: "Track Report Downloaded", desc: "Track if report was downloaded", admin: true, staff: true },
     ],
   },
   {
@@ -168,46 +143,11 @@ const MODULES: ModuleDef[] = [
     desc: "Team members, roles and access",
     icon: UserCog,
     permissions: [
-      { id: "view_staff", label: "View staff", desc: "See the list of staff members", admin: true, staff: false },
-      { id: "add_staff", label: "Add staff member", desc: "Invite a new staff member", admin: true, staff: false },
-      { id: "edit_staff", label: "Edit staff details", desc: "Update staff profile and contact info", admin: true, staff: false },
-      { id: "deactivate_staff", label: "Deactivate staff", desc: "Suspend a staff member's access", admin: true, staff: false },
-      { id: "manage_roles", label: "Manage roles", desc: "Assign roles to staff members", admin: true, staff: false },
-    ],
-  },
-  {
-    id: "notifications",
-    title: "Notifications",
-    desc: "Alerts, reminders and messaging",
-    icon: Bell,
-    permissions: [
-      { id: "view_notifications", label: "View notifications", desc: "See system and activity notifications", admin: true, staff: true },
-      { id: "send_notifications", label: "Send notifications", desc: "Broadcast a notification to staff", admin: true, staff: false },
-      { id: "configure_alerts", label: "Configure alerts", desc: "Set thresholds for automated alerts", admin: true, staff: false },
-      { id: "delete_notifications", label: "Delete notifications", desc: "Clear notifications from the feed", admin: true, staff: true },
-    ],
-  },
-  {
-    id: "analytics",
-    title: "Analytics",
-    desc: "Trends, insights and performance",
-    icon: TrendingUp,
-    permissions: [
-      { id: "view_analytics_full", label: "View analytics dashboard", desc: "Access the full analytics workspace", admin: true, staff: true },
-      { id: "export_analytics", label: "Export analytics", desc: "Download analytics reports and charts", admin: true, staff: false },
-      { id: "configure_metrics", label: "Configure metrics", desc: "Define custom KPIs and metrics", admin: true, staff: false },
-    ],
-  },
-  {
-    id: "settings",
-    title: "Settings",
-    desc: "System configuration and security",
-    icon: Settings,
-    permissions: [
-      { id: "view_settings", label: "View settings", desc: "Open the system settings panel", admin: true, staff: false },
-      { id: "edit_general", label: "Edit general settings", desc: "Change organization-wide preferences", admin: true, staff: false },
-      { id: "manage_integrations", label: "Manage integrations", desc: "Connect or remove third-party tools", admin: true, staff: false },
-      { id: "manage_security", label: "Manage security settings", desc: "Configure password and access policies", admin: true, staff: false },
+      { id: "view_staff", label: "View Staff", desc: "See the list of staff members", admin: true, staff: false },
+      { id: "add_staff", label: "Add Staff", desc: "Invite a new staff member", admin: true, staff: false },
+      { id: "edit_staff", label: "Edit Staff", desc: "Update staff profile and contact info", admin: true, staff: false },
+      { id: "deactivate_staff", label: "Deactivate Staff", desc: "Suspend a staff member's access", admin: true, staff: false },
+      { id: "manage_roles", label: "Manage Staff Roles", desc: "Assign roles to staff members", admin: true, staff: false },
     ],
   },
 ];
@@ -331,7 +271,7 @@ function ModuleCard({ module, state, onToggle, expanded, onToggleExpand, query }
 
   if (query && perms.length === 0) return null;
 
-  const enabledCount = module.permissions.filter((p) => state[module.id][p.id]).length;
+  const enabledCount = module.permissions.filter((p) => state[module.id]?.[p.id]).length;
   const totalCount = module.permissions.length;
   const allOn = enabledCount === totalCount;
   const noneOn = enabledCount === 0;
@@ -389,7 +329,7 @@ function ModuleCard({ module, state, onToggle, expanded, onToggleExpand, query }
                   <div className="mb-0.5 text-[13.5px] font-medium text-gray-900">{p.label}</div>
                   <div className="text-xs leading-[1.4] text-gray-400">{p.desc}</div>
                 </div>
-                <ToggleSwitch checked={state[module.id][p.id]} onChange={() => onToggle(module.id, p.id)} />
+                <ToggleSwitch checked={state[module.id]?.[p.id] || false} onChange={() => onToggle(module.id, p.id)} />
               </div>
             ))}
           </div>
@@ -426,11 +366,29 @@ export default function PermissionManagementPage() {
     const fetchPermissions = async () => {
       try {
         setIsLoading(true);
-        const docRef = doc(db, "settings", "rbac");
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          if (data.permState) setPermState(data.permState);
+        const { API } = await import("@/redux/Api");
+        const response = await API.get("/rbac");
+        if (response.data?.success && response.data.data) {
+          const data = response.data.data;
+          if (data.permState) {
+            const defaults = buildDefaultState();
+            const merged = { ...defaults };
+            
+            // Deep merge fetched permissions into defaults
+            (["admin", "staff"] as RoleId[]).forEach((role) => {
+              if (data.permState[role]) {
+                Object.keys(data.permState[role]).forEach((modId) => {
+                  if (merged[role][modId]) {
+                    merged[role][modId] = {
+                      ...merged[role][modId],
+                      ...data.permState[role][modId]
+                    };
+                  }
+                });
+              }
+            });
+            setPermState(merged);
+          }
           if (data.lastUpdated) setLastUpdated(data.lastUpdated);
           if (data.updatedBy) setUpdatedBy(data.updatedBy);
         }
@@ -464,8 +422,8 @@ export default function PermissionManagementPage() {
       [activeRole]: {
         ...prev[activeRole],
         [moduleId]: {
-          ...prev[activeRole][moduleId],
-          [permId]: !prev[activeRole][moduleId][permId],
+          ...(prev[activeRole]?.[moduleId] || {}),
+          [permId]: !(prev[activeRole]?.[moduleId]?.[permId] || false),
         },
       },
     }));
@@ -497,20 +455,15 @@ export default function PermissionManagementPage() {
       const currentUser = auth.currentUser;
       const user = currentUser?.displayName || currentUser?.email || "System Admin"; 
       
-      // Create the save promise
-      const savePromise = setDoc(doc(db, "settings", "rbac"), {
+      const { API } = await import("@/redux/Api");
+      const response = await API.put("/rbac", {
         permState,
         lastUpdated: updatedTime,
         updatedBy: user
-      }, { merge: true });
-
-      // Create a 5-second timeout promise
-      const timeoutPromise = new Promise((_, reject) => 
-        setTimeout(() => reject(new Error("Connection Timeout! Check if Firestore is created in Firebase Console.")), 5000)
-      );
-
-      // Race them so it doesn't hang infinitely
-      await Promise.race([savePromise, timeoutPromise]);
+      });
+      if (!response.data?.success) {
+        throw new Error(response.data?.message || "Failed to save permissions");
+      }
 
       setLastUpdated(updatedTime);
       setUpdatedBy(user);
@@ -530,17 +483,27 @@ export default function PermissionManagementPage() {
     showToast("Permissions reset to default");
   };
 
+  const activeModules = MODULES.filter((m) => {
+    if (activeRole === "staff" && m.id === "staff") return false;
+    return true;
+  });
+
+  const activeTotalPermissions = activeModules.reduce((n, m) => n + m.permissions.length, 0);
+
   const allowedCount = useMemo(
     () =>
-      MODULES.reduce(
-        (n, m) => n + m.permissions.filter((p) => permState[activeRole][m.id][p.id]).length,
+      activeModules.reduce(
+        (n, m) => n + m.permissions.filter((p) => permState[activeRole]?.[m.id]?.[p.id]).length,
         0
       ),
-    [permState, activeRole]
+    [permState, activeRole, activeModules]
   );
-  const restrictedCount = TOTAL_PERMISSIONS - allowedCount;
+  const restrictedCount = activeTotalPermissions - allowedCount;
 
   const visibleModules = MODULES.filter((m) => {
+    // Hide 'staff' module completely for 'staff' role
+    if (activeRole === "staff" && m.id === "staff") return false;
+    
     if (!query.trim()) return true;
     const q = query.toLowerCase();
     if (m.title.toLowerCase().includes(q) || m.desc.toLowerCase().includes(q)) return true;
@@ -587,8 +550,8 @@ export default function PermissionManagementPage() {
         <div className="mb-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
           <StatCard icon={Shield} label="Total Roles" value="2" sub="Roles configured" tint={STAT_TINTS[0]} />
           <StatCard icon={UserCircle} label="Active Role" value={activeRoleLabel} sub="Currently editing" tint={STAT_TINTS[1]} />
-          <StatCard icon={Layers} label="Total Modules" value={MODULES.length} sub="Permission categories" tint={STAT_TINTS[2]} />
-          <StatCard icon={KeyRound} label="Total Permissions" value={TOTAL_PERMISSIONS} sub="Individual controls" tint={STAT_TINTS[3]} />
+          <StatCard icon={Layers} label="Total Modules" value={activeModules.length} sub="Permission categories" tint={STAT_TINTS[2]} />
+          <StatCard icon={KeyRound} label="Total Permissions" value={activeTotalPermissions} sub="Individual controls" tint={STAT_TINTS[3]} />
         </div>
 
         {/* Role switcher */}

@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import { addStaff, getProfile } from "@/redux/Api";
 import { useEffect } from "react";
+import PermissionGuard from "@/components/PermissionGuard";
 
 // ✅ Explicit form values type (status ko strict union rakha)
 interface StaffFormValues {
@@ -69,6 +70,7 @@ export default function AddStaffPage() {
     }, [success, router]);
 
     return (
+        <PermissionGuard moduleName="staff" permissionName="add_staff">
         <div className="min-h-screen bg-slate-50  p-6 md:p-12">
             <div className="space-y-6">
                 {/* Header */}
@@ -342,5 +344,6 @@ export default function AddStaffPage() {
                 </Formik>
             </div>
         </div>
+        </PermissionGuard>
     );
 }

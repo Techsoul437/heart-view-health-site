@@ -2,7 +2,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { AxiosError } from "axios";
 
-const API = axios.create({
+export const API = axios.create({
   baseURL: process.env.NODE_ENV === "development" 
     ? "/api-proxy" 
     : process.env.NEXT_PUBLIC_API_URL || "https://api.heartviewhealth.com/api",
@@ -469,6 +469,7 @@ export interface SendReportLinkPayload {
   reportId: string;
   patientId: string;
   mobile?: string;
+  email?: string;
   expiryDays?: number;
 }
 
@@ -639,6 +640,11 @@ export interface AuditLog {
   ipAddress: string;
   createdAt: string;
   updatedAt: string;
+  user?: string;
+  role?: string;
+  device?: string;
+  browser?: string;
+  targetId?: string;
 }
 
 export interface GetAllAuditLogsResponse {

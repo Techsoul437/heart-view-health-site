@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import { getStaffById, updateStaff } from "@/redux/Api";
 import { resetUpdateStaff } from "@/redux/Slice/UpdateStaffSlice"; // ✅ apna actual path daalo
+import PermissionGuard from "@/components/PermissionGuard";
 
 const StaffSchema = Yup.object().shape({
     fullName: Yup.string().required("Full Name is required"),
@@ -111,6 +112,7 @@ export default function EditStaffPage() {
     };
 
     return (
+        <PermissionGuard moduleName="staff" permissionName="edit_staff">
         <div className="min-h-screen bg-slate-50 p-5 md:p-12">
             <div className="space-y-6">
                 {/* Header */}
@@ -372,5 +374,6 @@ export default function EditStaffPage() {
                 </Formik>
             </div>
         </div>
+        </PermissionGuard>
     );
 }

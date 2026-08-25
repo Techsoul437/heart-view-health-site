@@ -18,6 +18,7 @@ import { useParams } from "next/navigation";
 import ResetButton from "@/Ui/buttons/ResetButton";
 import SubmitButton from "@/Ui/buttons/SubmitButton";
 import toast from "react-hot-toast";
+import PermissionGuard from "@/components/PermissionGuard";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import {
@@ -128,6 +129,7 @@ export default function UploadReportFlow() {
     const [uploadedInfo, setUploadedInfo] = useState<UploadedInfo | null>(null);
 
     return (
+        <PermissionGuard moduleName="reports" permissionName="create_reports">
         <div className="min-h-screen overflow-hidden text-black p-5 md:p-12">
             {/* STEP INDICATOR */}
             <div className="flex flex-col gap-5 mb-8">
@@ -178,6 +180,7 @@ export default function UploadReportFlow() {
                 />
             )}
         </div>
+        </PermissionGuard>
     );
 }
 
@@ -447,7 +450,13 @@ function UploadReportForm({
                                         e.preventDefault();
                                         setDragActive(false);
                                         const file = e.dataTransfer.files?.[0];
-                                        if (file) setFieldValue("reportFile", file);
+                                        if (file) {
+                                            if (file.type === "application/pdf") {
+                                                setFieldValue("reportFile", file);
+                                            } else {
+                                                toast.error("Only PDF files are allowed");
+                                            }
+                                        }
                                     }}
                                     className={`
                     relative rounded-4xl border border-dashed bg-[#f7f7f7]/70 text-sm transition-all p-4
@@ -461,12 +470,19 @@ function UploadReportForm({
                                 >
                                     <input
                                         type="file"
-                                        accept=".pdf,.png,.jpg,.jpeg"
+                                        accept=".pdf"
                                         className="hidden"
                                         id="reportFile"
                                         onChange={(e) => {
                                             const file = e.currentTarget.files?.[0];
-                                            if (file) setFieldValue("reportFile", file);
+                                            if (file) {
+                                                if (file.type === "application/pdf") {
+                                                    setFieldValue("reportFile", file);
+                                                } else {
+                                                    toast.error("Only PDF files are allowed");
+                                                    e.currentTarget.value = "";
+                                                }
+                                            }
                                         }}
                                     />
 
@@ -482,7 +498,7 @@ function UploadReportForm({
                                                 Or click to browse report file
                                             </p>
                                             <p className="mt-4 text-sm text-[#64748B]">
-                                                Supports PDF, JPG, PNG files up to 5MB
+                                                Supports PDF files up to 5MB
                                             </p>
                                         </div>
                                     </label>
@@ -518,7 +534,7 @@ function UploadReportForm({
                                 />
 
                                 <div className="mt-4 flex text-sm flex-wrap items-center justify-between gap-3 text-[#64748B]">
-                                    <p>Accepted formats: PDF, JPG, PNG</p>
+                                    <p>Accepted formats: PDF</p>
                                     <p>Maximum file size: 5MB</p>
                                 </div>
                             </div>

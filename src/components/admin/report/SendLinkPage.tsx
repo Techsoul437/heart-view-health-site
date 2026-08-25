@@ -11,6 +11,7 @@ import {
   FiRefreshCw,
   FiUser,
   FiPhone,
+  FiMail,
   FiCheckCircle,
   FiAlertCircle,
 } from "react-icons/fi";
@@ -19,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import { sendReportLink, getReportDetails } from "@/redux/Api";
 import { resetSendReportLink } from "@/redux/Slice/SendReportLinkSlice";
+import PermissionGuard from "@/components/PermissionGuard";
 
 interface ReportItem {
   id: string; // was: number — IDs are ObjectId-style strings
@@ -33,6 +35,7 @@ interface ReportItem {
   createdAt: string;
   role: string;
   mobile?: string;
+  email?: string;
 }
 
 interface SentLink {
@@ -54,7 +57,7 @@ interface SentLink {
 
 function generateLink(reportId: string): string {
   const code = Math.random().toString(36).substring(2, 10).toUpperCase();
-  return `https://heartview.app/report/${code}${reportId}`;
+  return `https://heartviewhealth.com/report/${code}${reportId}`;
 }
 
 function maskMobile(mobile: string): string {
@@ -105,9 +108,21 @@ const validationSchema = Yup.object({
   patientName: Yup.string()
     .min(2, "Name must be at least 2 characters")
     .required("Patient name is required"),
-  mobile: Yup.string()
-    .matches(/^[+]?[\d\s\-()]{10,15}$/, "Enter a valid mobile number")
-    .required("Mobile number is required"),
+  deliveryMethod: Yup.string().oneOf(["mobile", "email"]).required(),
+  mobile: Yup.string().when("deliveryMethod", {
+    is: "mobile",
+    then: (schema) =>
+      schema
+        .matches(/^[+]?[\d\s\-()]{10,15}$/, "Enter a valid mobile number")
+        .required("Mobile number is required"),
+    otherwise: (schema) => schema.notRequired(),
+  }),
+  email: Yup.string().when("deliveryMethod", {
+    is: "email",
+    then: (schema) =>
+      schema.email("Enter a valid email address").required("Email is required"),
+    otherwise: (schema) => schema.notRequired(),
+  }),
   expiryDays: Yup.number()
     .min(1, "Minimum 1 day")
     .max(30, "Maximum 30 days")
@@ -172,6 +187,7 @@ export default function SendLinkPage() {
       patientId: rawUser._id || "",
       patientName: rawUser.name || "",
       mobile: rawUser.phone || "",
+      email: rawUser.email || "",
       notes: "",
       fileName: rawReport.filename || "",
       fileType: rawReport.fileType || "",
@@ -199,10 +215,10 @@ export default function SendLinkPage() {
     }
   }, [reportSuccess, reportData, reportId]);
 
-  // Side-effect only: toast + WhatsApp sending logic is handled by backend.
+  // Side-effect only: toast + WhatsApp/Email sending logic is handled by backend.
   useEffect(() => {
     if (success && sentStatus !== "sent") {
-      toast.success("Report link sent successfully on WhatsApp.");
+      toast.success("Report link sent successfully.");
       setSentStatus("sent");
     }
 
@@ -216,8 +232,10 @@ export default function SendLinkPage() {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
+      deliveryMethod: "mobile",
       patientName: report?.patientName || "",
       mobile: report?.mobile || "",
+      email: report?.email || "",
       expiryDays: 10,
       message:
         "Your medical report is ready. Please use the secure link below to view or download it.",
@@ -232,7 +250,8 @@ export default function SendLinkPage() {
         sendReportLink({
           reportId: report.id,
           patientId: report.patientId,
-          mobile: values.mobile,
+          mobile: values.deliveryMethod === "mobile" ? values.mobile : undefined,
+          email: values.deliveryMethod === "email" ? values.email : undefined,
           expiryDays: values.expiryDays,
         })
       );
@@ -279,6 +298,7 @@ export default function SendLinkPage() {
 
   const newLocal = sentStatus === "sending";
   return (
+    <PermissionGuard moduleName="report_links" permissionName="create_send_link">
     <div className="min-h-screen p-5 md:p-12">
       {/* Header */}
 
@@ -307,6 +327,37 @@ export default function SendLinkPage() {
             </h2>
 
             <div className="mt-6 grid gap-5 md:grid-cols-2">
+              {/* Delivery Method */}
+              <div className="md:col-span-2">
+                <label className="text-black mb-1.5 block">
+                  Delivery Method <span className="text-red-500">*</span>
+                </label>
+                <div className="flex gap-4 items-center">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="deliveryMethod"
+                      value="mobile"
+                      checked={formik.values.deliveryMethod === "mobile"}
+                      onChange={formik.handleChange}
+                      className="w-4 h-4 text-[#2f5ba5]"
+                    />
+                    <span>Mobile (WhatsApp/SMS)</span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="deliveryMethod"
+                      value="email"
+                      checked={formik.values.deliveryMethod === "email"}
+                      onChange={formik.handleChange}
+                      className="w-4 h-4 text-[#2f5ba5]"
+                    />
+                    <span>Email</span>
+                  </label>
+                </div>
+              </div>
+
               {/* Patient Name */}
               <div>
                 <label className=" text-black mb-1.5 block">
@@ -327,35 +378,61 @@ export default function SendLinkPage() {
                 {isFieldError("patientName") && (
                   <p className="mt-1  text-red-500 flex items-center gap-1">
                     <FiAlertCircle size={12} />
-                    {formik.errors.patientName}
+                    {formik.errors.patientName as string}
                   </p>
                 )}
               </div>
 
-              {/* Mobile */}
-              <div>
-                <label className=" text-black mb-1.5 block">
-                  Mobile Number <span className="text-red-500">*</span>
-                </label>
-                <div className="relative">
-                  <FiPhone className="absolute left-4 top-1/2 -translate-y-1/2 text-[#64748B]" />
-                  <input
-                    type="text"
-                    name="mobile"
-                    value={formik.values.mobile}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    placeholder="+91 XXXXX XXXXX"
-                    className={`${inputClass("mobile")} pl-10`}
-                  />
+              {/* Mobile or Email */}
+              {formik.values.deliveryMethod === "mobile" ? (
+                <div>
+                  <label className=" text-black mb-1.5 block">
+                    Mobile Number <span className="text-red-500">*</span>
+                  </label>
+                  <div className="relative">
+                    <FiPhone className="absolute left-4 top-1/2 -translate-y-1/2 text-[#64748B]" />
+                    <input
+                      type="text"
+                      name="mobile"
+                      value={formik.values.mobile}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      placeholder="+91 XXXXX XXXXX"
+                      className={`${inputClass("mobile")} pl-10`}
+                    />
+                  </div>
+                  {isFieldError("mobile") && (
+                    <p className="mt-1  text-red-500 flex items-center gap-1">
+                      <FiAlertCircle size={12} />
+                      {formik.errors.mobile as string}
+                    </p>
+                  )}
                 </div>
-                {isFieldError("mobile") && (
-                  <p className="mt-1  text-red-500 flex items-center gap-1">
-                    <FiAlertCircle size={12} />
-                    {formik.errors.mobile}
-                  </p>
-                )}
-              </div>
+              ) : (
+                <div>
+                  <label className=" text-black mb-1.5 block">
+                    Email Address <span className="text-red-500">*</span>
+                  </label>
+                  <div className="relative">
+                    <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-[#64748B]" />
+                    <input
+                      type="email"
+                      name="email"
+                      value={formik.values.email}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      placeholder="patient@example.com"
+                      className={`${inputClass("email")} pl-10`}
+                    />
+                  </div>
+                  {isFieldError("email") && (
+                    <p className="mt-1  text-red-500 flex items-center gap-1">
+                      <FiAlertCircle size={12} />
+                      {formik.errors.email as string}
+                    </p>
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Report File (read-only) */}
@@ -524,5 +601,6 @@ export default function SendLinkPage() {
         </div>
       </form>
     </div>
+    </PermissionGuard>
   );
 }

@@ -2,11 +2,12 @@
 
 import { ReactNode } from "react";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
 import { getProfile } from "@/redux/Api";
 import Sidebar from "../../components/admin/Sidebar";
+
 
 interface LabAdminLayoutProps {
   children: ReactNode;
@@ -16,6 +17,7 @@ interface SidebarMenuItem {
   title: string;
   href: string;
   icon: string;
+  subItems?: { title: string; href: string }[];
 }
 
 export default function LabAdminLayout({
@@ -28,57 +30,124 @@ export default function LabAdminLayout({
     (state: RootState) => state.getProfile
   );
 
+  const [adminPerms, setAdminPerms] = useState<Record<string, Record<string, boolean>> | null>(null);
+
   useEffect(() => {
     if (pathname !== "/lab-admin") {
       dispatch(getProfile());
     }
   }, [dispatch, pathname]);
-  const sidebarMenu: SidebarMenuItem[] = [
-    {
+
+  useEffect(() => {
+    const fetchPermissions = async () => {
+      try {
+        const { API } = await import("@/redux/Api");
+        const response = await API.get("/rbac");
+        if (response.data?.success && response.data.data) {
+          const data = response.data.data;
+          if (data.permState?.admin) {
+            setAdminPerms(data.permState.admin);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching permissions:", error);
+      }
+    };
+    fetchPermissions();
+  }, []);
+
+  const hasPerm = (module: string, perm: string) => {
+    if (!adminPerms) return true; // Show by default until loaded
+    return adminPerms[module]?.[perm] === true;
+  };
+  
+  const hasAnyPerm = (module: string) => {
+    if (!adminPerms) return true;
+    if (!adminPerms[module]) return false;
+    return Object.values(adminPerms[module]).some(v => v === true);
+  };
+
+  const sidebarMenu: SidebarMenuItem[] = [];
+
+  if (hasAnyPerm("dashboard")) {
+    sidebarMenu.push({
       title: "Dashboard",
       href: "/lab-admin/dashboard",
       icon: "dashboard",
-    },
+    });
+  }
 
-    {
+  if (hasPerm("patients", "view_patients")) {
+    sidebarMenu.push({
       title: "Patients",
       href: "/lab-admin/patients",
       icon: "users",
-    },
+    });
+  }
 
-    {
+  if (hasPerm("reports", "create_reports")) {
+    sidebarMenu.push({
       title: "Upload Report",
       href: "/lab-admin/upload-report",
       icon: "upload",
-    },
+    });
+  }
 
-    {
+  if (hasPerm("reports", "view_reports")) {
+    sidebarMenu.push({
       title: "Reports",
       href: "/lab-admin/reports",
       icon: "reports",
-    },
-    {
+    });
+  }
+
+  if (hasPerm("report_links", "view_links")) {
+    sidebarMenu.push({
       title: "Report Links",
       href: "/lab-admin/report_link",
-      icon: "staff",
-    },
-    {
+      icon: "staff", // assuming icon remains staff or file
+    });
+  }
+
+  if (hasPerm("staff", "view_staff")) {
+    sidebarMenu.push({
       title: "Staff",
       href: "/lab-admin/staff",
       icon: "staff",
-    },
+    });
+  }
 
-    {
-      title: "Settings",
-      href: "/lab-admin/settings",
-      icon: "settings",
-    },
-  ];
+
+  sidebarMenu.push({
+    title: "Settings",
+    href: "/lab-admin/settings",
+    icon: "settings",
+  });
+
+  if (hasAnyPerm("audit")) {
+    sidebarMenu.push({
+      title: "Audit & Security",
+      href: "#",
+      icon: "audit", // "audit" icon should exist in Sidebar iconMap (ClipboardList)
+      subItems: [
+        { title: "Audit Dashboard", href: "/lab-admin/audit/dashboard" },
+        { title: "My Activity Log", href: "/lab-admin/audit/my-activity" },
+        { title: "Login & Authentication", href: "/lab-admin/audit/auth-history" },
+        { title: "Active Sessions", href: "/lab-admin/audit/sessions" },
+        { title: "Data Access Audit", href: "/lab-admin/audit/data-access" },
+        { title: "Role & Permission", href: "/lab-admin/audit/permissions" },
+        { title: "Security Alerts", href: "/lab-admin/audit/alerts" },
+        { title: "Security Profile", href: "/lab-admin/audit/profile" },
+      ]
+    });
+  }
 
   const isLoginPage =
     pathname === "/lab-admin";
   if (isLoginPage) {
-    return (
+    
+  return (
+
       <div className="h-screen page-bg">
         {children}
       </div>

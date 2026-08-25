@@ -12,6 +12,7 @@ import {
   ShieldCheck,
   Settings,
   ChevronRight,
+  ChevronDown,
   LogOut,
   Menu,
   X,
@@ -31,6 +32,7 @@ interface SidebarMenuItem {
   title: string;
   href: string;
   icon: keyof typeof iconMap;
+  subItems?: { title: string, href: string }[];
 }
 
 interface SidebarProps {
@@ -67,6 +69,13 @@ export default function Sidebar({
 }: SidebarProps) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({});
+
+  const toggleExpand = (title: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setExpandedItems(prev => ({ ...prev, [title]: !prev[title] }));
+  };
   const dispatch = useDispatch();
   // Initials from userName
   const initials = (userName ?? "")

@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
+import PermissionGuard from "@/components/PermissionGuard";
 import {
     getCountries,
     getCountryByCode,
@@ -150,6 +151,7 @@ export default function AddPatientPage() {
     };
 
     return (
+        <PermissionGuard moduleName="patients" permissionName="create_patient">
         <div className="min-h-screen text-black">
             <div className="min-h-screen p-6 md:p-12">
                 {/* HEADER */}
@@ -556,5 +558,6 @@ export default function AddPatientPage() {
                 </div>
             </div>
         </div>
+        </PermissionGuard>
     );
 }
