@@ -111,10 +111,10 @@ const AuditLogDetailModal = ({ log, onClose }: { log: AuditLog; onClose: () => v
                                 <span className="text-gray-500">IP Address:</span>
                                 <span className="font-mono">{log.ipAddress || '103.14.22.11'}</span>
                             </div>
-                            <div className="flex justify-between border-b border-gray-50 pb-1">
+                            {/* <div className="flex justify-between border-b border-gray-50 pb-1">
                                 <span className="text-gray-500">Device:</span>
                                 <span>{log.device || 'MacBook Pro'}</span>
-                            </div>
+                            </div> */}
                             <div className="flex justify-between pb-1">
                                 <span className="text-gray-500">Browser:</span>
                                 <span>{log.browser || 'Chrome'}</span>
@@ -229,15 +229,17 @@ export default function AuditLogs() {
 
     // ======================= DYNAMIC COMPUTATIONS =======================
     const dynamicData = useMemo(() => {
-        const logs = auditLogs || [];
+        const logs = [...(auditLogs || [])].sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime());
 
         // --- 1. Dashboard Metrics ---
         const totalActivities = logs.length;
         const failedLogins = logs.filter(log => log.action?.toLowerCase().includes('login') && log.status?.toLowerCase() === 'failed').length;
         const criticalLogs = logs.filter(log => {
             const act = log.action?.toLowerCase() || '';
-            return act.includes('delete') || act.includes('export') || act.includes('permission');
-        });
+            const mod = log.module?.toLowerCase() || '';
+            return act.includes('delete') || act.includes('export') || act.includes('permission') ||
+                   mod.includes('report') || mod.includes('patient') || mod.includes('data');
+        }).sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime());
 
         // --- 2. Chart Data (Last 7 Days) ---
         const activityChartData = [];
@@ -309,7 +311,7 @@ export default function AuditLogs() {
 
     // Filter logs based on active tab
     const tabFilteredLogs = useMemo(() => {
-        let filtered = auditLogs || [];
+        let filtered = [...(auditLogs || [])].sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime());
 
         switch (activeTab) {
             case 'my-activity':
@@ -431,7 +433,14 @@ export default function AuditLogs() {
                         <tbody className="divide-y divide-gray-100">
                             {dynamicData.criticalLogs.slice(0, 5).map((log, i) => (
                                 <tr key={i} className="hover:bg-gray-50 cursor-pointer" onClick={() => setSelectedLog(log)}>
-                                    <td className="px-6 py-4 font-medium text-gray-900">{(log.actorName || log.adminName || log.user)}</td>
+                                    <td className="px-6 py-4 font-medium text-gray-900">
+                                        <div className="flex items-center gap-2">
+                                            <div className="h-6 w-6 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 font-semibold text-xs border border-slate-200">
+                                                {((log.actorName || log.adminName || log.user) || 'A')[0].toUpperCase()}
+                                            </div>
+                                            <span>{(log.actorName || log.adminName || log.user) || 'Admin'}</span>
+                                        </div>
+                                    </td>
                                     <td className="px-6 py-4"><ActionBadge action={log.action} /></td>
                                     <td className="px-6 py-4 text-gray-500">{log.module}</td>
                                     <td className="px-6 py-4 text-gray-500">{log.createdAt ? format(new Date(log.createdAt), 'dd MMM yyyy, hh:mm a') : 'N/A'}</td>

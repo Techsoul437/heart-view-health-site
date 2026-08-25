@@ -101,6 +101,8 @@ const nextConfig = {
 
               frame-src
                 'self'
+                blob:
+                https://heartview-images.s3.ap-south-1.amazonaws.com
                 https://www.google.com
                 https://recaptcha.google.com
                 https://www.recaptcha.net
@@ -126,7 +128,7 @@ const nextConfig = {
                 https://www.googletagmanager.com
                 https://*.g.doubleclick.net
                 https://pagead2.googlesyndication.com
-                https://googleads.g.doubleclick.net;
+                https://googleads.g.doubleclick.net
                 https://*.adtrafficquality.google;
               img-src
                 'self'

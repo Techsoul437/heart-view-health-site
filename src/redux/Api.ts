@@ -1116,7 +1116,12 @@ export const getStaffById = createAsyncThunk<
   { rejectValue: string }
 >("staff/getStaffById", async (id, { rejectWithValue }) => {
   try {
-    const response = await API.get<ApiResponse<Staff>>(`/staff/${id}`);
+    const token = getToken();
+    const response = await API.get<ApiResponse<Staff>>(`/staff/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     return response.data;
   } catch (error) {
@@ -1142,9 +1147,15 @@ export const addStaff = createAsyncThunk<
   { rejectValue: string }
 >("staff/addStaff", async (staffData, { rejectWithValue }) => {
   try {
+    const token = getToken();
     const response = await API.post<ApiResponse<Staff>>(
       "/staff/add",
       staffData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
 
     return response.data;
@@ -1168,7 +1179,12 @@ export const updateStaff = createAsyncThunk<
   { rejectValue: string }
 >("staff/updateStaff", async ({ id, data }, { rejectWithValue }) => {
   try {
-    const response = await API.put<ApiResponse<Staff>>(`/staff/${id}`, data);
+    const token = getToken();
+    const response = await API.put<ApiResponse<Staff>>(`/staff/${id}`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     return response.data;
   } catch (error) {
@@ -1188,7 +1204,12 @@ export const deleteStaff = createAsyncThunk<
   { rejectValue: string }
 >("staff/deleteStaff", async (id, { rejectWithValue }) => {
   try {
-    const response = await API.delete<ApiResponse<null>>(`/staff/${id}`);
+    const token = getToken();
+    const response = await API.delete<ApiResponse<null>>(`/staff/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     return response.data;
   } catch (error) {

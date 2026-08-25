@@ -521,12 +521,12 @@ const LoginEmailTab = ({ savedUser, onSignup, onSuccess }: LoginEmailTabProps) =
           ).unwrap();
 
           localStorage.setItem(
-            "accessToken",
+            "labAdmin_accessToken",
             response.accessToken
           );
 
           localStorage.setItem(
-            "refreshToken",
+            "labAdmin_refreshToken",
             response.refreshToken
           );
 

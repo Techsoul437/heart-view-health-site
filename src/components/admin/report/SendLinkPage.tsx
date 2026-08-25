@@ -298,7 +298,7 @@ export default function SendLinkPage() {
 
   const newLocal = sentStatus === "sending";
   return (
-    <PermissionGuard moduleName="report_links" permissionName="create_send_link">
+    <PermissionGuard moduleName="report_links" permissionName="send_link">
     <div className="min-h-screen p-5 md:p-12">
       {/* Header */}
 
