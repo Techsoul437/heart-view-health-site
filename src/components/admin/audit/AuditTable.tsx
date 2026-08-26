@@ -77,7 +77,7 @@ export default function AuditTable({ title, endpoint, columns }: AuditTableProps
                        userRole: l.actorRole || 'User',
                        device: l.device || 'Windows PC',
                        browser: l.browser || 'Chrome',
-                       ipAddress: l.ipAddress || '192.168.1.1',
+                       ipAddress: l.ipAddress || 'N/A',
                        lastActive: l.createdAt,
                        status: 'Active'
                    });

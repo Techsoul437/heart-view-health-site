@@ -109,7 +109,7 @@ const AuditLogDetailModal = ({ log, onClose }: { log: AuditLog; onClose: () => v
                         <div className="mt-2 space-y-2 text-sm text-gray-700">
                             <div className="flex justify-between border-b border-gray-50 pb-1">
                                 <span className="text-gray-500">IP Address:</span>
-                                <span className="font-mono">{log.ipAddress || '103.14.22.11'}</span>
+                                <span className="font-mono">{log.ipAddress || 'N/A'}</span>
                             </div>
                             {/* <div className="flex justify-between border-b border-gray-50 pb-1">
                                 <span className="text-gray-500">Device:</span>
@@ -264,7 +264,7 @@ export default function AuditLogs() {
                     sessionsMap.set((log.actorId || log.adminId), {
                         id: log._id,
                         user: (log.actorName || log.adminName || log.user),
-                        ip: log.ipAddress || '192.168.1.1',
+                        ip: log.ipAddress || 'N/A',
                         device: 'Windows PC / Chrome',
                         lastActive: log.createdAt ? format(new Date(log.createdAt), 'hh:mm a') : 'Recently',
                         current: (profile?._id || (profile as unknown as { id?: string })?.id) === (log.actorId || log.adminId)
@@ -281,7 +281,7 @@ export default function AuditLogs() {
                 id: log._id,
                 type: log.status?.toLowerCase() === 'failed' ? 'Failed Authentication Attempt' : 'Critical Action Performed',
                 user: (log.actorName || log.adminName || log.user) || 'Unknown',
-                ip: log.ipAddress || 'Unknown',
+                ip: log.ipAddress || 'N/A',
                 time: log.createdAt ? format(new Date(log.createdAt), 'dd MMM, hh:mm a') : 'N/A',
                 severity: log.status?.toLowerCase() === 'failed' ? 'Medium' : 'High',
                 status: log.status?.toLowerCase() === 'failed' ? 'Open' : 'Resolved'
@@ -493,7 +493,7 @@ export default function AuditLogs() {
                                         </div>
                                     </div>
                                 </td>
-                                <td className="px-6 py-4 font-mono text-gray-600">{session.ipAddress}</td>
+                                <td className="px-6 py-4 font-mono text-gray-600">{session.ipAddress || 'N/A'}</td>
                                 <td className="px-6 py-4 text-gray-500">{session.lastActive ? format(new Date(session.lastActive), 'dd MMM, hh:mm a') : 'N/A'}</td>
                                 <td className="px-6 py-4 text-right">
                                     {!isCurrent && (
@@ -535,7 +535,6 @@ export default function AuditLogs() {
                             <th className="px-6 py-3 font-medium">Severity</th>
                             <th className="px-6 py-3 font-medium">Time</th>
                             <th className="px-6 py-3 font-medium">Status</th>
-                            <th className="px-6 py-3 font-medium"></th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
@@ -553,9 +552,9 @@ export default function AuditLogs() {
                                         {alert.status}
                                     </span>
                                 </td>
-                                <td className="px-6 py-4 text-right">
+                                {/* <td className="px-6 py-4 text-right">
                                     <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">Investigate</button>
-                                </td>
+                                </td> */}
                             </tr>
                         ))}
                         {dynamicData.alerts.length === 0 && (
