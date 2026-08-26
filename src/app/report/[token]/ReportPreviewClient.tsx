@@ -4,7 +4,17 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { getPublicReportInfoByToken, fetchReportBlob, PublicReportData } from "@/redux/Api";
-import { Loader2, AlertCircle } from "lucide-react";
+import { Loader2, AlertCircle, Download, ExternalLink } from "lucide-react";
+import dynamic from 'next/dynamic';
+
+const PdfViewer = dynamic(() => import('./PdfViewer'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full max-w-5xl bg-gray-50 flex justify-center p-10 py-20 rounded-md">
+      <Loader2 className="h-8 w-8 animate-spin text-[#2f5ba5]" />
+    </div>
+  )
+});
 import Navbar from "@/Ui/navbar/Navbar";
 import Footer from "@/Ui/footer/Footer";
 
@@ -20,6 +30,7 @@ export default function ReportPreviewClient({ token }: Props) {
   const [reportData, setReportData] = useState<PublicReportData | null>(null);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [blobType, setBlobType] = useState<string>("application/pdf");
+
 
   useEffect(() => {
     if (!token) return;
@@ -113,7 +124,28 @@ export default function ReportPreviewClient({ token }: Props) {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <div className="flex-1 w-full mt-20  py-10 px-2 md:px-8 flex justify-center">
+      <div className="flex-1 w-full mt-20  py-10 px-2 md:px-8 flex flex-col items-center">
+        {!blobType.startsWith("image/") && (
+          <div className="mb-4 flex w-full max-w-5xl justify-end gap-3 px-2">
+            <a
+              href={pdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-md bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors"
+            >
+              <ExternalLink className="h-4 w-4" />
+              Open PDF
+            </a>
+            <a
+              href={pdfUrl}
+              download={`${reportData?.patientName || "Patient"}_Medical_Report.pdf`}
+              className="flex items-center gap-2 rounded-md bg-[#2f5ba5] px-4 py-2 text-sm font-medium text-white hover:bg-[#244682] transition-colors"
+            >
+              <Download className="h-4 w-4" />
+              Download
+            </a>
+          </div>
+        )}
         {blobType.startsWith("image/") ? (
           <img
             src={pdfUrl}
@@ -121,11 +153,7 @@ export default function ReportPreviewClient({ token }: Props) {
             alt={`${reportData?.patientName || "Patient"} - Medical Report`}
           />
         ) : (
-          <iframe
-            src={`${pdfUrl}#view=FitH`}
-            className="w-full max-w-5xl h-[85vh] md:h-250 border-0 rounded-md shadow-2xl bg-white"
-            title={`${reportData?.patientName || "Patient"} - Medical Report`}
-          />
+          <PdfViewer pdfUrl={pdfUrl} />
         )}
       </div>
       <Footer />
