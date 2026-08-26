@@ -97,7 +97,13 @@ const nextConfig = {
                 https://www.googletagmanager.com
                 https://www.google-analytics.com
                 https://*.google-analytics.com
+                https://unpkg.com
                 https://googleads.g.doubleclick.net;
+
+              worker-src
+                'self'
+                blob:
+                https://unpkg.com;
 
               frame-src
                 'self'
@@ -112,6 +118,7 @@ const nextConfig = {
 
               connect-src
                 'self'
+                blob:
                 https://api.heartviewhealth.com
                 http://localhost:3001
                 http://localhost:3000
