@@ -195,17 +195,12 @@ function useFirebaseOtp(containerId: string) {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
  const getRecaptcha = async () => {
-  if (recaptchaRef.current) {
-    recaptchaRef.current.clear();
-    recaptchaRef.current = null;
+  if (!recaptchaRef.current) {
+    recaptchaRef.current = new RecaptchaVerifier(auth, containerId, {
+      size: "invisible",
+    });
+    await recaptchaRef.current.render();
   }
-
-  recaptchaRef.current = new RecaptchaVerifier(auth, containerId, {
-    size: "invisible",
-  });
-
-  await recaptchaRef.current.render();
-
   return recaptchaRef.current;
 };
 const sendOtp = async (mobile: string): Promise<boolean> => {
@@ -213,6 +208,12 @@ const sendOtp = async (mobile: string): Promise<boolean> => {
   setSending(true);
 
   try {
+    if (recaptchaRef.current) {
+      try {
+        recaptchaRef.current.clear();
+      } catch (e) {}
+      recaptchaRef.current = null;
+    }
     const verifier = await getRecaptcha();
 
     const result = await signInWithPhoneNumber(
@@ -238,7 +239,7 @@ const sendOtp = async (mobile: string): Promise<boolean> => {
   setErrorMsg(
     firebaseError.code === "auth/invalid-app-credential"
       ? "reCAPTCHA verification failed. Please refresh and try again."
-      : firebaseError.message || "OTP send nahi ho paaya."
+      : firebaseError.message || "Failed to send OTP."
   );
 
   recaptchaRef.current?.clear();
@@ -254,10 +255,14 @@ const sendOtp = async (mobile: string): Promise<boolean> => {
   const resendOtp = async (mobile: string): Promise<boolean> => {
     setErrorMsg(null);
     setResending(true);
-    // purana recaptcha widget clear karke naya banate hain, warna Firebase error deta hai
-    recaptchaRef.current?.clear();
-    recaptchaRef.current = null;
+    // Create a fresh recaptcha instance for resend
     try {
+      if (recaptchaRef.current) {
+        try {
+          recaptchaRef.current.clear();
+        } catch (e) {}
+        recaptchaRef.current = null;
+      }
       const fullNumber = `+91${mobile}`;
       const appVerifier = await getRecaptcha();
       const confirmationResult = await signInWithPhoneNumber(
@@ -269,7 +274,7 @@ const sendOtp = async (mobile: string): Promise<boolean> => {
       return true;
     } catch (err) {
       console.error("Resend OTP error:", err);
-      setErrorMsg("OTP dobara bhejne mein dikkat hui.");
+      setErrorMsg("Failed to resend OTP. Please try again.");
       return false;
     } finally {
       setResending(false);
@@ -282,14 +287,14 @@ const sendOtp = async (mobile: string): Promise<boolean> => {
     setVerifying(true);
     try {
       if (!confirmationResultRef.current) {
-        throw new Error("OTP session expire ho gaya, dobara number daalein");
+        throw new Error("OTP session expired. Please enter your number again.");
       }
       const result = await confirmationResultRef.current.confirm(otp);
       const idToken = await result.user.getIdToken();
       return idToken;
     } catch (err) {
       console.error("Verify OTP error:", err);
-      setErrorMsg("Galat OTP. Dobara try karein.");
+      setErrorMsg("Invalid OTP. Please try again.");
       return null;
     } finally {
       setVerifying(false);

@@ -2,15 +2,15 @@ import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyD9UgR4BiYzqEQxe0eJPBP1zK_bZQHJayU",
-  authDomain: "heartview-a5908.firebaseapp.com",
-  projectId: "heartview-a5908",
-  storageBucket: "heartview-a5908.firebasestorage.app",
-  messagingSenderId: "1060260729053",
-  appId: "1:1060260729053:web:d2166892a7017a45d78b34",
-  measurementId: "G-JYXHGBWQVM",
-};
+ const firebaseConfig = {
+    apiKey: "AIzaSyD9UgR4BiYzqEQxe0eJPBP1zK_bZQHJayU",
+    authDomain: "heartview-a5908.firebaseapp.com",
+    projectId: "heartview-a5908",
+    storageBucket: "heartview-a5908.firebasestorage.app",
+    messagingSenderId: "1060260729053",
+    appId: "1:1060260729053:web:d2166892a7017a45d78b34",
+    measurementId: "G-JYXHGBWQVM"
+  };
 
 const app = !getApps().length
   ? initializeApp(firebaseConfig)
