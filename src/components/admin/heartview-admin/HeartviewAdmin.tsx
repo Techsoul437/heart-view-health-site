@@ -48,7 +48,7 @@ function HeartviewAdmin() {
                 </div>
 
                 {/* Right Controls */}
-                {/* <div className="flex flex-wrap items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3">
                     <div className="relative">
                         <select
                             value={month}
@@ -83,8 +83,6 @@ function HeartviewAdmin() {
                                 </option>
                             ))}
                         </select>
-
-                       
                     </div>
 
                     <div className="relative">
@@ -97,8 +95,7 @@ function HeartviewAdmin() {
                     appearance-none
                     rounded-xl
                     border border-black/10
-                                    bg-[#f7f7f7]
-    
+                    bg-[#f7f7f7]
                     pl-4 pr-9 py-2.5
                     font-medium
                     text-[#64748B]
@@ -122,8 +119,6 @@ function HeartviewAdmin() {
                                 </option>
                             ))}
                         </select>
-
-                      
                     </div>
 
                     <div
@@ -131,7 +126,7 @@ function HeartviewAdmin() {
                   flex items-center gap-2
                   rounded-xl
                   border border-black/10
-                        bg-[#f7f7f7]
+                  bg-[#f7f7f7]
                   px-4 py-2.5
                   font-medium
                   text-[#64748B]
@@ -142,9 +137,9 @@ function HeartviewAdmin() {
                         <FiCalendar className="text-[#64748B]" />
                         {monthLabel} {year}
                     </div>
-                </div> */}
+                </div>
             </div>
-            <StartCards></StartCards>
+            <StartCards year={year} month={month} />
 
 
             <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-2">

@@ -43,7 +43,7 @@ export default function ReportPreviewClient({ token }: Props) {
         setError(null);
         
         // Fetch metadata
-        const res = await dispatch(getPublicReportInfoByToken(token)).unwrap();
+        const res = await dispatch(getPublicReportInfoByToken({ token, view: true })).unwrap();
         
         if (res.success && res.data) {
           setReportData(res.data);
@@ -142,6 +142,9 @@ export default function ReportPreviewClient({ token }: Props) {
             <a
               href={pdfUrl}
               download={`${reportData?.patientName || "Patient"}_Medical_Report.pdf`}
+              onClick={() => {
+                dispatch(getPublicReportInfoByToken({ token, download: true }));
+              }}
               className="flex items-center gap-2 rounded-md bg-[#2f5ba5] px-4 py-2 text-sm font-medium text-white hover:bg-[#244682] transition-colors"
             >
               <Download className="h-4 w-4" />

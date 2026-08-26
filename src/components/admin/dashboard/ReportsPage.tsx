@@ -57,7 +57,7 @@ export default function ReportsPage() {
         </div>
 
         {/* Right Controls */}
-        {/* <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <div className="relative">
             <select
               value={month}
@@ -92,8 +92,6 @@ export default function ReportsPage() {
                 </option>
               ))}
             </select>
-
-           
           </div>
 
           <div className="relative">
@@ -106,8 +104,7 @@ export default function ReportsPage() {
                 appearance-none
                 rounded-xl
                 border border-black/10
-                                bg-[#f7f7f7]
-
+                bg-[#f7f7f7]
                 pl-4 pr-9 py-2.5
                 font-medium
                 text-[#64748B]
@@ -131,8 +128,6 @@ export default function ReportsPage() {
                 </option>
               ))}
             </select>
-
-           
           </div>
 
           <div
@@ -140,7 +135,7 @@ export default function ReportsPage() {
               flex items-center gap-2
               rounded-xl
               border border-black/10
-                    bg-[#f7f7f7]
+              bg-[#f7f7f7]
               px-4 py-2.5
               font-medium
               text-[#64748B]
@@ -151,7 +146,7 @@ export default function ReportsPage() {
             <FiCalendar className="text-[#64748B]" />
             {monthLabel} {year}
           </div>
-        </div> */}
+        </div>
       </div>
 
       {/* ───────────────── STATS ───────────────── */}

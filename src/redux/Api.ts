@@ -527,6 +527,41 @@ export interface GetReportDetailsResponse {
   data: ReportDetails;
 }
 
+export interface MonthlyAnalyticsData {
+  day: string;
+  uploaded: number;
+  viewed: number;
+  downloaded: number;
+}
+
+export interface GetMonthlyAnalyticsResponse {
+  success: boolean;
+  message: string;
+  data: MonthlyAnalyticsData[];
+}
+
+export const getMonthlyAnalytics = createAsyncThunk<
+  GetMonthlyAnalyticsResponse,
+  { year: number; month: number },
+  { rejectValue: string }
+>(
+  "report/getMonthlyAnalytics",
+  async ({ year, month }, { rejectWithValue }) => {
+    try {
+      const response = await API.get<GetMonthlyAnalyticsResponse>(
+        `/report-links/monthly-analytics?year=${year}&month=${month}`,
+        { headers: { Authorization: `Bearer ${getToken()}` } }
+      );
+      return response.data;
+    } catch (error) {
+      const err = error as AxiosError<ErrorResponse>;
+      return rejectWithValue(
+        err.response?.data?.message || err.message
+      );
+    }
+  }
+);
+
 export interface Inquiry {
   _id: string;
   name: string;
@@ -1768,14 +1803,19 @@ export const fetchReportBlob = async (token: string): Promise<Blob> => {
 
 export const getPublicReportInfoByToken = createAsyncThunk<
   GetPublicReportResponse,
-  string,
+  { token: string; view?: boolean; download?: boolean },
   { rejectValue: string }
 >(
   "report/getPublicReportInfoByToken",
-  async (token, { rejectWithValue }) => {
+  async ({ token, view, download }, { rejectWithValue }) => {
     try {
+      const query = [];
+      if (view) query.push("view=true");
+      if (download) query.push("download=true");
+      const queryString = query.length ? `?${query.join("&")}` : "";
+
       const response = await API.get<GetPublicReportResponse>(
-        `/report/public/info/${token}`
+        `/report/public/info/${token}${queryString}`
       );
       return response.data;
     } catch (error) {

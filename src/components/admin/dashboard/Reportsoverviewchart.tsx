@@ -11,120 +11,36 @@ import {
   CartesianGrid,
 } from "recharts";
 
-import { useMemo } from "react";
-
-const months: string[] = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-
-type ChartData = {
-  day: string;
-  uploaded: number;
-  viewed: number;
-  downloaded: number;
-};
-
-type MonthlyDataType = {
-  [year: number]: {
-    [month: number]: ChartData[];
-  };
-};
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { getMonthlyAnalytics, MonthlyAnalyticsData } from "@/redux/Api";
 
 interface ReportsOverviewChartProps {
   year: number;
   month: number;
 }
 
-/* -------------------------------------------------------
-   FULL MONTH DATA
-------------------------------------------------------- */
-
-function generateMonthData(
-  monthName: string,
-  year: number,
-  baseUploaded: number
-): ChartData[] {
-  const totalDays = new Date(
-    year,
-    months.indexOf(monthName) + 1,
-    0
-  ).getDate();
-
-  return Array.from({ length: totalDays }, (_, i) => ({
-    day: `${i + 1}`,
-    uploaded: baseUploaded + i * 2,
-    viewed: baseUploaded * 3 + i * 4,
-    downloaded: baseUploaded * 1.5 + i * 3,
-  }));
-}
-
-const monthlyData: MonthlyDataType = {
-  2024: {
-    1: generateMonthData("January", 2024, 80),
-    2: generateMonthData("February", 2024, 90),
-    3: generateMonthData("March", 2024, 100),
-    4: generateMonthData("April", 2024, 110),
-    5: generateMonthData("May", 2024, 120),
-    6: generateMonthData("June", 2024, 130),
-    7: generateMonthData("July", 2024, 135),
-    8: generateMonthData("August", 2024, 140),
-    9: generateMonthData("September", 2024, 145),
-    10: generateMonthData("October", 2024, 150),
-    11: generateMonthData("November", 2024, 155),
-    12: generateMonthData("December", 2024, 160),
-  },
-
-  2025: {
-    1: generateMonthData("January", 2025, 170),
-    2: generateMonthData("February", 2025, 180),
-    3: generateMonthData("March", 2025, 190),
-    4: generateMonthData("April", 2025, 200),
-    5: generateMonthData("May", 2025, 210),
-    6: generateMonthData("June", 2025, 220),
-    7: generateMonthData("July", 2025, 225),
-    8: generateMonthData("August", 2025, 230),
-    9: generateMonthData("September", 2025, 235),
-    10: generateMonthData("October", 2025, 240),
-    11: generateMonthData("November", 2025, 245),
-    12: generateMonthData("December", 2025, 250),
-  },
-};
-
-function getFallbackData(
-  year: number,
-  month: number
-): ChartData[] {
-  const totalDays = new Date(year, month, 0).getDate();
-
-  return Array.from({ length: totalDays }, (_, i) => ({
-    day: `${i + 1}`,
-    uploaded: Math.floor(80 + Math.random() * 60),
-    viewed: Math.floor(200 + Math.random() * 150),
-    downloaded: Math.floor(120 + Math.random() * 80),
-  }));
-}
-
 export default function ReportsOverviewChart({
   year,
   month,
 }: ReportsOverviewChartProps) {
-  const data = useMemo<ChartData[]>(() => {
-    return (
-      monthlyData[year]?.[month] ||
-      getFallbackData(year, month)
-    );
-  }, [year, month]);
+  const dispatch = useDispatch<AppDispatch>();
+  const [data, setData] = useState<MonthlyAnalyticsData[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await dispatch(getMonthlyAnalytics({ year, month })).unwrap();
+        if (res.success) {
+          setData(res.data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch monthly analytics", error);
+      }
+    };
+    fetchData();
+  }, [dispatch, year, month]);
 
   return (
     <div

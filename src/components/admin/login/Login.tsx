@@ -622,7 +622,7 @@ const LoginOtpVerify = ({ mobile, onBack, onVerify, onResend, verifying, resendi
       </p>
       <OtpInputs onChange={setOtp} />
       {errorMsg && <p className="mt-2 text-center text-red-500 text-xs">{errorMsg}</p>}
-      <div className="mt-3 text-center">
+      {/* <div className="mt-3 text-center">
         {timer > 0 ? (
           <p className="text-[#718096] text-sm">
             Resend OTP in 00:{timer.toString().padStart(2, "0")}
@@ -637,7 +637,7 @@ const LoginOtpVerify = ({ mobile, onBack, onVerify, onResend, verifying, resendi
             {resending ? "Sending..." : "Resend OTP"}
           </button>
         )}
-      </div>
+      </div> */}
       <button
         type="button"
         onClick={() => onVerify(otp)}
