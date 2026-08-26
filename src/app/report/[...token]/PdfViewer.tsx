@@ -7,13 +7,16 @@ import 'react-pdf/dist/Page/TextLayer.css';
 import { Loader2 } from "lucide-react";
 
 // Initialize worker
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url,
+).toString();
 
 interface PdfViewerProps {
-  pdfUrl: string;
+  file: string | File | null;
 }
 
-export default function PdfViewer({ pdfUrl }: PdfViewerProps) {
+export default function PdfViewer({ file }: PdfViewerProps) {
   const [numPages, setNumPages] = useState<number>();
   const [containerWidth, setContainerWidth] = useState<number>(800);
 
@@ -35,7 +38,7 @@ export default function PdfViewer({ pdfUrl }: PdfViewerProps) {
   return (
     <div className="w-full max-w-5xl bg-gray-50 flex flex-col items-center gap-4 py-4 rounded-md shadow-inner overflow-hidden">
       <Document
-        file={pdfUrl}
+        file={file}
         onLoadSuccess={onDocumentLoadSuccess}
         loading={
           <div className="flex flex-col items-center p-10 gap-2">

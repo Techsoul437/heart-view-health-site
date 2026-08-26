@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.heartviewhealth",
+      "sha256_cert_fingerprints": [
+        "CC:95:44:ED:50:19:A9:7D:EB:4C:73:9D:37:79:5A:9B:61:BB:16:71:C6:E9:71:83:9D:E4:38:15:82:D8:50:EA",
+        "48:DA:1A:80:00:12:C5:B7:9A:49:65:04:9C:1A:A1:23:F6:71:27:98:8B:DB:E6:F2:6F:91:28:45:DC:33:E1:D0"
+      ]
+    }
+  }
+]

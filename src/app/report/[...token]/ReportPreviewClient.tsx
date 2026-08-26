@@ -29,12 +29,14 @@ export default function ReportPreviewClient({ token }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [reportData, setReportData] = useState<PublicReportData | null>(null);
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
+  const [pdfFile, setPdfFile] = useState<File | null>(null);
   const [blobType, setBlobType] = useState<string>("application/pdf");
 
 
   useEffect(() => {
     if (!token) return;
 
+    let objectUrl: string | null = null;
     const fetchReport = async () => {
       try {
         setLoading(true);
@@ -49,8 +51,9 @@ export default function ReportPreviewClient({ token }: Props) {
           // Fetch PDF blob securely via backend
           try {
             const blob = await fetchReportBlob(token);
-            const objectUrl = URL.createObjectURL(blob);
+            objectUrl = URL.createObjectURL(blob);
             setPdfUrl(objectUrl);
+            setPdfFile(new File([blob], "report.pdf", { type: blob.type }));
             setBlobType(blob.type);
           } catch (blobErr) {
             console.error("Failed to load PDF blob:", blobErr);
@@ -71,8 +74,8 @@ export default function ReportPreviewClient({ token }: Props) {
     
     // Cleanup URL object
     return () => {
-      if (pdfUrl) {
-        URL.revokeObjectURL(pdfUrl);
+      if (objectUrl) {
+        URL.revokeObjectURL(objectUrl);
       }
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -153,7 +156,7 @@ export default function ReportPreviewClient({ token }: Props) {
             alt={`${reportData?.patientName || "Patient"} - Medical Report`}
           />
         ) : (
-          <PdfViewer pdfUrl={pdfUrl} />
+          <PdfViewer file={pdfFile} />
         )}
       </div>
       <Footer />
