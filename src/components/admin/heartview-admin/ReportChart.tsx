@@ -33,7 +33,12 @@ export default function ReportChart({
       try {
         const res = await dispatch(getMonthlyAnalytics({ year, month })).unwrap();
         if (res.success) {
-          setData(res.data);
+          setData(res.data.map(item => ({
+            ...item,
+            uploaded: item.uploaded || 0,
+            viewed: item.viewed || 0,
+            downloaded: item.downloaded || 0,
+          })));
         }
       } catch (error) {
         console.error("Failed to fetch monthly analytics", error);
@@ -93,6 +98,8 @@ export default function ReportChart({
           />
 
           <YAxis
+            domain={[0, (dataMax: number) => (dataMax === 0 ? 5 : Math.ceil(dataMax) + 2)]}
+            allowDecimals={false}
             tick={{
               fontSize: 11,
               fill: "#475569",
@@ -133,7 +140,8 @@ export default function ReportChart({
             type="monotone"
             dataKey="uploaded"
             stroke="#16A34A"
-            strokeWidth={3}
+            strokeWidth={4}
+            strokeOpacity={0.9}
             dot={false}
             activeDot={{ r: 6 }}
             name="Uploaded"
@@ -145,6 +153,7 @@ export default function ReportChart({
             dataKey="viewed"
             stroke="#7C3AED"
             strokeWidth={3}
+            strokeOpacity={0.9}
             dot={false}
             activeDot={{ r: 6 }}
             name="Viewed"
@@ -155,7 +164,8 @@ export default function ReportChart({
             type="monotone"
             dataKey="downloaded"
             stroke="#2563EB"
-            strokeWidth={3}
+            strokeWidth={2}
+            strokeOpacity={0.9}
             dot={false}
             activeDot={{ r: 6 }}
             name="Downloaded"

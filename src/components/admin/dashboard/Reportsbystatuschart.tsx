@@ -144,10 +144,10 @@ export default function ReportsByStatusChart({ year, month }: ReportsByStatusCha
         if (getReportStatusStats.fulfilled.match(result)) {
           const data = result.payload?.data || {};
           setRaw({
-            completed: data.completed || 0,
-            pending: data.pending || 0,
-            processing: data.processing || 0,
-            failed: data.failed || 0,
+            completed: data.completed || data.downloaded || data.Downloaded || 0,
+            pending: data.pending || data.sent || data.Sent || 0,
+            processing: data.processing || data.viewed || data.Viewed || 0,
+            failed: data.failed || data.Failed || 0,
           });
         }
       } catch (error) {

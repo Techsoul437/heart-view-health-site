@@ -2041,10 +2041,15 @@ export interface GetReportStatusStatsResponse {
   success: boolean;
   message: string;
   data: {
-    completed: number;
-    pending: number;
-    processing: number;
-    failed: number;
+    completed?: number;
+    pending?: number;
+    processing?: number;
+    failed?: number;
+    viewed?: number;
+    downloaded?: number;
+    sent?: number;
+    expired?: number;
+    [key: string]: any;
   };
 }
 
