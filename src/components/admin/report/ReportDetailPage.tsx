@@ -54,14 +54,31 @@ export default function ReportDetailPage() {
                 if (token) {
                     try {
                         const blob = await fetchReportBlob(token);
+                        let realType = blob.type;
+                        
+                        try {
+                          const arr = new Uint8Array(await blob.slice(0, 4).arrayBuffer());
+                          if (arr[0] === 0x25 && arr[1] === 0x50 && arr[2] === 0x44 && arr[3] === 0x46) {
+                              realType = "application/pdf";
+                          } else if (arr[0] === 0xFF && arr[1] === 0xD8 && arr[2] === 0xFF) {
+                              realType = "image/jpeg";
+                          } else if (arr[0] === 0x89 && arr[1] === 0x50 && arr[2] === 0x4E && arr[3] === 0x47) {
+                              realType = "image/png";
+                          } else if (arr[0] === 0x52 && arr[1] === 0x49 && arr[2] === 0x46 && arr[3] === 0x46) {
+                              realType = "image/webp";
+                          }
+                        } catch(e) {
+                          console.warn("Could not check magic bytes", e);
+                        }
+
                         // Only use the blob if it's actually a PDF or image
-                        if (blob.type.includes("pdf") || blob.type.includes("image")) {
+                        if (realType.includes("pdf") || realType.includes("image")) {
                             const objectUrl = URL.createObjectURL(blob);
                             setSourceUrl(objectUrl);
-                            setBlobType(blob.type);
+                            setBlobType(realType);
                             return;
                         } else {
-                            console.warn("Invalid blob type received:", blob.type);
+                            console.warn("Invalid blob type received:", realType);
                         }
                     } catch (error) {
                         console.error("Failed to fetch report blob:", error);

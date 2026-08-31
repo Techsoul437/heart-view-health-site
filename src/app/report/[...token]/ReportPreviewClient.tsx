@@ -51,10 +51,32 @@ export default function ReportPreviewClient({ token }: Props) {
           // Fetch PDF blob securely via backend
           try {
             const blob = await fetchReportBlob(token);
+            
+            let realType = blob.type;
+            let ext = "pdf";
+            try {
+              const arr = new Uint8Array(await blob.slice(0, 4).arrayBuffer());
+              if (arr[0] === 0x25 && arr[1] === 0x50 && arr[2] === 0x44 && arr[3] === 0x46) {
+                  realType = "application/pdf";
+                  ext = "pdf";
+              } else if (arr[0] === 0xFF && arr[1] === 0xD8 && arr[2] === 0xFF) {
+                  realType = "image/jpeg";
+                  ext = "jpg";
+              } else if (arr[0] === 0x89 && arr[1] === 0x50 && arr[2] === 0x4E && arr[3] === 0x47) {
+                  realType = "image/png";
+                  ext = "png";
+              } else if (arr[0] === 0x52 && arr[1] === 0x49 && arr[2] === 0x46 && arr[3] === 0x46) {
+                  realType = "image/webp";
+                  ext = "webp";
+              }
+            } catch(e) {
+              console.warn("Could not check magic bytes", e);
+            }
+
             objectUrl = URL.createObjectURL(blob);
             setPdfUrl(objectUrl);
-            setPdfFile(new File([blob], "report.pdf", { type: blob.type }));
-            setBlobType(blob.type);
+            setPdfFile(new File([blob], `report.${ext}`, { type: realType }));
+            setBlobType(realType);
           } catch (blobErr) {
             console.error("Failed to load PDF blob:", blobErr);
             setError("Unable to open report pdf. Please try again later.");
@@ -128,30 +150,28 @@ export default function ReportPreviewClient({ token }: Props) {
     <div className="flex flex-col min-h-screen">
       <Navbar />
       <div className="flex-1 w-full mt-20  py-10 px-2 md:px-8 flex flex-col items-center">
-        {!blobType.startsWith("image/") && (
-          <div className="mb-4 flex w-full max-w-5xl justify-end gap-3 px-2">
-            <a
-              href={pdfUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-md bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors"
-            >
-              <ExternalLink className="h-4 w-4" />
-              Open PDF
-            </a>
-            <a
-              href={pdfUrl}
-              download={`${reportData?.patientName || "Patient"}_Medical_Report.pdf`}
-              onClick={() => {
-                dispatch(getPublicReportInfoByToken({ token, download: true }));
-              }}
-              className="flex items-center gap-2 rounded-md bg-[#2f5ba5] px-4 py-2 text-sm font-medium text-white hover:bg-[#244682] transition-colors"
-            >
-              <Download className="h-4 w-4" />
-              Download
-            </a>
-          </div>
-        )}
+        <div className="mb-4 flex w-full max-w-5xl justify-end gap-3 px-2">
+          <a
+            href={pdfUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 rounded-md bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200 transition-colors"
+          >
+            <ExternalLink className="h-4 w-4" />
+            {blobType.startsWith("image/") ? "Open Image" : "Open PDF"}
+          </a>
+          <a
+            href={pdfUrl}
+            download={`${reportData?.patientName || "Patient"}_Medical_Report.${blobType.startsWith("image/") ? (blobType.split("/")[1] === "jpeg" ? "jpg" : blobType.split("/")[1]) : "pdf"}`}
+            onClick={() => {
+              dispatch(getPublicReportInfoByToken({ token, download: true }));
+            }}
+            className="flex items-center gap-2 rounded-md bg-[#2f5ba5] px-4 py-2 text-sm font-medium text-white hover:bg-[#244682] transition-colors"
+          >
+            <Download className="h-4 w-4" />
+            Download
+          </a>
+        </div>
         {blobType.startsWith("image/") ? (
           <img
             src={pdfUrl}
