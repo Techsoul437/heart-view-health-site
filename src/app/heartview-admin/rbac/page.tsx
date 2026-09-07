@@ -564,7 +564,7 @@ export default function PermissionManagementPage() {
         </div>
 
         {/* Stats */}
-        <div className="mb-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
+        <div className="mb-8 grid md:grid-cols-2 gap-4 xl:grid-cols-4">
           <StatCard icon={Shield} label="Total Roles" value="2" sub="Roles configured" tint={STAT_TINTS[0]} />
           <StatCard icon={UserCircle} label="Active Role" value={activeRoleLabel} sub="Currently editing" tint={STAT_TINTS[1]} />
           <StatCard icon={Layers} label="Total Modules" value={activeModules.length} sub="Permission categories" tint={STAT_TINTS[2]} />

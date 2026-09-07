@@ -497,8 +497,8 @@ function UploadReportForm({
                                             <p className="mt-3 text-[#64748B]">
                                                 Or click to browse report file
                                             </p>
-                                            <p className="mt-4 text-sm text-[#64748B]">
-                                                Supports PDF files
+                                            <p className="mt-2 text-sm text-[#64748B]">
+                                              Only PDF files are supported
                                             </p>
                                         </div>
                                     </label>

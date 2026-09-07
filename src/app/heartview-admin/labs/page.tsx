@@ -141,7 +141,7 @@ export default function LabPage() {
         <div className="min-h-screen bg-white p-5 text-black md:p-12">
             {/* HEADER */}
 
-            <div className="flex flex-col gap-5  md:flex-row md:items-start md:justify-between ">
+            <div className="flex flex-col gap-5 items-start md:flex-row md:items-start md:justify-between ">
                 <div>
                     <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl   font-normal tracking-tight text-black">
                         Labs

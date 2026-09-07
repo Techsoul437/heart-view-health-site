@@ -131,7 +131,7 @@ export default function StaffManagementPage() {
                         setSelectedId(null);
                     }}
                 />
-                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div className="flex flex-col gap-4 items-start md:flex-row md:items-center md:justify-between">
                     <div>
                         <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
                             Staff Management
