@@ -6,7 +6,7 @@ import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 
 function WhyBuilt() {
   return (
-    <section className="w-full overflow-hidden ">
+    <section className="w-full overflow-hidden  mt-10">
       <div className="max-w-8xl mx-auto w-full pt-10  px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20  flex justify-center">
 
         <motion.div

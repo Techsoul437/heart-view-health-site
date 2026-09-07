@@ -46,7 +46,7 @@ function BlogSection() {
   const selectedBlogs = publishedBlogs.slice(0, blogCount);
 
   return (
-    <section className="max-w-screen-8xl pt-10 mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
+    <section className="max-w-screen-8xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-10">
       {/* HEADING */}
       <Headerbadge tag="Blog" text="Latest from Our Blog" />
 

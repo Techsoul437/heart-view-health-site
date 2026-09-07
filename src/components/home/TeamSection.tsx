@@ -19,7 +19,7 @@ export default function TeamSection() {
   const activeTeams = teams?.filter((member) => member.status === "Active") || [];
 
   return (
-    <section className="w-full bg-slate-50 py-20 font-sans">
+    <section className="w-full bg-slate-50 py-20 font-sans mt-10">
       <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
         
         {/* Heading */}

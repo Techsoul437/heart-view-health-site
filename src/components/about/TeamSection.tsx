@@ -70,7 +70,7 @@ const TeamSection = () => {
   }, [teams]);
 
   return (
-    <section className="w-full max-w-8xl mx-auto mt-10 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mb-20">
+    <section className="w-full max-w-8xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-10">
       <div className="max-w-8xl mx-auto w-full text-center">
         
         {/* HEADER */}

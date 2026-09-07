@@ -65,7 +65,7 @@ const cardVariants: Variants = {
 
 export default function KeyFeatures() {
   return (
-    <section className="w-full max-w-7xl mx-auto mt-10 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-0 text-black">
+    <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-0 text-black mt-10">
       
       {/* HEADER SECTION */}
       <div className="flex flex-col items-center text-center">

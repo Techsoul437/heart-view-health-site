@@ -11,7 +11,7 @@ export default function AppDownloadSection() {
     return (
         <section
             ref={ref}
-            className="relative overflow-hidden pt-10 pb-10 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20"
+            className="relative overflow-hidden pb-10 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-10"
         >
             <div className="mx-auto max-w-4xl flex justify-center items-center text-center">
 

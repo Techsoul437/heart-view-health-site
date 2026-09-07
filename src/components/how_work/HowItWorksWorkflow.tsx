@@ -35,7 +35,7 @@ const workflowSteps = [
 
 export default function HowItWorksWorkflow() {
   return (
-    <section className="max-w-480 mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-10 overflow-hidden">
+    <section className="max-w-480 mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 overflow-hidden mt-10">
       <div className="flex flex-col items-center text-center mb-16">
         <Headerbadge tag="WORKFLOW" text="What Happens to Your Report?" />
         <div className="mt-2 h-1 w-20 bg-linear-to-r from-transparent via-[#2f5ba5]/70 to-transparent"></div>

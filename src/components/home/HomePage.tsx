@@ -36,15 +36,6 @@ function HomePage() {
         
         <HealthGuidesSection></HealthGuidesSection>
 
-        {/* <div className='pt-14'>
-          <Image
-            src="https://heartview-images.s3.ap-south-1.amazonaws.com/phone-with-shadow.jpg"
-            alt="Phone Mockup"
-            width={1960}
-            height={900}
-            className="w-full h-auto"
-          />
-        </div> */}
 
         <BlogSection></BlogSection>
 
@@ -52,6 +43,15 @@ function HomePage() {
         
         <FAQSection></FAQSection>
         
+        <div className='pt-14'>
+          <Image
+            src="/PhoneFrame.jpg"
+            alt="Phone Mockup"
+            width={1960}
+            height={1200}
+            className="w-full h-auto"
+          />
+        </div>
         <AppDownloadSection></AppDownloadSection>
         
         <Footer></Footer>

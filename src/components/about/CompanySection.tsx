@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function CompanySection() {
   return (
-    <section className="relative w-full overflow-hidden  px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 ">
+    <section className="relative w-full overflow-hidden px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20  mt-10">
       {/* Background Glow */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-10 left-1/2 -translate-x-1/2 h-[28rem] w-[28rem] rounded-full bg-[#2f5ba5]/70 blur-[10px]" />

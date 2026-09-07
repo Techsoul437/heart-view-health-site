@@ -15,7 +15,7 @@ export default function TrustPrivacySection() {
   ];
 
   return (
-    <section className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-20 mb-10 text-black">
+    <section className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-10 text-black mt-10">
       <div className="flex flex-col items-center text-center">
         <Headerbadge 
           tag="YOUR INFORMATION MATTERS" 
@@ -27,7 +27,7 @@ export default function TrustPrivacySection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.8 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="max-w-4xl mx-auto -mt-3 mb-10"
+          className="max-w-5xl mx-auto -mt-3 mb-10"
         >
           <p className="text-[#64748B] text-base sm:text-lg lg:text-xl font-light leading-relaxed mb-10">
             Health information is personal. HeartView Health should clearly explain how account verification, report association, privacy and access work. Users should be able to review the Privacy Policy, Terms & Conditions and Medical Disclaimer before using the platform.

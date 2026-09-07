@@ -7,7 +7,7 @@ import { FaHand, FaHandPointLeft } from "react-icons/fa6";
 
 export default function HowItWorksClearInfo() {
   return (
-        <section className="w-full  mt-10 ">
+        <section className="w-full  mt-10">
 
 
       {/* Glow Background */}

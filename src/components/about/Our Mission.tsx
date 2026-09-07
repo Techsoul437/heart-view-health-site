@@ -7,7 +7,7 @@ import { FaHand, FaHandPointLeft } from "react-icons/fa6";
 
 export default function OurMission() {
   return (
-        <section className="w-full  xl:pt-20 pt-5  lg:pt-20  mt-0 lg:mt-15 ">
+        <section className="w-full xl:pt-20 pt-5 lg:pt-20  mt-10">
 
 
       {/* Glow Background */}

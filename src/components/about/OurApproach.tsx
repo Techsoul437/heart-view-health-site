@@ -119,8 +119,8 @@ export default function ProcessCards() {
     };
 
     return (
-        <section className=" flex justify-center ">
-            <div className="w-full max-w-8xl mx-auto  mt-10 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
+        <section className=" flex justify-center  mt-10">
+            <div className="w-full max-w-8xl mx-auto  px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
 
                 {/* Heading SAME */}
 

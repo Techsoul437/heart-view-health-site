@@ -30,7 +30,7 @@ const audiences = [
 
 export default function WhoItsFor() {
   return (
-    <section className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-10  py-5 text-black bg-[#fafafa]">
+    <section className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 py-5 text-black bg-[#fafafa] mt-20">
 
       {/* HEADER SECTION */}
       <div className="flex flex-col items-center text-center">

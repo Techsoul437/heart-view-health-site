@@ -52,10 +52,10 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-10 text-black bg-white">
+    <section className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 text-black bg-white ">
       
       {/* HEADER SECTION */}
-      <div className="flex flex-col items-center text-center mb-16">
+      <div className="flex flex-col items-center text-center mb-10">
         <Headerbadge tag="FAQ" text="Frequently Asked Questions" />
       </div>
 

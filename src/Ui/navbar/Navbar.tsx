@@ -182,14 +182,11 @@ export default function Navbar() {
             );
           })}
           
-        </nav>
-
-        <div className="mt-auto pt-6 border-t border-white/10 flex flex-col gap-4">
-          <div className="relative w-fit" ref={mobileDropdownRef}>
+          <div className="relative w-fit mt-4" ref={mobileDropdownRef}>
             <FillButton onClick={() => setLabDropdownOpen(!labDropdownOpen)} text="Lab Portal ▾" />
 
             {labDropdownOpen && (
-              <div className="absolute bottom-full left-0 mb-2 w-60 rounded-2xl shadow-xl bg-black border border-white/10 overflow-hidden z-50">
+              <div className="absolute top-full left-0 mt-2 w-60 rounded-2xl shadow-xl bg-black border border-white/10 overflow-hidden z-50">
                 <div className="py-2 flex flex-col">
                   <Link
                     href="/lab-staff"
@@ -227,13 +224,7 @@ export default function Navbar() {
               </div>
             )}
           </div>
-          {/* <div onClick={() => setOpen(true)}>
-                          <BorderButton text="Join Early Access" href="" bgColor="bg-black"></BorderButton>
-
-          </div> */}
-                          {/* <BorderButton text="Join Early Access" href="/contact" bgColor="bg-black"></BorderButton> */}
-
-        </div>
+        </nav>
 
       </aside>
         <ContactModal isOpen={open} onClose={() => setOpen(false)} />

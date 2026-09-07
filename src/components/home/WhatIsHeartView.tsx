@@ -6,8 +6,8 @@ import React from "react";
 
 export default function WhatIsHeartView() {
   return (
-    <section className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-20 mb-10 text-black">
-      <div className="flex flex-col items-center text-center">
+    <section className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 text-black mt-10">
+      <div className="flex flex-col text-center">
         <Headerbadge 
           tag="YOUR HEALTH INFORMATION, ORGANIZED" 
           text="A Simpler Way to Stay Organized" 

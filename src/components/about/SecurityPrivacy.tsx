@@ -38,7 +38,7 @@ function SecurityPrivacy() {
 ];
 
     return (
-        <section className="w-full max-w-8xl mx-auto mt-10 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 relative">
+        <section className="w-full max-w-8xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 relative mt-10">
             <div className="max-w-8xl mx-auto flex flex-col ">
 
                 <Headerbadge

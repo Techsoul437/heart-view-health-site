@@ -65,7 +65,7 @@ const WaveDecoration = () => (
 
 export default function HowItWorksTracking() {
   return (
-    <section className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-10 rounded-[3rem]">
+    <section className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 rounded-[3rem] mt-10">
       <div className="flex flex-col items-center text-center mb-16">
         <Headerbadge tag="TRACKING" text="What Can You Track?" />
         <div className="mt-2 h-1 w-20 bg-gradient-to-r from-transparent via-[#2f5ba5]/70 to-transparent"></div>

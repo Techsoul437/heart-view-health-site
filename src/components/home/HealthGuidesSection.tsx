@@ -65,7 +65,7 @@ const WaveDecoration = () => (
 
 export default function HealthGuidesSection() {
   return (
-    <section className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 mt-10 text-black">
+    <section className="max-w-8xl mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 text-black mt-10">
       
       {/* HEADER SECTION */}
       <div className="flex flex-col items-center text-center">
@@ -90,7 +90,7 @@ export default function HealthGuidesSection() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
-        className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto z-10 relative mb-16"
+        className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto z-10 relative "
       >
         {guides.map((item, index) => {
           const Icon = item.icon;

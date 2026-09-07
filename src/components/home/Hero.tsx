@@ -11,7 +11,7 @@ function Hero() {
   const [open, setOpen] = useState(false);
   return (
     <section className="w-full">
-      <div className="max-w-8xl bg-[#f7f7f7] mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 p-10 ">
+      <div className="max-w-8xl bg-[#f7f7f7] mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 ">
 
         <div className="flex flex-col lg:flex-row items-center justify-between md:mt-20 text-center lg:text-left gap-12 lg:gap-16">
 
@@ -59,7 +59,7 @@ function Hero() {
           </div>
 
           {/* RIGHT SIDE - IMAGE */}
-          <div className="relative w-full lg:w-1/2 h-80 sm:h-96 md:h-130 lg:h-110 2xl:h-180">
+          <div className="relative w-full lg:w-1/2 h-80 sm:h-96 md:h-130 mt-2 lg:h-110 2xl:h-180">
 
 
             <div className="absolute inset-0 rounded-2xl overflow-hidden">

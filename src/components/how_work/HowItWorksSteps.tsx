@@ -85,7 +85,7 @@ const cardVariants: Variants = {
 
 export default function HowItWorksSteps() {
   return (
-    <section className="w-full max-w-7xl mx-auto mt-10  px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-0">
+    <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-0 mt-10">
       <Headerbadge tag="Process" text="Simple Steps to Better Health" />
 
       <div className="text-center mt-3 mb-10">

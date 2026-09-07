@@ -6,7 +6,7 @@ import { HeartPulse, ArrowRight } from "lucide-react";
 
 export default function PremiumCTA() {
     return (
-        <section className="w-full py-10 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 pt-10">
+        <section className="w-full py-10 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 pt-10 mt-10">
             <div className="relative mx-auto max-w-8xl overflow-hidden rounded-[2rem] border border-slate-200 bg-white px-6 py-16 sm:px-10 lg:px-16">
 
                 {/* Background Dots Top Right */}

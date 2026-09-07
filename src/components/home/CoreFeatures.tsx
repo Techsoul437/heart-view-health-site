@@ -57,7 +57,7 @@ export default function CoreFeatures() {
   };
 
   return (
-    <section className="w-full max-w-8xl mx-auto pt-10  px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 relative">
+    <section className="w-full max-w-8xl mx-auto pt-10 px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20 relative mt-10">
       <div className="w-full py-4 text-center">
         <motion.span
           initial={{ opacity: 0, y: 40 }}

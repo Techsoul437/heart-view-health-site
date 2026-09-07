@@ -49,7 +49,7 @@ export default function TrustSection() {
   ];
 
   return (
-    <section className="w-full text-black pt-10">
+    <section className="w-full text-black pt-10 mt-10">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 2xl:px-20">
 
         {/* Heading */}
