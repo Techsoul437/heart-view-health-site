@@ -59,7 +59,7 @@ function Hero() {
           </div>
 
           {/* RIGHT SIDE - IMAGE */}
-          <div className="relative w-full lg:w-1/2 h-80 sm:h-96 md:h-110 lg:h-160 ">
+          <div className="relative w-full lg:w-1/2 h-80 sm:h-96 md:h-130 lg:h-110 2xl:h-180">
 
 
             <div className="absolute inset-0 rounded-2xl overflow-hidden">
