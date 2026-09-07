@@ -1,16 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import FillButton from "@/Ui/buttons/FillButton";
 import { usePathname } from "next/navigation";
 import ContactModal from "../contactModel/ContactModal";
 import BorderButton from "../buttons/BorderButton";
+import { Users, FlaskConical } from "lucide-react";
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Features", href: "/features" },
+  { label: "Blog", href: "/blog" },
   { label: "How It Works", href: "/how-it-works" },
   { label: "Contact", href: "/contact" },
 ];
@@ -19,6 +21,31 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [labDropdownOpen, setLabDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setLabDropdownOpen(false);
+      }
+    }
+    
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setLabDropdownOpen(false);
+      }
+    }
+    
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+    
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   const pathname = usePathname();
 
   return (
@@ -54,14 +81,41 @@ export default function Navbar() {
           </nav>
 
           <div className="flex items-center gap-4">
-            <div className="hidden lg:block">
-          {/* <div onClick={() => setOpen(true)}>
+            <div className="hidden lg:block relative" ref={dropdownRef}>
+              <FillButton onClick={() => setLabDropdownOpen(!labDropdownOpen)} text="Lab Portal ▾" />
 
-                                     <BorderButton text="Join Early Access" href="" bgColor="bg-black"></BorderButton>
-
-            </div> */}
-                          {/* <BorderButton text="Join Early Access" href="/contact" bgColor="bg-black"></BorderButton> */}
-
+              {labDropdownOpen && (
+                <div className="absolute top-full right-0 mt-4 w-60 rounded-2xl shadow-xl bg-black border border-white/10 overflow-hidden z-50">
+                  <div className="py-2 flex flex-col">
+                    <Link
+                      href="/lab-staff"
+                      onClick={() => setLabDropdownOpen(false)}
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 focus:bg-white/5 focus:outline-none transition-colors"
+                    >
+                      <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-[#2f5ba5]/15 text-[#4a7bc9]">
+                        <Users size={20} />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-sm font-medium text-gray-200">Lab Staff</span>
+                        <span className="text-xs text-gray-400">Access lab dashboard</span>
+                      </div>
+                    </Link>
+                    <Link
+                      href="/lab-admin"
+                      onClick={() => setLabDropdownOpen(false)}
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 focus:bg-white/5 focus:outline-none transition-colors"
+                    >
+                      <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-[#2f5ba5]/15 text-[#4a7bc9]">
+                        <FlaskConical size={20} />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-sm font-medium text-gray-200">Lab Admin</span>
+                        <span className="text-xs text-gray-400">Manage lab & reports</span>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              )}
             </div>
 
             <button
@@ -122,14 +176,57 @@ export default function Navbar() {
               </Link>
             );
           })}
+          
         </nav>
 
-        <div className="mt-auto pt-6 border-t border-white/10">
+        <div className="mt-auto pt-6 border-t border-white/10 flex flex-col gap-4">
+          <div className="relative w-fit">
+            <FillButton onClick={() => setLabDropdownOpen(!labDropdownOpen)} text="Lab Portal ▾" />
+
+            {labDropdownOpen && (
+              <div className="absolute bottom-full left-0 mb-2 w-60 rounded-2xl shadow-xl bg-black border border-white/10 overflow-hidden z-50">
+                <div className="py-2 flex flex-col">
+                  <Link
+                    href="/lab-staff"
+                    onClick={() => {
+                      setLabDropdownOpen(false);
+                      setSidebarOpen(false);
+                    }}
+                    className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 focus:bg-white/5 focus:outline-none transition-colors"
+                  >
+                    <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-[#2f5ba5]/15 text-[#4a7bc9]">
+                      <Users size={20} />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-sm font-medium text-gray-200">Lab Staff</span>
+                      <span className="text-xs text-gray-400">Access lab dashboard</span>
+                    </div>
+                  </Link>
+                  <Link
+                    href="/lab-admin"
+                    onClick={() => {
+                      setLabDropdownOpen(false);
+                      setSidebarOpen(false);
+                    }}
+                    className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 focus:bg-white/5 focus:outline-none transition-colors"
+                  >
+                    <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-[#2f5ba5]/15 text-[#4a7bc9]">
+                      <FlaskConical size={20} />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-sm font-medium text-gray-200">Lab Admin</span>
+                      <span className="text-xs text-gray-400">Manage lab & reports</span>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
           {/* <div onClick={() => setOpen(true)}>
                           <BorderButton text="Join Early Access" href="" bgColor="bg-black"></BorderButton>
 
           </div> */}
-                          <BorderButton text="Join Early Access" href="/contact" bgColor="bg-black"></BorderButton>
+                          {/* <BorderButton text="Join Early Access" href="/contact" bgColor="bg-black"></BorderButton> */}
 
         </div>
 

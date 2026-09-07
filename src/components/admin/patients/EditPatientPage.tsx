@@ -291,6 +291,7 @@ const baseUrl = `/${role}`;
                           type="date"
                           name="dob"
                           className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4 outline-none transition"
+                          lang="en-GB"
                         />
                         <ErrorMessage name="dob" component="p" className="text-red-400" />
                       </div>

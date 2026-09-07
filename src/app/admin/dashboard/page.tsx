@@ -156,7 +156,7 @@ export default function AdminDashboard() {
                                 <p className="mt-5 sm:mt-1 whitespace-nowrap font-light text-[#64748B]">Latest received inquiries</p>
                             </div>
                             <Link href="/admin/Inquiries">
-                                <button className="shrink-0 whitespace-nowrap rounded-xl border border-[#2f5ba5]/20 bg-black px-4 py-2 text-white">View All</button>
+                                <button className="shrink-0 whitespace-nowrap rounded-xl bg-black h-10 px-4 flex items-center justify-center text-sm font-medium text-white hover:bg-neutral-800 transition-colors">View All</button>
                             </Link>
                         </div>
                         <div className="overflow-x-auto flex-1">
@@ -197,7 +197,7 @@ export default function AdminDashboard() {
                                 <p className="mt-5 sm:mt-1 whitespace-nowrap font-light text-[#64748B]">Latest updated blogs</p>
                             </div>
                             <Link href="/admin/Blog">
-                                <button className="shrink-0 whitespace-nowrap rounded-xl border border-[#2f5ba5]/20 bg-black px-4 py-2 text-white">View All</button>
+                                <button className="shrink-0 whitespace-nowrap rounded-xl bg-black h-10 px-4 flex items-center justify-center text-sm font-medium text-white hover:bg-neutral-800 transition-colors">View All</button>
                             </Link>
                         </div>
                         <div className="overflow-x-auto flex-1">

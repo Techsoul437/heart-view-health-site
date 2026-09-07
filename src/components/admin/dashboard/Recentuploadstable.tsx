@@ -6,7 +6,13 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { getAllReports, ReportData } from "@/redux/Api";
 
-export default function RecentUploadsTable() {
+interface RecentUploadsProps {
+  year?: number;
+  month?: number;
+  date?: string;
+}
+
+export default function RecentUploadsTable({ year, month, date }: RecentUploadsProps) {
   const dispatch = useDispatch<AppDispatch>();
 
   const [reports, setReports] = useState<ReportData[]>([]);
@@ -14,7 +20,7 @@ export default function RecentUploadsTable() {
 
   useEffect(() => {
     fetchRecentReports();
-  }, []);
+  }, [year, month, date]);
 
   const fetchRecentReports = async () => {
     try {
@@ -22,7 +28,22 @@ export default function RecentUploadsTable() {
 
       const response = await dispatch(getAllReports()).unwrap();
 
-      const latestReports = [...response.data]
+      const allReports = response.data || [];
+      const filtered = allReports.filter(report => {
+          if (!report.createdAt) return false;
+          if (date) {
+             const tzOffset = new Date().getTimezoneOffset() * 60000;
+             const linkDateStr = new Date(new Date(report.createdAt).getTime() - tzOffset).toISOString().split('T')[0];
+             return linkDateStr === date;
+          }
+          if (year && month) {
+             const linkDate = new Date(report.createdAt);
+             return linkDate.getFullYear() === year && (linkDate.getMonth() + 1) === month;
+          }
+          return true;
+      });
+
+      const latestReports = filtered
         .sort(
           (a: ReportData, b: ReportData) =>
             new Date(b.createdAt ?? "").getTime() -
@@ -53,7 +74,7 @@ export default function RecentUploadsTable() {
         </div>
 
         <Link href="/lab-admin/reports">
-          <button className="rounded-xl bg-black px-4 py-2 text-sm text-white hover:bg-neutral-800">
+          <button className="shrink-0 whitespace-nowrap rounded-xl bg-black h-10 px-4 flex items-center justify-center text-sm font-medium text-white hover:bg-neutral-800 transition-colors">
             View All
           </button>
         </Link>
@@ -104,7 +125,7 @@ export default function RecentUploadsTable() {
                     </div>
                   </td>
                   <td className="py-4 px-6 text-sm text-[#64748B]">
-                    {report.userId || "-"}
+                    {((report as unknown) as { patient?: { name?: string }; userId?: { name?: string; fullName?: string; } | string }).patient?.name || (typeof report.userId === 'object' && report.userId !== null ? (((report.userId as unknown) as {name?: string; fullName?: string}).name || ((report.userId as unknown) as {name?: string; fullName?: string}).fullName) : null) || "-"}
                   </td>
 
                 

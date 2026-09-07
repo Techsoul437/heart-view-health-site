@@ -8,27 +8,27 @@ import React from "react";
 const guides = [
   {
     title: "Heart Health",
-    desc: "Understand your heart, risk factors and ways to keep it healthy.",
+    desc: "Understand common heart-related measurements, risk factors and everyday heart-health concepts.",
     icon: HeartPulse,
   },
   {
     title: "Laboratory Tests",
-    desc: "Learn about common lab tests and what your results mean.",
+    desc: "Learn what common laboratory tests measure, why they may be ordered and how results are generally presented.",
     icon: FlaskConical,
   },
   {
     title: "Diabetes & Blood Sugar",
-    desc: "Explore blood sugar management and tips for a healthier you.",
+    desc: "Explore educational information about blood glucose, HbA1c and common blood-sugar concepts.",
     icon: Activity,
   },
   {
     title: "Cholesterol",
-    desc: "Understand cholesterol levels and how they affect your health.",
+    desc: "Learn about LDL, HDL, triglycerides and why cholesterol is commonly included in health assessments. ",
     icon: Droplet,
   },
   {
-    title: "General Health",
-    desc: "Read about daily habits, prevention and overall well-being.",
+    title: "Health Measurements",
+    desc: "Understand common measurements such as blood pressure, heart rate, SpO₂, weight and BMI. ",
     icon: ShieldPlus,
   },
 ];
@@ -79,7 +79,7 @@ export default function HealthGuidesSection() {
           className="max-w-3xl mx-auto -mt-3 mb-16"
         >
           <p className="text-[#64748B] text-base sm:text-lg lg:text-xl font-light leading-relaxed px-4">
-            Learn more about common health measurements, laboratory tests and everyday health topics through easy-to-understand educational articles.
+           Learn about common health measurements, laboratory tests and everyday health topics through easy-to-understand educational articles. These resources are for general education and are not a substitute for advice from a qualified healthcare professional. 
           </p>
         </motion.div>
       </div>

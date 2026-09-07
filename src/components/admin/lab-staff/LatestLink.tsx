@@ -1,11 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { FiLink, FiEye, FiClock } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/redux/store";
+import { getAllReportLinks } from "@/redux/Api";
 
 interface LinkItem {
-  id: number;
+  id: string | number;
   patientName: string;
   mobile: string;
   reportName: string;
@@ -56,18 +59,58 @@ const defaultLinks: LinkItem[] = [
   },
 ];
 
-export default function LatestLinks() {
-  const [links, setLinks] = useState<LinkItem[]>([]);
+interface LatestLinksProps { year?: number; month?: number; date?: string; }
+export default function LatestLinks({ year, month, date }: LatestLinksProps) {
+  const dispatch = useDispatch<AppDispatch>();
+  const { reportLinks } = useSelector((state: RootState) => state.sendReportLink);
 
   useEffect(() => {
-    const storedLinks: LinkItem[] = JSON.parse(
-      localStorage.getItem("reportLinks") || "[]"
-    );
+    dispatch(getAllReportLinks());
+  }, [dispatch]);
 
-    const data =
-      storedLinks.length > 0 ? storedLinks : defaultLinks;
+  const links = useMemo(() => {
+    // Map backend data to LinkItem format
+    type ReportLinkResponse = {
+      _id: string;
+      patientId?: { name?: string; fullName?: string };
+      reportId?: { report_name?: string; _id?: string };
+      createdAt?: string;
+      status?: string;
+      viewed?: boolean;
+      mobile: string;
+    };
 
-    const latestLinks = [...data]
+    const backendLinks = ((reportLinks as unknown as ReportLinkResponse[]) || []).map((link) => {
+      const pName = link.patientId?.name || link.patientId?.fullName || "-";
+      const rName = link.reportId?.report_name || "Report";
+      let status = link.status || "Pending";
+      if (link.viewed) status = "Viewed";
+
+      return {
+        id: link._id as string,
+        patientName: pName,
+        mobile: link.mobile,
+        reportName: rName,
+        status: status as "Viewed" | "Pending",
+        createdAt: link.createdAt,
+      };
+    });
+
+    const data = backendLinks.length > 0 ? backendLinks : defaultLinks;
+
+    let filteredLinks = data;
+    if (date) {
+        filteredLinks = data.filter(p => {
+            if (!p.createdAt) return false;
+            const d = new Date(p.createdAt);
+            const y = d.getFullYear();
+            const m = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            return `${y}-${m}-${day}` === date;
+        });
+    }
+
+    return [...filteredLinks]
       .sort((a, b) => {
         const dateA = a.createdAt
           ? new Date(a.createdAt).getTime()
@@ -80,10 +123,7 @@ export default function LatestLinks() {
         return dateB - dateA;
       })
       .slice(0, 5);
-
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setLinks(latestLinks);
-  }, []);
+  }, [date, reportLinks]);
 
   return (
     <div className="min-h-125 rounded-2xl border border-slate-200 bg-[#f7f7f7] shadow-sm">
@@ -101,8 +141,7 @@ export default function LatestLinks() {
 
         <Link href="/lab-staff/report-links/history">
           <button
-            className="shrink-0 whitespace-nowrap rounded-xl border border-[#2f5ba5]/20 bg-black px-4 py-2 text-white"
-
+            className="shrink-0 whitespace-nowrap rounded-xl bg-black h-10 px-4 flex items-center justify-center text-sm font-medium text-white hover:bg-neutral-800 transition-colors"
           >
             View All
           </button>

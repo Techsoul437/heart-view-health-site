@@ -90,7 +90,7 @@ const role = pathname.split("/")[1]; // lab-admin / staff
     };
 
     return (reportLinks as unknown as ReportLinkResponse[]).map((link) => {
-      const pName = link.patientId?.name || link.patientId?.fullName || "Unknown";
+      const pName = link.patientId?.name || link.patientId?.fullName || "-";
       const pInitials = pName.substring(0, 2).toUpperCase();
       const rName = link.reportId?.report_name || "Report";
       // Fallback numerical ID for display if needed
@@ -227,7 +227,7 @@ const role = pathname.split("/")[1]; // lab-admin / staff
                 <h3 className="text-2xl font-semibold text-slate-900">
                   {stats.total || "—"}
                 </h3>
-                <p className="text-sm text-[#64748B] ">All time</p>
+                <p className="text-sm text-[#64748B]">All time</p>
               </div>
             </div>
           </div>
@@ -239,7 +239,7 @@ const role = pathname.split("/")[1]; // lab-admin / staff
               </div>
               <div>
                 <p className=" text-[#64748B] ">Sent</p>
-                <h3 className="text-3xl font-bold text-slate-900">
+                <h3 className="text-2xl font-semibold text-slate-900">
                   {stats.total ? stats.sent : "—"}
                 </h3>
                 <p className="text-sm text-[#64748B] ">
@@ -258,7 +258,7 @@ const role = pathname.split("/")[1]; // lab-admin / staff
               </div>
               <div>
                 <p className=" text-[#64748B] ">Viewed</p>
-                <h3 className="text-3xl font-bold text-slate-900">
+                <h3 className="text-2xl font-semibold text-slate-900">
                   {stats.total ? stats.viewed : "—"}
                 </h3>
                 <p className="text-sm text-[#64748B] ">
@@ -277,7 +277,7 @@ const role = pathname.split("/")[1]; // lab-admin / staff
               </div>
               <div>
                 <p className=" text-[#64748B] ">Downloaded</p>
-                <h3 className="text-3xl font-bold text-slate-900">
+                <h3 className="text-2xl font-semibold text-slate-900">
                   {stats.total ? stats.downloaded : "—"}
                 </h3>
                 <p className="text-sm text-[#64748B] ">

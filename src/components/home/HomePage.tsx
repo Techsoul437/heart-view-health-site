@@ -3,9 +3,11 @@
 import React from 'react';
 import Hero from './Hero';
 import Navbar from '@/Ui/navbar/Navbar';
+import WhatIsHeartView from './WhatIsHeartView';
 import Footer from '@/Ui/footer/Footer';
 import AppDownloadSection from './AppDownloadSection';
 import BlogSection from './BlogSection';
+import TrustPrivacySection from './TrustPrivacySection';
 import Problem from './Problem';
 import KeyFeatures from './KeyFeatures';
 import LabReportsSection from './LabReportsSection';
@@ -22,6 +24,8 @@ function HomePage() {
         
         <Hero></Hero>
         
+        <WhatIsHeartView></WhatIsHeartView>
+
         <Problem></Problem>
         
         <KeyFeatures></KeyFeatures>
@@ -32,7 +36,7 @@ function HomePage() {
         
         <HealthGuidesSection></HealthGuidesSection>
 
-        <div className='pt-14'>
+        {/* <div className='pt-14'>
           <Image
             src="https://heartview-images.s3.ap-south-1.amazonaws.com/phone-with-shadow.jpg"
             alt="Phone Mockup"
@@ -40,9 +44,11 @@ function HomePage() {
             height={900}
             className="w-full h-auto"
           />
-        </div>
+        </div> */}
 
         <BlogSection></BlogSection>
+
+        <TrustPrivacySection></TrustPrivacySection>
         
         <FAQSection></FAQSection>
         

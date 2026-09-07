@@ -8,22 +8,22 @@ import React from "react";
 const audiences = [
   {
     title: "Individuals",
-    desc: "Keep your health information and laboratory reports organized in one place.",
+    desc: "Keep supported laboratory reports and health measurements organized in one account.",
     icon: <User className="text-[#2f5ba5] w-6 h-6 sm:w-8 sm:h-8" strokeWidth={1.5} />,
   },
   {
     title: "Health-Conscious Users",
-    desc: "Track supported health measurements and review changes over time.",
+    desc: "Record and review supported measurements such as blood pressure, heart rate, SpO₂ and weight.",
     icon: <HeartPulse className="text-[#2f5ba5] w-6 h-6 sm:w-8 sm:h-8" strokeWidth={1.5} />,
   },
   {
     title: "Families",
-    desc: "Keep important health records easier to access and manage.",
+    desc: "Use an organized record-keeping experience when managing health information that is available to you. ",
     icon: <Users className="text-[#2f5ba5] w-6 h-6 sm:w-8 sm:h-8" strokeWidth={1.5} />,
   },
   {
     title: "Participating Laboratories",
-    desc: "Digitally deliver laboratory reports to verified users through the HeartView Lab Portal.",
+    desc: "Use the HeartView Lab Portal to securely associate supported reports with verified user accounts.",
     icon: <FlaskConical className="text-[#2f5ba5] w-6 h-6 sm:w-8 sm:h-8" strokeWidth={1.5} />,
   },
 ];
@@ -34,7 +34,7 @@ export default function WhoItsFor() {
 
       {/* HEADER SECTION */}
       <div className="flex flex-col items-center text-center">
-        <Headerbadge tag="WHO IT’S FOR" text="Who Can Use HeartView Health?" />
+        <Headerbadge tag="WHO IT’S FOR" text="Who Can Benefit From HeartView Health?" />
 
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -44,7 +44,7 @@ export default function WhoItsFor() {
           className="max-w-3xl mx-auto -mt-3 mb-20"
         >
           <p className="text-[#64748B] text-base sm:text-lg lg:text-xl font-light leading-relaxed">
-            HeartView Health is designed for everyone who wants to keep health information organized, accessible and easy to understand.
+           HeartView Health is designed for people who want their supported health information to be organized, accessible and easier to understand.
           </p>
         </motion.div>
       </div>
@@ -89,7 +89,7 @@ export default function WhoItsFor() {
                 <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-[#4285f4] rounded-full"></span>
               </h2>
 
-              <p className="text-base sm:text-lg   xl:max-w-xl text-[#64748B]   mb-2 leading-relaxed font-light text-center line-clamp-2">
+              <p className="text-base sm:text-lg   xl:max-w-xl text-[#64748B]   mb-2 leading-relaxed font-light text-center ">
 
                 {item.desc}
               </p>

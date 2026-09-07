@@ -101,8 +101,7 @@ export default function LatestLinks() {
 
         <Link href="/lab-staff/report-links/history">
           <button
-            className="shrink-0 whitespace-nowrap rounded-xl border border-[#2f5ba5]/20 bg-black px-4 py-2 text-white"
-
+            className="shrink-0 whitespace-nowrap rounded-xl bg-black h-10 px-4 flex items-center justify-center text-sm font-medium text-white hover:bg-neutral-800 transition-colors"
           >
             View All
           </button>

@@ -24,12 +24,20 @@ import WhatsAppButton from "@/Ui/whatsAppButton/WhatsAppButton";
     "preventive healthcare",
     "digital healthcare",
   ],
+  alternates: {
+    canonical: "https://heartviewhealth.com/",
+  },
   openGraph: {
     title: "HeartView Health | AI-Powered Health Tracking & Wellness Platform",
     description:
       "Track your health, analyze medical reports, and receive personalized AI-powered health insights with HeartView Health.",
     url: "https://heartviewhealth.com/",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HeartView Health | AI-Powered Health Tracking & Wellness Platform",
+    description: "Track your health, analyze medical reports, and receive personalized AI-powered health insights with HeartView Health.",
   },
 };
 export default function Home() {

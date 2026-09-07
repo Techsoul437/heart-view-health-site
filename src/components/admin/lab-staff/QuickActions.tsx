@@ -93,7 +93,7 @@ export default function QuickActions() {
                             <span
                                 className="
                   text-center
-                  
+                  text-sm
                   font-medium
                   text-slate-700
                   transition-colors

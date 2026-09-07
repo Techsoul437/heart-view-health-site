@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { getAllUsers, type Patient } from "@/redux/Api";
+import { getAllUsers, getLabUsers, type Patient } from "@/redux/Api";
 import type { AppDispatch } from "@/redux/store";
 import { useDispatch } from "react-redux";
 
@@ -18,7 +18,7 @@ export default function RecentPatientsCard() {
       try {
         setLoading(true);
 
-        const response = await dispatch(getAllUsers()).unwrap();
+        const response = await dispatch(getLabUsers()).unwrap();
 
         const latestPatients = [...(response.data || [])]
           .sort(
@@ -56,8 +56,7 @@ export default function RecentPatientsCard() {
 
         <Link href="/lab-staff/patients">
           <button
-            className="shrink-0 whitespace-nowrap rounded-xl border border-[#2f5ba5]/20 bg-black px-4 py-2 text-white"
-
+            className="shrink-0 whitespace-nowrap rounded-xl bg-black h-10 px-4 flex items-center justify-center text-sm font-medium text-white hover:bg-neutral-800 transition-colors"
           >
             View All
           </button>

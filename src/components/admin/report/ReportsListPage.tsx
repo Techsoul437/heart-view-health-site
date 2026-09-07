@@ -34,11 +34,12 @@ interface ReportItem {
 }
 
 // Map backend ReportData -> UI ReportItem
-function mapReport(r: ReportData): ReportItem {
+type PopulatedReport = Omit<ReportData, 'userId'> & { userId?: string | { _id?: string; name?: string; fullName?: string }; patient?: { name?: string } };
+function mapReport(r: PopulatedReport): ReportItem {
     return {
         id: r._id,
-        patientId: r.userId ?? "",
-        patientName: r.userId ?? "—", // backend doesn't return patient name directly, adjust if API is updated
+        patientId: (typeof r.userId === 'object' && r.userId !== null) ? (r.userId._id || "") : (r.userId || ""),
+        patientName: r.patient?.name || (typeof r.userId === 'object' && r.userId !== null ? (r.userId.name || r.userId.fullName) : null) || "-",
         reportType: r.lab_name ?? "General",
         testDate: r.report_date ?? "",
         fileName: r.filename ?? "Untitled Report",
@@ -96,6 +97,13 @@ export default function ReportsListPage() {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [selectedId, setSelectedId] = useState<string | null>(null);
     const [search, setSearch] = useState("");
+    const [filterDate, setFilterDate] = useState(() => {
+        const today = new Date();
+        const y = today.getFullYear();
+        const m = String(today.getMonth() + 1).padStart(2, '0');
+        const d = String(today.getDate()).padStart(2, '0');
+        return `${y}-${d}-${m}`;
+    });
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const pathname = usePathname();
@@ -143,24 +151,35 @@ useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
     // STATS
-const stats = useMemo(() => {
-    if (!reports.length)
-        return { total: 0, thisMonth: 0 };
+    const stats = useMemo(() => {
+        if (!reports.length)
+            return { total: 0, filtered: 0 };
 
-    const now = new Date();
-    const thisMonth = reports.filter((r) => {
-        const d = new Date(r.createdAt);
-        return (
-            d.getMonth() === now.getMonth() &&
-            d.getFullYear() === now.getFullYear()
-        );
-    }).length;
+        const now = new Date();
 
-    return {
-        total: reports.length,       // ✅ getAllReports se total count
-        thisMonth,                   // ✅ getAllReports se filtered this-month count
-    };
-}, [reports]);
+        const filteredCount = reports.filter((r) => {
+            const d = new Date(r.createdAt);
+            if (filterDate) {
+                const getLocalYYYYMMDD = (dateObj: Date) => {
+                    const y = dateObj.getFullYear();
+                    const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+                    const day = String(dateObj.getDate()).padStart(2, '0');
+                    return `${y}-${m}-${day}`;
+                };
+                return getLocalYYYYMMDD(d) === filterDate;
+            } else {
+                 return (
+                     d.getMonth() === now.getMonth() &&
+                     d.getFullYear() === now.getFullYear()
+                 );
+            }
+        }).length;
+
+        return {
+            total: reports.length,
+            filtered: filteredCount,
+        };
+    }, [reports, filterDate]);
 
     // DELETE REPORT
    const handleDelete = async () => {
@@ -188,7 +207,7 @@ const stats = useMemo(() => {
   }
 };
 
-    // SEARCH FILTER (report type filter removed)
+    // SEARCH FILTER
     const filteredReports = useMemo(() => {
         return reports.filter((report) => {
             const matchRole = !currentRole || currentRole === "heartview-admin" || report.role === currentRole;
@@ -196,11 +215,30 @@ const stats = useMemo(() => {
             const matchSearch =
                 !search ||
                 report.patientId.toLowerCase().includes(search.toLowerCase()) ||
+                report.patientName.toLowerCase().includes(search.toLowerCase()) ||
                 report.fileName.toLowerCase().includes(search.toLowerCase());
 
-            return matchRole && matchSearch;
+            let matchDate = true;
+            if (filterDate) {
+                const getLocalYYYYMMDD = (dateObj: Date) => {
+                    const y = dateObj.getFullYear();
+                    const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+                    const d = String(dateObj.getDate()).padStart(2, '0');
+                    return `${y}-${m}-${d}`;
+                };
+                
+                const d = new Date(report.createdAt);
+                const testD = report.testDate ? new Date(report.testDate) : null;
+                
+                const matchesCreatedAt = getLocalYYYYMMDD(d) === filterDate;
+                const matchesTestDate = testD ? getLocalYYYYMMDD(testD) === filterDate : false;
+                                                 
+                matchDate = matchesCreatedAt || matchesTestDate;
+            }
+
+            return matchRole && matchSearch && matchDate;
         });
-    }, [reports, currentRole, search]);
+    }, [reports, currentRole, search, filterDate]);
 
     // PAGINATION
     const totalPages = Math.max(
@@ -253,6 +291,20 @@ const [totalReports, setTotalReports] = useState(0);
                         View and manage all uploaded reports
                     </p>
                 </div>
+                
+                {/* CALENDAR DATE PICKER */}
+                <div className="relative">
+                    <input
+                        type="date"
+                        value={filterDate}
+                        onChange={(e) => {
+                            setFilterDate(e.target.value);
+                            setCurrentPage(1);
+                        }}
+                        className="h-10 rounded-xl border text-sm font-normal border-black/10 bg-white px-4 text-black outline-none focus:border-cyan-400/40 cursor-pointer shadow-sm"
+                        lang="en-GB"
+                    />
+                </div>
             </div>
 
             {/* STATS CARDS */}
@@ -275,9 +327,16 @@ const [totalReports, setTotalReports] = useState(0);
                         <FiCalendar className="text-xl" />
                     </div>
                     <div>
-                        <p className="text-[#64748B]">This Month</p>
+                        <p className="text-[#64748B]">
+                            {filterDate 
+                                ? (() => {
+                                    const [y, m, d] = filterDate.split('-');
+                                    return new Date(Number(y), Number(m) - 1, Number(d)).toLocaleDateString('en-US', { day: 'numeric', month: 'short', year: 'numeric' });
+                                })()
+                                : "This Month"}
+                        </p>
                         <p className="text-2xl font-semibold text-black leading-tight mt-0.5">
-                            {stats.thisMonth ?? "—"}
+                            {stats.filtered ?? "—"}
                         </p>
                         <p className="text-sm text-[#64748B] mt-0.5">Reports uploaded</p>
                     </div>
@@ -297,13 +356,13 @@ const [totalReports, setTotalReports] = useState(0);
                 </div>
             </div>
 
-            {/* SEARCH (type filter removed) */}
+            {/* SEARCH */}
             <div className="flex flex-wrap gap-3 mb-5">
-                <div className="relative flex-1 min-w-50 max-w-sm">
+                <div className="relative flex-1 min-w-62.5 max-w-sm">
                     <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-[#64748B]" />
                     <input
                         type="text"
-                        placeholder="Search reports by user id or file name..."
+                        placeholder="Search reports by patient name or file name..."
                         value={search}
                         onChange={handleSearchChange}
                         className="h-10 w-full rounded-xl border text-sm border-black/10 bg-white pl-10 pr-4 text-black outline-none focus:border-cyan-400/40"
@@ -318,7 +377,7 @@ const [totalReports, setTotalReports] = useState(0);
                         <thead>
                             <tr className="border-b border-slate-200 bg-slate-50">
                                 <th className="px-5 py-3.5 text-left font-medium text-black">Report</th>
-                                <th className="px-5 py-3.5 text-left font-medium text-black">User ID</th>
+                                <th className="px-5 py-3.5 text-left font-medium text-black">Patient Name</th>
                                 <th className="px-5 py-3.5 text-left font-medium text-black">Test Date</th>
                                 <th className="px-5 py-3.5 text-left font-medium text-black">Uploaded Date</th>
                                 <th className="px-5 py-3.5 text-center font-medium text-black">Actions</th>
@@ -365,7 +424,7 @@ const [totalReports, setTotalReports] = useState(0);
 
                                             <td className="px-5 py-4">
                                                 <span className="text-[#64748B] text-sm font-medium cursor-pointer hover:underline">
-                                                    {report.patientId}
+                                                    {report.patientName || report.patientId}
                                                 </span>
                                             </td>
 

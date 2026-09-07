@@ -82,11 +82,13 @@ const cards: CardItem[] = [
 interface StatsCardsProps {
   year?: number;
   month?: number;
+  date?: string;
 }
 
 export default function StartCards({
   year = 2025,
   month = 1,
+  date,
 }: StatsCardsProps) {
   const selectedYear = Number(year);
   const selectedMonth = Number(month);
@@ -122,11 +124,11 @@ const data = {
   newLabs,
 };
   useEffect(() => {
-    dispatch(getAllLabs());
+    dispatch(getAllLabs({ year, month, date }));
 
     const fetchPatients = async () => {
       try {
-        const response = await dispatch(getAllUsers()).unwrap();
+        const response = await dispatch(getAllUsers({ year, month, date })).unwrap();
         setTotalPatients(response.data?.length || 0);
       } catch (error) {
         console.error(error);
@@ -135,21 +137,8 @@ const data = {
     };
 
     fetchPatients();
-  }, [dispatch]);
-  useEffect(() => {
-    const fetchPatients = async () => {
-      try {
-        const response = await dispatch(getAllUsers()).unwrap();
+  }, [dispatch, year, month, date]);
 
-        setTotalPatients(response.data?.length || 0);
-      } catch (error) {
-        console.error("Failed to fetch patients:", error);
-        setTotalPatients(0);
-      }
-    };
-
-    fetchPatients();
-  }, [dispatch]);
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {cards.map(({ key, label, icon: Icon, iconBgStyle, iconColor, trend }) => (

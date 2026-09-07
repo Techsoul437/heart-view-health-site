@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { User, Phone, Mail, MapPin } from "lucide-react";
+import { User, Phone, Mail, MapPin, Upload } from "lucide-react";
 import SubmitButton from "@/Ui/buttons/SubmitButton";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +20,8 @@ interface AdminProfileFormValues {
     phone: string;
     email: string;
     address: string;
+    profileImage: string;
+    profileImageFile: File | null;
 }
 
 const validationSchema = Yup.object({
@@ -33,6 +35,8 @@ const validationSchema = Yup.object({
         .required("Email Address is required"),
     address: Yup.string().required("Address is required"),
 });
+
+const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
 
 export default function AdminProfilePage() {
     const dispatch = useDispatch<AppDispatch>();
@@ -56,6 +60,54 @@ export default function AdminProfilePage() {
         phone: profile?.mobile || "",
         email: profile?.email || "",
         address: profile?.address || "",
+        profileImage: profile?.profileImage || "",
+        profileImageFile: null,
+    };
+
+    const handleLogoUpload = (
+        e: React.ChangeEvent<HTMLInputElement>,
+        setFieldValue: (field: string, value: any) => void
+    ) => {
+        const file = e.target.files?.[0];
+
+        if (!file) return;
+
+        // Only image files
+        if (!file.type.startsWith("image/")) {
+            toast.error("Please upload a valid image file.");
+            e.target.value = "";
+            setFieldValue("profileImage", "");
+            setFieldValue("profileImageFile", null);
+            return;
+        }
+
+        // File size validation
+        if (file.size > MAX_FILE_SIZE) {
+            const fileSize = (file.size / (1024 * 1024)).toFixed(2);
+            toast.error(
+                `Selected image is ${fileSize} MB. Maximum allowed size is 10 MB.`
+            );
+            e.target.value = "";
+            setFieldValue("profileImage", "");
+            setFieldValue("profileImageFile", null);
+            return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onload = () => {
+            setFieldValue("profileImage", reader.result as string);
+            setFieldValue("profileImageFile", file);
+        };
+
+        reader.onerror = () => {
+            toast.error("Failed to read image.");
+            e.target.value = "";
+            setFieldValue("profileImage", "");
+            setFieldValue("profileImageFile", null);
+        };
+
+        reader.readAsDataURL(file);
     };
 
     if (profileLoading && !profile) {
@@ -88,17 +140,17 @@ export default function AdminProfilePage() {
                     validationSchema={validationSchema}
                     onSubmit={async (values) => {
                         try {
-                            const formData = new FormData();
-                            formData.append("fullName", values.fullName);
-                            formData.append("mobile", values.phone);
-                            formData.append("address", values.address);
-
                             await dispatch(
-                                updateHeartViewAdminProfile(formData)
+                                updateHeartViewAdminProfile({
+                                    fullName: values.fullName,
+                                    mobile: values.phone,
+                                    address: values.address,
+                                    profileImage: values.profileImage, // base64 string
+                                })
                             ).unwrap();
 
                             toast.success("Profile Updated Successfully");
-                            // dispatch(getHeartViewAdminProfile());
+                            dispatch(getHeartViewAdminProfile());
                         } catch (err: unknown) {
                             const error = err as {
                                 response?: { status?: number; data?: { message?: string } };
@@ -120,7 +172,7 @@ export default function AdminProfilePage() {
                         }
                     }}
                 >
-                    {() => (
+                    {({ values, setFieldValue }) => (
                         <Form>
                             <div className="rounded-3xl border border-slate-200 bg-white shadow-sm">
 
@@ -142,7 +194,42 @@ export default function AdminProfilePage() {
                                 </div>
 
                                 {/* Content */}
-                                <div className="p-6">
+                                <div className="grid gap-8 p-6 xl:grid-cols-[18rem_1fr]">
+
+                                    {/* Logo Section */}
+                                    <div className="rounded-2xl border border-slate-200 p-5">
+                                        <h3 className="mb-4 font-medium text-slate-900">
+                                            Profile Picture
+                                        </h3>
+                                        <div className="flex flex-col items-center gap-4">
+                                            <div className="relative flex h-36 w-36 overflow-hidden rounded-full border border-slate-200 bg-slate-100 justify-center items-center">
+                                                {values.profileImage ? (
+                                                    <img
+                                                        src={values.profileImage}
+                                                        alt="Admin Profile"
+                                                        className="h-full w-full object-cover"
+                                                    />
+                                                ) : (
+                                                    <User className="h-10 w-10 text-slate-400" />
+                                                )}
+                                            </div>
+                                            <label className="flex cursor-pointer items-center gap-2 text-sm rounded-xl border border-blue-200 bg-blue-50 px-4 py-2 font-medium text-blue-700 hover:bg-blue-100 transition-colors">
+                                                <Upload className="h-4 w-4" />
+                                                Upload Photo
+                                                <input
+                                                    type="file"
+                                                    hidden
+                                                    accept="image/*"
+                                                    onChange={(e) =>
+                                                        handleLogoUpload(
+                                                            e,
+                                                            setFieldValue
+                                                        )
+                                                    }
+                                                />
+                                            </label>
+                                        </div>
+                                    </div>
 
                                     {/* Form Section */}
                                     <div className="grid gap-5 md:grid-cols-2">
@@ -173,7 +260,7 @@ export default function AdminProfilePage() {
                                             <Field
                                                 name="role"
                                                 disabled
-                                                className="w-full rounded-xl border border-slate-300 text-sm bg-slate-50 px-4 py-3 outline-none transition"
+                                                className="w-full rounded-xl border border-slate-300 text-[#64748B] text-sm bg-slate-50 px-4 py-3 outline-none transition"
                                             />
                                             <ErrorMessage name="role" component="p" className="mt-1 text-red-500" />
                                         </div>
@@ -200,7 +287,7 @@ export default function AdminProfilePage() {
                                                     type="email"
                                                     name="email"
                                                     disabled
-                                                    className="w-full rounded-xl border text-sm border-slate-300 bg-slate-50 py-3 pl-11 pr-4 outline-none transition"
+                                                    className="w-full rounded-xl text-[#64748B] border text-sm border-slate-300 bg-slate-50 py-3 pl-11 pr-4 outline-none transition"
                                                 />
                                             </div>
                                             <ErrorMessage name="email" component="p" className="mt-1 text-red-500" />
@@ -213,7 +300,7 @@ export default function AdminProfilePage() {
                                                 <MapPin className="absolute left-4 top-4 h-4 w-4 text-slate-400" />
                                                 <Field
                                                     name="address"
-                                                    className="w-full rounded-xl border border-slate-300 text-sm py-3 pl-11 pr-4 outline-none transition focus:border-blue-500"
+                                                    className="w-full rounded-xl border text-[#64748B] border-slate-300 text-sm py-3 pl-11 pr-4 outline-none transition focus:border-blue-500"
                                                 />
                                             </div>
                                             <ErrorMessage name="address" component="p" className="mt-1 text-red-500" />

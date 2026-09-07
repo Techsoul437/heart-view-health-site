@@ -19,11 +19,13 @@ import { getMonthlyAnalytics, MonthlyAnalyticsData } from "@/redux/Api";
 interface ReportsOverviewChartProps {
   year: number;
   month: number;
+  date?: string;
 }
 
 export default function ReportsOverviewChart({
   year,
   month,
+  date,
 }: ReportsOverviewChartProps) {
   const dispatch = useDispatch<AppDispatch>();
   const [data, setData] = useState<MonthlyAnalyticsData[]>([]);
@@ -45,7 +47,7 @@ export default function ReportsOverviewChart({
       }
     };
     fetchData();
-  }, [dispatch, year, month]);
+  }, [dispatch, year, month, date]);
 
   return (
     <div

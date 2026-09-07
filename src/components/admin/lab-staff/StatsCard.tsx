@@ -71,11 +71,13 @@ const cards: CardItem[] = [
 interface StatsCardsProps {
   year?: number;
   month?: number;
+  date?: string;
 }
 
 export default function StatCard({
   year = 2025,
   month = 1,
+  date,
 }: StatsCardsProps) {
   const dispatch = useDispatch<AppDispatch>();
   const [data, setData] = useState<StatsData>({
@@ -92,8 +94,8 @@ export default function StatCard({
     const fetchStats = async () => {
       try {
         const [statsResult, usersResult] = await Promise.allSettled([
-          dispatch(getReportLinkStats({ year, month })).unwrap(),
-          dispatch(getAllUsers()).unwrap()
+          dispatch(getReportLinkStats({ year, month, date })).unwrap(),
+          dispatch(getAllUsers({ year, month, date })).unwrap()
         ]);
         
         const stats = statsResult.status === 'fulfilled' ? statsResult.value.data : null;
@@ -104,13 +106,31 @@ export default function StatCard({
         
         const newPatientsCount = users.filter((u: { createdAt?: string }) => {
           if (!u.createdAt) return false;
-          const date = new Date(u.createdAt);
-          return date.getMonth() === targetMonth && date.getFullYear() === targetYear;
+          const userDate = new Date(u.createdAt);
+          if (date) {
+            const y = userDate.getFullYear();
+            const m = String(userDate.getMonth() + 1).padStart(2, '0');
+            const d = String(userDate.getDate()).padStart(2, '0');
+            return `${y}-${m}-${d}` === date;
+          }
+          return userDate.getMonth() === targetMonth && userDate.getFullYear() === targetYear;
         }).length;
+        
+        let filteredUsers = users;
+        if (date) {
+            filteredUsers = users.filter((u: { createdAt?: string }) => {
+                if (!u.createdAt) return false;
+                const userDate = new Date(u.createdAt);
+                const y = userDate.getFullYear();
+                const m = String(userDate.getMonth() + 1).padStart(2, '0');
+                const d = String(userDate.getDate()).padStart(2, '0');
+                return `${y}-${m}-${d}` === date;
+            });
+        }
         
         setData((prev) => ({
           ...prev,
-          totalPatients: users.length,
+          totalPatients: filteredUsers.length,
           newPatients: newPatientsCount,
           linksSent: stats?.totalSent || 0,
           viewed: stats?.totalViewed || 0,
@@ -123,7 +143,7 @@ export default function StatCard({
     };
 
     fetchStats();
-  }, [dispatch, year, month]);
+  }, [dispatch, year, month, date]);
 
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">

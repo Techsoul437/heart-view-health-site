@@ -41,7 +41,7 @@ export default function LabPage() {
     // Local state for search/sort
     const [search, setSearch] = useState("");
     const [branchFilter, setBranchFilter] = useState("All");
-    const [sortBy, setSortBy] = useState("name-az");
+    const [sortBy, setSortBy] = useState("latest");
     const [currentPage, setCurrentPage] = useState(1);
     
     useEffect(() => {
@@ -213,7 +213,7 @@ export default function LabPage() {
                         onChange={(e) => setSortBy(e.target.value)}
                         className="h-10 rounded-lg border border-slate-200 text-sm bg-white px-3"
                     >
-                        <option value="name-az">Lab Name (A-Z)</option>
+                        <option value="latest">Latest</option>`n                        <option value="name-az">Lab Name (A-Z)</option>
                         <option value="name-za">Lab Name (Z-A)</option>
 
                     </select>

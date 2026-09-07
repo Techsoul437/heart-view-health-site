@@ -83,10 +83,25 @@ const htmlToBlogContent = (html: string): BlogContent[] => {
             return;
         }
 
-        if (tag === "figure" || tag === "img") {
-            const imgEl = tag === "img" ? (el as HTMLImageElement) : el.querySelector("img");
+        if (tag === "figure") {
+            if (el.classList.contains("table") || el.querySelector("table")) {
+                current.paragraphs.push(el.outerHTML);
+                return;
+            }
+            const imgEl = el.querySelector("img");
             const src = imgEl?.getAttribute("src");
             if (src) current.images.push(src);
+            return;
+        }
+
+        if (tag === "img") {
+            const src = el.getAttribute("src");
+            if (src) current.images.push(src);
+            return;
+        }
+
+        if (tag === "table") {
+            current.paragraphs.push(el.outerHTML);
             return;
         }
 
@@ -257,7 +272,7 @@ const handleSubmit = async (
         // FILE directly
         mainImage,
 
-        description: values.excerpt.trim(),
+        description: values.excerpt.trim().replace(/\r?\n|\r/g, " "),
 
         content: htmlToBlogContent(
           values.content
@@ -279,7 +294,7 @@ const handleSubmit = async (
           values.metaTitle.trim(),
 
         seoDescription:
-          values.metaDescription.trim(),
+          values.metaDescription.trim().replace(/\r?\n|\r/g, " "),
 
         schemaMarkup: null,
       })

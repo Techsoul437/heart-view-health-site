@@ -9,55 +9,16 @@ import { useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import SubmitButton from "@/Ui/buttons/SubmitButton";
 import ResetButton from "@/Ui/buttons/ResetButton";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import {
-    Alignment,
-    AutoImage,
-    Base64UploadAdapter,
-    BlockQuote,
-    Bold,
-    ClassicEditor,
-    CodeBlock,
-    Essentials,
-    Font,
-    Heading,
-    Image,
-    ImageCaption,
-    ImageInsert,
-    ImageStyle,
-    ImageToolbar,
-    ImageUpload,
-    Italic,
-    Link as CKEditorLink,
-    List,
-    Paragraph,
-    RemoveFormat,
-    Strikethrough,
-    Underline,
-    Undo,
-} from "ckeditor5";
-import "ckeditor5/ckeditor5.css";
+// CKEditor is heavy and incompatible with SSR — load it only on the client.
+// We'll dynamically import the editor component and build on the client.
 import { useDispatch, useSelector } from "react-redux";
 import { getBlogById, updateBlog } from "@/redux/Api";
 import type { AppDispatch, RootState } from "@/redux/store";
 import type { BlogContent } from "@/redux/Api";
 
-const editorConfig = {
-    licenseKey: "GPL",
-    plugins: [
-        Essentials, Paragraph, Heading, Bold, Italic, Underline, Strikethrough,
-        Font, Alignment, List, CKEditorLink, Image, ImageToolbar, ImageUpload,
-        ImageCaption, ImageStyle, ImageInsert, AutoImage, Base64UploadAdapter,
-        BlockQuote, CodeBlock, RemoveFormat, Undo,
-    ],
-    toolbar: [
-        "undo", "redo", "|", "heading", "|", "fontFamily", "fontSize",
-        "fontColor", "fontBackgroundColor", "|", "bold", "italic", "underline",
-        "strikethrough", "|", "alignment", "|", "numberedList", "bulletedList",
-        "|", "link", "insertImage", "blockQuote", "codeBlock", "|", "removeFormat",
-    ],
-    image: { toolbar: ["imageTextAlternative", "toggleImageCaption", "imageStyle:inline", "imageStyle:block", "imageStyle:side"] },
-};
+// editorConfig is built dynamically inside the component to use ck plugins.
+
+/* EditorComponent and ClassicEditorBuild are loaded client-side inside the component */
 
 type Faq = {
     question: string;
@@ -129,10 +90,25 @@ const htmlToBlogContent = (html: string): BlogContent[] => {
             return;
         }
 
-        if (tag === "figure" || tag === "img") {
-            const imgEl = tag === "img" ? (el as HTMLImageElement) : el.querySelector("img");
+        if (tag === "figure") {
+            if (el.classList.contains("table") || el.querySelector("table")) {
+                current.paragraphs.push(el.outerHTML);
+                return;
+            }
+            const imgEl = el.querySelector("img");
             const src = imgEl?.getAttribute("src");
             if (src) current.images.push(src);
+            return;
+        }
+
+        if (tag === "img") {
+            const src = el.getAttribute("src");
+            if (src) current.images.push(src);
+            return;
+        }
+
+        if (tag === "table") {
+            current.paragraphs.push(el.outerHTML);
             return;
         }
 
@@ -170,7 +146,7 @@ const blogContentToHtml = (blocks?: BlogContent[] | null): string => {
             if (block.heading) html += `<h2>${block.heading}</h2>`;
 
             block.paragraphs?.forEach((p: string) => {
-                html += /^\s*<(ul|ol)>/i.test(p) ? p : `<p>${p}</p>`;
+                html += /^\s*<(ul|ol|table|figure)/i.test(p) ? p : `<p>${p}</p>`;
             });
 
             block.images?.forEach((src: string) => {
@@ -225,6 +201,60 @@ export default function EditBlogPage() {
 
     const dispatch = useDispatch<AppDispatch>();
     const { blog, loading } = useSelector((state: RootState) => state.BlogList);
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [EditorComponent, setEditorComponent] = useState<any>(null);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [ClassicEditorBuild, setClassicEditorBuild] = useState<any>(null);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [editorConfig, setEditorConfig] = useState<any>(null);
+
+    useEffect(() => {
+        let mounted = true;
+        if (typeof window === "undefined") return;
+
+        (async () => {
+            try {
+                const mod = await import("@ckeditor/ckeditor5-react");
+                const ck = await import("ckeditor5");
+                await import("ckeditor5/ckeditor5.css");
+
+                if (!mounted) return;
+
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                setEditorComponent(() => (mod as any).CKEditor || (mod as any).default || mod);
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                setClassicEditorBuild(() => (ck as any).ClassicEditor || (ck as any).default || ck);
+
+                setEditorConfig({
+                    licenseKey: "GPL",
+                    plugins: [
+                        ck.Essentials, ck.Paragraph, ck.Heading, ck.Bold, ck.Italic, ck.Underline, ck.Strikethrough,
+                        ck.Font, ck.Alignment, ck.List, ck.Link, ck.Image, ck.ImageToolbar, ck.ImageUpload,
+                        ck.ImageCaption, ck.ImageStyle, ck.ImageInsert, ck.AutoImage, ck.Base64UploadAdapter,
+                        ck.BlockQuote, ck.CodeBlock, ck.RemoveFormat, ck.Undo, ck.Table, ck.TableToolbar,
+                    ],
+                    toolbar: [
+                        "undo", "redo", "|", "heading", "|", "fontFamily", "fontSize",
+                        "fontColor", "fontBackgroundColor", "|", "bold", "italic", "underline",
+                        "strikethrough", "|", "alignment", "|", "numberedList", "bulletedList",
+                        "|", "link", "insertImage", "insertTable", "blockQuote", "codeBlock", "|", "removeFormat",
+                    ],
+                    image: { toolbar: ["imageTextAlternative", "toggleImageCaption", "imageStyle:inline", "imageStyle:block", "imageStyle:side"] },
+                    table: {
+                        contentToolbar: ["tableColumn", "tableRow", "mergeTableCells"]
+                    }
+                });
+            } catch (e) {
+                // eslint-disable-next-line no-console
+                console.error("Failed to load CKEditor on client:", e);
+            }
+        })();
+
+        return () => {
+            mounted = false;
+        };
+    }, []);
 
     useEffect(() => {
         if (id) {
@@ -320,7 +350,7 @@ export default function EditBlogPage() {
                         : {}),
 
                     description:
-                        values.excerpt.trim(),
+                        values.excerpt.trim().replace(/\r?\n|\r/g, " "),
 
                     content:
                         htmlToBlogContent(
@@ -345,7 +375,7 @@ export default function EditBlogPage() {
                         values.metaTitle.trim(),
 
                     seoDescription:
-                        values.metaDescription.trim(),
+                        values.metaDescription.trim().replace(/\r?\n|\r/g, " "),
 
                     schemaMarkup: null,
                 })
@@ -465,13 +495,16 @@ export default function EditBlogPage() {
                             <div className="flex flex-col gap-2">
                                 <label className="font-medium">Blog content <span className="text-red-500">*</span></label>
                                 <div className="ck-editor-wrapper overflow-hidden rounded-xl border border-black/10 [&_.ck-content]:min-h-64 [&_.ck-editor__editable]:border-x-0 [&_.ck-editor__editable]:border-b-0 [&_.ck-toolbar]:border-x-0 [&_.ck-toolbar]:border-t-0">
-                                    <CKEditor
-                                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                                        editor={ClassicEditor as any}
-                                        config={editorConfig}
-                                        data={values.content}
-                                        onChange={(_evt: unknown, editor: { getData: () => string }) => setFieldValue("content", editor.getData())}
-                                    />
+                                    {EditorComponent && ClassicEditorBuild && editorConfig ? (
+                                        <EditorComponent
+                                            editor={ClassicEditorBuild}
+                                            config={editorConfig}
+                                            data={values.content}
+                                            onChange={(_evt: unknown, editor: { getData: () => string }) => setFieldValue("content", editor.getData())}
+                                        />
+                                    ) : (
+                                        <textarea value={values.content} onChange={(e) => setFieldValue("content", e.target.value)} className="w-full rounded-xl border border-black/10 bg-[#f7f7f7] px-4 py-3 min-h-[16rem]" />
+                                    )}
                                 </div>
                                 <ErrorMessage name="content" component="p" className="text-sm text-red-500" />
                             </div>
@@ -512,6 +545,9 @@ export default function EditBlogPage() {
                 .ck-editor-wrapper .ck-content ul li, .ck-editor-wrapper .ck-content ol li { display: list-item; margin: 0.25rem 0; }
                 .ck-editor-wrapper .ck-content blockquote { border-left: 3px solid #cbd5e1; padding-left: 1rem; color: #475569; font-style: italic; margin: 0.75rem 0; }
                 .ck-editor-wrapper .ck-content a { color: #1d7daf; text-decoration: underline; }
+                .ck-editor-wrapper .ck-content table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+                .ck-editor-wrapper .ck-content table td, .ck-editor-wrapper .ck-content table th { border: 1px solid #cbd5e1; padding: 0.5rem; }
+                .ck-editor-wrapper .ck-content table th { background-color: #f8fafc; font-weight: 600; text-align: left; }
             `}</style>
         </div>
     );

@@ -13,19 +13,20 @@ const steps = [
   },
   {
     title: "Verify",
-    desc: "User information can be verified using supported mobile number or email verification.",
+    desc: "User information can be verified using supported mobile-number or email verification.",
     icon: <ShieldCheck className="text-[#2f5ba5]" size={24} strokeWidth={1.5} />,
   },
   {
     title: "Access",
-    desc: "Once securely associated with the correct account, the report can be accessed by the user.",
+    desc: "Once a report is securely associated with the correct account, it can be accessed by the user.",
     icon: <FolderLock className="text-[#2f5ba5]" size={24} strokeWidth={1.5} />,
   },
   {
     title: "Review",
-    desc: "Users can review current and previous reports from their account.",
+    desc: "Users can review current and previous reports available in their account",
     icon: <FileSearch className="text-[#2f5ba5]" size={24} strokeWidth={1.5} />,
   },
+  
 ];
 
 export default function LabReportsSection() {
@@ -44,10 +45,7 @@ export default function LabReportsSection() {
           className="max-w-3xl mx-auto -mt-3 mb-16 space-y-4"
         >
           <p className="text-[#64748B] text-base sm:text-lg lg:text-xl font-light leading-relaxed">
-            Laboratory reports can be difficult to manage when they are stored across emails, messages, paper documents and different devices.
-          </p>
-          <p className="text-[#64748B] text-base sm:text-lg lg:text-xl font-light leading-relaxed">
-            HeartView Health provides a centralized place for supported laboratory reports so users can access their health records more conveniently.
+          Laboratory reports can be difficult to manage when they are stored across emails, messages, paper documents and different devices. HeartView Health provides a centralized experience for supported laboratory reports so users can access their records more conveniently.
           </p>
         </motion.div>
       </div>

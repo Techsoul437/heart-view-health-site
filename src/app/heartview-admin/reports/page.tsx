@@ -34,11 +34,12 @@ interface ReportItem {
 }
 
 // Map backend ReportData -> UI ReportItem
-function mapReport(r: ReportData): ReportItem {
+type PopulatedReport = Omit<ReportData, 'userId'> & { userId?: string | { _id?: string; name?: string; fullName?: string }; patient?: { name?: string } };
+function mapReport(r: PopulatedReport): ReportItem {
     return {
         id: r._id,
-        patientId: r.userId ?? "",
-        patientName: r.userId ?? "—", // backend doesn't return patient name directly, adjust if API is updated
+        patientId: (typeof r.userId === 'object' && r.userId !== null) ? (r.userId._id || "") : (r.userId || ""),
+        patientName: r.patient?.name || (typeof r.userId === 'object' && r.userId !== null ? (r.userId.name || r.userId.fullName) : null) || "-",
         reportType: r.lab_name ?? "General",
         testDate: r.report_date ?? "",
         fileName: r.filename ?? "Untitled Report",
@@ -196,6 +197,7 @@ const stats = useMemo(() => {
             const matchSearch =
                 !search ||
                 report.patientId.toLowerCase().includes(search.toLowerCase()) ||
+                report.patientName.toLowerCase().includes(search.toLowerCase()) ||
                 report.fileName.toLowerCase().includes(search.toLowerCase());
 
             return matchRole && matchSearch;
@@ -303,7 +305,7 @@ const [totalReports, setTotalReports] = useState(0);
                     <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-[#64748B]" />
                     <input
                         type="text"
-                        placeholder="Search reports by user id or file name..."
+                        placeholder="Search reports by patient name or file name..."
                         value={search}
                         onChange={handleSearchChange}
                         className="h-10 w-full rounded-xl border text-sm border-black/10 bg-white pl-10 pr-4 text-black outline-none focus:border-cyan-400/40"
@@ -318,7 +320,7 @@ const [totalReports, setTotalReports] = useState(0);
                         <thead>
                             <tr className="border-b border-slate-200 bg-slate-50">
                                 <th className="px-5 py-3.5 text-left font-medium text-black">Report</th>
-                                <th className="px-5 py-3.5 text-left font-medium text-black">User ID</th>
+                                <th className="px-5 py-3.5 text-left font-medium text-black">Patient Name</th>
                                 <th className="px-5 py-3.5 text-left font-medium text-black">Test Date</th>
                                 <th className="px-5 py-3.5 text-left font-medium text-black">Uploaded Date</th>
                                 <th className="px-5 py-3.5 text-center font-medium text-black">Actions</th>
@@ -365,7 +367,7 @@ const [totalReports, setTotalReports] = useState(0);
 
                                             <td className="px-5 py-4">
                                                 <span className="text-[#64748B] text-sm font-medium cursor-pointer hover:underline">
-                                                    {report.patientId}
+                                                    {report.patientName || report.patientId}
                                                 </span>
                                             </td>
 

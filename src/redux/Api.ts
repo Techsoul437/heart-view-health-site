@@ -457,6 +457,7 @@ export interface StaffProfile {
   role: string;
   status: string;
   joiningDate: string;
+  logo?: string;
 }
 export interface UpdateStaffProfilePayload {
   fullName?: string;
@@ -464,6 +465,7 @@ export interface UpdateStaffProfilePayload {
   department?: string;
   branch?: string;
   address?: string;
+  logo?: string;
 }
 export interface SendReportLinkPayload {
   reportId: string;
@@ -542,14 +544,17 @@ export interface GetMonthlyAnalyticsResponse {
 
 export const getMonthlyAnalytics = createAsyncThunk<
   GetMonthlyAnalyticsResponse,
-  { year: number; month: number },
+  { year: number; month: number; date?: string },
   { rejectValue: string }
 >(
   "report/getMonthlyAnalytics",
-  async ({ year, month }, { rejectWithValue }) => {
+  async ({ year, month, date }, { rejectWithValue }) => {
     try {
+      const url = date 
+        ? `/report-links/monthly-analytics?year=${year}&month=${month}&date=${date}`
+        : `/report-links/monthly-analytics?year=${year}&month=${month}`;
       const response = await API.get<GetMonthlyAnalyticsResponse>(
-        `/report-links/monthly-analytics?year=${year}&month=${month}`,
+        url,
         { headers: { Authorization: `Bearer ${getToken()}` } }
       );
       return response.data;
@@ -1042,15 +1047,21 @@ export interface GetAllBlogsResponse {
 
 export const getAllUsers = createAsyncThunk<
   ApiResponse<Patient[]>,
-  void,
+  { year?: number; month?: number; date?: string } | void,
   { rejectValue: string }
->("users/getAllUsers", async (_, { rejectWithValue }) => {
+>("users/getAllUsers", async (params, { rejectWithValue }) => {
   try {
     const token = getToken();
-    const response = await API.get<ApiResponse<Patient[]>>("/auth/all-user", {
+    const path = typeof window !== "undefined" ? window.location.pathname : "";
+    const endpoint = (path.startsWith("/lab-admin") || path.startsWith("/lab-staff"))
+      ? "/lab-auth/lab-users"
+      : "/auth/all-user";
+      
+    const response = await API.get<ApiResponse<Patient[]>>(endpoint, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      params: params || {},
     });
     return response.data;
   } catch (error) {
@@ -1711,21 +1722,21 @@ export const deleteUser = createAsyncThunk<
 
 export const getAllReports = createAsyncThunk<
   GetAllReportsResponse,
-  void,
+  { year?: number; month?: number; date?: string } | void,
   { rejectValue: string }
 >(
   "report/getAllReports",
-  async (_, { rejectWithValue }) => {
+  async (params, { rejectWithValue }) => {
     try {
       const token = getToken();
       
-
       const response = await API.get<GetAllReportsResponse>(
         "/lab-admin/all-reports",
         {
           headers: {
             Authorization: `Bearer ${token}`,
           },
+          params: params || {},
         }
       );
 
@@ -2008,7 +2019,7 @@ export const getAllReportLinks = createAsyncThunk<
 );
 export const getReportLinkStats = createAsyncThunk<
   GetReportLinkStatsResponse,
-  { year?: number; month?: number } | void,
+  { year?: number; month?: number; date?: string } | void,
   { rejectValue: string }
 >(
   "report/getReportLinkStats",
@@ -2055,7 +2066,7 @@ export interface GetReportStatusStatsResponse {
 
 export const getReportStatusStats = createAsyncThunk<
   GetReportStatusStatsResponse,
-  { year?: number; month?: number } | void,
+  { year?: number; month?: number; date?: string } | void,
   { rejectValue: string }
 >(
   "report/getReportStatusStats",
@@ -2255,11 +2266,11 @@ export const loginHeartViewAdminWithEmail = createAsyncThunk<
 
 export const getAllLabs = createAsyncThunk<
   GetAllLabsResponse,
-  void,
+  { year?: number; month?: number; date?: string } | void,
   { rejectValue: string }
 >(
   "lab/getAllLabs",
-  async (_, { rejectWithValue }) => {
+  async (params, { rejectWithValue }) => {
     try {
       const response = await API.get<GetAllLabsResponse>(
         "/lab-auth/all-labs",
@@ -2267,6 +2278,7 @@ export const getAllLabs = createAsyncThunk<
           headers: {
             Authorization: `Bearer ${getToken()}`,
           },
+          params: params || {},
         }
       );
 
@@ -2552,9 +2564,16 @@ return response.data;
   }
 );
 
+export interface UpdateHeartViewAdminProfilePayload {
+  fullName?: string;
+  mobile?: string;
+  address?: string;
+  profileImage?: string;
+}
+
 export const updateHeartViewAdminProfile = createAsyncThunk<
   HeartViewAdminResponse,
-  FormData,
+  UpdateHeartViewAdminProfilePayload,
   { rejectValue: string }
 >(
   "heartview-admin/updateProfile",
@@ -2566,7 +2585,6 @@ export const updateHeartViewAdminProfile = createAsyncThunk<
         {
           headers: {
             Authorization: `Bearer ${getToken()}`,
-            "Content-Type": "application/json",
           },
         }
       );
@@ -2738,20 +2756,20 @@ export const addBlog = createAsyncThunk<
         JSON.stringify(data.faq)
       );
 
-      formData.append(
-        "seoTitle",
-        data.seoTitle || ""
-      );
+      if (data.seoTitle) {
+        formData.append("seoTitle", data.seoTitle);
+      }
 
-      formData.append(
-        "seoDescription",
-        data.seoDescription || ""
-      );
+      if (data.seoDescription) {
+        formData.append("seoDescription", data.seoDescription);
+      }
 
-      formData.append(
-        "schemaMarkup",
-        JSON.stringify(data.schemaMarkup || null)
-      );
+      if (data.schemaMarkup) {
+        formData.append(
+          "schemaMarkup",
+          JSON.stringify(data.schemaMarkup)
+        );
+      }
 
       // IMPORTANT
       formData.append(
@@ -2836,22 +2854,20 @@ export const updateBlog = createAsyncThunk<
         JSON.stringify(blogData.faq)
       );
 
-      formData.append(
-        "seoTitle",
-        blogData.seoTitle || ""
-      );
+      if (blogData.seoTitle) {
+        formData.append("seoTitle", blogData.seoTitle);
+      }
 
-      formData.append(
-        "seoDescription",
-        blogData.seoDescription || ""
-      );
+      if (blogData.seoDescription) {
+        formData.append("seoDescription", blogData.seoDescription);
+      }
 
-      formData.append(
-        "schemaMarkup",
-        JSON.stringify(
-          blogData.schemaMarkup || null
-        )
-      );
+      if (blogData.schemaMarkup) {
+        formData.append(
+          "schemaMarkup",
+          JSON.stringify(blogData.schemaMarkup)
+        );
+      }
 
       // Only append when new image selected
       if (blogData.mainImage) {

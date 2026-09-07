@@ -32,7 +32,7 @@ const ActionBadge = ({ action }: { action: string }) => {
 
     return (
         <span className={`px-3 py-1 rounded-full text-xs font-medium border ${style}`}>
-            {action || 'Unknown'}
+            {action || '-'}
         </span>
     );
 };
@@ -280,7 +280,7 @@ export default function AuditLogs() {
             .map((log, index) => ({
                 id: log._id,
                 type: log.status?.toLowerCase() === 'failed' ? 'Failed Authentication Attempt' : 'Critical Action Performed',
-                user: (log.actorName || log.adminName || log.user) || 'Unknown',
+                user: (log.actorName || log.adminName || log.user) || '-',
                 ip: log.ipAddress || 'N/A',
                 time: log.createdAt ? format(new Date(log.createdAt), 'dd MMM, hh:mm a') : 'N/A',
                 severity: log.status?.toLowerCase() === 'failed' ? 'Medium' : 'High',

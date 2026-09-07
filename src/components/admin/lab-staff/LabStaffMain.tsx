@@ -24,18 +24,25 @@ const MONTHS = [
 
 const YEARS: number[] = [2024, 2025, 2026];
 function LabStaffMain() {
-    const [year, setYear] = useState<number>(
-        now.getFullYear()
-    );
+  const [selectedDate, setSelectedDate] = useState<string>(() => {
+    const tzOffset = new Date().getTimezoneOffset() * 60000;
+    return new Date(Date.now() - tzOffset).toISOString().slice(0, -1).split('T')[0];
+  });
 
-    const [month, setMonth] = useState<number>(
-        now.getMonth() + 1
-    );
+  const dateObj = new Date(selectedDate);
+  const year = dateObj.getFullYear();
+  const month = dateObj.getMonth() + 1;
+  const formattedDate = React.useMemo(() => {
+    if (!selectedDate) return '';
+    const parts = selectedDate.split('-');
+    if (parts.length === 3) {
+      return `${parts[2]}/${parts[1]}/${parts[0]}`;
+    }
+    return selectedDate;
+  }, [selectedDate]);
 
-    const monthLabel =
-        MONTHS.find((m) => m.value === month)?.label ?? "";
     return (
-        <div className="min-h-screen p-6 text-black overflow-x-hidden">
+        <div className="min-h-screen p-6 md:p-12 text-black overflow-x-hidden">
             {/* ───────────────── HEADER ───────────────── */}
             <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
                 {/* Left */}
@@ -52,110 +59,29 @@ function LabStaffMain() {
                 {/* Right Controls */}
                 <div className="flex flex-wrap items-center gap-3">
                     {/* Month Select */}
-                    <div className="relative">
-                        <select
-                            value={month}
-                            onChange={(e) =>
-                                setMonth(Number(e.target.value))
-                            }
-                            className="
-                    appearance-none
-                    rounded-xl
-                    border border-black/10
-                    bg-[#f7f7f7]
-                    pl-4 pr-9 py-2.5
-                    font-medium
-                    text-[#64748B]
-                    backdrop-blur-md
-                    shadow-lg
-                    outline-none
-                    transition-all
-                    focus:border-indigo-400
-                    focus:ring-2
-                    focus:ring-indigo-500/30
-                    cursor-pointer
-                  "
-                        >
-                            {MONTHS.map((m) => (
-                                <option
-                                    key={m.value}
-                                    value={m.value}
-                                    className="bg-white text-black"
-                                >
-                                    {m.label}
-                                </option>
-                            ))}
-                        </select>
-
-
-                    </div>
-
-                    {/* Year Select */}
-                    <div className="relative">
-                        <select
-                            value={year}
-                            onChange={(e) =>
-                                setYear(Number(e.target.value))
-                            }
-                            className="
-                    appearance-none
-                    rounded-xl
-                    border border-black/10
-                                    bg-[#f7f7f7]
-    
-                    pl-4 pr-9 py-2.5
-                    font-medium
-                    text-[#64748B]
-                    backdrop-blur-md
-                    shadow-lg
-                    outline-none
-                    transition-all
-                    focus:border-indigo-400
-                    focus:ring-2
-                    focus:ring-indigo-500/30
-                    cursor-pointer
-                  "
-                        >
-                            {YEARS.map((y) => (
-                                <option
-                                    key={y}
-                                    value={y}
-                                    className="bg-white text-black"
-                                >
-                                    {y}
-                                </option>
-                            ))}
-                        </select>
-
-                    </div>
-
-                    {/* Date Badge */}
-                    <div
-                        className="
-                  flex items-center gap-2
-                  rounded-xl
-                  border border-black/10
-                        bg-[#f7f7f7]
-                  px-4 py-2.5
-                  font-medium
-                  text-[#64748B]
-                  backdrop-blur-md
-                  shadow-lg
-                "
-                    >
-                        <FiCalendar className="text-[#64748B]" />
-                        {monthLabel} {year}
+                    <div className="relative flex items-center justify-between h-10 w-40 rounded-xl border border-black/10 bg-white px-4 shadow-sm focus-within:border-cyan-400/40 overflow-hidden">
+                      <span className="text-sm font-medium text-black">
+                        {formattedDate}
+                      </span>
+                      <FiCalendar className="text-[#64748B]" />
+                      <input
+                        type="date"
+                        value={selectedDate}
+                        onChange={(e) => setSelectedDate(e.target.value)}
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:inset-0 [&::-webkit-calendar-picker-indicator]:w-full [&::-webkit-calendar-picker-indicator]:h-full [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:cursor-pointer"
+                        lang="en-GB"
+                      />
                     </div>
                 </div>
             </div>
-            <StatCard></StatCard>
+            <StatCard year={year} month={month} date={selectedDate} />
 
             <div className="space-y-6 ] py-6">
                 <QuickActions />
             </div>
             <div className='grid grid-cols-1 gap-5 xl:grid-cols-2'>
-                <LatestPatient></LatestPatient>
-                <LatestLinks></LatestLinks>
+                <LatestPatient year={year} month={month} date={selectedDate} />
+                <LatestLinks year={year} month={month} date={selectedDate} />
             </div>
         </div>
     )

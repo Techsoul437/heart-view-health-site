@@ -84,20 +84,18 @@ export default function Sidebar({
     .join("")
     .toUpperCase()
     .slice(0, 2);
-  // Component ke andar, return se pehle ya upar:
   const loginPathMap: Record<string, string> = {
     staff: "/lab-staff",
     "lab-admin": "/lab-admin",
     "heartview-admin": "/heartview-admin",
     "admin": "/admin",
-
   };
   const router = useRouter();
   const handleLogout = () => {
     if (role === 'lab-admin') {
       localStorage.removeItem("labAdmin_accessToken");
       localStorage.removeItem("labAdmin_refreshToken");
-    } else if (role === 'lab-staff') {
+    } else if (role === 'staff' || role === 'lab-staff') {
       localStorage.removeItem("staff_accessToken");
       localStorage.removeItem("staff_refreshToken");
     } else if (role === 'heartview-admin') {

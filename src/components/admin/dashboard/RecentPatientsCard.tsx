@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { UserCircle2 } from "lucide-react";
-import { getAllUsers, type Patient } from "@/redux/Api";
+import { getAllUsers, getLabUsers, type Patient } from "@/redux/Api";
 import type { RootState, AppDispatch } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -17,9 +17,14 @@ interface PatientItem {
   createdAt?: string;
 }
 
-export default function RecentPatientsCard() {
-    const dispatch = useDispatch<AppDispatch>();
+interface RecentPatientsProps {
+  year?: number;
+  month?: number;
+  date?: string;
+}
 
+export default function RecentPatientsCard({ year, month, date }: RecentPatientsProps) {
+    const dispatch = useDispatch<AppDispatch>();
 
 const [patients, setPatients] = useState<Patient[]>([]);
 const [loading, setLoading] = useState(true);
@@ -28,9 +33,24 @@ useEffect(() => {
     try {
       setLoading(true);
 
-      const response = await dispatch(getAllUsers()).unwrap();
+      const response = await dispatch(getLabUsers()).unwrap();
+      
+      const allPatients = response.data || [];
+      const filtered = allPatients.filter(patient => {
+          if (!patient.createdAt) return false;
+          if (date) {
+             const tzOffset = new Date().getTimezoneOffset() * 60000;
+             const linkDateStr = new Date(new Date(patient.createdAt).getTime() - tzOffset).toISOString().split('T')[0];
+             return linkDateStr === date;
+          }
+          if (year && month) {
+             const linkDate = new Date(patient.createdAt);
+             return linkDate.getFullYear() === year && (linkDate.getMonth() + 1) === month;
+          }
+          return true;
+      });
 
-      const latestPatients = [...(response.data || [])]
+      const latestPatients = filtered
         .sort(
           (a, b) =>
             new Date(b.createdAt ?? "").getTime() -
@@ -38,7 +58,7 @@ useEffect(() => {
         )
         .slice(0, 5);
 
-      setPatients(latestPatients);
+      setPatients(latestPatients as unknown as Patient[]);
     } catch (error) {
       console.error("Failed to fetch patients:", error);
     } finally {
@@ -47,7 +67,7 @@ useEffect(() => {
   };
 
   fetchPatients();
-}, [dispatch]);
+}, [dispatch, year, month, date]);
 
   return (
     <div className="rounded-2xl border   min-h-125 border-slate-200  bg-[#f7f7f7] shadow-sm">
@@ -66,8 +86,7 @@ useEffect(() => {
 
         <Link href="/lab-admin/patients">
           <button
-            className="shrink-0 whitespace-nowrap rounded-xl border border-[#2f5ba5]/20 bg-black px-4 py-2 text-white"
-
+            className="shrink-0 whitespace-nowrap rounded-xl bg-black h-10 px-4 flex items-center justify-center text-sm font-medium text-white hover:bg-neutral-800 transition-colors"
           >
             View All
           </button>

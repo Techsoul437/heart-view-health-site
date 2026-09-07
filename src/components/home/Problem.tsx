@@ -50,19 +50,19 @@ const steps = [
   {
     num: "02",
     title: "Store",
-    desc: "Access laboratory reports and health information from one place.",
+    desc: "Access supported laboratory reports and health information from one place. ",
     icon: <Folder className="text-[#2f5ba5]" size={22} />,
   },
   {
     num: "03",
     title: "Review",
-    desc: "Look back at previous measurements and reports whenever needed.",
+    desc: "Look back at previous measurements and reports whenever you need them. ",
     icon: <History className="text-[#2f5ba5]" size={22} />,
   },
   {
     num: "04",
     title: "Understand",
-    desc: "View supported health information in a clear and structured format.",
+    desc: "Use clear educational resources to learn about common measurements and laboratory tests.",
     icon: <Info className="text-[#2f5ba5]" size={22} />,
   },
   {
@@ -88,7 +88,7 @@ export default function Problem() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-center text-base sm:text-lg font-light text-[#64748B] max-w-3xl mx-auto -mt-3 mb-12 leading-relaxed"
         >
-          All your health data, organized and easy to access in your HeartView Health account.
+         Keep the information you can access through HeartView Health organized, searchable and easier to review. 
         </motion.p>
 
         <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
@@ -117,7 +117,7 @@ export default function Problem() {
 
       {/* ===== SECTION 2 ===== */}
       <div className="mt-20 rounded-3xl bg-[#f9fafb] border border-black/5 p-8 sm:p-12 lg:p-16">
-        <Headerbadge tag="WHAT YOU CAN DO" text="What You Can Do With HeartView Health" />
+        <Headerbadge tag="WHAT YOU CAN DO" text="From Health Records to Better Understanding" />
         
         <div className="grid gap-10 sm:gap-6 lg:gap-8 sm:grid-cols-2 lg:grid-cols-5 mt-12 relative">
           {steps.map((item, i) => (

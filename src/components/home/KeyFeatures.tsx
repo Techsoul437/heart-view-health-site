@@ -15,7 +15,7 @@ const features = [
   {
     num: "02",
     title: "Health Measurements",
-    desc: "Record and review supported measurements including heart rate, blood pressure, SpO₂, weight and other available health metrics.",
+    desc: "Record and review supported measurements such as heart rate, blood pressure, SpO₂, weight and other available health metrics.",
     icon: HeartPulse,
   },
   {
@@ -33,13 +33,13 @@ const features = [
   {
     num: "05",
     title: "Health Trends",
-    desc: "Compare supported measurements across different dates and monitor changes in your recorded data.",
+    desc: "Compare supported measurements across different dates and review changes in your recorded information.",
     icon: LineChart,
   },
   {
     num: "06",
     title: "Health Insights",
-    desc: "View simplified information for supported health measurements and report values.",
+    desc: "View simplified educational information that helps explain supported health measurements and report values.",
     icon: BarChart2,
   },
 ];
@@ -78,7 +78,7 @@ export default function KeyFeatures() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-[#64748B] text-base sm:text-lg lg:text-xl font-light leading-relaxed max-w-3xl mx-auto mb-16 -mt-3"
         >
-          HeartView Health provides the tools you need to organize, track, and understand your health information in one secure platform.
+         HeartView Health provides practical tools for organizing, reviewing and learning about supported health information in one structured platform. 
         </motion.p>
       </div>
 

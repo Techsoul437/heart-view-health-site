@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
-import { getReportStatusStats } from "@/redux/Api";
+import { getReportStatusStats, getAllReportLinks } from "@/redux/Api";
 
 type StatusItem = {
   completed: number;
@@ -21,6 +21,7 @@ type StatusData = {
 interface ReportsByStatusChartProps {
   year: number;
   month: number;
+  date?: string;
 }
 
 const statusData: StatusData = {
@@ -133,29 +134,42 @@ function CircularRing({
   );
 }
 
-export default function ReportsByStatusChart({ year, month }: ReportsByStatusChartProps) {
+export default function ReportsByStatusChart({ year, month, date }: ReportsByStatusChartProps) {
   const dispatch = useDispatch<AppDispatch>();
   const [raw, setRaw] = useState<StatusItem>({ completed: 0, pending: 0, processing: 0, failed: 0 });
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const result = await dispatch(getReportStatusStats({ year, month }));
-        if (getReportStatusStats.fulfilled.match(result)) {
-          const data = result.payload?.data || {};
-          setRaw({
-            completed: data.completed || data.downloaded || data.Downloaded || 0,
-            pending: data.pending || data.sent || data.Sent || 0,
-            processing: data.processing || data.viewed || data.Viewed || 0,
-            failed: data.failed || data.Failed || 0,
-          });
-        }
+        const result = await dispatch(getAllReportLinks()).unwrap();
+        const allLinks = result.data || [];
+        
+        const filtered = allLinks.filter(link => {
+          if (!link.createdAt) return false;
+          if (date) {
+             const tzOffset = new Date().getTimezoneOffset() * 60000;
+             const linkDateStr = new Date(new Date(link.createdAt).getTime() - tzOffset).toISOString().split('T')[0];
+             return linkDateStr === date;
+          }
+          if (year && month) {
+             const linkDate = new Date(link.createdAt);
+             return linkDate.getFullYear() === year && (linkDate.getMonth() + 1) === month;
+          }
+          return true;
+        });
+
+        setRaw({
+          completed: filtered.filter(l => l.status?.toLowerCase() === "downloaded" || l.status?.toLowerCase() === "completed").length,
+          pending: filtered.filter(l => l.status?.toLowerCase() === "sent" || l.status?.toLowerCase() === "pending").length,
+          processing: filtered.filter(l => l.status?.toLowerCase() === "viewed" || l.status?.toLowerCase() === "processing").length,
+          failed: filtered.filter(l => l.status?.toLowerCase() === "failed" || l.status?.toLowerCase() === "expired").length,
+        });
       } catch (error) {
         console.error("Failed to fetch report status stats:", error);
       }
     };
     fetchData();
-  }, [dispatch, year, month]);
+  }, [dispatch, year, month, date]);
 
   const actualTotal = Object.values(raw).reduce((a, b) => a + b, 0);
   const total = actualTotal || 1; // avoid division by zero

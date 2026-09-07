@@ -29,6 +29,11 @@ const nextConfig = {
         hostname: "api.heartviewhealth.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        pathname: "/**",
+      },
     ],
   },
 

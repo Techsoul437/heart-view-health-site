@@ -94,7 +94,7 @@ function mapReportsToResults(
     if (Array.isArray(reports)) {
         return reports.map((item, index) => ({
             id: String(item._id ?? item.id ?? index),
-            testName: item.testName ?? item.test_name ?? item.name ?? "Unknown Test",
+            testName: item.testName ?? item.test_name ?? item.name ?? "-",
             value: String(item.value ?? item.result ?? ""),
             unit: item.unit ?? "",
             status:
@@ -112,7 +112,7 @@ function mapReportsToResults(
 
         return {
             id: String(item.report_metric_id ?? index),
-            testName: item.name ?? item.metric_code ?? "Unknown Test",
+            testName: item.name ?? item.metric_code ?? "-",
             value: value !== undefined && value !== null ? String(value) : "",
             unit: item.unit ?? "",
             // locked: true -> Verified, locked: false -> Needs Review
@@ -498,7 +498,7 @@ function UploadReportForm({
                                                 Or click to browse report file
                                             </p>
                                             <p className="mt-4 text-sm text-[#64748B]">
-                                                Supports PDF files up to 5MB
+                                                Supports PDF files
                                             </p>
                                         </div>
                                     </label>
@@ -535,7 +535,6 @@ function UploadReportForm({
 
                                 <div className="mt-4 flex text-sm flex-wrap items-center justify-between gap-3 text-[#64748B]">
                                     <p>Accepted formats: PDF</p>
-                                    <p>Maximum file size: 5MB</p>
                                 </div>
                             </div>
 

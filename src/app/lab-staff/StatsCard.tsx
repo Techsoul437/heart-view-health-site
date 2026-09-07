@@ -10,7 +10,7 @@ import {
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/redux/store";
-import { getAllUsers, getAllLabs } from "@/redux/Api";
+import { getAllUsers, getLabUsers, getAllLabs } from "@/redux/Api";
 type StatsData = {
   totalLabs: number;
   activeLabs: number;
@@ -126,21 +126,7 @@ const data = {
 
     const fetchPatients = async () => {
       try {
-        const response = await dispatch(getAllUsers()).unwrap();
-        setTotalPatients(response.data?.length || 0);
-      } catch (error) {
-        console.error(error);
-        setTotalPatients(0);
-      }
-    };
-
-    fetchPatients();
-  }, [dispatch]);
-  useEffect(() => {
-    const fetchPatients = async () => {
-      try {
-        const response = await dispatch(getAllUsers()).unwrap();
-
+        const response = await dispatch(getLabUsers()).unwrap();
         setTotalPatients(response.data?.length || 0);
       } catch (error) {
         console.error("Failed to fetch patients:", error);

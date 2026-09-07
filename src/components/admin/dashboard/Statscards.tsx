@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
-import { getReportLinkStats } from "@/redux/Api";
+import { getReportLinkStats, getAllReportLinks } from "@/redux/Api";
 
 import { IconType } from "react-icons";
 import {
@@ -67,11 +67,13 @@ const cards: CardItem[] = [
 interface StatsCardsProps {
   year?: number;
   month?: number;
+  date?: string;
 }
 
 export default function StatsCards({
-  year = 2025,
-  month = 1,
+  year = new Date().getFullYear(),
+  month = new Date().getMonth() + 1,
+  date,
 }: StatsCardsProps) {
   const dispatch = useDispatch<AppDispatch>();
   const [data, setData] = useState<StatsData>({
@@ -80,28 +82,39 @@ export default function StatsCards({
     viewed: 0,
     downloaded: 0,
   });
-
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const result = await dispatch(getReportLinkStats({ year, month }));
-        if (getReportLinkStats.fulfilled.match(result)) {
-          const stats = result.payload.data;
-          
-          setData({
-            uploaded: stats?.totalSent || 0,
-            pending: stats?.totalPending || 0,
-            viewed: stats?.totalViewed || 0,
-            downloaded: stats?.totalDownloaded || 0,
-          });
-        }
+        const result = await dispatch(getAllReportLinks()).unwrap();
+        const allLinks = result.data || [];
+        
+        const filtered = allLinks.filter(link => {
+          if (!link.createdAt) return false;
+          if (date) {
+             const tzOffset = new Date().getTimezoneOffset() * 60000;
+             const linkDateStr = new Date(new Date(link.createdAt).getTime() - tzOffset).toISOString().split('T')[0];
+             return linkDateStr === date;
+          }
+          if (year && month) {
+             const linkDate = new Date(link.createdAt);
+             return linkDate.getFullYear() === year && (linkDate.getMonth() + 1) === month;
+          }
+          return true;
+        });
+
+        setData({
+          uploaded: filtered.length,
+          pending: filtered.filter(l => l.status?.toLowerCase() === "sent" || l.status?.toLowerCase() === "pending").length,
+          viewed: filtered.filter(l => l.status?.toLowerCase() === "viewed").length,
+          downloaded: filtered.filter(l => l.status?.toLowerCase() === "downloaded" || l.status?.toLowerCase() === "completed").length,
+        });
       } catch (error) {
         console.error("Failed to fetch stats:", error);
       }
     };
 
     fetchStats();
-  }, [dispatch, year, month]);
+  }, [dispatch, year, month, date]);
 
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">

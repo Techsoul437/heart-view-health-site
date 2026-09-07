@@ -6,15 +6,20 @@ import { motion } from "framer-motion";
 type HeaderbadgeProps = {
   tag?: string;
   text?: string;
-
+  align?: "left" | "center" | "right";
+  className?: string;
 };
 
 function Headerbadge({
   tag = "",
   text = "",
+  align = "center",
+  className = "",
 }: HeaderbadgeProps) {
+  const alignmentClass = align === "left" ? "text-left" : align === "right" ? "text-right" : "text-center";
+  
   return (
-    <div className="text-center py-4">
+    <div className={`py-4 ${alignmentClass} ${className}`}>
       <motion.span
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}

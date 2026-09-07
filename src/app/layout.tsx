@@ -22,46 +22,54 @@ const manrope = Manrope({
   weight: ["400", "500", "600", "700"],
 });
 
-// export const metadata: Metadata = {
-//   title: {
-//     default: "HeartView Health",
-//     template: "%s | HeartView Health",
-//   },
-//   description:
-//     "Monitor heart rate, blood pressure, blood sugar, sleep, and overall wellness with HeartView Health. Get personalized insights, reminders, and health reports.",
-
-//   keywords: [
-//     "HeartView Health",
-//     "heart health monitoring",
-//     "blood pressure tracking",
-//     "blood sugar monitoring",
-//     "health analytics",
-//     "wellness tracking",
-//     "health reports",
-//   ],
-
-
-//   openGraph: {
-//     title: "HeartView Health",
-//     description:
-//       "Monitor heart rate, blood pressure, and blood sugar with smart health insights.",
-//     siteName: "HeartView Health",
-//     url: "https://heartviewhealth.com/",
-//     type: "website",
-//   },
-//   robots: {
-//     index: true,
-//     follow: true,
-//     googleBot: {
-//       index: true,
-//       follow: true,
-//       "max-snippet": -1,
-//       "max-image-preview": "large",
-//       "max-video-preview": -1,
-//     },
-//   },
-// };
 export const metadata = {
+  metadataBase: new URL('https://heartviewhealth.com'),
+  title: {
+    default: "HeartView Health",
+    template: "%s | HeartView Health",
+  },
+  description:
+    "Monitor heart rate, blood pressure, blood sugar, sleep, and overall wellness with HeartView Health. Get personalized insights, reminders, and health reports.",
+  keywords: [
+    "HeartView Health",
+    "heart health monitoring",
+    "blood pressure tracking",
+    "blood sugar monitoring",
+    "health analytics",
+    "wellness tracking",
+    "health reports",
+  ],
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: "HeartView Health",
+    description:
+      "Monitor heart rate, blood pressure, and blood sugar with smart health insights.",
+    siteName: "HeartView Health",
+    url: "https://heartviewhealth.com/",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HeartView Health",
+    description: "Monitor heart rate, blood pressure, and blood sugar with smart health insights.",
+    site: "@heartviewhealth",
+  },
+  verification: {
+    google: "YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
   icons: {
     icon: "/favicon3.png",
     shortcut: "/favicon3.png",

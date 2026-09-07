@@ -57,12 +57,12 @@ export default function PatientsPage() {
     const [search, setSearch] = useState("");
     const [genderFilter, setGenderFilter] = useState("All");
     const [roleFilter, setRoleFilter] = useState("All");
-    const [sortBy, setSortBy] = useState("name-az");
+    const [sortBy, setSortBy] = useState("latest");
     const [currentPage, setCurrentPage] = useState(1);
-const [openDeleteModal, setOpenDeleteModal] = useState(false);
-const [selectedId, setSelectedId] = useState<string | null>(null);
+    const [openDeleteModal, setOpenDeleteModal] = useState(false);
+    const [selectedId, setSelectedId] = useState<string | null>(null);
     // Patients removed from the UI after a successful delete API call
-const [deletedIds, setDeletedIds] = useState<(number | string)[]>([]);
+    const [deletedIds, setDeletedIds] = useState<(number | string)[]>([]);
     const [deletingId, setDeletingId] = useState<string | null>(null);
     const [deleteError, setDeleteError] = useState<string | null>(null);
 
@@ -99,38 +99,38 @@ const [deletedIds, setDeletedIds] = useState<(number | string)[]>([]);
     const canDeletePatient = hasPerm("patients", "delete_patient");
 
     const handleDelete = async () => {
-    if (!selectedId) return;
+        if (!selectedId) return;
 
-    try {
-        setDeletingId(selectedId);
-        setDeleteError(null);
+        try {
+            setDeletingId(selectedId);
+            setDeleteError(null);
 
-        const result = await dispatch(deleteUser(selectedId));
+            const result = await dispatch(deleteUser(selectedId));
 
-        if (deleteUser.fulfilled.match(result)) {
-            toast.success(result.payload.message);
+            if (deleteUser.fulfilled.match(result)) {
+                toast.success(result.payload.message);
 
-            setDeletedIds((prev) => [...prev, selectedId]);
+                setDeletedIds((prev) => [...prev, selectedId]);
 
-            dispatch(getAllUsers());
+                dispatch(getAllUsers());
 
-            setOpenDeleteModal(false);
-            setSelectedId(null);
-        } else {
-            throw result.payload;
+                setOpenDeleteModal(false);
+                setSelectedId(null);
+            } else {
+                throw result.payload;
+            }
+        } catch (err) {
+            const message =
+                typeof err === "string"
+                    ? err
+                    : "Failed to delete user";
+
+            setDeleteError(message);
+            toast.error(message);
+        } finally {
+            setDeletingId(null);
         }
-    } catch (err) {
-        const message =
-            typeof err === "string"
-                ? err
-                : "Failed to delete user";
-
-        setDeleteError(message);
-        toast.error(message);
-    } finally {
-        setDeletingId(null);
-    }
-};
+    };
 
     const itemsPerPage = 10;
 
@@ -197,6 +197,10 @@ const [deletedIds, setDeletedIds] = useState<(number | string)[]>([]);
                 return (getAge(a.DOB) ?? 0) - (getAge(b.DOB) ?? 0);
             if (sortBy === "age-desc")
                 return (getAge(b.DOB) ?? 0) - (getAge(a.DOB) ?? 0);
+            
+            // "latest" defaults to not sorting here, relying on API order
+            // or we could sort by createdAt if available on Patient object:
+            // if (sortBy === "latest") return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
             return 0;
         });
 
@@ -234,9 +238,9 @@ const [deletedIds, setDeletedIds] = useState<(number | string)[]>([]);
 
     const RoleBadge = ({ role }: { role: string }) => {
         if (!role)
-            return <span className="text-[#64748B]">—</span>;
+            return <span className="text-[#64748B] text-left">—</span>;
         return (
-            <span className="inline-flex items-center gap-1 rounded-full  px-3 py-1 font-medium text-slate-700 capitalize">
+            <span className="inline-flex  gap-1 rounded-full  py-1 font-medium text-slate-700 capitalize">
                 {role}
             </span>
         );
@@ -246,18 +250,18 @@ const [deletedIds, setDeletedIds] = useState<(number | string)[]>([]);
         <div className="min-h-screen bg-white p-5 text-black md:p-12">
             {/* HEADER */}
             <ConfirmModal
-    isOpen={openDeleteModal}
-    title="Delete Patient"
-    message="Are you sure you want to delete this patient? This action cannot be undone."
-    confirmText="Delete"
-    cancelText="Cancel"
-    loading={!!deletingId}
-    onConfirm={handleDelete}
-    onCancel={() => {
-        setOpenDeleteModal(false);
-        setSelectedId(null);
-    }}
-/>
+                isOpen={openDeleteModal}
+                title="Delete Patient"
+                message="Are you sure you want to delete this patient? This action cannot be undone."
+                confirmText="Delete"
+                cancelText="Cancel"
+                loading={!!deletingId}
+                onConfirm={handleDelete}
+                onCancel={() => {
+                    setOpenDeleteModal(false);
+                    setSelectedId(null);
+                }}
+            />
             <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
                 <div>
                     <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-normal tracking-tight text-black">
@@ -397,6 +401,7 @@ const [deletedIds, setDeletedIds] = useState<(number | string)[]>([]);
                         onChange={(e) => setSortBy(e.target.value)}
                         className="h-10 rounded-lg border border-slate-200 text-sm bg-white px-3 text-black outline-none focus:border-blue-300"
                     >
+                        <option value="latest">Latest</option>
                         <option value="name-az">Name (A-Z)</option>
                         <option value="name-za">Name (Z-A)</option>
                         <option value="age-asc">Age (Low-High)</option>
@@ -410,14 +415,14 @@ const [deletedIds, setDeletedIds] = useState<(number | string)[]>([]);
                 <div className="overflow-x-auto">
                     <table className="w-full min-w-max border-collapse">
                         <thead>
-                            <tr className="border-b border-slate-100 bg-slate-50">
+                            <tr className="border-b border-slate-100 text-left bg-slate-50">
                                 <th className="px-5 py-3 text-left font-medium text-black">#</th>
                                 <th className="px-5 py-3 text-left font-medium text-black">Name</th>
                                 <th className="px-5 py-3 text-left font-medium text-black">Phone</th>
-                                <th className="px-5 py-3 text-left font-medium text-black">Age</th>
+                                {/* <th className="px-5 py-3 text-left font-medium text-black">Age</th> */}
                                 <th className="px-5 py-3 text-left font-medium text-black">Gender</th>
                                 <th className="px-5 py-3 text-left font-medium text-black">Role</th>
-                                <th className="px-5 py-3 text-left font-medium text-black">Registered On</th>
+                                <th className="px-5 py-3 text-left font-medium text-black">Created At</th>
                                 <th className="px-5 py-3 text-left font-medium text-black">Actions</th>
                             </tr>
                         </thead>
@@ -444,7 +449,7 @@ const [deletedIds, setDeletedIds] = useState<(number | string)[]>([]);
                                     return (
                                         <tr
                                             key={key}
-                                            className="border-b border-slate-50 transition hover:bg-slate-50"
+                                            className="border-b text-left border-slate-50 transition hover:bg-slate-50"
                                         >
                                             <td className="px-5 py-4 text-[#64748B]">
                                                 {indexOfFirstPatient + index + 1}
@@ -459,9 +464,9 @@ const [deletedIds, setDeletedIds] = useState<(number | string)[]>([]);
                                             <td className="px-5 py-4 text-sm text-[#64748B]">
                                                 {patient.phone || "—"}
                                             </td>
-                                            <td className="px-5 py-4 text-sm text-[#64748B]">
+                                            {/* <td className="px-5 py-4 text-sm text-[#64748B]">
                                                 {age ?? "—"}
-                                            </td>
+                                            </td> */}
                                             <td className="px-5 text-sm py-4">
                                                 <GenderBadge gender={patient.sex} />
                                             </td>
@@ -548,8 +553,8 @@ const [deletedIds, setDeletedIds] = useState<(number | string)[]>([]);
                                     key={i}
                                     onClick={() => setCurrentPage(i + 1)}
                                     className={`flex h-8 w-8 items-center justify-center rounded-lg font-semibold transition ${currentPage === i + 1
-                                            ? "bg-[#2f5ba5] text-white"
-                                            : "border border-slate-200 text-[#64748B] hover:bg-slate-50"
+                                        ? "bg-[#2f5ba5] text-white"
+                                        : "border border-slate-200 text-[#64748B] hover:bg-slate-50"
                                         }`}
                                 >
                                     {i + 1}
