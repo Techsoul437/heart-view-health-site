@@ -189,7 +189,7 @@ export default function AuditTable({ title, endpoint, columns }: AuditTableProps
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full text-left border-collapse">
+        <table className="w-full min-w-[800px] text-left border-collapse">
           <thead>
             <tr className="bg-gray-50 border-y text-gray-600 text-sm">
               {columns.map((col, i) => (

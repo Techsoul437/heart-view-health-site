@@ -55,21 +55,21 @@ const SeverityBadge = ({ severity }: { severity: string }) => {
 const AuditLogDetailModal = ({ log, onClose }: { log: AuditLog; onClose: () => void }) => {
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4" onClick={onClose}>
-            <div className="w-full max-w-2xl rounded-2xl border border-slate-200 bg-white shadow-xl flex flex-col" onClick={(e) => e.stopPropagation()}>
-                <div className="flex items-center justify-between p-6 border-b border-gray-100">
-                    <h1 className="text-xl font-semibold tracking-tight text-gray-900">Audit Event Details</h1>
+            <div className="w-full max-w-2xl max-h-[95vh] sm:max-h-[90vh] rounded-2xl border border-slate-200 bg-white shadow-xl flex flex-col overflow-hidden" onClick={(e) => e.stopPropagation()}>
+                <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-100 shrink-0">
+                    <h1 className="text-lg sm:text-xl font-semibold tracking-tight text-gray-900">Audit Event Details</h1>
                     <button onClick={onClose} className="rounded-lg p-2 text-gray-400 hover:bg-gray-50 hover:text-gray-600 transition-colors">
                         <X size={20} />
                     </button>
                 </div>
 
-                <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-8">
-                    <div className="col-span-1 md:col-span-2 bg-gray-50 p-4 rounded-lg flex items-center justify-between">
+                <div className="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-2 gap-y-6 gap-x-8 overflow-y-auto">
+                    <div className="col-span-1 md:col-span-2 bg-gray-50 p-4 rounded-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                         <div>
                             <p className="text-sm font-medium text-gray-500">Event ID</p>
                             <p className="mt-1 font-mono text-sm text-gray-900">{log._id}</p>
                         </div>
-                        <div className="text-right">
+                        <div className="sm:text-right">
                             <p className="text-sm font-medium text-gray-500">Timestamp</p>
                             <p className="mt-1 text-sm font-medium text-gray-900">
                                 {log.createdAt ? format(new Date(log.createdAt), "dd MMM yyyy, hh:mm a") : "N/A"}
@@ -80,44 +80,40 @@ const AuditLogDetailModal = ({ log, onClose }: { log: AuditLog; onClose: () => v
                     <div>
                         <p className="text-sm font-medium text-gray-500">Actor</p>
                         <div className="mt-1 flex items-center gap-2">
-                            <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-xs">
+                            <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-xs shrink-0">
                                 {((log.actorName || log.adminName || log.user) || 'U')[0].toUpperCase()}
                             </div>
-                            <div>
-                                <p className="text-sm font-medium text-gray-900">{(log.actorName || log.adminName || log.user) || 'System'}</p>
-                                <p className="text-xs text-gray-500">{(log.actorId || log.adminId) ? `Admin ID: ${(log.actorId || log.adminId)}` : 'Administrator'}</p>
+                            <div className="min-w-0">
+                                <p className="text-sm font-medium text-gray-900 truncate">{(log.actorName || log.adminName || log.user) || 'System'}</p>
+                                <p className="text-xs text-gray-500 truncate">{(log.actorId || log.adminId) ? `Admin ID: ${(log.actorId || log.adminId)}` : 'Administrator'}</p>
                             </div>
                         </div>
                     </div>
 
                     <div>
                         <p className="text-sm font-medium text-gray-500">Action & Module</p>
-                        <div className="mt-2 flex items-center gap-2">
+                        <div className="mt-2 flex items-center gap-2 flex-wrap">
                             <ActionBadge action={log.action} />
                             <span className="text-sm text-gray-500">in</span>
-                            <span className="text-sm font-medium text-gray-900">{log.module || "System"}</span>
+                            <span className="text-sm font-medium text-gray-900 break-words">{log.module || "System"}</span>
                         </div>
                     </div>
 
                     <div className="col-span-1 md:col-span-2">
                         <p className="text-sm font-medium text-gray-500">Description</p>
-                        <p className="mt-1 text-sm text-gray-900 bg-white border border-gray-100 p-3 rounded-lg leading-relaxed">{log.description}</p>
+                        <p className="mt-1 text-sm text-gray-900 bg-white border border-gray-100 p-3 rounded-lg leading-relaxed break-words">{log.description}</p>
                     </div>
 
                     <div>
                         <p className="text-sm font-medium text-gray-500">Network Details</p>
                         <div className="mt-2 space-y-2 text-sm text-gray-700">
-                            <div className="flex justify-between border-b border-gray-50 pb-1">
+                            <div className="flex flex-col sm:flex-row sm:justify-between border-b border-gray-50 pb-1 gap-1">
                                 <span className="text-gray-500">IP Address:</span>
-                                <span className="font-mono">{log.ipAddress || 'N/A'}</span>
+                                <span className="font-mono break-all">{log.ipAddress || 'N/A'}</span>
                             </div>
-                            {/* <div className="flex justify-between border-b border-gray-50 pb-1">
-                                <span className="text-gray-500">Device:</span>
-                                <span>{log.device || 'MacBook Pro'}</span>
-                            </div> */}
-                            <div className="flex justify-between pb-1">
+                            <div className="flex flex-col sm:flex-row sm:justify-between pb-1 gap-1">
                                 <span className="text-gray-500">Browser:</span>
-                                <span>{log.browser || 'Chrome'}</span>
+                                <span className="break-all">{log.browser || 'Chrome'}</span>
                             </div>
                         </div>
                     </div>
@@ -125,7 +121,7 @@ const AuditLogDetailModal = ({ log, onClose }: { log: AuditLog; onClose: () => v
                     <div>
                         <p className="text-sm font-medium text-gray-500">Outcome</p>
                         <div className="mt-2 space-y-2 text-sm text-gray-700">
-                            <div className="flex justify-between border-b border-gray-50 pb-1">
+                            <div className="flex justify-between border-b border-gray-50 pb-1 gap-1">
                                 <span className="text-gray-500">Status:</span>
                                 <span className={`font-medium ${(log.status || 'Success').toLowerCase() === 'failed' ? 'text-red-600' : 'text-green-600'}`}>
                                     {log.status || 'Success'}
@@ -135,8 +131,8 @@ const AuditLogDetailModal = ({ log, onClose }: { log: AuditLog; onClose: () => v
                     </div>
                 </div>
 
-                <div className="p-6 border-t border-gray-100 flex justify-end gap-3 bg-gray-50 rounded-b-2xl">
-                    <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors">
+                <div className="p-4 sm:p-6 border-t border-gray-100 flex justify-end gap-3 bg-gray-50 rounded-b-2xl shrink-0">
+                    <button onClick={onClose} className="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors">
                         Close
                     </button>
                 </div>
@@ -420,8 +416,8 @@ export default function AuditLogs() {
                     <h3 className="text-lg font-medium text-gray-900 flex items-center gap-2"><AlertTriangle size={18} className="text-orange-500" /> Recent Critical Actions</h3>
                     <button className="text-sm font-medium text-blue-600 hover:text-blue-800" onClick={() => setActiveTab('data-access')}>View All</button>
                 </div>
-                <div className="p-0">
-                    <table className="w-full text-sm text-left">
+                <div className="p-0 overflow-x-auto">
+                    <table className="w-full min-w-[600px] text-sm text-left">
                         <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
                             <tr>
                                 <th className="px-6 py-3 font-medium">User</th>
@@ -464,8 +460,8 @@ export default function AuditLogs() {
                 <h3 className="text-lg font-medium text-gray-900">Currently Active Sessions</h3>
                 <p className="mt-1 text-sm text-gray-500">Based on recent authentication events.</p>
             </div>
-            <div className="p-0">
-                <table className="w-full text-sm text-left">
+            <div className="p-0 overflow-x-auto">
+                <table className="w-full min-w-[600px] text-sm text-left">
                     <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
                         <tr>
                             <th className="px-6 py-3 font-medium">User</th>
@@ -526,8 +522,8 @@ export default function AuditLogs() {
                     <p className="mt-1 text-sm text-gray-500">Dynamically generated alerts based on system activities.</p>
                 </div>
             </div>
-            <div className="p-0">
-                <table className="w-full text-sm text-left">
+            <div className="p-0 overflow-x-auto">
+                <table className="w-full min-w-[600px] text-sm text-left">
                     <thead className="bg-gray-50 text-gray-500 text-xs uppercase">
                         <tr>
                             <th className="px-6 py-3 font-medium">Alert Type</th>

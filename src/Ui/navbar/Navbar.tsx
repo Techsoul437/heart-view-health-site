@@ -23,10 +23,15 @@ export default function Navbar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [labDropdownOpen, setLabDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const mobileDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      const target = event.target as Node;
+      const isOutsideDesktop = !dropdownRef.current || !dropdownRef.current.contains(target);
+      const isOutsideMobile = !mobileDropdownRef.current || !mobileDropdownRef.current.contains(target);
+
+      if (isOutsideDesktop && isOutsideMobile) {
         setLabDropdownOpen(false);
       }
     }
@@ -180,7 +185,7 @@ export default function Navbar() {
         </nav>
 
         <div className="mt-auto pt-6 border-t border-white/10 flex flex-col gap-4">
-          <div className="relative w-fit">
+          <div className="relative w-fit" ref={mobileDropdownRef}>
             <FillButton onClick={() => setLabDropdownOpen(!labDropdownOpen)} text="Lab Portal ▾" />
 
             {labDropdownOpen && (

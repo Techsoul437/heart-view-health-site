@@ -161,12 +161,11 @@ export default function Sidebar({
           backdrop-blur-2xl
           transition-transform
           duration-300
-          ${isOpen ? "translate-x-0" : "-translate-x-full"
-          }
+          ${isOpen ? "translate-x-0" : "-translate-x-full"}
           lg:sticky
           lg:translate-x-0
-          lg:flex
-          lg:flex-col
+          flex
+          flex-col
         `}
       >
         {/* ── Logo ── */}

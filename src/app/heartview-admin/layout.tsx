@@ -103,6 +103,9 @@ const sidebarMenu = [
         <Sidebar
           role="heartview-admin"
           menuItems={sidebarMenu}
+          labName=""
+          userName={profile?.fullName || ""}
+          userEmail={profile?.email || ""}
         />
       </div>
 
