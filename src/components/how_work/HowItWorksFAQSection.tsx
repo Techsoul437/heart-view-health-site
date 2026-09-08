@@ -7,29 +7,35 @@ import Headerbadge from "@/Ui/Headerbadge/Headerbadge";
 
 const faqs = [
   {
-    question: "Can I access my laboratory reports?",
-    answer: "Yes, supported laboratory reports can be accessed through your HeartView Health account.",
+    question: "Can I securely access my laboratory reports through my HeartView Health account?",
+    answer:
+      "Yes, supported laboratory reports can be securely accessed and reviewed through your HeartView Health account. Once your reports have been processed and made available, you can conveniently view the available information from your account whenever you need it. This makes it easier to keep your important health records organized and accessible.",
   },
   {
-    question: "Can I view previous reports?",
-    answer: "If previous reports are available in your account, you can access and review them.",
+    question: "Can I view my previous laboratory reports and compare them with newer results?",
+    answer:
+      "Yes, if your previous laboratory reports are available in your HeartView Health account, you can access and review them along with your newer results. Reviewing previous reports can help you understand how your health information has changed over time. It can also make it easier to have meaningful and informed conversations with your healthcare professional.",
   },
   {
-    question: "Can I track my health measurements over time?",
-    answer: "Yes, where supported, you can review available measurements and compare previous results.",
+    question: "Can I track my health measurements and monitor changes over time?",
+    answer:
+      "Yes, where supported, HeartView Health allows you to review available health measurements and compare your current information with previous records. Keeping track of your measurements over time can help you better understand changes in your health information and recognize patterns in your available data. This information can also support more informed discussions with your healthcare provider.",
   },
   {
-    question: "Does HeartView Health diagnose medical conditions?",
-    answer: "No. HeartView Health provides health information and informational insights; it does not replace professional diagnosis or medical advice.",
+    question: "Does HeartView Health diagnose medical conditions or provide professional medical advice?",
+    answer:
+      "No. HeartView Health provides health information, reports, and informational insights designed to help you better understand your available health data. The information provided through the platform is not intended to replace professional medical diagnosis, treatment, or advice. Always consult a qualified healthcare professional for medical concerns, diagnosis, or treatment decisions.",
   },
   {
-    question: "Can my doctor use my HeartView Health information?",
-    answer: "Available information may help you discuss your health with your healthcare professional. Follow the sharing options provided by your account.",
+    question: "Can my doctor or healthcare professional review and use my HeartView Health information?",
+    answer:
+      "Your available HeartView Health information may help you have more informed and productive conversations with your doctor or other healthcare professionals. Where sharing features are supported, you can use the options available through your account to share relevant health information with your healthcare provider. Your healthcare professional can then consider this information alongside your overall health and medical history.",
   },
   {
-    question: "How do I access my health reports?",
-    answer: "Available reports can be accessed through your HeartView Health account once they are made available to you.",
-  }
+    question: "How can I access and review my health reports on HeartView Health?",
+    answer:
+      "You can access your available health reports directly through your HeartView Health account. Reports will become accessible once they have been successfully processed and made available to you. After they are available, you can conveniently review your reports and keep track of the health information provided through your account.",
+  },
 ];
 
 export default function HowItWorksFAQSection() {

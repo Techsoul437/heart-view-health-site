@@ -72,20 +72,27 @@ export default function PremiumCTA() {
                 </div>
 
                 {/* Content */}
-                <div className="relative mx-auto max-w-3xl text-center">
+               <div className="relative mx-auto max-w-3xl text-center">
 
-                    <Headerbadge tag="Take The Next Step" text="Take Control of Your Health Journey" />
+    <Headerbadge
+        tag="Take The Next Step"
+        text="Take Control of Your Health Journey"
+    />
 
-                    <p className="mx-auto   font-light max-w-2xl text-lg leading-relaxed text-[#64748B] ">
-                        Join the next generation of health management designed
-                        to help you stay informed, proactive, and connected
-                        to what matters most.
-                    </p>
+    <p className="mx-auto max-w-2xl text-lg font-light leading-relaxed text-[#64748B]">
+        Join the next generation of health management designed
+        to help you stay informed, proactive, and connected
+        to what matters most.
+    </p>
 
-                    <div className="mt-6">
-                        <FillButton text="Join Early Access " href="/contact"></FillButton>
-                    </div>
-                </div>
+    <div className="mt-6 flex justify-center">
+        <FillButton
+            text="Join Early Access"
+            href="/contact"
+        />
+    </div>
+
+</div>
             </div>
         </section>
     );

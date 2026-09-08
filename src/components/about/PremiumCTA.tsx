@@ -82,7 +82,8 @@ export default function PremiumCTA() {
                         to what matters most.
                     </p>
 
-                    <div className="mt-6">
+                       <div className="mt-6 flex justify-center">
+
                         <FillButton text="Join Early Access " href="/contact"></FillButton>
                     </div>
                 </div>
