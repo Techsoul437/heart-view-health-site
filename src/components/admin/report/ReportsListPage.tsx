@@ -97,13 +97,19 @@ export default function ReportsListPage() {
     const [openDeleteModal, setOpenDeleteModal] = useState(false);
     const [selectedId, setSelectedId] = useState<string | null>(null);
     const [search, setSearch] = useState("");
-    const [filterDate, setFilterDate] = useState(() => {
-        const today = new Date();
-        const y = today.getFullYear();
-        const m = String(today.getMonth() + 1).padStart(2, '0');
-        const d = String(today.getDate()).padStart(2, '0');
-        return `${y}-${d}-${m}`;
+    const [filterDate, setFilterDate] = useState<string>(() => {
+        const tzOffset = new Date().getTimezoneOffset() * 60000;
+        return new Date(Date.now() - tzOffset).toISOString().slice(0, -1).split('T')[0];
     });
+
+    const formattedDate = useMemo(() => {
+        if (!filterDate) return '';
+        const parts = filterDate.split('-');
+        if (parts.length === 3) {
+            return `${parts[2]}/${parts[1]}/${parts[0]}`;
+        }
+        return filterDate;
+    }, [filterDate]);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const pathname = usePathname();
@@ -293,17 +299,23 @@ const [totalReports, setTotalReports] = useState(0);
                 </div>
                 
                 {/* CALENDAR DATE PICKER */}
-                <div className="relative">
-                    <input
-                        type="date"
-                        value={filterDate}
-                        onChange={(e) => {
-                            setFilterDate(e.target.value);
-                            setCurrentPage(1);
-                        }}
-                        className="h-10 rounded-xl border text-sm font-normal border-black/10 bg-white px-4 text-black outline-none focus:border-cyan-400/40 cursor-pointer shadow-sm"
-                        lang="en-GB"
-                    />
+                <div className="flex flex-wrap items-center gap-3">
+                    <div className="relative flex items-center justify-between h-10 w-40 rounded-xl border border-black/10 bg-white px-4 shadow-sm focus-within:border-cyan-400/40 overflow-hidden">
+                        <span className="text-sm font-medium text-black">
+                            {formattedDate}
+                        </span>
+                        <FiCalendar className="text-[#64748B]" />
+                        <input
+                            type="date"
+                            value={filterDate}
+                            onChange={(e) => {
+                                setFilterDate(e.target.value);
+                                setCurrentPage(1);
+                            }}
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer [&::-webkit-calendar-picker-indicator]:absolute [&::-webkit-calendar-picker-indicator]:inset-0 [&::-webkit-calendar-picker-indicator]:w-full [&::-webkit-calendar-picker-indicator]:h-full [&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:cursor-pointer"
+                            lang="en-GB"
+                        />
+                    </div>
                 </div>
             </div>
 
