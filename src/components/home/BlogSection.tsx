@@ -92,7 +92,7 @@ function BlogSection() {
       </div>
 
       {/* BUTTON */}
-      <div className="text-center mt-10 space-y-4">
+      <div className="text-center flex justify-center items-center mt-10 space-y-4">
         <FillButton text="View More Blogs" href="/blog" />
       </div>
     </section>
