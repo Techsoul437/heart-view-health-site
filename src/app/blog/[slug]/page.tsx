@@ -102,9 +102,9 @@ const categoryLabels: Record<string, string> = {
           <div className="mt-4 mb-8 flex flex-col md:flex-row md:items-center justify-between text-[#64748B] gap-4 border-b border-gray-200 pb-4">
             {blog.author && (
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-[#2f5ba5] text-white flex items-center justify-center font-bold text-lg">
-                  {blog.author.charAt(0)}
-                </div>
+                <div className="w-8 h-8 md:w-9 md:h-9 min-w-8 min-h-8 md:min-w-9 md:min-h-9 shrink-0 rounded-full bg-[#2f5ba5] text-white flex items-center justify-center font-bold text-lg leading-none">
+  {blog.author.charAt(0).toUpperCase()}
+</div>
                 <div>
                   <span className="text-sm block">Written by</span>
                   <span className="text-base font-medium text-black block">{blog.author}</span>
@@ -363,7 +363,7 @@ const categoryLabels: Record<string, string> = {
                           {/* CONTENT */}
                           <div className="flex flex-col flex-grow">
 
-                            <h3 className="lg:text-xl sm:text-lg text-lg font-medium mt-2 text-black group-hover:text-[#2f5ba5] transition line-clamp-2">
+                            <h3 className=" sm:text-lg text-lg font-medium mt-2 text-black group-hover:text-[#2f5ba5] transition line-clamp-2">
                               {item.title}
                             </h3>
 

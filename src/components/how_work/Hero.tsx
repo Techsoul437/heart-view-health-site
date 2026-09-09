@@ -7,7 +7,7 @@ import { FaHand, FaHandPointLeft } from "react-icons/fa6";
 
 export default function Hero() {
   return (
-        <section className="w-full  xl:pt-20 pt-5  lg:pt-20  mt-0 lg:mt-15 ">
+        <section className="w-full  xl:pt-20 pt-5 lg:pt-20  mt-10 ">
 
 
       {/* Glow Background */}
@@ -26,7 +26,7 @@ export default function Hero() {
 
           <Headerbadge tag="Health & Wellness" text="Understand Your Health. Stay Organized." />
 
-          <p className=" text-[#64748B]   max-w-2xl sm:max-w-3xl text-base sm:text-lg  leading-relaxed   lg:max-w-3xl font-light ">
+          <p className=" text-[#64748B]   max-w-2xl sm:max-w-3xl text-base sm:text-lg leading-relaxed   lg:max-w-3xl font-light ">
             HeartView Health brings your health information, reports, measurements, appointments, and
 medications together in one place. Review your information, follow changes over time, and stay
 connected with your healthcare journey </p>

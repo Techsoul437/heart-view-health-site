@@ -88,7 +88,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
           </div>
 
           {/* TITLE */}
-          <h3 className="lg:text-xl sm:text-lg text-lg font-medium mt-4 mb-2 text-black group-hover:text-[#2f5ba5] transition">
+          <h3 className=" sm:text-lg text-lg font-medium mt-4 mb-2 text-black group-hover:text-[#2f5ba5] transition">
             {blog.title}
           </h3>
 

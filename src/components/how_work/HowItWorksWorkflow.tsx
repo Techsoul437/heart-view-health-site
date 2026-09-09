@@ -62,7 +62,7 @@ export default function HowItWorksWorkflow() {
                 <h3 className="font-semibold text-black text-base mb-2">
                   {step.label}
                 </h3>
-                <p className="text-[#64748B] text-lg font-light leading-relaxed">
+                <p className="text-[#64748B] sm:text-lg  font-light leading-relaxed">
                   {step.description}
                 </p>
               </motion.div>

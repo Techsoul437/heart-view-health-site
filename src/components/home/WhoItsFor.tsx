@@ -43,7 +43,7 @@ export default function WhoItsFor() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="max-w-3xl mx-auto -mt-3 mb-20"
         >
-          <p className="text-[#64748B] text-base sm:text-lg lg:text-xl font-light leading-relaxed">
+          <p className="text-[#64748B] text-base sm:text-lg  font-light leading-relaxed">
            HeartView Health is designed for people who want their supported health information to be organized, accessible and easier to understand.
           </p>
         </motion.div>

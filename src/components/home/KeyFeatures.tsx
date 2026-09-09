@@ -76,7 +76,7 @@ export default function KeyFeatures() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.8 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-[#64748B] text-base sm:text-lg lg:text-xl font-light leading-relaxed max-w-3xl mx-auto mb-16 -mt-3"
+          className="text-[#64748B] text-base sm:text-lg  font-light leading-relaxed max-w-3xl mx-auto mb-16 -mt-3"
         >
          HeartView Health provides practical tools for organizing, reviewing and learning about supported health information in one structured platform. 
         </motion.p>

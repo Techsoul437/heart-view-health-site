@@ -44,7 +44,7 @@ export default function LabReportsSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="max-w-3xl mx-auto -mt-3 mb-16 space-y-4"
         >
-          <p className="text-[#64748B] text-base sm:text-lg lg:text-xl font-light leading-relaxed">
+          <p className="text-[#64748B] text-base sm:text-lg  font-light leading-relaxed">
           Laboratory reports can be difficult to manage when they are stored across emails, messages, paper documents and different devices. HeartView Health provides a centralized experience for supported laboratory reports so users can access their records more conveniently.
           </p>
         </motion.div>

@@ -25,7 +25,7 @@ export default function HowItWorksSecurity() {
           <Headerbadge tag="SECURITY" text="Your Health Information Matters" />
           <div className="mt-2 h-1 w-20 bg-gradient-to-r from-[#2f5ba5]/70 to-transparent mx-auto lg:mx-0 mb-8"></div>
           
-          <p className="text-[#64748B] text-lg md:text-xl font-light leading-relaxed mb-8">
+          <p className="text-[#64748B] sm:text-lg  font-light leading-relaxed mb-8">
             HeartView Health is designed to give you convenient access to your own available health information.
           </p>
           

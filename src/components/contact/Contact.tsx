@@ -541,10 +541,13 @@ export default function Contact() {
                                   mounts and getValue() always returns "", causing the
                                   "Captcha Required" error on every submit.
                                 */}
-                                <ReCAPTCHA
-                                    sitekey={RECAPTCHA_SITE_KEY}
-                                    ref={recaptchaRef}
-                                />
+                              {/* origin-top-left aur scale shrink karega, sm:scale-100 badi screen par wapas normal kar dega */}
+<div className="origin-top-left scale-[0.80] sm:scale-100">
+    <ReCAPTCHA
+        sitekey={RECAPTCHA_SITE_KEY}
+        ref={recaptchaRef}
+    /> 
+</div>
 
                                 {/* Submit */}
                                 <motion.button

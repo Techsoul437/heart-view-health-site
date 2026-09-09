@@ -78,7 +78,7 @@ export default function HealthGuidesSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="max-w-3xl mx-auto -mt-3 mb-16"
         >
-          <p className="text-[#64748B] text-base sm:text-lg lg:text-xl font-light leading-relaxed px-4">
+          <p className="text-[#64748B] text-base sm:text-lg  font-light leading-relaxed px-4">
            Learn about common health measurements, laboratory tests and everyday health topics through easy-to-understand educational articles. These resources are for general education and are not a substitute for advice from a qualified healthcare professional. 
           </p>
         </motion.div>

@@ -20,10 +20,10 @@ export default function WhatIsHeartView() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="max-w-5xl mx-auto -mt-3 mb-10"
         >
-          <p className="text-[#64748B] text-base sm:text-lg lg:text-xl font-light leading-relaxed mb-6">
+          <p className="text-[#64748B] text-base sm:text-lg  font-light leading-relaxed mb-6">
             Health information can become difficult to manage when laboratory reports, measurements and older records are spread across email, messages, paper documents and different devices. HeartView Health is designed to bring supported health information together in a structured account so it is easier to access, review and understand.
           </p>
-          <p className="text-[#64748B] text-base sm:text-lg lg:text-xl font-light leading-relaxed">
+          <p className="text-[#64748B] text-base sm:text-lg  font-light leading-relaxed">
             HeartView Health combines health information organization with educational resources. You can review supported measurements, access laboratory reports that are securely associated with your account, look back at previous information and learn about common health topics without having to search for basic explanations each time.
           </p>
         </motion.div>

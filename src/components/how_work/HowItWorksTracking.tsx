@@ -69,7 +69,7 @@ export default function HowItWorksTracking() {
       <div className="flex flex-col items-center text-center mb-16">
         <Headerbadge tag="TRACKING" text="What Can You Track?" />
         <div className="mt-2 h-1 w-20 bg-gradient-to-r from-transparent via-[#2f5ba5]/70 to-transparent"></div>
-        <p className="text-[#64748B] text-base md:text-lg max-w-2xl mx-auto mt-6 font-light">
+        <p className="text-[#64748B] text-base sm:text-lg max-w-2xl mx-auto mt-6 font-light">
           Review supported health measurements in one organized experience.
         </p>
       </div>

@@ -37,7 +37,7 @@ export default function WhatIsHeartViewSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.8 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-[#64748B] text-base sm:text-lg lg:text-xl font-light leading-relaxed max-w-4xl mx-auto mb-6"
+          className="text-[#64748B] text-base sm:text-lg  font-light leading-relaxed max-w-4xl mx-auto mb-6"
         >
           HeartView Health is a digital health platform designed to help individuals organize and monitor their health information.
         </motion.p>
@@ -47,7 +47,7 @@ export default function WhatIsHeartViewSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.8 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-[#64748B] text-base sm:text-lg lg:text-xl font-light leading-relaxed max-w-4xl mx-auto mb-16"
+          className="text-[#64748B] text-base sm:text-lg  font-light leading-relaxed max-w-4xl mx-auto mb-16"
         >
           The platform brings supported health measurements, laboratory reports, health history and health insights together in one place.
         </motion.p>

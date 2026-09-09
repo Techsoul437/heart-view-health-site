@@ -24,7 +24,7 @@ function Hero() {
               className="lg:text-left"
             />
 
-            <p className="text-base sm:text-lg text-[#64748B] leading-relaxed font-light lg:max-w-xl mt-4">
+            <p className="text-base sm:text-lg  text-[#64748B] leading-relaxed font-light lg:max-w-xl mt-4">
              Keep supported laboratory reports and health measurements organized in one place. Review your health information over time and learn what common measurements and laboratory tests mean through clear, easy-to-understand educational resources. 
             </p>
             {/* <p className="text-base sm:text-lg text-[#64748B] mt-4  leading-relaxed font-light lg:max-w-xl">

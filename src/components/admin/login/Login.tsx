@@ -441,7 +441,7 @@ const LeftSide = () => (
       </div>
 
       <div className="shrink-0">
-        <h2 className="text-lg lg:text-xl xl:text-2xl font-medium leading-tight text-white">
+        <h2 className="text-lg  xl:text-2xl font-medium leading-tight text-white">
           Create your Lab Portal account
         </h2>
         <p className="mt-3 hidden lg:block leading-6 text-[#64748B] text-sm">
