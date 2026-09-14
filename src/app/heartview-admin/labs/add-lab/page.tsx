@@ -281,6 +281,11 @@ export default function AddLabPage() {
                         : "border-slate-300"
                       }`}
                   />
+                  <ErrorMessage
+                    name="city"
+                    component="p"
+                    className="mt-1 text-sm text-red-500"
+                  />
                 </div>
 
                 {/* State */}
@@ -295,6 +300,11 @@ export default function AddLabPage() {
                         ? "border-red-500"
                         : "border-slate-300"
                       }`}
+                  />
+                  <ErrorMessage
+                    name="state"
+                    component="p"
+                    className="mt-1 text-sm text-red-500"
                   />
                 </div>
 
@@ -311,6 +321,11 @@ export default function AddLabPage() {
                         : "border-slate-300"
                       }`}
                   />
+                  <ErrorMessage
+                    name="pincode"
+                    component="p"
+                    className="mt-1 text-sm text-red-500"
+                  />
                 </div>
 
               </div>
@@ -325,7 +340,10 @@ export default function AddLabPage() {
                   rows={4}
                   name="address"
                   placeholder="Enter complete address"
-                  className="w-full rounded-xl border border-slate-300 p-4"
+                  className={`w-full rounded-xl border p-4 ${touched.address && errors.address
+                      ? "border-red-500"
+                      : "border-slate-300"
+                    }`}
                 />
                 <ErrorMessage
                   name="address"

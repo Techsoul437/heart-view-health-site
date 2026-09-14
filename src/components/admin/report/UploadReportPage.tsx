@@ -79,6 +79,10 @@ interface GetReportsByUserResponse {
 
 const validationSchema = Yup.object({
     patientId: Yup.string().required("Please select patient"),
+    reportFile: Yup.mixed()
+        .nullable()
+        .required("Please upload report file")
+        .test("fileRequired", "Please upload report file", (value) => Boolean(value)),
 });
 
 /* ------------------------------------------------------------------ */
@@ -318,9 +322,9 @@ function UploadReportForm({
                     }
                 }}
             >
-                {({ values, errors, touched, setFieldValue, resetForm }) => {
+                {({ values, errors, touched, setFieldValue, setFieldError, resetForm }) => {
                     const selectedPatient = patients.find(
-                        (patient) => String(patient._id) === values.patientId,
+                        (patient) => String(patient._id || (patient as any).id) === values.patientId,
                     );
 
                     return (
@@ -338,7 +342,7 @@ function UploadReportForm({
                                         className={`
                       flex h-14 w-full items-center justify-between rounded-2xl border
                       bg-[#f7f7f7]/70 px-4 text-left transition-all
-                      ${errors.patientId && touched.patientId
+                      ${errors.patientId && touched.patientId && !values.patientId
                                                 ? "border-red-500/50"
                                                 : "border-black/10 hover:border-cyan-700/40"
                                             }
@@ -357,11 +361,9 @@ function UploadReportForm({
                                         <FiChevronDown className="text-[#64748B]" />
                                     </button>
 
-                                    <ErrorMessage
-                                        name="patientId"
-                                        component="p"
-                                        className="mt-2 text-red-400"
-                                    />
+                                    {errors.patientId && touched.patientId && !values.patientId && (
+                                        <p className="mt-2 text-red-400">{errors.patientId}</p>
+                                    )}
 
                                     {isPatientOpen && (
                                         <div className="absolute z-50 mt-3 w-full rounded-3xl text-sm border border-black/10 bg-[#f7f7f7] p-4 shadow-2xl">
@@ -397,14 +399,13 @@ function UploadReportForm({
                                                     ) : filteredPatients.length > 0 ? (
                                                         filteredPatients.map((patient) => (
                                                             <button
-                                                                key={patient._id}
+                                                                key={patient._id || (patient as any).id}
                                                                 type="button"
                                                                 onClick={() => {
-                                                                    setFieldValue(
-                                                                        "patientId",
-                                                                        String(patient._id),
-                                                                    );
+                                                                    const pId = String(patient._id || (patient as any).id || "");
+                                                                    setFieldValue("patientId", pId);
                                                                     setFieldValue("patientName", patient.name);
+                                                                    setFieldError("patientId", undefined);
                                                                     setIsPatientOpen(false);
                                                                 }}
                                                                 className="flex w-full items-center gap-4 rounded-2xl border border-transparent bg-white/3 p-3 text-left transition-all hover:border-cyan-700/20 hover:bg-[#2f5ba5]/10"
@@ -453,6 +454,7 @@ function UploadReportForm({
                                         if (file) {
                                             if (file.type === "application/pdf") {
                                                 setFieldValue("reportFile", file);
+                                                setFieldError("reportFile", undefined);
                                             } else {
                                                 toast.error("Only PDF files are allowed");
                                             }
@@ -462,7 +464,7 @@ function UploadReportForm({
                     relative rounded-4xl border border-dashed bg-[#f7f7f7]/70 text-sm transition-all p-4
                     ${dragActive
                                             ? "border-cyan-700 bg-cyan-500/10"
-                                            : errors.reportFile && touched.reportFile
+                                            : errors.reportFile && touched.reportFile && !values.reportFile
                                                 ? "border-red-500/50"
                                                 : "border-black/10 hover:border-cyan-700/30"
                                         }
@@ -478,6 +480,7 @@ function UploadReportForm({
                                             if (file) {
                                                 if (file.type === "application/pdf") {
                                                     setFieldValue("reportFile", file);
+                                                    setFieldError("reportFile", undefined);
                                                 } else {
                                                     toast.error("Only PDF files are allowed");
                                                     e.currentTarget.value = "";
@@ -518,7 +521,11 @@ function UploadReportForm({
 
                                             <button
                                                 type="button"
-                                                onClick={() => setFieldValue("reportFile", null)}
+                                                onClick={() => {
+                                                    setFieldValue("reportFile", null);
+                                                    const fileInput = document.getElementById("reportFile") as HTMLInputElement;
+                                                    if (fileInput) fileInput.value = "";
+                                                }}
                                                 className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-500/10 text-red-500 transition-all hover:bg-red-500/20"
                                             >
                                                 <FiX />
@@ -527,11 +534,9 @@ function UploadReportForm({
                                     )}
                                 </div>
 
-                                <ErrorMessage
-                                    name="reportFile"
-                                    component="p"
-                                    className="mt-2 text-red-400"
-                                />
+                                {errors.reportFile && touched.reportFile && !values.reportFile && (
+                                    <p className="mt-2 text-red-400">{errors.reportFile as string}</p>
+                                )}
 
                                 <div className="mt-4 flex text-sm flex-wrap items-center justify-between gap-3 text-[#64748B]">
                                     <p>Accepted formats: PDF</p>

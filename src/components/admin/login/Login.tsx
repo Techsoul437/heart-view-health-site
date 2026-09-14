@@ -561,20 +561,22 @@ await dispatch(getProfile()).unwrap();
           <ErrorMessage name="email" component="div" className="mt-1 text-red-400 text-xs" />
         </div>
 
-        <div className="relative">
-          <Field
-            name="password"
-            type={showPass ? "text" : "password"}
-            placeholder="Enter password"
-            className={`${inputClass} pr-12`}
-          />
-          <button
-            type="button"
-            onClick={() => setShowPass((p) => !p)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-[#8FA6C1]"
-          >
-            {showPass ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-          </button>
+        <div>
+          <div className="relative">
+            <Field
+              name="password"
+              type={showPass ? "text" : "password"}
+              placeholder="Enter password"
+              className={`${inputClass} pr-12`}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPass((p) => !p)}
+              className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center text-[#8FA6C1] hover:text-[#2f5ba5] transition-colors"
+            >
+              {showPass ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+            </button>
+          </div>
           <ErrorMessage name="password" component="div" className="mt-1 text-red-400 text-xs" />
         </div>
 
@@ -641,8 +643,8 @@ const LoginOtpVerify = ({ mobile, onBack, onVerify, onResend, verifying, resendi
       <button
         type="button"
         onClick={() => onVerify(otp)}
-        disabled={verifying || otp.length !== 6}
-        className={`${buttonClass} mt-4`}
+        disabled={verifying || otp.length !== 6} 
+        className={`${buttonClass} mt-4`}      
       >
         {verifying ? "Verifying..." : "Verify & Sign In"}
       </button>
@@ -1007,37 +1009,41 @@ const SignupStep4 = ({ onSubmit, onLoginClick }: SignupStep4Props) => {
             <ErrorMessage name="email" component="div" className="mt-0.5 text-red-400 text-xs" />
           </div>
 
-          <div className="relative">
-            <Field
-              name="password"
-              type={showPass ? "text" : "password"}
-              placeholder="Create a strong password"
-              className={`${inputClass} pr-12`}
-            />
-            <button
-              type="button"
-              onClick={() => setShowPass((p) => !p)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-[#8FA6C1]"
-            >
-              {showPass ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-            </button>
+          <div>
+            <div className="relative">
+              <Field
+                name="password"
+                type={showPass ? "text" : "password"}
+                placeholder="Create a strong password"
+                className={`${inputClass} pr-12`}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPass((p) => !p)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center text-[#8FA6C1] hover:text-[#2f5ba5] transition-colors"
+              >
+                {showPass ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
+            </div>
             <ErrorMessage name="password" component="div" className="mt-0.5 text-red-400 text-xs" />
           </div>
 
-          <div className="relative">
-            <Field
-              name="confirmPassword"
-              type={showCPass ? "text" : "password"}
-              placeholder="Confirm your password"
-              className={`${inputClass} pr-12`}
-            />
-            <button
-              type="button"
-              onClick={() => setShowCPass((p) => !p)}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-[#8FA6C1]"
-            >
-              {showCPass ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-            </button>
+          <div>
+            <div className="relative">
+              <Field
+                name="confirmPassword"
+                type={showCPass ? "text" : "password"}
+                placeholder="Confirm your password"
+                className={`${inputClass} pr-12`}
+              />
+              <button
+                type="button"
+                onClick={() => setShowCPass((p) => !p)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center text-[#8FA6C1] hover:text-[#2f5ba5] transition-colors"
+              >
+                {showCPass ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
+            </div>
             <ErrorMessage name="confirmPassword" component="div" className="mt-0.5 text-red-400 text-xs" />
           </div>
 

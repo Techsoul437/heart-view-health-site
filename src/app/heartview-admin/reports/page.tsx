@@ -85,8 +85,6 @@ function formatUploadDate(str: string): { date: string; time: string } {
     return { date, time };
 }
 
-const ITEMS_PER_PAGE_OPTIONS = [10, 20, 50];
-
 export default function ReportsListPage() {
     const dispatch = useDispatch<AppDispatch>();
     const router = useRouter();
@@ -98,7 +96,7 @@ export default function ReportsListPage() {
     const [selectedId, setSelectedId] = useState<string | null>(null);
     const [search, setSearch] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const [itemsPerPage, setItemsPerPage] = useState(10);
+    const itemsPerPage = 10;
     const pathname = usePathname();
     const currentRole = useMemo(() => {
         if (pathname.startsWith("/lab-admin")) return "lab-admin";
@@ -480,21 +478,6 @@ const [totalReports, setTotalReports] = useState(0);
                                     <FiChevronRight />
                                 </button>
                             </div>
-
-                            <select
-                                value={itemsPerPage}
-                                onChange={(e) => {
-                                    setItemsPerPage(Number(e.target.value));
-                                    setCurrentPage(1);
-                                }}
-                                className="h-8 px-2 rounded-lg border border-black/10 bg-white text-[#64748B] outline-none cursor-pointer hover:bg-gray-50"
-                            >
-                                {ITEMS_PER_PAGE_OPTIONS.map((n) => (
-                                    <option key={n} value={n}>
-                                        {n} / page
-                                    </option>
-                                ))}
-                            </select>
                         </div>
                     </div>
                 )}

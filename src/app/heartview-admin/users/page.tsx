@@ -15,8 +15,7 @@ export default function UsersPage() {
   }, [dispatch]);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-  const ITEMS_PER_PAGE_OPTIONS = [10, 20, 50];
+  const itemsPerPage = 10;
 
   const totalPages = Math.max(1, Math.ceil((staffData?.length || 0) / itemsPerPage));
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -124,21 +123,6 @@ export default function UsersPage() {
                   <FiChevronRight />
                 </button>
               </div>
-
-              <select
-                  value={itemsPerPage}
-                  onChange={(e) => {
-                      setItemsPerPage(Number(e.target.value));
-                      setCurrentPage(1);
-                  }}
-                  className="h-8 px-2 rounded-lg border border-black/10 bg-white text-[#64748B] outline-none cursor-pointer hover:bg-gray-50 text-sm"
-              >
-                  {ITEMS_PER_PAGE_OPTIONS.map((n) => (
-                      <option key={n} value={n}>
-                          {n} / page
-                      </option>
-                  ))}
-              </select>
             </div>
           </div>
         )}

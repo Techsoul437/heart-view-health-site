@@ -258,68 +258,86 @@ const labId = Number(params.id);
                                 {/* City */}
                                 <div>
                                     <label className="mb-2 block font-medium">
-                                        City <span className="text-red-500">*</span>
-                                    </label>
-                                    <Field
-                                        name="city"
-                                        placeholder="Surat"
-                                        className={`h-14 w-full rounded-xl border px-4 ${touched.city && errors.city
-                                            ? "border-red-500"
-                                            : "border-slate-300"
-                                            }`}
-                                    />
+                                            City <span className="text-red-500">*</span>
+                                        </label>
+                                        <Field
+                                            name="city"
+                                            placeholder="Surat"
+                                            className={`h-14 w-full rounded-xl border px-4 ${touched.city && errors.city
+                                                ? "border-red-500"
+                                                : "border-slate-300"
+                                                }`}
+                                        />
+                                        <ErrorMessage
+                                            name="city"
+                                            component="p"
+                                            className="mt-1 text-sm text-red-500"
+                                        />
+                                    </div>
+
+                                    {/* State */}
+                                    <div>
+                                        <label className="mb-2 block font-medium">
+                                            State <span className="text-red-500">*</span>
+                                        </label>
+                                        <Field
+                                            name="state"
+                                            placeholder="Gujarat"
+                                            className={`h-14 w-full rounded-xl border px-4 ${touched.state && errors.state
+                                                ? "border-red-500"
+                                                : "border-slate-300"
+                                                }`}
+                                        />
+                                        <ErrorMessage
+                                            name="state"
+                                            component="p"
+                                            className="mt-1 text-sm text-red-500"
+                                        />
+                                    </div>
+
+                                    {/* Pincode */}
+                                    <div>
+                                        <label className="mb-2 block font-medium">
+                                            Pincode <span className="text-red-500">*</span>
+                                        </label>
+                                        <Field
+                                            name="pincode"
+                                            placeholder="395006"
+                                            className={`h-14 w-full rounded-xl border px-4 ${touched.pincode && errors.pincode
+                                                ? "border-red-500"
+                                                : "border-slate-300"
+                                                }`}
+                                        />
+                                        <ErrorMessage
+                                            name="pincode"
+                                            component="p"
+                                            className="mt-1 text-sm text-red-500"
+                                        />
+                                    </div>
+
                                 </div>
 
-                                {/* State */}
-                                <div>
+                                {/* Address */}
+                                <div className="mt-6">
                                     <label className="mb-2 block font-medium">
-                                        State <span className="text-red-500">*</span>
+                                        Address <span className="text-red-500">*</span>
                                     </label>
                                     <Field
-                                        name="state"
-                                        placeholder="Gujarat"
-                                        className={`h-14 w-full rounded-xl border px-4 ${touched.state && errors.state
+                                        as="textarea"
+                                        rows={4}
+                                        name="address"
+                                        placeholder="Enter complete address"
+                                        className={`w-full rounded-xl border p-4 ${touched.address && errors.address
                                             ? "border-red-500"
                                             : "border-slate-300"
                                             }`}
                                     />
-                                </div>
-
-                                {/* Pincode */}
-                                <div>
-                                    <label className="mb-2 block font-medium">
-                                        Pincode <span className="text-red-500">*</span>
-                                    </label>
-                                    <Field
-                                        name="pincode"
-                                        placeholder="395006"
-                                        className={`h-14 w-full rounded-xl border px-4 ${touched.pincode && errors.pincode
-                                            ? "border-red-500"
-                                            : "border-slate-300"
-                                            }`}
+                                    <ErrorMessage
+                                        name="address"
+                                        component="p"
+                                        className="mt-1 text-sm text-red-500"
                                     />
                                 </div>
-
-                            </div>
-
-                            {/* Address */}
-                            <div className="mt-6">
-                                <label className="mb-2 block font-medium">
-                                    Address <span className="text-red-500">*</span>
-                                </label>
-                                <Field
-                                    as="textarea"
-                                    rows={4}
-                                    name="address"
-                                    placeholder="Enter complete address"
-                                    className="w-full rounded-xl border border-slate-300 p-4"
-                                />
-                                <ErrorMessage
-                                    name="address"
-                                    component="p"
-                                    className="mt-1 text-sm text-red-500"
-                                />
-                            </div>
 
 
 

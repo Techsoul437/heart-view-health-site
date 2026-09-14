@@ -150,20 +150,22 @@ const AdminLoginPanel = () => {
             <ErrorMessage name="email" component="div" className="mt-1.5 text-sm text-red-400" />
           </div>
 
-          <div className="relative">
-            <Field
-              name="password"
-              type={showPass ? "text" : "password"}
-              placeholder="Enter password"
-              className={`${inputClass} pr-14`}
-            />
-            <button
-              type="button"
-              onClick={() => setShowPass((p) => !p)}
-              className="absolute right-5 top-1/2 -translate-y-1/2 text-[#8FA6C1]"
-            >
-              {showPass ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
-            </button>
+          <div>
+            <div className="relative">
+              <Field
+                name="password"
+                type={showPass ? "text" : "password"}
+                placeholder="Enter password"
+                className={`${inputClass} pr-14`}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPass((p) => !p)}
+                className="absolute right-5 top-1/2 -translate-y-1/2 flex items-center justify-center text-[#8FA6C1] hover:text-[#2f5ba5] transition-colors"
+              >
+                {showPass ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+              </button>
+            </div>
             <ErrorMessage name="password" component="div" className="mt-1.5 text-sm text-red-400" />
           </div>
 

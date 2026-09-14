@@ -227,7 +227,8 @@ export default function AddStaffPage() {
                                     <div className="mt-6 grid gap-6 lg:grid-cols-4">
                                         <div>
                                             <label className="mb-2 block  font-medium text-slate-700">
-                                                Designation *
+                                                Designation{" "}
+                                                <span className="text-red-500">*</span>
                                             </label>
 
                                             <Field
@@ -245,7 +246,8 @@ export default function AddStaffPage() {
                                         </div>
                                         <div>
                                             <label className="mb-2 block  font-medium text-slate-700">
-                                                Department *
+                                                Department{" "}
+                                                <span className="text-red-500">*</span>
                                             </label>
 
                                             <Field
@@ -264,7 +266,8 @@ export default function AddStaffPage() {
 
                                         <div>
                                             <label className="mb-2 block  font-medium text-slate-700">
-                                                Branch *
+                                                Branch{" "}
+                                                <span className="text-red-500">*</span>
                                             </label>
 
                                             <Field
