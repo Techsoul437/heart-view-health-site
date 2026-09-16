@@ -426,6 +426,7 @@ export default function EditBlogPage() {
             </div>
             <div className="mt-8  rounded-lg border border-black/10 bg-white p-5 shadow-sm sm:p-8">
                 <Formik
+                
                     initialValues={formInitialValues}
                     enableReinitialize
                     validationSchema={validationSchema}
