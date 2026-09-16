@@ -153,7 +153,7 @@ export default function AddPatientPage() {
     return (
         <PermissionGuard moduleName="patients" permissionName="create_patient">
         <div className="min-h-screen text-black">
-            <div className="min-h-screen p-6 md:p-12">
+            <div className="min-h-screen p-4 sm:p-6 md:p-12">
                 {/* HEADER */}
                 <div className="flex flex-col gap-5">
                     <div className="flex items-center gap-3">
@@ -191,7 +191,7 @@ export default function AddPatientPage() {
                 </div>
 
                 {/* FORM CARD */}
-                <div className="mt-8 rounded-3xl border border-black/10 bg-white/3 p-5 shadow-2xl backdrop-blur-xl sm:p-8 lg:p-10">
+                <div className="mt-8 rounded-2xl sm:rounded-3xl border border-black/10 bg-white/3 p-4 sm:p-8 lg:p-10 shadow-2xl backdrop-blur-xl w-full max-w-full overflow-hidden">
                     <Formik<PatientFormValues>
                         initialValues={initialValues}
                         validationSchema={validationSchema}
@@ -199,11 +199,11 @@ export default function AddPatientPage() {
                         enableReinitialize={false}
                     >
                         {({ resetForm, validateForm, setTouched, values }) => (
-                            <Form className="flex flex-col gap-8">
+                            <Form className="flex flex-col gap-8 w-full max-w-full">
                                 {step === 1 && (
                                     <>
                                         {/* NAME */}
-                                        <div className="flex flex-col gap-3">
+                                        <div className="flex flex-col gap-3 min-w-0">
                                             <label className="font-medium text-black">
                                                 Name <span className="text-red-400">*</span>
                                             </label>
@@ -211,14 +211,14 @@ export default function AddPatientPage() {
                                                 type="text"
                                                 name="name"
                                                 placeholder="Enter patient name"
-                                                className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4 outline-none transition"
+                                                className="w-full min-w-0 rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-4 sm:px-5 py-3.5 sm:py-4 outline-none transition"
                                             />
                                             <ErrorMessage name="name" component="p" className="text-red-400" />
                                         </div>
 
                                         {/* MOBILE + EMAIL */}
-                                        <div className="grid gap-8 lg:grid-cols-2">
-                                            <div className="flex flex-col gap-3">
+                                        <div className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2">
+                                            <div className="flex flex-col gap-3 min-w-0">
                                                 <label className="font-medium text-black">
                                                     Mobile <span className="text-red-400">*</span>
                                                 </label>
@@ -226,43 +226,43 @@ export default function AddPatientPage() {
                                                     type="text"
                                                     name="mobile"
                                                     placeholder="Enter mobile number"
-                                                    className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4 outline-none transition"
+                                                    className="w-full min-w-0 rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-4 sm:px-5 py-3.5 sm:py-4 outline-none transition"
                                                 />
                                                 <ErrorMessage name="mobile" component="p" className="text-red-400" />
                                             </div>
 
-                                            <div className="flex flex-col gap-3">
+                                            <div className="flex flex-col gap-3 min-w-0">
                                                 <label className="font-medium text-black">Email</label>
                                                 <Field
                                                     type="text"
                                                     name="email"
                                                     placeholder="Enter email (optional)"
-                                                    className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4 outline-none transition"
+                                                    className="w-full min-w-0 rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-4 sm:px-5 py-3.5 sm:py-4 outline-none transition"
                                                 />
                                                 <ErrorMessage name="email" component="p" className="text-red-400" />
                                             </div>
                                         </div>
 
                                         {/* DOB + GENDER */}
-                                        <div className="grid gap-8 lg:grid-cols-2">
-                                            <div className="flex flex-col gap-3">
+                                        <div className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2">
+                                            <div className="flex flex-col gap-3 min-w-0">
                                                 <label className="font-medium text-black">
                                                     Date of Birth <span className="text-red-400">*</span>
                                                 </label>
                                                 <Field
                                                     type="date"
                                                     name="dob"
-                                                    className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4 outline-none transition"
+                                                    className="w-full min-w-0 rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-4 sm:px-5 py-3.5 sm:py-4 outline-none transition"
                                                     lang="en-GB"
                                                 />
                                                 <ErrorMessage name="dob" component="p" className="text-red-400" />
                                             </div>
 
-                                            <div className="flex flex-col gap-3">
+                                            <div className="flex flex-col gap-3 min-w-0">
                                                 <label className="font-medium text-black">
                                                     Gender <span className="text-red-400">*</span>
                                                 </label>
-                                                <div className="flex flex-wrap items-center gap-6 rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4">
+                                                <div className="flex flex-wrap items-center gap-4 sm:gap-6 rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-4 sm:px-5 py-3.5 sm:py-4 w-full">
                                                     {["male", "female", "other"].map((option) => (
                                                         <label
                                                             key={option}
@@ -283,15 +283,15 @@ export default function AddPatientPage() {
                                         </div>
 
                                         {/* COUNTY + STATE */}
-                                        <div className="grid gap-8 lg:grid-cols-2">
-                                            <div className="flex flex-col gap-3">
+                                        <div className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2">
+                                            <div className="flex flex-col gap-3 min-w-0">
                                                 <label className="font-medium text-black">
-                                                    County <span className="text-red-400">*</span>
+                                                    Country <span className="text-red-400">*</span>
                                                 </label>
                                                 <Field
                                                     as="select"
                                                     name="county"
-                                                    className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4 outline-none"
+                                                    className="w-full min-w-0 max-w-full rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-4 sm:px-5 py-3.5 sm:py-4 outline-none truncate"
                                                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                                                         const code = e.target.value;
 
@@ -311,14 +311,14 @@ export default function AddPatientPage() {
                                                 <ErrorMessage name="county" component="p" className="text-red-400" />
                                             </div>
 
-                                            <div className="flex flex-col gap-3">
+                                            <div className="flex flex-col gap-3 min-w-0">
                                                 <label className="font-medium text-black">
                                                     State <span className="text-red-400">*</span>
                                                 </label>
                                                 <Field
                                                     as="select"
                                                     name="state"
-                                                    className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4 outline-none"
+                                                    className="w-full min-w-0 max-w-full rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-4 sm:px-5 py-3.5 sm:py-4 outline-none truncate"
                                                 >
                                                     <option value="">Select State</option>
 
@@ -417,8 +417,8 @@ export default function AddPatientPage() {
                                 {step === 2 && (
                                     <>
                                         {/* HEIGHT + WEIGHT */}
-                                        <div className="grid gap-8 lg:grid-cols-2">
-                                            <div className="flex flex-col gap-3">
+                                        <div className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2">
+                                            <div className="flex flex-col gap-3 min-w-0">
                                                 <label className="font-medium text-black">
                                                     Height (cm) <span className="text-red-400">*</span>
                                                 </label>
@@ -426,12 +426,12 @@ export default function AddPatientPage() {
                                                     type="text"
                                                     name="height"
                                                     placeholder="Enter height"
-                                                    className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4 outline-none transition"
+                                                    className="w-full min-w-0 rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-4 sm:px-5 py-3.5 sm:py-4 outline-none transition"
                                                 />
                                                 <ErrorMessage name="height" component="p" className="text-red-400" />
                                             </div>
 
-                                            <div className="flex flex-col gap-3">
+                                            <div className="flex flex-col gap-3 min-w-0">
                                                 <label className="font-medium text-black">
                                                     Weight (kg) <span className="text-red-400">*</span>
                                                 </label>
@@ -439,19 +439,19 @@ export default function AddPatientPage() {
                                                     type="text"
                                                     name="weight"
                                                     placeholder="Enter weight"
-                                                    className="rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4 outline-none transition"
+                                                    className="w-full min-w-0 rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-4 sm:px-5 py-3.5 sm:py-4 outline-none transition"
                                                 />
                                                 <ErrorMessage name="weight" component="p" className="text-red-400" />
                                             </div>
                                         </div>
 
                                         {/* BLOOD PRESSURE + BLOOD SUGAR */}
-                                        <div className="grid gap-8 lg:grid-cols-2">
-                                            <div className="flex flex-col gap-3">
+                                        <div className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2">
+                                            <div className="flex flex-col gap-3 min-w-0">
                                                 <label className="font-medium text-black">
                                                     Blood Pressure <span className="text-red-400">*</span>
                                                 </label>
-                                                <div className="flex items-center gap-6 rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4">
+                                                <div className="flex flex-wrap items-center gap-4 sm:gap-6 rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-4 sm:px-5 py-3.5 sm:py-4 w-full">
                                                     {["Yes", "No"].map((option) => (
                                                         <label key={option} className="flex items-center gap-2 cursor-pointer">
                                                             <Field
@@ -467,11 +467,11 @@ export default function AddPatientPage() {
                                                 <ErrorMessage name="bloodPressure" component="p" className="text-red-400" />
                                             </div>
 
-                                            <div className="flex flex-col gap-3">
+                                            <div className="flex flex-col gap-3 min-w-0">
                                                 <label className="font-medium text-black">
                                                     Blood Sugar <span className="text-red-400">*</span>
                                                 </label>
-                                                <div className="flex items-center gap-6 rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4">
+                                                <div className="flex flex-wrap items-center gap-4 sm:gap-6 rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-4 sm:px-5 py-3.5 sm:py-4 w-full">
                                                     {["Yes", "No"].map((option) => (
                                                         <label key={option} className="flex items-center gap-2 cursor-pointer">
                                                             <Field
@@ -489,12 +489,12 @@ export default function AddPatientPage() {
                                         </div>
 
                                         {/* HEART HISTORY + SMOKING */}
-                                        <div className="grid gap-8 lg:grid-cols-2">
-                                            <div className="flex flex-col gap-3">
+                                        <div className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2">
+                                            <div className="flex flex-col gap-3 min-w-0">
                                                 <label className="font-medium text-black">
                                                     Heart History <span className="text-red-400">*</span>
                                                 </label>
-                                                <div className="flex flex-wrap items-center gap-6 rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4">
+                                                <div className="flex flex-wrap items-center gap-4 sm:gap-6 rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-4 sm:px-5 py-3.5 sm:py-4 w-full">
                                                     {["Self", "Family", "None"].map((option) => (
                                                         <label key={option} className="flex items-center gap-2 cursor-pointer">
                                                             <Field
@@ -510,11 +510,11 @@ export default function AddPatientPage() {
                                                 <ErrorMessage name="heartHistory" component="p" className="text-red-400" />
                                             </div>
 
-                                            <div className="flex flex-col gap-3">
+                                            <div className="flex flex-col gap-3 min-w-0">
                                                 <label className="font-medium text-black">
                                                     Smoking <span className="text-red-400">*</span>
                                                 </label>
-                                                <div className="flex flex-wrap items-center gap-6 rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-5 py-4">
+                                                <div className="flex flex-wrap items-center gap-6 rounded-2xl border border-black/10 bg-[#f7f7f7]/70 px-4 sm:px-5 py-3.5 sm:py-4 w-full">
                                                     {["Yes", "No", "Past"].map((option) => (
                                                         <label key={option} className="flex items-center gap-2 cursor-pointer">
                                                             <Field

@@ -280,20 +280,24 @@ function ModuleCard({ module, state, onToggle, expanded, onToggleExpand, query }
     <div className="overflow-hidden rounded-[18px] border border-gray-200 bg-white shadow-[0_1px_2px_rgba(16,24,40,0.03)] transition-all duration-200 hover:border-gray-300 hover:shadow-[0_6px_18px_-10px_rgba(16,24,40,0.12)]">
       <button
         onClick={onToggleExpand}
-        className="flex w-full items-center justify-between px-5 py-[18px] text-left"
+        className="flex w-full items-center justify-between gap-3 sm:gap-4 p-4 sm:px-5 sm:py-[18px] text-left"
       >
-        <div className="flex items-center gap-3.5">
+        <div className="flex items-center gap-3 sm:gap-3.5 min-w-0 flex-1">
           <div className="flex h-[42px] w-[42px] flex-shrink-0 items-center justify-center rounded-xl bg-[#EEF3FF]">
             <Icon size={19} strokeWidth={2} color="#2F6FED" />
           </div>
-          <div>
-            <div className="mb-0.5 text-[15px] font-semibold tracking-tight text-gray-900">{module.title}</div>
-            <div className="text-[12.5px] text-gray-400">{module.desc}</div>
+          <div className="min-w-0 flex-1">
+            <div className="mb-0.5 text-[14.5px] sm:text-[15px] font-semibold tracking-tight text-gray-900">
+              {module.title}
+            </div>
+            <div className="text-[12px] sm:text-[12.5px] leading-relaxed text-gray-400">
+              {module.desc}
+            </div>
           </div>
         </div>
-        <div className="flex flex-shrink-0 items-center gap-3.5">
+        <div className="flex flex-shrink-0 items-center gap-2.5 sm:gap-3.5">
           <span
-            className={`whitespace-nowrap rounded-full border px-[11px] py-[5px] text-[11.5px] font-semibold ${
+            className={`whitespace-nowrap rounded-full border px-2.5 sm:px-[11px] py-1 sm:py-[5px] text-[11px] sm:text-[11.5px] font-semibold ${
               allOn
                 ? "border-[#BBF0D2] bg-emerald-50 text-emerald-600"
                 : noneOn
@@ -325,7 +329,7 @@ function ModuleCard({ module, state, onToggle, expanded, onToggleExpand, query }
                 key={p.id}
                 className="flex items-center justify-between gap-3.5 rounded-xl px-3 py-[11px] transition-colors duration-150 hover:bg-gray-50"
               >
-                <div>
+                <div className="min-w-0 flex-1">
                   <div className="mb-0.5 text-[13.5px] font-medium text-gray-900">{p.label}</div>
                   <div className="text-xs leading-[1.4] text-gray-400">{p.desc}</div>
                 </div>
@@ -542,18 +546,18 @@ export default function PermissionManagementPage() {
 
   return (
     <div className="min-h-full bg-white text-gray-900">
-      <div className="mx-auto p-6 md:p-12">
+      <div className="mx-auto p-4 sm:p-6 md:p-12">
         {/* Header */}
         <div className="mb-8 flex flex-wrap items-start justify-between gap-5">
           <div>
-            <h1 className="mb-1.5 text-[30px] tracking-tight text-gray-900">
+            <h1 className="mb-1.5 text-[24px] sm:text-[30px] tracking-tight text-gray-900">
               Permission Management
             </h1>
-            <p className="text-sm text-gray-500">
+            <p className="text-xs sm:text-sm text-gray-500">
               Manage access permissions for Lab Admin and Lab Staff across all modules.
             </p>
           </div>
-          <div className="flex gap-2.5">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <ResetButton text="Reset Permissions" onReset={handleReset} />
             <SubmitButton
               text={saving ? "Saving..." : "Save Changes"}
