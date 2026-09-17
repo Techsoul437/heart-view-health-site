@@ -39,9 +39,6 @@ export const metadata = {
     "wellness tracking",
     "health reports",
   ],
-  alternates: {
-    canonical: '/',
-  },
   openGraph: {
     title: "HeartView Health",
     description:

@@ -22,13 +22,13 @@ export const metadata: Metadata = {
     "HeartView Health",
   ],
   alternates: {
-    canonical: "https://heartviewhealth.com/faq",
+    canonical: "/faq",
   },
   openGraph: {
     title: "FAQs | HeartView Health",
     description:
       "Get answers to common questions about HeartView Health, health tracking, account management, reports, and platform features.",
-    url: "https://heartviewhealth.com/faq",
+    url: "/faq",
     siteName: "HeartView Health",
     type: "website",
     locale: "en_US",

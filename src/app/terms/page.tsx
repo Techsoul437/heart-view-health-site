@@ -19,14 +19,14 @@ import React from 'react'
   ],
 
   alternates: {
-    canonical: "https://heartviewhealth.com/terms",
+    canonical: "/terms",
   },
 
   openGraph: {
     title: "Terms & Conditions | HeartView Health",
     description:
       "Read the Terms & Conditions for using the HeartView Health platform, services, and website.",
-    url: "https://heartviewhealth.com/terms",
+    url: "/terms",
     siteName: "HeartView Health",
     type: "website",
     locale: "en_US",

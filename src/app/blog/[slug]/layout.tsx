@@ -22,26 +22,26 @@ export async function generateMetadata(
       
       if (blog) {
         return {
-          title: `${blog.seoTitle || blog.title} | HeartView Health`,
-          description: blog.seoDescription || blog.description,
+          title: (blog.seoTitle || blog.title) as string,
+          description: (blog.seoDescription || blog.description) as string,
           alternates: {
-            canonical: `https://heartviewhealth.com/blog/${slug}`,
+            canonical: `/blog/${slug}`,
           },
           openGraph: {
-            title: blog.seoTitle || blog.title,
-            description: blog.seoDescription || blog.description,
-            url: `https://heartviewhealth.com/blog/${slug}`,
-            images: blog.mainImage ? [{ url: blog.mainImage }] : [],
+            title: (blog.seoTitle || blog.title) as string,
+            description: (blog.seoDescription || blog.description) as string,
+            url: `/blog/${slug}`,
+            images: blog.mainImage ? [{ url: blog.mainImage as string }] : [],
             type: "article",
-            authors: blog.author ? [blog.author] : undefined,
-            publishedTime: blog.publishDate || undefined,
-            modifiedTime: blog.updatedAt || undefined,
+            authors: blog.author ? [blog.author as string] : undefined,
+            publishedTime: (blog.publishDate as string) || undefined,
+            modifiedTime: (blog.updatedAt as string) || undefined,
           },
           twitter: {
             card: "summary_large_image",
-            title: blog.seoTitle || blog.title,
-            description: blog.seoDescription || blog.description,
-            images: blog.mainImage ? [blog.mainImage] : [],
+            title: (blog.seoTitle || blog.title) as string,
+            description: (blog.seoDescription || blog.description) as string,
+            images: blog.mainImage ? [blog.mainImage as string] : [],
           },
         };
       }
@@ -51,10 +51,10 @@ export async function generateMetadata(
   }
 
   return {
-    title: "Blog | HeartView Health",
+    title: "Blog",
     alternates: {
-      canonical: `https://heartviewhealth.com/blog/${slug}`,
-    }
+      canonical: `/blog/${slug}`,
+    },
   };
 }
 

@@ -9,23 +9,25 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const { category } = await params;
-  const decodedCategory = decodeURIComponent(category).replace(/-/g, " ");
+  const decodedCategory = decodeURIComponent(category).replace(/-/g, " ").trim();
+  const displayName = decodedCategory.replace(/\b\w/g, (c) => c.toUpperCase());
+  const cleanSlug = decodedCategory.toLowerCase().replace(/[\s_]+/g, "-");
 
   return {
-    title: `${decodedCategory.toUpperCase()} Blogs | HeartView Health`,
+    title: `${displayName} Blogs`,
     description: `Explore all our expert articles and insights related to ${decodedCategory}.`,
     alternates: {
-      canonical: `https://heartviewhealth.com/category/${category}`,
+      canonical: `/category/${cleanSlug}`,
     },
     openGraph: {
-      title: `${decodedCategory.toUpperCase()} Blogs | HeartView Health`,
+      title: `${displayName} Blogs`,
       description: `Explore all our expert articles and insights related to ${decodedCategory}.`,
-      url: `https://heartviewhealth.com/category/${category}`,
+      url: `/category/${cleanSlug}`,
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: `${decodedCategory.toUpperCase()} Blogs | HeartView Health`,
+      title: `${displayName} Blogs`,
       description: `Explore all our expert articles and insights related to ${decodedCategory}.`,
     },
   };

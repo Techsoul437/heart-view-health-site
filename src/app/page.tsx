@@ -25,13 +25,13 @@ import WhatsAppButton from "@/Ui/whatsAppButton/WhatsAppButton";
     "digital healthcare",
   ],
   alternates: {
-    canonical: "https://heartviewhealth.com/",
+    canonical: "/",
   },
   openGraph: {
     title: "HeartView Health | AI-Powered Health Tracking & Wellness Platform",
     description:
       "Track your health, analyze medical reports, and receive personalized AI-powered health insights with HeartView Health.",
-    url: "https://heartviewhealth.com/",
+    url: "/",
     type: "website",
   },
   twitter: {

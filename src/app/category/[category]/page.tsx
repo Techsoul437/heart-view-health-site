@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { getBlogs } from "@/redux/Api";
 import type { AppDispatch, RootState } from "@/redux/store";
@@ -19,9 +17,7 @@ export default function CategoryPage() {
   const params = useParams();
   const rawCategory = params?.category;
   const category = decodeURIComponent(Array.isArray(rawCategory) ? rawCategory[0] : (rawCategory || ""));
-  const categoryLabels: Record<string, string> = {
-    bp: "Blood Pressure",
-  };
+
 
   const dispatch = useDispatch<AppDispatch>();
   const { blogs, loading } = useSelector((state: RootState) => state.BlogList);
@@ -34,12 +30,15 @@ export default function CategoryPage() {
     return blogs.filter((blog) => blog.status === "published");
   }, [blogs]);
 
+  const normalizedCategoryParam = category.toLowerCase().trim().replace(/[\s_]+/g, "-");
+
   // ✅ filter blogs by category
   const filteredBlogs = useMemo(() => {
-    return publishedBlogs.filter(
-      (blog) => blog.category.toLowerCase() === category.toLowerCase()
-    );
-  }, [publishedBlogs, category]);
+    return publishedBlogs.filter((blog) => {
+      const blogCat = (blog.category || "").toLowerCase().trim().replace(/[\s_]+/g, "-");
+      return blogCat === normalizedCategoryParam;
+    });
+  }, [publishedBlogs, normalizedCategoryParam]);
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -50,6 +49,7 @@ export default function CategoryPage() {
   );
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setCurrentPage(1);
   }, [category]);
 

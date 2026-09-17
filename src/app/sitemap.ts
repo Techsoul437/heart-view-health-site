@@ -6,7 +6,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 3. PUBLIC STATIC PAGES
   const defaultPages: MetadataRoute.Sitemap = [
     {
-      url: `${baseUrl}`,
+      url: `${baseUrl}/`,
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 1,
@@ -65,6 +65,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "yearly",
       priority: 0.5,
     },
+    {
+      url: `${baseUrl}/delete-account`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
   ];
 
   type BlogItem = { status: string; slug: string; updatedAt?: string; category?: string };
@@ -99,16 +105,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         return acc;
       }, []);
 
-      // 2. CATEGORY URLs - derived from actual published blogs
-      const activeCategories = Array.from(new Set(
-        publishedBlogs
-          .map((blog) => blog.category)
-          .filter(Boolean)
-          .map((cat) => cat!.toLowerCase())
-      ));
+      // 2. CATEGORY URLs - derived from actual published blogs (slugified without spaces)
+      const toCategorySlug = (cat: string) =>
+        cat.toLowerCase().trim().replace(/[\s_]+/g, "-");
 
-      categoryUrls = activeCategories.map((cat) => ({
-        url: `${baseUrl}/category/${cat}`,
+      const activeCategories = Array.from(
+        new Set(
+          publishedBlogs
+            .map((blog) => blog.category)
+            .filter(Boolean)
+            .map((cat) => toCategorySlug(cat!))
+        )
+      );
+
+      categoryUrls = activeCategories.map((catSlug) => ({
+        url: `${baseUrl}/category/${catSlug}`,
         lastModified: new Date(),
         changeFrequency: "monthly",
         priority: 0.6,

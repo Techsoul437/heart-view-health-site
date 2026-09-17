@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     "HeartView Health",
   ],
   alternates: {
-    canonical: "https://heartviewhealth.com/delete-account",
+    canonical: "/delete-account",
   },
   openGraph: {
     title: "Delete Account | HeartView Health",
     description:
       "Learn how to request deletion of your HeartView Health account and understand what data will be deleted.",
-    url: "https://heartviewhealth.com/delete-account",
+    url: "/delete-account",
     siteName: "HeartView Health",
     type: "website",
     locale: "en_US",

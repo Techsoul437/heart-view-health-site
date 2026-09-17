@@ -41,6 +41,22 @@ const nextConfig = {
 
   compress: true,
 
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "www.heartviewhealth.com",
+          },
+        ],
+        destination: "https://heartviewhealth.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
+
   async rewrites() {
     if (isDev) {
       return [

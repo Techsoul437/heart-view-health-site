@@ -94,6 +94,7 @@ export default function Navbar() {
                   <div className="py-2 flex flex-col">
                     <Link
                       href="/lab-staff"
+                      rel="nofollow"
                       onClick={() => setLabDropdownOpen(false)}
                       className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 focus:bg-white/5 focus:outline-none transition-colors"
                     >
@@ -107,6 +108,7 @@ export default function Navbar() {
                     </Link>
                     <Link
                       href="/lab-admin"
+                      rel="nofollow"
                       onClick={() => setLabDropdownOpen(false)}
                       className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 focus:bg-white/5 focus:outline-none transition-colors"
                     >
@@ -190,6 +192,7 @@ export default function Navbar() {
                 <div className="py-2 flex flex-col">
                   <Link
                     href="/lab-staff"
+                    rel="nofollow"
                     onClick={() => {
                       setLabDropdownOpen(false);
                       setSidebarOpen(false);
@@ -206,6 +209,7 @@ export default function Navbar() {
                   </Link>
                   <Link
                     href="/lab-admin"
+                    rel="nofollow"
                     onClick={() => {
                       setLabDropdownOpen(false);
                       setSidebarOpen(false);
